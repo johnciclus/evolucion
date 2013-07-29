@@ -1,0 +1,9 @@
+CACHE MANIFEST
+# ver. 1
+/images/camara_normal.png
+/images/cerrar.png
+
+NETWORK:
+*
+
+CACHE:

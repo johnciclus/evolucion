@@ -1,0 +1,74 @@
+#svg-div-fyn{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#svg-fyn{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#curso-fyn span { 
+	background-image: url(/images/cursor.png);	
+	background-position: 0px 0px;
+}
+#param-fyn span { 
+	background-image: url(/images/parametro.png);	
+	background-position: 0px 0px;
+}
+#nivel-fyn span { 
+	background-image: url(/images/nivel.png);	
+	background-position: 0px 0px;
+}
+#flujo-fyn span { 
+	background-image: url(/images/flujo.png);	
+	background-position: 0px 0px;
+}
+#vaaux-fyn span { 
+	background-image: url(/images/variable_auxiliar.png);	
+	background-position: 0px 0px;
+}
+#vaexo-fyn span { 
+	background-image: url(/images/variable_exogena.png);	
+	background-position: 0px 0px;
+}
+#retar-fyn span { 
+	background-image: url(/images/retardo.png);	
+	background-position: 0px 0px;
+}
+#multi-fyn span { 
+	background-image: url(/images/multiplicador.png);	
+	background-position: 0px 0px;
+}
+#elfis-fyn span { 
+	background-image: url(/images/fis.png);	
+	background-position: 0px 0px;
+}
+#vaant-fyn span { 
+	background-image: url(/images/valor_anterior.png);	
+	background-position: 0px 0px;
+}
+#submo-fyn span { 
+	background-image: url(/images/submodelo.png);	
+	background-position: 0px 0px;
+}
+#copia-fyn span { 
+	background-image: url(/images/camara.png);	
+	background-position: 0px 0px;
+}
+#relac-fyn span { 
+	background-image: url(/images/relacion_informacion.png);	
+	background-position: 0px 0px;
+}
+#secto-fyn span { 
+	background-image: url(/images/sector.png);	
+	background-position: 0px 0px;
+}

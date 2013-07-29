@@ -1,0 +1,3 @@
+<% if flash[:success] == true %>
+    alert('<%= flash[:notice].html_safe %>');
+<% end %>

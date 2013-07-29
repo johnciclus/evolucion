@@ -1,0 +1,13 @@
+#elementos-com{
+	width: 140px;
+	height: 460px;
+	padding: 10px 5px;
+}
+#elementos-com label{
+	font-weight: bold;
+	color: #008ec7;
+}
+#elementos-com input[type="text"]{
+	width: 100px;
+	text-align: center;
+}
