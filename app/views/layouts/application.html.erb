@@ -19,22 +19,72 @@
     <%= stylesheet_link_tag "highlight" %>
     
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "require" %>
-    <%= javascript_include_tag "poo" %>
-    <%= javascript_include_tag "jquery/jquery-ui-1.9.2.custom.min" %>
-    <%= javascript_include_tag "raphael/raphael" %>
-    <%= javascript_include_tag "highcharts/js/highcharts" %>
-    <%= javascript_include_tag "highcharts/js/modules/exporting" %>
-    <%= javascript_include_tag "highlight" %>
-    <%= javascript_include_tag "evolucion/evolucion" %>
-    <%= javascript_include_tag "evolucion/prosa" %>
-    <%= javascript_include_tag "evolucion/influencias" %>
-    <%= javascript_include_tag "evolucion/flujonivel" %>
-    <%= javascript_include_tag "evolucion/ecuaciones" %>
-    <%= javascript_include_tag "evolucion/comportamientos" %>
-    <%= javascript_include_tag "evolucion/dynamos" %>
-        
+    <%= javascript_include_tag "require" %>       
     <%= csrf_meta_tag %>
+    
+    <script type="text/javascript">
+        require.config({
+            baseUrl: '/assets/',
+            paths: {
+                poo:            'poo',
+                jquery_ui:      'jquery/jquery-ui-1.9.2.custom.min',
+                eve:            'raphael/eve',
+                raphael:        'raphael/raphael-min',
+                highcharts:     'highcharts/js/highcharts',
+                highcharts_exp: 'highcharts/js/modules/exporting',
+                highlight:      'highlight',
+                
+                dynamos:        'evolucion/dynamos',
+                evolucion:      'evolucion/evolucion',
+                prosa:          'evolucion/prosa',
+                influencias:    'evolucion/influencias',
+                flujonivel:     'evolucion/flujonivel',
+                ecuaciones:     'evolucion/ecuaciones',
+                comportamientos:'evolucion/comportamientos'
+            },
+            shim: {
+                eve: {
+                    exports: 'eve'
+                },
+                raphael:{
+                    exports: 'Raphael'
+                },
+                highcharts_exp:{
+                    deps:['highcharts']
+                },
+                evolucion: {
+                    deps:['poo', 'raphael', 'jquery_ui', 'dynamos' ]
+                },
+                prosa: {
+                    deps:['evolucion']
+                },
+                influencias: {
+                    deps:['evolucion']
+                },
+                flujonivel: {
+                    deps:['evolucion', 'comportamientos']
+                },
+                ecuaciones: {
+                    deps:['evolucion']
+                },
+                comportamientos: {
+                    deps:['evolucion', 'ecuaciones', 'highcharts_exp']
+                }
+            }
+        });
+        
+        $(document).ready(function(){
+            require(['evolucion'], function() {
+                // Controlador de Evolución //
+            
+                evo = new Evolucion();
+                evo.vIE();
+                evo.ajustar();
+                
+                // Fin de Controlador de Evolución //    
+            });
+        });
+    </script>
 </head>
 <body>
     <div id="alerta">

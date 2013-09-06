@@ -30,6 +30,5 @@ $(document).ready(function() {
 	
 	pro = new Prosa();
 	evo.pro = pro;
-	
 	// Fin del Controlador del modulo Prosa //
 });

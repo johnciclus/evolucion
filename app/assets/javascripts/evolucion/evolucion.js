@@ -1887,7 +1887,10 @@ var Evolucion = Class.extend({
 			evo.cont_actual = $(this).attr('href').substring(1);
 			$('#enl-'+evo.cont_actual).children().css('background-color', '#E45E00');
 			$('#enl-'+evo.cont_actual).children().css('color', '#FFF');
-			evo.scrollaDiv($('#'+evo.cont_actual));
+			
+			require([evo.cont_actual], function() {
+            	evo.scrollaDiv($('#'+evo.cont_actual));        
+            });
 			return false;
 		});
 		$('#nav ul a:last').click(function(){
@@ -2069,15 +2072,4 @@ var Evolucion = Class.extend({
 			.replace(/[^\w ]+/g,'')
 			.replace(/ +/g,'_');
 	}
-});
-
-
-$(document).ready(function(){
-	// Controlador de Evolución //
-	
-	evo = new Evolucion();
-	evo.vIE();
-	evo.ajustar();
-	
-	// Fin de Controlador de Evolución //
 });
