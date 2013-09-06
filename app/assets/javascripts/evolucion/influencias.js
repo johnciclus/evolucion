@@ -367,8 +367,8 @@ var RelMa = Relacion.extend({
 		this.ori = ori;
 		this.des = des;
 		
-		this.ori.relacSal[this.id] = this;
-		this.des.relacIng[this.id] = this;
+		this.ori.agreRelSal(this);
+		this.des.agreRelIng(this);
 		
 		this.lista = this.ctx.lista.relma;
 		this.figura(p);
@@ -398,8 +398,8 @@ var RelIn = Relacion.extend({
 		this.ori = ori;
 		this.des = des;
 		
-		this.ori.relacSal[this.id] = this;
-		this.des.relacIng[this.id] = this;
+		this.ori.agreRelSal(this);
+		this.des.agreRelIng(this);
 		
 		this.lista = this.ctx.lista.relin;
 		this.figura(p);
@@ -512,7 +512,6 @@ var Influencias = Editor.extend({
 				}
 				case 'copia-inf': {
 					if(inf.tmp.copia){
-						inf.tmp.copia.liberar();
 						inf.tmp.copia.remover();
 						inf.tmp.copia = undefined;
 					}
@@ -561,7 +560,6 @@ var Influencias = Editor.extend({
 				}
 				case 'copia-inf': {
 					if(inf.tmp.copia){
-						inf.tmp.copia.liberar();
 						inf.tmp.copia.remove();
 						inf.tmp.copia = undefined;
 					}
@@ -634,7 +632,7 @@ var Influencias = Editor.extend({
 				case 'relma-inf': {
 					var el = inf.existeElPt(p);
 					var relac = inf.tmp.relma;
-					if(el && relac){
+					if(el){
 						p = inf.detPunEnPath(el.borde, p);
 						alpha = inf.detAngEnPath(el.borde, p);
 						if(relac.estado == 'inicial' && el.cone['aceOri']){
@@ -715,7 +713,6 @@ var Influencias = Editor.extend({
 						inf.lista.copia[cp.id] = cp;
 						
 						inf.activarModo('curso-inf');
-						inf.tmp.copia.liberar();
 						inf.tmp.copia.remove();
 						inf.tmp.copia = undefined;
 					}
@@ -733,7 +730,194 @@ var Influencias = Editor.extend({
 			}
 		});
 	},
-
+	saveAsDom: function(){
+		var model, influence, size;
+		var elements, element, group, list, position, pos, 
+			relations, cantRelIng, cantRelSal,
+			relation, rels;
+		
+		model = $('#xmldocument model:first');
+		
+		influence = model.children('influence');
+		
+		if($.isEmptyObject(influence[0])){
+			influence = model.append($('<influence />')).children('influence');	
+		}
+		else{
+			influence.empty();
+		}
+		
+		size = this.obtTamPan();
+		influence.attr('width', size.w);
+		influence.attr('height', size.h);
+		
+		if(model){
+			elements = 	{
+				'conce': {'el': 'concept', 	'group': 'concepts'},
+				'ciclo': {'el': 'cycle', 	'group': 'cycles'},
+			};
+			for(var el in elements){
+				list = inf.lista[el];				
+				group = influence.append('<'+elements[el]['group']+' />').children(elements[el]['group']);
+				
+				for(var i in list){
+					element = group.append('<'+elements[el]['el']+' />').children(elements[el]['el']+':last');
+					element.append($('<name />').text(list[i].nombre));
+					element.append($('<title />').text(list[i].titulo));
+					element.append($('<description />').text(list[i].desc));
+					if(el == 'conce'){
+						element.append($('<units />').text(list[i].unid));
+					}
+					if(el == 'ciclo'){
+						element.append($('<orientation />').text(list[i].orie));
+						element.append($('<feedback />').text(list[i].real));
+					}
+					
+					pos = list[i].pos();
+					position = element.append('<position />').children('position');
+					position.append($('<x />').text(pos.x));
+					position.append($('<y />').text(pos.y));
+					
+					if(el == 'conce'){
+						relations = element.append('<relations />').children('relations');
+						cantRelIng = list[i].cantRelIng;
+						cantRelSal = list[i].cantRelSal;
+						
+						if(cantRelIng > 0 || cantRelSal > 0){
+							if(cantRelIng > 0){
+								rels = list[i].relacIng;
+								for(var rel in rels){
+									relation = relations.append('<relation_from />').children('relation_from:last');
+									
+									if(rels[rel].tipo == 'relma'){
+										relation.attr('type', 'material');
+									}else if(rels[rel].tipo == 'relin'){
+										relation.attr('type', 'information');	
+									}
+									relation.text(rels[rel].ori.nombre);
+								}
+							}
+							if(cantRelSal > 0){
+								rels = list[i].relacSal;
+								for(var rel in rels){
+									relation = relations.append('<relation_to />').children('relation_to:last');
+									if(rels[rel].tipo == 'relma'){
+										relation.attr('type', 'material');
+									}else if(rels[rel].tipo == 'relin'){
+										relation.attr('type', 'information');	
+									}
+									relation.text(rels[rel].des.nombre);
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			list = inf.lista['copia'];
+			group = influence.append('<copies />').children('copies');
+			for(var i in list){
+				
+				element = group.append('<copy />').children('copy:last');
+				element.append($('<reference />').text(list[i].nombre));
+				
+				pos = list[i].pos();
+				position = element.append('<position />').children('position');
+				position.append($('<x />').text(pos.x));
+				position.append($('<y />').text(pos.y));
+				
+				cantRelSal = list[i].cantRelSal;
+				
+				if(cantRelSal > 0){
+					relations = element.append('<relations />').children('relations');
+					if(cantRelSal > 0){
+						rels = list[i].relacSal;
+						for(var rel in rels){
+							relation = relations.append('<relation_to />').children('relation_to');
+							relation.text(rels[rel].des.nombre);
+						}
+					}
+				}
+			}
+			
+			list = inf.lista['relma'];
+			group = influence.append('<material_relations />').children('material_relations');
+			for(var i in list){
+				
+				relation = group.append('<relation />').children('relation:last');
+				relation.append($('<origin />').text(list[i].ori.nombre));
+				relation.append($('<destination />').text(list[i].des.nombre));
+				relation.append($('<description />').text(list[i].desc));
+				
+				pos = list[i].pos();
+				position = relation.append('<position />').children('position');
+				po = position.append('<po />').children('po');
+				po.append($('<x />').text(pos[0].x));
+				po.append($('<y />').text(pos[0].y));
+				pco = position.append('<pco />').children('pco');
+				pco.append($('<x />').text(pos[1].x));
+				pco.append($('<y />').text(pos[1].y));
+				pcd = position.append('<pcd />').children('pcd');
+				pcd.append($('<x />').text(pos[2].x));
+				pcd.append($('<y />').text(pos[2].y));
+				pd = position.append('<pd />').children('pd');
+				pd.append($('<x />').text(pos[3].x));
+				pd.append($('<y />').text(pos[3].y));
+			}
+			
+			list = inf.lista['relin'];
+			group = influence.append('<information_relations />').children('information_relations');
+			console.log(group);
+			for(var i in list){
+				
+				relation = group.append('<relation />').children('relation:last');
+				relation.append($('<origin />').text(list[i].ori.nombre));
+				relation.append($('<destination />').text(list[i].des.nombre));
+				relation.append($('<description />').text(list[i].desc));
+				
+				pos = list[i].pos();
+				position = relation.append('<position />').children('position');
+				po = position.append('<po />').children('po');
+				po.append($('<x />').text(pos[0].x));
+				po.append($('<y />').text(pos[0].y));
+				pco = position.append('<pco />').children('pco');
+				pco.append($('<x />').text(pos[1].x));
+				pco.append($('<y />').text(pos[1].y));
+				pcd = position.append('<pcd />').children('pcd');
+				pcd.append($('<x />').text(pos[2].x));
+				pcd.append($('<y />').text(pos[2].y));
+				pd = position.append('<pd />').children('pd');
+				pd.append($('<x />').text(pos[3].x));
+				pd.append($('<y />').text(pos[3].y));
+			}
+			
+			list = inf.lista['seinf'];
+			group = influence.append('<sectors />').children('sectors');
+			for(var i in list){
+				
+				sector = group.append('<sector />').children('sector:last');
+				sector.append($('<name />').text(list[i].nombre));
+				sector.append($('<title />').text(list[i].titulo));
+				sector.append($('<description />').text(list[i].desc));
+				
+				pos = list[i].pos();
+				position = sector.append('<position />').children('position');
+				position.append($('<x />').text(pos.x));
+				position.append($('<y />').text(pos.y));
+				
+				size = list[i].size();
+				size_sector = sector.append('<size />').children('size');
+				width = size_sector.append('<width />').children('width');
+				width.text(size['width']);
+				height = size_sector.append('<height />').children('height');
+				height.text(size['height']);
+			}		
+		}
+		else{
+			return false;
+		}
+	},
+	
 	integrarControlesEle: function(el){
 		var nomCont;
 		switch(el.tipo){
@@ -862,7 +1046,7 @@ var Influencias = Editor.extend({
 	// fin de la Vista de Evolución.Influencias //
 });
 
-$(function() {
+$(document).ready(function() {
 	// Controlador del modulo Influencias //
 	
 	var panel = document.getElementById("svg-div-inf");

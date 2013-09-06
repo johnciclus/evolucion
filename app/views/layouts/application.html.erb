@@ -7,7 +7,7 @@
     <meta name="author" content="John Garavito Suárez">
     
     <title>Evoluci&oacute;n Web</title>
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
     <!--<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css' />-->
     
     <%= stylesheet_link_tag "jquery-ui-1.9.2.custom.min" %>
@@ -21,13 +21,12 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "poo" %>
     <%= javascript_include_tag "jquery/jquery-ui-1.9.2.custom.min" %>
-    <%= javascript_include_tag "jquery/jquery.uploader" %>
     <%= javascript_include_tag "raphael/raphael" %>
-    <%= javascript_include_tag "raphael/raphael-svg-import" %>
     <%= javascript_include_tag "highcharts/js/highcharts" %>
     <%= javascript_include_tag "highcharts/js/modules/exporting" %>
     <%= javascript_include_tag "highlight" %>
     <%= javascript_include_tag "evolucion/evolucion" %>
+    <%= javascript_include_tag "evolucion/prosa" %>
     <%= javascript_include_tag "evolucion/influencias" %>
     <%= javascript_include_tag "evolucion/flujonivel" %>
     <%= javascript_include_tag "evolucion/ecuaciones" %>
@@ -45,7 +44,7 @@
         <div id="navegadores">
             <a href="https://www.google.com/intl/es/chrome/browser/" target="_blank">
                 <%= image_tag("google-chrome.png") %>
-            </a>http://192.168.1.117/projects
+            </a>
             <a href="http://www.apple.com/es/safari/" target="_blank">
                 <%= image_tag("safari.png") %>
             </a>
@@ -108,8 +107,8 @@
     </div>
     <div id="prosa" class="contenedor">
         <div id="lenguaje-pro" class="cont-lenguaje">
-            <label for='tit_modelo' class="eti_formulario">Titulo del modelo</label> <br />
-            <input id='tit_modelo' name='titulo' type='text' class="ui-corner-all tit_formulario"><br />
+            <label for='titu_modelo' class="eti_formulario">Titulo del modelo</label> <br />
+            <input id='titu_modelo' name='titu_modelo' type='text' class="ui-corner-all tit_formulario"><br />
             <br />
             <label for='desc_modelo' class="eti_formulario">Descripci&oacute;n del modelo</label> <br />
             <textarea id='desc_modelo' name='desc_modelo' rows="10" class="ui-corner-all tex_formulario" ></textarea>
@@ -368,5 +367,6 @@
             </div>
         </div>
     </div>
+    <xml id="xmldocument" style="display: none"><model></model></xml>
 </body>
 </html>

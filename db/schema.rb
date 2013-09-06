@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20130530230822) do
   end
 
   create_table "element_infs", force: true do |t|
+    t.string   "name",         null: false
+    t.string   "type_el",      null: false
+    t.string   "title",        null: false
+    t.string   "description"
+    t.string   "units"
+    t.integer  "pos_x",        null: false
+    t.integer  "pos_y",        null: false
+    t.integer  "influence_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,6 +42,9 @@ ActiveRecord::Schema.define(version: 20130530230822) do
   end
 
   create_table "influences", force: true do |t|
+    t.integer  "width",      null: false
+    t.integer  "height",     null: false
+    t.integer  "project_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,16 +59,33 @@ ActiveRecord::Schema.define(version: 20130530230822) do
     t.string   "description", null: false
     t.string   "author",      null: false
     t.string   "keywords",    null: false
+    t.text     "model",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "proses", force: true do |t|
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.integer  "project_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "relation_infs", force: true do |t|
+    t.string   "type_rel",       null: false
+    t.string   "description"
+    t.float    "po_x",           null: false
+    t.float    "po_y",           null: false
+    t.float    "pco_x",          null: false
+    t.float    "pco_y",          null: false
+    t.float    "pd_x",           null: false
+    t.float    "pd_y",           null: false
+    t.float    "pcd_x",          null: false
+    t.float    "pcd_y",          null: false
+    t.integer  "origin_id",      null: false
+    t.integer  "destination_id", null: false
+    t.integer  "influence_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

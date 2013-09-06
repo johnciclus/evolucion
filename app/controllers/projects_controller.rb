@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  
   def index
     @project = Project.new
     respond_to do |format|
@@ -14,22 +15,49 @@ class ProjectsController < ApplicationController
       if @project.save
         flash[:notice] = 'El proyecto ha sido registrado satisfactoriamente'
         flash[:success] = true
-        format.js{
-          render :partial => 'refresh'
-        }
       else
         flash[:notice] = 'El proyecto no ha sido registrado'
         flash[:success] = false
-        format.js{
-          render :partial => 'refresh'
-        }
       end
+      format.js{
+        render :partial => 'refresh'
+      }
+    end
+  end
+    
+  def show
+    begin
+      @project = Project.find(params[:id])
+    rescue
+      @project = nil
+    end
+    
+    respond_to do |format|
+      if @project
+        flash[:notice] = 'Abriendo proyecto'
+        flash[:success] = true
+      else
+        flash[:notice] = 'No se encontro el proyecto solicitado'
+        flash[:success] = false
+      end
+      format.html
     end
   end
   
-  private
+  def edit
+    
+  end
   
+  def update
+    
+  end
+  
+  def destroy
+    
+  end
+    
+  private
   def project_params
-    params[:project].permit(:title, :description, :author, :keywords)                  
+    params[:project].permit(:title, :description, :author, :keywords, :model)                  
   end
 end

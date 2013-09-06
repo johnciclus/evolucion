@@ -1681,7 +1681,187 @@ var FlujoNivel = Editor.extend({
 			}
 		});
 	},
-
+	saveAsDom: function(){
+		var model, prose, influence, stock_and_flow, behavior, list;
+		var elements, element, group, position, pos, po, pco, pd, pcd, relations, relation, flows, flow, rels, cantRelIng, cantRelSal, cantFluIng, cantFluSal, from, to, size, size_sector, width, height;
+		
+		model = $('#xmldocument model:first');
+		
+		stock_and_flow = model.children('stock_and_flow');
+		
+		if($.isEmptyObject(stock_and_flow[0])){
+			stock_and_flow = model.append($('<stock_and_flow />')).children('stock_and_flow');	
+		}
+		else{
+			stock_and_flow.empty();
+		}
+		
+		size = this.obtTamPan();
+		stock_and_flow.attr('width', size.w);
+		stock_and_flow.attr('height', size.h);
+		
+		if(model){
+		
+			elements = 	{	
+				'param': {'el': 'parameter', 	'group': 'parameters'},
+				'nivel': {'el': 'stock',     	'group': 'stocks'},
+				'flujo': {'el': 'flow', 		'group': 'flows'},
+				'vaaux': {'el': 'auxiliary', 	'group': 'auxiliaries'},
+				'vaexo': {'el': 'exogenous', 	'group': 'vars_exogenous'},
+				'retar': {'el': 'delay', 		'group': 'delays'},
+				'multi': {'el': 'multiplier', 	'group': 'multipliers'},
+				'elfis': {'el': 'fis', 			'group': 'vars_fis'},
+				'vaant': {'el': 'previous', 	'group': 'vars_previous'},
+				'submo': {'el': 'submodel', 	'group': 'submodels'}	
+			};
+			for(var el in elements){
+				list = fyn.lista[el];
+				group = stock_and_flow.append('<'+elements[el]['group']+' />').children(elements[el]['group']);
+				
+				for(var i in list){
+					
+					element = group.append('<'+elements[el]['el']+' />').children(elements[el]['el']+':last');
+					element.append($('<name />').text(list[i].nombre));
+					element.append($('<title />').text(list[i].titulo));
+					element.append($('<description />').text(list[i].desc));
+					element.append($('<definition />').text(list[i].defi));
+					element.append($('<units />').text(list[i].unid));
+					element.append($('<dimension />').text(list[i].dim));
+					
+					pos = list[i].pos();
+					position = element.append('<position />').children('position');
+					position.append($('<x />').text(pos.x));
+					position.append($('<y />').text(pos.y));
+					
+					relations = element.append('<relations />').children('relations');
+										
+					cantRelIng = list[i].cantRelIng;
+					cantRelSal = list[i].cantRelSal;
+					
+					if(cantRelIng > 0 || cantRelSal > 0){
+						if(cantRelIng > 0){
+							rels = list[i].relacIng;
+							for(var rel in rels){
+								relation = relations.append('<relation_from />').children('relation_from');
+								relation.text(rels[rel].ori.nombre);
+							}
+						}
+						if(cantRelSal > 0){
+							rels = list[i].relacSal;
+							for(var rel in rels){
+								relation = relations.append('<relation_to />').children('relation_to');
+								relation.text(rels[rel].des.nombre);
+							}
+						}
+					}
+					if(el == 'nivel'){
+						cantFluIng = list[i].cantFluIng;
+						cantFluSal = list[i].cantFluSal;
+						flows = element.append('<stock_flows />').children('stock_flows');
+						if(cantFluIng > 0){
+							fls = list[i].flujoIng;
+							for(var fl in fls){
+								flow = flows.append('<flow_enter />').children('flow_enter');
+								flow.text(fls[fl].nombre);	
+							}
+						}
+						if(cantFluSal > 0){
+							fls = list[i].flujoSal;
+							for(var fl in fls){
+								flow = flows.append('<flow_leave />').children('flow_leave');
+								flow.text(fls[fl].nombre);	
+							}
+						}
+					}
+					if(el == 'flujo'){
+						from = element.append('<from />').children('from');
+						from.text(list[i].nivelOri.nombre);
+						to = element.append('<to />').children('to');
+						to.text(list[i].nivelDes.nombre);
+					}
+				}
+			}
+			
+			list = fyn.lista['copia'];
+			group = stock_and_flow.append('<copies />').children('copies');
+			for(var i in list){
+				
+				element = group.append('<copy />').children('copy:last');
+				element.append($('<reference />').text(list[i].nombre));
+				
+				pos = list[i].pos();
+				position = element.append('<position />').children('position');
+				position.append($('<x />').text(pos.x));
+				position.append($('<y />').text(pos.y));
+				
+				cantRelSal = list[i].cantRelSal;
+				
+				if(cantRelSal > 0){
+					relations = element.append('<relations />').children('relations');
+					if(cantRelSal > 0){
+						rels = list[i].relacSal;
+						for(var rel in rels){
+							relation = relations.append('<relation_to />').children('relation_to');
+							relation.text(rels[rel].des.nombre);
+						}
+					}
+				}
+			}
+			
+			list = fyn.lista['relac'];
+			group = stock_and_flow.append('<relations />').children('relations');
+			console.log(group);
+			for(var i in list){
+				
+				relation = group.append('<relation />').children('relation:last');
+				relation.append($('<origin />').text(list[i].ori.nombre));
+				relation.append($('<destination />').text(list[i].des.nombre));
+				relation.append($('<description />').text(list[i].desc));
+				
+				pos = list[i].pos();
+				position = relation.append('<position />').children('position');
+				po = position.append('<po />').children('po');
+				po.append($('<x />').text(pos[0].x));
+				po.append($('<y />').text(pos[0].y));
+				pco = position.append('<pco />').children('pco');
+				pco.append($('<x />').text(pos[1].x));
+				pco.append($('<y />').text(pos[1].y));
+				pcd = position.append('<pcd />').children('pcd');
+				pcd.append($('<x />').text(pos[2].x));
+				pcd.append($('<y />').text(pos[2].y));
+				pd = position.append('<pd />').children('pd');
+				pd.append($('<x />').text(pos[3].x));
+				pd.append($('<y />').text(pos[3].y));
+			}
+			
+			list = fyn.lista['sefyn'];
+			group = stock_and_flow.append('<sectors />').children('sectors');
+			for(var i in list){
+				
+				sector = group.append('<sector />').children('sector:last');
+				sector.append($('<name />').text(list[i].nombre));
+				sector.append($('<title />').text(list[i].titulo));
+				sector.append($('<description />').text(list[i].desc));
+				
+				pos = list[i].pos();
+				position = sector.append('<position />').children('position');
+				position.append($('<x />').text(pos.x));
+				position.append($('<y />').text(pos.y));
+				
+				size = list[i].size();
+				size_sector = sector.append('<size />').children('size');
+				width = size_sector.append('<width />').children('width');
+				width.text(size['width']);
+				height = size_sector.append('<height />').children('height');
+				height.text(size['height']);
+			}
+		
+		}
+		else{
+			return false;
+		}
+	},
+	
 	integrarControlesEle: function(el){
 		var nomCont = '#'+el.tipo+'-'+this.id+'-div';
 		$("#menu-elementos-fyn").accordion("option", "active", this.indMenu[el.tipo]);
@@ -1739,8 +1919,8 @@ var FlujoNivel = Editor.extend({
 			});
 			if(el.desc){
 				$('#'+el.id+'_item_conte_desc').css('width', '75px');
-				$('#'+el.id+'_item_conte_desc_TA').change(function(){					
-					el.camDesc($(this).val());					
+				$('#'+el.id+'_item_conte_desc_TA').change(function(){	
+					el.camDesc($(this).val());			
 				});
 			}
 			if(el.defi){
@@ -1770,7 +1950,7 @@ var FlujoNivel = Editor.extend({
 	// fin de la Vista de Evolución.FlujoNivel //
 });
 
-$(function(){
+$(document).ready(function() {
 	// Controlador del modulo Flujo Nivel //
 	
 	var r = Raphael("svg-div-fyn", $("#lenguaje-fyn").width(), $("#lenguaje-fyn").height());
@@ -1780,3 +1960,4 @@ $(function(){
 	
 	// Fin del Controlador del modulo Flujo Nivel //
 });
+

@@ -22,18 +22,19 @@ nav ul {
 }
 nav ul li {
 	float: left;
-	padding: 5px;
+	padding: 0px 5px;
 	margin: 0px;
 	color: #DFC395;
 	font-size: 16px;
 	font-weight: bold;
-	border-left: #907969 dashed 1px;
-	height:33px;
-	line-height: 33px;
+	border-left: #907969 solid 1px;
+	height:55px;
+	line-height: 55px;
 	overflow: hidden;
 }
 nav ul li:hover {
 	color: #FFF;
+	background-color: #E45E00;
 }
 svg {
 	overflow: visible;
@@ -55,29 +56,26 @@ svg {
 #conte-encabezado{
 	top: 0px;
 	left: 0px;
-	height: 42px;
-	margin: 5px;
-	border: #907969 dashed 1px;
+	height: 55px;
 }
 #titulo{
 	font-size: 30px;
 	font-family: 'Merienda One' !important;
 	color: white;
 	text-decoration: none;	
+	height: 55px;
+	line-height: 55px;
+	margin-left: 10px;
 	
 	webkit-text-shadow: 2px 2px 5px #AAA;
 	-moz-text-shadow: 2px 2px 5px #AAA;
 	text-shadow: 2px 2px 5px #AAA;
 }
 
-.casilla:hover{
-	background-color: #E45E00;
-}
-
 .menu-usuario{
-    padding-top:   15px;
+    padding-top:   20px;
     padding-bottom: 0px;
-    height: 28px;
+    height: 35px;
 }
 
 .triangulo{
@@ -91,13 +89,13 @@ svg {
     display: none;
     position: absolute;
     top: 55px;
-    right: 5px;
+    right: 0px;
     width: 250px;
     height: 150px;
     z-index: 999;
      
     background-color: #573014;
-    border: #907969 1px;
+    border: #907969 solid 1px;
     webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
     -moz-box-shadow: rgba(0,0,0,0.8) 0px 1px 1px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
@@ -291,11 +289,31 @@ svg {
 }
 
 #notice{
-    position: absolute;
     display: none;
+    position: absolute;
     width:200px;
-    top: 150px; 
-    left: 380px;
+    left: 50%;
+    top: 70px;
+    margin-left: -100px;
+    z-index: 1;
+    
+    background-color:#fff;
+    border:1px solid #E45E00;
+    padding:10px 10px;
+    text-align:center;
+    font-size:12px;
+    color:#573014;
+    font-weight: bold;
+    
+    -moz-box-shadow:0 0 10px #E45E00;
+    -webkit-box-shadow:0 0 10px #E45E00;
+    box-shadow: 0 0 10px #E45E00;
+}
+#notice2{
+    position: absolute;
+    width:200px;
+    left: 50%;
+    margin-left: -100px;
     z-index: 1;
     
     background-color:#222;

@@ -20,6 +20,21 @@ var Ecuaciones = Class.extend({
 		  	return false;
 		});
 	},
+	saveAsDom: function(){
+		var model, equations;
+		
+		model = $('#xmldocument model:first');
+		
+		equation = model.children('equation');
+		
+		if($.isEmptyObject(equation[0])){
+			equation = model.append($('<equation />')).find('equation');	
+		}
+		else{
+			equation.empty();
+		}
+	},
+	
 	genModeloMT: function(elmts){
 		evo.dyn.loadListas(fyn.lista);
 		var codigo = evo.dyn.genCodigoMT(elmts);
@@ -46,7 +61,7 @@ var Ecuaciones = Class.extend({
 	}
 });
 
-$(function() {
+$(document).ready(function() {
 	// Controlador del modulo Ecuaciones //
 	
 	ecu = new Ecuaciones();

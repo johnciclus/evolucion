@@ -1,3 +1,4 @@
-<% if flash[:success] == true %>
-    alert('<%= flash[:notice].html_safe %>');
+alert('<%= flash[:notice].html_safe %>');
+<% if flash[:success] %>
+    $('#new_project')[0].reset();
 <% end %>

@@ -97,6 +97,21 @@ var Comportamientos = Class.extend({
 			series: []
 		});
 	},
+	saveAsDom: function(){
+		var model, behavior;
+		
+		model = $('#xmldocument model:first');
+		
+		behavior = model.children('behavior');
+		
+		if($.isEmptyObject(behavior[0])){
+			behavior = model.append($('<behavior />')).find('behavior');	
+		}
+		else{
+			behavior.empty();
+		}	
+	},
+	
 	integrarControlesEle: function(el){
 		var nomCont = '#'+el.tipo+'-'+this.id+'-div';
 		
@@ -146,7 +161,7 @@ var Comportamientos = Class.extend({
 	}
 });
 
-$(function() {
+$(document).ready(function() {
 	// Controlador del modulo Comportamientos //
 	
 	com = new Comportamientos();

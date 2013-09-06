@@ -1,8 +1,10 @@
 Evolucion::Application.routes.draw do
   
-  root :to => 'home#index'
+  root 'home#index'
   
-  resources :home, :projects
+  get 'projects/:id', to: 'projects#show'
+  
+  resources :home, :projects, :proses, :web_service, :simulate, :save
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

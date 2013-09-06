@@ -6,9 +6,9 @@ var atrFig = { 'stroke-width': 1.0, 	'stroke': '#555', 'fill': '#555', 'stroke-l
 var atrFiE = { 'stroke-width': 2.0, 	'stroke': '#555', 'fill': '#fff', 'stroke-linecap': 'round'};
 var atrFiA = { 'stroke-width': 2.0, 	'stroke': '#555', 'fill': '#f55', 'stroke-linecap': 'round'};
 var atrFiD = { 'stroke-width': 3.0, 	'stroke': '#555', 'fill': '#fff'};
-var atrSim = { 'font-size': 20, 'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'};
+var atrSim = { 'font-size': 20, 		'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'};
 var atrCur = { 'stroke-width': 1.0, 	'stroke': '#555', 'stroke-linecap': 'round'};
-var atrLin = { 'stroke': '#008ec7', "stroke-dasharray": '. '};
+var atrLin = { 'stroke': '#008ec7', 	'stroke-dasharray': '. '};
 var atrBor = { 'stroke': '#008ec7'};
 
 var atrTit = { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'};
@@ -36,218 +36,6 @@ function refFigPadre(fig, padre){
 
 function clonar(obj){
 	return jQuery.extend(true, {}, obj);
-};
-
-function guardar(){
-	var el, pos, tam, pc;
-	var modelo =
-		'<?xml version="1.0"?>\n'+
-		"<modelo ancho_svg='"+$('#svg').css('width')+"' alto_svg='"+$('#svg').css('height')+"'>\n"+
-			'\t<list_depen>\n';
-			
-			for(var i in editor.listDepen){
-				dp = editor.listDepen[i];
-				pos = dp.pos();
-				tam = dp.fig.obtTamCont();
-				modelo += "\t\t<depen nombre='"+dp.nombre+"' titulo='"+dp.titulo+"' x='"+pos.x+"' y='"+pos.y+"' ancho='"+tam.width+"' alto='"+tam.height+"'>\n"+
-				'\t\t</depen>\n';
-			}
-			
-			modelo +=
-			'\t</list_depen>\n'+
-			'\t<list_activ>\n';
-			
-			for(var i in editor.listActiv){
-				el = editor.listActiv[i];
-				pos = el.pos();
-				modelo += "\t\t<activ nombre='"+el.nombre+"' rol='"+el.rol+"' descri='"+el.descri+"' tiempo='"+el.tiempo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</activ>\n';
-			}
-			
-			modelo +=
-			'\t</list_activ>\n'+
-			'\t<list_u_entr>\n';
-			
-			for(var i in editor.listUEntr){
-				el = editor.listUEntr[i];
-				pos = el.pos();
-				modelo += "\t\t<u_entr nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</u_entr>\n';
-			}
-			
-			modelo +=
-			'\t</list_u_entr>\n'+
-			'\t<list_u_sale>\n';
-			
-			for(var i in editor.listUSale){
-				el = editor.listUSale[i];
-				pos = el.pos();
-				modelo += "\t\t<u_sale nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</u_sale>\n';
-			}
-			
-			modelo +=
-			'\t</list_u_sale>\n'+
-			'\t<list_archi>\n';
-			
-			for(var i in editor.listArchi){
-				el = editor.listArchi[i];
-				pos = el.pos();
-				modelo += "\t\t<archi nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</archi>\n';
-			}
-			
-			modelo +=
-			'\t</list_archi>\n'+
-			'\t<list_carpe>\n';
-			
-			for(var i in editor.listCarpe){
-				el = editor.listCarpe[i];
-				pos = el.pos();
-				modelo += "\t\t<carpe nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</carpe>\n';
-			}
-			
-			modelo +=
-			'\t</list_carpe>\n'+
-			'\t<list_compu>\n';
-			
-			for(var i in editor.listCompu){
-				el = editor.listCompu[i];
-				pos = el.pos();
-				modelo += "\t\t<compu nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</compu>\n';
-			}
-			
-			modelo +=
-			'\t</list_compu>\n'+
-			'\t<list_based>\n';
-			
-			for(var i in editor.listBaseD){
-				el = editor.listBaseD[i];
-				pos = el.pos();
-				modelo += "\t\t<based nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</based>\n';
-			}
-			
-			modelo +=
-			'\t</list_based>\n'+
-			'\t<list_actbd>\n';
-			
-			for(var i in editor.listActDB){
-				el = editor.listActDB[i];
-				pos = el.pos();
-				modelo += "\t\t<actbd nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</actbd>\n';
-			}
-			
-			modelo +=
-			'\t</list_actbd>\n'+
-			'\t<list_docum>\n';
-			
-			for(var i in editor.listDocum){
-				el = editor.listDocum[i];
-				pos = el.pos();
-				modelo += "\t\t<docum nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</docum>\n';
-			}
-			
-			modelo +=
-			'\t</list_docum>\n'+
-			'\t<list_docms>\n';
-			
-			for(var i in editor.listDocms){
-				el = editor.listDocms[i];
-				pos = el.pos();
-				modelo += "\t\t<docms nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</docms>\n';
-			}
-						
-			modelo +=
-			'\t</list_docms>\n'+
-			'\t<list_impre>\n';
-			
-			for(var i in editor.listImpre){
-				el = editor.listImpre[i];
-				pos = el.pos();
-				modelo += "\t\t<impre nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</impre>\n';
-			}
-			
-			modelo +=
-			'\t</list_impre>\n'+
-			'\t<list_papel>\n';
-			
-			for(var i in editor.listPapel){
-				el = editor.listPapel[i];
-				pos = el.pos();
-				modelo += "\t\t<papel nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</papel>\n';
-			}
-			
-			modelo +=
-			'\t</list_papel>\n'+
-			'\t<list_incon>\n';
-			
-			for(var i in editor.listIncon){
-				el = editor.listIncon[i];
-				pos = el.pos();
-				modelo += "\t\t<incon nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</incon>\n';
-			}
-			
-			modelo +=
-			'\t</list_incon>\n'+
-			'\t<list_tabla>\n';
-			
-			for(var i in editor.listTabla){
-				el = editor.listTabla[i];
-				pos = el.pos();
-				modelo += "\t\t<tabla nombre='"+el.nombre+"' titulo='"+el.titulo+"' x='"+pos.x+"' y='"+pos.y+"'>\n"+
-				'\t\t</tabla>\n';
-			}
-			
-			modelo +=
-			'\t</list_tabla>\n'+
-			'\t<list_union>\n';
-			
-			for(var i in editor.listUnion){
-				un = editor.listUnion[i];
-				pos = un.fig.p;
-				pc = '[{x: '+pos[0].x+', y: '+pos[0].y+'},'+
-					  '{x: '+pos[1].x+', y: '+pos[1].y+'},'+
-					  '{x: '+pos[2].x+', y: '+pos[2].y+'},'+ 
-					  '{x: '+pos[3].x+', y: '+pos[3].y+'}]';
-					  
-				modelo += "\t\t<union desde='"+un.ori.nombre+"' hasta='"+un.des.nombre+"' tie_ini='"+un.tie_ini+"' tie_fin='"+un.tie_fin+"' pc='"+pc+"'>\n"+
-				'\t\t</union>\n';
-			}
-			
-			modelo +=
-			'\t</list_union>\n'+
-			'\t<list_undob>\n';
-			
-			for(var i in editor.listUnDob){
-				un = editor.listUnDob[i];
-				pos = un.fig.p;
-				pc = '[{x: '+pos[0].x+', y: '+pos[0].y+'},'+
-					  '{x: '+pos[1].x+', y: '+pos[1].y+'},'+
-					  '{x: '+pos[2].x+', y: '+pos[2].y+'},'+ 
-					  '{x: '+pos[3].x+', y: '+pos[3].y+'}]';
-					  
-				modelo += "\t\t<undob desde='"+un.ori.nombre+"' hasta='"+un.des.nombre+"' pc='"+pc+"'>\n"+
-				'\t\t</undob>\n';
-			}
-			
-			modelo +=
-			'\t</list_undob>\n'+
-		'</modelo>';
-	
-	$.generateFile({
-		filename	: 'model.wfl',
-		content		: modelo,
-		script		: 'download.php'
-	});
 };
 
 function abrir(){
@@ -721,7 +509,7 @@ function figSecto(ctx, padre, p, tam, titulo){
 		this[6].attr('cy', pc.p3y);
 		this[6].transform('');
 	};
-	fig.obtSector = function(){
+	fig.obtArea = function(){
 		var bb = this[2].getBBox();
 		
 		return [["M", bb.x, bb.y], 
@@ -740,6 +528,12 @@ function figSecto(ctx, padre, p, tam, titulo){
 					  ["V", bb.y - 1]];
 		return this.borde;
 	};
+	fig.obtTam = function(){
+		var bb = this[2].getBBox(); 
+		
+		return {'width': bb.width	,
+				'height': bb.height	}
+	}
 	fig.mosCont = function(){
 		fig[3].show();
 		fig[4].show();
@@ -1138,6 +932,7 @@ var EleBase = Unidad.extend({
 		this.cantRelIng = 0;
 		this.cantRelSal = 0;
 	},
+	
 	camDefi: function(defi){
 		this.defi = defi;
 	},
@@ -1395,6 +1190,11 @@ var Sector = Unidad.extend({
 		this.fig[0].dblclick(this.editorTexto);
 		this.visCont(this.selec);
 	},
+	size: function(){
+		var tam = this.fig.obtTam()
+		return {	'width':  tam.width,
+					'height': tam.height};
+	},
 	visCont: function(vis){
 		this.selec = vis;
 		if(this.selec){
@@ -1491,7 +1291,7 @@ var Sector = Unidad.extend({
 		el.borde = elFig.obtBorde();
 	},
 	selecElementos: function(){
-		var sector = this.fig.obtSector();
+		var area = this.fig.obtArea();
 		var lista, existe, relSalOri, relSalDes;
 		
 		this.elementos = {};
@@ -1500,7 +1300,7 @@ var Sector = Unidad.extend({
 		for(var l in this.ctx.elementos){
 			lista = this.ctx.lista[this.ctx.elementos[l]];
 			for(var i in lista){
-				existe = this.ctx.existeElSector(sector, lista[i]);
+				existe = this.ctx.existeElSector(area, lista[i]);
 				if(existe){
 					this.elementos[lista[i].id] = lista[i];
 					relSalOri = lista[i].relacSal;
@@ -1527,7 +1327,7 @@ var Sector = Unidad.extend({
 		}
 		lista = this.ctx.lista.copia;
 		for(var i in lista){
-			existe = this.ctx.existeElSector(sector, lista[i]);
+			existe = this.ctx.existeElSector(area, lista[i]);
 			if(existe){
 				this.elementos[lista[i].id] = lista[i];
 			}
@@ -1535,7 +1335,7 @@ var Sector = Unidad.extend({
 		if(this.ctx.lista.ciclo){
 			lista = this.ctx.lista.ciclo;
 			for(var i in lista){
-				existe = this.ctx.existeElSector(sector, lista[i]);
+				existe = this.ctx.existeElSector(area, lista[i]);
 				if(existe){
 					this.elementos[lista[i].id] = lista[i];
 				}
@@ -1818,17 +1618,17 @@ var Editor = Class.extend({
 	iniCapaBase: function(){
 		this.capaBase = this.r.rect(0, 0, this.r.width, this.r.height).attr(atrTra);
 		this.capaBase.ctx = this;
-		this.capaBase.click(function(){
+		/*this.capaBase.click(function(){
 			$(this.ctx.svg).focus();
 			evo.scrollaDiv($(this.ctx.div));
-		});
+		});*/
 		this.capaBase.update = function(dx, dy){
 			this.ctx.movObjs(dx, dy);
 			this.ctx.ajuTamPan(dx, dy);
 		};
 		this.capaBase.inicio = function(){
 			this.dx = this.dy = 0;
-			this.attr({cursor: "move"}); //url(/images/closedhand.cur)
+			this.attr({cursor: "move"});
 		};
 		this.capaBase.fin = function(){
 			this.dx = this.dy = 0;
@@ -1866,9 +1666,9 @@ var Editor = Class.extend({
 		var sel = this.r.set();
 		var bb;
 		
-		for(var i in fyn.lista){
-			for( var j in fyn.lista[i]){
-				sel.push(fyn.lista[i][j].fig);
+		for(var i in this.lista){
+			for( var j in this.lista[i]){
+				sel.push(this.lista[i][j].fig);
 			}
 		}
 		if(sel.length > 0){
@@ -1944,6 +1744,10 @@ var Editor = Class.extend({
 			"</div>"
 		);
 		$("#"+el.id+"_textedit").focus();
+		$("#"+el.id+"_textedit").mouseleave(function(){
+			el.camTitulo($(this).val());;
+			$("#texteditcont").remove();
+		});
 		$("#"+el.id+"_textedit").focusout(function() {
 			el.camTitulo($(this).val());;
 			$("#texteditcont").remove();	
@@ -2054,6 +1858,12 @@ var Editor = Class.extend({
 
 var Evolucion = Class.extend({
 	init: function(){
+		this.pro = {};
+		this.inf = {};
+		this.fyn = {};
+		this.ecu = {};
+		this.com = {};
+		
 		this.cont_actual = 'inicio';
 		
 		// Vista de Evolución //
@@ -2109,6 +1919,63 @@ var Evolucion = Class.extend({
 			e.preventDefault();
 		});
 		// Fin de la Vista de Evolución //
+	},
+	guardar: function(){
+		var root = $('#xmldocument');
+		
+		var model = $('#xmldocument model:first');
+		$(model).attr('id', 1);
+		
+		if(this.pro){
+			this.pro.saveAsDom();
+		}
+		if(this.inf){
+			this.inf.saveAsDom();
+		}
+		if(this.fyn){
+			this.fyn.saveAsDom();
+		}
+		if(this.ecu){
+			this.ecu.saveAsDom();
+		}
+		if(this.com){
+			this.com.saveAsDom();
+		}
+		
+		$.ajax({
+			url: '/save',
+			type: 'POST',
+			//headers: {	'X-CSRF-Token': $("meta[name='csrf-token']").attr('content')},
+			//beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
+			data: {'model': root.html()},
+			success: function(data){
+				
+			},
+			error: function(data){
+				
+			}		
+		});
+	},
+	simular: function(){
+		if(this.fyn){
+			this.fyn.saveAsDom();
+		}
+		
+		var stock_and_flow  = $('#xmldocument model stock_and_flow');
+		var xml   = $('<xml>');
+		var model = xml.append($('<model>').append(stock_and_flow));
+		
+		$.ajax({
+			url: '/simulate',
+			type: 'POST',
+			data: {'model': xml.html()},
+			success: function(data){
+				
+			},
+			error: function(data){
+				
+			}		
+		});
 	},
 	
 	// Vista de Evolución //
@@ -2211,6 +2078,6 @@ $(document).ready(function(){
 	evo = new Evolucion();
 	evo.vIE();
 	evo.ajustar();
-		
+	
 	// Fin de Controlador de Evolución //
 });
