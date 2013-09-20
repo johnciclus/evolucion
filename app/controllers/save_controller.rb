@@ -24,11 +24,12 @@ class SaveController < ApplicationController
     
     respond_to do |format|
       format.js {
+        flash[:notice] = 'Proyecto guardado satisfactoriamente'
+        flash[:success] = true
         render 'refresh'
       }
     end  
   end
-  
   
   private
   
