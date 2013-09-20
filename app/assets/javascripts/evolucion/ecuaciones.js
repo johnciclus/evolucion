@@ -66,7 +66,6 @@ $(document).ready(function() {
 	
 	ecu = new Ecuaciones();
 	evo.ecu = ecu;
-	evo.dyn = new Dynamos(evo.fyn.lista);
 	
 	// Fin del Controlador del modulo Ecuaciones //
 });

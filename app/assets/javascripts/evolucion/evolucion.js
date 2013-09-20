@@ -1858,11 +1858,6 @@ var Editor = Class.extend({
 
 var Evolucion = Class.extend({
 	init: function(){
-		this.pro = {};
-		this.inf = {};
-		this.fyn = {};
-		this.ecu = {};
-		this.com = {};
 		
 		this.cont_actual = 'inicio';
 		
@@ -1897,7 +1892,7 @@ var Evolucion = Class.extend({
 			$('#login').slideToggle();
 			return false;
 		});
-		$('#titulo').click(function(){
+		$('#logo').click(function(){
 			if(evo.cont_actual != 'inicio'){
 				$('#enl-'+evo.cont_actual).children().css('background-color', '');
 				$('#enl-'+evo.cont_actual).children().css('color', '#DFC395');
@@ -1905,6 +1900,33 @@ var Evolucion = Class.extend({
 			evo.cont_actual = $(this).attr('href').substring(1);
 			evo.scrollaDiv($('#'+evo.cont_actual));
 			return false;
+		});
+		$('#titulo').mouseenter(
+			function(){
+				$('#menu').slideDown()
+			}
+		);
+		$('#menu').mouseleave(
+			function(){
+				$('#menu').slideUp()
+			}			
+		);
+		$('#encabezado').mouseleave(
+			function(){
+				$('#menu').slideUp()
+			}
+		);
+		$('#abrir').click(function(e){
+			evo.abrir();
+			e.preventDefault();
+		});
+		$('#guardar').click(function(e){
+			evo.guardar();
+			e.preventDefault();
+		});
+		$('#descargar').click(function(e){
+			
+			e.preventDefault();
 		});
 		$('.cont-lenguaje').hover(
 			function(){
@@ -1915,12 +1937,7 @@ var Evolucion = Class.extend({
 			}
 		);
 		$('#inicio').css('padding-top','60px');
-		$('#abrir').button();
-		$('#guardar').button();
-		$('#guardar').click(function(e){
-			guardar();
-			e.preventDefault();
-		});
+		
 		// Fin de la Vista de Evolución //
 	},
 	guardar: function(){
@@ -2016,10 +2033,10 @@ var Evolucion = Class.extend({
 		var anchoConEnc = $('#conte-encabezado').width();
 		if((this.anchoNav+30) > (anchoConEnc-this.anchoTit)){
 			var ancho = (anchoConEnc - this.anchoTit - 100)/5;
-			$('.casilla').width(ancho+'px');
+			$('#nav .casilla').width(ancho+'px');
 		}
 		else{
-			$('.casilla').width('');
+			$('#nav .casilla').width('');
 		}
 		
 		var anchoSvg = $('#svg-inf').width();
@@ -2054,8 +2071,8 @@ var Evolucion = Class.extend({
 	},
 	vIE: function(){
 		var IE = (navigator.appName=='Microsoft Internet Explorer')?parseFloat((new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})")).exec(navigator.userAgent)[1]):-1;
-		if(IE == -1 || IE == 9){
-			$('#alerta').css('display', 'none');
+		if(IE > -1 && IE < 9){
+			$('#alerta').css('display', 'block');
 		}
 	},
 	

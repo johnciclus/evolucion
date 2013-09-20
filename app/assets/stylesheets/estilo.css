@@ -1,5 +1,4 @@
-@charset "utf-8";
-* {
+*{
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
@@ -9,35 +8,84 @@ body {
 	font-size: 12px;
 	overflow: hidden;
 }
+svg {
+    overflow: visible;
+}
 a {
 	text-decoration: none;
 }
 nav {
-	display: block;
-	float: right;
-	margin-top: 0px;
+    display: block;
+    margin-top: 0px;
+    float: left;
 }
 nav ul {
-	list-style: none;
+    list-style: none;
 }
 nav ul li {
-	float: left;
-	padding: 0px 5px;
-	margin: 0px;
-	color: #DFC395;
-	font-size: 16px;
-	font-weight: bold;
-	border-left: #907969 solid 1px;
-	height:55px;
-	line-height: 55px;
-	overflow: hidden;
+    float:         left;
+    margin:        0px;
+    padding:       0px 5px;
+    color:         #DFC395;
+    font-weight:   bold;
+    overflow:      hidden;
 }
 nav ul li:hover {
-	color: #FFF;
-	background-color: #E45E00;
+    color: #FFF;
+    background-color: #E45E00;
 }
-svg {
-	overflow: visible;
+
+#nav {
+	float: right;
+}
+#nav ul li {
+	font-size:     16px;
+	border-left:   #907969 solid 1px;
+	height:        55px;
+	line-height:   55px;
+}
+#nav ul li.pestanha {
+    padding-top:   20px;
+    height:        35px;
+    line-height:   35px;
+}
+#menu_ver ul li {
+    width:         136px;
+    padding:       7px;
+    font-size:     12px;
+}
+
+/* Formularios */
+form fieldset{
+    width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #008ec7;
+}
+form fieldset legend{
+    margin: 0 5px;
+    padding: 0 5px;
+    font-size: 14px;
+    font-style:italic;
+    font-weight:bold;
+    color: #008ec7;
+}
+form .field{
+    
+}
+form .field label{
+    font-size: 14px;
+    font-style:italic;
+}
+form .field input, form .field textarea{
+    width: 485px;
+    padding: 5px;
+    
+    font-size: 14px;
+    border: 2px solid #ccc;
+}
+form .field input:hover, form .field textarea:hover{
+    border: 2px solid #008ec7;
 }
 
 #encabezado {
@@ -59,30 +107,50 @@ svg {
 	height: 55px;
 }
 #titulo{
-	font-size: 30px;
-	font-family: 'Merienda One' !important;
-	color: white;
-	text-decoration: none;	
+    display: inline-block;
 	height: 55px;
 	line-height: 55px;
 	margin-left: 10px;
-	
-	webkit-text-shadow: 2px 2px 5px #AAA;
-	-moz-text-shadow: 2px 2px 5px #AAA;
-	text-shadow: 2px 2px 5px #AAA;
 }
-
-.menu-usuario{
-    padding-top:   20px;
-    padding-bottom: 0px;
-    height: 35px;
+#logo{
+    font-size: 24px;
+    font-family: 'Merienda One' !important;
+    color: white;
+    text-decoration: none;
+    
+    webkit-text-shadow: 2px 2px 5px #AAA;
+    -moz-text-shadow: 2px 2px 5px #AAA;
+    text-shadow: 2px 2px 5px #AAA;
 }
 
 .triangulo{
-    display: block;
-    width: 16px;
-    height: 16px;
+    display:        block;
+    width:          16px;
+    height:         16px;
     background-image: url('/images/triangulo.png');
+}
+
+#menu{
+    display: none;
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 150px;
+    z-index: 999;
+    
+    background-color: #573014;
+    border: #907969 solid 1px;
+    webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0px 1px 1px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+}
+#menu div{
+     margin: 5px 15px;
+}
+#menu .elemento{
+    color: #DFC395;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #login{
@@ -127,7 +195,7 @@ svg {
 	
 	background-color: #EEE;
 }
-.contenedor>h3>span {
+.contenedor > h3 > span {
     display: inline-block;
     width: 9px; height: 9px;
     margin-right: 10px;
@@ -330,6 +398,7 @@ svg {
     box-shadow: 0 0 10px black;
 }
 #alerta{
+    display: none;
 	position: absolute; 
 	left: 0px; 
 	top: 0px; 
@@ -358,35 +427,3 @@ svg {
 	top: 220px;
 }
 
-/* Formularios */
-form fieldset{
-    width: 500px;
-    margin: 0 auto;
-    padding: 10px;
-    border: 1px solid #008ec7;
-}
-form fieldset legend{
-    margin: 0 5px;
-    padding: 0 5px;
-    font-size: 14px;
-    font-style:italic;
-    font-weight:bold;
-    color: #008ec7;
-}
-form .field{
-    
-}
-form .field label{
-    font-size: 14px;
-    font-style:italic;
-}
-form .field input, form .field textarea{
-    width: 485px;
-    padding: 5px;
-    
-    font-size: 14px;
-    border: 2px solid #ccc;
-}
-form .field input:hover, form .field textarea:hover{
-    border: 2px solid #008ec7;
-}

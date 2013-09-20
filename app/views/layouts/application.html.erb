@@ -12,79 +12,15 @@
     
     <%= stylesheet_link_tag "jquery-ui-1.9.2.custom.min" %>
     <%= stylesheet_link_tag "estilo" %>
+    <%= stylesheet_link_tag "highlight" %>
     <%= stylesheet_link_tag "influencias" %>
     <%= stylesheet_link_tag "flujonivel" %>
     <%= stylesheet_link_tag "ecuaciones" %>
     <%= stylesheet_link_tag "comportamientos" %>
-    <%= stylesheet_link_tag "highlight" %>
     
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "require" %>       
+    <%= javascript_include_tag "require", :'data-main' => '/assets/main' %>       
     <%= csrf_meta_tag %>
-    
-    <script type="text/javascript">
-        require.config({
-            baseUrl: '/assets/',
-            paths: {
-                poo:            'poo',
-                jquery_ui:      'jquery/jquery-ui-1.9.2.custom.min',
-                eve:            'raphael/eve',
-                raphael:        'raphael/raphael-min',
-                highcharts:     'highcharts/js/highcharts',
-                highcharts_exp: 'highcharts/js/modules/exporting',
-                highlight:      'highlight',
-                
-                dynamos:        'evolucion/dynamos',
-                evolucion:      'evolucion/evolucion',
-                prosa:          'evolucion/prosa',
-                influencias:    'evolucion/influencias',
-                flujonivel:     'evolucion/flujonivel',
-                ecuaciones:     'evolucion/ecuaciones',
-                comportamientos:'evolucion/comportamientos'
-            },
-            shim: {
-                eve: {
-                    exports: 'eve'
-                },
-                raphael:{
-                    exports: 'Raphael'
-                },
-                highcharts_exp:{
-                    deps:['highcharts']
-                },
-                evolucion: {
-                    deps:['poo', 'raphael', 'jquery_ui', 'dynamos' ]
-                },
-                prosa: {
-                    deps:['evolucion']
-                },
-                influencias: {
-                    deps:['evolucion']
-                },
-                flujonivel: {
-                    deps:['evolucion', 'comportamientos']
-                },
-                ecuaciones: {
-                    deps:['evolucion']
-                },
-                comportamientos: {
-                    deps:['evolucion', 'ecuaciones', 'highcharts_exp']
-                }
-            }
-        });
-        
-        $(document).ready(function(){
-            require(['evolucion'], function() {
-                // Controlador de Evolución //
-            
-                evo = new Evolucion();
-                evo.vIE();
-                evo.ajustar();
-                
-                // Fin de Controlador de Evolución //    
-            });
-        });
-    </script>
 </head>
 <body>
     <div id="alerta">
@@ -109,9 +45,11 @@
     </div>
     <div id="encabezado">
         <div id="conte-encabezado">
-            <a id="titulo" href="#inicio">
-                Evoluci&oacute;n Web.
-            </a>
+            <div id="titulo">
+                <a id="logo" href="#inicio">
+                    Evoluci&oacute;n Web.
+                </a>    
+            </div>
             <nav id="nav">
                 <ul>
                     <a id="enl-prosa" href="#prosa">
@@ -121,7 +59,7 @@
                         <li class="casilla">Influencias</li>    
                     </a>
                     <a id="enl-flujonivel" href="#flujonivel">
-                        <li class="casilla">Flujo-nivel</li>    
+                        <li class="casilla">Flujo Nivel</li>    
                     </a>
                     <a id="enl-ecuaciones" href="#ecuaciones">
                         <li class="casilla">Ecuaciones</li> 
@@ -130,14 +68,29 @@
                         <li class="casilla">Comportamientos</li>    
                     </a>
                     <a id="enl-usuario" href="#">
-                        <li class="menu-usuario">
+                        <li class="pestanha">
                             <span class="triangulo"></span>
                         </li>    
                     </a>
                 </ul>
             </nav>
         </div>
-        <div id="login">
+        <div id='menu'>
+            <nav id="menu_ver">
+                <ul>
+                    <a id='abrir' href="#">
+                        <li>Abrir</li>  
+                    </a>
+                    <a id='guardar' href="#">
+                        <li>Guardar</li>    
+                    </a>
+                    <a id='descargar' href="#">
+                        <li>Descargar</li>    
+                    </a>
+                </ul>
+            </nav>
+        </div>
+        <div id='login'>
             <form>
                 <div>
                     <label for="username">Correo electrónico</label>        <br>

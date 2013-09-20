@@ -1957,6 +1957,7 @@ $(document).ready(function() {
 	fyn = new FlujoNivel(r);
 	fyn.activarModo(fyn.modo);
 	evo.fyn = fyn;
+	evo.dyn = new Dynamos(evo.fyn.lista);
 	
 	// Fin del Controlador del modulo Flujo Nivel //
 });
