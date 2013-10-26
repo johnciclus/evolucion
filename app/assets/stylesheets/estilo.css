@@ -1,4 +1,4 @@
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
@@ -35,7 +35,12 @@ nav ul li:hover {
     background-color: #E45E00;
 }
 
+#menu_hor{
+    float: right;
+    display: inline-block;
+}
 #nav {
+    display: none;
 	float: right;
 }
 #nav ul li {
@@ -49,11 +54,16 @@ nav ul li:hover {
     height:        35px;
     line-height:   35px;
 }
+#usuario{
+    float:      right;
+    display:    inline-block;
+}
 #menu_ver ul li {
-    width:         136px;
+    width:         135px;
     padding:       7px;
     font-size:     12px;
 }
+
 
 /* Formularios */
 form fieldset{
@@ -159,7 +169,6 @@ form .field input:hover, form .field textarea:hover{
     top: 55px;
     right: 0px;
     width: 250px;
-    height: 150px;
     z-index: 999;
      
     background-color: #573014;
@@ -353,7 +362,8 @@ form .field input:hover, form .field textarea:hover{
     font-size: 14px;
     font-style:italic;
     font-weight:bold;
-    background-color: #008ec7
+    background-color: #008ec7;
+    cursor: pointer;
 }
 
 #notice{
@@ -426,4 +436,3 @@ form .field input:hover, form .field textarea:hover{
 	width:620px;
 	top: 220px;
 }
-

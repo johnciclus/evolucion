@@ -50,30 +50,34 @@
                     Evoluci&oacute;n Web.
                 </a>    
             </div>
-            <nav id="nav">
-                <ul>
-                    <a id="enl-prosa" href="#prosa">
-                        <li class="casilla">Prosa</li>  
-                    </a>
-                    <a id="enl-influencias" href="#influencias">
-                        <li class="casilla">Influencias</li>    
-                    </a>
-                    <a id="enl-flujonivel" href="#flujonivel">
-                        <li class="casilla">Flujo Nivel</li>    
-                    </a>
-                    <a id="enl-ecuaciones" href="#ecuaciones">
-                        <li class="casilla">Ecuaciones</li> 
-                    </a>
-                    <a id="enl-comportamientos" href="#comportamientos">
-                        <li class="casilla">Comportamientos</li>    
-                    </a>
-                    <a id="enl-usuario" href="#">
-                        <li class="pestanha">
-                            <span class="triangulo"></span>
-                        </li>    
-                    </a>
-                </ul>
-            </nav>
+            <div id="menu_hor">
+                <nav id="nav">
+                    <ul>
+                        <a id="enl-prosa" href="#prosa">
+                            <li class="casilla">Prosa</li>  
+                        </a>
+                        <a id="enl-influencias" href="#influencias">
+                            <li class="casilla">Influencias</li>    
+                        </a>
+                        <a id="enl-flujonivel" href="#flujonivel">
+                            <li class="casilla">Flujo Nivel</li>    
+                        </a>
+                        <a id="enl-ecuaciones" href="#ecuaciones">
+                            <li class="casilla">Ecuaciones</li> 
+                        </a>
+                        <a id="enl-comportamientos" href="#comportamientos">
+                            <li class="casilla">Comportamientos</li>    
+                        </a>
+                    </ul>
+                </nav>
+            </div>
+            <div id="usuario">
+                <a id="enl-usuario" href="#">
+                    <div class="pestanha">
+                        <span class="triangulo"></span>
+                    </div>    
+                </a>
+            </div>
         </div>
         <div id='menu'>
             <nav id="menu_ver">
@@ -91,19 +95,7 @@
             </nav>
         </div>
         <div id='login'>
-            <form>
-                <div>
-                    <label for="username">Correo electrónico</label>        <br>
-                    <input type="text" id="username" name="username" />     <br>
-                </div>
-                <div>
-                    <label for="password">Contraseña</label>                <br>
-                    <input type="password" id="password"  name="password" /><br>
-                </div>
-                <div>
-                    <input type="submit" id="signIn"  name="signIn" class="button" value="Iniciar sessión"/>
-                </div>
-            </form>
+            <%= render "devise/sessions/sign_in" %>
         </div>
     </div>
     <div id="inicio" class="contenedor">

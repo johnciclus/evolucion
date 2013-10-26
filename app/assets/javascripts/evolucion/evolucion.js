@@ -1874,7 +1874,7 @@ var Evolucion = Class.extend({
 				return false;
 			}
 		});
-		$('#nav ul a:not(:last-child)').click(function(){
+		$('#nav ul a').click(function(){
 			if(evo.cont_actual != 'inicio'){
 				$('#enl-'+evo.cont_actual).children().css('background-color', '');
 				$('#enl-'+evo.cont_actual).children().css('color', '#DFC395');
@@ -1888,7 +1888,7 @@ var Evolucion = Class.extend({
             });
 			return false;
 		});
-		$('#nav ul a:last').click(function(){
+		$('#enl-usuario').click(function(){
 			$('#login').slideToggle();
 			return false;
 		});
@@ -1997,6 +1997,16 @@ var Evolucion = Class.extend({
 			}		
 		});
 	},
+	mensajeInfo: function(text){
+		var notice = $("<div id='notice' class='notice'></div>");
+    	notice.append("<span class='ui-icon ui-icon-alert' style='float: left;'></span>");
+    	notice.append('<p>'+text+'</p>');
+    	$('#encabezado').append(notice);
+    	notice.slideDown(1000).delay(4000).slideUp(1000, function(){this.remove()});
+	},
+	mensajeError: function(text){
+		
+	},
 	
 	// Vista de Evolución //
 	ajustar: function(){
@@ -2031,6 +2041,8 @@ var Evolucion = Class.extend({
 		$('#lenguaje-com').height(altoWin - 55);
 		
 		var anchoConEnc = $('#conte-encabezado').width();
+		this.anchoNav	= $('#nav').width();
+		this.anchoTit	= $('#titulo').width();
 		if((this.anchoNav+30) > (anchoConEnc-this.anchoTit)){
 			var ancho = (anchoConEnc - this.anchoTit - 100)/5;
 			$('#nav .casilla').width(ancho+'px');
