@@ -10,7 +10,6 @@ urlpatterns = patterns('',
     #url(r'^$', 'evolucion.views.home', name='home'),
     
     url(r'^projects/', include('evolucion.projects.urls')),
-    # url(r'^evolucion/', include('evolucion.foo.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
