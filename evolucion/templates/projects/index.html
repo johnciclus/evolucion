@@ -1,5 +1,7 @@
 {% load staticfiles %}
-<script src="{% static "javascripts/main.js" %}"> </script>
+
+
+<script src="{{ STATIC_URL }}js/main.js"> </script>
 
 {% if latest_projects_list %}
     <ul>
