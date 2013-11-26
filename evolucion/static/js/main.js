@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: '/assets/',
+    baseUrl: '/static/js/',
     paths: {
         poo:            'poo',
         jquery_ui:      'jquery/jquery-ui-1.9.2.custom.min',

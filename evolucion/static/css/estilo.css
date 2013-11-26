@@ -137,7 +137,7 @@ form .field input:hover, form .field textarea:hover{
     display:        block;
     width:          16px;
     height:         16px;
-    background-image: url('/images/triangulo.png');
+    background-image: url('/static/images/triangulo.png');
 }
 
 #menu{
