@@ -1,0 +1,39 @@
+#svg-div-inf{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#curso-inf span { 
+	background-image: url(/images/cursor.png);	
+	background-position: 0px 0px;
+}
+#conce-inf span{
+	background-image: url(/images/concepto.png);
+	background-position: 0px 0px;
+}
+#relma-inf span{
+	background-image: url(/images/relacion_material.png);
+	background-position: 0px 0px;
+}
+#relin-inf span{
+	background-image: url(/images/relacion_informacion.png);
+	background-position: 0px 0px;
+}
+#ciclo-inf span{
+	background-image: url(/images/ciclo.png);
+	background-position: 0px 0px;
+}
+#copia-inf span{
+	background-image: url(/images/camara.png);
+	background-position: 0px 0px;
+}
+#secto-inf span{
+	background-image: url(/images/sector.png);
+	background-position: 0px 0px;
+}
+#elementos-inf{
+	overflow: auto;
+}

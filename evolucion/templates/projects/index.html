@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<script src="{% static "javascripts/main.js" %}"> </script>
+
+{% if latest_projects_list %}
+    <ul>
+    {% for project in latest_projects_list %}
+        <li><a href="/projects/{{ project.id }}/">{{ project.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects are available.</p>
+{% endif %}

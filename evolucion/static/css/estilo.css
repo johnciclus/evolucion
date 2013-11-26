@@ -1,0 +1,438 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+body {
+	font-family: Verdana;
+	font-size: 12px;
+	overflow: hidden;
+}
+svg {
+    overflow: visible;
+}
+a {
+	text-decoration: none;
+}
+nav {
+    display: block;
+    margin-top: 0px;
+    float: left;
+}
+nav ul {
+    list-style: none;
+}
+nav ul li {
+    float:         left;
+    margin:        0px;
+    padding:       0px 5px;
+    color:         #DFC395;
+    font-weight:   bold;
+    overflow:      hidden;
+}
+nav ul li:hover {
+    color: #FFF;
+    background-color: #E45E00;
+}
+
+#menu_hor{
+    float: right;
+    display: inline-block;
+}
+#nav {
+    display: none;
+	float: right;
+}
+#nav ul li {
+	font-size:     16px;
+	border-left:   #907969 solid 1px;
+	height:        55px;
+	line-height:   55px;
+}
+#nav ul li.pestanha {
+    padding-top:   20px;
+    height:        35px;
+    line-height:   35px;
+}
+#usuario{
+    float:      right;
+    display:    inline-block;
+}
+#menu_ver ul li {
+    width:         135px;
+    padding:       7px;
+    font-size:     12px;
+}
+
+
+/* Formularios */
+form fieldset{
+    width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #008ec7;
+}
+form fieldset legend{
+    margin: 0 5px;
+    padding: 0 5px;
+    font-size: 14px;
+    font-style:italic;
+    font-weight:bold;
+    color: #008ec7;
+}
+form .field{
+    
+}
+form .field label{
+    font-size: 14px;
+    font-style:italic;
+}
+form .field input, form .field textarea{
+    width: 485px;
+    padding: 5px;
+    
+    font-size: 14px;
+    border: 2px solid #ccc;
+}
+form .field input:hover, form .field textarea:hover{
+    border: 2px solid #008ec7;
+}
+
+#encabezado {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 55px;
+	z-index: 999;
+	background-color: #573014;
+	
+	webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+	-moz-box-shadow: rgba(0,0,0,0.8) 0px 1px 1px;
+	box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+}
+#conte-encabezado{
+	top: 0px;
+	left: 0px;
+	height: 55px;
+}
+#titulo{
+    display: inline-block;
+	height: 55px;
+	line-height: 55px;
+	margin-left: 10px;
+}
+#logo{
+    font-size: 24px;
+    font-family: 'Merienda One' !important;
+    color: white;
+    text-decoration: none;
+    
+    webkit-text-shadow: 2px 2px 5px #AAA;
+    -moz-text-shadow: 2px 2px 5px #AAA;
+    text-shadow: 2px 2px 5px #AAA;
+}
+
+.triangulo{
+    display:        block;
+    width:          16px;
+    height:         16px;
+    background-image: url('/images/triangulo.png');
+}
+
+#menu{
+    display: none;
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 150px;
+    z-index: 999;
+    
+    background-color: #573014;
+    border: #907969 solid 1px;
+    webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0px 1px 1px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+}
+#menu div{
+     margin: 5px 15px;
+}
+#menu .elemento{
+    color: #DFC395;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#login{
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0px;
+    width: 250px;
+    z-index: 999;
+     
+    background-color: #573014;
+    border: #907969 solid 1px;
+    webkit-box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0px 1px 1px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 1px 1px;
+}
+#login div{
+    margin: 5px 15px;
+}
+#login label{
+    color: #fff;
+    font-weight: bold;
+    font-style:italic;
+    font-size: 14px;
+}
+#login input[type="text"], #login input[type="password"]{
+    width: 200px;
+    padding: 5px;
+    
+    font-size: 14px;
+    border: 2px solid #ccc;
+}
+#login input[type="text"]:hover, #login input[type="password"]:hover{
+    border: 2px solid #008ec7;
+}
+
+.contenedor{
+	position: relative;
+	width: 680px;
+	height: 480px;
+	
+	background-color: #EEE;
+}
+.contenedor > h3 > span {
+    display: inline-block;
+    width: 9px; height: 9px;
+    margin-right: 10px;
+    border: 1px solid silver;
+    line-height: 20px;
+    background: #008ec7;
+}
+.cont-elementos{
+	position: relative;
+	width: 150px;
+	height: 480px;
+	float: left;
+	top: 55px;
+	left: 0px;
+	overflow: auto;
+	
+	border: 1px solid #DDD;
+	
+	webkit-box-shadow: rgba(0, 0, 0, 0.2) 2px 0px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.2) 2px 0px 3px;
+	box-shadow: rgba(0, 0, 0, 0.2) 2px 0px 3px;
+}
+.cont-lenguaje{
+	position: relative;
+	width: 522px;
+	height: 480px;
+	float: right;
+	top: 55px;
+	right: 0px;
+	overflow: auto;
+	
+	border: 1px solid #DDD;
+	
+	webkit-box-shadow: rgba(0, 0, 0, 0.2) 2px 0px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.2) 2px 0px 3px;
+	box-shadow: rgba(0, 0, 0, 0.2) 2px 0px 3px;
+}
+.cont-svg{
+	width: 522px;
+	height: 480px;
+}
+.cont-herramientas{
+	position: relative;
+	width: 680px;
+	height: 35px;
+	float: left;
+	top: 55px;
+	right: 0px;
+}
+.barra-herra{
+	margin: 3px 5px 2px 2px;
+}
+.icons {margin: 0; padding: 0;}
+.icons li {margin: 0px 3px; position: relative; padding: 2px 0; cursor: pointer; float: left;  list-style: none;}
+.icons li span{
+	width: 24px; 
+	height: 24px;
+	float: left;
+	margin: 0 2px;
+}
+.svginput{
+	position: absolute;
+	background-color:#FFF;
+}
+.textEdit{
+	overflow: auto;
+	background-color:#FFF;
+	border: 1px dotted #DDD;
+	resize: both;
+	
+	font-size: 12px; 
+	font-family: "Verdana";
+	text-align: center;
+}
+.titEdit{
+	overflow: auto;
+	background-color:#FFF;
+	border: 1px dotted #DDD;
+	resize: both;
+	
+	font-size: 14px; 
+	font-family: "Verdana";
+	text-align: center;
+}
+.eleMenu{
+	margin: 5px 0px;
+	border-top: 1px solid #ddb473;
+	border-bottom: 1px solid #ddb473;
+	background: #fff;
+	color: #333333;
+}
+.eleTit{
+	border-bottom: 1px solid #ddb473;
+	color: #008ec7;
+	font-weight: bold;
+	text-align: center;
+}
+.eleCont{
+	display: none;
+	padding: 2px 0px;
+	background: #eee;
+}
+.eleContTit{
+	margin: 4px auto 0px auto;
+	border: 1px solid #ddb473;
+	z-index: 10;
+	
+	color: #bd7300;
+	text-align: center;
+	font-weight: bold;
+	font-size: 80%;
+	
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
+	-khtml-border-radius: 4px; 
+	border-radius: 4px;
+	
+}
+.eleContTA{
+	margin: 0px auto;
+	padding: 4px;
+	border: 1px solid #ddb473;
+	width: 92%;
+	height: 50px;
+}
+.eleContIT{
+	margin: 0px auto 5px auto;
+	padding: 4px;
+	border: 1px solid #ddb473;
+	width: 92%;
+}
+
+#lenguaje-pro{
+	padding: 10px;
+}
+.eti_formulario{
+	font-size: 20px;
+	color: #008ec7;
+}
+.tit_formulario{
+	width: 100%;
+	font-size: 20px;
+	border: 1px solid #ccc;
+	background: #f6f6f6;
+}
+.tex_formulario{
+	font-size: 16px;
+	border: 1px solid #ccc;
+	background: #f6f6f6;
+	width: 100%;
+}
+.button{
+    padding: 10px; 
+    color: #fff;
+    font-size: 14px;
+    font-style:italic;
+    font-weight:bold;
+    background-color: #008ec7;
+    cursor: pointer;
+}
+
+#notice{
+    display: none;
+    position: absolute;
+    width:200px;
+    left: 50%;
+    top: 70px;
+    margin-left: -100px;
+    z-index: 1;
+    
+    background-color:#fff;
+    border:1px solid #E45E00;
+    padding:10px 10px;
+    text-align:center;
+    font-size:12px;
+    color:#573014;
+    font-weight: bold;
+    
+    -moz-box-shadow:0 0 10px #E45E00;
+    -webkit-box-shadow:0 0 10px #E45E00;
+    box-shadow: 0 0 10px #E45E00;
+}
+#notice2{
+    position: absolute;
+    width:200px;
+    left: 50%;
+    margin-left: -100px;
+    z-index: 1;
+    
+    background-color:#222;
+    border:1px solid #fff;
+    padding:10px 15px;
+    color:#fff;
+    text-align:center;
+    font-size:12px;
+    opacity: 0.7;
+    
+    /* outline radius for mozilla/firefox only */
+    -moz-box-shadow:0 0 10px #000;
+    -webkit-box-shadow:0 0 10px #000;
+    box-shadow: 0 0 10px black;
+}
+#alerta{
+    display: none;
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	height: 100%; 
+	width: 100%; 
+	z-index: 1000;
+	
+	background-color: white; 
+	
+	opacity: 0.8;
+	filter: alpha(opacity=80);	
+}
+#sugerencia{
+	position: relative;
+	margin:0 auto 0 auto; 
+	width:400px;
+	top: 200px;
+	
+	text-align:center;
+	font-size: 18px;
+}
+#navegadores{
+	position: relative;
+	margin:0 auto 0 auto; 
+	width:620px;
+	top: 220px;
+}
