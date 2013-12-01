@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<modelo ancho_svg='1566px' alto_svg='1039px'>
+	<list_depen>
+		<depen nombre='almacen' titulo='Almacén' x='167.5' y='43' ancho='280' alto='702'>
+		</depen>
+	</list_depen>
+	
+	<list_union>
+		<union desde='factura_cambiaria' hasta='activ_0' tie_ini='00:00' tie_fin='00:00' pc='[{x: 215.00596756921254, y: 107.97245052224025},{x: 158.83590297803826, y: 108.31729334848225},{x: 156.00596756921257, y: 149.57000166535727},{x: 158.52813755904208, y: 189}]'>
+		</union>		
+	</list_union>
+</modelo>

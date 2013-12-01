@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="es" xml:lang="es" manifest="/cache.manifest">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="description" content="Evolución Web, ambiente para el modelado y la simulación con dinámica de sistemas.">
+    <meta name="keywords" content="evolución web, modelado y simulación, herramienta software, dinámica de sistemas">
+    <meta name="author" content="John Garavito Suárez">
+    
+    <title>Evoluci&oacute;n Web</title>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css' />-->
+    
+    <%= stylesheet_link_tag "jquery-ui-1.9.2.custom.min" %>
+    <%= stylesheet_link_tag "estilo" %>
+    <%= stylesheet_link_tag "highlight" %>
+    <%= stylesheet_link_tag "influencias" %>
+    <%= stylesheet_link_tag "flujonivel" %>
+    <%= stylesheet_link_tag "ecuaciones" %>
+    <%= stylesheet_link_tag "comportamientos" %>
+    
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "require", :'data-main' => '/assets/main' %>       
+    <%= csrf_meta_tag %>
+</head>
+<body>
+    <div id="alerta">
+        <div id="sugerencia">
+            Evoluci&oacute;n Web no es compatible con su navegador de internet, 
+            los siguientes navegadores son compatibles:
+        </div>
+        <div id="navegadores">
+            <a href="https://www.google.com/intl/es/chrome/browser/" target="_blank">
+                <%= image_tag("google-chrome.png") %>
+            </a>
+            <a href="http://www.apple.com/es/safari/" target="_blank">
+                <%= image_tag("safari.png") %>
+            </a>
+            <a href="http://www.opera.com/download/" target="_blank">
+                <%= image_tag("opera.png") %>
+            </a>
+            <a href="http://www.mozilla.org/es-ES/firefox/new/" target="_blank">
+                <%= image_tag("mozilla-firefox.png") %>
+            </a>            
+        </div>
+    </div>
+    <div id="encabezado">
+        <div id="conte-encabezado">
+            <div id="titulo">
+                <a id="logo" href="#inicio">
+                    Evoluci&oacute;n Web.
+                </a>    
+            </div>
+            <div id="menu_hor">
+                <nav id="nav">
+                    <ul>
+                        <a id="enl-prosa" href="#prosa">
+                            <li class="casilla">Prosa</li>  
+                        </a>
+                        <a id="enl-influencias" href="#influencias">
+                            <li class="casilla">Influencias</li>    
+                        </a>
+                        <a id="enl-flujonivel" href="#flujonivel">
+                            <li class="casilla">Flujo Nivel</li>    
+                        </a>
+                        <a id="enl-ecuaciones" href="#ecuaciones">
+                            <li class="casilla">Ecuaciones</li> 
+                        </a>
+                        <a id="enl-comportamientos" href="#comportamientos">
+                            <li class="casilla">Comportamientos</li>    
+                        </a>
+                    </ul>
+                </nav>
+            </div>
+            <div id="usuario">
+                <a id="enl-usuario" href="#">
+                    <div class="pestanha">
+                        <span class="triangulo"></span>
+                    </div>    
+                </a>
+            </div>
+        </div>
+        <div id='menu'>
+            <nav id="menu_ver">
+                <ul>
+                    <a id='abrir' href="#">
+                        <li>Abrir</li>  
+                    </a>
+                    <a id='guardar' href="#">
+                        <li>Guardar</li>    
+                    </a>
+                    <a id='descargar' href="#">
+                        <li>Descargar</li>    
+                    </a>
+                </ul>
+            </nav>
+        </div>
+        <div id='login'>
+            <%= render "devise/sessions/sign_in" %>
+        </div>
+    </div>
+    <div id="inicio" class="contenedor">
+        <%= yield %>
+    </div>
+    <div id="prosa" class="contenedor">
+        <div id="lenguaje-pro" class="cont-lenguaje">
+            <label for='titu_modelo' class="eti_formulario">Titulo del modelo</label> <br />
+            <input id='titu_modelo' name='titu_modelo' type='text' class="ui-corner-all tit_formulario"><br />
+            <br />
+            <label for='desc_modelo' class="eti_formulario">Descripci&oacute;n del modelo</label> <br />
+            <textarea id='desc_modelo' name='desc_modelo' rows="10" class="ui-corner-all tex_formulario" ></textarea>
+            <br />
+        </div>
+    </div>
+    <div id="influencias" class="contenedor">
+        <div id="herramientas-inf" class="cont-herramientas">
+            <div id="barra-herra-inf" class="barra-herra">
+                <ul id="icons-inf" class="icons ui-widget ui-helper-clearfix">
+                    <li id="curso-inf" class="ui-state-default ui-corner-all" title="Cursor"><span></span></li>
+                    <li id="conce-inf" class="ui-state-default ui-corner-all" title="Concepto"><span></span></li>
+                    <li id="ciclo-inf" class="ui-state-default ui-corner-all" title="Ciclo"><span></span></li>
+                    <li id="copia-inf" class="ui-state-default ui-corner-all" title="Clon"><span></span></li>
+                    <li id="relma-inf" class="ui-state-default ui-corner-all" title="Relaci&oacute;n material"><span></span></li>
+                    <li id="relin-inf" class="ui-state-default ui-corner-all" title="Relaci&oacute;n informaci&oacute;n"><span></span></li>
+                    <li id="secto-inf" class="ui-state-default ui-corner-all" title="Sector"><span></span></li>
+                </ul>
+            </div>
+        </div>
+        <div id="elementos-inf" class="cont-elementos">
+            <div id="menu-elementos-inf">
+                <div>
+                    <h3><a href="#">Conceptos</a></h3>
+                    <div id='ListaConcep'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Relaciones de Material</a></h3>
+                    <div id='ListaRelMat'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Relaciones de Informaci&oacute;n</a></h3>
+                    <div id='ListaRelInf'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Ciclos</a></h3>
+                    <div id='ListaCiclos'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Sectores</a></h3>
+                    <div id='ListaSecInf'>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="lenguaje-inf" class="cont-lenguaje">
+            <div id="svg-div-inf" class="cont-svg">
+                
+            </div>
+        </div>
+    </div>
+    <div id="flujonivel" class="contenedor">
+        <div id="herramientas-fyn" class="cont-herramientas">
+            <div id="barra-herra-fyn" class="barra-herra">
+                <ul id="icons-fyn" class="icons ui-widget ui-helper-clearfix">
+                    <li id="curso-fyn" class="ui-state-default ui-corner-all" title="Cursor"><span></span></li>
+                    <li id="param-fyn" class="ui-state-default ui-corner-all" title="Parametro"><span></span></li>
+                    <li id="nivel-fyn" class="ui-state-default ui-corner-all" title="Nivel"><span></span></li>
+                    <li id="flujo-fyn" class="ui-state-default ui-corner-all" title="Flujo"><span></span></li>
+                    <li id="vaaux-fyn" class="ui-state-default ui-corner-all" title="Variable auxiliar"><span></span></li>
+                    <li id="vaexo-fyn" class="ui-state-default ui-corner-all" title="Variable exogena"><span></span></li>
+                    <li id="retar-fyn" class="ui-state-default ui-corner-all" title="Retardo"><span></span></li>
+                    <li id="multi-fyn" class="ui-state-default ui-corner-all" title="Multiplicador"><span></span></li>
+                    <li id="elfis-fyn" class="ui-state-default ui-corner-all" title="Elemento FIS"><span></span></li>
+                    <li id="vaant-fyn" class="ui-state-default ui-corner-all" title="Valor Anterior"><span></span></li>
+                    <li id="submo-fyn" class="ui-state-default ui-corner-all" title="Submodelo"><span></span></li>
+                    <li id="copia-fyn" class="ui-state-default ui-corner-all" title="Clon"><span></span></li>
+                    <li id="relac-fyn" class="ui-state-default ui-corner-all" title="Relaci&oacute;n"><span></span></li>
+                    <li id="secto-fyn" class="ui-state-default ui-corner-all" title="Sector"><span></span></li>
+                </ul>
+            </div>
+        </div>
+        <div id="elementos-fyn" class="cont-elementos">
+            <div id="menu-elementos-fyn">
+                <div>
+                    <h3><a href="#">Parametros</a></h3>
+                    <div id='param-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Niveles</a></h3>
+                    <div id='nivel-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Flujos</a></h3>
+                    <div id='flujo-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Var. Auxiliares</a></h3>
+                    <div id='vaaux-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Var. Exogenas</a></h3>
+                    <div id='vaexo-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Retardos</a></h3>
+                    <div id='retar-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Multiplicadores</a></h3>
+                    <div id='multi-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">FIS</a></h3>
+                    <div id='elfis-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Valores Anteriores</a></h3>
+                    <div id='vaant-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Submodelo</a></h3>
+                    <div id='submo-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Relaciones</a></h3>
+                    <div id='relac-fyn-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Sectores</a></h3>
+                    <div id='sefyn-fyn-div'>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="lenguaje-fyn" class="cont-lenguaje">
+            <div id="svg-div-fyn" class="cont-svg">
+                
+            </div>
+        </div>
+    </div>
+    <div id="ecuaciones" class="contenedor">
+        <div id="elementos-ecu" class="cont-elementos">
+            <a id='generarmt' href='#'>Modelo en lenguaje Matematico</a>
+            <br />
+            <br />
+            <a id='generarjs' href='#'>Modelo en lenguaje JavaScript</a>
+        </div>
+        <div id="lenguaje-ecu" class="cont-lenguaje">
+            
+        </div>
+    </div>
+    <div id="comportamientos" class="contenedor">
+        <div id="elementos-com" class="cont-elementos">
+            <a id='simular' href='#'>Simular</a>
+            <br />
+            <br />
+            <label for='ti_txt'>Tiempo inicial:</label>
+            <input type='text' id='ti_txt' value='0' class='ui-widget-content'>     <br /><br />
+            <label for='tf_txt'>Tiempo final:</label>
+            <input type='text' id='tf_txt' value='100' class='ui-widget-content'>   <br /><br />
+            <label for='dt_txt'>Paso de simulaci&oacute;n:</label>
+            <input type='text' id='dt_txt' value='1' class='ui-widget-content'>     <br /><br />
+            
+            <div id="menu-elementos-com">
+                <div>
+                    <h3><a href="#">Parametros</a></h3>
+                    <div id='param-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Niveles</a></h3>
+                    <div id='nivel-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Flujos</a></h3>
+                    <div id='flujo-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Var. Auxiliares</a></h3>
+                    <div id='vaaux-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Var. Exogenas</a></h3>
+                    <div id='vaexo-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Retardos</a></h3>
+                    <div id='retar-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Multiplicadores</a></h3>
+                    <div id='multi-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">FIS</a></h3>
+                    <div id='elfis-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Valores Anteriores</a></h3>
+                    <div id='vaant-com-div'>
+                        
+                    </div>
+                </div>
+                <div>
+                    <h3><a href="#">Submodelo</a></h3>
+                    <div id='submo-com-div'>
+                        
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <div id="lenguaje-com" class="cont-lenguaje">
+            <div id="contVisualizador">
+                <div id="visualizador">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <xml id="xmldocument" style="display: none"><model></model></xml>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <fieldset>
+      <legend>Registrar usuario</legend>
+      
+      <div class="field">
+        <%= f.label :name, 'Nombre' %><br />
+        <%= f.text_field :name, :autofocus => true %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :last_name, 'Apellido' %><br />
+        <%= f.text_field :last_name %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :email, 'Correo electrónico' %><br />
+        <%= f.email_field :email%>
+      </div>
+      
+      <div class="field">
+        <%= f.label :password, 'Contraseña' %><br />
+        <%= f.password_field :password %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :password_confirmation, 'Reingrese la contraseña' %><br />
+        <%= f.password_field :password_confirmation %>              
+      </div>
+      
+      <br />
+      
+      <div>
+        <%= f.submit 'Registrar usuario', :class => 'button' %>
+        <%= render "devise/shared/links"  %>
+      </div>
+    </fieldset>
+
+<% end %>
+
+

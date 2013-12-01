@@ -1,0 +1,28 @@
+$(document).ready(function(){
+    var notice = $("<div id='notice' class='notice'></div>");
+    notice.html('<p>'+'<%= flash[:notice].html_safe %>'+'</p>');
+    $('#encabezado').append(notice);
+    notice.slideDown(1000).delay(4000).slideUp(1000, function(){this.remove()});
+    
+    require(['evolucion'], function() {
+        <% if flash[:success] %>
+        console.log('evo');
+        console.log(evo);
+        console.log('<%= @project.model.html_safe %>');
+        <% end %>        
+    });
+    
+    
+    
+        
+    
+    
+    
+    
+    
+    
+});
+
+
+
+ 
