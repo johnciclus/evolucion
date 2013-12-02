@@ -1,14 +1,22 @@
-{% load staticfiles %}
-
-
-<script src="{{ STATIC_URL }}js/main.js"> </script>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% if latest_projects_list %}
     <ul>
     {% for project in latest_projects_list %}
-        <li><a href="/projects/{{ project.id }}/">{{ project.title }}</a></li>
+        <li><a href="{% url 'projects:detail' project.id %}">{{ project.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No projects are available.</p>
 {% endif %}
+
+<hr />
+
+<p> Formulario </p>
+
+<form action="{% url 'projects:save' %}" method="post">
+{% csrf_token %}
+<input type="text" id="title" name="title" />
+<input type="text" id="description" name="description" />
+<input type="submit" value="Save" />
+</form>
