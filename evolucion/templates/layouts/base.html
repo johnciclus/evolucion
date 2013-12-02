@@ -1,4 +1,4 @@
-{% load admin_static %}
+{% load staticfiles %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="es" xml:lang="es" manifest="{% static "cache.manifest" %}">
 <head>
@@ -11,16 +11,16 @@
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
     <!--<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css' />-->
    
-    <link href="{% static "css/jquery-ui-1.9.2.custom.min.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "css/estilo.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "css/highlight.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "css/influencias.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "css/flujonivel.css" %}" rel="stylesheet" type="text/css"><br />
-    <link href="{% static "css/ecuaciones.css" %}" rel="stylesheet" type="text/css">
-    <link href="{% static "css/comportamientos.css" %}" rel="stylesheet" type="text/css">  
+    <link href="{% static 'css/jquery-ui-1.9.2.custom.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/estilo.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/highlight.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/influencias.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/flujonivel.css' %}" rel="stylesheet" type="text/css"><br />
+    <link href="{% static 'css/ecuaciones.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/comportamientos.css' %}" rel="stylesheet" type="text/css">  
     
-    <script src="{% static "js/jquery-1.9.1.min.js" %}"> </script>
-    <script data-main="{% static "js/main.js" %}" src="{% static "js/require.js" %}"> </script>
+    <script src="{% static 'js/jquery-1.9.1.min.js' %}"> </script>
+    <script data-main="{% static 'js/main.js' %}" src="{% static 'js/require.js' %}"> </script>
 </head>
 
 <body>
@@ -31,16 +31,16 @@
         </div>
         <div id="navegadores">
             <a href="https://www.google.com/intl/es/chrome/browser/" target="_blank">
-                <img src="{% static "images/google-chrome.png" %}" alt="Google Chrome">
+                <img src="{% static 'images/google-chrome.png' %}" alt="Google Chrome">
             </a>
             <a href="http://www.apple.com/es/safari/" target="_blank">
-                <img src="{% static "images/safari.png" %}" alt="Safari">
+                <img src="{% static 'images/safari.png' %}" alt="Safari">
             </a>
             <a href="http://www.opera.com/download/" target="_blank">
-                <img src="{% static "images/opera.png" %}" alt="Opera">
+                <img src="{% static 'images/opera.png' %}" alt="Opera">
             </a>
             <a href="http://www.mozilla.org/es-ES/firefox/new/" target="_blank">
-                <img src="{% static "images/mozilla-firefox.png" %}" alt="Mozila Firefox">
+                <img src="{% static 'images/mozilla-firefox.png' %}" alt="Mozila Firefox">
             </a>            
         </div>
     </div>
