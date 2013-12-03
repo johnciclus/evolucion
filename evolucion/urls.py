@@ -4,10 +4,14 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    # Root page:
     url(r'^$', 'evolucion.views.home', name='home'),
     
+    # Include app Projects:
     url(r'^projects/', include('evolucion.projects.urls', namespace='projects')),
+    
+    # Include app Editor:
+    url(r'^editor/', include('evolucion.editor.urls', namespace='editor')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

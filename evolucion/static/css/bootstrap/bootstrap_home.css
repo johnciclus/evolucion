@@ -8,6 +8,18 @@ body {
   padding-bottom: 40px;
 }
 
+/* CUSTOMIZE Basic CSS
+-------------------------------------------------- */
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.modal-footer {
+    margin-top: 0px;
+} 
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -19,6 +31,7 @@ body {
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
+  color: #000;
   z-index: 10;
 }
 
