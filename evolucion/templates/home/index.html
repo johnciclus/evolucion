@@ -1,6 +1,13 @@
-{% extends "layouts/default.html" %}
+{% extends "layouts/base_home.html" %}
 
-{% block container %}
+{% block content %}
+    
+<!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
     <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
@@ -65,4 +72,8 @@
       <hr class="featurette-divider">
 
       <!-- /END THE FEATURETTES -->
+      
+      {% include 'layouts/_footer.html' %}
+      
+    </div><!-- /.container -->
 {% endblock %}

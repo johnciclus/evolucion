@@ -1,0 +1,89 @@
+{% load templatetags.filters %}
+
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Regístrate</h4>
+        </div>
+        
+        <form class="form-horizontal" action="/sign_up" method="post">
+            {% csrf_token %}
+            <div class="modal-body">    
+                {% for field in sign_form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        <div class="col-lg-9">
+                            {{ field }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>            
+            <input type="submit" value="add user"/>
+        </form>
+        
+        
+        <form class="form-horizontal" action="/users/signup/" method="post">
+            {% csrf_token %}
+            <div class="modal-body">    
+              <div class="form-group">
+                <label for="name" class="col-lg-3 control-label">Nombre</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Nombre">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="surname" class="col-lg-3 control-label">Apellido</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="surname" name="surname" placeholder="Apellido">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="user_name" class="col-lg-3 control-label">Nombre de usuario</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Nombre de usuario">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-lg-3 control-label">Correo electr&oacute;nico</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Correo electr&oacute;nico">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-lg-3 control-label">Contrase&ntilde;a</label>
+                <div class="col-lg-9">
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Contrase&ntilde;a">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password_confirmation" class="col-lg-3 control-label">Confirmar contrase&ntilde;a</label>
+                <div class="col-lg-9">
+                  <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirmar contrase&ntilde;a">
+                </div>
+              </div>
+              
+              
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="chkTerms" name="chkTerms" value="accept"> Acepto las <a href="/terms" target="_blank">Condiciones del servicio de Evoluci&oacute;n Web</a>
+                </label>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-lg-12 col-centered">
+                  <button type="submit" class="btn btn-primary">Registrarse</button> 
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12 col-centered">
+                      <a href="#" data-toggle="modal" data-target="#signInModal">Iniciar sesi&oacute;n</a> 
+                </div>
+            </div>
+          </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

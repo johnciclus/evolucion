@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% load staticfiles %}
+
+
+{% block nav %} 
+    {% include 'layouts/_fixedNav.html' %}
+    {% include 'layouts/_signUp.html' %}
+    {% include 'layouts/_signIn.html' %}        
+{% endblock %}
+
+
+{% block body %}
+    {% include 'layouts/_carousel.html' %}
+    
+    {% block content %}
+    
+    {% endblock %}
+        
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+    <script src="{% static 'js/jquery/jquery-1.10.2.min.js' %}"> </script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap/holder.js' %}"></script>
+    
+{% endblock %}
+
+
