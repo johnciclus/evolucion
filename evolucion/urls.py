@@ -13,9 +13,9 @@ urlpatterns = patterns('',
     # Include app Editor:
     url(r'^editor/', include('evolucion.editor.urls', namespace='editor')),
     
-    # SignUp Function:
+    # Include app Users:
     url(r'^users/', include('evolucion.users.urls', namespace='users')),
-
+    
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 
