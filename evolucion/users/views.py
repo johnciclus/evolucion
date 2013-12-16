@@ -1,9 +1,18 @@
 from django.core.context_processors import csrf
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import HttpResponse, render, render_to_response, redirect, RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from evolucion.users.models import UserForm
+from datetime import datetime
+from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
+
+import logging, sys
+
+
+logger = logging.getLogger(__name__)
+
 
 def loginview(request):
     c = {}
@@ -29,6 +38,28 @@ def user_exists(username):
     if user_count == 0:
         return False
     return True
+
+def sign_up(request):
+    if request.method == 'POST':
+        params = request.POST.copy()
+        params['created_at'] = datetime.now()
+        params['updated_at'] = datetime.now()
+        params['last_login'] = datetime.now()
+        sign_form = UserForm(params)
+        
+        if sign_form.is_valid():
+            user = sign_form.save()
+            context = {'sign_form': sign_form}
+        else:
+            cd = sign_form.cleaned_data
+            form_errors = sign_form.errors
+            sign_form = UserForm(auto_id=True)
+            context = {'sign_form': sign_form, 'form_errors': form_errors}
+    else:
+        sign_form = UserForm(auto_id=True)
+        context = {'sign_form': sign_form}
+        
+    return render(request, 'home/index.html', context)
 
 def sign_up_in(request):
     user = UserForm(request.POST)

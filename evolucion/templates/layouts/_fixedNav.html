@@ -1,3 +1,4 @@
+{% load i18n %}
  <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -12,18 +13,18 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="#explore">Explorar</a></li>
-            <li><a href="#features">Caracter&iacute;sticas</a></li>
-            <li><a href="#about">Acerca de</a></li>
-            <li><a href="#contact">Cont&aacute;ctanos</a></li>
+            <li class="active"><a href="#">{% trans "nav home" %}       </a></li>
+            <li><a href="#explore">        {% trans "nav explore" %}    </a></li>
+            <li><a href="#features">       {% trans "nav features" %}   </a></li>
+            <li><a href="#about">          {% trans "nav about" %}      </a></li>
+            <li><a href="#contact">        {% trans "nav contact us" %} </a></li>
           </ul>
           <form class="navbar-form navbar-left">
             <input type="text" class="form-control col-lg-8" placeholder="Buscar">
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="text-primary" data-toggle="modal" data-target="#signUpModal">Regístrate</a></li>
-            <li><a href="#" class="text-primary" data-toggle="modal" data-target="#signInModal">Inicia sesión</a></li>
+            <li><a href="#" class="text-primary" data-toggle="modal" data-target="#signUpModal">{% trans "nav sign up" %} </a></li>
+            <li><a href="#" class="text-primary" data-toggle="modal" data-target="#signInModal">{% trans "nav sign in" %} </a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

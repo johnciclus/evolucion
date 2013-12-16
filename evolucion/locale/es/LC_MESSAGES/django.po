@@ -1,0 +1,524 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-16 16:26-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/admin/404.html:4 templates/admin/404.html.py:8
+msgid "Page not found"
+msgstr ""
+
+#: templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: templates/admin/500.html:6 templates/admin/app_index.html:7
+#: templates/admin/base.html:47 templates/admin/change_form.html:19
+#: templates/admin/change_list.html:41
+#: templates/admin/delete_confirmation.html:7
+#: templates/admin/delete_selected_confirmation.html:7
+#: templates/admin/invalid_setup.html:6 templates/admin/object_history.html:7
+#: templates/admin/auth/user/change_password.html:13
+msgid "Home"
+msgstr ""
+
+#: templates/admin/500.html:7
+msgid "Server error"
+msgstr ""
+
+#: templates/admin/500.html:11
+msgid "Server error (500)"
+msgstr ""
+
+#: templates/admin/500.html:14
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: templates/admin/500.html:15
+msgid ""
+"There's been an error. It's been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: templates/admin/actions.html:4
+msgid "Run the selected action"
+msgstr ""
+
+#: templates/admin/actions.html:4
+msgid "Go"
+msgstr ""
+
+#: templates/admin/actions.html:11
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: templates/admin/actions.html:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: templates/admin/actions.html:13
+msgid "Clear selection"
+msgstr ""
+
+#: templates/admin/app_index.html:10 templates/admin/index.html:21
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: templates/admin/base.html:28
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/base.html:33
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/base.html:36
+#: templates/admin/auth/user/change_password.html:17
+#: templates/admin/auth/user/change_password.html:51
+msgid "Change password"
+msgstr ""
+
+#: templates/admin/base.html:38
+msgid "Log out"
+msgstr ""
+
+#: templates/admin/base_site.html:4
+msgid "Evolución site admin"
+msgstr ""
+
+#: templates/admin/base_site.html:7
+msgid "Evolución administration"
+msgstr ""
+
+#: templates/admin/change_form.html:22 templates/admin/index.html:33
+msgid "Add"
+msgstr ""
+
+#: templates/admin/change_form.html:32 templates/admin/object_history.html:11
+msgid "History"
+msgstr ""
+
+#: templates/admin/change_form.html:33
+#: templates/admin/edit_inline/stacked.html:9
+#: templates/admin/edit_inline/tabular.html:30
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/change_form.html:44 templates/admin/change_list.html:67
+#: templates/admin/login.html:17
+#: templates/admin/auth/user/change_password.html:27
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/change_list.html:58
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/change_list.html:78
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/change_list_results.html:17
+msgid "Remove from sorting"
+msgstr ""
+
+#: templates/admin/change_list_results.html:18
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: templates/admin/change_list_results.html:19
+msgid "Toggle sorting"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:11
+#: templates/admin/submit_line.html:4
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:18
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:26
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:34
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:39
+#: templates/admin/delete_selected_confirmation.html:44
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:10
+msgid "Delete multiple objects"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:17
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:25
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:33
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: templates/admin/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: templates/admin/index.html:20
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: templates/admin/index.html:39
+msgid "Change"
+msgstr ""
+
+#: templates/admin/index.html:49
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: templates/admin/index.html:57
+msgid "Recent Actions"
+msgstr ""
+
+#: templates/admin/index.html:58
+msgid "My Actions"
+msgstr ""
+
+#: templates/admin/index.html:62
+msgid "None available"
+msgstr ""
+
+#: templates/admin/index.html:76
+msgid "Unknown content"
+msgstr ""
+
+#: templates/admin/invalid_setup.html:12
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: templates/admin/login.html:37
+msgid "Password:"
+msgstr ""
+
+#: templates/admin/login.html:44
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: templates/admin/login.html:48
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/object_history.html:23
+msgid "Date/time"
+msgstr ""
+
+#: templates/admin/object_history.html:24
+msgid "User"
+msgstr ""
+
+#: templates/admin/object_history.html:25
+msgid "Action"
+msgstr ""
+
+#: templates/admin/object_history.html:39
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: templates/admin/pagination.html:10
+msgid "Show all"
+msgstr ""
+
+#: templates/admin/pagination.html:11 templates/admin/submit_line.html:3
+msgid "Save"
+msgstr ""
+
+#: templates/admin/search_form.html:7
+msgid "Search"
+msgstr ""
+
+#: templates/admin/search_form.html:9
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/search_form.html:9
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: templates/admin/submit_line.html:5
+msgid "Save as new"
+msgstr ""
+
+#: templates/admin/submit_line.html:6
+msgid "Save and add another"
+msgstr ""
+
+#: templates/admin/submit_line.html:7
+msgid "Save and continue editing"
+msgstr ""
+
+#: templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: templates/admin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:31
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:38
+msgid "Password"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:44
+msgid "Password (again)"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:45
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:26
+#: templates/admin/edit_inline/tabular.html:76
+msgid "Remove"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:27
+#: templates/admin/edit_inline/tabular.html:75
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: templates/admin/edit_inline/tabular.html:17
+msgid "Delete?"
+msgstr ""
+
+#: templates/home/index.html:16
+msgid "welcome title"
+msgstr "Bienvenido a Evolución Web"
+
+#: templates/home/index.html:17
+msgid "welcome content"
+msgstr ""
+"Bienvenido a la plataforma Evolución Web, tecnología que permite realizar "
+"modelamiento y simulación con Dinámica de Sistemas en un ambiente basado en "
+"Internet, además de permitir estas funcionalidades, este proyecto busca "
+"plantear y desarrollar tecnologías de modelado colaborativo en un futuro "
+"cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
+"amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
+
+#: templates/home/index.html:18 templates/home/index.html.py:24
+#: templates/home/index.html:30
+msgid "view details"
+msgstr "Mayor información"
+
+#: templates/home/index.html:22
+msgid "features title"
+msgstr "Características"
+
+#: templates/home/index.html:23
+msgid "features content"
+msgstr ""
+"Evolución Web integra las siguientes caracteristicas del modelamiento de "
+"sistemas"
+
+#: templates/home/index.html:28
+msgid "explore title"
+msgstr "Explore los proyectos"
+
+#: templates/home/index.html:29
+msgid "explore content"
+msgstr ""
+"Los proyectos desarrollados dentro de la plataforma Evolución Web, son por "
+"defecto publicos, con la finalidad de promover la libertad del conocimiento, "
+"cualquier persona por medio de internet puede conocer las actualizaciones de "
+"cada modelo "
+
+#: templates/layouts/_carousel.html:20
+msgid "sign up today"
+msgstr "Regístrate hoy"
+
+#: templates/layouts/_carousel.html:31
+msgid "learn more"
+msgstr "Aprenda más"
+
+#: templates/layouts/_carousel.html:41
+msgid "browse gallery"
+msgstr "Navega por la galería"
+
+#: templates/layouts/_fixedNav.html:16
+msgid "nav home"
+msgstr "Inicio"
+
+#: templates/layouts/_fixedNav.html:17
+msgid "nav explore"
+msgstr "Explorar"
+
+#: templates/layouts/_fixedNav.html:18
+msgid "nav features"
+msgstr "Características"
+
+#: templates/layouts/_fixedNav.html:19
+msgid "nav about"
+msgstr "Acerca de"
+
+#: templates/layouts/_fixedNav.html:20
+msgid "nav contact us"
+msgstr "Contáctanos"
+
+#: templates/layouts/_fixedNav.html:26
+msgid "nav sign up"
+msgstr "Regístrate"
+
+#: templates/layouts/_fixedNav.html:27
+msgid "nav sign in"
+msgstr "Inicia sesión"
+
+#: templates/layouts/_signUp.html:9
+msgid "sign up title"
+msgstr "Regístrate en Evolución Web"
+
+#: templates/layouts/_signUp.html:37
+msgid "sign up first_name placeholder"
+msgstr "Nombre(s)"
+
+#: templates/layouts/_signUp.html:48
+msgid "sign up last_name placeholder"
+msgstr "Apellido(s)"
+
+#: templates/layouts/_signUp.html:60
+msgid "sign up username placeholder"
+msgstr "Nombre de identificación en el sistema"
+
+#: templates/layouts/_signUp.html:73
+msgid "sign up email placeholder"
+msgstr "Correo electrónico valido ej: nombre@dominio.com"
+
+#: templates/layouts/_signUp.html:83
+msgid "sign up password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: templates/layouts/_signUp.html:87
+msgid "sign up confirm_password"
+msgstr "Confirme la contraseña"
+
+#: templates/layouts/_signUp.html:93
+msgid "sign up confirm_password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: templates/layouts/_signUp.html:99
+msgid "sign up terms"
+msgstr "Condiciones del servicio de Evolución Web"
+
+#: templates/layouts/_signUp.html:107
+msgid "sign up submit text"
+msgstr "Registrarse"
+
+#: templates/layouts/_signUp.html:112
+msgid "sign up log in text"
+msgstr "Iniciar sesión"
+
+#: users/models.py:13
+msgid "first_name"
+msgstr "nombre propio"
+
+#: users/models.py:14
+msgid "last_name"
+msgstr "apellidos"
+
+#: users/models.py:15
+msgid "username"
+msgstr "nombre de usuario"
+
+#: users/models.py:16
+msgid "Enter a valid username."
+msgstr "introduce un nombre de usuario válido"
+
+#: users/models.py:19
+msgid "email"
+msgstr "correo electrónico"
+
+#: users/models.py:20
+msgid "password"
+msgstr "contraseña"
+
+#: users/models.py:23
+msgid "last_login"
+msgstr "último inicio de sesión"
+
+#: users/models.py:24
+msgid "created_at"
+msgstr "creado en"
+
+#: users/models.py:25
+msgid "updated_at"
+msgstr "actualizado en"
+
+#~ msgid ""
+#~ "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ "
+#~ "characters"
+#~ msgstr "Requerido. 30 caracteres o menos. Letras, números y @/./+/-/_"

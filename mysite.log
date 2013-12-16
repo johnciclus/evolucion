@@ -1,0 +1,1867 @@
+[16/Dec/2013 04:39:47] DEBUG [evolucion.views:22] Hello World!
+[16/Dec/2013 04:39:47] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 23, in home
+    print >>sys.stderr, 'Goodbye, cruel world!'
+NameError: global name 'sys' is not defined
+[16/Dec/2013 04:40:05] DEBUG [evolucion.views:23] Hello World!
+[16/Dec/2013 04:40:05] DEBUG [evolucion.views:23] Hello World!
+[16/Dec/2013 04:41:04] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 23, in home
+    print >>sys.stderr, sign_form.name
+AttributeError: 'UserForm' object has no attribute 'name'
+[16/Dec/2013 04:49:45] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 24, in home
+    print >>sys.stderr, type(widget.attrs['id'])
+KeyError: 'id'
+[16/Dec/2013 04:53:44] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 25, in home
+    print >>sys.stderr, widget.attrs[maxlength]
+NameError: global name 'maxlength' is not defined
+[16/Dec/2013 05:27:12] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 22, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 24, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[16/Dec/2013 05:29:53] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 22, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 24, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[16/Dec/2013 05:31:36] WARNING [django.request:146] Not Found: /sign_up
+[16/Dec/2013 05:32:02] WARNING [django.request:146] Not Found: /sign_up
+[16/Dec/2013 05:36:12] WARNING [django.request:146] Not Found: /sign_up
+[16/Dec/2013 05:38:08] WARNING [django.request:146] Not Found: /sign_up
+[16/Dec/2013 05:38:36] WARNING [django.request:146] Not Found: /sign_up
+[16/Dec/2013 05:52:44] ERROR [django.request:212] Internal Server Error: /users/sign_up
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/common.py", line 79, in process_request
+    "settings.") % (new_url[0], new_url[1]))
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to localhost:8000/users/sign_up/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+[16/Dec/2013 05:53:54] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 41, in sign_up
+    return render(request, '/home/index.html', context)
+NameError: global name 'render' is not defined
+[16/Dec/2013 05:56:12] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 41, in sign_up
+    return render(request, '/home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 05:58:03] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 41, in sign_up
+    return render(request, '/home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 06:01:58] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:04:33] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 39, in sign_up
+    print >>sys.stderr, 'Hello, sign_form receive'
+NameError: global name 'sys' is not defined
+[16/Dec/2013 06:04:55] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:05:47] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 40, in sign_up
+    print >>sys.stderr, 'type of sign_form'+type(sign_form)
+TypeError: cannot concatenate 'str' and 'ModelFormMetaclass' objects
+[16/Dec/2013 06:06:06] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 40, in sign_up
+    print >>sys.stderr, 'type of sign_form'+type(sign_form)
+TypeError: cannot concatenate 'str' and 'ModelFormMetaclass' objects
+[16/Dec/2013 06:06:48] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 40, in sign_up
+    print >>sys.stderr, 'type of sign_form'+type(sign_form).__str__()
+TypeError: unbound method <lambda>() must be called with UserForm instance as first argument (got nothing instead)
+[16/Dec/2013 06:07:22] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 41, in sign_up
+    print >>sys.stderr, type(sign_form).__str__()
+TypeError: unbound method <lambda>() must be called with UserForm instance as first argument (got nothing instead)
+[16/Dec/2013 06:07:43] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:10:00] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:11:03] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:11:45] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:14:03] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 40, in sign_up
+    sign_form.data['new']='hola mundo'
+  File "/usr/local/lib/python2.7/dist-packages/django/http/request.py", line 310, in __setitem__
+    self._assert_mutable()
+  File "/usr/local/lib/python2.7/dist-packages/django/http/request.py", line 307, in _assert_mutable
+    raise AttributeError("This QueryDict instance is immutable")
+AttributeError: This QueryDict instance is immutable
+[16/Dec/2013 06:15:47] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 40, in sign_up
+    request.POST['new']='hola mundo'
+  File "/usr/local/lib/python2.7/dist-packages/django/http/request.py", line 310, in __setitem__
+    self._assert_mutable()
+  File "/usr/local/lib/python2.7/dist-packages/django/http/request.py", line 307, in _assert_mutable
+    raise AttributeError("This QueryDict instance is immutable")
+AttributeError: This QueryDict instance is immutable
+[16/Dec/2013 06:17:29] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:19:33] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:20:11] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.009) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.215) CREATE TABLE "users_user" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "name" varchar(40) NOT NULL,
+    "surname" varchar(40) NOT NULL,
+    "username" varchar(40) NOT NULL,
+    "email" varchar(50) NOT NULL,
+    "password" varchar(50) NOT NULL,
+    "accept_terms" boolean NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.034) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.005) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.029) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'users' ); args=('user', u'users')
+[16/Dec/2013 06:27:11] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[16/Dec/2013 06:27:12] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[16/Dec/2013 06:27:12] DEBUG [django.db.backends:51] (0.001) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[16/Dec/2013 06:27:12] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[16/Dec/2013 06:28:09] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 48, in sign_up
+    user = form.save()
+NameError: global name 'form' is not defined
+[16/Dec/2013 06:29:08] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 42, in sign_up
+    print >>sys.stderr, dir(params)
+NameError: global name 'params' is not defined
+[16/Dec/2013 06:29:33] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 42, in sign_up
+    user = form.save()
+NameError: global name 'form' is not defined
+[16/Dec/2013 06:30:04] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:30:25] DEBUG [django.db.backends:51] (0.002) INSERT INTO "users_user" ("name", "surname", "username", "email", "password", "accept_terms", "created_at", "updated_at") VALUES ('John Freddy', 'Garavito Suárez', 'johntalent', 'talent.corp@gmail.com', 'Innovar01', true, '2013-12-16 11:30:25.960469+00:00', '2013-12-16 11:30:25.960550+00:00') RETURNING "users_user"."id"; args=(u'John Freddy', u'Garavito Su\xe1rez', u'johntalent', u'talent.corp@gmail.com', u'Innovar01', True, u'2013-12-16 11:30:25.960469+00:00', u'2013-12-16 11:30:25.960550+00:00')
+[16/Dec/2013 06:30:26] WARNING [django.request:146] Not Found: /valid/
+[16/Dec/2013 06:33:20] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:33:28] DEBUG [django.db.backends:51] (0.001) INSERT INTO "users_user" ("name", "surname", "username", "email", "password", "accept_terms", "created_at", "updated_at") VALUES ('John Freddy', 'Garavito Suárez', 'johntalent', 'talent.corp@gmail.com', 'Innovar01', true, '2013-12-16 11:33:28.699084+00:00', '2013-12-16 11:33:28.699155+00:00') RETURNING "users_user"."id"; args=(u'John Freddy', u'Garavito Su\xe1rez', u'johntalent', u'talent.corp@gmail.com', u'Innovar01', True, u'2013-12-16 11:33:28.699084+00:00', u'2013-12-16 11:33:28.699155+00:00')
+[16/Dec/2013 06:33:28] WARNING [django.request:146] Not Found: /valid/
+[16/Dec/2013 06:41:14] DEBUG [django.db.backends:51] (0.004) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.085) CREATE TABLE "users_user" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "first_name" varchar(40) NOT NULL,
+    "last_name" varchar(40) NOT NULL,
+    "username" varchar(40) NOT NULL,
+    "email" varchar(50) NOT NULL,
+    "password" varchar(50) NOT NULL,
+    "accept_terms" boolean NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.003) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'users' ); args=('user', u'users')
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[16/Dec/2013 06:41:15] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[16/Dec/2013 06:41:24] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 06:46:11] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 23, in maxlength
+    widget = field.field.widget
+AttributeError: 'str' object has no attribute 'field'
+[16/Dec/2013 06:47:20] WARNING [django.request:146] Not Found: /sign_up
+[16/Dec/2013 06:47:23] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 23, in maxlength
+    widget = field.field.widget
+AttributeError: 'str' object has no attribute 'field'
+[16/Dec/2013 08:27:00] DEBUG [django.db.backends:51] (0.029) SELECT "django_site"."id", "django_site"."domain", "django_site"."name" FROM "django_site" WHERE "django_site"."id" = 1 ; args=(1,)
+[16/Dec/2013 08:27:00] DEBUG [django.db.backends:51] (0.018) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'h04fphirpjswzykdoognv6cszulveqen'  LIMIT 1; args=(u'h04fphirpjswzykdoognv6cszulveqen',)
+[16/Dec/2013 08:27:00] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140691345454848_x1; args=()
+[16/Dec/2013 08:27:00] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'h04fphirpjswzykdoognv6cszulveqen'  LIMIT 1; args=(u'h04fphirpjswzykdoognv6cszulveqen',)
+[16/Dec/2013 08:27:00] DEBUG [django.db.backends:51] (0.008) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('h04fphirpjswzykdoognv6cszulveqen', 'M2UwMDdjMWY4NjIyNjhhYjE1ZWIxZTU5MGM2ZWJlZjU1ZWNjY2NkNjp7InRlc3Rjb29raWUiOiJ3b3JrZWQifQ==', '2013-12-30 13:27:00.898025+00:00'); args=(u'h04fphirpjswzykdoognv6cszulveqen', u'M2UwMDdjMWY4NjIyNjhhYjE1ZWIxZTU5MGM2ZWJlZjU1ZWNjY2NkNjp7InRlc3Rjb29raWUiOiJ3b3JrZWQifQ==', u'2013-12-30 13:27:00.898025+00:00')
+[16/Dec/2013 08:27:01] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'h04fphirpjswzykdoognv6cszulveqen'  AND "django_session"."expire_date" > '2013-12-16 13:27:01.084183+00:00' ); args=('h04fphirpjswzykdoognv6cszulveqen', u'2013-12-16 13:27:01.084183+00:00')
+[16/Dec/2013 08:27:01] WARNING [django.request:146] Not Found: /favicon.ico
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'h04fphirpjswzykdoognv6cszulveqen'  AND "django_session"."expire_date" > '2013-12-16 13:27:02.474431+00:00' ); args=('h04fphirpjswzykdoognv6cszulveqen', u'2013-12-16 13:27:02.474431+00:00')
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.017) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7'  LIMIT 1; args=(u'5g12owozq7ul2qxmrso3qv4p15t0l9i7',)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140691370632960_x1; args=()
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('5g12owozq7ul2qxmrso3qv4p15t0l9i7', 'M2UwMDdjMWY4NjIyNjhhYjE1ZWIxZTU5MGM2ZWJlZjU1ZWNjY2NkNjp7InRlc3Rjb29raWUiOiJ3b3JrZWQifQ==', '2013-12-30 13:27:02.593468+00:00'); args=(u'5g12owozq7ul2qxmrso3qv4p15t0l9i7', u'M2UwMDdjMWY4NjIyNjhhYjE1ZWIxZTU5MGM2ZWJlZjU1ZWNjY2NkNjp7InRlc3Rjb29raWUiOiJ3b3JrZWQifQ==', u'2013-12-30 13:27:02.593468+00:00')
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'h04fphirpjswzykdoognv6cszulveqen' ; args=('h04fphirpjswzykdoognv6cszulveqen',)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('h04fphirpjswzykdoognv6cszulveqen'); args=(u'h04fphirpjswzykdoognv6cszulveqen',)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.014) UPDATE "auth_user" SET "last_login" = '2013-12-16 13:27:02.624594+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-16 13:27:02.624594+00:00', 1)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140691370632960_x1; args=()
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7'  LIMIT 1; args=(u'5g12owozq7ul2qxmrso3qv4p15t0l9i7',)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) UPDATE "django_session" SET "session_data" = 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', "expire_date" = '2013-12-30 13:27:02.658776+00:00' WHERE "django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7' ; args=(u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2013-12-30 13:27:02.658776+00:00', u'5g12owozq7ul2qxmrso3qv4p15t0l9i7')
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7'  AND "django_session"."expire_date" > '2013-12-16 13:27:02.685864+00:00' ); args=('5g12owozq7ul2qxmrso3qv4p15t0l9i7', u'2013-12-16 13:27:02.685864+00:00')
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 ; args=(1,)
+[16/Dec/2013 08:27:02] DEBUG [django.db.backends:51] (0.010) SELECT "django_admin_log"."id", "django_admin_log"."action_time", "django_admin_log"."user_id", "django_admin_log"."content_type_id", "django_admin_log"."object_id", "django_admin_log"."object_repr", "django_admin_log"."action_flag", "django_admin_log"."change_message", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_admin_log" INNER JOIN "auth_user" ON ("django_admin_log"."user_id" = "auth_user"."id") LEFT OUTER JOIN "django_content_type" ON ("django_admin_log"."content_type_id" = "django_content_type"."id") WHERE "django_admin_log"."user_id" = 1  ORDER BY "django_admin_log"."action_time" DESC LIMIT 10; args=(1,)
+[16/Dec/2013 08:27:52] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7'  AND "django_session"."expire_date" > '2013-12-16 13:27:52.942264+00:00' ); args=('5g12owozq7ul2qxmrso3qv4p15t0l9i7', u'2013-12-16 13:27:52.942264+00:00')
+[16/Dec/2013 08:27:52] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 ; args=(1,)
+[16/Dec/2013 08:27:52] DEBUG [django.db.backends:51] (0.001) SELECT "auth_group"."id", "auth_group"."name" FROM "auth_group"; args=()
+[16/Dec/2013 08:27:52] DEBUG [django.db.backends:51] (0.002) SELECT COUNT(DISTINCT "auth_user"."id") FROM "auth_user"; args=()
+[16/Dec/2013 08:27:52] DEBUG [django.db.backends:51] (0.002) SELECT DISTINCT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" ORDER BY "auth_user"."username" ASC, "auth_user"."id" DESC; args=()
+[16/Dec/2013 08:27:53] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7'  AND "django_session"."expire_date" > '2013-12-16 13:27:53.091640+00:00' ); args=('5g12owozq7ul2qxmrso3qv4p15t0l9i7', u'2013-12-16 13:27:53.091640+00:00')
+[16/Dec/2013 08:27:53] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 ; args=(1,)
+[16/Dec/2013 08:27:56] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '5g12owozq7ul2qxmrso3qv4p15t0l9i7'  AND "django_session"."expire_date" > '2013-12-16 13:27:56.602213+00:00' ); args=('5g12owozq7ul2qxmrso3qv4p15t0l9i7', u'2013-12-16 13:27:56.602213+00:00')
+[16/Dec/2013 08:27:56] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 ; args=(1,)
+[16/Dec/2013 08:27:56] DEBUG [django.db.backends:51] (0.004) SELECT "django_admin_log"."id", "django_admin_log"."action_time", "django_admin_log"."user_id", "django_admin_log"."content_type_id", "django_admin_log"."object_id", "django_admin_log"."object_repr", "django_admin_log"."action_flag", "django_admin_log"."change_message", "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined", "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_admin_log" INNER JOIN "auth_user" ON ("django_admin_log"."user_id" = "auth_user"."id") LEFT OUTER JOIN "django_content_type" ON ("django_admin_log"."content_type_id" = "django_content_type"."id") WHERE "django_admin_log"."user_id" = 1  ORDER BY "django_admin_log"."action_time" DESC LIMIT 10; args=(1,)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.009) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.231) CREATE TABLE "users_user" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "first_name" varchar(40) NOT NULL,
+    "last_name" varchar(40) NOT NULL,
+    "username" varchar(30) NOT NULL UNIQUE,
+    "email" varchar(50) NOT NULL,
+    "password" varchar(128) NOT NULL,
+    "accept_terms" boolean NOT NULL,
+    "last_login" timestamp with time zone NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.021) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.026) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[16/Dec/2013 08:50:48] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.002) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'users' ); args=('user', u'users')
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.043) CREATE INDEX "users_user_username_like" ON "users_user" ("username" varchar_pattern_ops);; args=()
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[16/Dec/2013 08:50:49] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[16/Dec/2013 09:09:02] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 8, in addcss
+    return field.as_widget(attrs={"class":css})
+AttributeError: 'SafeText' object has no attribute 'as_widget'
+[16/Dec/2013 09:09:06] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 8, in addcss
+    return field.as_widget(attrs={"class":css})
+AttributeError: 'SafeText' object has no attribute 'as_widget'
+[16/Dec/2013 09:09:18] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 8, in addcss
+    return field.as_widget(attrs={"class":css})
+AttributeError: '__proxy__' object has no attribute 'as_widget'
+[16/Dec/2013 09:34:28] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in verbose_name
+    return field._meta.verbose_name
+AttributeError: 'BoundField' object has no attribute '_meta'
+[16/Dec/2013 09:34:28] WARNING [django.request:146] Not Found: /favicon.ico
+[16/Dec/2013 09:35:04] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in verbose_name
+    return field.field._meta.verbose_name
+AttributeError: 'CharField' object has no attribute '_meta'
+[16/Dec/2013 09:35:14] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in verbose_name
+    return field.field.widget._meta.verbose_name
+AttributeError: 'CharField' object has no attribute '_meta'
+[16/Dec/2013 09:35:27] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'verbose_name'
+[16/Dec/2013 09:39:22] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 1114, in render
+    return func(*resolved_args, **resolved_kwargs)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in get_verbose_name
+    return object._meta.verbose_name
+AttributeError: 'BoundField' object has no attribute '_meta'
+[16/Dec/2013 09:39:26] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 1114, in render
+    return func(*resolved_args, **resolved_kwargs)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in get_verbose_name
+    return object._meta.verbose_name
+AttributeError: 'BoundField' object has no attribute '_meta'
+[16/Dec/2013 09:39:49] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 1114, in render
+    return func(*resolved_args, **resolved_kwargs)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in get_verbose_name
+    return object._meta.verbose_name
+AttributeError: 'BoundField' object has no attribute '_meta'
+[16/Dec/2013 09:41:46] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 1114, in render
+    return func(*resolved_args, **resolved_kwargs)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 28, in get_verbose_name
+    return object._meta.verbose_name
+AttributeError: 'BoundField' object has no attribute '_meta'
+[16/Dec/2013 10:17:55] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[16/Dec/2013 10:17:56] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[16/Dec/2013 10:37:20] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[16/Dec/2013 10:37:20] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp@gmail.com'  LIMIT 1; args=(u'talent.corp@gmail.com',)
+[16/Dec/2013 10:37:20] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:38:47] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[16/Dec/2013 10:38:47] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp@gmail.com'  LIMIT 1; args=(u'talent.corp@gmail.com',)
+[16/Dec/2013 10:38:47] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:40:39] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:41:50] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent01'  LIMIT 1; args=(u'johntalent01',)
+[16/Dec/2013 10:41:50] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp@gmail.com'  LIMIT 1; args=(u'talent.corp@gmail.com',)
+[16/Dec/2013 10:41:50] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:43:59] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 10:44:40] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 40, in sign_up
+    print >>sys.stderr, paramas['confirm_password']
+NameError: global name 'paramas' is not defined
+[16/Dec/2013 10:45:02] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntaletn'  LIMIT 1; args=(u'johntaletn',)
+[16/Dec/2013 10:45:02] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp@gmail.com'  LIMIT 1; args=(u'talent.corp@gmail.com',)
+[16/Dec/2013 10:45:02] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:45:41] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntaletn'  LIMIT 1; args=(u'johntaletn',)
+[16/Dec/2013 10:45:41] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp2@gmail.com'  LIMIT 1; args=(u'talent.corp2@gmail.com',)
+[16/Dec/2013 10:45:41] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:47:14] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 41, in sign_up
+    print >>sys.stderr, params['confirm_password']
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/datastructures.py", line 295, in __getitem__
+    raise MultiValueDictKeyError("Key %r not found in %r" % (key, self))
+MultiValueDictKeyError: "Key 'confirm_password' not found in <QueryDict: {u'username': [u'johntaletn'], u'first_name': [u'John'], u'last_name': [u'Garavito'], u'accept_terms': [u'on'], u'csrfmiddlewaretoken': [u'BmwoU2DPAIePbJqqQSEEpsFn0gS7URPa'], u'password': [u'Hola2'], u'email': [u'talent.corp2@gmail.com']}>"
+[16/Dec/2013 10:48:48] DEBUG [django.db.backends:51] (0.004) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntaletn'  LIMIT 1; args=(u'johntaletn',)
+[16/Dec/2013 10:48:48] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp2@gmail.com'  LIMIT 1; args=(u'talent.corp2@gmail.com',)
+[16/Dec/2013 10:48:48] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:50:45] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntaletn'  LIMIT 1; args=(u'johntaletn',)
+[16/Dec/2013 10:50:45] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp2@gmail.com'  LIMIT 1; args=(u'talent.corp2@gmail.com',)
+[16/Dec/2013 10:50:45] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:50:58] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntaletn'  LIMIT 1; args=(u'johntaletn',)
+[16/Dec/2013 10:50:58] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp2@gmail.com'  LIMIT 1; args=(u'talent.corp2@gmail.com',)
+[16/Dec/2013 10:50:58] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:52:17] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntaletn'  LIMIT 1; args=(u'johntaletn',)
+[16/Dec/2013 10:52:17] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp2@gmail.com'  LIMIT 1; args=(u'talent.corp2@gmail.com',)
+[16/Dec/2013 10:52:17] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:55:46] DEBUG [django.db.backends:51] (0.004) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'John@gmail.com'  LIMIT 1; args=(u'John@gmail.com',)
+[16/Dec/2013 10:55:46] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:58:49] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'John@gmail.com'  LIMIT 1; args=(u'John@gmail.com',)
+[16/Dec/2013 10:58:49] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 10:59:23] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'john'  LIMIT 1; args=(u'john',)
+[16/Dec/2013 10:59:23] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'John@gmail.com'  LIMIT 1; args=(u'John@gmail.com',)
+[16/Dec/2013 10:59:23] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 11:00:44] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 7, in <module>
+    from django.utils import datetime
+ImportError: cannot import name datetime
+[16/Dec/2013 11:03:27] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[16/Dec/2013 11:03:27] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@simon.uis.edu.co'  LIMIT 1; args=(u'john@simon.uis.edu.co',)
+[16/Dec/2013 11:03:27] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 11:05:26] DEBUG [django.db.backends:51] (0.004) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'john'  LIMIT 1; args=(u'john',)
+[16/Dec/2013 11:05:26] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@c.com'  LIMIT 1; args=(u'john@c.com',)
+[16/Dec/2013 11:05:26] WARNING [django.request:146] Not Found: /login/
+[16/Dec/2013 11:06:31] DEBUG [django.db.backends:51] (0.004) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'john'  LIMIT 1; args=(u'john',)
+[16/Dec/2013 11:06:31] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@c.com'  LIMIT 1; args=(u'john@c.com',)
+[16/Dec/2013 11:06:31] DEBUG [django.db.backends:51] (0.002) INSERT INTO "users_user" ("first_name", "last_name", "username", "email", "password", "accept_terms", "last_login", "created_at", "updated_at") VALUES ('John', 'Garavito', 'john', 'john@c.com', 'Innovar01', true, '2013-12-16 11:06:31.719216-05:00', '2013-12-16 11:06:31.719163-05:00', '2013-12-16 11:06:31.719204-05:00') RETURNING "users_user"."id"; args=(u'John', u'Garavito', u'john', u'john@c.com', u'Innovar01', True, u'2013-12-16 11:06:31.719216-05:00', u'2013-12-16 11:06:31.719163-05:00', u'2013-12-16 11:06:31.719204-05:00')
+[16/Dec/2013 11:06:31] WARNING [django.request:146] Not Found: /valid/
+[16/Dec/2013 11:10:39] DEBUG [django.db.backends:51] (0.005) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'john'  LIMIT 1; args=(u'john',)
+[16/Dec/2013 11:10:39] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@c.com'  LIMIT 1; args=(u'john@c.com',)
+[16/Dec/2013 11:10:39] WARNING [django.request:146] Not Found: /home/index.html
+[16/Dec/2013 11:11:05] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'john'  LIMIT 1; args=(u'john',)
+[16/Dec/2013 11:11:05] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@c.com'  LIMIT 1; args=(u'john@c.com',)
+[16/Dec/2013 11:14:16] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 55, in sign_up
+    return render(request, '/', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /
+[16/Dec/2013 11:14:41] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 55, in sign_up
+    return render(request, '/home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.004) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.183) CREATE TABLE "users_user" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "first_name" varchar(40) NOT NULL,
+    "last_name" varchar(40) NOT NULL,
+    "username" varchar(30) NOT NULL UNIQUE,
+    "email" varchar(50) NOT NULL UNIQUE,
+    "password" varchar(128) NOT NULL,
+    "accept_terms" boolean NOT NULL,
+    "last_login" timestamp with time zone NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.002) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'users' ); args=('user', u'users')
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.040) CREATE INDEX "users_user_username_like" ON "users_user" ("username" varchar_pattern_ops);; args=()
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.050) CREATE INDEX "users_user_email_like" ON "users_user" ("email" varchar_pattern_ops);; args=()
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.001) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[16/Dec/2013 14:12:08] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[16/Dec/2013 14:58:42] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 14:58:46] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 14:58:59] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 54, in sign_up
+    return render_to_response('/home/index.html', context, context_instance=RequestContext(request))
+NameError: global name 'RequestContext' is not defined
+[16/Dec/2013 14:59:53] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 54, in sign_up
+    return render_to_response('/home/index.html', context, context_instance=RequestContext(request))
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 15:03:13] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 15:03:23] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 54, in sign_up
+    return render_to_response('/', context, context_instance=RequestContext(request))
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /
+[16/Dec/2013 15:03:41] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 54, in sign_up
+    return render_to_response('/home/index.html', context, context_instance=RequestContext(request))
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 29, in render_to_response
+    return HttpResponse(loader.render_to_string(*args, **kwargs), **httpresponse_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 15:04:30] WARNING [django.request:146] Not Found: /home/index.html
+[16/Dec/2013 15:04:39] WARNING [django.request:146] Not Found: /home/index.html
+[16/Dec/2013 15:09:34] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 15:17:22] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 52, in sign_up
+    message = _("form error")
+NameError: global name '_' is not defined
+[16/Dec/2013 15:17:53] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 55, in sign_up
+    request.user.message_set.create(message = message)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/functional.py", line 205, in inner
+    return func(self._wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'message_set'
+[16/Dec/2013 15:31:23] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 20, in <module>
+    url(r'^admin/', include(admin.site.urls)),
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/admin/sites.py", line 257, in urls
+    return self.get_urls(), self.app_name, self.name
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/admin/sites.py", line 215, in get_urls
+    self.check_dependencies()
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/admin/sites.py", line 169, in check_dependencies
+    raise ImproperlyConfigured("Put 'django.contrib.auth.context_processors.auth' "
+ImproperlyConfigured: Put 'django.contrib.auth.context_processors.auth' in your TEMPLATE_CONTEXT_PROCESSORS setting in order to use the admin application.
+[16/Dec/2013 15:31:27] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 20, in <module>
+    url(r'^admin/', include(admin.site.urls)),
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/admin/sites.py", line 257, in urls
+    return self.get_urls(), self.app_name, self.name
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/admin/sites.py", line 215, in get_urls
+    self.check_dependencies()
+  File "/usr/local/lib/python2.7/dist-packages/django/contrib/admin/sites.py", line 169, in check_dependencies
+    raise ImproperlyConfigured("Put 'django.contrib.auth.context_processors.auth' "
+ImproperlyConfigured: Put 'django.contrib.auth.context_processors.auth' in your TEMPLATE_CONTEXT_PROCESSORS setting in order to use the admin application.
+[16/Dec/2013 15:34:02] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 15:34:06] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 15:34:09] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 15:34:11] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 15:51:01] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 56, in sign_up
+    return HttpResponse("Hello world")
+NameError: global name 'HttpResponse' is not defined
+[16/Dec/2013 15:59:37] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 56, in sign_up
+    return render(request, 'index.html')
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: index.html
+[16/Dec/2013 16:01:16] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 56, in sign_up
+    return render(request, 'index.html')
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: index.html
+[16/Dec/2013 16:01:22] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 16:01:30] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 56, in sign_up
+    return render(request, 'index.html')
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: index.html
+[16/Dec/2013 16:02:31] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 56, in sign_up
+    return render(request, 'home/index.html')
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 156, in render
+    return self.render_template(self.template, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 138, in render_template
+    output = template.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 9, in id
+    return conditional_escape(field.auto_id)
+AttributeError: 'str' object has no attribute 'auto_id'
+[16/Dec/2013 16:06:47] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[16/Dec/2013 16:19:27] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 62, in sign_up
+    return render(request, '/home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.008) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.157) CREATE TABLE "users_user" (
+    "id" serial NOT NULL PRIMARY KEY,
+    "first_name" varchar(40) NOT NULL,
+    "last_name" varchar(40) NOT NULL,
+    "username" varchar(30) NOT NULL UNIQUE,
+    "email" varchar(50) NOT NULL UNIQUE,
+    "password" varchar(128) NOT NULL,
+    "accept_terms" boolean NOT NULL,
+    "last_login" timestamp with time zone NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.003) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'users' ); args=('user', u'users')
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.034) CREATE INDEX "users_user_username_like" ON "users_user" ("username" varchar_pattern_ops);; args=()
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.033) CREATE INDEX "users_user_email_like" ON "users_user" ("email" varchar_pattern_ops);; args=()
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.001) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[16/Dec/2013 16:25:45] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[16/Dec/2013 16:25:54] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 63, in sign_up
+    return render(request, '/home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /home/index.html
+[16/Dec/2013 16:31:57] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@john.com'  LIMIT 1; args=(u'john@john.com',)
