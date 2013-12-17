@@ -1,8 +1,9 @@
+{% load staticfiles %}
 {% load filters i18n %}
 
 <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form class="form-horizontal" action="/users/sign_up/" method="post">
+    <form id="sign_up_form" class="form-horizontal" action="/users/sign_up/" method="post">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -11,21 +12,8 @@
         
         <div class="modal-body">
             {% csrf_token %}
-            
-            {% if form_errors %}
-                <ul class="form_errors">
-                    <div class="alert alert-warning">
-                    {% for field, errors in form_errors.items %}
-                        <p><a href="#{{field}}" class="alert-link">{% trans field|capfirst %}</a>
-                            {% for error in errors %}
-                                {{error}}
-                            {% endfor %}
-                        </p>
-                    {% endfor %}
-                    </div>
-                </ul>
-            {% endif %}
-            
+            {% include 'layouts/_formSuccess.html' %}
+            {% include 'layouts/_formErrors.html' %}
             <div class="form-group">
                 <label for="{{ sign_form.first_name|id }}" class="col-lg-3 control-label">{{ sign_form.first_name|verbosename }}</label>
                 <div class="col-lg-9">

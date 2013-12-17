@@ -1,15 +1,18 @@
+from datetime import datetime
+
+from django.http import HttpResponse
 from django.core.context_processors import csrf
-from django.shortcuts import HttpResponse, render, render_to_response, redirect, RequestContext
+from django.core import serializers
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from evolucion.users.models import UserForm
-from datetime import datetime
+from django.shortcuts import render, render_to_response, redirect
 from django.utils.translation import ugettext_lazy as _
-from django.contrib import messages
+from evolucion.users.models import UserForm
+from evolucion.utils.decorators import ajax_view, AjaxError
 
 import logging, sys
-
 
 logger = logging.getLogger(__name__)
 
@@ -49,17 +52,33 @@ def sign_up(request):
         
         if sign_form.is_valid():
             user = sign_form.save()
-            context = {'sign_form': sign_form}
+            form_msg = _("the user was successfully registered")
+            return render(request, 'layouts/_formSuccess.html', {'form_msg': form_msg})
         else:
-            cd = sign_form.cleaned_data
             form_errors = sign_form.errors
-            sign_form = UserForm(auto_id=True)
-            context = {'sign_form': sign_form, 'form_errors': form_errors}
+            form_cleaned = sign_form.cleaned_data
+            return render(request, 'layouts/_formErrors.html', {'form_errors': form_errors})
     else:
         sign_form = UserForm(auto_id=True)
         context = {'sign_form': sign_form}
         
     return render(request, 'home/index.html', context)
+
+def get_xml(request):
+    users = User.objects.all()
+    return HttpResponse(
+        serializers.serialize("xml", users),
+        content_type = 'text/xml; charset=utf8')
+
+def get_html(request):
+    html  = render(request, 'layouts/_footer.html', {})
+    return html
+
+@ajax_view
+def get_json(request):
+    user  = User.objects.get(pk=1)
+    return user.username
+
 
 def sign_up_in(request):
     user = UserForm(request.POST)

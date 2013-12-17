@@ -25,7 +25,7 @@ class User(models.Model):
     updated_at = models.DateTimeField(_('updated_at'), default=datetime.now)
     
     def __unicode__(self):
-        return self.name
+        return self.username
 
 class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

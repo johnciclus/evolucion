@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-16 16:26-0500\n"
+"POT-Creation-Date: 2013-12-17 04:52-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -438,47 +438,51 @@ msgstr "Regístrate"
 msgid "nav sign in"
 msgstr "Inicia sesión"
 
-#: templates/layouts/_signUp.html:9
+#: templates/layouts/_formSuccess.html:5
+msgid "information"
+msgstr "información"
+
+#: templates/layouts/_signUp.html:10
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: templates/layouts/_signUp.html:37
+#: templates/layouts/_signUp.html:25
 msgid "sign up first_name placeholder"
 msgstr "Nombre(s)"
 
-#: templates/layouts/_signUp.html:48
+#: templates/layouts/_signUp.html:36
 msgid "sign up last_name placeholder"
 msgstr "Apellido(s)"
 
-#: templates/layouts/_signUp.html:60
+#: templates/layouts/_signUp.html:48
 msgid "sign up username placeholder"
 msgstr "Nombre de identificación en el sistema"
 
-#: templates/layouts/_signUp.html:73
+#: templates/layouts/_signUp.html:61
 msgid "sign up email placeholder"
 msgstr "Correo electrónico valido ej: nombre@dominio.com"
 
-#: templates/layouts/_signUp.html:83
+#: templates/layouts/_signUp.html:71
 msgid "sign up password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: templates/layouts/_signUp.html:87
+#: templates/layouts/_signUp.html:75
 msgid "sign up confirm_password"
 msgstr "Confirme la contraseña"
 
-#: templates/layouts/_signUp.html:93
+#: templates/layouts/_signUp.html:81
 msgid "sign up confirm_password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: templates/layouts/_signUp.html:99
+#: templates/layouts/_signUp.html:87
 msgid "sign up terms"
 msgstr "Condiciones del servicio de Evolución Web"
 
-#: templates/layouts/_signUp.html:107
+#: templates/layouts/_signUp.html:95
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: templates/layouts/_signUp.html:112
+#: templates/layouts/_signUp.html:100
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
@@ -517,6 +521,10 @@ msgstr "creado en"
 #: users/models.py:25
 msgid "updated_at"
 msgstr "actualizado en"
+
+#: users/views.py:55
+msgid "the user was successfully registered"
+msgstr "el usuario fue exitosamente registrado"
 
 #~ msgid ""
 #~ "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ "
