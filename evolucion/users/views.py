@@ -3,20 +3,17 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.core.context_processors import csrf
 from django.core import serializers
-from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from evolucion.users.models import UserForm
 from evolucion.utils.decorators import ajax_view, AjaxError
 
-#import logging, sys
+import logging, sys
 
-#logger = logging.getLogger(__name__)
-#       print >>sys.stderr, 'accept_terms'
+logger = logging.getLogger(__name__)
+# print >>sys.stderr, "Groups"
 # c.update(csrf(request))
 
 def get_xml(request):
@@ -63,10 +60,24 @@ def sign_in(request):
     if request.method == 'POST':
         params = request.POST.copy()
         user = authenticate(username=params['username'], password=params['password'])
+                
         if user is not None:
-#            login(request, user)
-            form_msg = _("Welcome to Evolucion Web")
-            return render(request, 'layouts/_signInSuccess.html', {'form_msg': form_msg})
+            user.is_active = True
+            user.save()
+            print >>sys.stderr, user.is_active
+            if user.is_active:
+                login(request, user)
+                print >>sys.stderr, "request.user"
+                print >>sys.stderr, dir(request.user)
+                print >>sys.stderr, "request.user.is_authenticated()"
+                print >>sys.stderr, request.user.is_authenticated()
+                form_msg = _("welcome to Evolucion Web")
+                #return render(request, 'layouts/_signInSuccess.html', {'form_msg': form_msg})
+                return redirect('/editor/')
+            else:
+                form_msg = _("the user is not active")
+                return render(request, 'layouts/_signInErrors.html', {'form_msg': form_msg})
+            
         else:
             form_msg = _("the username or password is not correct.")
             return render(request, 'layouts/_signInErrors.html', {'form_msg': form_msg})

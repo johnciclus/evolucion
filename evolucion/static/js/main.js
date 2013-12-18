@@ -4,11 +4,17 @@ $(document).ready(function(){
         if(idForm, idDivResponse){
             var frm = $('#'+idForm);
             frm.submit(function () {
-                $.ajax({
+                query = $.ajax({
                     type: frm.attr('method'),
                     url: frm.attr('action'),
                     data: frm.serialize(),
-                    success: function (data) {
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(textStatus);
+                        console.log(jqXHR);
+                        console.log(jqXHR.status);
+                        console.log(jqXHR.complete());
+                        console.log(jqXHR.getResponseHeader('method'));
+                        console.log(query.getAllResponseHeaders());
                         $('#form_message').remove();
                         $('#'+idDivResponse+' .modal-body').prepend("<div id='form_message'>"+data+"</div>");
                     },
