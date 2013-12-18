@@ -1,45 +1,62 @@
-<!-- Signin modal -->
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Inicia sesión:</h4>
-        </div>
-        <form class="form-horizontal">
-        
-        <div class="modal-body">    
-          <div class="form-group">
-            <label for="inputEmail" class="col-lg-2 control-label">Correo electr&oacute;nico</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control" id="inputEmail" placeholder="Correo electr&oacute;nico">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword" class="col-lg-2 control-label">Contraseña</label>
-            <div class="col-lg-10">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña">
-            </div>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"> Recordar mi cuenta
-            </label>
-          </div>  
-      </div>
-      <div class="modal-footer">
-        <div class="form-group">
-            <div class="col-lg-12 col-centered">
-              <button type="submit" class="btn btn-primary">Iniciar sesión</button> 
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-lg-12 col-centered">
-                <a href="#">Olvidaste tu contraseña</a>   
-            </div>
-        </div>
-      </div>
-      </form>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
+{% load staticfiles filters i18n %}
+
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <form id="sign_in_form" class="form-horizontal" action="/users/sign_in/" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Inicia sesión:</h4>
+                </div>        
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div id='form_message'>
+                        {% include 'layouts/_signUpSuccess.html' %}
+                        {% include 'layouts/_signUpErrors.html' %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ sign_form.username|id }}" class="col-lg-3 control-label">{{ sign_form.username|verbosename }}</label>
+                        
+                        <div class="col-lg-9">
+                            <input  type=       "text" 
+                                    id=         "{{ sign_form.username|id }}" 
+                                    name=       "{{ sign_form.username|id }}" 
+                                    class=      "form-control" 
+                                    maxlength=  "{{ sign_form.username|maxlength }}" 
+                                    placeholder="{% trans 'sign up username placeholder' %}">
+                                    
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ sign_form.password|id }}" class="col-lg-3 control-label">{{ sign_form.password|verbosename }}</label>
+                        <div class="col-lg-9">
+                            <input  type=       "password" 
+                                    id=         "{{ sign_form.password|id }}" 
+                                    name=       "{{ sign_form.password|id }}" 
+                                    class=      "form-control" 
+                                    placeholder="{% trans 'sign up password placeholder' %}">
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Recordar mi cuenta
+                        </label>
+                    </div>  
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-lg-12 col-centered">
+                            <button type="submit" class="btn btn-primary">Iniciar sesión</button> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12 col-centered">
+                            <a href="#">Olvidaste tu contraseña</a>   
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

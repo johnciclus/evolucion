@@ -259,3 +259,1154 @@ TypeError: <django.http.response.HttpResponse object at 0x7fd60005d810> is not J
 [17/Dec/2013 04:54:04] DEBUG [django.db.backends:51] (0.173) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent01'  LIMIT 1; args=(u'johntalent01',)
 [17/Dec/2013 04:54:04] DEBUG [django.db.backends:51] (0.022) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'talent.corp@gmail.com'  LIMIT 1; args=(u'talent.corp@gmail.com',)
 [17/Dec/2013 04:54:04] DEBUG [django.db.backends:51] (0.052) INSERT INTO "users_user" ("first_name", "last_name", "username", "email", "password", "accept_terms", "last_login", "created_at", "updated_at") VALUES ('John Freddy', 'Garavito Suárez', 'johntalent01', 'talent.corp@gmail.com', 'Innovar01', true, '2013-12-17 04:54:03.727442-05:00', '2013-12-17 04:54:03.727337-05:00', '2013-12-17 04:54:03.727411-05:00') RETURNING "users_user"."id"; args=(u'John Freddy', u'Garavito Su\xe1rez', u'johntalent01', u'talent.corp@gmail.com', u'Innovar01', True, u'2013-12-17 04:54:03.727442-05:00', u'2013-12-17 04:54:03.727337-05:00', u'2013-12-17 04:54:03.727411-05:00')
+[17/Dec/2013 05:10:16] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johngaravito'  LIMIT 1; args=(u'johngaravito',)
+[17/Dec/2013 05:10:16] DEBUG [django.db.backends:51] (0.000) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."email" = 'john@garavito.com'  LIMIT 1; args=(u'john@garavito.com',)
+[17/Dec/2013 05:10:16] DEBUG [django.db.backends:51] (0.001) INSERT INTO "users_user" ("first_name", "last_name", "username", "email", "password", "accept_terms", "last_login", "created_at", "updated_at") VALUES ('Jhon', 'Garavito', 'johngaravito', 'john@garavito.com', 'Innovar01', false, '2013-12-17 05:10:16.967147-05:00', '2013-12-17 05:10:16.967090-05:00', '2013-12-17 05:10:16.967134-05:00') RETURNING "users_user"."id"; args=(u'Jhon', u'Garavito', u'johngaravito', u'john@garavito.com', u'Innovar01', False, u'2013-12-17 05:10:16.967147-05:00', u'2013-12-17 05:10:16.967090-05:00', u'2013-12-17 05:10:16.967134-05:00')
+[17/Dec/2013 05:41:50] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[17/Dec/2013 05:41:58] DEBUG [django.db.backends:51] (0.004) SELECT (1) AS "a" FROM "users_user" WHERE "users_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[17/Dec/2013 05:48:35] ERROR [django.request:212] Internal Server Error: /users/sign_up/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 52, in sign_up
+    print >>sys.stderr, params['accept_terms']
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/datastructures.py", line 295, in __getitem__
+    raise MultiValueDictKeyError("Key %r not found in %r" % (key, self))
+MultiValueDictKeyError: "Key 'accept_terms' not found in <QueryDict: {u'username': [u''], u'confirm_password': [u''], u'first_name': [u''], u'last_name': [u''], u'created_at': [datetime.datetime(2013, 12, 17, 5, 48, 35, 659844)], u'updated_at': [datetime.datetime(2013, 12, 17, 5, 48, 35, 659951)], u'last_login': [datetime.datetime(2013, 12, 17, 5, 48, 35, 659997)], u'csrfmiddlewaretoken': [u'm91JCkydEQVBWtbfKHNIBcXVGkTsYPkd'], u'password': [u'Innovar01'], u'email': [u'john']}>"
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.008) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.176) CREATE TABLE "users_evouser" (
+    "user_ptr_id" integer NOT NULL PRIMARY KEY REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED,
+    "accept_terms" boolean NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.034) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.004) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[17/Dec/2013 11:10:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.033) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'evouser'  AND "django_content_type"."app_label" = 'users' ); args=('evouser', u'users')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140673211828032_x1; args=()
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.006) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('user', 'users', 'evouser') RETURNING "django_content_type"."id"; args=(u'user', u'users', 'evouser')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (11) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(11,)
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.016) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add user', 11, 'add_evouser'), ('Can change user', 11, 'change_evouser'), ('Can delete user', 11, 'delete_evouser'); args=(u'Can add user', 11, u'add_evouser', u'Can change user', 11, u'change_evouser', u'Can delete user', 11, u'delete_evouser')
+[17/Dec/2013 11:10:34] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.002) SELECT "auth_permission"."id", "auth_permission"."name", "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.002) DELETE FROM "auth_group_permissions" WHERE "auth_group_permissions"."permission_id" IN (28, 29, 30); args=(28, 29, 30)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.002) DELETE FROM "auth_user_user_permissions" WHERE "auth_user_user_permissions"."permission_id" IN (28, 29, 30); args=(28, 29, 30)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.002) DELETE FROM "django_admin_log" WHERE "django_admin_log"."content_type_id" IN (10); args=(10,)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_permission" WHERE "id" IN (30, 29, 28); args=(30, 29, 28)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_content_type" WHERE "id" IN (10); args=(10,)
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.001) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[17/Dec/2013 11:11:22] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.004) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.049) CREATE TABLE "users_evouser" (
+    "user_ptr_id" integer NOT NULL PRIMARY KEY REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED,
+    "accept_terms" boolean NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.003) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.002) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'evouser'  AND "django_content_type"."app_label" = 'users' ); args=('evouser', u'users')
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (11) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(11,)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.001) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[17/Dec/2013 11:13:33] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.006) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.065) CREATE TABLE "users_evouser" (
+    "user_ptr_id" integer NOT NULL PRIMARY KEY REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED,
+    "accept_terms" boolean NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
+    "updated_at" timestamp with time zone NOT NULL
+)
+;; args=()
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.003) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.002) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'evouser'  AND "django_content_type"."app_label" = 'users' ); args=('evouser', u'users')
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (11) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(11,)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[17/Dec/2013 11:16:05] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[17/Dec/2013 11:47:09] DEBUG [django.db.backends:51] (0.051) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'john'  LIMIT 1; args=(u'john',)
+[17/Dec/2013 11:47:18] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[17/Dec/2013 11:47:29] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[17/Dec/2013 11:48:44] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[17/Dec/2013 11:48:44] DEBUG [django.db.backends:51] (0.037) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('Innovar01', '2013-12-17 11:48:44.836339-05:00', false, 'johntalent', 'John Freddy', 'Garavito', 'talent.corp@gmail.com', false, false, '2013-12-17 11:48:44.836325-05:00') RETURNING "auth_user"."id"; args=(u'Innovar01', u'2013-12-17 11:48:44.836339-05:00', False, u'johntalent', u'John Freddy', u'Garavito', u'talent.corp@gmail.com', False, False, u'2013-12-17 11:48:44.836325-05:00')
+[17/Dec/2013 11:48:44] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_evouser" WHERE "users_evouser"."user_ptr_id" = 2  LIMIT 1; args=(2,)
+[17/Dec/2013 11:48:44] DEBUG [django.db.backends:51] (0.001) INSERT INTO "users_evouser" ("user_ptr_id", "accept_terms", "created_at", "updated_at") VALUES (2, true, '2013-12-17 11:48:44.836251-05:00', '2013-12-17 11:48:44.836309-05:00'); args=(2, True, u'2013-12-17 11:48:44.836251-05:00', u'2013-12-17 11:48:44.836309-05:00')
+[17/Dec/2013 11:48:44] DEBUG [django.db.backends:51] (0.008) DELETE FROM "auth_user_groups" WHERE "auth_user_groups"."user_id" = 2 ; args=(2,)
+[17/Dec/2013 11:48:44] DEBUG [django.db.backends:51] (0.008) DELETE FROM "auth_user_user_permissions" WHERE "auth_user_user_permissions"."user_id" = 2 ; args=(2,)
+[17/Dec/2013 11:49:02] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent123'  LIMIT 1; args=(u'johntalent123',)
+[17/Dec/2013 11:49:02] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('Innovar01', '2013-12-17 11:49:02.727904-05:00', false, 'johntalent123', 'John Freddy 123', 'Garavito 123', 'talent.corp123@gmail.com', false, false, '2013-12-17 11:49:02.727889-05:00') RETURNING "auth_user"."id"; args=(u'Innovar01', u'2013-12-17 11:49:02.727904-05:00', False, u'johntalent123', u'John Freddy 123', u'Garavito 123', u'talent.corp123@gmail.com', False, False, u'2013-12-17 11:49:02.727889-05:00')
+[17/Dec/2013 11:49:02] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_evouser" WHERE "users_evouser"."user_ptr_id" = 3  LIMIT 1; args=(3,)
+[17/Dec/2013 11:49:02] DEBUG [django.db.backends:51] (0.000) INSERT INTO "users_evouser" ("user_ptr_id", "accept_terms", "created_at", "updated_at") VALUES (3, true, '2013-12-17 11:49:02.727821-05:00', '2013-12-17 11:49:02.727873-05:00'); args=(3, True, u'2013-12-17 11:49:02.727821-05:00', u'2013-12-17 11:49:02.727873-05:00')
+[17/Dec/2013 11:49:02] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_groups" WHERE "auth_user_groups"."user_id" = 3 ; args=(3,)
+[17/Dec/2013 11:49:02] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_user_permissions" WHERE "auth_user_user_permissions"."user_id" = 3 ; args=(3,)
+[17/Dec/2013 11:49:42] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent1234'  LIMIT 1; args=(u'johntalent1234',)
+[17/Dec/2013 11:49:42] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('Innovar01', '2013-12-17 11:49:42.156352-05:00', false, 'johntalent1234', 'John Freddy 1234', 'Garavito 1234', 'talent.corp123@gmail.com', false, false, '2013-12-17 11:49:42.156337-05:00') RETURNING "auth_user"."id"; args=(u'Innovar01', u'2013-12-17 11:49:42.156352-05:00', False, u'johntalent1234', u'John Freddy 1234', u'Garavito 1234', u'talent.corp123@gmail.com', False, False, u'2013-12-17 11:49:42.156337-05:00')
+[17/Dec/2013 11:49:42] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_evouser" WHERE "users_evouser"."user_ptr_id" = 4  LIMIT 1; args=(4,)
+[17/Dec/2013 11:49:42] DEBUG [django.db.backends:51] (0.001) INSERT INTO "users_evouser" ("user_ptr_id", "accept_terms", "created_at", "updated_at") VALUES (4, true, '2013-12-17 11:49:42.156234-05:00', '2013-12-17 11:49:42.156312-05:00'); args=(4, True, u'2013-12-17 11:49:42.156234-05:00', u'2013-12-17 11:49:42.156312-05:00')
+[17/Dec/2013 11:49:42] DEBUG [django.db.backends:51] (0.002) DELETE FROM "auth_user_groups" WHERE "auth_user_groups"."user_id" = 4 ; args=(4,)
+[17/Dec/2013 11:49:42] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_user_permissions" WHERE "auth_user_user_permissions"."user_id" = 4 ; args=(4,)
+[17/Dec/2013 11:49:43] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent1234'  LIMIT 1; args=(u'johntalent1234',)
+[17/Dec/2013 11:55:53] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent1234'  LIMIT 1; args=(u'johntalent1234',)
+[17/Dec/2013 11:55:58] DEBUG [django.db.backends:51] (0.004) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent123'  LIMIT 1; args=(u'johntalent123',)
+[17/Dec/2013 11:55:58] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent123'  LIMIT 1; args=(u'johntalent123',)
+[17/Dec/2013 11:56:01] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent12'  LIMIT 1; args=(u'johntalent12',)
+[17/Dec/2013 11:56:01] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('Innovar01', '2013-12-17 11:56:01.236837-05:00', false, 'johntalent12', 'John Freddy 1234', 'Garavito 1234', 'talent.corp123@gmail.com', false, false, '2013-12-17 11:56:01.236823-05:00') RETURNING "auth_user"."id"; args=(u'Innovar01', u'2013-12-17 11:56:01.236837-05:00', False, u'johntalent12', u'John Freddy 1234', u'Garavito 1234', u'talent.corp123@gmail.com', False, False, u'2013-12-17 11:56:01.236823-05:00')
+[17/Dec/2013 11:56:01] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_evouser" WHERE "users_evouser"."user_ptr_id" = 5  LIMIT 1; args=(5,)
+[17/Dec/2013 11:56:01] DEBUG [django.db.backends:51] (0.001) INSERT INTO "users_evouser" ("user_ptr_id", "accept_terms", "created_at", "updated_at") VALUES (5, true, '2013-12-17 11:56:01.236755-05:00', '2013-12-17 11:56:01.236807-05:00'); args=(5, True, u'2013-12-17 11:56:01.236755-05:00', u'2013-12-17 11:56:01.236807-05:00')
+[17/Dec/2013 11:56:01] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_groups" WHERE "auth_user_groups"."user_id" = 5 ; args=(5,)
+[17/Dec/2013 11:56:01] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_user_permissions" WHERE "auth_user_user_permissions"."user_id" = 5 ; args=(5,)
+[17/Dec/2013 12:37:11] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_up/
+[17/Dec/2013 15:35:01] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[17/Dec/2013 15:35:02] WARNING [django.request:146] Not Found: /favicon.ico
+[17/Dec/2013 15:35:03] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[17/Dec/2013 15:35:04] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[17/Dec/2013 15:35:05] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[17/Dec/2013 15:49:40] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[17/Dec/2013 15:49:41] DEBUG [django.db.backends:51] (0.043) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'pjsnww35yso8cp1em35o20h07pk0rs6l'  LIMIT 1; args=(u'pjsnww35yso8cp1em35o20h07pk0rs6l',)
+[17/Dec/2013 15:49:41] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140173919201024_x1; args=()
+[17/Dec/2013 15:49:41] DEBUG [django.db.backends:51] (0.049) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('pjsnww35yso8cp1em35o20h07pk0rs6l', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2013-12-31 20:49:41.039733+00:00'); args=(u'pjsnww35yso8cp1em35o20h07pk0rs6l', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2013-12-31 20:49:41.039733+00:00')
+[17/Dec/2013 15:49:41] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'pjsnww35yso8cp1em35o20h07pk0rs6l' ; args=(u'pjsnww35yso8cp1em35o20h07pk0rs6l',)
+[17/Dec/2013 15:49:41] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('pjsnww35yso8cp1em35o20h07pk0rs6l'); args=(u'pjsnww35yso8cp1em35o20h07pk0rs6l',)
+[17/Dec/2013 15:49:41] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-17 20:49:41.123942+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-17 20:49:41.123942+00:00', 1)
+[17/Dec/2013 15:49:41] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 82, in sign_in
+    return redirect(onsuccess)
+NameError: global name 'onsuccess' is not defined
+[17/Dec/2013 15:51:38] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'jj' ; args=(u'jj',)
+[17/Dec/2013 15:51:38] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/users/views.py", line 84, in sign_in
+    return render(request, 'layouts/_signInSuccess.html', context)
+NameError: global name 'context' is not defined
+[17/Dec/2013 16:10:20] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:10:23] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:10:27] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:11:09] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:11:43] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:18] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:38] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:45] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:48] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:54] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:55] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:56] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:57] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:57] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:12:57] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:13:17] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:13:19] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '19z3ftjizjsxt1o1fij67fmrnq4ds9o7'  LIMIT 1; args=(u'19z3ftjizjsxt1o1fij67fmrnq4ds9o7',)
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139678980241152_x1; args=()
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('19z3ftjizjsxt1o1fij67fmrnq4ds9o7', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2013-12-31 21:14:11.404172+00:00'); args=(u'19z3ftjizjsxt1o1fij67fmrnq4ds9o7', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2013-12-31 21:14:11.404172+00:00')
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '19z3ftjizjsxt1o1fij67fmrnq4ds9o7' ; args=(u'19z3ftjizjsxt1o1fij67fmrnq4ds9o7',)
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('19z3ftjizjsxt1o1fij67fmrnq4ds9o7'); args=(u'19z3ftjizjsxt1o1fij67fmrnq4ds9o7',)
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-17 21:14:11.428227+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-17 21:14:11.428227+00:00', 1)
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139678980241152_x1; args=()
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '19z3ftjizjsxt1o1fij67fmrnq4ds9o7'  LIMIT 1; args=(u'19z3ftjizjsxt1o1fij67fmrnq4ds9o7',)
+[17/Dec/2013 16:14:11] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('19z3ftjizjsxt1o1fij67fmrnq4ds9o7', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2013-12-31 21:14:11.439731+00:00'); args=(u'19z3ftjizjsxt1o1fij67fmrnq4ds9o7', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2013-12-31 21:14:11.439731+00:00')
+[17/Dec/2013 16:14:29] ERROR [django.request:212] Internal Server Error: /users/sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 92, in get_response
+    response = middleware_method(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 21, in process_request
+    check_path = self.is_language_prefix_patterns_used()
+  File "/usr/local/lib/python2.7/dist-packages/django/middleware/locale.py", line 56, in is_language_prefix_patterns_used
+    for url_pattern in get_resolver(None).url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 347, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/urlresolvers.py", line 342, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/urls.py", line 11, in <module>
+    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+  File "/usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py", line 25, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/importlib.py", line 35, in import_module
+    __import__(name)
+  File "/www/evolucion/evolucion/users/urls.py", line 2, in <module>
+    from evolucion.users import views
+  File "/www/evolucion/evolucion/users/views.py", line 82
+SyntaxError: Non-ASCII character '\xc3' in file /www/evolucion/evolucion/users/views.py on line 82, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+[17/Dec/2013 16:14:54] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '19z3ftjizjsxt1o1fij67fmrnq4ds9o7'  AND "django_session"."expire_date" > '2013-12-17 21:14:54.908745+00:00' ); args=('19z3ftjizjsxt1o1fij67fmrnq4ds9o7', u'2013-12-17 21:14:54.908745+00:00')
+[17/Dec/2013 16:14:54] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[17/Dec/2013 16:15:02] DEBUG [django.db.backends:51] (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '19z3ftjizjsxt1o1fij67fmrnq4ds9o7'  AND "django_session"."expire_date" > '2013-12-17 21:15:02.673504+00:00' ); args=('19z3ftjizjsxt1o1fij67fmrnq4ds9o7', u'2013-12-17 21:15:02.673504+00:00')
+[17/Dec/2013 16:15:02] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[17/Dec/2013 16:18:22] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[17/Dec/2013 16:21:12] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_in/
+[17/Dec/2013 16:21:13] WARNING [django.request:177] Forbidden (CSRF cookie not set.): /users/sign_in/
+[17/Dec/2013 16:21:20] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'wn8dwodyi8785i8h6bn38ttnpwczyz53'  LIMIT 1; args=(u'wn8dwodyi8785i8h6bn38ttnpwczyz53',)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139657572513536_x1; args=()
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('wn8dwodyi8785i8h6bn38ttnpwczyz53', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2013-12-31 21:21:39.352309+00:00'); args=(u'wn8dwodyi8785i8h6bn38ttnpwczyz53', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2013-12-31 21:21:39.352309+00:00')
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'wn8dwodyi8785i8h6bn38ttnpwczyz53' ; args=(u'wn8dwodyi8785i8h6bn38ttnpwczyz53',)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('wn8dwodyi8785i8h6bn38ttnpwczyz53'); args=(u'wn8dwodyi8785i8h6bn38ttnpwczyz53',)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-17 21:21:39.398974+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-17 21:21:39.398974+00:00', 1)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139657572513536_x1; args=()
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'wn8dwodyi8785i8h6bn38ttnpwczyz53'  LIMIT 1; args=(u'wn8dwodyi8785i8h6bn38ttnpwczyz53',)
+[17/Dec/2013 16:21:39] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('wn8dwodyi8785i8h6bn38ttnpwczyz53', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2013-12-31 21:21:39.413227+00:00'); args=(u'wn8dwodyi8785i8h6bn38ttnpwczyz53', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2013-12-31 21:21:39.413227+00:00')
+[18/Dec/2013 03:03:43] DEBUG [django.db.backends:51] (0.516) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:05:18] DEBUG [django.db.backends:51] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.071) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '3rou7m5cftyl5mmxszdczx9d0ytiafqz'  LIMIT 1; args=(u'3rou7m5cftyl5mmxszdczx9d0ytiafqz',)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140680814900992_x1; args=()
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.041) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('3rou7m5cftyl5mmxszdczx9d0ytiafqz', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:05:26.200050+00:00'); args=(u'3rou7m5cftyl5mmxszdczx9d0ytiafqz', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:05:26.200050+00:00')
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '3rou7m5cftyl5mmxszdczx9d0ytiafqz' ; args=(u'3rou7m5cftyl5mmxszdczx9d0ytiafqz',)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('3rou7m5cftyl5mmxszdczx9d0ytiafqz'); args=(u'3rou7m5cftyl5mmxszdczx9d0ytiafqz',)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.038) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:05:26.267825+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:05:26.267825+00:00', 1)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140680814900992_x1; args=()
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '3rou7m5cftyl5mmxszdczx9d0ytiafqz'  LIMIT 1; args=(u'3rou7m5cftyl5mmxszdczx9d0ytiafqz',)
+[18/Dec/2013 03:05:26] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('3rou7m5cftyl5mmxszdczx9d0ytiafqz', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:05:26.321887+00:00'); args=(u'3rou7m5cftyl5mmxszdczx9d0ytiafqz', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:05:26.321887+00:00')
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '5bvaioy9mr7angj9fx2kn54b2j7rqis0'  LIMIT 1; args=(u'5bvaioy9mr7angj9fx2kn54b2j7rqis0',)
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140680378709760_x1; args=()
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('5bvaioy9mr7angj9fx2kn54b2j7rqis0', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:07:43.551207+00:00'); args=(u'5bvaioy9mr7angj9fx2kn54b2j7rqis0', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:07:43.551207+00:00')
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '5bvaioy9mr7angj9fx2kn54b2j7rqis0' ; args=(u'5bvaioy9mr7angj9fx2kn54b2j7rqis0',)
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('5bvaioy9mr7angj9fx2kn54b2j7rqis0'); args=(u'5bvaioy9mr7angj9fx2kn54b2j7rqis0',)
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:07:43.602473+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:07:43.602473+00:00', 1)
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140680378709760_x1; args=()
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '5bvaioy9mr7angj9fx2kn54b2j7rqis0'  LIMIT 1; args=(u'5bvaioy9mr7angj9fx2kn54b2j7rqis0',)
+[18/Dec/2013 03:07:43] DEBUG [django.db.backends:51] (0.000) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('5bvaioy9mr7angj9fx2kn54b2j7rqis0', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:07:43.614105+00:00'); args=(u'5bvaioy9mr7angj9fx2kn54b2j7rqis0', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:07:43.614105+00:00')
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53'  LIMIT 1; args=(u'vzxklij8d1us4d28aqj5zdq3mjgnnj53',)
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140680370317056_x1; args=()
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('vzxklij8d1us4d28aqj5zdq3mjgnnj53', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:08:53.847509+00:00'); args=(u'vzxklij8d1us4d28aqj5zdq3mjgnnj53', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:08:53.847509+00:00')
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53' ; args=(u'vzxklij8d1us4d28aqj5zdq3mjgnnj53',)
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('vzxklij8d1us4d28aqj5zdq3mjgnnj53'); args=(u'vzxklij8d1us4d28aqj5zdq3mjgnnj53',)
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:08:53.899842+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:08:53.899842+00:00', 1)
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140680370317056_x1; args=()
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53'  LIMIT 1; args=(u'vzxklij8d1us4d28aqj5zdq3mjgnnj53',)
+[18/Dec/2013 03:08:53] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('vzxklij8d1us4d28aqj5zdq3mjgnnj53', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:08:53.911987+00:00'); args=(u'vzxklij8d1us4d28aqj5zdq3mjgnnj53', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:08:53.911987+00:00')
+[18/Dec/2013 03:10:23] DEBUG [django.db.backends:51] (0.042) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53'  AND "django_session"."expire_date" > '2013-12-18 08:10:23.388607+00:00' ); args=('vzxklij8d1us4d28aqj5zdq3mjgnnj53', u'2013-12-18 08:10:23.388607+00:00')
+[18/Dec/2013 03:10:23] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[18/Dec/2013 03:10:26] DEBUG [django.db.backends:51] (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53'  AND "django_session"."expire_date" > '2013-12-18 08:10:26.430290+00:00' ); args=('vzxklij8d1us4d28aqj5zdq3mjgnnj53', u'2013-12-18 08:10:26.430290+00:00')
+[18/Dec/2013 03:10:26] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[18/Dec/2013 03:10:29] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53'  AND "django_session"."expire_date" > '2013-12-18 08:10:28.990520+00:00' ); args=('vzxklij8d1us4d28aqj5zdq3mjgnnj53', u'2013-12-18 08:10:28.990520+00:00')
+[18/Dec/2013 03:10:29] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[18/Dec/2013 03:10:38] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'vzxklij8d1us4d28aqj5zdq3mjgnnj53'  AND "django_session"."expire_date" > '2013-12-18 08:10:38.015542+00:00' ); args=('vzxklij8d1us4d28aqj5zdq3mjgnnj53', u'2013-12-18 08:10:38.015542+00:00')
+[18/Dec/2013 03:10:38] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[18/Dec/2013 03:10:59] DEBUG [django.db.backends:51] (0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:10:59] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '07qdqxsylnufevqc6shyqzsfg25m7ws5'  LIMIT 1; args=(u'07qdqxsylnufevqc6shyqzsfg25m7ws5',)
+[18/Dec/2013 03:10:59] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140161800578816_x1; args=()
+[18/Dec/2013 03:10:59] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('07qdqxsylnufevqc6shyqzsfg25m7ws5', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:10:59.983321+00:00'); args=(u'07qdqxsylnufevqc6shyqzsfg25m7ws5', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:10:59.983321+00:00')
+[18/Dec/2013 03:11:00] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '07qdqxsylnufevqc6shyqzsfg25m7ws5' ; args=(u'07qdqxsylnufevqc6shyqzsfg25m7ws5',)
+[18/Dec/2013 03:11:00] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('07qdqxsylnufevqc6shyqzsfg25m7ws5'); args=(u'07qdqxsylnufevqc6shyqzsfg25m7ws5',)
+[18/Dec/2013 03:11:00] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:11:00.037026+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:11:00.037026+00:00', 1)
+[18/Dec/2013 03:11:00] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140161800578816_x1; args=()
+[18/Dec/2013 03:11:00] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '07qdqxsylnufevqc6shyqzsfg25m7ws5'  LIMIT 1; args=(u'07qdqxsylnufevqc6shyqzsfg25m7ws5',)
+[18/Dec/2013 03:11:00] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('07qdqxsylnufevqc6shyqzsfg25m7ws5', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:11:00.048040+00:00'); args=(u'07qdqxsylnufevqc6shyqzsfg25m7ws5', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:11:00.048040+00:00')
+[18/Dec/2013 03:15:11] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:15:11] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'sy8n865gdu9v6szioe08xx2m9nf7s2d4'  LIMIT 1; args=(u'sy8n865gdu9v6szioe08xx2m9nf7s2d4',)
+[18/Dec/2013 03:15:11] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140161808971520_x1; args=()
+[18/Dec/2013 03:15:11] DEBUG [django.db.backends:51] (0.000) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('sy8n865gdu9v6szioe08xx2m9nf7s2d4', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:15:11.990400+00:00'); args=(u'sy8n865gdu9v6szioe08xx2m9nf7s2d4', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:15:11.990400+00:00')
+[18/Dec/2013 03:15:12] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'sy8n865gdu9v6szioe08xx2m9nf7s2d4' ; args=(u'sy8n865gdu9v6szioe08xx2m9nf7s2d4',)
+[18/Dec/2013 03:15:12] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('sy8n865gdu9v6szioe08xx2m9nf7s2d4'); args=(u'sy8n865gdu9v6szioe08xx2m9nf7s2d4',)
+[18/Dec/2013 03:15:12] DEBUG [django.db.backends:51] (0.002) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:15:12.074759+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:15:12.074759+00:00', 1)
+[18/Dec/2013 03:15:12] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140161808971520_x1; args=()
+[18/Dec/2013 03:15:12] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'sy8n865gdu9v6szioe08xx2m9nf7s2d4'  LIMIT 1; args=(u'sy8n865gdu9v6szioe08xx2m9nf7s2d4',)
+[18/Dec/2013 03:15:12] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('sy8n865gdu9v6szioe08xx2m9nf7s2d4', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:15:12.087472+00:00'); args=(u'sy8n865gdu9v6szioe08xx2m9nf7s2d4', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:15:12.087472+00:00')
+[18/Dec/2013 03:21:19] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'sy8n865gdu9v6szioe08xx2m9nf7s2d4'  AND "django_session"."expire_date" > '2013-12-18 08:21:19.524670+00:00' ); args=('sy8n865gdu9v6szioe08xx2m9nf7s2d4', u'2013-12-18 08:21:19.524670+00:00')
+[18/Dec/2013 03:21:19] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[18/Dec/2013 03:21:25] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'sy8n865gdu9v6szioe08xx2m9nf7s2d4'  AND "django_session"."expire_date" > '2013-12-18 08:21:25.233537+00:00' ); args=('sy8n865gdu9v6szioe08xx2m9nf7s2d4', u'2013-12-18 08:21:25.233537+00:00')
+[18/Dec/2013 03:21:25] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
+[18/Dec/2013 03:21:43] DEBUG [django.db.backends:51] (0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'jq85anjv1gbqxpz4y930q6m2oceclvd6'  LIMIT 1; args=(u'jq85anjv1gbqxpz4y930q6m2oceclvd6',)
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140314886063872_x1; args=()
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('jq85anjv1gbqxpz4y930q6m2oceclvd6', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:21:44.063993+00:00'); args=(u'jq85anjv1gbqxpz4y930q6m2oceclvd6', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:21:44.063993+00:00')
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'jq85anjv1gbqxpz4y930q6m2oceclvd6' ; args=(u'jq85anjv1gbqxpz4y930q6m2oceclvd6',)
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('jq85anjv1gbqxpz4y930q6m2oceclvd6'); args=(u'jq85anjv1gbqxpz4y930q6m2oceclvd6',)
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:21:44.114938+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:21:44.114938+00:00', 1)
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) SAVEPOINT s140314886063872_x1; args=()
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'jq85anjv1gbqxpz4y930q6m2oceclvd6'  LIMIT 1; args=(u'jq85anjv1gbqxpz4y930q6m2oceclvd6',)
+[18/Dec/2013 03:21:44] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('jq85anjv1gbqxpz4y930q6m2oceclvd6', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:21:44.127712+00:00'); args=(u'jq85anjv1gbqxpz4y930q6m2oceclvd6', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:21:44.127712+00:00')
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'b321y5ts7rmx5pfoo27ytdp5g51becm0'  LIMIT 1; args=(u'b321y5ts7rmx5pfoo27ytdp5g51becm0',)
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140314886063872_x1; args=()
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('b321y5ts7rmx5pfoo27ytdp5g51becm0', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:24:36.669766+00:00'); args=(u'b321y5ts7rmx5pfoo27ytdp5g51becm0', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:24:36.669766+00:00')
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'b321y5ts7rmx5pfoo27ytdp5g51becm0' ; args=(u'b321y5ts7rmx5pfoo27ytdp5g51becm0',)
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('b321y5ts7rmx5pfoo27ytdp5g51becm0'); args=(u'b321y5ts7rmx5pfoo27ytdp5g51becm0',)
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:24:36.699128+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:24:36.699128+00:00', 1)
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) SAVEPOINT s140314886063872_x1; args=()
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'b321y5ts7rmx5pfoo27ytdp5g51becm0'  LIMIT 1; args=(u'b321y5ts7rmx5pfoo27ytdp5g51becm0',)
+[18/Dec/2013 03:24:36] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('b321y5ts7rmx5pfoo27ytdp5g51becm0', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:24:36.711725+00:00'); args=(u'b321y5ts7rmx5pfoo27ytdp5g51becm0', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:24:36.711725+00:00')
+[18/Dec/2013 03:27:27] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent' ; args=(u'johntalent',)
+[18/Dec/2013 03:27:32] DEBUG [django.db.backends:51] (0.005) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent' ; args=(u'johntalent',)
+[18/Dec/2013 03:27:33] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent' ; args=(u'johntalent',)
+[18/Dec/2013 03:35:02] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent' ; args=(u'johntalent',)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '8bstslhj9l892riulvjiolpc52cew1tr'  LIMIT 1; args=(u'8bstslhj9l892riulvjiolpc52cew1tr',)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140727050180352_x1; args=()
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('8bstslhj9l892riulvjiolpc52cew1tr', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:35:10.098838+00:00'); args=(u'8bstslhj9l892riulvjiolpc52cew1tr', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:35:10.098838+00:00')
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = '8bstslhj9l892riulvjiolpc52cew1tr' ; args=(u'8bstslhj9l892riulvjiolpc52cew1tr',)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('8bstslhj9l892riulvjiolpc52cew1tr'); args=(u'8bstslhj9l892riulvjiolpc52cew1tr',)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:35:10.152906+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-18 08:35:10.152906+00:00', 1)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140727050180352_x1; args=()
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = '8bstslhj9l892riulvjiolpc52cew1tr'  LIMIT 1; args=(u'8bstslhj9l892riulvjiolpc52cew1tr',)
+[18/Dec/2013 03:35:10] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('8bstslhj9l892riulvjiolpc52cew1tr', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-01 08:35:10.169234+00:00'); args=(u'8bstslhj9l892riulvjiolpc52cew1tr', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-01 08:35:10.169234+00:00')
+[18/Dec/2013 03:47:37] DEBUG [django.db.backends:51] (0.009) 
+            SELECT c.relname
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('r', 'v', '')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid); args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (1.459) TRUNCATE "django_admin_log", "auth_permission", "auth_group", "auth_group_permissions", "django_session", "auth_user_groups", "auth_user_user_permissions", "projects_project", "django_site", "users_evouser", "auth_user", "projects_prose", "django_content_type";; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.049) SELECT setval(pg_get_serial_sequence('"auth_permission"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.021) SELECT setval(pg_get_serial_sequence('"auth_group"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.009) SELECT setval(pg_get_serial_sequence('"auth_user"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.005) SELECT setval(pg_get_serial_sequence('"django_content_type"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.014) SELECT setval(pg_get_serial_sequence('"django_site"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.007) SELECT setval(pg_get_serial_sequence('"django_admin_log"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.020) SELECT setval(pg_get_serial_sequence('"projects_project"','id'), 1, false);; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.002) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission'  AND "django_content_type"."app_label" = 'auth' ); args=('permission', u'auth')
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('permission', 'auth', 'permission') RETURNING "django_content_type"."id"; args=(u'permission', u'auth', 'permission')
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group'  AND "django_content_type"."app_label" = 'auth' ); args=('group', u'auth')
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('group', 'auth', 'group') RETURNING "django_content_type"."id"; args=(u'group', u'auth', 'group')
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user'  AND "django_content_type"."app_label" = 'auth' ); args=('user', u'auth')
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('user', 'auth', 'user') RETURNING "django_content_type"."id"; args=(u'user', u'auth', 'user')
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.003) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1, 2, 3) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1, 2, 3)
+[18/Dec/2013 03:47:41] DEBUG [django.db.backends:51] (0.002) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add permission', 1, 'add_permission'), ('Can change permission', 1, 'change_permission'), ('Can delete permission', 1, 'delete_permission'), ('Can add group', 2, 'add_group'), ('Can change group', 2, 'change_group'), ('Can delete group', 2, 'delete_group'), ('Can add user', 3, 'add_user'), ('Can change user', 3, 'change_user'), ('Can delete user', 3, 'delete_user'); args=(u'Can add permission', 1, u'add_permission', u'Can change permission', 1, u'change_permission', u'Can delete permission', 1, u'delete_permission', u'Can add group', 2, u'add_group', u'Can change group', 2, u'change_group', u'Can delete group', 2, u'delete_group', u'Can add user', 3, u'add_user', u'Can change user', 3, u'change_user', u'Can delete user', 3, u'delete_user')
+[18/Dec/2013 03:47:44] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 03:47:49] DEBUG [django.db.backends:51] (0.001) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=('john',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', '2013-12-18 08:48:08.396287+00:00', false, 'john', '', '', 'talent.corp@gmail.com', false, true, '2013-12-18 08:48:08.396287+00:00') RETURNING "auth_user"."id"; args=(u'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', u'2013-12-18 08:48:08.396287+00:00', False, 'john', u'', u'', u'talent.corp@gmail.com', False, True, u'2013-12-18 08:48:08.396287+00:00')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."id" = 1  LIMIT 1; args=(1,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "password" = 'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', "last_login" = '2013-12-18 08:48:08.396287+00:00', "is_superuser" = true, "username" = 'john', "first_name" = '', "last_name" = '', "email" = 'talent.corp@gmail.com', "is_staff" = true, "is_active" = true, "date_joined" = '2013-12-18 08:48:08.396287+00:00' WHERE "auth_user"."id" = 1 ; args=(u'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', u'2013-12-18 08:48:08.396287+00:00', True, 'john', u'', u'', u'talent.corp@gmail.com', True, True, u'2013-12-18 08:48:08.396287+00:00', 1)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'  ORDER BY "django_content_type"."name" ASC; args=(u'auth',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype'  AND "django_content_type"."app_label" = 'contenttypes' ); args=('contenttype', u'contenttypes')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('content type', 'contenttypes', 'contenttype') RETURNING "django_content_type"."id"; args=(u'content type', u'contenttypes', 'contenttype')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(4,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add content type', 4, 'add_contenttype'), ('Can change content type', 4, 'change_contenttype'), ('Can delete content type', 4, 'delete_contenttype'); args=(u'Can add content type', 4, u'add_contenttype', u'Can change content type', 4, u'change_contenttype', u'Can delete content type', 4, u'delete_contenttype')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'  ORDER BY "django_content_type"."name" ASC; args=(u'contenttypes',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session'  AND "django_content_type"."app_label" = 'sessions' ); args=('session', u'sessions')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('session', 'sessions', 'session') RETURNING "django_content_type"."id"; args=(u'session', u'sessions', 'session')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add session', 5, 'add_session'), ('Can change session', 5, 'change_session'), ('Can delete session', 5, 'delete_session'); args=(u'Can add session', 5, u'add_session', u'Can change session', 5, u'change_session', u'Can delete session', 5, u'delete_session')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'  ORDER BY "django_content_type"."name" ASC; args=(u'sessions',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'site'  AND "django_content_type"."app_label" = 'sites' ); args=('site', u'sites')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('site', 'sites', 'site') RETURNING "django_content_type"."id"; args=(u'site', u'sites', 'site')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add site', 6, 'add_site'), ('Can change site', 6, 'change_site'), ('Can delete site', 6, 'delete_site'); args=(u'Can add site', 6, u'add_site', u'Can change site', 6, u'change_site', u'Can delete site', 6, u'delete_site')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sites'  ORDER BY "django_content_type"."name" ASC; args=(u'sites',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_site" WHERE "django_site"."id" = 1  LIMIT 1; args=(1,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_site" ("id", "domain", "name") VALUES (1, 'example.com', 'example.com'); args=(1, 'example.com', 'example.com')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT setval(pg_get_serial_sequence('"django_site"','id'), coalesce(max("id"), 1), max("id") IS NOT null) FROM "django_site";; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry'  AND "django_content_type"."app_label" = 'admin' ); args=('logentry', u'admin')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('log entry', 'admin', 'logentry') RETURNING "django_content_type"."id"; args=(u'log entry', u'admin', 'logentry')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add log entry', 7, 'add_logentry'), ('Can change log entry', 7, 'change_logentry'), ('Can delete log entry', 7, 'delete_logentry'); args=(u'Can add log entry', 7, u'add_logentry', u'Can change log entry', 7, u'change_logentry', u'Can delete log entry', 7, u'delete_logentry')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'  ORDER BY "django_content_type"."name" ASC; args=(u'admin',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'project'  AND "django_content_type"."app_label" = 'projects' ); args=('project', u'projects')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('project', 'projects', 'project') RETURNING "django_content_type"."id"; args=(u'project', u'projects', 'project')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'prose'  AND "django_content_type"."app_label" = 'projects' ); args=('prose', u'projects')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('prose', 'projects', 'prose') RETURNING "django_content_type"."id"; args=(u'prose', u'projects', 'prose')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (8, 9) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(8, 9)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add project', 8, 'add_project'), ('Can change project', 8, 'change_project'), ('Can delete project', 8, 'delete_project'), ('Can add prose', 9, 'add_prose'), ('Can change prose', 9, 'change_prose'), ('Can delete prose', 9, 'delete_prose'); args=(u'Can add project', 8, u'add_project', u'Can change project', 8, u'change_project', u'Can delete project', 8, u'delete_project', u'Can add prose', 9, u'add_prose', u'Can change prose', 9, u'change_prose', u'Can delete prose', 9, u'delete_prose')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'projects'  ORDER BY "django_content_type"."name" ASC; args=(u'projects',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'evouser'  AND "django_content_type"."app_label" = 'users' ); args=('evouser', u'users')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140203920996160_x1; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_content_type" ("name", "app_label", "model") VALUES ('user', 'users', 'evouser') RETURNING "django_content_type"."id"; args=(u'user', u'users', 'evouser')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (10) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(10,)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add user', 10, 'add_evouser'), ('Can change user', 10, 'change_evouser'), ('Can delete user', 10, 'delete_evouser'); args=(u'Can add user', 10, u'add_evouser', u'Can change user', 10, u'change_evouser', u'Can delete user', 10, u'delete_evouser')
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SELECT "django_content_type"."id", "django_content_type"."name", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'users'  ORDER BY "django_content_type"."name" ASC; args=(u'users',)
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.001) SET CONSTRAINTS ALL IMMEDIATE; args=()
+[18/Dec/2013 03:48:08] DEBUG [django.db.backends:51] (0.000) SET CONSTRAINTS ALL DEFERRED; args=()
+[18/Dec/2013 03:49:38] DEBUG [django.db.backends:51] (0.003) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent'  LIMIT 1; args=(u'johntalent',)
+[18/Dec/2013 03:49:38] DEBUG [django.db.backends:51] (0.001) INSERT INTO "auth_user" ("password", "last_login", "is_superuser", "username", "first_name", "last_name", "email", "is_staff", "is_active", "date_joined") VALUES ('pbkdf2_sha256$10000$7aHKi51fwClP$WT5mh9R/SUwnpELqxBYVjFXERtYi6p7b+Nnxhtcz/pw=', '2013-12-18 03:49:38.319758-05:00', false, 'johntalent', 'John Freddy', 'Garavito Suárez', 'talent.corp@gmail.com', false, false, '2013-12-18 03:49:38.319743-05:00') RETURNING "auth_user"."id"; args=(u'pbkdf2_sha256$10000$7aHKi51fwClP$WT5mh9R/SUwnpELqxBYVjFXERtYi6p7b+Nnxhtcz/pw=', u'2013-12-18 03:49:38.319758-05:00', False, u'johntalent', u'John Freddy', u'Garavito Su\xe1rez', u'talent.corp@gmail.com', False, False, u'2013-12-18 03:49:38.319743-05:00')
+[18/Dec/2013 03:49:38] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "users_evouser" WHERE "users_evouser"."user_ptr_id" = 2  LIMIT 1; args=(2,)
+[18/Dec/2013 03:49:38] DEBUG [django.db.backends:51] (0.001) INSERT INTO "users_evouser" ("user_ptr_id", "accept_terms", "created_at", "updated_at") VALUES (2, true, '2013-12-18 03:49:38.319673-05:00', '2013-12-18 03:49:38.319726-05:00'); args=(2, True, u'2013-12-18 03:49:38.319673-05:00', u'2013-12-18 03:49:38.319726-05:00')
+[18/Dec/2013 03:49:38] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_groups" WHERE "auth_user_groups"."user_id" = 2 ; args=(2,)
+[18/Dec/2013 03:49:38] DEBUG [django.db.backends:51] (0.001) DELETE FROM "auth_user_user_permissions" WHERE "auth_user_user_permissions"."user_id" = 2 ; args=(2,)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.004) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent' ; args=(u'johntalent',)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf'  LIMIT 1; args=(u'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf',)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139744704005888_x1; args=()
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:50:24.481900+00:00'); args=(u'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:50:24.481900+00:00')
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf' ; args=(u'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf',)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf'); args=(u'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf',)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:50:24.520320+00:00' WHERE "auth_user"."id" = 2 ; args=(u'2013-12-18 08:50:24.520320+00:00', 2)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) SAVEPOINT s139744704005888_x1; args=()
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf'  LIMIT 1; args=(u'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf',)
+[18/Dec/2013 03:50:24] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf', 'MTY5MzAwZjYzM2NhZWRjNDI4Mjk5OWQ3MjE5ODJmMTE0NzQ4ODk0MTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', '2014-01-01 08:50:24.532363+00:00'); args=(u'hv5a0mppuwyqf3p0jbbcj6jc5v4e0dgf', u'MTY5MzAwZjYzM2NhZWRjNDI4Mjk5OWQ3MjE5ODJmMTE0NzQ4ODk0MTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', u'2014-01-01 08:50:24.532363+00:00')
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'johntalent' ; args=(u'johntalent',)
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.002) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'jrzzzmvdoxenq7437hg561g4sjp0p2d9'  LIMIT 1; args=(u'jrzzzmvdoxenq7437hg561g4sjp0p2d9',)
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139744429139712_x1; args=()
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('jrzzzmvdoxenq7437hg561g4sjp0p2d9', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-01 08:54:02.471625+00:00'); args=(u'jrzzzmvdoxenq7437hg561g4sjp0p2d9', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-01 08:54:02.471625+00:00')
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'jrzzzmvdoxenq7437hg561g4sjp0p2d9' ; args=(u'jrzzzmvdoxenq7437hg561g4sjp0p2d9',)
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.000) DELETE FROM "django_session" WHERE "session_key" IN ('jrzzzmvdoxenq7437hg561g4sjp0p2d9'); args=(u'jrzzzmvdoxenq7437hg561g4sjp0p2d9',)
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-18 08:54:02.501342+00:00' WHERE "auth_user"."id" = 2 ; args=(u'2013-12-18 08:54:02.501342+00:00', 2)
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139744429139712_x1; args=()
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'jrzzzmvdoxenq7437hg561g4sjp0p2d9'  LIMIT 1; args=(u'jrzzzmvdoxenq7437hg561g4sjp0p2d9',)
+[18/Dec/2013 03:54:02] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('jrzzzmvdoxenq7437hg561g4sjp0p2d9', 'MTY5MzAwZjYzM2NhZWRjNDI4Mjk5OWQ3MjE5ODJmMTE0NzQ4ODk0MTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', '2014-01-01 08:54:02.513861+00:00'); args=(u'jrzzzmvdoxenq7437hg561g4sjp0p2d9', u'MTY5MzAwZjYzM2NhZWRjNDI4Mjk5OWQ3MjE5ODJmMTE0NzQ4ODk0MTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=', u'2014-01-01 08:54:02.513861+00:00')
+[18/Dec/2013 04:12:37] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)

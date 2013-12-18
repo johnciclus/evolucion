@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% if form_msg %}
+    <div class="alert alert-success">
+        <a href="#signUpModal" class="alert-link">{% trans "information"|capfirst %}</a>
+            {{ form_msg }}        
+    </div>
+    <script type="text/javascript">
+        setTimeout(function(){ $('#signUpModal').modal('hide'); }, 1000);
+    </script>
+{% endif %}

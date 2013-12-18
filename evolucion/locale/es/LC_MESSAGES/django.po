@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 04:52-0500\n"
+"POT-Creation-Date: 2013-12-17 11:58-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -486,45 +486,42 @@ msgstr "Registrarse"
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
-#: users/models.py:13
-msgid "first_name"
-msgstr "nombre propio"
-
 #: users/models.py:14
-msgid "last_name"
-msgstr "apellidos"
+msgid "accept_terms"
+msgstr ""
 
 #: users/models.py:15
-msgid "username"
-msgstr "nombre de usuario"
-
-#: users/models.py:16
-msgid "Enter a valid username."
-msgstr "introduce un nombre de usuario válido"
-
-#: users/models.py:19
-msgid "email"
-msgstr "correo electrónico"
-
-#: users/models.py:20
-msgid "password"
-msgstr "contraseña"
-
-#: users/models.py:23
-msgid "last_login"
-msgstr "último inicio de sesión"
-
-#: users/models.py:24
 msgid "created_at"
 msgstr "creado en"
 
-#: users/models.py:25
+#: users/models.py:16
 msgid "updated_at"
 msgstr "actualizado en"
 
-#: users/views.py:55
+#: users/views.py:73
 msgid "the user was successfully registered"
 msgstr "el usuario fue exitosamente registrado"
+
+#~ msgid "first_name"
+#~ msgstr "nombre propio"
+
+#~ msgid "last_name"
+#~ msgstr "apellidos"
+
+#~ msgid "username"
+#~ msgstr "nombre de usuario"
+
+#~ msgid "Enter a valid username."
+#~ msgstr "introduce un nombre de usuario válido"
+
+#~ msgid "email"
+#~ msgstr "correo electrónico"
+
+#~ msgid "password"
+#~ msgstr "contraseña"
+
+#~ msgid "last_login"
+#~ msgstr "último inicio de sesión"
 
 #~ msgid ""
 #~ "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ "

@@ -5,4 +5,7 @@
         <a href="#signUpModal" class="alert-link">{% trans "information"|capfirst %}</a>
             {{ form_msg }}        
     </div>
+    <script type="text/javascript">
+        setTimeout(function(){ $('#signInModal').modal('hide'); }, 1000);
+    </script>
 {% endif %}
