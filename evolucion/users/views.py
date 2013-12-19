@@ -46,11 +46,11 @@ def sign_up(request):
         if sign_form.is_valid():
             user = sign_form.save()
             form_msg = _("the user was successfully registered")
-            return render(request, 'layouts/_signUpSuccess.html', {'form_msg': form_msg})
+            return render(request, 'users/_signUpSuccess.html', {'form_msg': form_msg})
         else:
             form_errors = sign_form.errors
 #           form_cleaned = sign_form.cleaned_data
-            return render(request, 'layouts/_signUpErrors.html', {'form_errors': form_errors})
+            return render(request, 'users/_signUpErrors.html', {'form_errors': form_errors})
     else:
         sign_form = UserForm(auto_id=True)
         context = {'sign_form': sign_form}
@@ -72,12 +72,11 @@ def sign_in(request):
                 print >>sys.stderr, "request.user.is_authenticated()"
                 print >>sys.stderr, request.user.is_authenticated()
                 form_msg = _("welcome to Evolucion Web")
-                #return render(request, 'layouts/_signInSuccess.html', {'form_msg': form_msg})
-                return redirect('/editor/')
+                return render(request, 'users/_signInSuccess.html', {'form_msg': form_msg})
             else:
                 form_msg = _("the user is not active")
-                return render(request, 'layouts/_signInErrors.html', {'form_msg': form_msg})
+                return render(request, 'users/_signInErrors.html', {'form_msg': form_msg})
             
         else:
             form_msg = _("the username or password is not correct.")
-            return render(request, 'layouts/_signInErrors.html', {'form_msg': form_msg})
+            return render(request, 'users/_signInErrors.html', {'form_msg': form_msg})

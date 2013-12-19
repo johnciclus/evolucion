@@ -1670,3 +1670,444 @@ AttributeError: 'NoneType' object has no attribute 'is_active'
 [18/Dec/2013 09:28:42] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = '86hzwuj9h0f1rogys2aw1s3knd02st8q'  AND "django_session"."expire_date" > '2013-12-18 14:28:42.192186+00:00' ); args=('86hzwuj9h0f1rogys2aw1s3knd02st8q', u'2013-12-18 14:28:42.192186+00:00')
 [18/Dec/2013 09:28:42] WARNING [django.request:197] Forbidden (CSRF token missing or incorrect.): /users/sign_in/
 [18/Dec/2013 09:28:56] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 19:33:01] WARNING [django.request:146] Not Found: /favicon.ico
+[18/Dec/2013 19:36:45] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_signIn.html
+[18/Dec/2013 19:36:47] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_signIn.html
+[18/Dec/2013 19:36:48] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_signIn.html
+[18/Dec/2013 19:36:49] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_signIn.html
+[18/Dec/2013 19:37:07] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_signIn.html
+[18/Dec/2013 19:40:57] DEBUG [django.db.backends:51] (0.285) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.003) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.053) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."id" = 1  LIMIT 1; args=(1,)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.022) UPDATE "auth_user" SET "password" = 'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', "last_login" = '2013-12-18 09:42:57.681488+00:00', "is_superuser" = true, "username" = 'john', "first_name" = '', "last_name" = '', "email" = 'talent.corp@gmail.com', "is_staff" = true, "is_active" = true, "date_joined" = '2013-12-18 08:48:08.396287+00:00' WHERE "auth_user"."id" = 1 ; args=(u'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', u'2013-12-18 09:42:57.681488+00:00', True, u'john', u'', u'', u'talent.corp@gmail.com', True, True, u'2013-12-18 08:48:08.396287+00:00', 1)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.032) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'fz8x19nleskiciacbvkowmdw4q7ks55h'  LIMIT 1; args=(u'fz8x19nleskiciacbvkowmdw4q7ks55h',)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140591007414016_x1; args=()
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.044) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('fz8x19nleskiciacbvkowmdw4q7ks55h', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-02 00:41:02.284011+00:00'); args=(u'fz8x19nleskiciacbvkowmdw4q7ks55h', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-02 00:41:02.284011+00:00')
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'fz8x19nleskiciacbvkowmdw4q7ks55h' ; args=(u'fz8x19nleskiciacbvkowmdw4q7ks55h',)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('fz8x19nleskiciacbvkowmdw4q7ks55h'); args=(u'fz8x19nleskiciacbvkowmdw4q7ks55h',)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-19 00:41:02.348676+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-19 00:41:02.348676+00:00', 1)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s140591007414016_x1; args=()
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'fz8x19nleskiciacbvkowmdw4q7ks55h'  LIMIT 1; args=(u'fz8x19nleskiciacbvkowmdw4q7ks55h',)
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('fz8x19nleskiciacbvkowmdw4q7ks55h', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-02 00:41:02.385666+00:00'); args=(u'fz8x19nleskiciacbvkowmdw4q7ks55h', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-02 00:41:02.385666+00:00')
+[18/Dec/2013 19:41:02] DEBUG [django.db.backends:51] (0.005) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'fz8x19nleskiciacbvkowmdw4q7ks55h'  AND "django_session"."expire_date" > '2013-12-19 00:41:02.409603+00:00' ); args=('fz8x19nleskiciacbvkowmdw4q7ks55h', u'2013-12-19 00:41:02.409603+00:00')
+[18/Dec/2013 22:09:45] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'fz8x19nleskiciacbvkowmdw4q7ks55h'  AND "django_session"."expire_date" > '2013-12-19 03:09:45.464592+00:00' ); args=('fz8x19nleskiciacbvkowmdw4q7ks55h', u'2013-12-19 03:09:45.464592+00:00')
+[18/Dec/2013 22:11:14] DEBUG [django.db.backends:51] (0.002) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."username" = 'john' ; args=(u'john',)
+[18/Dec/2013 22:11:14] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "auth_user" WHERE "auth_user"."id" = 1  LIMIT 1; args=(1,)
+[18/Dec/2013 22:11:14] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "password" = 'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', "last_login" = '2013-12-19 00:41:02.348676+00:00', "is_superuser" = true, "username" = 'john', "first_name" = '', "last_name" = '', "email" = 'talent.corp@gmail.com', "is_staff" = true, "is_active" = true, "date_joined" = '2013-12-18 08:48:08.396287+00:00' WHERE "auth_user"."id" = 1 ; args=(u'pbkdf2_sha256$10000$n2hD2pq4rogn$Mp9/MXe8VJE3LbCDzRP/tKoHDiPzohMQehDMSP/vcAM=', u'2013-12-19 00:41:02.348676+00:00', True, u'john', u'', u'', u'talent.corp@gmail.com', True, True, u'2013-12-18 08:48:08.396287+00:00', 1)
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'v30o7k84nnf15zvv984ffxigjdfakeyk'  LIMIT 1; args=(u'v30o7k84nnf15zvv984ffxigjdfakeyk',)
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139680646809344_x1; args=()
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.001) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('v30o7k84nnf15zvv984ffxigjdfakeyk', 'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', '2014-01-02 03:11:15.024758+00:00'); args=(u'v30o7k84nnf15zvv984ffxigjdfakeyk', u'ODI3ZTg3YzA5YmNkZTU2YjJmYmY1YmQwZTA2NjYwODIyYzVmMGI3NTp7fQ==', u'2014-01-02 03:11:15.024758+00:00')
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE "django_session"."session_key" = 'v30o7k84nnf15zvv984ffxigjdfakeyk' ; args=(u'v30o7k84nnf15zvv984ffxigjdfakeyk',)
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.001) DELETE FROM "django_session" WHERE "session_key" IN ('v30o7k84nnf15zvv984ffxigjdfakeyk'); args=(u'v30o7k84nnf15zvv984ffxigjdfakeyk',)
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.001) UPDATE "auth_user" SET "last_login" = '2013-12-19 03:11:15.046647+00:00' WHERE "auth_user"."id" = 1 ; args=(u'2013-12-19 03:11:15.046647+00:00', 1)
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.000) SAVEPOINT s139680646809344_x1; args=()
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.001) SELECT (1) AS "a" FROM "django_session" WHERE "django_session"."session_key" = 'v30o7k84nnf15zvv984ffxigjdfakeyk'  LIMIT 1; args=(u'v30o7k84nnf15zvv984ffxigjdfakeyk',)
+[18/Dec/2013 22:11:15] DEBUG [django.db.backends:51] (0.000) INSERT INTO "django_session" ("session_key", "session_data", "expire_date") VALUES ('v30o7k84nnf15zvv984ffxigjdfakeyk', 'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', '2014-01-02 03:11:15.071941+00:00'); args=(u'v30o7k84nnf15zvv984ffxigjdfakeyk', u'OGQ1YzUyOTQxZjBjNWRmMzgzOTU4YzhlMzgwMGQzYTQxNmU0YzZmYzp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-01-02 03:11:15.071941+00:00')
+[18/Dec/2013 22:11:23] DEBUG [django.db.backends:51] (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'v30o7k84nnf15zvv984ffxigjdfakeyk'  AND "django_session"."expire_date" > '2013-12-19 03:11:23.188348+00:00' ); args=('v30o7k84nnf15zvv984ffxigjdfakeyk', u'2013-12-19 03:11:23.188348+00:00')
+[18/Dec/2013 22:12:13] DEBUG [django.db.backends:51] (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'v30o7k84nnf15zvv984ffxigjdfakeyk'  AND "django_session"."expire_date" > '2013-12-19 03:12:13.521857+00:00' ); args=('v30o7k84nnf15zvv984ffxigjdfakeyk', u'2013-12-19 03:12:13.521857+00:00')
+[18/Dec/2013 22:12:13] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:12:48] DEBUG [django.db.backends:51] (0.004) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."session_key" = 'v30o7k84nnf15zvv984ffxigjdfakeyk'  AND "django_session"."expire_date" > '2013-12-19 03:12:48.442182+00:00' ); args=('v30o7k84nnf15zvv984ffxigjdfakeyk', u'2013-12-19 03:12:48.442182+00:00')
+[18/Dec/2013 22:12:48] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:14:30] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:15:55] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:16:46] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: index.html
+[18/Dec/2013 22:17:44] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:17:46] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:17:46] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:17:47] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:18:00] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, '/editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /editor/index.html
+[18/Dec/2013 22:18:02] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 11, in index
+    return render(request, '/editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: /editor/index.html
