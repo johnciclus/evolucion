@@ -1,19 +1,19 @@
-{% load staticfiles %}
-
-{% load i18n %}
+{% load staticfiles i18n %}
 
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" xml:lang="{{ LANGUAGE_CODE|default:"en-us" }}" manifest="{% static 'cache.manifest' %}">
     
     <head>
+        <title>Evoluci&oacute;n Web</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-    
+        <meta name="description" content="Evolución Web, ambiente para el modelado y la simulación con dinámica de sistemas.">
+        <meta name="keywords" content="evolución web, modelado y simulación, herramienta software, dinámica de sistemas">
+        <meta name="author" content="John Garavito Suárez">
+        
         <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
-        <title>Evoluci&oacute;n Web</title>
+        
     
         <!-- Bootstrap -->
         <link href="{% static 'css/bootstrap/bootstrap_spacelab.min.css' %}" rel="stylesheet">

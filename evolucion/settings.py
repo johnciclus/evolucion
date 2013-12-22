@@ -130,8 +130,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'evolucion.projects',
+    'evolucion.editor',
     'evolucion.users',
+    'evolucion.projects',
     'evolucion.utils',
 )
 

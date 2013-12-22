@@ -2111,3 +2111,181 @@ Traceback (most recent call last):
   File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
     raise TemplateDoesNotExist(name)
 TemplateDoesNotExist: /editor/index.html
+[18/Dec/2013 22:22:30] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 7, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: editor/index.html
+[18/Dec/2013 22:36:14] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_fixedNav.html
+[18/Dec/2013 22:36:44] ERROR [django.request:212] Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/views.py", line 10, in home
+    return render(request, 'home/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 149, in get_template
+    template = get_template_from_string(template, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 139, in find_template
+    raise TemplateDoesNotExist(name)
+TemplateDoesNotExist: layouts/_fixedNav.html
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/css/bootstrap.css
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/css/sb-admin.css
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/font-awesome/css/font-awesome.min.css
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:40:48] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:40:49] WARNING [django.request:146] Not Found: /favicon.ico
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/css/sb-admin.css
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/font-awesome/css/font-awesome.min.css
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:42:53] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:44:31] WARNING [django.request:146] Not Found: /editor/font-awesome/css/font-awesome.min.css
+[21/Dec/2013 22:44:31] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:44:31] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:44:31] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:44:31] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:44:31] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:46:41] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:46:41] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:46:41] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:46:41] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:46:41] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:46:42] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:46:42] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:46:42] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:46:42] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:46:42] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:46:43] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:46:43] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:46:43] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:46:43] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:46:43] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:47:01] WARNING [django.request:146] Not Found: /editor/js/jquery-1.10.2.js
+[21/Dec/2013 22:47:01] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:47:01] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:47:01] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:47:01] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:48:48] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:48:48] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:48:49] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:48:49] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:48:50] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:48:50] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:48:50] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:48:50] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:49:13] WARNING [django.request:146] Not Found: /editor/js/bootstrap.js
+[21/Dec/2013 22:49:13] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:49:13] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:49:13] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:49:52] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:49:52] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:49:52] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:50:28] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:50:28] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:50:28] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:50:33] WARNING [django.request:146] Not Found: /editor/charts.html
+[21/Dec/2013 22:50:35] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[21/Dec/2013 22:50:35] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
+[21/Dec/2013 22:50:36] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
+[21/Dec/2013 22:52:06] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
