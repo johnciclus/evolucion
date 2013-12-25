@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-17 11:58-0500\n"
+"POT-Creation-Date: 2013-12-24 19:24-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: editor/templates/editor/base_editor.html:46
+msgid "overview"
+msgstr "resumen"
+
+#: editor/templates/editor/base_editor.html:67
+msgid "prose"
+msgstr "prosa"
+
+#: editor/templates/editor/base_editor.html:70
+msgid "influences"
+msgstr "influencias"
+
+#: editor/templates/editor/base_editor.html:73
+msgid "stock and flow"
+msgstr "flujo nivel"
+
+#: editor/templates/editor/base_editor.html:76
+msgid "equations"
+msgstr "ecuaciones"
+
+#: editor/templates/editor/base_editor.html:79
+msgid "behavior"
+msgstr "comportamientos"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
@@ -357,6 +381,46 @@ msgstr ""
 msgid "Delete?"
 msgstr ""
 
+#: templates/home/_carousel.html:20
+msgid "sign up today"
+msgstr "Regístrate hoy"
+
+#: templates/home/_carousel.html:31
+msgid "learn more"
+msgstr "Aprenda más"
+
+#: templates/home/_carousel.html:41
+msgid "browse gallery"
+msgstr "Navega por la galería"
+
+#: templates/home/_fixedNav.html:16
+msgid "nav home"
+msgstr "Inicio"
+
+#: templates/home/_fixedNav.html:17
+msgid "nav explore"
+msgstr "Explorar"
+
+#: templates/home/_fixedNav.html:18
+msgid "nav features"
+msgstr "Características"
+
+#: templates/home/_fixedNav.html:19
+msgid "nav about"
+msgstr "Acerca de"
+
+#: templates/home/_fixedNav.html:20
+msgid "nav contact us"
+msgstr "Contáctanos"
+
+#: templates/home/_fixedNav.html:26
+msgid "nav sign up"
+msgstr "Regístrate"
+
+#: templates/home/_fixedNav.html:27
+msgid "nav sign in"
+msgstr "Inicia sesión"
+
 #: templates/home/index.html:16
 msgid "welcome title"
 msgstr "Bienvenido a Evolución Web"
@@ -398,94 +462,6 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
-#: templates/layouts/_carousel.html:20
-msgid "sign up today"
-msgstr "Regístrate hoy"
-
-#: templates/layouts/_carousel.html:31
-msgid "learn more"
-msgstr "Aprenda más"
-
-#: templates/layouts/_carousel.html:41
-msgid "browse gallery"
-msgstr "Navega por la galería"
-
-#: templates/layouts/_fixedNav.html:16
-msgid "nav home"
-msgstr "Inicio"
-
-#: templates/layouts/_fixedNav.html:17
-msgid "nav explore"
-msgstr "Explorar"
-
-#: templates/layouts/_fixedNav.html:18
-msgid "nav features"
-msgstr "Características"
-
-#: templates/layouts/_fixedNav.html:19
-msgid "nav about"
-msgstr "Acerca de"
-
-#: templates/layouts/_fixedNav.html:20
-msgid "nav contact us"
-msgstr "Contáctanos"
-
-#: templates/layouts/_fixedNav.html:26
-msgid "nav sign up"
-msgstr "Regístrate"
-
-#: templates/layouts/_fixedNav.html:27
-msgid "nav sign in"
-msgstr "Inicia sesión"
-
-#: templates/layouts/_formSuccess.html:5
-msgid "information"
-msgstr "información"
-
-#: templates/layouts/_signUp.html:10
-msgid "sign up title"
-msgstr "Regístrate en Evolución Web"
-
-#: templates/layouts/_signUp.html:25
-msgid "sign up first_name placeholder"
-msgstr "Nombre(s)"
-
-#: templates/layouts/_signUp.html:36
-msgid "sign up last_name placeholder"
-msgstr "Apellido(s)"
-
-#: templates/layouts/_signUp.html:48
-msgid "sign up username placeholder"
-msgstr "Nombre de identificación en el sistema"
-
-#: templates/layouts/_signUp.html:61
-msgid "sign up email placeholder"
-msgstr "Correo electrónico valido ej: nombre@dominio.com"
-
-#: templates/layouts/_signUp.html:71
-msgid "sign up password placeholder"
-msgstr "Contraseña con letras y numeros"
-
-#: templates/layouts/_signUp.html:75
-msgid "sign up confirm_password"
-msgstr "Confirme la contraseña"
-
-#: templates/layouts/_signUp.html:81
-msgid "sign up confirm_password placeholder"
-msgstr "Contraseña con letras y numeros"
-
-#: templates/layouts/_signUp.html:87
-msgid "sign up terms"
-msgstr "Condiciones del servicio de Evolución Web"
-
-#: templates/layouts/_signUp.html:95
-msgid "sign up submit text"
-msgstr "Registrarse"
-
-#: templates/layouts/_signUp.html:100
-msgid "sign up log in text"
-msgstr "Iniciar sesión"
-
 #: users/models.py:14
 msgid "accept_terms"
 msgstr ""
@@ -498,9 +474,78 @@ msgstr "creado en"
 msgid "updated_at"
 msgstr "actualizado en"
 
-#: users/views.py:73
+#: users/views.py:48
 msgid "the user was successfully registered"
 msgstr "el usuario fue exitosamente registrado"
+
+#: users/views.py:74
+#, fuzzy
+msgid "welcome to Evolucion Web"
+msgstr ""
+"Bienvenido a la plataforma Evolución Web, tecnología que permite realizar "
+"modelamiento y simulación con Dinámica de Sistemas en un ambiente basado en "
+"Internet, además de permitir estas funcionalidades, este proyecto busca "
+"plantear y desarrollar tecnologías de modelado colaborativo en un futuro "
+"cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
+"amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
+
+#: users/views.py:77
+msgid "the user is not active"
+msgstr ""
+
+#: users/views.py:81
+msgid "the username or password is not correct."
+msgstr ""
+
+#: users/templates/users/_signIn.html:27 users/templates/users/_signUp.html:49
+msgid "sign up username placeholder"
+msgstr "Nombre de identificación en el sistema"
+
+#: users/templates/users/_signIn.html:38 users/templates/users/_signUp.html:71
+msgid "sign up password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: users/templates/users/_signInErrors.html:5
+#: users/templates/users/_signInSuccess.html:5
+#: users/templates/users/_signUpSuccess.html:5
+msgid "information"
+msgstr "información"
+
+#: users/templates/users/_signUp.html:9
+msgid "sign up title"
+msgstr "Regístrate en Evolución Web"
+
+#: users/templates/users/_signUp.html:26
+msgid "sign up first_name placeholder"
+msgstr "Nombre(s)"
+
+#: users/templates/users/_signUp.html:37
+msgid "sign up last_name placeholder"
+msgstr "Apellido(s)"
+
+#: users/templates/users/_signUp.html:61
+msgid "sign up email placeholder"
+msgstr "Correo electrónico valido ej: nombre@dominio.com"
+
+#: users/templates/users/_signUp.html:75
+msgid "sign up confirm_password"
+msgstr "Confirme la contraseña"
+
+#: users/templates/users/_signUp.html:81
+msgid "sign up confirm_password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: users/templates/users/_signUp.html:87
+msgid "sign up terms"
+msgstr "Condiciones del servicio de Evolución Web"
+
+#: users/templates/users/_signUp.html:95
+msgid "sign up submit text"
+msgstr "Registrarse"
+
+#: users/templates/users/_signUp.html:100
+msgid "sign up log in text"
+msgstr "Iniciar sesión"
 
 #~ msgid "first_name"
 #~ msgstr "nombre propio"

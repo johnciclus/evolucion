@@ -2289,3 +2289,58 @@ TemplateDoesNotExist: layouts/_fixedNav.html
 [21/Dec/2013 22:50:35] WARNING [django.request:146] Not Found: /editor/js/tablesorter/jquery.tablesorter.js
 [21/Dec/2013 22:50:36] WARNING [django.request:146] Not Found: /editor/js/tablesorter/tables.js
 [21/Dec/2013 22:52:06] WARNING [django.request:146] Not Found: /editor/js/morris/chart-data-morris.js
+[24/Dec/2013 16:05:28] WARNING [django.request:146] Not Found: /favicon.ico
+[24/Dec/2013 16:11:02] WARNING [django.request:146] Not Found: /editor/{% static 'js/raphael/raphael-min.js
+[24/Dec/2013 18:45:00] WARNING [django.request:146] Not Found: /editor/index.html
+[24/Dec/2013 18:56:58] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 5, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/templatetags/i18n.py", line 359, in do_translate
+    return TranslateNode(parser.compile_filter(value), noop, asvar,
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'capfirts'
+[24/Dec/2013 19:16:17] WARNING [django.request:146] Not Found: /favicon.ico
+[24/Dec/2013 19:45:00] WARNING [django.request:146] Not Found: /editor/charts.html
+[24/Dec/2013 19:45:02] WARNING [django.request:146] Not Found: /editor/forms.html
+[24/Dec/2013 19:45:05] WARNING [django.request:146] Not Found: /editor/typography.html
+[24/Dec/2013 19:52:32] WARNING [django.request:146] Not Found: /editor/index.html
