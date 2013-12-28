@@ -2344,3 +2344,8 @@ TemplateSyntaxError: Invalid filter: 'capfirts'
 [24/Dec/2013 19:45:02] WARNING [django.request:146] Not Found: /editor/forms.html
 [24/Dec/2013 19:45:05] WARNING [django.request:146] Not Found: /editor/typography.html
 [24/Dec/2013 19:52:32] WARNING [django.request:146] Not Found: /editor/index.html
+[25/Dec/2013 20:37:55] WARNING [django.request:146] Not Found: /favicon.ico
+[26/Dec/2013 16:31:19] WARNING [django.request:146] Not Found: /favicon.ico
+[27/Dec/2013 10:03:34] WARNING [django.request:146] Not Found: /favicon.ico
+[27/Dec/2013 20:44:22] WARNING [django.request:146] Not Found: /favicon.ico
+[27/Dec/2013 22:39:01] WARNING [django.request:146] Not Found: /favicon.ico

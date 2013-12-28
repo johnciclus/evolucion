@@ -1,0 +1,11 @@
+.full-container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fill { 
+    min-height: 100%;
+    height: 100%;
+}
