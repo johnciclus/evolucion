@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-24 19:24-0500\n"
+"POT-Creation-Date: 2014-01-09 16:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: editor/templates/editor/base_editor.html:46
-msgid "overview"
-msgstr "resumen"
-
-#: editor/templates/editor/base_editor.html:67
-msgid "prose"
-msgstr "prosa"
-
-#: editor/templates/editor/base_editor.html:70
-msgid "influences"
-msgstr "influencias"
-
-#: editor/templates/editor/base_editor.html:73
-msgid "stock and flow"
-msgstr "flujo nivel"
-
-#: editor/templates/editor/base_editor.html:76
-msgid "equations"
-msgstr "ecuaciones"
-
-#: editor/templates/editor/base_editor.html:79
-msgid "behavior"
-msgstr "comportamientos"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
@@ -380,6 +356,46 @@ msgstr ""
 #: templates/admin/edit_inline/tabular.html:17
 msgid "Delete?"
 msgstr ""
+
+#: templates/editor/base_editor.html:46
+msgid "open"
+msgstr "abrir"
+
+#: templates/editor/base_editor.html:50
+msgid "save"
+msgstr "guardar"
+
+#: templates/editor/base_editor.html:54
+msgid "download"
+msgstr "descargar"
+
+#: templates/editor/base_editor.html:61 templates/editor/base_editor.html:136
+msgid "prose"
+msgstr "prosa"
+
+#: templates/editor/base_editor.html:62 templates/editor/base_editor.html:137
+msgid "influences"
+msgstr "influencias"
+
+#: templates/editor/base_editor.html:63 templates/editor/base_editor.html:250
+msgid "stock and flow"
+msgstr "flujo nivel"
+
+#: templates/editor/base_editor.html:64 templates/editor/base_editor.html:254
+msgid "equations"
+msgstr "ecuaciones"
+
+#: templates/editor/base_editor.html:65 templates/editor/base_editor.html:258
+msgid "behavior"
+msgstr "comportamientos"
+
+#: templates/editor/base_editor.html:133 templates/editor/base_editor.html:238
+msgid "toggle nav"
+msgstr ""
+
+#: templates/editor/base_editor.html:190 templates/editor/base_editor.html:212
+msgid "overview"
+msgstr "resumen"
 
 #: templates/home/_carousel.html:20
 msgid "sign up today"

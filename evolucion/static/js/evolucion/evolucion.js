@@ -40,7 +40,7 @@ function clonar(obj){
 
 function abrir(){
 	$.ajaxFileUpload({
-		url:'home/upload',
+        url:'home/upload',
 		secureuri:true,
 		fileElementId:'file',
 		dataType: 'xml',
@@ -64,7 +64,7 @@ function abrir(){
 		{
 			alert(e);
 		}
-	})
+	});
 	return false;
 };
 
@@ -365,7 +365,7 @@ function curva(r, pm , attr){
 		var p3 = {x: p1.x + 10*Math.cos(ang - Math.PI/8), y: p1.y + 10*Math.sin(ang - Math.PI/8)};
 		this.pathArrow = [["M", p1.x, p1.y], ["L", p2.x, p2.y], ["L", p3.x, p3.y], ["Z"]];
 		this[1].attr({path: this.pathArrow});
-	}
+	};
 	return fig;
 };
 
@@ -381,7 +381,7 @@ function linCur(r, pm , attr){
 						 ["L", pm[1].x, pm[1].y], 
 						 ["M", pm[2].x, pm[2].y], 
 						 ["L", pm[3].x, pm[3].y]]});
-	}
+	};
 	return lineas;
 };
 
