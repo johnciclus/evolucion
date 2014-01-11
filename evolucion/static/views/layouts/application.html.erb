@@ -33,39 +33,7 @@
             </a>            
         </div>
     </div>
-    <div id="encabezado">
-        <div id="conte-encabezado">
-                        
-            <div id="usuario">
-                <a id="enl-usuario" href="#">
-                    <div class="pestanha">
-                        <span class="triangulo"></span>
-                    </div>    
-                </a>
-            </div>
-        </div>
-        <div id='menu'>
-            <nav id="menu_ver">
-                <ul>
-                    <a id='abrir' href="#">
-                        <li>Abrir</li>  
-                    </a>
-                    <a id='guardar' href="#">
-                        <li>Guardar</li>    
-                    </a>
-                    <a id='descargar' href="#">
-                        <li>Descargar</li>    
-                    </a>
-                </ul>
-            </nav>
-        </div>
-        <div id='login'>
-            <%= render "devise/sessions/sign_in" %>
-        </div>
-    </div>
-    <div id="inicio" class="contenedor">
-        <%= yield %>
-    </div>
+    
     <div id="prosa" class="contenedor">
         <div id="lenguaje-pro" class="cont-lenguaje">
             <label for='titu_modelo' class="eti_formulario">Titulo del modelo</label> <br />
@@ -330,4 +298,3 @@
     </div>
     <xml id="xmldocument" style="display: none"><model></model></xml>
 </body>
-</html>

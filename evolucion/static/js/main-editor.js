@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-    var areas =  ['prose', 'influences', 'stock-and-flow', 'equations', 'behavior'];
+    var areas =  ['overview', 'prose', 'influences', 'stock-and-flow', 'equations', 'behavior'];
     
     for(i in areas){
         $('#'+areas[i]+'-area').hide();
@@ -19,10 +19,13 @@ $(document).ready(function(){
     
     function adjust(){
         var winHeight = $(window).height();
-        $('.full-container').height(winHeight-67);
+        var padding_top = parseInt($('body').css('padding-top'));
+        $('.work-area').height(winHeight-padding_top);
     }
     
     adjust();
+    
+    $('#overview-area').show();
     
     $(window).resize(function(){
         adjust();

@@ -2512,3 +2512,489 @@ TemplateSyntaxError: Invalid filter: 'capfirts'
 [09/Jan/2014 16:16:45] WARNING [django.request:146] Not Found: /cache.manifest
 [09/Jan/2014 16:17:09] WARNING [django.request:146] Not Found: /cache.manifest
 [09/Jan/2014 16:19:23] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:21:18] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:21:20] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:42:36] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:42:58] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:44:08] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:44:40] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:47:33] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:49:15] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:49:25] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:51:20] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:51:22] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:51:33] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:53:11] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:56:39] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 16:58:26] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:03:04] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:03:18] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:04:00] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 5, in index
+    return render(request, 'editor/index.html', {})
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 170, in render_to_string
+    t = get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 215, in do_extends
+    nodelist = parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 190, in do_block
+    nodelist = parser.parse(('endblock',))
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 272, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 327, in invalid_block_tag
+    (command, get_text_list(["'%s'" % p for p in parse_until])))
+TemplateSyntaxError: Invalid block tag: 'trans', expected 'endblock'
+[09/Jan/2014 17:04:20] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:04:53] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:06:54] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:09:28] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:09:35] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:10:14] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:33] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:36] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:37] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:38] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:40] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:42] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:44] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:11:46] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:12:14] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:12:16] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:12:33] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:12:35] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:12:36] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:12:38] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:13:02] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:13:04] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:14:45] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:15:04] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:15:07] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:15:09] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:15:23] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:15:37] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:16:30] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:19:02] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:19:35] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 17:23:01] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 18:42:49] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 18:45:13] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 18:46:03] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 18:46:05] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 18:50:20] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 20:59:10] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 21:43:52] WARNING [django.request:146] Not Found: /cache.manifest
+[09/Jan/2014 21:54:45] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 21:49:09] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 5, in index
+    sign_form = UserForm(auto_id=True)
+NameError: global name 'UserForm' is not defined
+[10/Jan/2014 21:49:10] WARNING [django.request:146] Not Found: /favicon.ico
+[10/Jan/2014 21:57:23] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 21:57:26] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:20:59] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:26:24] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:38:33] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:41:25] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:45:44] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[10/Jan/2014 22:46:01] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:48:47] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 17, in maxlength
+    widget = field.field.widget
+AttributeError: 'str' object has no attribute 'field'
+[10/Jan/2014 22:49:20] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:50:38] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:51:12] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:51:15] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:51:16] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:51:31] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:51:33] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:52:54] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:54:11] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:54:44] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:55:19] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:56:10] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 84, in render
+    output = self.filter_expression.resolve(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 606, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/www/evolucion/evolucion/utils/templatetags/filters.py", line 18, in maxlength
+    return widget.attrs['maxlength']
+KeyError: 'maxlength'
+[10/Jan/2014 22:56:17] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:57:07] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 22:58:31] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:01:17] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:03:25] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:04:36] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:09:19] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:10:58] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:12:31] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:14:38] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:15:07] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:16:25] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:18:10] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:18:42] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:19:29] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:20:30] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:21:04] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:21:25] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:21:48] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:23:51] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:24:58] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:27:14] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:28:31] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:29:56] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:35:37] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:36:24] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:37:24] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:37:54] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:38:44] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:39:31] WARNING [django.request:146] Not Found: /cache.manifest
+[10/Jan/2014 23:41:36] WARNING [django.request:146] Not Found: /cache.manifest

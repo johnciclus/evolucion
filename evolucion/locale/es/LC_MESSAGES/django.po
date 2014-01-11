@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-09 16:17-0500\n"
+"POT-Creation-Date: 2014-01-10 21:48-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -357,45 +357,67 @@ msgstr ""
 msgid "Delete?"
 msgstr ""
 
+#: templates/editor/base_editor.html:44 templates/editor/base_editor.html:152
+#: templates/editor/base_editor.html:174
+msgid "overview"
+msgstr "resumen"
+
 #: templates/editor/base_editor.html:46
 msgid "open"
 msgstr "abrir"
 
-#: templates/editor/base_editor.html:50
+#: templates/editor/base_editor.html:47
 msgid "save"
 msgstr "guardar"
 
-#: templates/editor/base_editor.html:54
+#: templates/editor/base_editor.html:48
 msgid "download"
 msgstr "descargar"
 
-#: templates/editor/base_editor.html:61 templates/editor/base_editor.html:136
+#: templates/editor/base_editor.html:53
 msgid "prose"
 msgstr "prosa"
 
-#: templates/editor/base_editor.html:62 templates/editor/base_editor.html:137
+#: templates/editor/base_editor.html:54
 msgid "influences"
 msgstr "influencias"
 
-#: templates/editor/base_editor.html:63 templates/editor/base_editor.html:250
+#: templates/editor/base_editor.html:55 templates/editor/base_editor.html:212
 msgid "stock and flow"
 msgstr "flujo nivel"
 
-#: templates/editor/base_editor.html:64 templates/editor/base_editor.html:254
+#: templates/editor/base_editor.html:56 templates/editor/base_editor.html:216
 msgid "equations"
 msgstr "ecuaciones"
 
-#: templates/editor/base_editor.html:65 templates/editor/base_editor.html:258
+#: templates/editor/base_editor.html:57 templates/editor/base_editor.html:220
 msgid "behavior"
 msgstr "comportamientos"
 
-#: templates/editor/base_editor.html:133 templates/editor/base_editor.html:238
+#: templates/editor/base_editor.html:106
+msgid "sing in"
+msgstr "Inicia sesión"
+
+#: templates/editor/base_editor.html:108
+msgid "username"
+msgstr "nombre de usuario"
+
+#: templates/editor/base_editor.html:109
+msgid "password"
+msgstr "contraseña"
+
+#: templates/editor/base_editor.html:111
+msgid "sing up"
+msgstr "Regístrate"
+
+#: templates/editor/base_editor.html:200
 msgid "toggle nav"
 msgstr ""
 
-#: templates/editor/base_editor.html:190 templates/editor/base_editor.html:212
-msgid "overview"
-msgstr "resumen"
+#: templates/editor/index.html:6
+#, fuzzy
+msgid "home"
+msgstr "Inicio"
 
 #: templates/home/_carousel.html:20
 msgid "sign up today"
@@ -478,6 +500,55 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
+#: templates/users/_signIn.html:27 templates/users/_signUp.html:49
+msgid "sign up username placeholder"
+msgstr "Nombre de identificación en el sistema"
+
+#: templates/users/_signIn.html:38 templates/users/_signUp.html:71
+msgid "sign up password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: templates/users/_signInErrors.html:5 templates/users/_signInSuccess.html:5
+#: templates/users/_signUpSuccess.html:5
+msgid "information"
+msgstr "información"
+
+#: templates/users/_signUp.html:9
+msgid "sign up title"
+msgstr "Regístrate en Evolución Web"
+
+#: templates/users/_signUp.html:26
+msgid "sign up first_name placeholder"
+msgstr "Nombre(s)"
+
+#: templates/users/_signUp.html:37
+msgid "sign up last_name placeholder"
+msgstr "Apellido(s)"
+
+#: templates/users/_signUp.html:61
+msgid "sign up email placeholder"
+msgstr "Correo electrónico valido ej: nombre@dominio.com"
+
+#: templates/users/_signUp.html:75
+msgid "sign up confirm_password"
+msgstr "Confirme la contraseña"
+
+#: templates/users/_signUp.html:81
+msgid "sign up confirm_password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: templates/users/_signUp.html:87
+msgid "sign up terms"
+msgstr "Condiciones del servicio de Evolución Web"
+
+#: templates/users/_signUp.html:95
+msgid "sign up submit text"
+msgstr "Registrarse"
+
+#: templates/users/_signUp.html:100
+msgid "sign up log in text"
+msgstr "Iniciar sesión"
+
 #: users/models.py:14
 msgid "accept_terms"
 msgstr ""
@@ -513,73 +584,17 @@ msgstr ""
 msgid "the username or password is not correct."
 msgstr ""
 
-#: users/templates/users/_signIn.html:27 users/templates/users/_signUp.html:49
-msgid "sign up username placeholder"
-msgstr "Nombre de identificación en el sistema"
-
-#: users/templates/users/_signIn.html:38 users/templates/users/_signUp.html:71
-msgid "sign up password placeholder"
-msgstr "Contraseña con letras y numeros"
-
-#: users/templates/users/_signInErrors.html:5
-#: users/templates/users/_signInSuccess.html:5
-#: users/templates/users/_signUpSuccess.html:5
-msgid "information"
-msgstr "información"
-
-#: users/templates/users/_signUp.html:9
-msgid "sign up title"
-msgstr "Regístrate en Evolución Web"
-
-#: users/templates/users/_signUp.html:26
-msgid "sign up first_name placeholder"
-msgstr "Nombre(s)"
-
-#: users/templates/users/_signUp.html:37
-msgid "sign up last_name placeholder"
-msgstr "Apellido(s)"
-
-#: users/templates/users/_signUp.html:61
-msgid "sign up email placeholder"
-msgstr "Correo electrónico valido ej: nombre@dominio.com"
-
-#: users/templates/users/_signUp.html:75
-msgid "sign up confirm_password"
-msgstr "Confirme la contraseña"
-
-#: users/templates/users/_signUp.html:81
-msgid "sign up confirm_password placeholder"
-msgstr "Contraseña con letras y numeros"
-
-#: users/templates/users/_signUp.html:87
-msgid "sign up terms"
-msgstr "Condiciones del servicio de Evolución Web"
-
-#: users/templates/users/_signUp.html:95
-msgid "sign up submit text"
-msgstr "Registrarse"
-
-#: users/templates/users/_signUp.html:100
-msgid "sign up log in text"
-msgstr "Iniciar sesión"
-
 #~ msgid "first_name"
 #~ msgstr "nombre propio"
 
 #~ msgid "last_name"
 #~ msgstr "apellidos"
 
-#~ msgid "username"
-#~ msgstr "nombre de usuario"
-
 #~ msgid "Enter a valid username."
 #~ msgstr "introduce un nombre de usuario válido"
 
 #~ msgid "email"
 #~ msgstr "correo electrónico"
-
-#~ msgid "password"
-#~ msgstr "contraseña"
 
 #~ msgid "last_login"
 #~ msgstr "último inicio de sesión"
