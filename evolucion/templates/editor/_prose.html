@@ -1,0 +1,30 @@
+{% load filters i18n %}
+
+<form id="prose_form" class="form-horizontal" action="/projects/prose/" method="post">
+  <div class="col-lg-8 col-centered">
+    <div class="form-group">
+      <label for="{{ prose_form.title|id }}" class="control-label">{{ prose_form.title|verbosename }}</label>
+      <input  type=       "text" 
+              id=         "{{ prose_form.title|id }}" 
+              name=       "{{ prose_form.title|id }}" 
+              class=      "form-control" 
+              maxlength=  "{{ prose_form.title|maxlength }}" 
+              placeholder="{% trans 'prose title placeholder'|capfirst %}">
+    </div>
+    <div class="form-group">
+      <label for="{{ prose_form.description|id }}" class="control-label">{{ prose_form.description|verbosename }}</label>
+      <textarea id= "{{ prose_form.description|id }}"
+                name=       "{{ prose_form.description|id }}" 
+                class=      "form-control" 
+                maxlength=  "200" 
+                cols=       "40" 
+                rows=       "10" 
+                placeholder="{% trans 'prose description placeholder'|capfirst %}"></textarea>
+    </div>
+    <div class="form-group">
+        <div class="col-centered">
+            <button type="submit" class="btn btn-primary">{% trans 'save'|capfirst %}</button> 
+        </div>
+    </div>
+  </div>
+</form>  

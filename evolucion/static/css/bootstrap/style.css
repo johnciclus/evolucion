@@ -1,18 +1,63 @@
-.work-area {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: auto
+div.work-area {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto
 }
 
-.col-centered{
+div.sidebar { 
+    overflow: auto;
+}
+
+div.toolbar {
+    padding: 5px 0px;
+}
+
+div.col-centered {
     float: none;
     margin: 0 auto;
 }
 
-.navbar-brand b{ 
-  border-top-color: #ddd;
-  border-bottom-color: #ddd;
+div.centered {
+    text-align: center;
 }
 
+a.navbar-brand b {
+    border-top-color: #ddd;
+    border-bottom-color: #ddd;
+}
+
+.toolbar-btn {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.toolbar .btn{
+    padding: 5px 15px 0px 15px;
+}
+
+.evo-cursor {
+    background-image: url(/static/icons/cursor.png);
+}
+
+.evo-concept {
+    background-image: url(/static/icons/concept.png);
+}
+
+.evo-cycle {
+    background-image: url(/static/icons/cycle.png);
+}
+
+.evo-material-rel {
+    background-image: url(/static/icons/material-relation.png);
+}
+
+.evo-information-rel {
+    background-image: url(/static/icons/information-relation.png);
+}
+
+.evo-sector {
+    background-image: url(/static/icons/sector.png);
+}

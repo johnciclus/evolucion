@@ -2998,3 +2998,280 @@ KeyError: 'maxlength'
 [10/Jan/2014 23:38:44] WARNING [django.request:146] Not Found: /cache.manifest
 [10/Jan/2014 23:39:31] WARNING [django.request:146] Not Found: /cache.manifest
 [10/Jan/2014 23:41:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:43:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:43:56] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:46:34] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:50:31] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:51:02] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 253, in parse
+    filter_expression = self.compile_filter(token.contents)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 353, in compile_filter
+    return FilterExpression(token, self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 564, in __init__
+    filter_func = parser.find_filter(filter_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 359, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+TemplateSyntaxError: Invalid filter: 'id'
+[11/Jan/2014 09:51:03] WARNING [django.request:146] Not Found: /favicon.ico
+[11/Jan/2014 09:51:27] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:51:30] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:52:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 09:53:10] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:32:38] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:40:40] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:41:13] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:42:55] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 102, in render
+    compiled_parent = self.get_parent(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 99, in get_parent
+    return get_template(parent)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 274, in parse
+    compiled_result = compile_func(self, token)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 263, in do_include
+    isolated_context=isolated_context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 146, in __init__
+    t = get_template(template_path)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 146, in get_template
+    template, origin = find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 135, in find_template
+    source, display_name = loader(name, dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 43, in __call__
+    return self.load_template(template_name, template_dirs)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 49, in load_template
+    template = get_template_from_string(source, origin, template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 157, in get_template_from_string
+    return Template(source, origin, name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 125, in __init__
+    self.nodelist = compile_string(template_string, origin)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 153, in compile_string
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 272, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 328, in invalid_block_tag
+    raise self.error(token, "Invalid block tag: '%s'" % command)
+TemplateSyntaxError: Invalid block tag: 'trans'
+[11/Jan/2014 10:43:18] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:46:59] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:47:02] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:50:04] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:53:28] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:57:01] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 10:57:26] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:00:47] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:00:48] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:05:21] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:05:24] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:13:17] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:15:20] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:16:20] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:16:37] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:25:58] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:28:16] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:29:00] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:29:38] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:30:39] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:31:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:34:33] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:35:42] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:36:30] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:44:26] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:44:57] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:45:41] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:45:44] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:51:48] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:52:20] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:52:31] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:54:17] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:55:28] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:56:11] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:58:40] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 11:59:37] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:01:14] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:02:08] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:02:41] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:02:58] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:03:21] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:04:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:06:09] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:06:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:06:59] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:07:31] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:11:40] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:12:31] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:13:11] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:14:18] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:14:59] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:15:20] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:17:23] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:18:13] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:19:00] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:20:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:22:25] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:23:42] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:24:50] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:26:00] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:26:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:27:10] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:27:21] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:31:59] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:34:51] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:36:35] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:36:39] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:37:07] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:37:54] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 12:38:54] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:26:11] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:26:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:28:10] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:28:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:29:23] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:32:39] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:32:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:35:25] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:35:57] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:36:10] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:41:26] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:44:29] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 15:47:45] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:06:07] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:13:07] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:16:16] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:19:04] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:25:19] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:25:41] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:28:44] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:29:16] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:30:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:31:30] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:36:03] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:37:43] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:39:58] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:42:05] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:42:45] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:44:19] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:46:16] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:47:00] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:48:29] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:52:22] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:55:44] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:57:46] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 16:58:44] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:01:50] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:09] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:21] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:35] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:38] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:41] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:42] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:07:45] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:08:58] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:11:21] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:11:26] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:11:41] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:12:22] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:12:36] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:20:17] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:21:41] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:24:00] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:27:55] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:29:13] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:37:54] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 17:58:46] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:07:38] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:08:57] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:09:51] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:17:19] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:20:13] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:22:57] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:25:32] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:27:56] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:33:13] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:34:54] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:35:19] WARNING [django.request:146] Not Found: /cache.manifest
+[11/Jan/2014 22:37:39] WARNING [django.request:146] Not Found: /cache.manifest

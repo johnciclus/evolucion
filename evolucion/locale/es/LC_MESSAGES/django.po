@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-10 21:48-0500\n"
+"POT-Creation-Date: 2014-01-11 17:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: projects/models.py:14
+msgid "prose title"
+msgstr "titulo"
+
+#: projects/models.py:15
+msgid "prose description"
+msgstr "descripción"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
@@ -357,18 +365,54 @@ msgstr ""
 msgid "Delete?"
 msgstr ""
 
-#: templates/editor/base_editor.html:44 templates/editor/base_editor.html:152
-#: templates/editor/base_editor.html:174
+#: templates/editor/_influences.html:14 templates/editor/_influences.html:37
+#: templates/editor/base_editor.html:44
 msgid "overview"
 msgstr "resumen"
+
+#: templates/editor/_influences.html:129
+msgid "toggle nav"
+msgstr ""
+
+#: templates/editor/_influences.html:133
+msgid "inf cursor btn title"
+msgstr "cursor"
+
+#: templates/editor/_influences.html:136
+msgid "inf concept btn title"
+msgstr "concepto"
+
+#: templates/editor/_influences.html:139
+msgid "inf cycle btn title"
+msgstr "ciclo"
+
+#: templates/editor/_influences.html:142
+msgid "inf material relation btn title"
+msgstr "relación de material"
+
+#: templates/editor/_influences.html:145
+msgid "inf information relation btn title"
+msgstr "relación de información"
+
+#: templates/editor/_influences.html:148
+msgid "inf sector btn title"
+msgstr "sector"
+
+#: templates/editor/_prose.html:12
+msgid "prose title placeholder"
+msgstr "titulo del modelo"
+
+#: templates/editor/_prose.html:22
+msgid "prose description placeholder"
+msgstr "descripción del modelo"
+
+#: templates/editor/_prose.html:26 templates/editor/base_editor.html:47
+msgid "save"
+msgstr "guardar"
 
 #: templates/editor/base_editor.html:46
 msgid "open"
 msgstr "abrir"
-
-#: templates/editor/base_editor.html:47
-msgid "save"
-msgstr "guardar"
 
 #: templates/editor/base_editor.html:48
 msgid "download"
@@ -382,15 +426,15 @@ msgstr "prosa"
 msgid "influences"
 msgstr "influencias"
 
-#: templates/editor/base_editor.html:55 templates/editor/base_editor.html:212
+#: templates/editor/base_editor.html:55
 msgid "stock and flow"
 msgstr "flujo nivel"
 
-#: templates/editor/base_editor.html:56 templates/editor/base_editor.html:216
+#: templates/editor/base_editor.html:56
 msgid "equations"
 msgstr "ecuaciones"
 
-#: templates/editor/base_editor.html:57 templates/editor/base_editor.html:220
+#: templates/editor/base_editor.html:57
 msgid "behavior"
 msgstr "comportamientos"
 
@@ -409,10 +453,6 @@ msgstr "contraseña"
 #: templates/editor/base_editor.html:111
 msgid "sing up"
 msgstr "Regístrate"
-
-#: templates/editor/base_editor.html:200
-msgid "toggle nav"
-msgstr ""
 
 #: templates/editor/index.html:6
 #, fuzzy

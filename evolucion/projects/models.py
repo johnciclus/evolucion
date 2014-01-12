@@ -1,5 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
+from django.utils.translation import ugettext_lazy as _
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
@@ -10,8 +11,8 @@ class Project(models.Model):
 
 class Prose(models.Model):
     project = models.OneToOneField(Project, primary_key=True)
-    title = models.CharField(max_length=200)
-    description = models.TextField(max_length=2000)
+    title = models.CharField(_('prose title'), max_length=200)
+    description = models.TextField(_('prose description'), max_length=2000)
     def __unicode__(self):
         return self.title
 

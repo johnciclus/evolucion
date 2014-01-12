@@ -6,7 +6,7 @@
 	-ms-user-select: none;
 	user-select: none;
 }
-#curso-inf span { 
+#curso-inf span {
 	background-image: url(/static/images/cursor.png);	
 	background-position: 0px 0px;
 }

@@ -11,7 +11,7 @@
     
     <title>Evoluci&oacute;n Web - Editor </title>
     
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'icons/favicon.png' %}">
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap/bootstrap_spacelab.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap/offcanvas.css' %}" rel="stylesheet">
@@ -126,125 +126,30 @@
     </div><!-- /.navbar -->
       
     <div class="work-area">
-      <div id="overview-area" class="container ">
+      <div id="overview-area" class="container">
           {% block home %}
               
           {% endblock%}
       </div>
       
-      <div id="prose-area" class="container ">
-        <form id="prose_form" class="form-horizontal" action="/projects/prose/" method="post">
-          <div class="col-lg-8 col-centered">
-            <div class="form-group">
-              <label for="{{ prose_form.title|id }}" class="control-label">{{ prose_form.title|verbosename }}</label>
-              <input  type=       "text" 
-                      id=         "{{ prose_form.title|id }}" 
-                      name=       "{{ prose_form.title|id }}" 
-                      class=      "form-control" 
-                      maxlength=  "{{ prose_form.title|maxlength }}" 
-                      placeholder="{% trans 'prose title placeholder' %}">
-            </div>
-            <div class="form-group">
-              <label for="{{ prose_form.description|id }}" class="control-label">{{ prose_form.description|verbosename }}</label>
-              <textarea 
-                id=         "{{ prose_form.description|id }}" 
-                name=       "{{ prose_form.description|id }}" 
-                class=      "form-control" 
-                maxlength=  "200" 
-                cols=       "40" 
-                rows=       "10" 
-                placeholder="{% trans 'prose description placeholder' %}"></textarea>
-            </div>
-            <div class="form-group">
-                <div class="col-centered">
-                    <button type="submit" class="btn btn-primary">{% trans 'save'|capfirst %}</button> 
-                </div>
-            </div>
-          </div>
-        </form>        
-      </div><!--/.container-->
+      <div id="prose-area" class="container">
+        {% include 'editor/_prose.html' %}
+      </div>
   
-      <div id="influences-area" class="">
-        <div class="row row-offcanvas row-offcanvas-left">
-          <div class="col-xs-3 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                          <h4 class="panel-title">Item #1</h4>
-                      </a>
-                  </div>
-                  <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      One <a href="/editor/"><i class="fa fa-dashboard"></i> {% trans "overview"|capfirst %}</a>
-                    </div>
-                  </div>
-                </div>
-                
-                 <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Item #2</a>
-                    </h4>
-                  </div>
-                  <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <div class="panel-group" id="accordion2">
-                        <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2One">Item #2 1</a>
-                            </h4>
-                          </div>
-                          <div id="collapse2One" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                              One <a href="/editor/"><i class="fa fa-dashboard"></i> {% trans "overview"|capfirst %}</a>
-                            </div>
-                          </div>
-                        </div>
-                        
-                         <div class="panel panel-default">
-                          <div class="panel-heading">
-                            <h4 class="panel-title">
-                              <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Two">Item #2</a>
-                            </h4>
-                          </div>
-                          <div id="collapse2Two" class="panel-collapse collapse">
-                            <div class="panel-body">
-                              Two
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </div><!--/span-->
-          
-          <div class="col-xs-15 col-sm-10">
-              <p class="pull-left visible-xs">
-                  <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav" %}</button>
-              </p>
-              <div id="svg-div-inf" class="cont-svg">
-              
-              </div>
-          </div><!--/span-->
-  
-        </div><!--/row-->
-  
-      </div><!--/.container-->
-      
-      <div id="stock-and-flow-area" class="">
-          {% trans "stock and flow"|capfirst %}
+      <div id="influences-area">
+        {% include 'editor/_influences.html' %}
       </div>
       
-      <div id="equations-area" class="">
-          {% trans "equations"|capfirst %}
+      <div id="stock-and-flow-area">
+        {% include 'editor/_stock-and-flow.html' %}
       </div>
       
-      <div id="behavior-area" class="">
-          {% trans "behavior"|capfirst %}
+      <div id="equations-area">
+        {% include 'editor/_equations.html' %}
+      </div>
+      
+      <div id="behavior-area">
+        {% include 'editor/_behavior.html' %}
       </div>
     </div>
     
