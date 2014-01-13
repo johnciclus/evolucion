@@ -10,6 +10,15 @@ div.sidebar {
     overflow: auto;
 }
 
+div.language {
+    overflow: auto;
+    
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
 div.toolbar {
     padding: 5px 0px;
 }
@@ -34,7 +43,7 @@ a.navbar-brand b {
     height: 24px;
 }
 
-.toolbar .btn{
+.toolbar .btn {
     padding: 5px 15px 0px 15px;
 }
 
@@ -48,6 +57,10 @@ a.navbar-brand b {
 
 .evo-cycle {
     background-image: url(/static/icons/cycle.png);
+}
+
+.evo-clone {
+    background-image: url(/static/icons/clone.png);
 }
 
 .evo-material-rel {

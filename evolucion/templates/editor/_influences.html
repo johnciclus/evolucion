@@ -1,151 +1,176 @@
 {% load i18n %}
 
 <div class="row row-offcanvas row-offcanvas-left">
-  <div class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" id="influences-sidebar" role="navigation">
-      <div class="panel-group" id="influences-accordion">
+  <div id="influences-sidebar" class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" role="navigation">
+      <div id="elements-inf" class="panel-group">
         <div class="panel panel-default">
           <div class="panel-heading">
-              <a data-toggle="collapse" data-parent="#influences-accordion" href="#collapseOne">
-                  <h4 class="panel-title">Item #1</h4>
-              </a>
+            <a data-toggle="collapse" data-parent="#elements-inf" href="#concepts-list">
+              <h4 class="panel-title">{% trans 'concepts'|capfirst %}</h4>
+            </a>
           </div>
-          <div id="collapseOne" class="panel-collapse collapse in">
+          <div id="concepts-list" class="panel-collapse collapse in">
             <div class="panel-body">
-              One <a href="/editor/"><i class="fa fa-dashboard"></i> {% trans "overview"|capfirst %}</a>
-            </div>
-          </div>
-        </div>
-        
-         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#influences-accordion" href="#collapseTwo">Item #2</a>
-            </h4>
-          </div>
-          <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-              <div class="panel-group" id="accordion2">
-                
+              <div class="panel-group" id="concepts-items">
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2One">Item #2 1</a>
-                    </h4>
+                    <a data-toggle="collapse" data-parent="#concepts-items" href="#concept-item-0">
+                      <h4 class="panel-title">
+                        {% trans 'concept'|capfirst %} 0
+                      </h4>
+                    </a>
                   </div>
-                  <div id="collapse2One" class="panel-collapse collapse in">
+                  <div id="concept-item-0" class="panel-collapse collapse in">
                     <div class="panel-body">
-                      One <a href="/editor/"><i class="fa fa-dashboard"></i> {% trans "overview"|capfirst %}</a>
+                      {% trans 'concept'|capfirst %} 0
                     </div>
                   </div>
                 </div>
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Two">Item #2 2</a>
-                    </h4>
-                  </div>
-                  <div id="collapse2Two" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      Two
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Three">Item #2 3</a>
-                    </h4>
-                  </div>
-                  <div id="collapse2Three" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      Three
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Four">Item #2 4</a>
-                    </h4>
-                  </div>
-                  <div id="collapse2Four" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      Four
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Five">Item #2 5</a>
-                    </h4>
-                  </div>
-                  <div id="collapse2Five" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      Five
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Six">Item #2 6</a>
-                    </h4>
-                  </div>
-                  <div id="collapse2Six" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      Six
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion2" href="#collapse2Seven">Item #2 7</a>
-                    </h4>
-                  </div>
-                  <div id="collapse2Seven" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      Seven
-                    </div>
-                  </div>
-                </div>
-                
               </div>
             </div>
           </div>
         </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#elements-inf" href="#cycles-list">
+              <h4 class="panel-title">{% trans 'cycles'|capfirst %}</h4>
+            </a>
+          </div>
+          <div id="cycles-list" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel-group" id="cycles-items">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#cycles-items" href="#cycle-item-0">
+                      <h4 class="panel-title">
+                        {% trans 'cycle'|capfirst %} 0
+                      </h4>
+                    </a>
+                  </div>
+                  <div id="cycle-item-0" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      {% trans 'cycle'|capfirst %} 0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#elements-inf" href="#material-rels-list">
+              <h4 class="panel-title">{% trans 'material relations'|capfirst %}</h4>
+            </a>
+          </div>
+          <div id="material-rels-list" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel-group" id="material-rels-items">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#material-rels-items" href="#material-rel-item-0">
+                      <h4 class="panel-title">
+                        {% trans 'material relation'|capfirst %} 0
+                      </h4>
+                    </a>
+                  </div>
+                  <div id="material-rel-item-0" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      {% trans 'material relation'|capfirst %} 0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#elements-inf" href="#information-rels-list">
+              <h4 class="panel-title">{% trans 'information relations'|capfirst %}</h4>
+            </a>
+          </div>
+          <div id="information-rels-list" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel-group" id="information-rels-items">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#information-rels-items" href="#information-rel-item-0">
+                      <h4 class="panel-title">
+                        {% trans 'information relation'|capfirst %} 0
+                      </h4>
+                    </a>
+                  </div>
+                  <div id="information-rel-item-0" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      {% trans 'information relation'|capfirst %} 0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#elements-inf" href="#sectors-list">
+              <h4 class="panel-title">{% trans 'sectors'|capfirst %}</h4>
+            </a>
+          </div>
+          <div id="sectors-list" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="panel-group" id="sectors-items">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <a data-toggle="collapse" data-parent="#sectors-items" href="#sector-item-0">
+                      <h4 class="panel-title">
+                        {% trans 'sector'|capfirst %} 0
+                      </h4>
+                    </a>
+                  </div>
+                  <div id="sector-item-0" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      {% trans 'sector'|capfirst %} 0
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
   </div>
   
   <div class="col-xs-13 col-sm-10">
       <p class="pull-left visible-xs">
-          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav" %}</button>
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav"|capfirst %}</button>
       </p>
       <div id="toolbar-inf" class="toolbar centered">
         <div class="btn-group">
-          <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cursor btn title'|capfirst %}">
+          <button id="cursor-btn-inf" 	           	type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cursor btn title'|capfirst %}">
             <span class="toolbar-btn evo-cursor"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf concept btn title'|capfirst %}">
+          <button id="concept-btn-inf"              type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf concept btn title'|capfirst %}">
             <span class="toolbar-btn evo-concept"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cycle btn title'|capfirst %}">
+          <button id="cycle-btn-inf"                type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cycle btn title'|capfirst %}">
             <span class="toolbar-btn evo-cycle"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf material relation btn title'|capfirst %}">
+          <button id="clone-btn-inf"                type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf clone btn title'|capfirst %}">
+            <span class="toolbar-btn evo-clone"></span>
+          </button>
+          <button id="material-relation-btn-inf"    type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf material relation btn title'|capfirst %}">
             <span class="toolbar-btn evo-material-rel"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf information relation btn title'|capfirst %}">
+          <button id="information-relation-btn-inf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf information relation btn title'|capfirst %}">
             <span class="toolbar-btn evo-information-rel"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf sector btn title'|capfirst %}">
+          <button id="sector-btn-inf"               type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf sector btn title'|capfirst %}">
             <span class="toolbar-btn evo-sector"></span>
           </button>
         </div>   
@@ -153,7 +178,7 @@
       
       <div id="language-inf" class="language">
           <div id="svg-div-inf" class="cont-svg">
-            Influencias
+            
           </div>
       </div>
   </div>
