@@ -2,6 +2,15 @@
  * By John Garavito 
  */
 $(document).ready(function(){
+  
+  (function(){
+    this.Influences = Class.extend({
+      init: function(){
+        this.states = [];
+      }  
+    });
+  })();
+  
   $('#influences-area .toolbar .btn-group [title]').tooltip({
       container: 'body'
     });

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-12 12:13-0500\n"
+"POT-Creation-Date: 2014-01-13 10:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -500,7 +500,7 @@ msgid "equations"
 msgstr "ecuaciones"
 
 #: templates/editor/base_editor.html:57
-msgid "behavior"
+msgid "behaviors"
 msgstr "comportamientos"
 
 #: templates/editor/base_editor.html:106

@@ -23,6 +23,12 @@ div.toolbar {
     padding: 5px 0px;
 }
 
+div.messages {
+    position: absolute;
+    bottom: 0px;
+    padding: 0px 15px;
+}
+
 div.col-centered {
     float: none;
     margin: 0 auto;

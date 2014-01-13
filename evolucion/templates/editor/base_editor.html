@@ -43,9 +43,9 @@
           <ul class="dropdown-menu">
             <li><a id="overview-link" href="#"> {% trans "overview"|capfirst %} </a></li>
             <li class="divider"></li>
-            <li><a href="#"> {% trans "open"|capfirst %} </a></li>
-            <li><a href="#"> {% trans "save"|capfirst %} </a></li>
-            <li><a href="#"> {% trans "download"|capfirst %} </a></li>
+            <li><a id="open"      href="#"> {% trans "open"|capfirst %} </a></li>
+            <li><a id="save"      href="#"> {% trans "save"|capfirst %} </a></li>
+            <li><a id="download"  href="#"> {% trans "download"|capfirst %} </a></li>
           </ul>
         </div>
         <div class="collapse navbar-collapse">
@@ -54,7 +54,7 @@
             <li><a id="influences-link" href="#" > {% trans "influences"|capfirst %} </a></li>
             <li><a id="stock-and-flow-link" href="#" > {% trans "stock and flow"|capfirst %} </a></li>
             <li><a id="equations-link" href="#" > {% trans "equations"|capfirst %} </a></li>
-            <li><a id="behavior-link" href="#" > {% trans "behavior"|capfirst %} </a></li>
+            <li><a id="behaviors-link" href="#" > {% trans "behaviors"|capfirst %} </a></li>
             <li class="dropdown messages-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -148,8 +148,8 @@
         {% include 'editor/_equations.html' %}
       </div>
       
-      <div id="behavior-area">
-        {% include 'editor/_behavior.html' %}
+      <div id="behaviors-area">
+        {% include 'editor/_behaviors.html' %}
       </div>
     </div>
     
