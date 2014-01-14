@@ -1,7 +1,7 @@
 {% load staticfiles filters i18n %}
 
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" xml:lang="{{ LANGUAGE_CODE|default:"en-us" }}" manifest="/cache.manifest">
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" xml:lang="{{ LANGUAGE_CODE|default:"en-us" }}" >     <!--manifest="{% static 'evolucion.appcache' %}" !-->   
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +46,8 @@
             <li><a id="open"      href="#"> {% trans "open"|capfirst %} </a></li>
             <li><a id="save"      href="#"> {% trans "save"|capfirst %} </a></li>
             <li><a id="download"  href="#"> {% trans "download"|capfirst %} </a></li>
+            <li><a href="#" class="text-primary" data-toggle="modal" data-target="#alertBrowserModal">Browser </a></li>
+            
           </ul>
         </div>
         <div class="collapse navbar-collapse">
@@ -55,6 +57,7 @@
             <li><a id="stock-and-flow-link" href="#" > {% trans "stock and flow"|capfirst %} </a></li>
             <li><a id="equations-link" href="#" > {% trans "equations"|capfirst %} </a></li>
             <li><a id="behaviors-link" href="#" > {% trans "behaviors"|capfirst %} </a></li>
+            <!--
             <li class="dropdown messages-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -102,6 +105,7 @@
                 <li><a href="#">View All</a></li>
               </ul>
             </li>
+            
             <li class="dropdown user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "sing in"|capfirst %} <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -110,7 +114,7 @@
                 <li class="divider"></li>
                 <li><a href="#">{% trans "sing up"|capfirst %}</a></li>
               </ul>
-            </li>
+            </li>!-->
             <li class="dropdown user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -153,6 +157,28 @@
       </div>
     </div>
     
+    <div class="modal fade" id="alertBrowserModal" tabindex="-1" role="dialog" aria-labelledby="alertBrowserModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">{% trans 'browser incompatibility' %}</h4>
+          </div>        
+          <div class="modal-body">
+            
+                
+          </div>
+          <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-lg-12 col-centered">
+                    <button type="submit" class="btn btn-primary">Close</button> 
+                </div>
+            </div>
+          </div>
+        </div><!-- /.modal-content -->        
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    
     <!-- JavaScript -->
     <script src="{% static 'js/poo.js' %}"></script>
     <script src="{% static 'js/jquery/jquery-1.10.2.min.js' %}"></script>
@@ -162,6 +188,7 @@
     
     <script src="{% static 'js/evolucion/evolucion.js' %} "></script>
     <script src="{% static 'js/evolucion/influences.js' %} "></script>
+    <script src="{% static 'js/evolucion/main.js' %} "></script>
     
     <!-- Page Specific Plugins 
     <script src="{% static 'js/raphael/raphael-min.js' %}"></script>

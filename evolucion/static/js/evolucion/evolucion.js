@@ -6,7 +6,6 @@ $(document).ready(function(){
   (function(){
     this.Evolucion = Class.extend({
       init: function(){
-        $('#overview-area').show();
         this.current_container = 'overview';
         
         this.areas =  ['overview', 'prose', 'influences', 'stock-and-flow', 'equations', 'behaviors'];
@@ -28,14 +27,17 @@ $(document).ready(function(){
               evo.current_container = area;
           });
         }
+        
+        var workAreaHeight = $(window).height() - parseInt($('body').css('padding-top'));
+        $('.work-area').height(workAreaHeight);
+        
+        $('#overview-area').show();
       },
       adjust: function(){
         var workAreaHeight = $(window).height() - parseInt($('body').css('padding-top'));
         $('.work-area').height(workAreaHeight);
-        $('#influences-area .sidebar').height(workAreaHeight);
         
-        var infToolbarHeight = ($('#influences-area .toolbar').outerHeight()|46);        
-        $('#influences-area .language').height(workAreaHeight - infToolbarHeight -2);
+        inf.adjust();
       },
       aliasArea: function(area_name){
         var idx = this.areas.indexOf(area_name);
@@ -49,50 +51,54 @@ $(document).ready(function(){
         error: function(area_name, message){
           var alias = evo.aliasArea(area_name);
           if(alias){
-            $('#messages-'+alias).append(
+            var message = $('#messages-'+alias).append(
               '<div class="alert alert-dismissable alert-danger">'+
                 '<button type="button" class="close" data-dismiss="alert">×</button>'+
                 message+
                 //'<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.'+
               '</div>'
-            );
+            ).children(':last-child');
+            message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
           }
         },
         info: function(area_name, message){
           var alias = evo.aliasArea(area_name);
           if(alias){
-            $('#messages-'+alias).append(            
+            var message = $('#messages-'+alias).append(            
               '<div class="alert alert-dismissable alert-info">'+
                 '<button type="button" class="close" data-dismiss="alert">×</button>'+
                  message+
                 //'<strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it\'s not super important.'+
               '</div>'
-            );
+            ).children(':last-child');
+            message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
           }          
         },        
         success: function(area_name, message){
           var alias = evo.aliasArea(area_name);
           if(alias){
-            $('#messages-'+alias).append(            
+            var message = $('#messages-'+alias).append(            
               '<div class="alert alert-dismissable alert-success">'+
                 '<button type="button" class="close" data-dismiss="alert">×</button>'+
                 message+
                 //'<strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.'+
               '</div>'
-            );
+            ).children(':last-child');
+            message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
           }
         },
         warning: function(area_name, message){
           var alias = evo.aliasArea(area_name);
           if(alias){
-            $('#messages-'+alias).append(            
+            var message = $('#messages-'+alias).append(            
               '<div class="alert alert-dismissable alert-warning">'+
                 '<button type="button" class="close" data-dismiss="alert">×</button>'+
                 message+
                 //'<h4>Warning!</h4>'+
                 //'<p>Best check yo self, you\'re not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>'+
               '</div>'
-            );
+            ).children(':last-child');
+            message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
           }
         }
       },
@@ -156,8 +162,28 @@ $(document).ready(function(){
             
           }   
         });
+      },
+      utils: {
+        textToVar: function(text){
+          return text
+            .toLowerCase()
+            .replace(/[\u00F1]+/g,'nh')
+            .replace(/[\u00E0-\u00E5]+/g,'a')
+            .replace(/[\u00E8-\u00EB]+/g,'e')
+            .replace(/[\u00EC-\u00EF]+/g,'i')
+            .replace(/[\u00F2-\u00F6]+/g,'o')
+            .replace(/[\u00F9-\u00FC]+/g,'u')
+            .replace(/[^\w ]+/g,'')
+            .replace(/ +/g,'_');
+        }
+      },
+      verifyBrowsers: function(){
+        var IE = (navigator.appName=='Microsoft Internet Explorer')?parseFloat((new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})")).exec(navigator.userAgent)[1]):-1;
+        if(IE > -1 && IE < 9){
+          //$('#alerta').css('display', 'block');
+        }
+        
       }
-      
     });
   })();
   
@@ -180,8 +206,5 @@ $(document).ready(function(){
     evo.download();
   });
   
-  
-  evo = new Evolucion();
-  evo.adjust();
 });
 

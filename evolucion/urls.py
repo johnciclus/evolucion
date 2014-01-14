@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from manifesto.views import ManifestView
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Root page:
     url(r'^$', 'evolucion.views.home', name='home'),
-    
+        
     # Include app Users:
     url(r'^users/', include('evolucion.users.urls', namespace='users')),
     

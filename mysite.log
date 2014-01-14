@@ -3392,3 +3392,404 @@ TemplateSyntaxError: Invalid block tag: 'trans'
 [13/Jan/2014 10:52:47] WARNING [django.request:146] Not Found: /cache.manifest
 [13/Jan/2014 10:56:00] WARNING [django.request:146] Not Found: /cache.manifest
 [13/Jan/2014 11:00:15] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 11:13:11] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 11:14:06] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 11:16:06] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 11:18:42] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 11:21:51] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 11:24:12] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 12:29:21] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:23:32] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:33:43] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:33:43] WARNING [django.request:146] Not Found: /favicon.ico
+[13/Jan/2014 14:37:55] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:37:58] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:38:02] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:51:45] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:52:29] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:53:44] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:53:45] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:06] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:13] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:15] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:16] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:23] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:24] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:24] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:24] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:57:24] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:58:48] ERROR [django.request:212] Internal Server Error: /editor/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 115, in get_response
+    response = callback(request, *callback_args, **callback_kwargs)
+  File "/www/evolucion/evolucion/editor/views.py", line 8, in index
+    return render(request, 'editor/index.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts/__init__.py", line 53, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 177, in render_to_string
+    return t.render(context_instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 140, in render
+    return self._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader_tags.py", line 124, in render
+    return compiled_parent._render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 134, in _render
+    return self.nodelist.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 830, in render
+    bit = self.render_node(node, context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/debug.py", line 74, in render_node
+    return node.render(context)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/defaulttags.py", line 404, in render
+    raise NoReverseMatch("'url' requires a non-empty first argument. "
+NoReverseMatch: 'url' requires a non-empty first argument. The syntax changed in Django 1.5, see the docs.
+[13/Jan/2014 14:59:55] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 14:59:58] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 15:01:53] WARNING [django.request:146] Not Found: /evolucion.appcache
+[13/Jan/2014 15:01:59] WARNING [django.request:146] Not Found: /evolucion.appcache
+[13/Jan/2014 15:03:17] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 15:03:19] WARNING [django.request:146] Not Found: /cache.manifest
+[13/Jan/2014 15:03:25] WARNING [django.request:146] Not Found: /evolucion.appcache
+[13/Jan/2014 15:03:35] WARNING [django.request:146] Not Found: /evolucion.appcache
+[13/Jan/2014 15:03:41] WARNING [django.request:146] Not Found: /evolucion.appcache
+[13/Jan/2014 15:19:50] WARNING [django.request:146] Not Found: /cache.manifest
