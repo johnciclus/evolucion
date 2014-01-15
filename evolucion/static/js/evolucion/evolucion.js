@@ -4,6 +4,16 @@
 $(document).ready(function(){
   
   (function(){
+    this.Editor = Class.extend({
+      init: function(){
+        this.r = r;
+        
+        this.list = {};
+        this.idx = {};
+        this.tmp = {};
+      }
+    });
+    
     this.Evolucion = Class.extend({
       init: function(){
         this.current_container = 'overview';
@@ -182,9 +192,9 @@ $(document).ready(function(){
         if(IE > -1 && IE < 9){
           //$('#alerta').css('display', 'block');
         }
-        
       }
     });
+    
   })();
   
   $(window).resize(function(){

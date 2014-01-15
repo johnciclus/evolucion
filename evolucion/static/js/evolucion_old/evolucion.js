@@ -1594,9 +1594,9 @@ var Secto = Sector.extend({
 
 var Editor = Class.extend({
 	init: function(r){
-		this.r = r;
 		
-		this.lista = {};
+		
+		
 		this.ind = {};
 		this.tmp = {};
 		this.rec = {};
@@ -1655,9 +1655,9 @@ var Editor = Class.extend({
 		this.capaBase.attr({'height': h});
 	},
 	movObjs: function(dx, dy){
-		for(var i in this.lista){
-			for( var j in this.lista[i]){
-				this.lista[i][j].mover(dx, dy);
+		for(var i in this.list){
+			for( var j in this.list[i]){
+				this.list[i][j].mover(dx, dy);
 			}
 		}
 	},
@@ -1666,9 +1666,9 @@ var Editor = Class.extend({
 		var sel = this.r.set();
 		var bb;
 		
-		for(var i in this.lista){
-			for( var j in this.lista[i]){
-				sel.push(this.lista[i][j].fig);
+		for(var i in this.list){
+			for( var j in this.list[i]){
+				sel.push(this.list[i][j].fig);
 			}
 		}
 		if(sel.length > 0){
@@ -1693,13 +1693,13 @@ var Editor = Class.extend({
 	},
 	existeElPt: function(p){
 		var existe = false;	
-		for( var l in this.lista){
+		for( var l in this.list){
 			for(var e in this.elementos){
 				if(l == this.elementos[e]){
-					for(var le in this.lista[l]){
-						existe = Raphael.isPointInsidePath(this.lista[l][le].borde, p.x, p.y);			
+					for(var le in this.list[l]){
+						existe = Raphael.isPointInsidePath(this.list[l][le].borde, p.x, p.y);			
 						if(existe){
-							return this.lista[l][le];
+							return this.list[l][le];
 						}	
 					}
 				}
@@ -1709,11 +1709,11 @@ var Editor = Class.extend({
 	},
 	existeNivelPt: function(p){
 		var existe = false;
-		if(this.lista.nivel){	
-			for( var n in this.lista.nivel){
-				existe = Raphael.isPointInsidePath(this.lista.nivel[n].borde, p.x, p.y);			
+		if(this.list.nivel){	
+			for( var n in this.list.nivel){
+				existe = Raphael.isPointInsidePath(this.list.nivel[n].borde, p.x, p.y);			
 				if(existe){
-					return this.lista.nivel[n];
+					return this.list.nivel[n];
 				}
 			}
 		}
@@ -1863,9 +1863,5 @@ var Evolucion = Class.extend({
     	evo.scrollaDiv($('#'+evo.cont_actual));        
     });
 	},
-	
-	vIE: function(){
 		
-	},
-	
 });

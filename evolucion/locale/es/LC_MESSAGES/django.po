@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-13 21:26-0500\n"
+"POT-Creation-Date: 2014-01-14 22:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -483,41 +483,45 @@ msgstr "abrir"
 msgid "download"
 msgstr "descargar"
 
-#: templates/editor/base_editor.html:53
+#: templates/editor/base_editor.html:55
 msgid "prose"
 msgstr "prosa"
 
-#: templates/editor/base_editor.html:54
+#: templates/editor/base_editor.html:56
 msgid "influences"
 msgstr "influencias"
 
-#: templates/editor/base_editor.html:55
+#: templates/editor/base_editor.html:57
 msgid "stock and flow"
 msgstr "flujo nivel"
 
-#: templates/editor/base_editor.html:56
+#: templates/editor/base_editor.html:58
 msgid "equations"
 msgstr "ecuaciones"
 
-#: templates/editor/base_editor.html:57
+#: templates/editor/base_editor.html:59
 msgid "behaviors"
 msgstr "comportamientos"
 
-#: templates/editor/base_editor.html:108
+#: templates/editor/base_editor.html:110
 msgid "sing in"
 msgstr "Inicia sesión"
 
-#: templates/editor/base_editor.html:110
+#: templates/editor/base_editor.html:112
 msgid "username"
 msgstr "nombre de usuario"
 
-#: templates/editor/base_editor.html:111
+#: templates/editor/base_editor.html:113
 msgid "password"
 msgstr "contraseña"
 
-#: templates/editor/base_editor.html:113
+#: templates/editor/base_editor.html:115
 msgid "sing up"
 msgstr "Regístrate"
+
+#: templates/editor/base_editor.html:165
+msgid "browser incompatibility"
+msgstr ""
 
 #: templates/editor/index.html:6
 #, fuzzy
