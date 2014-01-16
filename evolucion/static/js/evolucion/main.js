@@ -1,7 +1,7 @@
 $(document).ready(function(){
   (function(){
     this.evo = new Evolucion();
-    this.inf = new Influences();
+    this.evo.inf = this.inf = new Influences();
     
   })();
 

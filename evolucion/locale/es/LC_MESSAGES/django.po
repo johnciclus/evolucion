@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-14 22:17-0500\n"
+"POT-Creation-Date: 2014-01-15 20:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -521,6 +521,10 @@ msgstr "Regístrate"
 
 #: templates/editor/base_editor.html:165
 msgid "browser incompatibility"
+msgstr ""
+
+#: templates/editor/base_editor.html:174
+msgid "close"
 msgstr ""
 
 #: templates/editor/index.html:6

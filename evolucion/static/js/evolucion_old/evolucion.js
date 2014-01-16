@@ -1,6 +1,4 @@
-var evo;
 
-var atrTra = { 'stroke-width': 0, 		'stroke': '', 	  'fill': '#fff', 'fill-opacity': 0};
 var atrArc = { 'stroke-width': 2.5, 	'stroke': '#555', 'stroke-linecap': 'round'};
 var atrFig = { 'stroke-width': 1.0, 	'stroke': '#555', 'fill': '#555', 'stroke-linecap': 'round'};
 var atrFiE = { 'stroke-width': 2.0, 	'stroke': '#555', 'fill': '#fff', 'stroke-linecap': 'round'};
@@ -11,32 +9,15 @@ var atrCur = { 'stroke-width': 1.0, 	'stroke': '#555', 'stroke-linecap': 'round'
 var atrLin = { 'stroke': '#008ec7', 	'stroke-dasharray': '. '};
 var atrBor = { 'stroke': '#008ec7'};
 
-var atrTit = { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'};
+
 var atrTex = { 'font-size': 12, 'font-family': 'Verdana', 'fill': '#000'};
-var atrRec = { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''};
+
 var atrCon = { 'stroke': '#888', 'stroke-width': 2.5};
 var atrPun = { 'stroke': '#008ec7', 'fill': '#fff'};
 var atrDes = { 'stroke': '#fff'};
 var atrRMa = { 'stroke_width': 3.0};
 var atrRIn = { 'stroke_width': 1.5};
 
-function refFigPadre(fig, padre){
-	if(fig.type == "set"){
-		fig.forEach(function(el){
-			if(el.type == "set"){
-				refFigPadre(el, padre);
-			}
-			else{
-				el.padre = padre;
-			}
-		});
-		fig.padre = padre;
-	}
-};
-
-function clonar(obj){
-	return jQuery.extend(true, {}, obj);
-};
 
 function abrir(){
 	$.ajaxFileUpload({
@@ -386,31 +367,6 @@ function linCur(r, pm , attr){
 };
 
 
-function inicio() {
-	this.dx = this.dy = 0;
-};
-
-function moveFig(dx, dy) {
-	this.update(dx - (this.dx || 0), dy - (this.dy || 0));
-	this.dx = dx;
-	this.dy = dy;
-};
-
-function fin(){
-	this.dx = this.dy = 0;
-};
-
-function figura(ctx){
-	var fig = ctx.r.set();
-	fig.borde = [];
-	fig.move = function(p){
-		var dx = p.x - this.p.x;
-		var dy = p.y - this.p.y;
-		
-		this.transform("T" + dx + "," + dy);
-	};
-	return fig;
-};
 
 function figSecto(ctx, padre, p, tam, titulo){
 	var fig = figura(ctx);
@@ -1594,130 +1550,7 @@ var Secto = Sector.extend({
 
 var Editor = Class.extend({
 	init: function(r){
-		
-		
-		
-		this.ind = {};
-		this.tmp = {};
-		this.rec = {};
-		this.elementos = [];
-		
-		this.iniCapaBase();
 		this.estTexto = "titEdit";
-		this.margen = 15;
-	},
-	activarModo: function(modo){
-		$('#'+this.modo).removeClass('ui-state-hover');
-		$('#'+this.modo).children().css('background-position','0px 0px');
-
-		$('#'+modo).addClass('ui-state-hover');
-		$('#'+modo).children().css('background-position','0px 24px');
-		
-		this.modo = modo;
-	},
-	iniCapaBase: function(){
-		this.capaBase = this.r.rect(0, 0, this.r.width, this.r.height).attr(atrTra);
-		this.capaBase.ctx = this;
-		/*this.capaBase.click(function(){
-			$(this.ctx.svg).focus();
-			evo.scrollaDiv($(this.ctx.div));
-		});*/
-		this.capaBase.update = function(dx, dy){
-			this.ctx.movObjs(dx, dy);
-			this.ctx.ajuTamPan(dx, dy);
-		};
-		this.capaBase.inicio = function(){
-			this.dx = this.dy = 0;
-			this.attr({cursor: "move"});
-		};
-		this.capaBase.fin = function(){
-			this.dx = this.dy = 0;
-			this.attr({cursor: ""});
-		};
-		this.capaBase.drag(moveFig, this.capaBase.inicio, this.capaBase.fin);
-	},
-	obtPosMouse: function(e){
-		var offset    = $(this.svg_div).offset();
-		var offsetInf = $(this.div).offset();
-		
-		return p = {x: e.clientX - offset.left, 
-					y: e.clientY - (offset.top - offsetInf.top)};
-	},
-	obtTamPan: function(){
-		return {w: $(this.svg_div).width(), h: $(this.svg_div).height()};
-	},
-	modTamPan: function(w, h){
-		$(this.svg_div).width(w);
-		$(this.svg_div).height(h);
-		$(this.svg).width(w);
-		$(this.svg).height(h);
-		this.capaBase.attr({'width': w});
-		this.capaBase.attr({'height': h});
-	},
-	movObjs: function(dx, dy){
-		for(var i in this.list){
-			for( var j in this.list[i]){
-				this.list[i][j].mover(dx, dy);
-			}
-		}
-	},
-	ajuTamPan: function(dx, dy){
-		var tamPan = this.obtTamPan();
-		var sel = this.r.set();
-		var bb;
-		
-		for(var i in this.list){
-			for( var j in this.list[i]){
-				sel.push(this.list[i][j].fig);
-			}
-		}
-		if(sel.length > 0){
-			bb = sel.getBBox();
-			
-			if((bb.x2 + dx)>(tamPan.w - this.margen)){
-				this.modTamPan(bb.x2 + dx + this.margen, tamPan.h);
-			}
-			else if((bb.x + dx) < this.margen){
-				this.modTamPan(tamPan.w + this.margen - (bb.x + dx) , tamPan.h);
-				this.movObjs(this.margen - (bb.x + dx), 0);
-			}
-			if((bb.y2 + dy)>(tamPan.h - this.margen)){
-				this.modTamPan(tamPan.w, bb.y2 + dy + this.margen);
-			}
-			else if((bb.y + dy) < this.margen){
-				this.modTamPan(tamPan.w, tamPan.h + this.margen - (bb.y + dy));
-				this.movObjs(0, this.margen - (bb.y + dy));
-			}	
-		}
-		sel = undefined;
-	},
-	existeElPt: function(p){
-		var existe = false;	
-		for( var l in this.list){
-			for(var e in this.elementos){
-				if(l == this.elementos[e]){
-					for(var le in this.list[l]){
-						existe = Raphael.isPointInsidePath(this.list[l][le].borde, p.x, p.y);			
-						if(existe){
-							return this.list[l][le];
-						}	
-					}
-				}
-			}
-		}
-		return undefined;
-	},
-	existeNivelPt: function(p){
-		var existe = false;
-		if(this.list.nivel){	
-			for( var n in this.list.nivel){
-				existe = Raphael.isPointInsidePath(this.list.nivel[n].borde, p.x, p.y);			
-				if(existe){
-					return this.list.nivel[n];
-				}
-			}
-		}
-		return undefined;
 	},
 	
 	existeElSector: function(sector, el){
