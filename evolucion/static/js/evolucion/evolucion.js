@@ -1,25 +1,23 @@
 /* Evolucion
  * By John Garavito 
  */
-$(document).ready(function(){
-  
+$(document).ready(function(){ 
   (function(){
     
     this.style = {
-      base:       { 'stroke-width': 0,     'stroke': '',     'fill': '#fff', 'fill-opacity': 0},
-      title:      { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'},
-      rectangle:  { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''}
+      base:         { 'stroke-width': 0,     'stroke': '',     'fill': '#fff', 'fill-opacity': 0},
+      title:        { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'},
+      rectangle:    { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''},
+      border:       { 'stroke': '#008ec7'},
+      dis_border:   { 'stroke': '#fff'}       //atrDes
     };
     
     this.figures = {
       figure: function(ctx){
         var fig = ctx.r.set();
         fig.border = [];
-        fig.move = function(p){
-          var dx = p.x - this.p.x;
-          var dy = p.y - this.p.y;
-          
-          this.transform("T" + dx + "," + dy);
+        fig.moveToPoint = function(p){
+          this.transform("T" + (p.x - this.p.x) + "," + (p.y - this.p.y));
         };
         return fig;
       }
@@ -58,207 +56,188 @@ $(document).ready(function(){
       }
     };
     
-    this.Unidad = Class.extend({
+    this.Unit = Class.extend({
       init: function(ctx){
-        this.id = '';
-        this.nombre = '';
-        this.titulo = ''; 
-        this.tipo = '';
-        this.fig = undefined;
-        this.desc = ' ';
-        this.borde = [];
+        this.id           = '';
+        this.name         = '';
+        this.title        = ''; 
+        this.type         = '';
+        this.description  = ' ';
+        
+        this.fig          = undefined;
+        this.border       = [];
         
         this.ctx = ctx;
       },
-      camTitulo: function(titulo){
-        this.titulo = titulo;
-        this.nombre = evo.convTexVar(titulo);
-        this.ctx.modTitMenu(this);
+      changeTitle: function(title){
+        this.title = title;
+        this.name = evo.utils.textToVar(title);
+        this.ctx.changeTitle(this);                   //modTitMenu
         
-        this.fig.camTit(this.titulo);
-        this.borde = this.fig.obtBorde();
-        if(typeof(this.restEnl) == 'function'){
-          this.restEnl();
+        this.fig.changeTitle(this.title);             //camTit
+        this.border = this.fig.getBorder();
+        if(typeof(this.restoreLinks) == 'function'){  //restEnl
+          this.restoreLinks();
         }
-        if(typeof(this.restNomCop) == 'function'){
-          this.restNomCop();
+        if(typeof(this.restoreCopies) == 'function'){ //restNomCop
+          this.restoreCopies();
         }
       },
-      camDesc: function(desc){
-        this.desc = desc;
+      changeDescription: function(description){       //camDesc
+        this.description = description;
       },
-      pos: function(){
+      position: function(){                           //pos
         return this.fig.p;
       },
-      mover: function(dx, dy){
+      moveDelta: function(dx, dy){                    //mover
         var bb = this.fig[0].getBBox();
         this.fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         
         this.fig.transform("...T" + dx + "," + dy);
-        this.borde = this.fig.obtBorde();
+        this.border = this.fig.getBorder();
       },
-      intMenuEle: function(){
-        this.ctx.integrarControlesEle(this);
+      integrateCtx: function(){
+        this.ctx.integrateControls(this);
       }
     });
     
-    this.EleBase = Unidad.extend({
+    this.EleBase = Unit.extend({
       init: function(ctx){
         this._super(ctx);
         
-        this.defi  = ' ';
-        this.unid  = ' ';
+        this.definition     = ' ';
+        this.units          = ' ';
         
-        this.cone = {};
-        this.cone['aceOri'] = true; // (true || false)
-        this.cone['aceDes'] = true; // (true || false)
-        this.cone['canOri'] = 'n';  // ('0' || '1' || 'n')
-        this.cone['canDes'] = 'n';  // ('0' || '1' || 'n')
+        this.cone           = {};       //Connections
+        this.cone['oriAce'] = true;     // (true || false)      Origin accepts
+        this.cone['desAce'] = true;     // (true || false)      Destination accepts
+        this.cone['oriQua'] = 'n';      // ('0' || '1' || 'n')  Origin Quantity 
+        this.cone['desQua'] = 'n';      // ('0' || '1' || 'n')  Destination Quantity
         
-        this.genFig = undefined;
-        this.borde = [];
+        this.figGenerator = undefined;
+        this.border = [];
         
-        this.relacIng = {};
-        this.relacSal = {};
+        this.enteringRels = {};
+        this.leavingRels  = {};
         
-        this.cantRelIng = 0;
-        this.cantRelSal = 0;
+        this.enteringRelsQua = 0;
+        this.leavingRelsQua = 0;
       },
       
-      camDefi: function(defi){
-        this.defi = defi;
+      changeDefinition: function(definition){     //camDefi
+        this.definition = definition;
       },
-      camUnid: function(unid){
-        this.unid = unid;
+      changeUnits: function(units){               //camUnid
+        this.units = units;
       },
-      agreRelIng: function(rel){
-        this.relacIng[rel.id] = rel;
-        this.cantRelIng++;
+      addEnteringRels: function(rel){
+        this.enteringRels[rel.id] = rel;
+        this.enteringRelsQua++;
       },
-      agreRelSal: function(rel){
-        this.relacSal[rel.id] = rel;
-        this.cantRelSal++;
+      addLeavingRels: function(rel){
+        this.leavingRels[rel.id] = rel;
+        this.leavingRelsQua++;
       },
-      elimRelIng: function(rel){
-        if(this.relacIng[rel.id]){
-          delete(this.relacIng[rel.id]);
-          this.cantRelIng--;
+      delEnteringRels: function(rel){
+        if(this.enteringRels[rel.id]){
+          delete(this.enteringRels[rel.id]);
+          this.enteringRelsQua--;
         }
       },
-      elimRelSal: function(rel){
-        if(this.relacSal[rel.id]){
-          delete(this.relacSal[rel.id]);
-          this.cantRelSal--;
+      delLeavingRels: function(rel){
+        if(this.leavingRels[rel.id]){
+          delete(this.leavingRels[rel.id]);
+          this.leavingRelsQua--;
         }
       },
-      exisRelOri: function(des_id){
+      existOriRel: function(des_id){
         var idOri, idDes;
-        var ExRelac = false;
+        var existRel = false;
         
-        for(var rel in this.relacSal){
+        for(var rel in this.leavingRels){
           idOri = false;
           idDes = false;
-          if(this.relacSal[rel].des.id == des_id){
+          if(this.leavingRels[rel].des.id == des_id){
             idOri = true;
           }
-          if(this.relacSal[rel].ori.id == this.id){
+          if(this.leavingRels[rel].ori.id == this.id){
             idDes = true;
           }
           if(idOri && idDes){
-            ExRelac = true;
+            existRel = true;
             break;
           }
         }
-        return ExRelac;
+        return existRel;
       },
       exisRelDes: function(ori_id){
         var idOri, idDes;
-        var ExRelac = false;
+        var existRel = false;
         
-        for(var rel in this.relacIng){
+        for(var rel in this.enteringRels){
           idOri = false;
           idDes = false;
-          if(this.relacIng[rel].ori.id == ori_id){
+          if(this.enteringRels[rel].ori.id == ori_id){
             idOri = true;
           }
-          if(this.relacIng[rel].des.id == this.id){
+          if(this.enteringRels[rel].des.id == this.id){
             idDes = true;
           }
           if(idOri && idDes){
-            ExRelac = true;
+            existRel = true;
             break;
           }
         }
-        return ExRelac;
+        return existRel;
       },
-      restEnl: function(){
-        var relOri, relDes, pts, pt;
-        for(var rel in this.relacSal){
-          relOri = this.relacSal[rel];
-          if(relOri){
-            pts = relOri.obtPtsRel();
-            pt = this.ctx.detPunEnPath(this.borde, pts.po);
-            relOri.camPt({po: pt});
-            relOri.camTitulo(this.titulo, relOri.des.titulo);
+      restoreLinks: function(){
+        var oriRel, desRel, pts, pt;
+        for(var rel in this.leavingRels){
+          oriRel = this.leavingRels[rel];
+          if(oriRel){
+            //pts = oriRel.obtPtsRel();
+            //pt = this.ctx.detPunEnPath(this.border, pts.po);
+            //oriRel.camPt({po: pt});
+            //oriRel.camTitulo(this.title, oriRel.des.title);
           }
         }
-        for(var rel in this.relacIng){
-          relDes = this.relacIng[rel];
-          if(relDes){
-            pts = relDes.obtPtsRel();
-            pt = this.ctx.detPunEnPath(this.borde, pts.pd);
-            relDes.camPt({pd: pt});
-            relDes.camTitulo(relDes.ori.titulo, this.titulo);
+        for(var rel in this.enteringRels){
+          desRel = this.enteringRels[rel];
+          if(desRel){
+            //pts = desRel.obtPtsRel();
+            //pt = this.ctx.detPunEnPath(this.border, pts.pd);
+            //desRel.camPt({pd: pt});
+            //desRel.camTitulo(desRel.ori.title, this.title);
           }
         }
       },
-      inicio: function(){
-        var el = this.padre;
+      start: function(){
+        var el = this.parent;
         var elFig = el.fig;
         
         elFig.dx = 0;
         elFig.dy = 0;
         
-        for(var rel in el.relacSal){
-          if(el.relacSal[rel]){
-            el.relacSal[rel].fig.dx = 0;
-            el.relacSal[rel].fig.dy = 0;
+        for(var rel in el.leavingRels){
+          if(el.leavingRels[rel]){
+            el.leavingRels[rel].fig.dx = 0;
+            el.leavingRels[rel].fig.dy = 0;
           }
         }
-        for(var rel in el.relacIng){
-          if(el.relacIng[rel]){
-            el.relacIng[rel].fig.dx = 0;
-            el.relacIng[rel].fig.dy = 0;
+        for(var rel in el.enteringRels){
+          if(el.enteringRels[rel]){
+            el.enteringRels[rel].fig.dx = 0;
+            el.enteringRels[rel].fig.dy = 0;
           }
         }
         
-        var borde = elFig.obtBorde();
-        var pp = el.ctx.r.path(borde).attr(atrBor);
-        pp.animate(atrDes, 100, function(){ this.remove()});
+        var border = elFig.getBorder();
+        var pp = el.ctx.r.path(border).attr(style.border);
+        pp.animate(style.dis_border, 100, function(){ this.remove(); });
         pp = undefined;
       },
-      moverFig: function(dx, dy){
-        var el = this.padre;
-        var elFig = el.fig;   
-          
-        elFig.transform("...T" + (dx - elFig.dx) + "," + (dy - elFig.dy));
-        elFig.dx = dx;
-        elFig.dy = dy;
-        
-        for(var rel in el.relacIng){
-          if(el.relacIng[rel]){
-            el.relacIng[rel].transUbiCont({pd: {dx: dx, dy: dy}});
-          }
-        }
-        for(var rel in el.relacSal){
-          if(el.relacSal[rel]){
-            el.relacSal[rel].transUbiCont({po: {dx: dx, dy: dy}});
-          }
-        }
-        
-      },
-      fin: function(){
-        var el = this.padre;
+      end: function(){
+        var el = this.parent;
         var elFig = el.fig;   
         var bb;
         
@@ -268,56 +247,77 @@ $(document).ready(function(){
         bb = elFig[1].getBBox();
         elFig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         
-        for(var rel in el.relacIng){
-          el.relacIng[rel].fig.dx = 0;
-          el.relacIng[rel].fig.dy = 0;
+        for(var rel in el.enteringRels){
+          el.enteringRels[rel].fig.dx = 0;
+          el.enteringRels[rel].fig.dy = 0;
         }
-        for(var rel in el.relacSal){
-          el.relacSal[rel].fig.dx = 0;
-          el.relacSal[rel].fig.dy = 0;
+        for(var rel in el.leavingRels){
+          el.leavingRels[rel].fig.dx = 0;
+          el.leavingRels[rel].fig.dy = 0;
         }
-        el.borde = elFig.obtBorde();
+        el.border = elFig.getBorder();
       },
-      remover: function(){
+      moveFig: function(dx, dy){
+        var el = this.parent;
+        var elFig = el.fig;   
+          
+        elFig.transform("...T" + (dx - elFig.dx) + "," + (dy - elFig.dy));
+        elFig.dx = dx;
+        elFig.dy = dy;
+        
+        for(var rel in el.enteringRels){
+          if(el.enteringRels[rel]){
+            //el.enteringRels[rel].transUbiCont({pd: {dx: dx, dy: dy}});
+          }
+        }
+        for(var rel in el.leavingRels){
+          if(el.leavingRels[rel]){
+            //el.leavingRels[rel].transUbiCont({po: {dx: dx, dy: dy}});
+          }
+        }
+        
+      },
+      remove: function(){
         var obj;
-        if(this.tipo){
+        if(this.name){
           obj = this;
-        }else if(this.padre){
-          obj = this.padre;
+        }else if(this.parent){
+          obj = this.parent;
         }
         if(obj){
-          var lista   = obj.lista;
-          var listaCop= obj.listCopias;
-          var ref     = obj.ref;
-              
-          if(lista[obj.id]){
-            delete(lista[obj.id]);
+          
+          var list      = obj.list;
+          var copiesList= obj.copiesList;
+          var ref       = obj.ref;
+                       
+          if(list[obj.id]){
+            delete(list[obj.id]);
           }
           
-          for(var i in obj.relacSal){
-            obj.relacSal[i].remover();
+          for(var i in obj.leavingRels){
+            obj.leavingRels[i].remove();
           }
-          for(var i in obj.relacIng){
-            obj.relacIng[i].remover();
+          for(var i in obj.enteringRels){
+            obj.enteringRels[i].remove();
           }
           
           if(ref){
-            var listCopias = ref.listCopias;
-            for(var i in listCopias){
-              if(listCopias[i].id == obj.id){
-                delete(listCopias[i]);
+            var copiesList = ref.copiesList;
+            for(var i in copiesList){
+              if(copiesList[i].id == obj.id){
+                delete(copiesList[i]);
               }
             }
           }
-          if(listaCop){
-            for(var i in listaCop){
-              listaCop[i].remover();
+          if(copiesList){
+            for(var i in copiesList){
+              copiesList[i].remove();
             }
           }
           
-          obj.ctx.eliminarControlesEle(obj);
-          var lim = obj.ctx.ajuLimLista(lista);
-          obj.ctx.ind[obj.tipo] = ++lim;
+          obj.ctx.deleteControls(obj);
+          var limit = obj.ctx.limitAdjustList(list);
+          obj.ctx.idx[obj.type] = ++limit;
           
           obj.fig.remove();
           obj.fig = undefined;
@@ -330,36 +330,36 @@ $(document).ready(function(){
       init: function(ctx){
         this._super(ctx);
         
-        this.dim = 1;
+        this.dimension = 1;
         
-        this.listCopias = {};
+        this.copiesList = {};
       },
-      figura: function(p){
-        this.fig = this.genFig(this.ctx, this, p, this.titulo, {cursor: "move"});
-        this.borde = this.fig.obtBorde();
+      figure: function(p){
+        this.fig = this.figGenerator(this.ctx, this, p, this.title, {cursor: "move"});
+        this.border = this.fig.getBorder();
         for(var i=0; i<3; i++){
-          this.fig[i].drag(this.moverFig, this.inicio, this.fin);
+          this.fig[i].drag(this.moveFig, this.start, this.end);
         }
-        this.fig[0].dblclick(this.editorTexto);
-        this.fig[2].dblclick(this.visAtributos);
-        this.fig[3].click(this.remover);
+        this.fig[0].dblclick(this.createTextEditor);
+        this.fig[2].dblclick(this.viewControls);
+        this.fig[3].click(this.remove);
       },
-      restNomCop: function(){
-        var copia;
-        if(this.listCopias){
-          for(var i in this.listCopias){
-            copia = this.listCopias[i]; 
-            if(copia){
-              copia.camTitulo(this.titulo);
+      restoreCopies: function(){
+        var copy;
+        if(this.copiesList){
+          for(var i in this.copiesList){
+            copy = this.copiesList[i]; 
+            if(copy){
+              copy.camTitulo(this.title);
             }
           }
         }
       },
-      editorTexto: function(){
-        this.padre.ctx.agrEditorTexto(this.padre);
+      createTextEditor: function(){
+        this.parent.ctx.addTextEditor(this.parent);
       },
-      visAtributos: function(){
-        this.padre.ctx.visAtributosEle(this.padre);
+      viewControls: function(){
+        this.parent.ctx.viewControls(this.parent);
       }
     });
     
@@ -393,6 +393,9 @@ $(document).ready(function(){
         $('#'+this.state+'-btn-inf').removeClass('btn-primary');
         $('#'+this.state+'-btn-inf').addClass('btn-info');
       },
+      addTextEditor: function(el){
+        
+      },
       adjustPanelSize: function(dx, dy){
         var panSize = this.panel.getSize();   
         var sel = this.r.set();             //Selection
@@ -405,9 +408,9 @@ $(document).ready(function(){
         }
         if(sel.length > 0){
           bb = sel.getBBox();
-          
-          if((bb.x2 + dx)>(panSize.w - this.margin)){                
-            this.panel.resize(bb.x2 + dx + this.margin, panSize.h); 
+                    
+          if((bb.x2 + dx)>(panSize.w - this.margin)){             
+            this.panel.resize(bb.x2 + dx + this.margin, panSize.h);
           }
           else if((bb.x + dx) < this.margin){
             this.panel.resize(panSize.w + this.margin - (bb.x + dx) , panSize.h);
@@ -448,34 +451,36 @@ $(document).ready(function(){
           }
         }
       },
-      panel: {
+      viewControls: function(el){
         
+      },
+      panel: {
         getSize: function(){
-          return {w: $(this.svg_div).width(), h: $(this.svg_div).height()};
+          return {w: $(this.ctx.svg_div).width(), h: $(this.ctx.svg_div).height()};
         },
         resize: function(width, height){
-          this.baseLayer.attr({'width': width});
-          this.baseLayer.attr({'height': height});
-          $(this.svg).width(width);
-          $(this.svg).height(height);
-          $(this.svg_div).width(width);
-          $(this.svg_div).height(height);
+          this.ctx.baseLayer.attr({'width': width});
+          this.ctx.baseLayer.attr({'height': height});
+          $(this.ctx.svg).width(width);
+          $(this.ctx.svg).height(height);
+          $(this.ctx.svg_div).width(width);
+          $(this.ctx.svg_div).height(height);
         }
       },
       pointer: {
         getPosition: function(e){
-          var offset    = $(this.ctx.svg_div).offset();
+          var offset  = $(this.ctx.svg_div).offset();
           
-          return p = {x: e.clientX - offset.left, 
+          return p    = {x: e.clientX - offset.left, 
                       y: e.clientY - offset.top};   
         },
         existElement: function(p){
           var exist = false; 
-          for( var l in this.list){
-            for(var e in this.elements){
-              if(l == this.elementos[e]){
-                for(var le in this.list[l]){
-                  exist = Raphael.isPointInsidePath(this.list[l][le].border, p.x, p.y);     
+          for( var l in this.ctx.list){
+            for(var e in this.ctx.elements){
+              if(l == this.ctx.elementos[e]){
+                for(var le in this.ctx.list[l]){
+                  exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, p.x, p.y);     
                   if(exist){
                     return this.list[l][le];
                   }
@@ -677,26 +682,6 @@ $(document).ready(function(){
       }
     });
     
-  })();
-  
-  $(window).resize(function(){
-    evo.adjust();
-  });
-  
-  $('#open').click(function(event){
-    event.preventDefault();
-    evo.actions.open();
-  });
-  
-  $('#save').click(function(event){
-    event.preventDefault();
-    evo.actions.save();
-  });
-  
-  $('#download').click(function(event){
-    event.preventDefault();
-    evo.actions.download();
-  });
-  
+  })();  
 });
 

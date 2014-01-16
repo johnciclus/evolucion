@@ -9,11 +9,11 @@ $(document).ready(function(){
     this.figures = $.extend(this.figures, {
       concept: function(ctx, parent, p, title, figureStyle){
         var bb, op, width, height;
-        var fig = figures.figure(ctx);
+        var fig             = figures.figure(ctx);
         var titleStyle      = utils.clone(style.title);
         var rectangleStyle  = utils.clone(style.rectangle);
         
-        titleStyle['fill'] = figureStyle.color || style.title['fill']; 
+        titleStyle['fill']  = figureStyle.color || style.title['fill']; 
         rectangleStyle['stroke-dasharray'] = figureStyle.dasharray_rec || style.rectangle['stroke-dasharray'];
         
         fig.p = {x: p.x, y: p.y};
@@ -94,15 +94,15 @@ $(document).ready(function(){
         this.type = "concept";
         var idx = this.ctx.idx[this.type]++;
         
-        this.id = "concept_"+idx;
-        this.title = title || "Concepto "+idx;
-        this.name = evo.utils.textToVar(this.title);
+        this.id     = "concept_"+idx;
+        this.title  = title || "Concepto "+idx;
+        this.name   = evo.utils.textToVar(this.title);
         
-        this.units = " ";
-        this.list = this.ctx.list.concept;
+        this.units        = " ";
+        this.list         = this.ctx.list.concept;
         this.figGenerator = figures.concept;
         this.figure(p);
-        //this.intMenuEle();
+        this.integrateCtx();
       },
       changeUnits: function(units){
         this.units = units;
@@ -112,9 +112,9 @@ $(document).ready(function(){
         this.border = this.fig.getBorder();
         for(var i=0; i<2; i++){
           this.fig[i].drag(this.moveFig, this.start, this.end);
-          //this.fig[i].dblclick(this.editorTexto);
+          this.fig[i].dblclick(this.createTextEditor);
         }
-        //this.fig[2].click(this.remover);
+        this.fig[2].click(this.remove);
       }
     });
     
@@ -163,6 +163,9 @@ $(document).ready(function(){
           $('#svg-inf').height(languageHeight);
           $('#svg-div-inf').height(languageHeight);
         }
+      },
+      limitAdjustList: function(list){
+        
       },
       defActions: function(){
         $(this.svg_div).mouseenter(function(e){
@@ -270,37 +273,37 @@ $(document).ready(function(){
           switch(inf.state){
             case 'concept': {
               if(inf.tmp.concept){
-                inf.tmp.concept.move(p);            
+                inf.tmp.concept.moveToPoint(p);            
               }
               break;
             }
             case 'material': {
               if(inf.tmp.relma){
-                inf.tmp.relma.move(p);
+                inf.tmp.relma.moveToPoint(p);
               }
               break;
             }
             case 'information': {
               if(inf.tmp.relin){
-                inf.tmp.relin.move(p);
+                inf.tmp.relin.moveToPoint(p);
               }
               break;
             }
             case 'cycle': {
               if(inf.tmp.ciclo){
-                inf.tmp.ciclo.move(p);
+                inf.tmp.ciclo.moveToPoint(p);
               }
               break;
             }
             case 'clone': {
               if(inf.tmp.copia){
-                inf.tmp.copia.move(p);
+                inf.tmp.copia.moveToPoint(p);
               }
               break;
             }
             case 'sector': {
               if(inf.tmp.seinf){
-                inf.tmp.seinf.move(p);
+                inf.tmp.seinf.moveToPoint(p);
               }
               break;
             }
@@ -345,7 +348,7 @@ $(document).ready(function(){
                     
                     var rm = new RelMa(inf, relac.p, relac.ori, el);
     
-                    inf.lista.relma[rm.id] = rm;
+                    inf.list.relma[rm.id] = rm;
                     
                     inf.activarModo('curso-inf');
                     inf.tmp.relma.remove();
@@ -379,7 +382,7 @@ $(document).ready(function(){
                     
                     var ri = new RelIn(inf, relac.p, relac.ori, el);
     
-                    inf.lista.relin[ri.id] = ri;
+                    inf.list.relin[ri.id] = ri;
                     
                     inf.activarModo('curso-inf');
                     inf.tmp.relin.remove();
@@ -391,7 +394,7 @@ $(document).ready(function(){
             }
             case 'cycle': {
               var ci = new Ciclo(inf, p);
-              inf.lista.ciclo[ci.id] = ci;
+              inf.list.ciclo[ci.id] = ci;
               
               inf.activarModo('curso-inf');
               inf.tmp.ciclo.remove();
@@ -402,7 +405,7 @@ $(document).ready(function(){
               var el = inf.existeElPt(p);
               if(el){
                 var cp = new Copia(inf, p, el);
-                inf.lista.copia[cp.id] = cp;
+                inf.list.copia[cp.id] = cp;
                 
                 inf.activarModo('curso-inf');
                 inf.tmp.copia.remove();
@@ -412,7 +415,7 @@ $(document).ready(function(){
             }
             case 'sector': {
               var se = new Secto(inf, p);
-              inf.lista.seinf[se.id] = se;
+              inf.list.seinf[se.id] = se;
               
               inf.activarModo('curso-inf');
               inf.tmp.seinf.remove();
@@ -471,8 +474,13 @@ $(document).ready(function(){
           var name = $(this).attr('id');
           inf.activateState(name.substring(0,name.indexOf('-')));
         });
+      },
+      integrateControls: function(el){
+        
+      },
+      deleteControls: function(){
+        
       }
-      
     });
   })();  
   

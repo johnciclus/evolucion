@@ -43,84 +43,7 @@ function arcoConFlecha(r, pc, orie, real) {
 };
 
 
-function figConce(ctx, padre, p, titulo, estilo){
-	var bb, po, ancho, alto;
-	var fig = figura(ctx);
-	var atrTitTmp = clonar(atrTit);
-	var atrRectTmp = clonar(atrRec);
-	
-	atrTitTmp['fill'] = estilo.color || atrTit['fill']; 
-	atrRectTmp['stroke-dasharray'] = estilo.dasharray_rec || atrRec['stroke-dasharray'];
-	
-	fig.p = {x: p.x, y: p.y};
-	fig.push(
-		ctx.r.text(fig.p.x, fig.p.y, titulo).attr(atrTitTmp)
-	);
-	
-	bb = fig[0].getBBox();
-	po = {x: bb.x - 2, y: bb.y -1};
-	ancho = bb.width + 4;
-	alto = bb.height + 2;
-	
-	fig.push(
-		ctx.r.rect(po.x, po.y, ancho, alto, 4).attr(atrRectTmp),
-		ctx.r.image('images/cerrar.png', po.x + ancho - 12, po.y - 12, 24, 24)
-	);
-	
-	fig[0].toFront();
-	fig[2].toFront();
-	fig[2].hide();
-	
-	for(var i=0; i<2; i++){
-		fig[i].attr({ cursor: "move"});
-	}
-	
-	fig.camTit = function(titulo){
-		var bb, po, ancho, alto;
-		
-		this[0].attr('text', titulo);
-		
-		bb = fig[0].getBBox();
-		po = {x: bb.x - 2, y: bb.y -1};
-		ancho = bb.width + 4;
-		alto = bb.height + 2;
-		
-		this[1].attr('x', po.x);
-		this[1].attr('y', po.y);
-		this[1].attr('width', ancho);
-		this[1].attr('height', alto);
-		this[1].transform('');
-		
-		this[2].attr('x', po.x + ancho - 12);
-		this[2].attr('y', po.y - 12);
-		this[2].transform('');
-		
-	};
-	fig.obtBorde = function(){
-		var bb, po, ancho, alto;
-		bb = this[0].getBBox();
-		po = {x: bb.x - 2, y: bb.y -1};
-		ancho = bb.width + 4;
-		alto = bb.height + 2;
-		
-		this.borde = [	["M", po.x, po.y], 
-						["H", po.x + ancho], 
-						["V", po.y + alto],
-						["H", po.x],
-						["V", po.y]];
-		return this.borde;
-	};
-	fig.hover(
-		function(){
-			fig[2].show();
-		},
-		function(){
-			fig[2].hide();
-		}
-	);
-	refFigPadre(fig, padre);
-	return fig;
-};
+
 
 function figCiclo(ctx, padre, p, titulo, orie, real){
 	var bb, po, pt, ancho, alto, medio_x, tamEl;
@@ -277,37 +200,6 @@ function figRelIn(ctx, padre, p){
 	return figRelac(ctx, padre, p, atrRIn); 
 };
 
-
-var Conce = Elemento.extend({
-	init: function(ctx, p, titu){
-		this._super(ctx);
-		
-		this.tipo = "conce";
-		var ind = this.ctx.ind[this.tipo]++;
-		
-		this.id = "conce_"+ind;
-		this.titulo = titu || "Concepto "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
-		
-		this.unid = " ";
-		this.lista = this.ctx.lista.conce;
-		this.genFig = figConce;
-		this.figura(p);
-		this.intMenuEle();
-	},
-	camUnids: function(unid){
-		this.unid = unid;
-	},
-	figura: function(p){
-		this.fig = figConce(this.ctx, this, p, this.titulo, {});
-		this.borde = this.fig.obtBorde();
-		for(var i=0; i<2; i++){
-			this.fig[i].drag(this.moverFig, this.inicio, this.fin);
-			this.fig[i].dblclick(this.editorTexto);
-		}
-		this.fig[2].click(this.remover);
-	}
-});
 
 var Ciclo = Elemento.extend({
 	init: function(ctx, p, titu){
