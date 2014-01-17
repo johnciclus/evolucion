@@ -72,7 +72,7 @@ $(document).ready(function(){
       changeTitle: function(title){
         this.title = title;
         this.name = evo.utils.textToVar(title);
-        //this.ctx.changeTitle(this);                   //modTitMenu
+        //this.ctx.changeTitle(this);                 //modTitMenu
         
         this.fig.changeTitle(this.title);             //camTit
         this.border = this.fig.getBorder();
@@ -108,11 +108,11 @@ $(document).ready(function(){
         this.definition     = ' ';
         this.units          = ' ';
         
-        this.cone           = {};       //Connections
-        this.cone['oriAce'] = true;     // (true || false)      Origin accepts
-        this.cone['desAce'] = true;     // (true || false)      Destination accepts
-        this.cone['oriQua'] = 'n';      // ('0' || '1' || 'n')  Origin Quantity 
-        this.cone['desQua'] = 'n';      // ('0' || '1' || 'n')  Destination Quantity
+        this.connec           = {};       //Connections
+        this.connec['oriAce'] = true;     // (true || false)      Origin accepts
+        this.connec['desAce'] = true;     // (true || false)      Destination accepts
+        this.connec['oriQua'] = 'n';      // ('0' || '1' || 'n')  Origin Quantity 
+        this.connec['desQua'] = 'n';      // ('0' || '1' || 'n')  Destination Quantity
         
         this.figGenerator = undefined;
         this.border = [];
@@ -124,10 +124,10 @@ $(document).ready(function(){
         this.leavingRelsQua = 0;
       },
       
-      changeDefinition: function(definition){     //camDefi
+      changeDefinition: function(definition){     	 //camDefi
         this.definition = definition;
       },
-      changeUnits: function(units){               //camUnid
+      changeUnits: function(units){               	 //camUnid
         this.units = units;
       },
       addEnteringRels: function(rel){
@@ -278,6 +278,7 @@ $(document).ready(function(){
         
       },
       remove: function(){
+        
         var obj;
         if(this.name){
           obj = this;
@@ -377,7 +378,7 @@ $(document).ready(function(){
         this.state    = "";
         
         this.svg      = "";
-        this.svg_div  = "";
+        this.svgDiv  = "";
         
         this.margin   = 15;
                 
@@ -392,6 +393,17 @@ $(document).ready(function(){
         
         $('#'+this.state+'-btn-inf').removeClass('btn-primary');
         $('#'+this.state+'-btn-inf').addClass('btn-info');
+      },
+      limitAdjustList: function(list){
+        var val;
+        var limit = -1;
+        var idx = -1;
+        for(var i in list){
+          idx = list[i].id.lastIndexOf('-');
+          val = Number(list[i].id.substr(++idx));
+          limit = (val > limit) ? val : limit;
+        }
+        return limit;
       },
       adjustPanelSize: function(dx, dy){
         var panSize = this.panel.getSize();   
@@ -449,7 +461,31 @@ $(document).ready(function(){
         }
       },
       viewControls: function(el){
+        var isNotCurrent = false;
+        var lists = $('#elements-'+el.ctx.id+'>div>.panel-collapse.in');
+        if(lists.length == 0){ isNotCurrent = true; };
+        lists.each(function(idx){
+          if(this.id != (el.type+'-list')){
+            $(this).collapse('hide');
+            isNotCurrent = true;
+          }
+        });
+        if(isNotCurrent){
+          $('#'+el.type+'-list').collapse('show');
+          isNotCurrent = false;
+        }
         
+        lists = $('#'+el.type+'-items>div>.panel-collapse.in');
+        if(lists.length == 0){ isNotCurrent = true; };
+        lists.each(function(idx){
+          if(this.id != (el.id+'-item-body')){
+            $(this).collapse('hide');
+            isNotCurrent = true;
+          }
+        });
+        if(isNotCurrent){
+          $('#'+el.id+'-item-body').collapse('show');
+        }
       },
       viewTextEditor: function(el){
         var bb = el.fig[1].getBBox();
@@ -475,20 +511,20 @@ $(document).ready(function(){
       },
       panel: {
         getSize: function(){
-          return {w: $(this.ctx.svg_div).width(), h: $(this.ctx.svg_div).height()};
+          return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};
         },
         resize: function(width, height){
           this.ctx.baseLayer.attr({'width': width});
           this.ctx.baseLayer.attr({'height': height});
           $(this.ctx.svg).width(width);
           $(this.ctx.svg).height(height);
-          $(this.ctx.svg_div).width(width);
-          $(this.ctx.svg_div).height(height);
+          $(this.ctx.svgDiv).width(width);
+          $(this.ctx.svgDiv).height(height);
         }
       },
       pointer: {
         getPosition: function(e){
-          var offset  = $(this.ctx.svg_div).offset();
+          var offset  = $(this.ctx.svgDiv).offset();
           
           return p    = {x: e.clientX - offset.left, 
                       y: e.clientY - offset.top};   

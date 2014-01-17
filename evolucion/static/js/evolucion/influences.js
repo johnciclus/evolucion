@@ -1,7 +1,6 @@
 /* Evolucion - Influences
  * By John Garavito
  */
-
 $(document).ready(function(){
   (function(){
     
@@ -27,12 +26,15 @@ $(document).ready(function(){
         
         fig.push(
           ctx.r.rect(op.x, op.y, width, height, 4).attr(rectangleStyle),
-          ctx.r.image('/static/icons/close.png', op.x + width - 12, op.y - 12, 24, 24)
+          ctx.r.image('/static/icons/close.png',  op.x + width - 12, op.y - 12, 24, 24),
+          ctx.r.image('/static/icons/info.png', op.x + width -36, op.y - 12, 24, 24)
         );
         
         fig[0].toFront();
         fig[2].toFront();
+        fig[3].toFront();
         fig[2].hide();
+        fig[3].hide();
         
         for(var i=0; i<2; i++){
           fig[i].attr({ cursor: "move"});
@@ -66,19 +68,21 @@ $(document).ready(function(){
           width = bb.width + 4;
           height = bb.height + 2;
           
-          this.border = [  ["M", op.x, op.y], 
-                  ["H", op.x + width], 
-                  ["V", op.y + height],
-                  ["H", op.x],
-                  ["V", op.y]];
+          this.border = [ ["M", op.x, op.y], 
+                          ["H", op.x + width], 
+                          ["V", op.y + height],
+                          ["H", op.x],
+                          ["V", op.y]];
           return this.border;
         };
         fig.hover(
           function(){
             fig[2].show();
+            fig[3].show();
           },
           function(){
             fig[2].hide();
+            fig[3].hide();
           }
         );
         utils.parentReference(fig, parent);
@@ -90,10 +94,10 @@ $(document).ready(function(){
       init: function(ctx, p, title){
         this._super(ctx);
         
-        this.type = "concept";
-        var idx = this.ctx.idx[this.type]++;
+        this.type         = "concept";
+        var idx           = this.ctx.idx[this.type]++;
         
-        this.id           = "concept_"+idx;
+        this.id           = "concept-"+idx;
         this.title        = title || "Concepto "+idx;
         this.name         = evo.utils.textToVar(this.title);
         
@@ -114,6 +118,7 @@ $(document).ready(function(){
           this.fig[i].dblclick(this.createTextEditor);
         }
         this.fig[2].click(this.remove);
+        this.fig[3].click(this.viewControls);
       }
     });
     
@@ -124,7 +129,7 @@ $(document).ready(function(){
         this.id       = 'inf';
         this.div      = '#influences';
         this.svg      = '#svg-inf';
-        this.svg_div  = '#svg-div-inf';
+        this.svgDiv   = '#svg-div-inf';
         this.state    = 'cursor';
         
         this.elements = ['concept', 'clone'];
@@ -163,11 +168,9 @@ $(document).ready(function(){
           $('#svg-div-inf').height(languageHeight);
         }
       },
-      limitAdjustList: function(list){
-        
-      },
+      
       defActions: function(){
-        $(this.svg_div).mouseenter(function(e){
+        $(this.svgDiv).mouseenter(function(e){
           var p = inf.pointer.getPosition(e);
           
           switch(inf.state){
@@ -221,7 +224,7 @@ $(document).ready(function(){
             }
           }
         });
-        $(this.svg_div).mouseleave(function(e){
+        $(this.svgDiv).mouseleave(function(e){
           switch(inf.state){
             case 'concept': {
               if(inf.tmp.concept){
@@ -267,7 +270,7 @@ $(document).ready(function(){
             }
           }
         });
-        $(this.svg_div).mousemove(function(e){
+        $(this.svgDiv).mousemove(function(e){
           var p = inf.pointer.getPosition(e);
           switch(inf.state){
             case 'concept': {
@@ -308,7 +311,7 @@ $(document).ready(function(){
             }
           }
         });
-        $(this.svg_div).click(function(e){
+        $(this.svgDiv).click(function(e){
           var p = inf.pointer.getPosition(e);
           var alpha;
           
@@ -329,11 +332,11 @@ $(document).ready(function(){
               if(el){
                 p = inf.detPunEnPath(el.border, p);
                 alpha = inf.detAngEnPath(el.border, p);
-                if(relac.estado == 'inicial' && el.cone['aceOri']){
+                if(relac.estado == 'inicial' && el.connec['aceOri']){
                   relac.ori = el;
                   relac.actSegPun(inf, p, alpha);
                 }
-                else if(relac.estado == 'extendido' && el.cone['aceDes']){
+                else if(relac.estado == 'extendido' && el.connec['aceDes']){
                   var noEsMismo = false;
                   var noExRelac = false;
                     
@@ -363,11 +366,11 @@ $(document).ready(function(){
               if(el){
                 p = inf.detPunEnPath(el.border, p);
                 alpha = inf.detAngEnPath(el.border, p);
-                if(relac.estado == 'inicial' && el.cone['aceOri']){
+                if(relac.estado == 'inicial' && el.connec['aceOri']){
                   relac.ori = el;
                   relac.actSegPun(inf, p, alpha);
                 }
-                else if(relac.estado == 'extendido' && el.cone['aceDes']){
+                else if(relac.estado == 'extendido' && el.connec['aceDes']){
                   var noEsMismo = false;
                   var noExRelac = false;
                     
@@ -440,11 +443,11 @@ $(document).ready(function(){
         var languageHeight = workAreaHeight - infToolbarHeight -2;
         $('#language-inf').height(languageHeight);
         
-        var svg_div = $('#svg-div-inf');
-        svg_div.width(languageWidth);
-        svg_div.height(languageHeight);
+        var svgDiv = $('#svg-div-inf');
+        svgDiv.width(languageWidth);
+        svgDiv.height(languageHeight);
         
-        var panel = svg_div[0];
+        var panel = svgDiv[0];
         var r = Raphael(panel, languageWidth, languageHeight);
         
         $('#svg-div-inf svg').attr('id', 'svg-inf');
@@ -475,12 +478,128 @@ $(document).ready(function(){
         });
       },
       integrateControls: function(el){
+        var nameItemsCont;
         
+        switch(el.type){
+          case 'concept': {
+            nameItemsCont = '#concept-items';
+            break;
+          }
+          case 'cycle': {
+            nameItemsCont = '#cycles-items';
+            break;
+          }
+          case 'material': {
+            nameItemsCont = '#material-items';
+            break;
+          }
+          case 'information': {
+            nameItemsCont = '#information-items';
+            break;
+          }
+          case 'sector': {
+            nameItemsCont = '#sectors-items';
+            break;
+          }
+        }
+        if(nameItemsCont && el.id && el.title){
+          var html =
+            "<div id='"+el.id+"-item' class='panel panel-default'>"+
+              "<div class='panel-heading'>"+
+                "<a data-toggle='collapse' data-parent='"+nameItemsCont+"' href='#"+el.id+"-item-body'>"+
+                  "<h4 class='panel-title'>"+
+                    el.title+
+                  "</h4>"+
+                "</a>"+
+              "</div>"+
+              "<div id='"+el.id+"-item-body' class='panel-collapse collapse'>"+
+                "<div class='panel-body'>";
+          
+          if(el.description){
+            html +=
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-description' class='control-label'>"+
+                    "Descripción"+
+                  "</label>"+
+                  "<textarea id='"+el.id+"-description' name='description' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Descripción'>"+
+                  "</textarea>"+
+                "</div>";
+          }
+          if(el.units){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-units' class='control-label'>Unidades</label>"+
+                  "<input id='"+el.id+"-units' type='text' name='title' class='form-control' maxlength='200' placeholder='Unidades'>"+
+                "</div>";
+          }
+          if(el.orie){
+            html += "<div id='"+el.id+"_item_conte_ori' "+
+                "class='eleContTit'"+
+                ">Orientaci&oacute;n.</div>"+
+                "<form>"+
+                  "<div id='"+el.id+"_item_conte_ori_radio_set'>"+
+                    "<input type='radio' id='"+el.id+"_item_conte_ori_pos_IR' name='"+el.id+"_item_conte_ori_IR' value='der' checked='checked'/>"+
+                    "<label for='"+el.id+"_item_conte_ori_pos_IR'>Derecha</label>"+
+                    "<input type='radio' id='"+el.id+"_item_conte_ori_neg_IR' name='"+el.id+"_item_conte_ori_IR' value='izq' />"+
+                    "<label for='"+el.id+"_item_conte_ori_neg_IR'>Izquierda</label>"+
+                  "</div>"+
+                "</form>";
+          }
+          if(el.real){
+            html += "<div id='"+el.id+"_item_conte_rea' "+
+                "class='eleContTit'"+
+                ">Realimentaci&oacute;n.</div>"+
+                "<form>"+
+                  "<div id='"+el.id+"_item_conte_rea_radio_set'>"+
+                    "<input type='radio' id='"+el.id+"_item_conte_rea_pos_IR' name='"+el.id+"_item_conte_rea_IR' value='pos' checked='checked'/>"+
+                    "<label for='"+el.id+"_item_conte_rea_pos_IR'>Positiva</label>"+
+                    "<input type='radio' id='"+el.id+"_item_conte_rea_neg_IR' name='"+el.id+"_item_conte_rea_IR' value='neg' />"+
+                    "<label for='"+el.id+"_item_conte_rea_neg_IR'>Negativa</label>"+
+                  "</div>"+
+                "</form>";
+          }
+          html +=
+                "</div>"+
+              "</div>"+
+            "</div>";
+          
+          $(nameItemsCont).append(html);
+          
+          $('#'+el.id+'_item_tit').click(function(){
+            $('#'+el.id+'_item_conte').toggle();
+            return false;
+          });
+          if(el.desc){
+            $('#'+el.id+'_item_conte_desc').css('width', '75px');
+            $('#'+el.id+'_item_conte_desc_TA').change(function(){         
+              el.camDesc($(this).val());          
+            });
+          }
+          if(el.unid){
+            $('#'+el.id+'_item_conte_uni').css('width', '60px');
+            $('#'+el.id+'_item_conte_uni_IT').change(function(){
+              el.camUnids($(this).val());
+            });
+          }
+          if(el.orie){
+            $("#"+el.id+"_item_conte_ori_radio_set").buttonset();
+            $("#"+el.id+"_item_conte_ori_radio_set label span").css('padding', '0.1em 0.3em');
+            $("input:radio[name='"+el.id+"_item_conte_ori_IR']").change(function(){
+              el.camOrientacion($(this).val());
+            });
+          }
+          if(el.real){
+            $("#"+el.id+"_item_conte_rea_radio_set").buttonset();
+            $("#"+el.id+"_item_conte_rea_radio_set label span").css('padding', '0.1em 0.3em');
+            $("input:radio[name='"+el.id+"_item_conte_rea_IR']").change(function(){
+              el.camRealimentacion($(this).val());
+            });
+          }
+        }
       },
-      deleteControls: function(){
-        
+      deleteControls: function(el){
+        $('#'+el.id+'-item').remove();
       }
-    
     });
   })();
 });

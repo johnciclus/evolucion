@@ -1,17 +1,17 @@
 {% load i18n %}
 
 <div class="row row-offcanvas row-offcanvas-left">
-  <div class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" id="influences-sidebar" role="navigation">
-      <div class="panel-group" id="influences-elements">
+  <div class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" id="_influences-sidebar" role="navigation">
+      <div class="panel-group" id="saf-elements">
         <div class="panel panel-default">
           <div class="panel-heading">
             <a data-toggle="collapse" data-parent="#influences-elements" href="#concepts-list">
               <h4 class="panel-title">{% trans 'concepts'|capfirst %}</h4>
             </a>
           </div>
-          <div id="concepts-list" class="panel-collapse collapse in">
+          <div id="_concepts-list" class="panel-collapse collapse in">
             <div class="panel-body">
-              <div class="panel-group" id="concepts-items">
+              <div class="panel-group" id="_concepts-items">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#concepts-items" href="#concept-item-0">
@@ -37,9 +37,9 @@
               <h4 class="panel-title">{% trans 'cycles'|capfirst %}</h4>
             </a>
           </div>
-          <div id="cycles-list" class="panel-collapse collapse">
+          <div id="_cycles-list" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="panel-group" id="cycles-items">
+              <div class="panel-group" id="_cycles-items">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#cycles-items" href="#cycle-item-0">
@@ -48,7 +48,7 @@
                       </h4>
                     </a>
                   </div>
-                  <div id="cycle-item-0" class="panel-collapse collapse in">
+                  <div id="_cycle-item-0" class="panel-collapse collapse in">
                     <div class="panel-body">
                       {% trans 'cycle'|capfirst %} 0
                     </div>
@@ -65,9 +65,9 @@
               <h4 class="panel-title">{% trans 'material relations'|capfirst %}</h4>
             </a>
           </div>
-          <div id="material-rels-list" class="panel-collapse collapse">
+          <div id="_material-rels-list" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="panel-group" id="material-rels-items">
+              <div class="panel-group" id="_material-rels-items">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#material-rels-items" href="#material-rel-item-0">
@@ -76,7 +76,7 @@
                       </h4>
                     </a>
                   </div>
-                  <div id="material-rel-item-0" class="panel-collapse collapse in">
+                  <div id="_material-rel-item-0" class="panel-collapse collapse in">
                     <div class="panel-body">
                       {% trans 'material relation'|capfirst %} 0
                     </div>
@@ -93,9 +93,9 @@
               <h4 class="panel-title">{% trans 'information relations'|capfirst %}</h4>
             </a>
           </div>
-          <div id="information-rels-list" class="panel-collapse collapse">
+          <div id="_information-rels-list" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="panel-group" id="information-rels-items">
+              <div class="panel-group" id="_information-rels-items">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#information-rels-items" href="#information-rel-item-0">
@@ -104,7 +104,7 @@
                       </h4>
                     </a>
                   </div>
-                  <div id="information-rel-item-0" class="panel-collapse collapse in">
+                  <div id="_information-rel-item-0" class="panel-collapse collapse in">
                     <div class="panel-body">
                       {% trans 'information relation'|capfirst %} 0
                     </div>
@@ -121,9 +121,9 @@
               <h4 class="panel-title">{% trans 'sectors'|capfirst %}</h4>
             </a>
           </div>
-          <div id="sectors-list" class="panel-collapse collapse">
+          <div id="_sectors-list" class="panel-collapse collapse">
             <div class="panel-body">
-              <div class="panel-group" id="sectors-items">
+              <div class="panel-group" id="_sectors-items">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <a data-toggle="collapse" data-parent="#sectors-items" href="#sector-item-0">
@@ -132,7 +132,7 @@
                       </h4>
                     </a>
                   </div>
-                  <div id="sector-item-0" class="panel-collapse collapse in">
+                  <div id="_sector-item-0" class="panel-collapse collapse in">
                     <div class="panel-body">
                       {% trans 'sector'|capfirst %} 0
                     </div>
@@ -150,7 +150,7 @@
       <p class="pull-left visible-xs">
           <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav"|capfirst %}</button>
       </p>
-      <div id="toolbar-inf" class="toolbar centered">
+      <div id="_toolbar-inf" class="toolbar centered">
         <div class="btn-group">
           <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cursor btn title'|capfirst %}">
             <span class="toolbar-btn evo-cursor"></span>
@@ -176,8 +176,8 @@
         </div>   
       </div>
       
-      <div id="language-inf" class="language">
-          <div id="svg-div-inf" class="cont-svg">
+      <div id="_language-inf" class="language">
+          <div id="_svg-div-inf" class="cont-svg">
             Influencias
           </div>
       </div>

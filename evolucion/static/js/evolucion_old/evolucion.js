@@ -1267,16 +1267,6 @@ var Editor = Class.extend({
 		$('#'+el.id+'_item_conte').toggle();
 	},
 	
-	ajuLimLista: function(lista){
-		var b, val;
-		var lim = -1;
-		for(var i in lista){
-			b = lista[i].id.lastIndexOf('_');
-			val = Number(lista[i].id.substr(++b));
-			lim = (val > lim) ? val : lim;
-		}
-		return lim;
-	},
 	titRel: function(titFrom, titTo){
 		var tituloFrom, tituloTo;
 		
