@@ -38,6 +38,15 @@ div.centered {
     text-align: center;
 }
 
+div.svg-div{
+    position: relative;
+}
+
+div.svg-input {
+    position: absolute;
+    background-color:#FFF;
+}
+
 a.navbar-brand b {
     border-top-color: #ddd;
     border-bottom-color: #ddd;
@@ -79,4 +88,14 @@ a.navbar-brand b {
 
 .evo-sector {
     background-image: url(/static/icons/sector.png);
+}
+
+.text-edit{
+    overflow: hidden;
+    background-color:#FFF;
+    border: 2px solid #315070;
+    
+    font-size: 14px;
+    font-family: Verdana;
+    text-align: center;
 }

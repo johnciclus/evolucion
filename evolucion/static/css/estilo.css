@@ -265,30 +265,7 @@ form .field input:hover, form .field textarea:hover{
 	float: left;
 	margin: 0 2px;
 }
-.svginput{
-	position: absolute;
-	background-color:#FFF;
-}
-.textEdit{
-	overflow: auto;
-	background-color:#FFF;
-	border: 1px dotted #DDD;
-	resize: both;
-	
-	font-size: 12px; 
-	font-family: "Verdana";
-	text-align: center;
-}
-.titEdit{
-	overflow: auto;
-	background-color:#FFF;
-	border: 1px dotted #DDD;
-	resize: both;
-	
-	font-size: 14px; 
-	font-family: "Verdana";
-	text-align: center;
-}
+
 .eleMenu{
 	margin: 5px 0px;
 	border-top: 1px solid #ddb473;

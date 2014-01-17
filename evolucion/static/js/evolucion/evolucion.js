@@ -72,7 +72,7 @@ $(document).ready(function(){
       changeTitle: function(title){
         this.title = title;
         this.name = evo.utils.textToVar(title);
-        this.ctx.changeTitle(this);                   //modTitMenu
+        //this.ctx.changeTitle(this);                   //modTitMenu
         
         this.fig.changeTitle(this.title);             //camTit
         this.border = this.fig.getBorder();
@@ -356,7 +356,7 @@ $(document).ready(function(){
         }
       },
       createTextEditor: function(){
-        this.parent.ctx.addTextEditor(this.parent);
+        this.parent.ctx.viewTextEditor(this.parent);
       },
       viewControls: function(){
         this.parent.ctx.viewControls(this.parent);
@@ -392,9 +392,6 @@ $(document).ready(function(){
         
         $('#'+this.state+'-btn-inf').removeClass('btn-primary');
         $('#'+this.state+'-btn-inf').addClass('btn-info');
-      },
-      addTextEditor: function(el){
-        
       },
       adjustPanelSize: function(dx, dy){
         var panSize = this.panel.getSize();   
@@ -454,6 +451,28 @@ $(document).ready(function(){
       viewControls: function(el){
         
       },
+      viewTextEditor: function(el){
+        var bb = el.fig[1].getBBox();
+        
+        $("#svg-div-inf").append(
+          "<div id='text-edit-control' class='svg-input' style='"+
+          "left:"+(bb.x-10)+"px; top:" +(bb.y-5)+"px;'>"+
+            "<textarea id='text-edit-input' rows='1' class='text-edit' style='"+
+            "width:"+(bb.width+20)+"px; height:"+(bb.height+10)+"px;'>"+
+              el.title+
+            "</textarea>"+
+          "</div>"
+        );
+        $("#text-edit-input").focus();
+        $("#text-edit-input").mouseleave(function(){
+          el.changeTitle($(this).val());
+          $("#text-edit-control").remove();
+        });
+        $("#text-edit-input").focusout(function() {
+          el.changeTitle($(this).val());
+          $("#text-edit-control").remove();  
+        });
+      },
       panel: {
         getSize: function(){
           return {w: $(this.ctx.svg_div).width(), h: $(this.ctx.svg_div).height()};
@@ -493,7 +512,10 @@ $(document).ready(function(){
       },
       sector: {
         existElement: function(sector, el){
-        
+          
+        },
+        existRelation: function(sector, rel){
+          
         }
       }
     });

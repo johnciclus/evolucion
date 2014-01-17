@@ -7,14 +7,13 @@ var atrFiD = { 'stroke-width': 3.0, 	'stroke': '#555', 'fill': '#fff'};
 var atrSim = { 'font-size': 20, 		'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'};
 var atrCur = { 'stroke-width': 1.0, 	'stroke': '#555', 'stroke-linecap': 'round'};
 var atrLin = { 'stroke': '#008ec7', 	'stroke-dasharray': '. '};
-var atrBor = { 'stroke': '#008ec7'};
 
 
 var atrTex = { 'font-size': 12, 'font-family': 'Verdana', 'fill': '#000'};
 
 var atrCon = { 'stroke': '#888', 'stroke-width': 2.5};
 var atrPun = { 'stroke': '#008ec7', 'fill': '#fff'};
-var atrDes = { 'stroke': '#fff'};
+var atrDes = ;
 var atrRMa = { 'stroke_width': 3.0};
 var atrRIn = { 'stroke_width': 1.5};
 
@@ -1262,29 +1261,7 @@ var Editor = Class.extend({
 		var existeDes = Raphael.isPointInsidePath(sector, pos[3].x, pos[3].y);
 		return {'origen': existeOri, 'destino': existeDes};
 	},
-	agrEditorTexto: function(el){
-		var bb = el.fig[1].getBBox();
-		$(this.len_div).append(
-			"<div id='texteditcont' class='svginput' style='"+
-			"left:"+bb.x+"px;"+
-			"top:"+bb.y+"px;'>"+
-				"<textarea id='"+el.id+"_textedit' rows='1' class='"+this.estTexto+"' style='"+
-				"width:"+(bb.width+2)+"px;"+
-				"height:"+(bb.height+2)+"px;'>"+
-					el.titulo+
-				"</textarea>"+
-			"</div>"
-		);
-		$("#"+el.id+"_textedit").focus();
-		$("#"+el.id+"_textedit").mouseleave(function(){
-			el.camTitulo($(this).val());;
-			$("#texteditcont").remove();
-		});
-		$("#"+el.id+"_textedit").focusout(function() {
-			el.camTitulo($(this).val());;
-			$("#texteditcont").remove();	
-		});
-	},
+	
 	visAtributosEle: function(el){
 		$('#menu-elementos-'+this.id).accordion("option", "active", this.indMenu[el.tipo]);
 		$('#'+el.id+'_item_conte').toggle();

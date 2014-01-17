@@ -3,7 +3,6 @@
  */
 
 $(document).ready(function(){
-  
   (function(){
     
     this.figures = $.extend(this.figures, {
@@ -94,9 +93,9 @@ $(document).ready(function(){
         this.type = "concept";
         var idx = this.ctx.idx[this.type]++;
         
-        this.id     = "concept_"+idx;
-        this.title  = title || "Concepto "+idx;
-        this.name   = evo.utils.textToVar(this.title);
+        this.id           = "concept_"+idx;
+        this.title        = title || "Concepto "+idx;
+        this.name         = evo.utils.textToVar(this.title);
         
         this.units        = " ";
         this.list         = this.ctx.list.concept;
@@ -481,7 +480,7 @@ $(document).ready(function(){
       deleteControls: function(){
         
       }
+    
     });
-  })();  
-  
+  })();
 });
