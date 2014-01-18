@@ -1,0 +1,44 @@
+<%= form_for @project, :remote => 'true', :html => {:id => 'project_form'} do |f| %>
+    <%= f.hidden_field :model, :value => ''%>
+    <fieldset>
+        
+        <legend>Registrar proyecto</legend>
+        
+        <div class="field">
+            <%= f.label :title, "Título" %><br />
+            <%= f.text_field :title, :title => "Nombre representativo del proyecto" %>
+        </div>
+        <br />
+        <div class="field">
+            <%= f.label :description, "Descripción" %><br />
+            <%= f.text_area :description, :title => 'Descripción general del proyecto', :rows => "5" %>
+        </div>
+        <br />
+        <div class="field">
+            <%= f.label :keywords, "Palabras Claves" %><br />
+            <%= f.text_field :keywords, :title => 'Conjunto de palabras relacionadas con el proyecto' %>
+        </div>
+        <br />
+        <div class="field">
+            <%= f.label :author, "Autor" %><br />
+            <%= f.text_field :author, :title => 'Nombre del autor' %>
+        </div>
+        <br />
+        
+        <div class="actions">
+            <%= f.submit 'Registrar Proyecto', :class => 'button'%>
+        </div>
+    </fieldset>
+<% end %>
+
+<script>
+    $('#project_form').submit(function(e){
+        var self = this;
+        var root = $('#xmldocument');
+        
+        e.preventDefault();
+        $('#project_model').val(root.html());
+        return true;
+    });
+</script>
+

@@ -1,0 +1,5 @@
+console.log($.parseXML('<%= @model_text.html_safe %>'));
+
+<% if flash[:success] %>
+    evo.mensajeInfo('<%= flash[:notice].html_safe %>');
+<% end %>

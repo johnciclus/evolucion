@@ -1,0 +1,24 @@
+<% if @project.errors.any? %>
+    <div id="error_explanation">
+        <h2> <%= pluralize(@project.errors.count, "error")%>, posibles causas:</h2>
+        <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>       
+        </ul>   
+    </div>
+<% end %>
+
+<h3><span></span>Nuevo proyecto</h3>
+<br/>
+<div id="project">
+    <%= render :partial => "form" %>
+</div>
+
+<div class="separator"></div>
+    
+<h3><span></span>Listado de proyectos</h3>
+<br/>
+<div id="projects">    
+    <%= render :partial => "projects" %>
+</div>
