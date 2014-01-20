@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-19 06:58-0500\n"
+"POT-Creation-Date: 2014-01-20 05:48-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -374,81 +374,57 @@ msgstr "conceptos"
 msgid "cycles"
 msgstr "ciclos"
 
-#: templates/editor/_influences.html:34 templates/editor/_influences.html:40
-#: templates/editor/_stock-and-flow.html:47
-#: templates/editor/_stock-and-flow.html:53
-msgid "cycle"
-msgstr "ciclo"
-
-#: templates/editor/_influences.html:52
+#: templates/editor/_influences.html:39
 #: templates/editor/_stock-and-flow.html:65
 msgid "material relations"
 msgstr "relaciones de material"
 
-#: templates/editor/_influences.html:62 templates/editor/_influences.html:68
-#: templates/editor/_stock-and-flow.html:75
-#: templates/editor/_stock-and-flow.html:81
-msgid "material relation"
-msgstr "relación de material"
-
-#: templates/editor/_influences.html:80
+#: templates/editor/_influences.html:54
 #: templates/editor/_stock-and-flow.html:93
 msgid "information relations"
 msgstr "relaciones de información"
 
-#: templates/editor/_influences.html:90 templates/editor/_influences.html:96
-#: templates/editor/_stock-and-flow.html:103
-#: templates/editor/_stock-and-flow.html:109
-msgid "information relation"
-msgstr "relación de información"
-
-#: templates/editor/_influences.html:108
+#: templates/editor/_influences.html:69
 #: templates/editor/_stock-and-flow.html:121
 msgid "sectors"
 msgstr "sectores"
 
-#: templates/editor/_influences.html:118 templates/editor/_influences.html:124
-#: templates/editor/_stock-and-flow.html:131
-#: templates/editor/_stock-and-flow.html:137
-msgid "sector"
-msgstr "sector"
-
-#: templates/editor/_influences.html:138
+#: templates/editor/_influences.html:86
 #: templates/editor/_stock-and-flow.html:151
 msgid "toggle nav"
 msgstr "navegador lateral"
 
-#: templates/editor/_influences.html:142
+#: templates/editor/_influences.html:90
 #: templates/editor/_stock-and-flow.html:155
 msgid "inf cursor btn title"
 msgstr "cursor"
 
-#: templates/editor/_influences.html:145
+#: templates/editor/_influences.html:93
 #: templates/editor/_stock-and-flow.html:158
 msgid "inf concept btn title"
 msgstr "concepto"
 
-#: templates/editor/_influences.html:148
+#: templates/editor/_influences.html:96
 #: templates/editor/_stock-and-flow.html:161
 msgid "inf cycle btn title"
 msgstr "ciclo"
 
-#: templates/editor/_influences.html:151
+#: templates/editor/_influences.html:99
 #: templates/editor/_stock-and-flow.html:164
 msgid "inf clone btn title"
 msgstr "clon"
 
-#: templates/editor/_influences.html:154
+#: templates/editor/_influences.html:102
 #: templates/editor/_stock-and-flow.html:167
 msgid "inf material relation btn title"
 msgstr "relación de material"
 
-#: templates/editor/_influences.html:157
+#: templates/editor/_influences.html:105
 #: templates/editor/_stock-and-flow.html:170
 msgid "inf information relation btn title"
 msgstr "relación de información"
 
-#: templates/editor/_influences.html:160
+#: templates/editor/_influences.html:108
 #: templates/editor/_stock-and-flow.html:173
 msgid "inf sector btn title"
 msgstr "sector"
@@ -469,6 +445,26 @@ msgstr "guardar"
 #: templates/editor/_stock-and-flow.html:25
 msgid "concept"
 msgstr "concepto"
+
+#: templates/editor/_stock-and-flow.html:47
+#: templates/editor/_stock-and-flow.html:53
+msgid "cycle"
+msgstr "ciclo"
+
+#: templates/editor/_stock-and-flow.html:75
+#: templates/editor/_stock-and-flow.html:81
+msgid "material relation"
+msgstr "relación de material"
+
+#: templates/editor/_stock-and-flow.html:103
+#: templates/editor/_stock-and-flow.html:109
+msgid "information relation"
+msgstr "relación de información"
+
+#: templates/editor/_stock-and-flow.html:131
+#: templates/editor/_stock-and-flow.html:137
+msgid "sector"
+msgstr "sector"
 
 #: templates/editor/base_editor.html:44
 msgid "overview"

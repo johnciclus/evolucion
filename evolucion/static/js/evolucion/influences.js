@@ -412,7 +412,7 @@ $(document).ready(function(){
         
         this.elements = ['concept', 'clone'];
         this.states   = this.elements.concat(
-                        ['cycle', 'material', 'information', 'sector']);
+                        ['cycle', 'material', 'information', 'sectorinf']);
         
         for(var i in this.states){
           this.list[this.states[i]] = {};
@@ -492,12 +492,12 @@ $(document).ready(function(){
               inf.tmp.information = new figures.informationRelation(inf, undefined, p);
               break;
             }
-            case 'sector': {
-              if(inf.tmp.sector){
-                inf.tmp.sector.remove();
-                inf.tmp.sector = undefined;
+            case 'sectorinf': {
+              if(inf.tmp.sectorinf){
+                inf.tmp.sectorinf.remove();
+                inf.tmp.sectorinf = undefined;
               }
-              inf.tmp.sector = new figures.sector(inf, undefined, p, undefined, "Sector "+inf.idx['sector']);
+              inf.tmp.sectorinf = new figures.sector(inf, undefined, p, undefined, "Sector "+inf.idx['sectorinf']);
               break;
             }
           }
@@ -539,10 +539,10 @@ $(document).ready(function(){
               }
               break;
             }
-            case 'sector': {
-              if(inf.tmp.sector){
-                inf.tmp.sector.remove();
-                inf.tmp.sector = undefined;
+            case 'sectorinf': {
+              if(inf.tmp.sectorinf){
+                inf.tmp.sectorinf.remove();
+                inf.tmp.sectorinf = undefined;
               }
               break;
             }
@@ -582,9 +582,9 @@ $(document).ready(function(){
               break;
             }
             
-            case 'sector': {
-              if(inf.tmp.sector){
-                inf.tmp.sector.moveToPoint(p);
+            case 'sectorinf': {
+              if(inf.tmp.sectorinf){
+                inf.tmp.sectorinf.moveToPoint(p);
               }
               break;
             }
@@ -694,13 +694,13 @@ $(document).ready(function(){
               }
               break;
             }
-            case 'sector': {
-              var sector = new Sector(inf, p);
-              inf.list.sector[sector.id] = sector;
+            case 'sectorinf': {
+              var sectorinf = new Sector(inf, p);
+              inf.list.sectorinf[sectorinf.id] = sectorinf;
               
               inf.activateState('cursor');
-              inf.tmp.sector.remove();
-              inf.tmp.sector = undefined;
+              inf.tmp.sectorinf.remove();
+              inf.tmp.sectorinf = undefined;
               break;
             }
           }
@@ -777,8 +777,8 @@ $(document).ready(function(){
             nameItemsCont = '#information-items';
             break;
           }
-          case 'sector': {
-            nameItemsCont = '#sector-items';
+          case 'sectorinf': {
+            nameItemsCont = '#sectorinf-items';
             break;
           }
         }
@@ -1041,22 +1041,22 @@ $(document).ready(function(){
             dp.append($('<y />').text(pos[3].y));
           }
           
-          list = inf.list['sector'];
+          list = inf.list['sectorinf'];
           group = influence.append('<sectors />').children('sectors');
           for(var i in list){
             
-            sector = group.append('<sector />').children('sector:last');
-            sector.append($('<name />').text(list[i].name));
-            sector.append($('<title />').text(list[i].title));
-            sector.append($('<description />').text(list[i].desc));
+            sectorinf = group.append('<sectorinf />').children('sectorinf:last');
+            sectorinf.append($('<name />').text(list[i].name));
+            sectorinf.append($('<title />').text(list[i].title));
+            sectorinf.append($('<description />').text(list[i].desc));
             
             pos = list[i].pos();
-            position = sector.append('<position />').children('position');
+            position = sectorinf.append('<position />').children('position');
             position.append($('<x />').text(pos.x));
             position.append($('<y />').text(pos.y));
             
             size = list[i].size();
-            size_sector = sector.append('<size />').children('size');
+            size_sector = sectorinf.append('<size />').children('size');
             width = size_sector.append('<width />').children('width');
             width.text(size['width']);
             height = size_sector.append('<height />').children('height');

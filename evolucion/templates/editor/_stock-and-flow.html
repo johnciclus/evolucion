@@ -1,185 +1,249 @@
 {% load i18n %}
 
 <div class="row row-offcanvas row-offcanvas-left">
-  <div class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" id="_influences-sidebar" role="navigation">
-      <div class="panel-group" id="saf-elements">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#influences-elements" href="#concepts-list">
-              <h4 class="panel-title">{% trans 'concepts'|capfirst %}</h4>
-            </a>
-          </div>
-          <div id="_concepts-list" class="panel-collapse collapse in">
-            <div class="panel-body">
-              <div class="panel-group" id="_concepts-items">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#concepts-items" href="#concept-item-0">
-                      <h4 class="panel-title">
-                        {% trans 'concept'|capfirst %} 0
-                      </h4>
-                    </a>
-                  </div>
-                  <div id="concept-item-0" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      {% trans 'concept'|capfirst %} 0
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div id="stockandflow-sidebar" class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" role="navigation">
+    <div id="elements-saf" class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#parameter-list">
+            <h4 class="panel-title">{% trans 'parameters'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="parameter-list" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div class="panel-group" id="parameter-items">
+                              
             </div>
           </div>
         </div>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#influences-elements" href="#cycles-list">
-              <h4 class="panel-title">{% trans 'cycles'|capfirst %}</h4>
-            </a>
-          </div>
-          <div id="_cycles-list" class="panel-collapse collapse">
-            <div class="panel-body">
-              <div class="panel-group" id="_cycles-items">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#cycles-items" href="#cycle-item-0">
-                      <h4 class="panel-title">
-                        {% trans 'cycle'|capfirst %} 0
-                      </h4>
-                    </a>
-                  </div>
-                  <div id="_cycle-item-0" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      {% trans 'cycle'|capfirst %} 0
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#influences-elements" href="#material-rels-list">
-              <h4 class="panel-title">{% trans 'material relations'|capfirst %}</h4>
-            </a>
-          </div>
-          <div id="_material-rels-list" class="panel-collapse collapse">
-            <div class="panel-body">
-              <div class="panel-group" id="_material-rels-items">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#material-rels-items" href="#material-rel-item-0">
-                      <h4 class="panel-title">
-                        {% trans 'material relation'|capfirst %} 0
-                      </h4>
-                    </a>
-                  </div>
-                  <div id="_material-rel-item-0" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      {% trans 'material relation'|capfirst %} 0
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#influences-elements" href="#information-rels-list">
-              <h4 class="panel-title">{% trans 'information relations'|capfirst %}</h4>
-            </a>
-          </div>
-          <div id="_information-rels-list" class="panel-collapse collapse">
-            <div class="panel-body">
-              <div class="panel-group" id="_information-rels-items">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#information-rels-items" href="#information-rel-item-0">
-                      <h4 class="panel-title">
-                        {% trans 'information relation'|capfirst %} 0
-                      </h4>
-                    </a>
-                  </div>
-                  <div id="_information-rel-item-0" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      {% trans 'information relation'|capfirst %} 0
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <a data-toggle="collapse" data-parent="#influences-elements" href="#sectors-list">
-              <h4 class="panel-title">{% trans 'sectors'|capfirst %}</h4>
-            </a>
-          </div>
-          <div id="_sectors-list" class="panel-collapse collapse">
-            <div class="panel-body">
-              <div class="panel-group" id="_sectors-items">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a data-toggle="collapse" data-parent="#sectors-items" href="#sector-item-0">
-                      <h4 class="panel-title">
-                        {% trans 'sector'|capfirst %} 0
-                      </h4>
-                    </a>
-                  </div>
-                  <div id="_sector-item-0" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      {% trans 'sector'|capfirst %} 0
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
       </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#stock-list">
+            <h4 class="panel-title">{% trans 'stocks'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="stock-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="stock-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#flow-list">
+            <h4 class="panel-title">{% trans 'flows'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="flow-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="flow-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#auxiliary-list">
+            <h4 class="panel-title">{% trans 'auxiliaries'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="auxiliary-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="auxiliary-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#exogenous-list">
+            <h4 class="panel-title">{% trans 'exogenous'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="exogenous-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="exogenous-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#delay-list">
+            <h4 class="panel-title">{% trans 'delays'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="delay-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="delay-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#multiplier-list">
+            <h4 class="panel-title">{% trans 'multipliers'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="multiplier-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="multiplier-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#fis-list">
+            <h4 class="panel-title">{% trans 'fis'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="fis-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="fis-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#previousvalue-list">
+            <h4 class="panel-title">{% trans 'previous values'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="previousvalue-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="previousvalue-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#submodel-list">
+            <h4 class="panel-title">{% trans 'submodels'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="submodel-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="submodel-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#relation-list">
+            <h4 class="panel-title">{% trans 'relations'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="relation-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="relation-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#elements-saf" href="#sectorsaf-list">
+            <h4 class="panel-title">{% trans 'sectors'|capfirst %}</h4>
+          </a>
+        </div>
+        <div id="sectorsaf-list" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="panel-group" id="sectorsaf-items">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
   </div>
   
-  <div class="col-xs-13 col-sm-10">
+  <div id="stockandflow-workarea" class="col-xs-13 col-sm-10">
       <p class="pull-left visible-xs">
           <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav"|capfirst %}</button>
       </p>
-      <div id="_toolbar-inf" class="toolbar centered">
+      <div id="toolbar-saf" class="toolbar centered">
         <div class="btn-group">
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cursor btn title'|capfirst %}">
+          <button id="cursor-btn-saf" type="button"    class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf cursor btn title'|capfirst %}">
             <span class="toolbar-btn evo-cursor"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf concept btn title'|capfirst %}">
-            <span class="toolbar-btn evo-concept"></span>
+          <button id="parameter-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf parameter btn title'|capfirst %}">
+            <span class="toolbar-btn evo-parameter"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf cycle btn title'|capfirst %}">
-            <span class="toolbar-btn evo-cycle"></span>
+          <button id="stock-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf stock btn title'|capfirst %}">
+            <span class="toolbar-btn evo-stock"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf clone btn title'|capfirst %}">
+          <button id="flow-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf flow btn title'|capfirst %}">
+            <span class="toolbar-btn evo-flow"></span>
+          </button>
+          <button id="auxiliary-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf auxiliary btn title'|capfirst %}">
+            <span class="toolbar-btn evo-auxiliary"></span>
+          </button>
+          <button id="exogenous-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf exogenous btn title'|capfirst %}">
+            <span class="toolbar-btn evo-exogenous"></span>
+          </button>
+          <button id="delay-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf delay btn title'|capfirst %}">
+            <span class="toolbar-btn evo-delay"></span>
+          </button>
+          <button id="multiplier-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf multiplier btn title'|capfirst %}">
+            <span class="toolbar-btn evo-multiplier"></span>
+          </button>
+          <button id="fis-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf fis btn title'|capfirst %}">
+            <span class="toolbar-btn evo-fis"></span>
+          </button>
+          <button id="previousvalue-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf previousvalue btn title'|capfirst %}">
+            <span class="toolbar-btn evo-previousvalue"></span>
+          </button>
+          <button id="submodel-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf submodel btn title'|capfirst %}">
+            <span class="toolbar-btn evo-submodel"></span>
+          </button>
+          <button id="clone-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf clone btn title'|capfirst %}">
             <span class="toolbar-btn evo-clone"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf material relation btn title'|capfirst %}">
-            <span class="toolbar-btn evo-material-rel"></span>
+          <button id="relation-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf relation btn title'|capfirst %}">
+            <span class="toolbar-btn evo-relation"></span>
           </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf information relation btn title'|capfirst %}">
-            <span class="toolbar-btn evo-information-rel"></span>
-          </button>
-          <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'inf sector btn title'|capfirst %}">
+          <button id="sectorsaf-btn-saf" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="{% trans 'saf sector btn title'|capfirst %}">
             <span class="toolbar-btn evo-sector"></span>
           </button>
         </div>   
       </div>
       
-      <div id="_language-inf" class="language">
-          <div id="_svg-div-inf" class="cont-svg">
-            Influencias
+      <div id="language-saf" class="language">
+          <div id="svg-div-saf" class="cont-svg">
+            
           </div>
+      </div>
+      <div id="messages-saf" class="messages centered">
+          
       </div>
   </div>
 </div>

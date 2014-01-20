@@ -1374,8 +1374,8 @@ $(document).ready(function(){
             }
           }
           
-          obj.ctx.eliminarControlesEle(obj);
-          var limit = obj.ctx.ajuLimLista(list);
+          obj.ctx.deleteControls(obj);
+          var limit = obj.ctx.limitAdjustList(list);
           obj.ctx.idx[obj.type] = ++limit;
           
           obj.fig.remove();
@@ -1389,7 +1389,7 @@ $(document).ready(function(){
       init: function(ctx, p, size, title){
         this._super(ctx);
         
-        this.type = 'sector';
+        this.type = 'sectorinf';
         var idx = this.ctx.idx[this.type]++;
         
         this.id = this.type+'-'+idx;
@@ -1702,7 +1702,7 @@ $(document).ready(function(){
       init: function(){
         this.current_container = 'overview';
         
-        this.areas =  ['overview', 'prose', 'influences', 'stock-and-flow', 'equations', 'behaviors'];
+        this.areas =  ['overview', 'prose', 'influences', 'stockandflow', 'equations', 'behaviors'];
         this.alias =  ['ove', 'pro', 'inf', 'saf', 'equ', 'beh'];
       
         for(i in this.areas){

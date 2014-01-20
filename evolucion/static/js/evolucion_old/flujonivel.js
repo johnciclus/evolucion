@@ -1231,16 +1231,7 @@ var Relac = Relacion.extend({
 
 var FlujoNivel = Editor.extend({
 	init: function(r){
-		// Modelo de Evolución.FlujoNivel //
-		
-		this._super(r);
-		this.id 	 = 'fyn';
-		this.modo 	 = 'curso-fyn';
-		this.div     = '#flujonivel';
-		this.svg	 = '#svg-fyn';
-		this.svg_div = '#svg-div-fyn';
-		this.len_div = '#lenguaje-fyn';
-		
+						
 		this.elements = [
 						'param',	'nivel',	'flujo',
 						'vaaux',	'vaexo',	'retar',

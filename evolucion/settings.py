@@ -162,12 +162,12 @@ LOGGING = {
         },
     },
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'mysite.log',
-            'formatter': 'verbose'
-        },
+        #'file': {
+        #    'level': 'DEBUG',
+        #    'class': 'logging.FileHandler',
+        #    'filename': 'mysite.log',
+        #    'formatter': 'verbose'
+        #},
     },
     'filters': {
         'require_debug_false': {
@@ -175,14 +175,14 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django': {
-            'handlers':['file'],
-            'propagate': True,
-            'level':'DEBUG',
-        },
-        'evolucion': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
+        #'django': {
+        #    'handlers':['file'],
+        #    'propagate': True,
+        #    'level':'DEBUG',
+        #},
+        #'evolucion': {
+        #    'handlers': ['file'],
+        #    'level': 'DEBUG',
+        #},
     }
 }
