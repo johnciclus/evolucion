@@ -62,13 +62,16 @@ a.navbar-brand b {
     padding: 5px 15px 0px 15px;
 }
 
-.panel-body{
-    padding: 5px;
-    
-}
-
 .panel .panel-default{
     margin-bottom: 10px;
+}
+
+.panel-body .panel-title{
+    white-space: nowrap;
+}
+
+.panel-body{
+    padding: 5px;
 }
 
 .evo-cursor {
@@ -102,7 +105,7 @@ a.navbar-brand b {
 .text-edit{
     overflow: hidden;
     background-color:#FFF;
-    border: 2px solid #66afe9;;
+    border: 2px solid #66afe9;
     
     font-size: 14px;
     font-family: Verdana;

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-20 05:48-0500\n"
+"POT-Creation-Date: 2014-01-20 14:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,67 +365,57 @@ msgstr ""
 msgid "Delete?"
 msgstr "borrar?"
 
-#: templates/editor/_influences.html:9 templates/editor/_stock-and-flow.html:9
+#: templates/editor/_influences.html:11
 msgid "concepts"
 msgstr "conceptos"
 
-#: templates/editor/_influences.html:24
-#: templates/editor/_stock-and-flow.html:37
+#: templates/editor/_influences.html:26
 msgid "cycles"
 msgstr "ciclos"
 
-#: templates/editor/_influences.html:39
-#: templates/editor/_stock-and-flow.html:65
+#: templates/editor/_influences.html:41
 msgid "material relations"
 msgstr "relaciones de material"
 
-#: templates/editor/_influences.html:54
-#: templates/editor/_stock-and-flow.html:93
+#: templates/editor/_influences.html:56
 msgid "information relations"
 msgstr "relaciones de información"
 
-#: templates/editor/_influences.html:69
-#: templates/editor/_stock-and-flow.html:121
+#: templates/editor/_influences.html:71
+#: templates/editor/_stock-and-flow.html:174
 msgid "sectors"
 msgstr "sectores"
 
-#: templates/editor/_influences.html:86
-#: templates/editor/_stock-and-flow.html:151
+#: templates/editor/_influences.html:88
+#: templates/editor/_stock-and-flow.html:191
 msgid "toggle nav"
 msgstr "navegador lateral"
 
-#: templates/editor/_influences.html:90
-#: templates/editor/_stock-and-flow.html:155
+#: templates/editor/_influences.html:92
 msgid "inf cursor btn title"
 msgstr "cursor"
 
-#: templates/editor/_influences.html:93
-#: templates/editor/_stock-and-flow.html:158
+#: templates/editor/_influences.html:95
 msgid "inf concept btn title"
 msgstr "concepto"
 
-#: templates/editor/_influences.html:96
-#: templates/editor/_stock-and-flow.html:161
+#: templates/editor/_influences.html:98
 msgid "inf cycle btn title"
 msgstr "ciclo"
 
-#: templates/editor/_influences.html:99
-#: templates/editor/_stock-and-flow.html:164
+#: templates/editor/_influences.html:101
 msgid "inf clone btn title"
 msgstr "clon"
 
-#: templates/editor/_influences.html:102
-#: templates/editor/_stock-and-flow.html:167
+#: templates/editor/_influences.html:104
 msgid "inf material relation btn title"
 msgstr "relación de material"
 
-#: templates/editor/_influences.html:105
-#: templates/editor/_stock-and-flow.html:170
+#: templates/editor/_influences.html:107
 msgid "inf information relation btn title"
 msgstr "relación de información"
 
-#: templates/editor/_influences.html:108
-#: templates/editor/_stock-and-flow.html:173
+#: templates/editor/_influences.html:110
 msgid "inf sector btn title"
 msgstr "sector"
 
@@ -441,29 +431,119 @@ msgstr "descripción del modelo"
 msgid "save"
 msgstr "guardar"
 
-#: templates/editor/_stock-and-flow.html:19
-#: templates/editor/_stock-and-flow.html:25
-msgid "concept"
-msgstr "concepto"
+#: templates/editor/_stock-and-flow.html:9
+msgid "parameters"
+msgstr ""
 
-#: templates/editor/_stock-and-flow.html:47
-#: templates/editor/_stock-and-flow.html:53
-msgid "cycle"
+#: templates/editor/_stock-and-flow.html:24
+msgid "stocks"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:39
+msgid "flows"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:54
+msgid "auxiliaries"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:69
+msgid "exogenous"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:84
+msgid "delays"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:99
+msgid "multipliers"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:114
+msgid "fis"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:129
+msgid "previous values"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:144
+msgid "submodels"
+msgstr ""
+
+#: templates/editor/_stock-and-flow.html:159
+#, fuzzy
+msgid "relations"
+msgstr "ecuaciones"
+
+#: templates/editor/_stock-and-flow.html:195
+#, fuzzy
+msgid "saf cursor btn title"
+msgstr "cursor"
+
+#: templates/editor/_stock-and-flow.html:198
+#, fuzzy
+msgid "saf parameter btn title"
+msgstr "sector"
+
+#: templates/editor/_stock-and-flow.html:201
+#, fuzzy
+msgid "saf stock btn title"
+msgstr "sector"
+
+#: templates/editor/_stock-and-flow.html:204
+#, fuzzy
+msgid "saf flow btn title"
+msgstr "clon"
+
+#: templates/editor/_stock-and-flow.html:207
+#, fuzzy
+msgid "saf auxiliary btn title"
+msgstr "cursor"
+
+#: templates/editor/_stock-and-flow.html:210
+#, fuzzy
+msgid "saf exogenous btn title"
+msgstr "clon"
+
+#: templates/editor/_stock-and-flow.html:213
+#, fuzzy
+msgid "saf delay btn title"
 msgstr "ciclo"
 
-#: templates/editor/_stock-and-flow.html:75
-#: templates/editor/_stock-and-flow.html:81
-msgid "material relation"
+#: templates/editor/_stock-and-flow.html:216
+#, fuzzy
+msgid "saf multiplier btn title"
+msgstr "ciclo"
+
+#: templates/editor/_stock-and-flow.html:219
+#, fuzzy
+msgid "saf fis btn title"
+msgstr "cursor"
+
+#: templates/editor/_stock-and-flow.html:222
+#, fuzzy
+msgid "saf previousvalue btn title"
+msgstr "ciclo"
+
+#: templates/editor/_stock-and-flow.html:225
+#, fuzzy
+msgid "saf submodel btn title"
+msgstr "clon"
+
+#: templates/editor/_stock-and-flow.html:228
+#, fuzzy
+msgid "saf clone btn title"
+msgstr "clon"
+
+#: templates/editor/_stock-and-flow.html:231
+#, fuzzy
+msgid "saf relation btn title"
 msgstr "relación de material"
 
-#: templates/editor/_stock-and-flow.html:103
-#: templates/editor/_stock-and-flow.html:109
-msgid "information relation"
-msgstr "relación de información"
-
-#: templates/editor/_stock-and-flow.html:131
-#: templates/editor/_stock-and-flow.html:137
-msgid "sector"
+#: templates/editor/_stock-and-flow.html:234
+#, fuzzy
+msgid "saf sector btn title"
 msgstr "sector"
 
 #: templates/editor/base_editor.html:44
@@ -691,6 +771,21 @@ msgstr ""
 #: users/views.py:81
 msgid "the username or password is not correct."
 msgstr ""
+
+#~ msgid "concept"
+#~ msgstr "concepto"
+
+#~ msgid "cycle"
+#~ msgstr "ciclo"
+
+#~ msgid "material relation"
+#~ msgstr "relación de material"
+
+#~ msgid "information relation"
+#~ msgstr "relación de información"
+
+#~ msgid "sector"
+#~ msgstr "sector"
 
 #~ msgid "first_name"
 #~ msgstr "nombre propio"
