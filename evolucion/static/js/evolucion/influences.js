@@ -275,7 +275,7 @@ $(document).ready(function(){
         this.figGenerator = figures.concept;
         this.figure(p);
         this.integrateCtx();
-        this.viewControls();
+        this.viewDetails();
       },
       changeUnits: function(units){
         this.units = units;
@@ -288,7 +288,7 @@ $(document).ready(function(){
           this.fig[i].dblclick(this.createTextEditor);
         }
         this.fig[2].click(this.remove);
-        this.fig[3].click(this.viewControls);
+        this.fig[3].click(this.viewDetails);
       }
     });
     
@@ -310,7 +310,7 @@ $(document).ready(function(){
         this.figGenerator = figures.cycle;
         this.figure(p);
         this.integrateCtx();
-        this.viewControls();
+        this.viewDetails();
       },
       changeOrientation: function(orientation){
         if(orientation == "right" || orientation == "left"){
@@ -332,7 +332,7 @@ $(document).ready(function(){
           this.fig[i].dblclick(this.createTextEditor);
         }
         this.fig[3].click(this.remove);
-        this.fig[4].click(this.viewControls);
+        this.fig[4].click(this.viewDetails);
       }
     });
     
@@ -358,12 +358,12 @@ $(document).ready(function(){
         this.figGenerator = figures.materialRelation;
         this.figure(p);
         this.integrateCtx();
-        this.viewControls();
+        this.viewDetails();
       },
       figure: function(p){
         this.fig = this.figGenerator(this.ctx, this, p);
         this.fig[6].click(this.remove);
-        this.fig[7].click(this.viewControls);
+        this.fig[7].click(this.viewDetails);
         this.viewPoints(this.selected);
       }
     });
@@ -390,12 +390,12 @@ $(document).ready(function(){
         this.figGenerator = figures.informationRelation;
         this.figure(p);
         this.integrateCtx();
-        this.viewControls();
+        this.viewDetails();
       },
       figure: function(p){
         this.fig = this.figGenerator(this.ctx, this, p);
         this.fig[6].click(this.remove);
-        this.fig[7].click(this.viewControls);
+        this.fig[7].click(this.viewDetails);
         this.viewPoints(this.selected);
       }
     });
@@ -448,11 +448,9 @@ $(document).ready(function(){
           $('#svg-div-inf').height(languageHeight);
         }
       },
-      
       defActions: function(){
         $(this.svgDiv).mouseenter(function(e){
           var p = inf.pointer.getPosition(e);
-          
           switch(inf.state){
             case 'concept': {
               if(inf.tmp.concept){
@@ -475,7 +473,7 @@ $(document).ready(function(){
                 inf.tmp.clone.remove();
                 inf.tmp.clone = undefined;
               }
-              inf.tmp.clone = new figCopia(inf, undefined, p);
+              inf.tmp.clone = new figures.clone(inf, undefined, p);
               break;
             }
             case 'material': {
@@ -495,11 +493,11 @@ $(document).ready(function(){
               break;
             }
             case 'sector': {
-              if(inf.tmp.seinf){
-                inf.tmp.seinf.remove();
-                inf.tmp.seinf = undefined;
+              if(inf.tmp.sector){
+                inf.tmp.sector.remove();
+                inf.tmp.sector = undefined;
               }
-              inf.tmp.seinf = new figSecto(inf, undefined, p, undefined, "Sector "+inf.idx['seinf']);
+              inf.tmp.sector = new figures.sector(inf, undefined, p, undefined, "Sector "+inf.idx['sector']);
               break;
             }
           }
@@ -542,9 +540,9 @@ $(document).ready(function(){
               break;
             }
             case 'sector': {
-              if(inf.tmp.seinf){
-                inf.tmp.seinf.remove();
-                inf.tmp.seinf = undefined;
+              if(inf.tmp.sector){
+                inf.tmp.sector.remove();
+                inf.tmp.sector = undefined;
               }
               break;
             }
@@ -585,8 +583,8 @@ $(document).ready(function(){
             }
             
             case 'sector': {
-              if(inf.tmp.seinf){
-                inf.tmp.seinf.moveToPoint(p);
+              if(inf.tmp.sector){
+                inf.tmp.sector.moveToPoint(p);
               }
               break;
             }
@@ -618,8 +616,8 @@ $(document).ready(function(){
             case 'clone': {
               var el = inf.pointer.existElement(p);
               if(el){
-                var cp = new Copia(inf, p, el);
-                inf.list.clone[cp.id] = cp;
+                var clone = new Clone(inf, p, el);
+                inf.list.clone[clone.id] = clone;
                 
                 inf.activateState('cursor');
                 inf.tmp.clone.remove();
@@ -697,12 +695,12 @@ $(document).ready(function(){
               break;
             }
             case 'sector': {
-              var se = new Secto(inf, p);
-              inf.list.seinf[se.id] = se;
+              var sector = new Sector(inf, p);
+              inf.list.sector[sector.id] = sector;
               
               inf.activateState('cursor');
-              inf.tmp.seinf.remove();
-              inf.tmp.seinf = undefined;
+              inf.tmp.sector.remove();
+              inf.tmp.sector = undefined;
               break;
             }
           }
@@ -1003,18 +1001,18 @@ $(document).ready(function(){
             
             pos = list[i].pos();
             position = relation.append('<position />').children('position');
-            po = position.append('<po />').children('po');
-            po.append($('<x />').text(pos[0].x));
-            po.append($('<y />').text(pos[0].y));
+            op = position.append('<op />').children('op');
+            op.append($('<x />').text(pos[0].x));
+            op.append($('<y />').text(pos[0].y));
             pco = position.append('<pco />').children('pco');
             pco.append($('<x />').text(pos[1].x));
             pco.append($('<y />').text(pos[1].y));
             pcd = position.append('<pcd />').children('pcd');
             pcd.append($('<x />').text(pos[2].x));
             pcd.append($('<y />').text(pos[2].y));
-            pd = position.append('<pd />').children('pd');
-            pd.append($('<x />').text(pos[3].x));
-            pd.append($('<y />').text(pos[3].y));
+            dp = position.append('<dp />').children('dp');
+            dp.append($('<x />').text(pos[3].x));
+            dp.append($('<y />').text(pos[3].y));
           }
           
           list = inf.list['relin'];
@@ -1029,21 +1027,21 @@ $(document).ready(function(){
             
             pos = list[i].pos();
             position = relation.append('<position />').children('position');
-            po = position.append('<po />').children('po');
-            po.append($('<x />').text(pos[0].x));
-            po.append($('<y />').text(pos[0].y));
+            op = position.append('<op />').children('op');
+            op.append($('<x />').text(pos[0].x));
+            op.append($('<y />').text(pos[0].y));
             pco = position.append('<pco />').children('pco');
             pco.append($('<x />').text(pos[1].x));
             pco.append($('<y />').text(pos[1].y));
             pcd = position.append('<pcd />').children('pcd');
             pcd.append($('<x />').text(pos[2].x));
             pcd.append($('<y />').text(pos[2].y));
-            pd = position.append('<pd />').children('pd');
-            pd.append($('<x />').text(pos[3].x));
-            pd.append($('<y />').text(pos[3].y));
+            dp = position.append('<dp />').children('dp');
+            dp.append($('<x />').text(pos[3].x));
+            dp.append($('<y />').text(pos[3].y));
           }
           
-          list = inf.list['seinf'];
+          list = inf.list['sector'];
           group = influence.append('<sectors />').children('sectors');
           for(var i in list){
             

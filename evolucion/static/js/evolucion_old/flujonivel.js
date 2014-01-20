@@ -1,79 +1,79 @@
 var fyn;
 
-function parametro(r, pc, estilo){
+function parametro(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
-	fig.push(r.rect(pc.x - 15, pc.y - 1, 30, 2, 1).attr(atrFiETmp),
-			 r.circle(pc.x, pc.y, 7).attr(atrFiETmp));
+	fig.push(r.rect(cp.x - 15, cp.y - 1, 30, 2, 1).attr(atrFiETmp),
+			 r.circle(cp.x, cp.y, 7).attr(atrFiETmp));
     return fig;
 };
 
-function nivel(r, pc, estilo){
+function nivel(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
-	fig.push(r.rect(pc.x - 14, pc.y - 14, 28, 28, 1).attr(atrFiETmp));
+	fig.push(r.rect(cp.x - 14, cp.y - 14, 28, 28, 1).attr(atrFiETmp));
     return fig;
 };
 
-function flujo(r, pc, estilo){
+function flujo(r, cp, figureStyle){
 	var fig = r.set();
 	var ang = 0;
-	var p0 = {x: pc.x + 30 - 12*Math.cos(ang + Math.PI/8), y: pc.y - 11 + 12*Math.sin(ang + Math.PI/8)};
-	var p1 = {x: pc.x + 30 - 12*Math.cos(ang - Math.PI/8), y: pc.y - 11 + 12*Math.sin(ang - Math.PI/8)};
+	var p0 = {x: cp.x + 30 - 12*Math.cos(ang + Math.PI/8), y: cp.y - 11 + 12*Math.sin(ang + Math.PI/8)};
+	var p1 = {x: cp.x + 30 - 12*Math.cos(ang - Math.PI/8), y: cp.y - 11 + 12*Math.sin(ang - Math.PI/8)};
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
 	fig.pathT = [
-            ["M", pc.x, pc.y - 8],
-            ["V", pc.y - 15],
-            ["M", pc.x - 5, pc.y - 15],
-            ["H", pc.x + 5]
+            ["M", cp.x, cp.y - 8],
+            ["V", cp.y - 15],
+            ["M", cp.x - 5, cp.y - 15],
+            ["H", cp.x + 5]
         ];
     fig.pathLinI = [
-            ["M", pc.x - 30, pc.y - 11],
-            ["H", pc.x + 15]
+            ["M", cp.x - 30, cp.y - 11],
+            ["H", cp.x + 15]
         ];
     fig.pathLinD = [
-            ["M", pc.x + 15, pc.y - 11],
-            ["H", pc.x + 30]
+            ["M", cp.x + 15, cp.y - 11],
+            ["H", cp.x + 30]
         ];
     fig.pathArrow = [
-    		["M", pc.x + 30, pc.y - 11], 
+    		["M", cp.x + 30, cp.y - 11], 
     		["L", p0.x, p0.y], 
     		["L", p1.x, p1.y], 
     		["Z"]
     	];
     fig.pathNubI = [
-            ["M", pc.x - 30, pc.y - 11],
-            ["A", 6, 6, pc.x - 30, 1, 0, pc.x - 40, pc.y - 21],
-            ["A", 6, 6, pc.x - 40, 1, 0, pc.x - 50, pc.y - 11],
-            ["A", 6, 6, pc.x - 50, 1, 0, pc.x - 40, pc.y - 1],
-            ["A", 6, 6, pc.x - 40, 1, 0, pc.x - 30, pc.y - 11]
+            ["M", cp.x - 30, cp.y - 11],
+            ["A", 6, 6, cp.x - 30, 1, 0, cp.x - 40, cp.y - 21],
+            ["A", 6, 6, cp.x - 40, 1, 0, cp.x - 50, cp.y - 11],
+            ["A", 6, 6, cp.x - 50, 1, 0, cp.x - 40, cp.y - 1],
+            ["A", 6, 6, cp.x - 40, 1, 0, cp.x - 30, cp.y - 11]
         ];
     fig.pathNubD = [
-            ["M", pc.x + 30, pc.y - 11],
-            ["A", 6, 6, pc.x + 30, 1, 1, pc.x + 40, pc.y - 21],
-            ["A", 6, 6, pc.x + 40, 1, 1, pc.x + 50, pc.y - 11],
-            ["A", 6, 6, pc.x + 50, 1, 1, pc.x + 40, pc.y - 1],
-            ["A", 6, 6, pc.x + 40, 1, 1, pc.x + 30, pc.y - 11]
+            ["M", cp.x + 30, cp.y - 11],
+            ["A", 6, 6, cp.x + 30, 1, 1, cp.x + 40, cp.y - 21],
+            ["A", 6, 6, cp.x + 40, 1, 1, cp.x + 50, cp.y - 11],
+            ["A", 6, 6, cp.x + 50, 1, 1, cp.x + 40, cp.y - 1],
+            ["A", 6, 6, cp.x + 40, 1, 1, cp.x + 30, cp.y - 11]
         ];  
     
-	fig.push(r.circle(pc.x, pc.y + 2, 10).attr(atrFiETmp),
+	fig.push(r.circle(cp.x, cp.y + 2, 10).attr(atrFiETmp),
 			 r.path(fig.pathT).attr(atrFiETmp),
 			 r.path(fig.pathLinI).attr(atrFiD),
 			 r.path(fig.pathLinD).attr(atrFiD),
 			 r.path(fig.pathArrow).attr(style.figure),
 			 r.path(fig.pathNubI).attr(atrFiETmp),
 			 r.path(fig.pathNubD).attr(atrFiETmp),
-			 r.circle(pc.x - 30, pc.y - 11, 4).attr(style.point),
-			 r.circle(pc.x + 30, pc.y - 11, 4).attr(style.point));
+			 r.circle(cp.x - 30, cp.y - 11, 4).attr(style.point),
+			 r.circle(cp.x + 30, cp.y - 11, 4).attr(style.point));
 			 
 	fig[7].toFront();    	
 	fig[8].toFront();
@@ -82,107 +82,107 @@ function flujo(r, pc, estilo){
     return fig;
 };
 
-function varAuxiliar(r, pc, estilo){
+function varAuxiliar(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
-	fig.push(r.circle(pc.x, pc.y, 12).attr(atrFiETmp));
+	fig.push(r.circle(cp.x, cp.y, 12).attr(atrFiETmp));
     return fig;
 };
 
-function varExogena(r, pc, estilo){
+function varExogena(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
-	fig.push(r.circle(pc.x, pc.y, 12).attr(atrFiETmp),
-			 r.circle(pc.x, pc.y, 7).attr(atrFiETmp));
+	fig.push(r.circle(cp.x, cp.y, 12).attr(atrFiETmp),
+			 r.circle(cp.x, cp.y, 7).attr(atrFiETmp));
     return fig;
 };
 
-function retardo(r, pc, estilo){
+function retardo(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
-	fig.push(r.rect(pc.x - 15, pc.y - 15, 30, 30, 1).attr(atrFiETmp),
-			 r.rect(pc.x - 15, pc.y, 10, 15, 1).attr(atrFiETmp),
-			 r.rect(pc.x -  5, pc.y, 10, 15, 1).attr(atrFiETmp),
-			 r.rect(pc.x +  5, pc.y, 10, 15, 1).attr(atrFiETmp));
+	fig.push(r.rect(cp.x - 15, cp.y - 15, 30, 30, 1).attr(atrFiETmp),
+			 r.rect(cp.x - 15, cp.y, 10, 15, 1).attr(atrFiETmp),
+			 r.rect(cp.x -  5, cp.y, 10, 15, 1).attr(atrFiETmp),
+			 r.rect(cp.x +  5, cp.y, 10, 15, 1).attr(atrFiETmp));
     return fig;
 };
 
-function multiplicador(r, pc, estilo){
+function multiplicador(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
 	fig.pathMarco = [
-            ["M", pc.x - 10, pc.y - 10],
-            ["V", pc.y + 10 ],
-            ["H", pc.x + 10]
+            ["M", cp.x - 10, cp.y - 10],
+            ["V", cp.y + 10 ],
+            ["H", cp.x + 10]
         ];
 	fig.pathCurva = [
-            ["M", pc.x - 10, pc.y ],
-            ["L", pc.x - 5,  pc.y + 5],
-            ["L", pc.x ,     pc.y - 5],
-            ["L", pc.x + 5,  pc.y ],
-            ["L", pc.x + 10, pc.y - 10]
+            ["M", cp.x - 10, cp.y ],
+            ["L", cp.x - 5,  cp.y + 5],
+            ["L", cp.x ,     cp.y - 5],
+            ["L", cp.x + 5,  cp.y ],
+            ["L", cp.x + 10, cp.y - 10]
         ];
         
-	fig.push(r.rect(pc.x - 15, pc.y - 15, 30, 30, 1).attr(atrFiETmp),
+	fig.push(r.rect(cp.x - 15, cp.y - 15, 30, 30, 1).attr(atrFiETmp),
 			 r.path(fig.pathMarco).attr(atrFiETmp),
 			 r.path(fig.pathCurva).attr(atrFiETmp));
     return fig;
 };
 
-function elfis(r, pc, estilo){
+function elfis(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
 	fig.pathLin = [
-            ["M", pc.x - 15, pc.y ],
-            ["L", pc.x - 10, pc.y ],
-            ["L", pc.x ,     pc.y + 14],
-            ["L", pc.x + 10, pc.y ],
-            ["L", pc.x + 15, pc.y ],
-            ["M", pc.x - 15, pc.y + 14 ],
-            ["L", pc.x - 10, pc.y + 14],
-            ["L", pc.x ,     pc.y ],
-            ["L", pc.x + 10, pc.y + 14],
-            ["L", pc.x + 15, pc.y + 14]
+            ["M", cp.x - 15, cp.y ],
+            ["L", cp.x - 10, cp.y ],
+            ["L", cp.x ,     cp.y + 14],
+            ["L", cp.x + 10, cp.y ],
+            ["L", cp.x + 15, cp.y ],
+            ["M", cp.x - 15, cp.y + 14 ],
+            ["L", cp.x - 10, cp.y + 14],
+            ["L", cp.x ,     cp.y ],
+            ["L", cp.x + 10, cp.y + 14],
+            ["L", cp.x + 15, cp.y + 14]
         ];
         
-	fig.push(r.rect(pc.x - 15, pc.y - 15, 30, 30, 1).attr(atrFiETmp),
+	fig.push(r.rect(cp.x - 15, cp.y - 15, 30, 30, 1).attr(atrFiETmp),
 			 r.path(fig.pathLin).attr(atrFiETmp));
     return fig;
 };
 
-function valAnterior(r, pc, estilo){
+function valAnterior(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
 	fig.pathRom = [
-            ["M", pc.x     , pc.y - 12],
-            ["L", pc.x + 12, pc.y ],
-           	["L", pc.x     , pc.y + 12],
-           	["L", pc.x - 12, pc.y ],
+            ["M", cp.x     , cp.y - 12],
+            ["L", cp.x + 12, cp.y ],
+           	["L", cp.x     , cp.y + 12],
+           	["L", cp.x - 12, cp.y ],
            	["Z"]
         ];
 	fig.pathLin = [
-            ["M", pc.x - 12, pc.y ],
-            ["L", pc.x + 12, pc.y ],
-            ["M", pc.x     , pc.y ],
-            ["L", pc.x     , pc.y + 12],
+            ["M", cp.x - 12, cp.y ],
+            ["L", cp.x + 12, cp.y ],
+            ["M", cp.x     , cp.y ],
+            ["L", cp.x     , cp.y + 12],
         ];
         
 	fig.push(r.path(fig.pathRom).attr(atrFiETmp),
@@ -190,41 +190,41 @@ function valAnterior(r, pc, estilo){
     return fig;
 };
 
-function subModelo(r, pc, estilo){
+function subModelo(r, cp, figureStyle){
 	var fig = r.set();
 	var atrFiETmp = clonar(atrFiE);
 	
-	atrFiETmp['stroke-dasharray'] = estilo.dasharray_fig;
+	atrFiETmp['stroke-dasharray'] = figureStyle.dasharray_fig;
 	
 	fig.pathLin = [
-            ["M", pc.x - 2 , pc.y - 7],
-            ["H", pc.x - 10],
-            ["V", pc.y + 3],
-           	["H", pc.x + 5],
-           	["M", pc.x - 4, pc.y ],
-            ["L", pc.x    , pc.y ],
-            ["M", pc.x - 2, pc.y ],
-            ["L", pc.x - 2, pc.y + 9],
+            ["M", cp.x - 2 , cp.y - 7],
+            ["H", cp.x - 10],
+            ["V", cp.y + 3],
+           	["H", cp.x + 5],
+           	["M", cp.x - 4, cp.y ],
+            ["L", cp.x    , cp.y ],
+            ["M", cp.x - 2, cp.y ],
+            ["L", cp.x - 2, cp.y + 9],
         ];
         
-	fig.push(r.rect(pc.x - 15, pc.y - 15, 30, 30, 1).attr(atrFiETmp),
+	fig.push(r.rect(cp.x - 15, cp.y - 15, 30, 30, 1).attr(atrFiETmp),
 			 r.path(fig.pathLin).attr(atrFiETmp),
-			 r.rect(pc.x - 2, pc.y - 10, 7, 7, 1).attr(atrFiETmp),
-			 r.rect(pc.x + 5, pc.y, 7, 7, 1).attr(atrFiETmp),
-			 r.circle(pc.x - 2, pc.y + 9, 3).attr(atrFiETmp)
+			 r.rect(cp.x - 2, cp.y - 10, 7, 7, 1).attr(atrFiETmp),
+			 r.rect(cp.x + 5, cp.y, 7, 7, 1).attr(atrFiETmp),
+			 r.circle(cp.x - 2, cp.y + 9, 3).attr(atrFiETmp)
 			 );
     return fig;
 };
 
 
-function figFyN(ctx, parent, func, p, title, estilo){
+function figFyN(ctx, parent, func, p, title, figureStyle){
 	var bb, po, ancho, alto, tamEl;
 	var fig = figure(ctx);
 	var atrTexTmp = clonar(atrTex);
 	var atrRectTmp = clonar(style.rectangle);
 	
-	atrTexTmp['fill'] = estilo.color || atrTex['fill']; 
-	atrRectTmp['stroke-dasharray'] = estilo.dasharray_rec || style.rectangle['stroke-dasharray'];
+	atrTexTmp['fill'] = figureStyle.color || atrTex['fill']; 
+	atrRectTmp['stroke-dasharray'] = figureStyle.dasharray_rec || style.rectangle['stroke-dasharray'];
 	
 	fig.p = {x: p.x, y: p.y};
 	fig.push(
@@ -239,7 +239,7 @@ function figFyN(ctx, parent, func, p, title, estilo){
 	
 	fig.push(
 		ctx.r.rect(po.x, po.y, ancho, alto, 4).attr(atrRectTmp),
-		func(ctx.r, {'x': po.x + ancho/2, 'y': po.y - tamEl/2}, estilo),
+		func(ctx.r, {'x': po.x + ancho/2, 'y': po.y - tamEl/2}, figureStyle),
 		ctx.r.image('/images/cerrar.png', po.x + ancho - 12, po.y - 12, 24, 24)
 	);
 	
@@ -248,9 +248,9 @@ function figFyN(ctx, parent, func, p, title, estilo){
 	fig[3].toFront();
 	fig[3].hide();
 	
-	if(estilo.cursor){
+	if(figureStyle.cursor){
 		for(var i=0; i<3; i++){
-			fig[i].attr({ 'cursor': estilo.cursor});
+			fig[i].attr({ 'cursor': figureStyle.cursor});
 		};
 	}
 	
@@ -315,16 +315,16 @@ function figFyN(ctx, parent, func, p, title, estilo){
 	return fig;
 };
 
-function figParam(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, parametro, p, title, estilo);
+function figParam(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, parametro, p, title, figureStyle);
 };
 
-function figNivel(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, nivel, p, title, estilo);
+function figNivel(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, nivel, p, title, figureStyle);
 };
 
-function figFlujo(ctx, parent, p, title, estilo){
-	var fig = figFyN(ctx, parent, flujo, p, title, estilo);
+function figFlujo(ctx, parent, p, title, figureStyle){
+	var fig = figFyN(ctx, parent, flujo, p, title, figureStyle);
 	
 	fig.timer = undefined;
 	fig.getBorder = function(){
@@ -429,7 +429,7 @@ function figFlujo(ctx, parent, p, title, estilo){
 		return res;
 	};
 	fig.update = function(){
-		var bb, po, pd, pc, pe, p0, p1, pt;
+		var bb, po, pd, cp, pe, p0, p1, pt;
 		var dx, dy, dx_nub_Ori = 0, dy_nub_Ori = 0, dx_nub_Des = 0, dy_nub_Des = 0;
 		var ancho_tex = 0, alto_tex = 0;
 		var ali, ang, ang_fin, sin_ang, cos_ang; 
@@ -437,7 +437,7 @@ function figFlujo(ctx, parent, p, title, estilo){
 		var elFig = el.fig;	
 		
 		bb = fig[2][0].getBBox();
-		pc = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+		cp = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
 		bb = fig[2][7].getBBox();
 		po = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
 		bb = fig[2][8].getBBox();
@@ -470,15 +470,15 @@ function figFlujo(ctx, parent, p, title, estilo){
 		if(ali.type.length <= 2){
 			if(ali.type[0] == 'H'){
 				pe = {x: pd.x, 	y: po.y};
-				pc = {x: (po.x + pe.x)/2,  y: po.y + 11};
+				cp = {x: (po.x + pe.x)/2,  y: po.y + 11};
 			}
 			else if(ali.type[0] == 'V'){
 				pe = {x: po.x, 	y: pd.y};
-				pc = {x: po.x + 11*sin_ang,  y: (po.y + pe.y)/2};
+				cp = {x: po.x + 11*sin_ang,  y: (po.y + pe.y)/2};
 			}
 			else{
 				pe = {x: pd.x, 	y: pd.y};
-				pc = {x: po.x,  y: po.y};
+				cp = {x: po.x,  y: po.y};
 			}
 			ang_fin = sin_ang*(-90);
 			
@@ -489,15 +489,15 @@ function figFlujo(ctx, parent, p, title, estilo){
 		else if(ali.type.length == 4){
 			if(ali.type[0] == 'H'){
 				pe = {x: pd.x, 	y: po.y};
-				pc = {x: (po.x + pe.x)/2,  y: po.y + 11*sin_ang};
+				cp = {x: (po.x + pe.x)/2,  y: po.y + 11*sin_ang};
 			}
 			else if(ali.type[0] == 'V'){
 				pe = {x: po.x, 	y: pd.y};
-				pc = {x: po.x + 11*cos_ang,  y: (po.y + pe.y)/2};
+				cp = {x: po.x + 11*cos_ang,  y: (po.y + pe.y)/2};
 			}
 			else{
 				pe = {x: pd.x, 	y: pd.y};
-				pc = {x: po.x,  y: po.y};
+				cp = {x: po.x,  y: po.y};
 			}
 			
 			switch(ali.type[3]){
@@ -540,23 +540,23 @@ function figFlujo(ctx, parent, p, title, estilo){
 		}
 		
 		bb = fig[0].getBBox();
-		pt = {	x: pc.x - (bb.x + bb.width/2),  
-				y: pc.y + 16*sin_ang - alto_tex - bb.y};
+		pt = {	x: cp.x - (bb.x + bb.width/2),  
+				y: cp.y + 16*sin_ang - alto_tex - bb.y};
 		fig[0].transform("...T" + pt.x + "," + pt.y);
 		
 		bb = fig[1].getBBox();
-		pt = {	x: pc.x - (bb.x + bb.width/2),
-				y: pc.y + 15*sin_ang - alto_tex - bb.y};
+		pt = {	x: cp.x - (bb.x + bb.width/2),
+				y: cp.y + 15*sin_ang - alto_tex - bb.y};
 		fig[1].transform("...T" + pt.x + "," + pt.y);
 		
 		bb = fig[2][0].getBBox();
-		pt = {	x: pc.x + 2*cos_ang - (bb.x + bb.width/2),  
-				y: pc.y + 2*sin_ang - (bb.y + bb.height/2)};
+		pt = {	x: cp.x + 2*cos_ang - (bb.x + bb.width/2),  
+				y: cp.y + 2*sin_ang - (bb.y + bb.height/2)};
 		fig[2][0].transform("...T" + pt.x + "," + pt.y);
 		
 		bb = fig[2][1].getBBox();
-		pt = {	x: pc.x - 11.5*cos_ang - (bb.x + bb.width/2),  
-				y: pc.y - 11.5*sin_ang - (bb.y + bb.height/2)};
+		pt = {	x: cp.x - 11.5*cos_ang - (bb.x + bb.width/2),  
+				y: cp.y - 11.5*sin_ang - (bb.y + bb.height/2)};
 		fig[2][1].transform("...T" + pt.x + "," + pt.y);
 		
 		p0 = {x: pd.x - 12*Math.cos(ali.ang + Math.PI/8), y: pd.y + 12*Math.sin(ali.ang + Math.PI/8)};
@@ -595,8 +595,8 @@ function figFlujo(ctx, parent, p, title, estilo){
 		fig[2][6].transform("...T" + pt.x + "," + pt.y);
 		
 		bb = fig[3].getBBox();
-		pt = {	x: pc.x + ancho_tex/2 - (bb.x + bb.width/2),  
-				y: pc.y + 15*sin_ang - 12 - alto_tex - bb.y};
+		pt = {	x: cp.x + ancho_tex/2 - (bb.x + bb.width/2),  
+				y: cp.y + 15*sin_ang - 12 - alto_tex - bb.y};
 		fig[3].transform("...T" + pt.x + "," + pt.y);	
 					
 		fig.parent.border = fig.getBorder();
@@ -682,36 +682,36 @@ function figFlujo(ctx, parent, p, title, estilo){
 	return fig;
 };
 
-function figVaAux(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, varAuxiliar, p, title, estilo);
+function figVaAux(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, varAuxiliar, p, title, figureStyle);
 };
 
-function figVaExo(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, varExogena, p, title, estilo);
+function figVaExo(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, varExogena, p, title, figureStyle);
 };
 
-function figRetar(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, retardo, p, title, estilo);
+function figRetar(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, retardo, p, title, figureStyle);
 };
 
-function figMulti(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, multiplicador, p, title, estilo);
+function figMulti(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, multiplicador, p, title, figureStyle);
 };
 
-function figElFis(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, elfis, p, title, estilo);
+function figElFis(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, elfis, p, title, figureStyle);
 };
 
-function figVaAnt(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, valAnterior, p, title, estilo);
+function figVaAnt(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, valAnterior, p, title, figureStyle);
 };
 
-function figVaAnt(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, valAnterior, p, title, estilo);
+function figVaAnt(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, valAnterior, p, title, figureStyle);
 };
 
-function figSubmo(ctx, parent, p, title, estilo){
-	return figFyN(ctx, parent, subModelo, p, title, estilo);
+function figSubmo(ctx, parent, p, title, figureStyle){
+	return figFyN(ctx, parent, subModelo, p, title, figureStyle);
 }; 
 
 
@@ -729,7 +729,7 @@ var Param = Elemento.extend({
 		this.unid = "Adimensional";
 		
 		this.list = this.ctx.list.param;
-		this.cone['aceDes'] = false;
+		this.connec['aceDes'] = false;
 		
 		this.genFig = figParam;
 		this.figure(p);
@@ -1083,7 +1083,7 @@ var VaExo = Elemento.extend({
 		this.unid = "Adimensional";
 		
 		this.list = this.ctx.list.vaexo;
-		this.cone['aceDes'] = false;
+		this.connec['aceDes'] = false;
 		
 		this.genFig = figVaExo;
 		this.figure(p);
@@ -1189,7 +1189,7 @@ var Submo = Elemento.extend({
 		this.unid = "Adimensional";
 		
 		this.list = this.ctx.list.submo;
-		this.cone['aceDes'] = false;
+		this.connec['aceDes'] = false;
 		
 		this.genFig = figSubmo;
 		this.figure(p);
@@ -1639,11 +1639,11 @@ var FlujoNivel = Editor.extend({
 					if(el){
 						p = fyn.path.determinePoint(el.border, p);
 						alpha = fyn.detAngEnPath(el.border, p);
-						if(relation.state == 'initial' && el.cone['aceOri']){
+						if(relation.state == 'initial' && el.connec['aceOri']){
 							relation.from = el;
 							relation.activateSecondControl(fyn, p, alpha);
 						}
-						else if(relation.state == 'extend' && el.cone['aceDes']){
+						else if(relation.state == 'extend' && el.connec['aceDes']){
 							var noEsMismo = false;
 							var noExRelOri = false;
 							var noExRelDes = false;

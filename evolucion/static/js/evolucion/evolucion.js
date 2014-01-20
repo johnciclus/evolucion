@@ -9,15 +9,22 @@ $(document).ready(function(){
       base:       { 'stroke-width': 0,     'stroke': '',     'fill': '#fff', 'fill-opacity': 0},
       border:     { 'stroke': '#008ec7'},     //atrBor
       border_dis: { 'stroke': '#fff'},        //atrDes
+      container:  { 'stroke': '#888', 'stroke-width': 2.5 },   //atrCon
       curve:      { 'stroke-width': 1.0,  'stroke': '#555', 'stroke-linecap': 'round'},
       figure:     { 'stroke-width': 1.0,   'stroke': '#555', 'fill': '#555', 'stroke-linecap': 'round'},
+      
+      atrFiE:     { 'stroke-width': 2.0,   'stroke': '#555', 'fill': '#fff', 'stroke-linecap': 'round'},
+      atrFiA:     { 'stroke-width': 2.0,   'stroke': '#555', 'fill': '#f55', 'stroke-linecap': 'round'},
+      atrFiD:     { 'stroke-width': 3.0,   'stroke': '#555', 'fill': '#fff'},
+      
       information_relation: { 'stroke-width': 1.5},
       line:       { 'stroke': '#008ec7',  'stroke-dasharray': '. '}, //atrLin
       material_relation: { 'stroke-width': 3.0},
       point:      { 'stroke': '#008ec7', 'fill': '#fff'},  //atrPun
       rectangle:  { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''},
       symbol:     { 'font-size': 20,     'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'},
-      title:      { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'}
+      text:       {  'font-size': 12, 'font-family': 'Verdana', 'fill': '#000'},  //atrTex
+      title:      { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'}  //atrTit
     };
     
     this.figures = {
@@ -315,6 +322,283 @@ $(document).ready(function(){
         }
         utils.parentReference(fig, parent);
         return fig;
+      },
+      
+      clone: function(ctx, parent, p){
+        var fig = ctx.r.set();
+        
+        fig.p = {x: p.x, y: p.y};
+        
+        fig.push(
+          ctx.r.image('/static/icons/clone-icon.png', 0, 0, 24, 24)
+        ); 
+        fig[0].toFront();
+        
+        fig.moveToPoint = function(p){
+          this[0].transform("T" + (p.x - 12) + "," + (p.y - 12));
+        };
+        return fig;
+      },
+      sector: function (ctx, parent, p, size, title){
+        var fig = figures.figure(ctx);
+        var cp, bb, op, width, height, middle_x, middle_y;
+        var size_dp = size || {'width': 250, 'height': 500};
+        
+        fig.p = {x: p.x, y: p.y};
+        fig.push(
+          ctx.r.text(fig.p.x, fig.p.y, title).attr(style.title)
+        );
+        
+        bb = fig[0].getBBox();
+        op = {x: bb.x - 2, y: bb.y - 1};
+        width = bb.width + 4;
+        height = bb.height + 2;
+        middle_x = op.x + width/2;
+        middle_y = op.y + height + 2;
+        
+        cp = {  p0x: middle_x - size_dp.width/2, p0y: middle_y,
+                p1x: middle_x + size_dp.width/2, p1y: middle_y, 
+                p2x: middle_x + size_dp.width/2, p2y: middle_y + size_dp.height, 
+                p3x: middle_x - size_dp.width/2, p3y: middle_y + size_dp.height };
+        
+        fig.push(
+          ctx.r.rect(op.x, op.y, width, height, 4).attr(style.rectangle),
+          ctx.r.rect(cp.p0x, cp.p0y, size_dp.width, size_dp.height, 0).attr(style.container),
+          ctx.r.circle(cp.p0x, cp.p0y, 4).attr(style.point),
+          ctx.r.circle(cp.p1x, cp.p1y, 4).attr(style.point),
+          ctx.r.circle(cp.p2x, cp.p2y, 4).attr(style.point),
+          ctx.r.circle(cp.p3x, cp.p3y, 4).attr(style.point),
+          ctx.r.image('/static/icons/close.png', op.x + width - 12, op.y - 12, 24, 24),
+          ctx.r.image('/static/icons/info.png', op.x + width - 36, op.y - 12, 24, 24)          
+        );
+          
+        fig[1].toFront();
+        fig[0].toFront();
+        fig[7].toFront();
+        fig[8].toFront();
+        fig[7].hide();
+        fig[8].hide();
+        
+        for(var i=0; i<3; i++){
+          fig[i].attr({ cursor: "move"});
+        }
+        
+        fig[3].attr({ cursor: "nw-resize"});
+        fig[4].attr({ cursor: "ne-resize"});
+        fig[5].attr({ cursor: "se-resize"});
+        fig[6].attr({ cursor: "sw-resize"});
+        
+        fig.changeTitle = function(title){
+          var bb, cp, op, width, height, middle_x, middle_y;
+          
+          this[0].attr('text', title);
+          
+          bb = this[0].getBBox();
+          op = {x: bb.x - 2, y: bb.y -1};
+          width = bb.width + 4;
+          height = bb.height + 2;
+          middle_x = op.x + width/2;
+          
+          this[1].attr('x', op.x);
+          this[1].attr('y', op.y);
+          this[1].attr('width', width);
+          this[1].attr('height', height);
+          this[1].transform('');
+          
+          this[2].attr('x', middle_x - (this[2].attr('width')/2));
+          this[2].attr('y', op.y + height + 2);
+          this[2].transform('');
+          
+          this[7].attr('x', op.x + width - 12);
+          this[7].attr('y', op.y - 12);
+          this[7].transform('');
+          
+          bb = this[2].getBBox();
+          op = {x: bb.x, y: bb.y};
+          width = bb.width;
+          height = bb.height;
+          
+          cp = {  p0x: op.x,      p0y: op.y,
+              p1x: op.x + width,  p1y: op.y, 
+              p2x: op.x + width,  p2y: op.y + height, 
+              p3x: op.x,          p3y: op.y + height};
+                  
+          this[3].attr('cx', cp.p0x);
+          this[3].attr('cy', cp.p0y);
+          this[3].transform('');
+          
+          this[4].attr('cx', cp.p1x);
+          this[4].attr('cy', cp.p1y);
+          this[4].transform('');
+          
+          this[5].attr('cx', cp.p2x);
+          this[5].attr('cy', cp.p2y);
+          this[5].transform('');
+          
+          this[6].attr('cx', cp.p3x);
+          this[6].attr('cy', cp.p3y);
+          this[6].transform('');
+        };
+        fig.getArea = function(){
+          var bb = this[2].getBBox();
+          
+          return [["M", bb.x, bb.y], 
+              ["H", bb.x2], 
+              ["V", bb.y2],
+              ["H", bb.x],
+              ["V", bb.y]]; 
+        };
+        fig.getBorder = function(){
+          var bb = this[1].getBBox();
+          
+          this.border = [["M", bb.x - 2, bb.y -1], 
+                  ["H", bb.x2 + 2], 
+                  ["V", bb.y2 + 1],
+                  ["H", bb.x - 2],
+                  ["V", bb.y - 1]];
+          return this.border;
+        };
+        fig.getSize = function(){
+          var bb = this[2].getBBox(); 
+          
+          return {'width':  bb.width,
+                  'height': bb.height };
+        };
+        fig.showPoints = function(){
+          fig[3].show();
+          fig[4].show();
+          fig[5].show();
+          fig[6].show();
+        };
+        fig.hidePoints = function(){
+          fig[3].hide();
+          fig[4].hide();
+          fig[5].hide();
+          fig[6].hide();
+        };
+        
+        fig[3].update = function (dx, dy) {
+          var bb, bb_tit, dx_tit, op, width, height;
+          
+          bb = fig[2].getBBox();
+          op = {x: bb.x, y: bb.y};
+          width = bb.width;
+          height  = bb.height;
+          
+          bb_tit = fig[1].getBBox();
+          dx_tit = (op.x + width/2) - (bb_tit.x + (bb_tit.width/2));
+          
+          if( ((width - dx) > 10) && ((height - dy) > 10)){
+            fig[0].transform("...T" + dx_tit + "," + dy);
+            fig[1].transform("...T" + dx_tit + "," + dy);
+            
+            fig[2].attr('width',  width - dx);
+            fig[2].attr('height', height  - dy);
+            fig[2].transform("...T" + dx + "," + dy);
+            fig[3].transform("...T" + dx + "," + dy);
+            fig[4].transform("...T" + 0  + "," + dy);
+            fig[6].transform("...T" + dx + "," + 0);
+            
+            fig[7].transform("...T" + dx_tit + "," + dy);
+          }
+        };
+        fig[4].update = function (dx, dy) {
+          var bb, bb_tit, dx_tit, op, width, height;
+          
+          bb = fig[2].getBBox();
+          op = {x: bb.x, y: bb.y};
+          width = bb.width;
+          height  = bb.height;
+          
+          bb_tit = fig[1].getBBox();
+          dx_tit = (op.x + width/2) -
+          (bb_tit.x + (bb_tit.width/2));
+          
+          if( ((width + dx) > 10) && ((height - dy) > 10)){
+            fig[0].transform("...T" + dx_tit + "," + dy);
+            fig[1].transform("...T" + dx_tit + "," + dy);
+            
+            fig[2].attr('width',  width + dx);
+            fig[2].attr('height', height  - dy);
+            fig[2].transform("...T" + 0  + "," + dy);
+            fig[3].transform("...T" + 0 + "," + dy);
+            fig[4].transform("...T" + dx  + "," + dy);
+            fig[5].transform("...T" + dx + "," + 0);
+            
+            fig[7].transform("...T" + dx_tit + "," + dy);
+          }
+        };
+        fig[5].update = function (dx, dy) {
+          var bb, bb_tit, dx_tit, op, width, height;
+          
+          bb = fig[2].getBBox();
+          op = {x: bb.x, y: bb.y};
+          width = bb.width;
+          height  = bb.height;
+          
+          bb_tit = fig[1].getBBox();
+          dx_tit = (op.x + width/2) -
+          (bb_tit.x + (bb_tit.width/2));
+          
+          if( ((width + dx) > 10) && ((height + dy) > 10)){
+            fig[0].transform("...T" + dx_tit + "," + 0);
+            fig[1].transform("...T" + dx_tit + "," + 0);
+            
+            fig[2].attr('width',  width + dx);
+            fig[2].attr('height', height  + dy);
+            fig[2].transform("...T" + 0  + "," + 0);
+            fig[4].transform("...T" + dx + "," + 0);
+            fig[5].transform("...T" + dx + "," + dy);
+            fig[6].transform("...T" + 0  + "," + dy);
+            
+            fig[7].transform("...T" + dx_tit + "," + 0);
+          }
+        };
+        fig[6].update = function (dx, dy) {
+          var bb, bb_tit, dx_tit, op, width, height;
+          
+          bb = fig[2].getBBox();
+          op = {x: bb.x, y: bb.y};
+          width = bb.width;
+          height  = bb.height;
+          
+          bb_tit = fig[1].getBBox();
+          dx_tit = (op.x + width/2) -
+          (bb_tit.x + (bb_tit.width/2));
+          
+          if( ((width - dx) > 10) && ((height + dy) > 10)){
+            fig[0].transform("...T" + dx_tit + "," + 0);
+            fig[1].transform("...T" + dx_tit + "," + 0);
+            
+            fig[2].attr('width',  width - dx);
+            fig[2].attr('height', height  + dy);
+            fig[2].transform("...T" + dx + "," + 0);
+            fig[3].transform("...T" + dx + "," + 0);
+            fig[5].transform("...T" + 0  + "," + dy);
+            fig[6].transform("...T" + dx + "," + dy);
+            
+            fig[7].transform("...T" + dx_tit + "," + 0);
+          }
+        };
+        
+        fig.hover(
+          function(){
+            fig[7].show();
+            fig[8].show();
+          },
+          function(){
+            fig[7].hide();
+            fig[8].hide();
+          }
+        );
+          
+        fig[3].drag(moveActions.move, moveActions.start, moveActions.end);
+        fig[4].drag(moveActions.move, moveActions.start, moveActions.end);
+        fig[5].drag(moveActions.move, moveActions.start, moveActions.end);
+        fig[6].drag(moveActions.move, moveActions.start, moveActions.end);
+        
+        utils.parentReference(fig, parent);
+        return fig;
       }
     };
     
@@ -348,6 +632,10 @@ $(document).ready(function(){
           });
           fig.parent = parent;
         }
+      },
+      roundDec: function(number, dec){
+        var factor = Math.pow(10, dec);
+        return Math.round(number*factor)/factor;
       },
       textToVar: function(text){
         return text
@@ -410,15 +698,20 @@ $(document).ready(function(){
       integrateCtx: function(){
         this.ctx.integrateControls(this);
       },
-      viewControls: function(){
+      viewDetails: function(){
         var obj;
+        
         if(this.name){
           obj = this;
-        }else if(this.parent){
+        }
+        else if(this.parent){
           obj = this.parent;
         }
+        if(obj.ref){
+          obj = obj.ref;
+        }
         if(obj){
-          obj.ctx.viewControls(obj);
+          obj.ctx.viewDetails(obj);
         }
       }
     });
@@ -517,8 +810,8 @@ $(document).ready(function(){
           oriRel = this.leavingRels[rel];
           if(oriRel){
             //pts = oriRel.getRelationPoints();
-            //pt = this.ctx.path.determinePoint(this.border, pts.po);
-            //oriRel.changePoints({po: pt});
+            //pt = this.ctx.path.determinePoint(this.border, pts.op);
+            //oriRel.changePoints({op: pt});
             //oriRel.changeTitle(this.title, oriRel.des.title);
           }
         }
@@ -526,8 +819,8 @@ $(document).ready(function(){
           desRel = this.enteringRels[rel];
           if(desRel){
             //pts = desRel.getRelationPoints();
-            //pt = this.ctx.path.determinePoint(this.border, pts.pd);
-            //desRel.changePoints({pd: pt});
+            //pt = this.ctx.path.determinePoint(this.border, pts.dp);
+            //desRel.changePoints({dp: pt});
             //desRel.changeTitle(desRel.from.title, this.title);
           }
         }
@@ -588,12 +881,12 @@ $(document).ready(function(){
         
         for(var rel in el.enteringRels){
           if(el.enteringRels[rel]){
-            el.enteringRels[rel].controlMove({pd: {dx: dx, dy: dy}});
+            el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}});
           }
         }
         for(var rel in el.leavingRels){
           if(el.leavingRels[rel]){
-            el.leavingRels[rel].controlMove({po: {dx: dx, dy: dy}});
+            el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}});
           }
         }
         
@@ -661,7 +954,7 @@ $(document).ready(function(){
           this.fig[i].drag(this.moveFig, this.start, this.end);
         }
         this.fig[0].dblclick(this.createTextEditor);
-        this.fig[2].dblclick(this.viewControls);
+        this.fig[2].dblclick(this.viewDetails);
         this.fig[3].click(this.remove);
       },
       restoreCopies: function(){
@@ -688,6 +981,37 @@ $(document).ready(function(){
       }
     });
     
+    this.Clone = EleBase.extend({
+      init: function(ctx, p, el){
+        this._super(ctx);
+        
+        this.type = "clone";
+        var idx = this.ctx.idx[this.type]++;
+            
+        this.id = 'clone-'+idx;
+        
+        this.title = el.title;
+        this.name = utils.textToVar(this.title);
+        this.ref = el;
+        el.copiesList[this.id] = this;
+        
+        this.list = this.ctx.list.clone;
+        this.connec['desAce'] = false;
+        this.figure(p);
+        this.integrateCtx();
+      },
+      figure: function(p){
+        this.fig = this.ref.figGenerator(this.ctx, this, p, this.title, {dasharray_fig: "-", dasharray_rec: "- ", color: "#555", cursor: "move"});
+        this.border = this.fig.getBorder();
+        var figQua = this.fig.length-1;
+        for(var i=0; i<(figQua-1); i++){
+          this.fig[i].drag(this.moveFig, this.start, this.end);
+        }
+        this.fig[figQua-1].click(this.remove);
+        this.fig[figQua].click(this.viewDetails);
+      }
+    });
+    
     this.Relation = Unit.extend({
       init: function(ctx){
         this._super(ctx);
@@ -698,9 +1022,9 @@ $(document).ready(function(){
       },
       changePoints: function(pt){
         var bb;
-        if(pt.po){
-          this.fig[2].transform("...T" + (pt.po.x - this.fig.p[0].x) +
-                                "," + (pt.po.y - this.fig.p[0].y));
+        if(pt.op){
+          this.fig[2].transform("...T" + (pt.op.x - this.fig.p[0].x) +
+                                "," + (pt.op.y - this.fig.p[0].y));
           bb = this.fig[2].getBBox();
           this.fig.p[0] ={x: (bb.x + (bb.width)/2), 
                           y: (bb.y + (bb.height)/2)};
@@ -714,9 +1038,9 @@ $(document).ready(function(){
         else if(pt.pcd){
           this.fig.p[2] = pt.pcd;
         }
-        else if(pt.pd){
-          this.fig[5].transform("...T" + (pt.pd.x - this.fig.p[3].x) +
-                                "," + (pt.pd.y - this.fig.p[3].y));
+        else if(pt.dp){
+          this.fig[5].transform("...T" + (pt.dp.x - this.fig.p[3].x) +
+                                "," + (pt.dp.y - this.fig.p[3].y));
           bb = this.fig[5].getBBox();
           this.fig.p[3] ={x: (bb.x + (bb.width)/2), 
                           y: (bb.y + (bb.height)/2)};
@@ -731,11 +1055,11 @@ $(document).ready(function(){
         //this.ctx.modTitMenu(this);
       },
       controlMove: function(cont){
-        //cont po, pco, pd, pcd
+        //cont op, pco, dp, pcd
         var pt, dx, dy;
-        if(cont.po){
-          dx = cont.po.dx;
-          dy = cont.po.dy;
+        if(cont.op){
+          dx = cont.op.dx;
+          dy = cont.op.dy;
           
           pt = this.fig.p[0];
           this.fig.p[0] ={x: pt.x + dx - (this.fig.dx || 0), 
@@ -759,9 +1083,9 @@ $(document).ready(function(){
           this.fig.p[1] ={x: (pt.x + (pt.width)/2), 
                   y: (pt.y + (pt.height)/2)};
         }
-        else if(cont.pd){
-          dx = cont.pd.dx;
-          dy = cont.pd.dy;
+        else if(cont.dp){
+          dx = cont.dp.dx;
+          dy = cont.dp.dy;
           
           pt = this.fig.p[2];
           this.fig.p[2] ={x: pt.x + dx  - (this.fig.dx || 0), 
@@ -792,7 +1116,7 @@ $(document).ready(function(){
         this.fig.update();
       },
       getRelationPoints :function(){
-        return {po: this.fig.p[0], pd: this.fig.p[3]};
+        return {op: this.fig.p[0], dp: this.fig.p[3]};
       },
       moveDelta: function(dx, dy){
         var bb;
@@ -857,7 +1181,228 @@ $(document).ready(function(){
         }
       }      
     });
+    
+    this.SecBase = Unit.extend({
+      init: function(ctx){
+        this._super(ctx);
         
+        this.elements = {};
+        this.relations = {};
+        this.selected = false;
+      },
+      figure: function(p, size){
+        this.fig = figures.sector(this.ctx, this, p, size, this.title);
+        this.border = this.fig.getBorder();
+        for(var i=0; i<3; i++){
+          this.fig[i].drag(this.moveFig, this.start, this.end);
+        }
+        this.fig[2].click(this.controls);
+        this.fig[7].click(this.remove);
+        this.fig[8].click(this.viewDetails);
+        this.fig[0].dblclick(this.createTextEditor);
+        this.viewControls(this.selected);
+      },
+      size: function(){
+        var size = this.fig.getSize();
+        return {  'width':  size.width,
+                  'height': size.height};
+      },
+      viewControls: function(view){
+        this.selected = view;
+        if(this.selected){
+          this.fig.showPoints();
+        }else{
+          this.fig.hidePoints();
+        }
+      },
+      controls: function(e){
+        this.parent.viewControls(!this.parent.selected);
+      },
+      createTextEditor: function(e){
+        this.parent.ctx.viewTextEditor(this.parent);
+      },
+      start: function(){
+        var el = this.parent;
+        var elFig = el.fig;
+        var list;
+        
+        elFig.dx = 0;
+        elFig.dy = 0;
+        
+        el.selectElements();
+        
+        list = el.relations;
+        
+        for(var i in list){
+          if(list[i].from){
+            list[i].rel.fig.dx = 0;
+            list[i].rel.fig.dy = 0;
+          }
+          else if(list[i].to){
+            list[i].rel.fig.dx = 0;
+            list[i].rel.fig.dy = 0;
+          }
+        }
+        
+        var border = elFig.getBorder();
+        var pp = el.ctx.r.path(border).attr(style.border);
+        pp.animate(style.border_dis, 100, function(){ this.remove();});
+      },
+      moveFig: function(dx, dy){
+        var el = this.parent;
+        var elFig = el.fig;   
+        var listEle = el.elements;
+        var list = el.relations;
+        var pt;
+        var dx_fig = dx - elFig.dx;
+        var dy_fig = dy - elFig.dy;
+        
+        for(var i in listEle){
+          listEle[i].moveDelta(dx_fig, dy_fig);
+        }
+        for(var i in list){
+          if(list[i].from && list[i].to){
+            list[i].rel.moveDelta(dx_fig, dy_fig);
+          }
+          if(!(list[i].from && list[i].to)){
+            if(list[i].from){
+              list[i].rel.controlMove({op: {dx: dx, dy: dy}});
+            }
+            else if(list[i].to){
+              list[i].rel.controlMove({dp: {dx: dx, dy: dy}});
+            }
+          }
+        }
+        
+        elFig.transform("...T" + (dx_fig) + "," + (dy_fig));    
+        elFig.dx = dx;
+        elFig.dy = dy;
+        
+      },
+      end: function(){
+        var el = this.parent;
+        var elFig = el.fig;   
+        var list;
+        
+        elFig.dx = 0;
+        elFig.dy = 0;
+        
+        list = el.relations;
+        
+        for(var i in list){
+          if(list[i].from){
+            list[i].rel.fig.dx = 0;
+            list[i].rel.fig.dy = 0;
+          }
+          else if(list[i].to){
+            list[i].rel.fig.dx = 0;
+            list[i].rel.fig.dy = 0;
+          }
+        }
+        
+        el.border = elFig.getBorder();
+      },
+      selectElements: function(){
+        var area = this.fig.getArea();
+        var list, exists, leavingRels, enteringRels;
+        
+        this.elements = {};
+        this.relations = {};
+        
+        for(var l in this.ctx.elements){
+          list = this.ctx.list[this.ctx.elements[l]];
+          for(var i in list){
+            exists = this.ctx.sector.existElement(area, list[i]);
+            if(exists){
+              this.elements[list[i].id] = list[i];
+              
+              leavingRels  = list[i].leavingRels;
+              enteringRels = list[i].enteringRels;
+                            
+              for(var idx in leavingRels){
+                if(this.relations[leavingRels[idx].id]){
+                  this.relations[leavingRels[idx].id].from = true;
+                }
+                else{
+                  this.relations[leavingRels[idx].id] = {'rel': leavingRels[idx], 'from':true, 'to': false};
+                }
+              }
+              for(var idx in enteringRels){
+                if(this.relations[enteringRels[idx].id]){
+                  this.relations[enteringRels[idx].id].to = true;
+                }
+                else{
+                  this.relations[enteringRels[idx].id] = {'rel': enteringRels[idx], 'from': false, 'to': true};
+                }
+              }
+            }
+          }
+        }
+                
+        list = this.ctx.list.clone;
+        for(var i in list){
+          exists = this.ctx.sector.existElement(area, list[i]);
+          if(exists){
+            this.elements[list[i].id] = list[i];
+          }
+        }
+        if(this.ctx.list.cycle){
+          list = this.ctx.list.cycle;
+          for(var i in list){
+            exists = this.ctx.sector.existElement(area, list[i]);
+            if(exists){
+              this.elements[list[i].id] = list[i];
+            }
+          }
+        }
+      },
+      remove: function(){
+        var obj;
+        if(this.type == "seinf"){
+          obj = this;
+        }else if(this.parent){
+          obj = this.parent;
+        }
+        if(obj){
+          var list = obj.list;
+          
+          if(list){
+            for(var i in list){
+              if(list[i].id == obj.id){
+                delete(list[i]);
+              }
+            }
+          }
+          
+          obj.ctx.eliminarControlesEle(obj);
+          var limit = obj.ctx.ajuLimLista(list);
+          obj.ctx.idx[obj.type] = ++limit;
+          
+          obj.fig.remove();
+          obj.fig = undefined;
+          obj = undefined;
+        }
+      }
+    });
+    
+    this.Sector = SecBase.extend({
+      init: function(ctx, p, size, title){
+        this._super(ctx);
+        
+        this.type = 'sector';
+        var idx = this.ctx.idx[this.type]++;
+        
+        this.id = this.type+'-'+idx;
+        this.title = title || "Sector "+idx;
+        this.name = utils.textToVar(this.title);
+        
+        this.list = this.ctx.list[this.type];
+        this.figure(p, size);
+        this.integrateCtx();
+        this.viewDetails();
+      }
+    });
+    
     this.Editor = Class.extend({
       init: function(r){
         this.r = r;
@@ -983,7 +1528,7 @@ $(document).ready(function(){
         }
         return title;
       },
-      viewControls: function(el){
+      viewDetails: function(el){
         var isNotCurrent = false;
         var lists = $('#elements-'+el.ctx.id+'>div>.panel-collapse.in');
         if(lists.length == 0){ isNotCurrent = true; };
@@ -1141,10 +1686,14 @@ $(document).ready(function(){
       },
       sector: {
         existElement: function(sector, el){
-          
+          var pos = el.position();
+          return Raphael.isPointInsidePath(sector, pos.x, pos.y);
         },
         existRelation: function(sector, rel){
-          
+          var pos = rel.position();
+          var existsOri = Raphael.isPointInsidePath(sector, pos[0].x, pos[0].y);
+          var existsDes = Raphael.isPointInsidePath(sector, pos[3].x, pos[3].y);
+          return {'from': existsOri, 'to': existsDes};
         }
       }   
     });
@@ -1177,13 +1726,294 @@ $(document).ready(function(){
         $('.work-area').height(workAreaHeight);
         
         $('#overview-area').show();
+        
+        /* 
+         *require([evo.current_container], function() {
+              
+          }); 
+         */
       },
       actions: {
         download: function(){
           alert('download');      
         },
         open: function(){
-          alert('open');      
+          $.ajaxFileUpload({
+            url:'home/upload',
+            secureuri:true,
+            fileElementId:'file',
+            dataType: 'xml',
+            success: function (data, status)
+            {
+              if(typeof(data.error) != 'undefined')
+              {
+                if(data.error != '')
+                {
+                  alert(data.error);
+                }else
+                {
+                  alert(data.msg);
+                }
+              }
+              if(status == 'success'){
+                asigModelo(data);
+              }
+            },
+            error: function (data, status, e)
+            {
+              alert(e);
+            }
+          });
+          return false;      
+        },
+        readXML: function(){
+          editor.reiniciar();
+  
+          var ancho_svg, alto_svg;
+          var name, title, p, pc, tam, desde, hasta;
+          
+          $(modelo).find('modelo:first').each(function(){
+            ancho_svg = $(this).attr('ancho_svg').replace('px','');
+            alto_svg  = $(this).attr('alto_svg').replace('px','');
+            ancho_svg = Number(ancho_svg);
+            alto_svg = Number(alto_svg);
+            editor.modTamPan(ancho_svg, alto_svg);
+            
+            $(this).find('list_depen:first').each(function(){
+              $(this).find('depen').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                tam    = {'ancho': Number($(this).attr('ancho')), 
+                      'alto':  Number($(this).attr('alto'))};
+                
+                var dp = new Depen(editor.r, p, tam, title);
+                editor.listDepen.push(dp);
+              });
+            });
+            
+            $(this).find('list_activ:first').each(function(){
+              $(this).find('activ').each(function(){
+                name = $(this).attr('name');
+                rol = $(this).attr('rol');
+                desc = $(this).attr('descri');
+                tiem = $(this).attr('tiempo');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var ac = new Activ(editor.r, p, rol, desc, tiem);
+                editor.listActiv.push(ac);
+              });
+            });
+            
+            $(this).find('list_tabla:first').each(function(){
+              $(this).find('tabla').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var ta = new Tabla(editor.r, p, title);
+                editor.listTabla.push(ta);
+              });
+            });
+            
+            $(this).find('list_u_entr:first').each(function(){
+              $(this).find('u_entr').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var ue = new UEntr(editor.r, p, title);
+                editor.listUEntr.push(ue);
+              });
+            });
+            
+            $(this).find('list_u_sale:first').each(function(){
+              $(this).find('u_sale').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var us = new USale(editor.r, p, title);
+                editor.listUSale.push(us);
+              });
+            });
+            
+            $(this).find('list_archi:first').each(function(){
+              $(this).find('archi').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var ar = new Archi(editor.r, p, title);
+                editor.listArchi.push(ar);
+              });
+            });
+            
+            $(this).find('list_carpe:first').each(function(){
+              $(this).find('carpe').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var ca = new Carpe(editor.r, p, title);
+                editor.listCarpe.push(ca);
+              });
+            });
+            
+            $(this).find('list_compu:first').each(function(){
+              $(this).find('compu').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var co = new Compu(editor.r, p, title);
+                editor.listCompu.push(co);
+              });
+            });
+            
+            $(this).find('list_based:first').each(function(){
+              $(this).find('based').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var bd = new BaseD(editor.r, p, title);
+                editor.listBaseD.push(bd);
+              });
+            });
+            
+            $(this).find('list_actbd:first').each(function(){
+              $(this).find('actbd').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var abd = new ActDB(editor.r, p, title);
+                editor.listActDB.push(abd);
+              });
+            });
+            
+            $(this).find('list_docum:first').each(function(){
+              $(this).find('docum').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var doc = new Docum(editor.r, p, title);
+                editor.listDocum.push(doc);
+              });
+            });
+            
+            $(this).find('list_docms:first').each(function(){
+              $(this).find('docms').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var dcs = new Docms(editor.r, p, title);
+                editor.listDocms.push(dcs);
+              });
+            });
+            
+            $(this).find('list_impre:first').each(function(){
+              $(this).find('impre').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var im = new Impre(editor.r, p, title);
+                editor.listImpre.push(im);
+              });
+            });
+            
+            $(this).find('list_papel:first').each(function(){
+              $(this).find('papel').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var pp = new Papel(editor.r, p, title);
+                editor.listPapel.push(pp);
+              });
+            });
+            
+            $(this).find('list_incon:first').each(function(){
+              $(this).find('incon').each(function(){
+                name = $(this).attr('name');
+                title = $(this).attr('title');
+                
+                p      = {'x': Number($(this).attr('x')),
+                          'y': Number($(this).attr('y'))};
+                
+                var inc = new Incon(editor.r, p, title);
+                editor.listIncon.push(inc);
+              });
+            });
+            
+            $(this).find('list_union:first').each(function(){
+              $(this).find('union').each(function(){
+                
+                desde = $(this).attr('desde');
+                hasta = $(this).attr('hasta');
+                tie_ini = $(this).attr('tie_ini');
+                tie_fin = $(this).attr('tie_fin');
+                
+                pc      = $(this).attr('pc');
+                eval('var pc='+pc);
+                
+                var un = new Union(editor.r, pc, 
+                  editor.busEleNom(desde),
+                  editor.busEleNom(hasta),
+                  tie_ini, tie_fin);
+                editor.listUnion.push(un);
+              });
+            });
+            
+            $(this).find('list_undob:first').each(function(){
+              $(this).find('undob').each(function(){
+                
+                desde = $(this).attr('desde');
+                hasta = $(this).attr('hasta');
+                
+                pc      = $(this).attr('pc');
+                eval('var pc='+pc);
+                
+                var un = new UnDob(editor.r, pc, 
+                  editor.busEleNom(desde),
+                  editor.busEleNom(hasta));
+                editor.listUnDob.push(un);
+              });
+            });
+            
+            
+          });
         },
         save: function(){
           var root = $('#xmldocument');
