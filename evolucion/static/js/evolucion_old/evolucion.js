@@ -1,22 +1,9 @@
-
-var atrArc = { 'stroke-width': 2.5, 	'stroke': '#555', 'stroke-linecap': 'round'};
-var atrFig = { 'stroke-width': 1.0, 	'stroke': '#555', 'fill': '#555', 'stroke-linecap': 'round'};
 var atrFiE = { 'stroke-width': 2.0, 	'stroke': '#555', 'fill': '#fff', 'stroke-linecap': 'round'};
 var atrFiA = { 'stroke-width': 2.0, 	'stroke': '#555', 'fill': '#f55', 'stroke-linecap': 'round'};
 var atrFiD = { 'stroke-width': 3.0, 	'stroke': '#555', 'fill': '#fff'};
-var atrSim = { 'font-size': 20, 		'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'};
-var atrCur = { 'stroke-width': 1.0, 	'stroke': '#555', 'stroke-linecap': 'round'};
-var atrLin = { 'stroke': '#008ec7', 	'stroke-dasharray': '. '};
-
 
 var atrTex = { 'font-size': 12, 'font-family': 'Verdana', 'fill': '#000'};
-
 var atrCon = { 'stroke': '#888', 'stroke-width': 2.5};
-var atrPun = { 'stroke': '#008ec7', 'fill': '#fff'};
-var atrDes = ;
-var atrRMa = { 'stroke_width': 3.0};
-var atrRIn = { 'stroke_width': 1.5};
-
 
 function abrir(){
 	$.ajaxFileUpload({
@@ -52,7 +39,7 @@ function asigModelo(modelo){
 	editor.reiniciar();
 	
 	var ancho_svg, alto_svg;
-	var nombre, titulo, p, pc, tam, desde, hasta;
+	var name, title, p, pc, tam, desde, hasta;
 	
 	$(modelo).find('modelo:first').each(function(){
 		ancho_svg = $(this).attr('ancho_svg').replace('px','');
@@ -63,21 +50,21 @@ function asigModelo(modelo){
 		
 		$(this).find('list_depen:first').each(function(){
 			$(this).find('depen').each(function(){
-				nombre = $(this).attr('nombre');
-				titulo = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				tam	   = {'ancho': Number($(this).attr('ancho')), 
 						  'alto':  Number($(this).attr('alto'))};
 				
-				var dp = new Depen(editor.r, p, tam, titulo);
+				var dp = new Depen(editor.r, p, tam, title);
 				editor.listDepen.push(dp);
 			});
 		});
 		
 		$(this).find('list_activ:first').each(function(){
 			$(this).find('activ').each(function(){
-				nombre = $(this).attr('nombre');
+				name = $(this).attr('name');
 				rol = $(this).attr('rol');
 				desc = $(this).attr('descri');
 				tiem = $(this).attr('tiempo');
@@ -92,169 +79,169 @@ function asigModelo(modelo){
 		
 		$(this).find('list_tabla:first').each(function(){
 			$(this).find('tabla').each(function(){
-				nombre = $(this).attr('nombre');
-				titulo = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var ta = new Tabla(editor.r, p, titulo);
+				var ta = new Tabla(editor.r, p, title);
 				editor.listTabla.push(ta);
 			});
 		});
 		
 		$(this).find('list_u_entr:first').each(function(){
 			$(this).find('u_entr').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var ue = new UEntr(editor.r, p, titu);
+				var ue = new UEntr(editor.r, p, title);
 				editor.listUEntr.push(ue);
 			});
 		});
 		
 		$(this).find('list_u_sale:first').each(function(){
 			$(this).find('u_sale').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var us = new USale(editor.r, p, titu);
+				var us = new USale(editor.r, p, title);
 				editor.listUSale.push(us);
 			});
 		});
 		
 		$(this).find('list_archi:first').each(function(){
 			$(this).find('archi').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var ar = new Archi(editor.r, p, titu);
+				var ar = new Archi(editor.r, p, title);
 				editor.listArchi.push(ar);
 			});
 		});
 		
 		$(this).find('list_carpe:first').each(function(){
 			$(this).find('carpe').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var ca = new Carpe(editor.r, p, titu);
+				var ca = new Carpe(editor.r, p, title);
 				editor.listCarpe.push(ca);
 			});
 		});
 		
 		$(this).find('list_compu:first').each(function(){
 			$(this).find('compu').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var co = new Compu(editor.r, p, titu);
+				var co = new Compu(editor.r, p, title);
 				editor.listCompu.push(co);
 			});
 		});
 		
 		$(this).find('list_based:first').each(function(){
 			$(this).find('based').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var bd = new BaseD(editor.r, p, titu);
+				var bd = new BaseD(editor.r, p, title);
 				editor.listBaseD.push(bd);
 			});
 		});
 		
 		$(this).find('list_actbd:first').each(function(){
 			$(this).find('actbd').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var abd = new ActDB(editor.r, p, titu);
+				var abd = new ActDB(editor.r, p, title);
 				editor.listActDB.push(abd);
 			});
 		});
 		
 		$(this).find('list_docum:first').each(function(){
 			$(this).find('docum').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var doc = new Docum(editor.r, p, titu);
+				var doc = new Docum(editor.r, p, title);
 				editor.listDocum.push(doc);
 			});
 		});
 		
 		$(this).find('list_docms:first').each(function(){
 			$(this).find('docms').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var dcs = new Docms(editor.r, p, titu);
+				var dcs = new Docms(editor.r, p, title);
 				editor.listDocms.push(dcs);
 			});
 		});
 		
 		$(this).find('list_impre:first').each(function(){
 			$(this).find('impre').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var im = new Impre(editor.r, p, titu);
+				var im = new Impre(editor.r, p, title);
 				editor.listImpre.push(im);
 			});
 		});
 		
 		$(this).find('list_papel:first').each(function(){
 			$(this).find('papel').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var pp = new Papel(editor.r, p, titu);
+				var pp = new Papel(editor.r, p, title);
 				editor.listPapel.push(pp);
 			});
 		});
 		
 		$(this).find('list_incon:first').each(function(){
 			$(this).find('incon').each(function(){
-				nombre = $(this).attr('nombre');
-				titu = $(this).attr('titulo');
+				name = $(this).attr('name');
+				title = $(this).attr('title');
 				
 				p      = {'x': Number($(this).attr('x')),
 				          'y': Number($(this).attr('y'))};
 				
-				var inc = new Incon(editor.r, p, titu);
+				var inc = new Incon(editor.r, p, title);
 				editor.listIncon.push(inc);
 			});
 		});
@@ -304,77 +291,15 @@ function roundDec(num,dec){
 }
 
 
-function curva(r, pm , attr){
-	//pm = Parametros x, y, ax, ay, bx, by, zx, zy
-	
-	var atrCurvaTmp = clonar(atrCur);
-	var atrFlechaTmp = clonar(atrFig);
-	atrCurvaTmp['stroke'] = attr.color || '#555';
-	atrCurvaTmp['stroke-width'] = attr.stroke_width || 1;
-	atrFlechaTmp['stroke'] = attr.color || '#555';
-	atrFlechaTmp['stroke-width'] = attr.stroke_width || 1;
-	atrFlechaTmp['fill'] = attr.color || '#555';
-	 
-	var ang = Math.atan2( ( pm.by - pm.zy), (pm.bx - pm.zx) );
-	var p1 = {x: pm.zx, y: pm.zy};
-	var p2 = {x: p1.x + 10*Math.cos(ang + Math.PI/8), y: p1.y + 10*Math.sin(ang + Math.PI/8)};
-	var p3 = {x: p1.x + 10*Math.cos(ang - Math.PI/8), y: p1.y + 10*Math.sin(ang - Math.PI/8)};
-	
-	var fig = r.set();
-	fig.pathCurve = [["M", pm.x, pm.y], ["C", pm.ax, pm.ay, pm.bx, pm.by, pm.zx, pm.zy]];
-	fig.pathArrow = [["M", p1.x, p1.y], ["L", p2.x, p2.y], ["L", p3.x, p3.y], ["Z"]];
-	fig.push(
-		r.path(fig.pathCurve).attr(atrCurvaTmp),
-		r.path(fig.pathArrow).attr(atrFlechaTmp)
-	);
-	fig.modPm = function(pm){
-		
-		this.pathCurve[0][1] = pm[0].x;
-		this.pathCurve[0][2] = pm[0].y;
-		this.pathCurve[1][1] = pm[1].x;
-		this.pathCurve[1][2] = pm[1].y;
-		this.pathCurve[1][3] = pm[2].x;
-		this.pathCurve[1][4] = pm[2].y;
-		this.pathCurve[1][5] = pm[3].x;
-		this.pathCurve[1][6] = pm[3].y;
-		this[0].attr({path: this.pathCurve});
-		
-		var ang = Math.atan2( ( pm[2].y - pm[3].y), (pm[2].x - pm[3].x) );
-		var p1 = {x: pm[3].x, y: pm[3].y};
-		var p2 = {x: p1.x + 10*Math.cos(ang + Math.PI/8), y: p1.y + 10*Math.sin(ang + Math.PI/8)};
-		var p3 = {x: p1.x + 10*Math.cos(ang - Math.PI/8), y: p1.y + 10*Math.sin(ang - Math.PI/8)};
-		this.pathArrow = [["M", p1.x, p1.y], ["L", p2.x, p2.y], ["L", p3.x, p3.y], ["Z"]];
-		this[1].attr({path: this.pathArrow});
-	};
-	return fig;
-};
 
-function linCur(r, pm , attr){
-	var lineas = r.path(
-		[["M", pm.x, pm.y], 
-		 ["L", pm.ax, pm.ay], 
-		 ["M", pm.bx, pm.by], 
-		 ["L", pm.zx, pm.zy]]).attr(attr);
-		 
-	lineas.modPm = function(pm){
-		this.attr({path:[["M", pm[0].x, pm[0].y], 
-						 ["L", pm[1].x, pm[1].y], 
-						 ["M", pm[2].x, pm[2].y], 
-						 ["L", pm[3].x, pm[3].y]]});
-	};
-	return lineas;
-};
-
-
-
-function figSecto(ctx, padre, p, tam, titulo){
-	var fig = figura(ctx);
+function figSecto(ctx, parent, p, tam, title){
+	var fig = figure(ctx);
 	var pc, bb, po, ancho, alto, medio_x, medio_y;
 	var tam_dp = tam || {'ancho': 250, 'alto': 500};
 	
 	fig.p = {x: p.x, y: p.y};
 	fig.push(
-		ctx.r.text(fig.p.x, fig.p.y, titulo).attr(atrTit)
+		ctx.r.text(fig.p.x, fig.p.y, title).attr(atrTit)
 	);
 	
 	bb = fig[0].getBBox();
@@ -390,12 +315,12 @@ function figSecto(ctx, padre, p, tam, titulo){
 			p3x: medio_x - tam_dp.ancho/2, p3y: medio_y + tam_dp.alto}
 	
 	fig.push(
-		ctx.r.rect(po.x, po.y, ancho, alto, 4).attr(atrRec),
+		ctx.r.rect(po.x, po.y, ancho, alto, 4).attr(style.rectangle),
 		ctx.r.rect(pc.p0x, pc.p0y, tam_dp.ancho, tam_dp.alto, 0).attr(atrCon),
-		ctx.r.circle(pc.p0x, pc.p0y, 4).attr(atrPun),
-		ctx.r.circle(pc.p1x, pc.p1y, 4).attr(atrPun),
-		ctx.r.circle(pc.p2x, pc.p2y, 4).attr(atrPun),
-		ctx.r.circle(pc.p3x, pc.p3y, 4).attr(atrPun),
+		ctx.r.circle(pc.p0x, pc.p0y, 4).attr(style.point),
+		ctx.r.circle(pc.p1x, pc.p1y, 4).attr(style.point),
+		ctx.r.circle(pc.p2x, pc.p2y, 4).attr(style.point),
+		ctx.r.circle(pc.p3x, pc.p3y, 4).attr(style.point),
 		ctx.r.image('/images/cerrar.png', po.x + ancho - 12, po.y - 12, 24, 24)
 	);
 		
@@ -413,10 +338,10 @@ function figSecto(ctx, padre, p, tam, titulo){
 	fig[5].attr({ cursor: "se-resize"});
 	fig[6].attr({ cursor: "sw-resize"});
 	
-	fig.camTit = function(titulo){
+	fig.changeTitle = function(title){
 		var bb, pc, po, ancho, alto, medio_x, medio_y;
 		
-		this[0].attr('text', titulo);
+		this[0].attr('text', title);
 		
 		bb = this[0].getBBox();
 		po = {x: bb.x - 2, y: bb.y -1};
@@ -473,15 +398,15 @@ function figSecto(ctx, padre, p, tam, titulo){
 				["H", bb.x],
 				["V", bb.y]]; 
 	};
-	fig.obtBorde = function(){
+	fig.getBorder = function(){
 		var bb = this[1].getBBox();
 		
-		this.borde = [["M", bb.x - 2, bb.y -1], 
+		this.border = [["M", bb.x - 2, bb.y -1], 
 					  ["H", bb.x2 + 2], 
 					  ["V", bb.y2 + 1],
 					  ["H", bb.x - 2],
 					  ["V", bb.y - 1]];
-		return this.borde;
+		return this.border;
 	};
 	fig.obtTam = function(){
 		var bb = this[2].getBBox(); 
@@ -615,16 +540,16 @@ function figSecto(ctx, padre, p, tam, titulo){
 		}
 	);
 		
-	fig[3].drag(moveFig, inicio, fin);
-	fig[4].drag(moveFig, inicio, fin);
-	fig[5].drag(moveFig, inicio, fin);
-	fig[6].drag(moveFig, inicio, fin);
+	fig[3].drag(moveFig, start, end);
+	fig[4].drag(moveFig, start, end);
+	fig[5].drag(moveFig, start, end);
+	fig[6].drag(moveFig, start, end);
 	
-	refFigPadre(fig, padre);
+	utils.parentReference(fig, parent);
 	return fig;
 };
 
-function figCopia(ctx, padre, p){
+function figCopia(ctx, parent, p){
 	var fig = ctx.r.set();
 	
 	fig.p = {x: p.x, y: p.y};
@@ -640,278 +565,97 @@ function figCopia(ctx, padre, p){
 	return fig;
 };
 
-function figRelac(ctx, padre, p, attr){
-	//Eliminar elemento s[i].remove(), s.exclude(s[i])
+function figRelac(ctx, parent, p, figureStyle){
 	
-	var fig = ctx.r.set();
-	var atrCurTmp = clonar(atrCur);
-	
-	fig.estado = 'inicial';
-	fig.p = [];
-	fig.ori = undefined;
-	fig.des = undefined;
-	
-	atrCurTmp['stroke_width'] = attr.stroke_width || atrCurTmp['stroke_width'];
-	
-	if(!$.isArray(p)){
-		fig.p[0] = p;
-		fig.push(
-			ctx.r.circle(fig.p[0].x, fig.p[0].y, 4).attr(atrPun)
-		);
-		
-		fig.move = function(p){
-			if(this.p.length == 1){
-				this[0].attr({'cx': p.x, 'cy': p.y});
-			}
-			else if(this.p.length == 4){
-				var pi    = {x: this.p[0].x, y: this.p[0].y};
-				this.p[2] = {x: (p.x + pi.x)/2, y: (p.y + pi.y)/2};
-				this.p[3] = {x: p.x, y: p.y};
-				
-				this[1].modPm(this.p);
-				this[2].attr({'cx': p.x, 'cy': p.y});
-			}
-		};
-		fig.actSegPun = function(ctx, pt, alpha){
-			this.estado = 'extendido';
-			this[0].animate(atrDes, 500, function(){ this.remove()});
-			
-			var dAx = 75 * Math.cos(alpha), dAy = -75 * Math.sin(alpha);
-			this.p[0]={x: pt.x, y: pt.y };
-			this.p[1]={x: pt.x + dAx, y: pt.y + dAy};
-			this.p[2]={x: pt.x, y: pt.y};
-			this.p[3]={x: pt.x, y: pt.y};
-			
-			var pm = {	x:  this.p[0].x, y:  this.p[0].y, 
-						ax: this.p[1].x, ay: this.p[1].y, 
-						bx: this.p[2].x, by: this.p[2].y, 
-						zx: this.p[3].x, zy: this.p[3].y};
-			this.push(
-				curva(ctx.r, pm, atrCurTmp),
-				ctx.r.circle(this.p[0].x, this.p[0].y, 4).attr(atrPun)
-			);
-		};
-	}
-	else{
-		fig.estado = 'extendido';
-		fig.timer = undefined;
-		fig.p = p;
-		var pm = {	x:  fig.p[0].x, y:  fig.p[0].y, 
-					ax: fig.p[1].x, ay: fig.p[1].y, 
-					bx: fig.p[2].x, by: fig.p[2].y, 
-					zx: fig.p[3].x, zy: fig.p[3].y };
-		fig.push(
-			curva(ctx.r, pm, atrCurTmp),
-			linCur(ctx.r, pm, atrLin),
-			ctx.r.circle(pm.x,  pm.y,  4).attr(atrPun),
-			ctx.r.circle(pm.ax, pm.ay, 4).attr(atrPun),
-			ctx.r.circle(pm.bx, pm.by, 4).attr(atrPun),
-			ctx.r.circle(pm.zx, pm.zy, 4).attr(atrPun)
-		);
-		
-		var bb, pt;
-		
-		pt = ctx.detPorEnPath(fig[0].pathCurve, 0.5);
-		fig.push(
-			ctx.r.image('/images/cerrar.png', pt.x - 12, pt.y - 12, 24, 24)
-		);
-		
-		for(var i=2; i<6; i++){
-			fig[i].toFront();
-		}
-		fig[6].hide();
-		
-		fig[2].attr({cursor: "move"});
-		fig[3].attr({cursor: "move"});
-		fig[4].attr({cursor: "move"});
-		fig[5].attr({cursor: "move"});
-		
-		fig.ocuCont =  function(){
-			fig[1].hide();
-			fig[2].hide();
-			fig[3].hide();
-			fig[4].hide();
-			fig[5].hide();
-		};
-		fig.mosCont = function(){
-			fig[1].show();
-			fig[2].show();
-			fig[3].show();
-			fig[4].show();
-			fig[5].show();
-		};
-		fig.act = function(){
-			var pt = ctx.detPorEnPath(fig[0].pathCurve, 0.5);
-			fig[6].attr('x', pt.x - 12);
-			fig[6].attr('y', pt.y - 12);
-			fig[6].transform('');
-		};
-		
-		fig[2].update = function (dx, dy) {
-			this.transform("...T" + dx + "," + dy);
-			
-			bb = this.getBBox();
-			fig.p[0] = {x: (bb.x + bb.width/2), 
-						y: (bb.y + bb.height/2)};
-			pt = ctx.detPunEnPath(this.padre.ori.borde, fig.p[0]);
-						
-			this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
-						
-			bb = this.getBBox();
-			fig.p[0] = {x: (bb.x + bb.width/2), 
-						y: (bb.y + bb.height/2)};
-			fig[3].update(dx, dy);
-		};
-		fig[3].update = function (dx, dy) {
-			this.transform("...T" + dx + "," + dy);
-			
-			var bb = this.getBBox();
-			fig.p[1] = {x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-			fig[0].modPm(fig.p);
-			fig[1].modPm(fig.p);
-			fig.act();
-		};
-		fig[4].update = function (dx, dy) {
-			this.transform("...T" + dx + "," + dy);
-			
-			var bb = this.getBBox();
-			fig.p[2] = {x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-			fig[0].modPm(fig.p);
-			fig[1].modPm(fig.p);
-			fig.act();
-		};
-		fig[5].update = function (dx, dy) {
-			this.transform("...T" + dx + "," + dy);
-			
-			bb = this.getBBox();
-			fig.p[3] = {x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-			pt = ctx.detPunEnPath(this.padre.des.borde, fig.p[3]);
-						
-			this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
-						
-			bb = this.getBBox();
-			fig.p[3] = {x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-			fig[4].update(dx, dy);
-		};
-				
-		fig[2].drag(moveFig, inicio, fin);
-		fig[3].drag(moveFig, inicio, fin);
-		fig[4].drag(moveFig, inicio, fin);
-		fig[5].drag(moveFig, inicio, fin);
-		fig.hover(
-			function(){
-				fig[6].show();
-				fig.mosCont();
-				clearInterval(fig.timer);
-			},
-			function(){
-				fig[6].hide();
-				fig.timer = setTimeout(function(){
-					fig.ocuCont();
-					}, 2000);
-			}
-		);
-	}
-	refFigPadre(fig, padre);
-	return fig;
 };
-
-
-
-
-
 
 var Sector = Unidad.extend({
 	init: function(ctx){
 		this._super(ctx);
 		
-		this.elementos = {};
+		this.elements = {};
 		this.relaciones = {};
-		this.selec = false;
+		this.selected = false;
 	},
-	figura: function(p, tam){
-		this.fig = figSecto(this.ctx, this, p, tam, this.titulo);
-		this.borde = this.fig.obtBorde();
+	figure: function(p, tam){
+		this.fig = figSecto(this.ctx, this, p, tam, this.title);
+		this.border = this.fig.getBorder();
 		for(var i=0; i<3; i++){
-			this.fig[i].drag(this.moverFig, this.inicio, this.fin);
+			this.fig[i].drag(this.moveFig, this.start, this.end);
 		}
 		this.fig[2].click(this.controles);
-		this.fig[7].click(this.remover);
-		this.fig[0].dblclick(this.editorTexto);
-		this.visCont(this.selec);
+		this.fig[7].click(this.remove);
+		this.fig[0].dblclick(this.createTextEditor);
+		this.viewControls(this.selected);
 	},
 	size: function(){
 		var tam = this.fig.obtTam()
 		return {	'width':  tam.width,
 					'height': tam.height};
 	},
-	visCont: function(vis){
-		this.selec = vis;
-		if(this.selec){
+	viewControls: function(vis){
+		this.selected = vis;
+		if(this.selected){
 			this.fig.mosCont();
 		}else{
 			this.fig.ocuCont();
 		}
 	},
 	controles: function(e){
-		this.padre.visCont(!this.padre.selec);
+		this.parent.viewControls(!this.parent.selected);
 	},
-	editorTexto: function(e){
-		this.padre.ctx.agrEditorTexto(this.padre);
+	createTextEditor: function(e){
+		this.parent.ctx.agrEditorTexto(this.parent);
 	},
-	inicio: function(){
-		var el = this.padre;
+	start: function(){
+		var el = this.parent;
 		var elFig = el.fig;
-		var listaRel;
+		var listRel;
 		
 		elFig.dx = 0;
 		elFig.dy = 0;
 		
 		el.selecElementos();
 		
-		listaRel = el.relaciones;
+		listRel = el.relaciones;
 		
-		for(var i in listaRel){
-			if(listaRel[i].origen){
-				listaRel[i].rel.fig.dx = 0;
-				listaRel[i].rel.fig.dy = 0;
+		for(var i in listRel){
+			if(listRel[i].origen){
+				listRel[i].rel.fig.dx = 0;
+				listRel[i].rel.fig.dy = 0;
 			}
-			else if(listaRel[i].destino){
-				listaRel[i].rel.fig.dx = 0;
-				listaRel[i].rel.fig.dy = 0;
+			else if(listRel[i].destino){
+				listRel[i].rel.fig.dx = 0;
+				listRel[i].rel.fig.dy = 0;
 			}
 		}
 		
-		var borde = elFig.obtBorde();
-		var pp = el.ctx.r.path(borde).attr(atrBor);
-		pp.animate(atrDes, 100, function(){ this.remove()});
+		var border = elFig.getBorder();
+		var pp = el.ctx.r.path(border).attr(style.border);
+		pp.animate(style.border_dis, 100, function(){ this.remove()});
 	},
-	moverFig: function(dx, dy){
-		var el = this.padre;
+	moveFig: function(dx, dy){
+		var el = this.parent;
 		var elFig = el.fig;		
-		var listaEle = el.elementos;
-		var listaRel = el.relaciones;
+		var listEle = el.elements;
+		var listRel = el.relaciones;
 		var pt;
 		var dx_fig = dx - elFig.dx;
 		var dy_fig = dy - elFig.dy;
 		
-		for(var i in listaEle){
-			listaEle[i].mover(dx_fig, dy_fig);
+		for(var i in listEle){
+			listEle[i].mover(dx_fig, dy_fig);
 		}
-		for(var i in listaRel){
-			if(listaRel[i].origen && listaRel[i].destino){
-				listaRel[i].rel.mover(dx_fig, dy_fig);
+		for(var i in listRel){
+			if(listRel[i].origen && listRel[i].destino){
+				listRel[i].rel.mover(dx_fig, dy_fig);
 			}
-			if(!(listaRel[i].origen && listaRel[i].destino)){
-				if(listaRel[i].origen){
-					listaRel[i].rel.transUbiCont({po: {dx: dx, dy: dy}});
+			if(!(listRel[i].origen && listRel[i].destino)){
+				if(listRel[i].origen){
+					listRel[i].rel.controlMove({po: {dx: dx, dy: dy}});
 				}
-				else if(listaRel[i].destino){
-					listaRel[i].rel.transUbiCont({pd: {dx: dx, dy: dy}});
+				else if(listRel[i].destino){
+					listRel[i].rel.controlMove({pd: {dx: dx, dy: dy}});
 				}
 			}
 		}
@@ -921,102 +665,102 @@ var Sector = Unidad.extend({
 		elFig.dy = dy;
 		
 	},
-	fin: function(){
-		var el = this.padre;
+	end: function(){
+		var el = this.parent;
 		var elFig = el.fig;		
-		var listaRel;
+		var listRel;
 		
 		elFig.dx = 0;
 		elFig.dy = 0;
 		
-		listaRel = el.relaciones;
+		listRel = el.relaciones;
 		
-		for(var i in listaRel){
-			if(listaRel[i].origen){
-				listaRel[i].rel.fig.dx = 0;
-				listaRel[i].rel.fig.dy = 0;
+		for(var i in listRel){
+			if(listRel[i].origen){
+				listRel[i].rel.fig.dx = 0;
+				listRel[i].rel.fig.dy = 0;
 			}
-			else if(listaRel[i].destino){
-				listaRel[i].rel.fig.dx = 0;
-				listaRel[i].rel.fig.dy = 0;
+			else if(listRel[i].destino){
+				listRel[i].rel.fig.dx = 0;
+				listRel[i].rel.fig.dy = 0;
 			}
 		}
 		
-		el.borde = elFig.obtBorde();
+		el.border = elFig.getBorder();
 	},
 	selecElementos: function(){
 		var area = this.fig.obtArea();
-		var lista, existe, relSalOri, relSalDes;
+		var list, existe, relSalOri, relSalDes;
 		
-		this.elementos = {};
+		this.elements = {};
 		this.relaciones = {};
 		
-		for(var l in this.ctx.elementos){
-			lista = this.ctx.lista[this.ctx.elementos[l]];
-			for(var i in lista){
-				existe = this.ctx.existeElSector(area, lista[i]);
+		for(var l in this.ctx.elements){
+			list = this.ctx.list[this.ctx.elements[l]];
+			for(var i in list){
+				existe = this.ctx.existeElSector(area, list[i]);
 				if(existe){
-					this.elementos[lista[i].id] = lista[i];
-					relSalOri = lista[i].relacSal;
-					relSalDes = lista[i].relacIng;
+					this.elements[list[i].id] = list[i];
+					relSalOri = list[i].relacSal;
+					relSalDes = list[i].relacIng;
 					
-					for(var ind in relSalOri){
-						if(this.relaciones[relSalOri[ind].id]){
-							this.relaciones[relSalOri[ind].id].origen = true;
+					for(var idx in relSalOri){
+						if(this.relaciones[relSalOri[idx].id]){
+							this.relaciones[relSalOri[idx].id].origen = true;
 						}
 						else{
-							this.relaciones[relSalOri[ind].id] = {'rel': relSalOri[ind], 'origen':true, 'destino': false};
+							this.relaciones[relSalOri[idx].id] = {'rel': relSalOri[idx], 'origen':true, 'destino': false};
 						}
 					}
-					for(var ind in relSalDes){
-						if(this.relaciones[relSalDes[ind].id]){
-							this.relaciones[relSalDes[ind].id].destino = true;
+					for(var idx in relSalDes){
+						if(this.relaciones[relSalDes[idx].id]){
+							this.relaciones[relSalDes[idx].id].destino = true;
 						}
 						else{
-							this.relaciones[relSalDes[ind].id] = {'rel': relSalDes[ind], 'origen': false, 'destino': true};
+							this.relaciones[relSalDes[idx].id] = {'rel': relSalDes[ind], 'origen': false, 'destino': true};
 						}
 					}
 				}
 			}
 		}
-		lista = this.ctx.lista.copia;
-		for(var i in lista){
-			existe = this.ctx.existeElSector(area, lista[i]);
+		list = this.ctx.list.clone;
+		for(var i in list){
+			existe = this.ctx.existeElSector(area, list[i]);
 			if(existe){
-				this.elementos[lista[i].id] = lista[i];
+				this.elements[list[i].id] = list[i];
 			}
 		}
-		if(this.ctx.lista.ciclo){
-			lista = this.ctx.lista.ciclo;
-			for(var i in lista){
-				existe = this.ctx.existeElSector(area, lista[i]);
+		if(this.ctx.list.cycle){
+			list = this.ctx.list.cycle;
+			for(var i in list){
+				existe = this.ctx.existeElSector(area, list[i]);
 				if(existe){
-					this.elementos[lista[i].id] = lista[i];
+					this.elements[list[i].id] = list[i];
 				}
 			}
 		}
 	},
-	remover: function(){
+	remove: function(){
 		var obj;
-		if(this.tipo == "seinf"){
+		if(this.type == "seinf"){
 			obj = this;
-		}else if(this.padre){
-			obj = this.padre;
+		}else if(this.parent){
+			obj = this.parent;
 		}
 		if(obj){
-			var lista = obj.lista;
+			var list = obj.list;
 			
-			if(lista){
-				for(var i in lista){
-					if(lista[i].id == obj.id){
-						delete(lista[i]);
+			if(list){
+				for(var i in list){
+					if(list[i].id == obj.id){
+						delete(list[i]);
 					}
 				}
 			}
 			
 			obj.ctx.eliminarControlesEle(obj);
-			var lim = obj.ctx.ajuLimLista(lista);
-			obj.ctx.ind[obj.tipo] = ++lim;
+			var limit = obj.ctx.ajuLimLista(list);
+			obj.ctx.idx[obj.type] = ++limit;
 			
 			obj.fig.remove();
 			obj.fig = undefined;
@@ -1025,223 +769,50 @@ var Sector = Unidad.extend({
 	}
 });
 
-var Relacion = Unidad.extend({
-	init: function(ctx){
-		this._super(ctx);
-		this.ori = undefined;
-		this.des = undefined;
-		this.selec = false;
-	},
-	camPt: function(pt){
-		var bb;
-		if(pt.po){
-			this.fig[2].transform("...T" + (pt.po.x - this.fig.p[0].x) +
-									 "," + (pt.po.y - this.fig.p[0].y));
-			bb = this.fig[2].getBBox();
-			this.fig.p[0] ={x: (bb.x + (bb.width)/2), 
-							y: (bb.y + (bb.height)/2)};
-			
-			this.fig[0].modPm(this.fig.p);
-			this.fig[1].modPm(this.fig.p);
-		}
-		else if(pt.pco){
-			this.fig.p[1] = pt.pco;
-		}
-		else if(pt.pcd){
-			this.fig.p[2] = pt.pcd;
-		}
-		else if(pt.pd){
-			this.fig[5].transform("...T" + (pt.pd.x - this.fig.p[3].x) +
-									 "," + (pt.pd.y - this.fig.p[3].y));
-			bb = this.fig[5].getBBox();
-			this.fig.p[3] ={x: (bb.x + (bb.width)/2), 
-							y: (bb.y + (bb.height)/2)};
-			
-			this.fig[0].modPm(this.fig.p);
-			this.fig[1].modPm(this.fig.p);
-		}
-	},
-	camTitulo: function(titFrom, titTo){
-		this.titulo = this.ctx.titRel(titFrom, titTo);			  
-		this.nombre = evo.convTexVar(this.titulo);
-		this.ctx.modTitMenu(this);
-	},
-	obtPtsRel :function(){
-		return {po: this.fig.p[0], pd: this.fig.p[3]};
-	},
-	transUbiCont: function(cont){
-		//cont po, pco, pd, pcd
-		var pt, dx, dy;
-		if(cont.po){
-			dx = cont.po.dx;
-			dy = cont.po.dy;
-			
-			pt = this.fig.p[0];
-			this.fig.p[0] ={x: pt.x + dx - (this.fig.dx || 0), 
-							y: pt.y + dy - (this.fig.dy || 0)};
-			pt = this.fig.p[1];
-			this.fig.p[1] ={x: pt.x + dx - (this.fig.dx || 0), 
-							y: pt.y + dy - (this.fig.dy || 0)};
-			
-			this.fig[0].modPm(this.fig.p);
-			this.fig[1].modPm(this.fig.p);
-			
-			this.fig[2].transform("...T" + (dx - (this.fig.dx || 0)) +
-									 "," + (dy - (this.fig.dy || 0)));
-			pt = this.fig[2].getBBox();
-			this.fig.p[0] ={x: (pt.x + (pt.width)/2), 
-							y: (pt.y + (pt.height)/2)};
-								 
-			this.fig[3].transform("...T" + (dx - (this.fig.dx || 0)) +
-									 "," + (dy - (this.fig.dy || 0)));
-			pt = this.fig[3].getBBox();
-			this.fig.p[1] ={x: (pt.x + (pt.width)/2), 
-							y: (pt.y + (pt.height)/2)};
-		}
-		else if(cont.pd){
-			dx = cont.pd.dx;
-			dy = cont.pd.dy;
-			
-			pt = this.fig.p[2];
-			this.fig.p[2] ={x: pt.x + dx  - (this.fig.dx || 0), 
-							y: pt.y + dy  - (this.fig.dy || 0)};
-							
-			pt = this.fig.p[3];
-			this.fig.p[3] ={x: pt.x + dx  - (this.fig.dx || 0), 
-							y: pt.y + dy  - (this.fig.dy || 0)};
-							
-			this.fig[0].modPm(this.fig.p);
-			this.fig[1].modPm(this.fig.p);
-			
-			
-			this.fig[4].transform("...T" + (dx - (this.fig.dx || 0)) +
-									 "," + (dy - (this.fig.dy || 0)));
-			pt = this.fig[4].getBBox();
-			this.fig.p[2] ={x: (pt.x + (pt.width)/2), 
-							y: (pt.y + (pt.height)/2)};
-									 
-			this.fig[5].transform("...T" + (dx - (this.fig.dx || 0)) +
-									 "," + (dy - (this.fig.dy || 0)));
-			pt = this.fig[5].getBBox();
-			this.fig.p[3] ={x: (pt.x + (pt.width)/2), 
-							y: (pt.y + (pt.height)/2)};
-		}
-		this.fig.dx = dx;
-		this.fig.dy = dy;
-		this.fig.act();
-	},
-	mover: function(dx, dy){
-		var bb;
-		
-		this.fig[2].transform("...T" + dx + "," + dy);
-		bb = this.fig[2].getBBox();
-		this.fig.p[0] ={x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-	
-		this.fig[3].transform("...T" + dx + "," + dy);
-		bb = this.fig[3].getBBox();
-		this.fig.p[1] ={x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-		
-		this.fig[4].transform("...T" + dx + "," + dy);
-		bb = this.fig[4].getBBox();
-		this.fig.p[2] ={x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-		
-		this.fig[5].transform("...T" + dx + "," + dy);
-		bb = this.fig[5].getBBox();
-		this.fig.p[3] ={x: (bb.x + (bb.width)/2), 
-						y: (bb.y + (bb.height)/2)};
-		
-		this.fig.act();
-		
-		this.fig[1].modPm(this.fig.p);
-		this.fig[0].modPm(this.fig.p);
-	},
-	visCont: function(vis){
-		this.selec = vis;
-		if(this.selec){
-			this.fig.mosCont();
-		}else{
-			this.fig.ocuCont();
-		}
-	},
-	controles: function(e){
-		this.padre.visCont(!this.padre.selec);
-	},
-	remover: function(){
-		var rel;
-		if(this.tipo){
-			rel = this;
-		}else if(this.padre){
-			rel = this.padre;
-		}
-		if(rel){
-			var listaRel  = rel.lista;
-			
-			rel.ori.elimRelSal(rel);
-			rel.des.elimRelIng(rel);
-			
-			if(listaRel[rel.id]){
-				delete(listaRel[rel.id]);
-			}	
-			
-			rel.ctx.eliminarControlesEle(rel);
-			var lim = rel.ctx.ajuLimLista(listaRel);
-			rel.ctx.ind[rel.tipo] = ++lim;
-			
-			rel.fig.remove();
-			rel.fig = undefined;
-			rel = undefined;
-		}
-	}
-});
-
-
 var Copia = EleBase.extend({
 	init: function(ctx, p, el){
 		this._super(ctx);
 		
-		this.tipo = "copia";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "clone";
+		var idx = this.ctx.idx[this.type]++;
 				
-		this.id = 'copia_'+ind;
+		this.id = 'copia_'+idx;
 		
-		this.titulo = el.titulo;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.title = el.title;
+		this.name = utils.textToVar(this.title);
 		this.ref = el;
 		el.listCopias[this.id] = this;
 		
-		this.lista = this.ctx.lista.copia;
-		this.cone['aceDes'] = false;
-		this.figura(p);
-		this.intMenuEle();
+		this.list = this.ctx.list.clone;
+		this.cone['desAce'] = false;
+		this.figure(p);
+		this.integrateCtx();
 	},
-	figura: function(p){
-		this.fig = this.ref.genFig(this.ctx, this, p, this.titulo, {dasharray_fig: "-", dasharray_rec: "- ", color: "#555", cursor: "move"});
-		this.borde = this.fig.obtBorde();
+	figure: function(p){
+		this.fig = this.ref.genFig(this.ctx, this, p, this.title, {dasharray_fig: "-", dasharray_rec: "- ", color: "#555", cursor: "move"});
+		this.border = this.fig.getBorder();
 		var cant = this.fig.length-1;
 		for(var i=0; i<cant; i++){
-			this.fig[i].drag(this.moverFig, this.inicio, this.fin);
+			this.fig[i].drag(this.moveFig, this.start, this.end);
 		}
-		this.fig[cant].click(this.remover);
+		this.fig[cant].click(this.remove);
 	}
 });
 
 var Secto = Sector.extend({
-	init: function(ctx, p, tam, titulo){
+	init: function(ctx, p, tam, title){
 		this._super(ctx);
 		
-		this.tipo = 'se'+ctx.id;
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = 'se'+ctx.id;
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = this.tipo+'_'+ind;
-		this.titulo = titulo || "Sector "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = this.type+'_'+idx;
+		this.title = title || "Sector "+idx;
+		this.name = utils.textToVar(this.title);
 		
-		this.lista = this.ctx.lista[this.tipo];
-		this.figura(p, tam);
-		this.intMenuEle();
+		this.list = this.ctx.list[this.type];
+		this.figure(p, tam);
+		this.integrateCtx();
 	}
 });
 
@@ -1263,96 +834,9 @@ var Editor = Class.extend({
 	},
 	
 	visAtributosEle: function(el){
-		$('#menu-elementos-'+this.id).accordion("option", "active", this.indMenu[el.tipo]);
+		$('#menu-elementos-'+this.id).accordion("option", "active", this.indMenu[el.type]);
 		$('#'+el.id+'_item_conte').toggle();
-	},
-	
-	titRel: function(titFrom, titTo){
-		var tituloFrom, tituloTo;
-		
-		if(titFrom.length > 9){
-			tituloFrom =titFrom.substr(0,4)+'..'+
-						titFrom.substr(-4);
-		}
-		else{
-			tituloFrom = titFrom;
-		}
-		if(titTo.length > 9){
-			tituloTo =	titTo.substr(0,4)+'..'+
-						titTo.substr(-4);
-		}
-		else{
-			tituloTo = titTo;
-		}
-		return tituloFrom+' - '+tituloTo;
-	},
-	detPunEnPath: function(path, pt){
-		var pp = this.r.path(path).attr(atrBor);
-		var tl = pp.getTotalLength();
-		var pe, dif, id, men;
-		var pr = [];
-		var r = [];
-		
-		pr[0]  = 0;
-		pr[10] = tl;
-		
-		for(var i=1; i < 10; i++){
-			pr[i] = tl*(i/10)
-		}	
-		
-		dif = pr[10] - pr[0];
-		
-		while(dif > 2){
-			for(var i=0; i<10; i++){
-				pe = pp.getPointAtLength((pr[i]+pr[i+1])/2);
-				r.push(Math.sqrt(Math.pow(pe.x - pt.x,2)+Math.pow(pe.y - pt.y,2)));
-			}
-			
-			men = Math.min.apply(Math, r);
-			
-			for(var i=0; i<10; i++){
-				if(r[i] == men){
-					id = i;
-					break;
-				}
-			}
-			pr[0] = pr[id];
-			pr[10] = pr[id+1];
-			
-			for(var i=1; i<10; i++){
-				pr[i] = (pr[0] + (pr[10]-pr[0])*(i/10));	
-			}			
-			dif = pr[10] - pr[0];
-			r = [];
-		}
-		pe = pp.getPointAtLength(pr[5]);
-		pp.animate(atrDes, 500, function(){ this.remove()});
-		return {x: pe.x, y: pe.y};
-	},
-	detAngEnPath: function(path, pt){
-		var pp = this.r.path(path);
-		var tl = pp.getTotalLength();
-		var pr = [];
-		var pc, ang, cx = 0, cy = 0;
-		
-		for(var i=0; i < 50; i++){
-			pr[i] = tl*(i/50)
-			pc = pp.getPointAtLength(pr[i]);
-			cx += pc.x;
-			cy += pc.y;
-		}
-		pc = ({x: cx/50, y: cy/50});
-		ang = Math.atan2( ( pc.y - pt.y), (pt.x - pc.x) );
-		pp.remove();
-		return ang;
-	},
-	detPorEnPath: function(path, porcent){
-		var pp = this.r.path(path);
-		var pt = pp.getPointAtLength(porcent * pp.getTotalLength())
-		pp.remove();
-		pp = undefined;
-		return pt; 
-	}
+	}	
 });
 
 var Evolucion = Class.extend({

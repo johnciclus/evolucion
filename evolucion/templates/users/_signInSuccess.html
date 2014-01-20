@@ -6,6 +6,9 @@
             {{ form_msg }}        
     </div>
     <script type="text/javascript">
-        setTimeout(function(){ $('#signInModal').modal('hide'); }, 1000);
+        setTimeout(function() { 
+                                $('#signInModal').modal('hide');
+                                window.open(window.location.origin+"/editor/", "_self"); 
+                              }, 1000);
     </script>
 {% endif %}

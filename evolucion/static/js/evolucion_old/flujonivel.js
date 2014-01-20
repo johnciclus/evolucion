@@ -44,7 +44,7 @@ function flujo(r, pc, estilo){
             ["M", pc.x + 15, pc.y - 11],
             ["H", pc.x + 30]
         ];
-    fig.pathFlecha = [
+    fig.pathArrow = [
     		["M", pc.x + 30, pc.y - 11], 
     		["L", p0.x, p0.y], 
     		["L", p1.x, p1.y], 
@@ -69,11 +69,11 @@ function flujo(r, pc, estilo){
 			 r.path(fig.pathT).attr(atrFiETmp),
 			 r.path(fig.pathLinI).attr(atrFiD),
 			 r.path(fig.pathLinD).attr(atrFiD),
-			 r.path(fig.pathFlecha).attr(atrFig),
+			 r.path(fig.pathArrow).attr(style.figure),
 			 r.path(fig.pathNubI).attr(atrFiETmp),
 			 r.path(fig.pathNubD).attr(atrFiETmp),
-			 r.circle(pc.x - 30, pc.y - 11, 4).attr(atrPun),
-			 r.circle(pc.x + 30, pc.y - 11, 4).attr(atrPun));
+			 r.circle(pc.x - 30, pc.y - 11, 4).attr(style.point),
+			 r.circle(pc.x + 30, pc.y - 11, 4).attr(style.point));
 			 
 	fig[7].toFront();    	
 	fig[8].toFront();
@@ -217,18 +217,18 @@ function subModelo(r, pc, estilo){
 };
 
 
-function figFyN(ctx, padre, func, p, titulo, estilo){
+function figFyN(ctx, parent, func, p, title, estilo){
 	var bb, po, ancho, alto, tamEl;
-	var fig = figura(ctx);
+	var fig = figure(ctx);
 	var atrTexTmp = clonar(atrTex);
-	var atrRectTmp = clonar(atrRec);
+	var atrRectTmp = clonar(style.rectangle);
 	
 	atrTexTmp['fill'] = estilo.color || atrTex['fill']; 
-	atrRectTmp['stroke-dasharray'] = estilo.dasharray_rec || atrRec['stroke-dasharray'];
+	atrRectTmp['stroke-dasharray'] = estilo.dasharray_rec || style.rectangle['stroke-dasharray'];
 	
 	fig.p = {x: p.x, y: p.y};
 	fig.push(
-		ctx.r.text(fig.p.x, fig.p.y, titulo).attr(atrTexTmp)
+		ctx.r.text(fig.p.x, fig.p.y, title).attr(atrTexTmp)
 	);
 	
 	bb = fig[0].getBBox();
@@ -254,13 +254,13 @@ function figFyN(ctx, padre, func, p, titulo, estilo){
 		};
 	}
 	
-	fig.camTit = function(titulo){
+	fig.changeTitle = function(title){
 		var bb, lim, po, ancho, alto, tamEl;
 		
 		bb = fig[0].getBBox();
 		lim = bb.y;
 		
-		this[0].attr('text', titulo);
+		this[0].attr('text', title);
 		
 		bb = fig[0].getBBox();
 		po = {x: bb.x - 2, y: bb.y -1};
@@ -282,7 +282,7 @@ function figFyN(ctx, padre, func, p, titulo, estilo){
 		this[3].transform('');
 	};
 	
-	fig.obtBorde = function(){
+	fig.getBorder = function(){
 		var bb, po, ancho, alto, tamEl;
 		var arc;
 		
@@ -292,7 +292,7 @@ function figFyN(ctx, padre, func, p, titulo, estilo){
 		alto = bb.height + 2;
 		tamEl = 30;
 		
-		this.borde 	  = [["M", po.x, po.y], 
+		this.border 	  = [["M", po.x, po.y], 
 						 ["H", po.x + (ancho - tamEl)/2],
 						 ["V", po.y - tamEl],
 						 ["H", po.x + (ancho + tamEl)/2],
@@ -301,7 +301,7 @@ function figFyN(ctx, padre, func, p, titulo, estilo){
 						 ["V", po.y + alto], 
 						 ["H", po.x], 
 						 ["V", po.y]];
-		return this.borde;
+		return this.border;
 	};
 	fig.hover(
 		function(){
@@ -311,23 +311,23 @@ function figFyN(ctx, padre, func, p, titulo, estilo){
 			fig[3].hide();
 		}
 	);
-	refFigPadre(fig, padre);
+	utils.parentReference(fig, parent);
 	return fig;
 };
 
-function figParam(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, parametro, p, titulo, estilo);
+function figParam(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, parametro, p, title, estilo);
 };
 
-function figNivel(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, nivel, p, titulo, estilo);
+function figNivel(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, nivel, p, title, estilo);
 };
 
-function figFlujo(ctx, padre, p, titulo, estilo){
-	var fig = figFyN(ctx, padre, flujo, p, titulo, estilo);
+function figFlujo(ctx, parent, p, title, estilo){
+	var fig = figFyN(ctx, parent, flujo, p, title, estilo);
 	
 	fig.timer = undefined;
-	fig.obtBorde = function(){
+	fig.getBorder = function(){
 		var bb, po, ancho, alto;
 		
 		bb = fig[0].getBBox();
@@ -335,12 +335,12 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 		ancho = bb.width + 4;
 		alto = bb.height + 2;
 		
-		this.borde 	  = [["M", po.x, po.y], 
+		this.border 	  = [["M", po.x, po.y], 
 						 ["H", po.x + ancho],
 						 ["V", po.y + alto], 
 						 ["H", po.x], 
 						 ["V", po.y]];
-		return this.borde;
+		return this.border;
 	};
 	fig.mosCont = function(){
 		this[2][7].show();
@@ -351,8 +351,8 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 		this[2][8].hide();
 	};
 	fig.detAli = function(po, pd){
-		var tipo, ang, tol = 2;
-		/*	Identificadores tipo flecha:
+		var type, ang, tol = 2;
+		/*	Identificadores type flecha:
 		 * 	V: vertical   -> (U: arriba, D: abajo)
 		 * 	H: horizontal -> (L: izquieda, R: derecha)
 		 *  N: ninguno
@@ -361,79 +361,79 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 		if(pd.x - po.x > tol){
 			if(pd.y - po.y > tol){
 				if(ang > (-1/4)*Math.PI){
-					tipo = 'HRVD';
+					type = 'HRVD';
 					ang = (-1/2)*Math.PI;
 				}
 				else{
-					tipo = 'VDHR';
+					type = 'VDHR';
 					ang = 0;
 				}
 			}
 			else if(pd.y - po.y < -1*tol){
 				if(ang > (1/4)*Math.PI){
-					tipo = 'VUHR';
+					type = 'VUHR';
 					ang = 0;
 				}
 				else{
-					tipo = 'HRVU';
+					type = 'HRVU';
 					ang = (1/2)*Math.PI;
 				}
 			}
 			else{
-				tipo = 'HR';
+				type = 'HR';
 				ang = 0;
 			}
 		}
 		else if(pd.x - po.x < -1*tol){
 			if(pd.y - po.y > tol){
 				if(ang > (-3/4)*Math.PI){
-					tipo = 'VDHL';
+					type = 'VDHL';
 					ang = Math.PI;
 				}
 				else{
-					tipo = 'HLVD';
+					type = 'HLVD';
 					ang = (-1/2)*Math.PI;
 				}
 			}
 			else if(pd.y - po.y < -1*tol){
 				if(ang > (3/4)*Math.PI){
-					tipo = 'HLVU';
+					type = 'HLVU';
 					ang = (1/2)*Math.PI;
 				}
 				else{
-					tipo = 'VUHL';
+					type = 'VUHL';
 					ang = Math.PI;
 				}
 			}
 			else{
-				tipo = 'HL';
+				type = 'HL';
 				ang = Math.PI;
 			}
 		}
 		else{
 			if(pd.y > po.y){
-				tipo = 'VD';
+				type = 'VD';
 				ang = (-1/2)*Math.PI;
 			}
 			else if(pd.y < po.y){
-				tipo = 'VU';
+				type = 'VU';
 				ang = (1/2)*Math.PI;
 			}
 			else{
-				tipo = 'N';
+				type = 'N';
 				ang = 0;
 			}
 		}
 		
-		var res = {'tipo': tipo, 'ang': ang};
+		var res = {'type': type, 'ang': ang};
 		return res;
 	};
-	fig.act = function(){
+	fig.update = function(){
 		var bb, po, pd, pc, pe, p0, p1, pt;
 		var dx, dy, dx_nub_Ori = 0, dy_nub_Ori = 0, dx_nub_Des = 0, dy_nub_Des = 0;
 		var ancho_tex = 0, alto_tex = 0;
 		var ali, ang, ang_fin, sin_ang, cos_ang; 
-		var el = this.padre;
+		var el = this.parent;
 		var elFig = el.fig;	
 		
 		bb = fig[2][0].getBBox();
@@ -448,7 +448,7 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 		sin_ang = roundDec(Math.sin(ali.ang),4);
 		cos_ang = roundDec(Math.cos(ali.ang),4);
 		
-		switch(ali.tipo[1]){
+		switch(ali.type[1]){
 			case 'U':
 				dy_nub_Ori =  10;
 				dy_nub_Des = -10; 
@@ -467,12 +467,12 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 			break;
 		}
 		
-		if(ali.tipo.length <= 2){
-			if(ali.tipo[0] == 'H'){
+		if(ali.type.length <= 2){
+			if(ali.type[0] == 'H'){
 				pe = {x: pd.x, 	y: po.y};
 				pc = {x: (po.x + pe.x)/2,  y: po.y + 11};
 			}
-			else if(ali.tipo[0] == 'V'){
+			else if(ali.type[0] == 'V'){
 				pe = {x: po.x, 	y: pd.y};
 				pc = {x: po.x + 11*sin_ang,  y: (po.y + pe.y)/2};
 			}
@@ -486,12 +486,12 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 			sin_ang = Math.abs(cos_ang);
 			cos_ang = tmp;
 		}
-		else if(ali.tipo.length == 4){
-			if(ali.tipo[0] == 'H'){
+		else if(ali.type.length == 4){
+			if(ali.type[0] == 'H'){
 				pe = {x: pd.x, 	y: po.y};
 				pc = {x: (po.x + pe.x)/2,  y: po.y + 11*sin_ang};
 			}
-			else if(ali.tipo[0] == 'V'){
+			else if(ali.type[0] == 'V'){
 				pe = {x: po.x, 	y: pd.y};
 				pc = {x: po.x + 11*cos_ang,  y: (po.y + pe.y)/2};
 			}
@@ -500,7 +500,7 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 				pc = {x: po.x,  y: po.y};
 			}
 			
-			switch(ali.tipo[3]){
+			switch(ali.type[3]){
 				case 'U':
 					dx_nub_Des =   0;
 					dy_nub_Des = -10;
@@ -570,7 +570,7 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 			["M", pe.x, pe.y],
 			["L", pd.x, pd.y]
 		];
-		fig[2].pathFlecha = [
+		fig[2].pathArrow = [
 			["M", pd.x, pd.y], 
 			["L", p0.x, p0.y], 
 			["L", p1.x, p1.y], 
@@ -581,7 +581,7 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 		fig[2][2].transform('');
 		fig[2][3].attr({path: (fig[2].pathLinD)});
 		fig[2][3].transform('');
-		fig[2][4].attr({path: (fig[2].pathFlecha)});
+		fig[2][4].attr({path: (fig[2].pathArrow)});
 		fig[2][4].transform('');
 		
 		bb = fig[2][5].getBBox();
@@ -599,24 +599,24 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 				y: pc.y + 15*sin_ang - 12 - alto_tex - bb.y};
 		fig[3].transform("...T" + pt.x + "," + pt.y);	
 					
-		fig.padre.borde = fig.obtBorde();
+		fig.parent.border = fig.getBorder();
 	};
 	fig.conNivelOri = function(nivel){
-		var el = fig.padre;
+		var el = fig.parent;
 		nivel.agreFluSal(el);
 		el.nivelOri = nivel;
 		fig[2][7].update(0, 0);
 		fig[2][5].hide();
 	};
 	fig.conNivelDes = function(nivel){
-		var el = fig.padre;
+		var el = fig.parent;
 		nivel.agreFluIng(el);
 		el.nivelDes = nivel;
 		fig[2][8].update(0, 0);
 		fig[2][6].hide();
 	};
 	fig.desNivelOri = function(){
-		var el = fig.padre;
+		var el = fig.parent;
 		
 		if(el.nivelOri){
 			el.nivelOri.elimFluSal(el);
@@ -625,7 +625,7 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 		}
 	};
 	fig.desNivelDes = function(){
-		var el = fig.padre;
+		var el = fig.parent;
 		
 		if(el.nivelDes){
 			el.nivelDes.elimFluIng(el);
@@ -635,37 +635,37 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 	};
 	fig[2][7].update = function (dx, dy){
 		var bb, po, podx, pt;
-		var el = fig.padre;
+		var el = fig.parent;
 		
 		if(el.nivelOri){
 			bb = fig[2][7].getBBox();
 			po = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
 			podx = {x: po.x + dx, y: po.y + dy};
-			pt = el.ctx.detPunEnPath(el.nivelOri.borde, podx);
+			pt = el.ctx.path.determinePoint(el.nivelOri.border, podx);
 			
 			fig[2][7].transform("...T"+(pt.x-po.x)+","+(pt.y-po.y));	
 		}
 		else{
 			fig[2][7].transform("...T" + dx + "," + dy);
 		}
-		fig.act();
+		fig.update();
 	};
 	fig[2][8].update = function (dx, dy){
 		var bb, pd, pddx, pt;
-		var el = fig.padre;
+		var el = fig.parent;
 		
 		if(el.nivelDes){
 			bb = fig[2][8].getBBox();
 			pd = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
 			pddx = {x: pd.x + dx, y: pd.y + dy};
-			pt = el.ctx.detPunEnPath(el.nivelDes.borde, pddx);
+			pt = el.ctx.path.determinePoint(el.nivelDes.border, pddx);
 			
 			fig[2][8].transform("...T"+(pt.x-pd.x)+","+(pt.y-pd.y));	
 		}
 		else{
 			fig[2][8].transform("...T" + dx + "," + dy);
 		}
-		fig.act();
+		fig.update();
 	};
 	fig.hover(
 		function(){
@@ -682,75 +682,75 @@ function figFlujo(ctx, padre, p, titulo, estilo){
 	return fig;
 };
 
-function figVaAux(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, varAuxiliar, p, titulo, estilo);
+function figVaAux(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, varAuxiliar, p, title, estilo);
 };
 
-function figVaExo(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, varExogena, p, titulo, estilo);
+function figVaExo(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, varExogena, p, title, estilo);
 };
 
-function figRetar(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, retardo, p, titulo, estilo);
+function figRetar(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, retardo, p, title, estilo);
 };
 
-function figMulti(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, multiplicador, p, titulo, estilo);
+function figMulti(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, multiplicador, p, title, estilo);
 };
 
-function figElFis(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, elfis, p, titulo, estilo);
+function figElFis(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, elfis, p, title, estilo);
 };
 
-function figVaAnt(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, valAnterior, p, titulo, estilo);
+function figVaAnt(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, valAnterior, p, title, estilo);
 };
 
-function figVaAnt(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, valAnterior, p, titulo, estilo);
+function figVaAnt(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, valAnterior, p, title, estilo);
 };
 
-function figSubmo(ctx, padre, p, titulo, estilo){
-	return figFyN(ctx, padre, subModelo, p, titulo, estilo);
+function figSubmo(ctx, parent, p, title, estilo){
+	return figFyN(ctx, parent, subModelo, p, title, estilo);
 }; 
 
 
 var Param = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "param";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "param";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "param_"+ind;
-		this.titulo = titu || "Parametro "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "param_"+idx;
+		this.title = title || "Parametro "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.param;
+		this.list = this.ctx.list.param;
 		this.cone['aceDes'] = false;
 		
 		this.genFig = figParam;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var Nivel = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "nivel";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "nivel";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "nivel_"+ind;
-		this.titulo = titu || "Nivel "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "nivel_"+idx;
+		this.title = title || "Nivel "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.nivel;
+		this.list = this.ctx.list.nivel;
 		
 		this.flujoIng = {};
 		this.flujoSal = {};
@@ -759,8 +759,8 @@ var Nivel = Elemento.extend({
 		this.cantFluSal = 0;
 		
 		this.genFig = figNivel;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	},
 	agreFluIng: function(flu){
 		if(!this.flujoIng[flu.id]){
@@ -786,8 +786,8 @@ var Nivel = Elemento.extend({
 			this.cantFluSal--;
 		}
 	},
-	inicio: function(){
-		var el = this.padre;
+	start: function(){
+		var el = this.parent;
 		var elFig = el.fig;
 		
 		elFig.dx = 0;
@@ -802,31 +802,31 @@ var Nivel = Elemento.extend({
 			el.relacSal[rel].fig.dy = 0;
 		}
 		for(var f in el.flujoIng){
-			el.flujoIng[f].inicio();
+			el.flujoIng[f].start();
 		}
 		for(var f in el.flujoSal){
-			el.flujoSal[f].inicio();
+			el.flujoSal[f].start();
 		}
 		
-		var borde = elFig.obtBorde();
-		var pp = el.ctx.r.path(borde).attr(atrBor);
-		pp.animate(atrDes, 100, function(){ this.remove()});
+		var border = elFig.getBorder();
+		var pp = el.ctx.r.path(border).attr(style.border);
+		pp.animate(style.border_dis, 100, function(){ this.remove()});
 		pp = undefined;
 	},
-	moverFig: function(dx, dy){
-		var el = this.padre;
+	moveFig: function(dx, dy){
+		var el = this.parent;
 		var elFig = el.fig;
 		var dx_fig = dx - elFig.dx;
 		var dy_fig = dy - elFig.dy;
 		
 		elFig.transform("...T" + dx_fig + "," + dy_fig);
-		el.borde = elFig.obtBorde();
+		el.border = elFig.getBorder();
 
 		for(var rel in el.relacIng){
-			el.relacIng[rel].transUbiCont({pd: {dx: dx, dy: dy}});
+			el.relacIng[rel].controlMove({pd: {dx: dx, dy: dy}});
 		}
 		for(var rel in el.relacSal){
-				el.relacSal[rel].transUbiCont({po: {dx: dx, dy: dy}});
+				el.relacSal[rel].controlMove({po: {dx: dx, dy: dy}});
 		}
 		for(var f in el.flujoIng){
 			el.flujoIng[f].moverConDes(dx_fig, dy_fig);
@@ -839,8 +839,8 @@ var Nivel = Elemento.extend({
 		elFig.dy = dy;
 		
 	},
-	fin: function(){
-		var el = this.padre;
+	end: function(){
+		var el = this.parent;
 		var elFig = el.fig;		
 		var bb;
 		
@@ -859,61 +859,61 @@ var Nivel = Elemento.extend({
 			el.relacSal[rel].fig.dy = 0;
 		}
 		for(var f in el.flujoIng){
-			el.flujoIng[f].fin();
+			el.flujoIng[f].end();
 		}
 		for(var f in el.flujoSal){
-			el.flujoSal[f].fin();
+			el.flujoSal[f].end();
 		}
-		el.borde = elFig.obtBorde();
+		el.border = elFig.getBorder();
 	}
 });
 
 var Flujo = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "flujo";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "flujo";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "flujo_"+ind;
-		this.titulo = titu || "Flujo "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "flujo_"+idx;
+		this.title = title || "Flujo "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
-		this.selec = false;
+		this.selected = false;
 		
-		this.lista = this.ctx.lista.flujo;
+		this.list = this.ctx.list.flujo;
 		
 		this.nivelOri = undefined;
 		this.nivelDes = undefined;
 		
 		this.genFig = figFlujo;
-		this.figura(p);
+		this.figure(p);
 		
-		this.intMenuEle();
+		this.integrateCtx();
 	},
-	figura: function(p){
-		this.fig = this.genFig(this.ctx, this, p, this.titulo, {});
-		this.borde = this.fig.obtBorde();
-		this.fig[0].dblclick(this.editorTexto);
-		this.fig[3].click(this.remover);
+	figure: function(p){
+		this.fig = this.genFig(this.ctx, this, p, this.title, {});
+		this.border = this.fig.getBorder();
+		this.fig[0].dblclick(this.createTextEditor);
+		this.fig[3].click(this.remove);
 		for(var i=0; i<7; i++){
 			this.fig[2][i].click(this.controles);
 		}
-		this.fig[2][7].drag(this.moverFig, this.inicio, this.fin);
-		this.fig[2][8].drag(this.moverFig, this.inicio, this.fin);
-		this.visCont(this.selec);
+		this.fig[2][7].drag(this.moveFig, this.start, this.end);
+		this.fig[2][8].drag(this.moveFig, this.start, this.end);
+		this.viewControls(this.selected);
 	},
-	visCont: function(vis){
-		this.selec = vis;
-		if(this.selec){
+	viewControls: function(vis){
+		this.selected = vis;
+		if(this.selected){
 			this.fig.mosCont();
 		}else{
 			this.fig.ocuCont();
 		}
 	},
 	controles: function(e){
-		this.padre.visCont(!this.padre.selec);
+		this.parent.viewControls(!this.parent.selected);
 	},
 	moverConOri: function(dx, dy){
 		this.moverCon(this.fig[2][7], dx, dy);
@@ -921,12 +921,12 @@ var Flujo = Elemento.extend({
 	moverConDes: function(dx, dy){
 		this.moverCon(this.fig[2][8], dx, dy);
 	},
-	inicio: function(){
+	start: function(){
 		var el;
-		if(this.tipo){
+		if(this.type){
 			el = this;
-		}else if(this.padre){
-			el = this.padre;
+		}else if(this.parent){
+			el = this.parent;
 		}
 		//console.log(el);
 		var elFig = el.fig;	
@@ -937,7 +937,7 @@ var Flujo = Elemento.extend({
 		
 		for(var rel in el.relacIng){
 			if(el.relacIng[rel]){
-				pt = el.relacIng[rel].obtPtsRel();
+				pt = el.relacIng[rel].getRelationPoints();
 				pt = pt.pd;
 				el.relacIng[rel].fig.dx = pt.x;
 				el.relacIng[rel].fig.dy = pt.y;
@@ -945,20 +945,20 @@ var Flujo = Elemento.extend({
 		}
 		for(var rel in el.relacSal){
 			if(el.relacSal[rel]){
-				pt = el.relacSal[rel].obtPtsRel();
+				pt = el.relacSal[rel].getRelationPoints();
 				pt = pt.po;
 				el.relacSal[rel].fig.dx = pt.x;
 				el.relacSal[rel].fig.dy = pt.y;
 			}
 		}
 		
-		var borde = elFig.obtBorde();
-		var pp = el.ctx.r.path(borde).attr(atrBor);
-		pp.animate(atrDes, 100, function(){ this.remove()});
+		var border = elFig.getBorder();
+		var pp = el.ctx.r.path(border).attr(style.border);
+		pp.animate(style.border_dis, 100, function(){ this.remove()});
 		pp = undefined;
 	},
 	moverCon: function(con, dx, dy){
-		var el = con.padre;
+		var el = con.parent;
 		var elFig = el.fig;
 		var pt, bb, dx_rel, dy_rel;
 		
@@ -967,7 +967,7 @@ var Flujo = Elemento.extend({
 		dy_rel= bb.y + bb.height/2;
 		
 		con.update(dx - elFig.dx, dy - elFig.dy);
-		el.borde = elFig.obtBorde();
+		el.border = elFig.getBorder();
 		
 		bb = elFig[1].getBBox();
 		pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
@@ -976,32 +976,32 @@ var Flujo = Elemento.extend({
 		
 		for(var rel in el.relacIng){
 			if(el.relacIng[rel]){
-				pt = el.relacIng[rel].obtPtsRel();
+				pt = el.relacIng[rel].getRelationPoints();
 				pt = pt.pd;
-				el.relacIng[rel].transUbiCont({pd: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
+				el.relacIng[rel].controlMove({pd: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
 			}
 		}
 		for(var rel in el.relacSal){
 			if(el.relacSal[rel]){
-				pt = el.relacSal[rel].obtPtsRel();
+				pt = el.relacSal[rel].getRelationPoints();
 				pt = pt.po;
-				el.relacSal[rel].transUbiCont({po: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
+				el.relacSal[rel].controlMove({po: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
 			}
 		}
 		
 		elFig.dx = dx;
 		elFig.dy = dy;
 	},
-	moverFig: function(dx, dy){
-		var el = this.padre;
+	moveFig: function(dx, dy){
+		var el = this.parent;
 		el.moverCon(this, dx, dy);
 	},
-	fin: function(){
+	end: function(){
 		var el;
-		if(this.tipo){
+		if(this.type){
 			el = this;
-		}else if(this.padre){
-			el = this.padre;
+		}else if(this.parent){
+			el = this.parent;
 		}
 		//console.log(el);
 		var elFig = el.fig;
@@ -1044,187 +1044,187 @@ var Flujo = Elemento.extend({
 			el.relacSal[rel].fig.dx = 0;
 			el.relacSal[rel].fig.dy = 0;
 		}
-		el.borde = elFig.obtBorde();
+		el.border = elFig.getBorder();
 	}
 });
 
 var VaAux = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "vaaux";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "vaaux";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "vaaux_"+ind;
-		this.titulo = titu || "Var. auxiliar "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "vaaux_"+idx;
+		this.title = title || "Var. auxiliar "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.vaaux;
+		this.list = this.ctx.list.vaaux;
 		
 		this.genFig = figVaAux;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var VaExo = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "vaexo";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "vaexo";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "vaexo_"+ind;
-		this.titulo = titu || "Var. exogena "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "vaexo_"+idx;
+		this.title = title || "Var. exogena "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.vaexo;
+		this.list = this.ctx.list.vaexo;
 		this.cone['aceDes'] = false;
 		
 		this.genFig = figVaExo;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var Retar = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "retar";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "retar";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "retar_"+ind;
-		this.titulo = titu || "Retardo "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "retar_"+idx;
+		this.title = title || "Retardo "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.retar;
+		this.list = this.ctx.list.retar;
 		
 		this.genFig = figRetar;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var Multi = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "multi";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "multi";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "multi_"+ind;
-		this.titulo = titu || "Multiplicador "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "multi_"+idx;
+		this.title = title || "Multiplicador "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.multi;
+		this.list = this.ctx.list.multi;
 		
 		this.genFig = figMulti;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var ElFis = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "elfis";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "elfis";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "elfis_"+ind;
-		this.titulo = titu || "FIS "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "elfis_"+idx;
+		this.title = title || "FIS "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.elfis;
+		this.list = this.ctx.list.elfis;
 		
 		this.genFig = figElFis;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var VaAnt = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "vaant";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "vaant";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "vaant_"+ind;
-		this.titulo = titu || "Val. Anterior "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "vaant_"+idx;
+		this.title = title || "Val. Anterior "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.vaant;
+		this.list = this.ctx.list.vaant;
 		
 		this.genFig = figVaAnt;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var Submo = Elemento.extend({
-	init: function(ctx, p, titu){
+	init: function(ctx, p, title){
 		this._super(ctx);
 		
-		this.tipo = "submo";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "submo";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "submo_"+ind;
-		this.titulo = titu || "Submodelo "+ind;
-		this.nombre = evo.convTexVar(this.titulo);
+		this.id = "submo_"+idx;
+		this.title = title || "Submodelo "+idx;
+		this.name = utils.textToVar(this.title);
 		this.defi = " ";
 		this.unid = "Adimensional";
 		
-		this.lista = this.ctx.lista.submo;
+		this.list = this.ctx.list.submo;
 		this.cone['aceDes'] = false;
 		
 		this.genFig = figSubmo;
-		this.figura(p);
-		this.intMenuEle();
+		this.figure(p);
+		this.integrateCtx();
 	}
 });
 
 var Relac = Relacion.extend({
-	init: function(ctx, p, ori, des){
+	init: function(ctx, p, from, des){
 		this._super(ctx);
 		
-		this.tipo = "relac";
-		var ind = this.ctx.ind[this.tipo]++;
+		this.type = "relation";
+		var idx = this.ctx.idx[this.type]++;
 		
-		this.id = "relac_"+ind;
+		this.id = "relac_"+idx;
 		
-		this.titulo = this.ctx.titRel(ori.titulo, des.titulo);
-		this.nombre = evo.convTexVar(this.titulo);
+		this.title = this.ctx.titRel(from.title, des.title);
+		this.name = utils.textToVar(this.title);
 		
-		this.ori = ori;
+		this.from = from;
 		this.des = des;
 		
-		this.ori.agreRelSal(this);
+		this.from.agreRelSal(this);
 		this.des.agreRelIng(this);
 		
-		this.lista = this.ctx.lista.relac;
-		this.figura(p);
-		this.intMenuEle();
+		this.list = this.ctx.list.relation;
+		this.figure(p);
+		this.integrateCtx();
 	},
-	figura: function(p){
+	figure: function(p){
 		this.fig = figRelac(this.ctx, this, p, {});
 		this.fig[0].click(this.controles);
 		this.fig[1].click(this.controles);
-		this.fig[6].click(this.remover);
-		this.visCont(this.selec);
+		this.fig[6].click(this.remove);
+		this.viewControls(this.selected);
 	}
 });
 
@@ -1241,18 +1241,18 @@ var FlujoNivel = Editor.extend({
 		this.svg_div = '#svg-div-fyn';
 		this.len_div = '#lenguaje-fyn';
 		
-		this.elementos = [
+		this.elements = [
 						'param',	'nivel',	'flujo',
 						'vaaux',	'vaexo',	'retar',
 						'multi',	'elfis',	'vaant',
-						'submo',	'copia'];
+						'submo',	'clone'];
 		
-		this.modos = this.elementos.concat(
-						'relac',	'sefyn');
+		this.modos = this.elements.concat(
+						'relation',	'sefyn');
 		
 		for(var i in this.modos){
-			this.lista[this.modos[i]] = {};
-			this.ind[this.modos[i]] = 0;
+			this.list[this.modos[i]] = {};
+			this.idx[this.modos[i]] = 0;
 			this.tmp[this.modos[i]] = undefined;
 		}
 		
@@ -1283,7 +1283,7 @@ var FlujoNivel = Editor.extend({
 			}
 		);
 		$('#icons-fyn li').click(function(){
-			fyn.activarModo($(this).attr('id'));
+			fyn.activateState($(this).attr('id'));
 		});
 		
 		$("#menu-elementos-fyn").accordion({ header: "h3" , heightStyle: "content", collapsible: true});	//autoHeight: false,
@@ -1296,55 +1296,55 @@ var FlujoNivel = Editor.extend({
 			var p = fyn.obtPosMouse(e);
 			switch(fyn.modo){
 				case 'param-fyn': {
-					fyn.tmp.param = new figParam(fyn, undefined, p, "Parametro "+fyn.ind.param, {cursor: "move"});
+					fyn.tmp.param = new figParam(fyn, undefined, p, "Parametro "+fyn.idx.param, {cursor: "move"});
 					break;
 				}
 				case 'nivel-fyn': {
-					fyn.tmp.nivel = new figNivel(fyn, undefined, p, "Nivel "+fyn.ind.nivel, {cursor: "move"});
+					fyn.tmp.nivel = new figNivel(fyn, undefined, p, "Nivel "+fyn.idx.nivel, {cursor: "move"});
 					break;
 				}
 				case 'flujo-fyn': {
-					fyn.tmp.flujo = new figFlujo(fyn, undefined, p, "Flujo "+fyn.ind.flujo, {cursor: "move"});
+					fyn.tmp.flujo = new figFlujo(fyn, undefined, p, "Flujo "+fyn.idx.flujo, {cursor: "move"});
 					break;
 				}
 				case 'vaaux-fyn': {
-					fyn.tmp.vaaux = new figVaAux(fyn, undefined, p, "Var. auxiliar "+fyn.ind.vaaux, {cursor: "move"});
+					fyn.tmp.vaaux = new figVaAux(fyn, undefined, p, "Var. auxiliar "+fyn.idx.vaaux, {cursor: "move"});
 					break;
 				}
 				case 'vaexo-fyn': {
-					fyn.tmp.vaexo = new figVaExo(fyn, undefined, p, "Var. exogena "+fyn.ind.vaexo, {cursor: "move"});
+					fyn.tmp.vaexo = new figVaExo(fyn, undefined, p, "Var. exogena "+fyn.idx.vaexo, {cursor: "move"});
 					break;
 				}
 				case 'retar-fyn': {
-					fyn.tmp.retar = new figRetar(fyn, undefined, p, "Retardo "+fyn.ind.retar, {cursor: "move"});
+					fyn.tmp.retar = new figRetar(fyn, undefined, p, "Retardo "+fyn.idx.retar, {cursor: "move"});
 					break;
 				}
 				case 'multi-fyn': {
-					fyn.tmp.multi = new figMulti(fyn, undefined, p, "Multiplicador "+fyn.ind.multi, {cursor: "move"});
+					fyn.tmp.multi = new figMulti(fyn, undefined, p, "Multiplicador "+fyn.idx.multi, {cursor: "move"});
 					break;
 				}
 				case 'elfis-fyn': {
-					fyn.tmp.elfis = new figElFis(fyn, undefined, p, "FIS "+fyn.ind.elfis, {cursor: "move"});
+					fyn.tmp.elfis = new figElFis(fyn, undefined, p, "FIS "+fyn.idx.elfis, {cursor: "move"});
 					break;
 				}
 				case 'vaant-fyn': {
-					fyn.tmp.vaant = new figVaAnt(fyn, undefined, p, "Val. Anterior "+fyn.ind.vaant, {cursor: "move"});
+					fyn.tmp.vaant = new figVaAnt(fyn, undefined, p, "Val. Anterior "+fyn.idx.vaant, {cursor: "move"});
 					break;
 				}
 				case 'submo-fyn': {
-					fyn.tmp.submo = new figSubmo(fyn, undefined, p, "Submodelo "+fyn.ind.submo, {cursor: "move"});
+					fyn.tmp.submo = new figSubmo(fyn, undefined, p, "Submodelo "+fyn.idx.submo, {cursor: "move"});
 					break;
 				}
-				case 'copia-fyn': {
-					fyn.tmp.copia = new figCopia(fyn, undefined, p);
+				case 'clone-fyn': {
+					fyn.tmp.clone = new figCopia(fyn, undefined, p);
 					break;
 				}
-				case 'relac-fyn': {
-					fyn.tmp.relac = new figRelac(fyn, undefined, p, {});
+				case 'relation-fyn': {
+					fyn.tmp.relation = new figRelac(fyn, undefined, p, {});
 					break;
 				}				
 				case 'secto-fyn': {
-					fyn.tmp.sefyn = new figSecto(fyn, undefined, p, undefined, "Sector "+fyn.ind.sefyn);
+					fyn.tmp.sefyn = new figSecto(fyn, undefined, p, undefined, "Sector "+fyn.idx.sefyn);
 					break;
 				}
 			}
@@ -1421,17 +1421,17 @@ var FlujoNivel = Editor.extend({
 					}
 					break;
 				}
-				case 'copia-fyn': {
-					if(fyn.tmp.copia){
-						fyn.tmp.copia.remove();
-						fyn.tmp.copia = undefined;
+				case 'clone-fyn': {
+					if(fyn.tmp.clone){
+						fyn.tmp.clone.remove();
+						fyn.tmp.clone = undefined;
 					}
 					break;
 				}
-				case 'relac-fyn': {
-					if(fyn.tmp.relac){
-						fyn.tmp.relac.remove();
-						fyn.tmp.relac = undefined;
+				case 'relation-fyn': {
+					if(fyn.tmp.relation){
+						fyn.tmp.relation.remove();
+						fyn.tmp.relation = undefined;
 					}
 					break;
 				}
@@ -1507,15 +1507,15 @@ var FlujoNivel = Editor.extend({
 					}
 					break;
 				}
-				case 'copia-fyn': {
-					if(fyn.tmp.copia){
-						fyn.tmp.copia.move(p);
+				case 'clone-fyn': {
+					if(fyn.tmp.clone){
+						fyn.tmp.clone.move(p);
 					}
 					break;
 				}
-				case 'relac-fyn': {
-					if(fyn.tmp.relac){
-						fyn.tmp.relac.move(p);
+				case 'relation-fyn': {
+					if(fyn.tmp.relation){
+						fyn.tmp.relation.move(p);
 					}
 					break;
 				}
@@ -1533,137 +1533,137 @@ var FlujoNivel = Editor.extend({
 			switch(fyn.modo){
 				case 'param-fyn': {
 					var pa = new Param(fyn, p);
-					fyn.lista.param[pa.id] = pa;
+					fyn.list.param[pa.id] = pa;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.param.remove();
 					fyn.tmp.param = undefined;
 					break;
 				}
 				case 'nivel-fyn': {
 					var ni = new Nivel(fyn, p);
-					fyn.lista.nivel[ni.id] = ni;
+					fyn.list.nivel[ni.id] = ni;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.nivel.remove();
 					fyn.tmp.nivel = undefined;
 					break;
 				}
 				case 'flujo-fyn': {
 					var fl = new Flujo(fyn, p);
-					fyn.lista.flujo[fl.id] = fl;
+					fyn.list.flujo[fl.id] = fl;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.flujo.remove();
 					fyn.tmp.flujo = undefined;
 					break;
 				}
 				case 'vaaux-fyn': {
 					var va = new VaAux(fyn, p);
-					fyn.lista.vaaux[va.id] = va;
+					fyn.list.vaaux[va.id] = va;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.vaaux.remove();
 					fyn.tmp.vaaux = undefined;
 					break;
 				}
 				case 'vaexo-fyn': {
 					var ve = new VaExo(fyn, p);
-					fyn.lista.vaexo[ve.id] = ve;
+					fyn.list.vaexo[ve.id] = ve;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.vaexo.remove();
 					fyn.tmp.vaexo = undefined;
 					break;
 				}
 				case 'retar-fyn': {
 					var re = new Retar(fyn, p);
-					fyn.lista.retar[re.id] = re;
+					fyn.list.retar[re.id] = re;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.retar.remove();
 					fyn.tmp.retar = undefined;
 					break;
 				}
 				case 'multi-fyn': {
 					var mu = new Multi(fyn, p);
-					fyn.lista.multi[mu.id] = mu;
+					fyn.list.multi[mu.id] = mu;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.multi.remove();
 					fyn.tmp.multi = undefined;
 					break;
 				}
 				case 'elfis-fyn': {
 					var ef = new ElFis(fyn, p);
-					fyn.lista.elfis[ef.id] = ef;
+					fyn.list.elfis[ef.id] = ef;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.elfis.remove();
 					fyn.tmp.elfis = undefined;
 					break;
 				}
 				case 'vaant-fyn': {
 					var va = new VaAnt(fyn, p);
-					fyn.lista.vaant[va.id] = va;
+					fyn.list.vaant[va.id] = va;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.vaant.remove();
 					fyn.tmp.vaant = undefined;
 					break;
 				}
 				case 'submo-fyn': {
 					var su = new Submo(fyn, p);
-					fyn.lista.submo[su.id] = su;
+					fyn.list.submo[su.id] = su;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.submo.remove();
 					fyn.tmp.submo = undefined;
 					break;
 				}
-				case 'copia-fyn': {
-					var el = fyn.existeElPt(p);
+				case 'clone-fyn': {
+					var el = fyn.pointer.existElement(p);
 					if(el){
 						var cp = new Copia(fyn, p, el);
-						fyn.lista.copia[cp.id] = cp;
+						fyn.list.clone[cp.id] = cp;
 						
-						fyn.activarModo('curso-fyn');
-						fyn.tmp.copia.remove();
-						fyn.tmp.copia = undefined;
+						fyn.activateState('curso-fyn');
+						fyn.tmp.clone.remove();
+						fyn.tmp.clone = undefined;
 					}
 					break;
 				}
-				case 'relac-fyn': {
-					var el = fyn.existeElPt(p);
-					var relac = fyn.tmp.relac;
+				case 'relation-fyn': {
+					var el = fyn.pointer.existElement(p);
+					var relation = fyn.tmp.relation;
 					if(el){
-						p = fyn.detPunEnPath(el.borde, p);
-						alpha = fyn.detAngEnPath(el.borde, p);
-						if(relac.estado == 'inicial' && el.cone['aceOri']){
-							relac.ori = el;
-							relac.actSegPun(fyn, p, alpha);
+						p = fyn.path.determinePoint(el.border, p);
+						alpha = fyn.detAngEnPath(el.border, p);
+						if(relation.state == 'initial' && el.cone['aceOri']){
+							relation.from = el;
+							relation.activateSecondControl(fyn, p, alpha);
 						}
-						else if(relac.estado == 'extendido' && el.cone['aceDes']){
+						else if(relation.state == 'extend' && el.cone['aceDes']){
 							var noEsMismo = false;
 							var noExRelOri = false;
 							var noExRelDes = false;
 								
-							if(relac.ori.id != el.id){
+							if(relation.from.id != el.id){
 								noEsMismo = true;
 							}
-							noExRelOri = !el.exisRelOri(relac.ori.id);
-							noExRelDes = !el.exisRelDes(relac.ori.id);
+							noExRelOri = !el.exisRelOri(relation.from.id);
+							noExRelDes = !el.exisRelDes(relation.from.id);
 							
 							if(noEsMismo && noExRelOri && noExRelDes){
-								relac.p[3] = p;
+								relation.p[3] = p;
 								
-								var re = new Relac(fyn, relac.p, relac.ori, el);
+								var re = new Relac(fyn, relation.p, relation.from, el);
 
-								fyn.lista.relac[re.id] = re;
+								fyn.list.relation[re.id] = re;
 								
-								fyn.activarModo('curso-fyn');
-								fyn.tmp.relac.remove();
-								fyn.tmp.relac = undefined;
+								fyn.activateState('curso-fyn');
+								fyn.tmp.relation.remove();
+								fyn.tmp.relation = undefined;
 							}
 						}
 					}
@@ -1671,9 +1671,9 @@ var FlujoNivel = Editor.extend({
 				}
 				case 'secto-fyn': {
 					var se = new Secto(fyn, p);
-					fyn.lista.sefyn[se.id] = se;
+					fyn.list.sefyn[se.id] = se;
 					
-					fyn.activarModo('curso-fyn');
+					fyn.activateState('curso-fyn');
 					fyn.tmp.sefyn.remove();
 					fyn.tmp.sefyn = undefined;
 					break;
@@ -1715,14 +1715,14 @@ var FlujoNivel = Editor.extend({
 				'submo': {'el': 'submodel', 	'group': 'submodels'}	
 			};
 			for(var el in elements){
-				list = fyn.lista[el];
+				list = fyn.list[el];
 				group = stock_and_flow.append('<'+elements[el]['group']+' />').children(elements[el]['group']);
 				
 				for(var i in list){
 					
 					element = group.append('<'+elements[el]['el']+' />').children(elements[el]['el']+':last');
-					element.append($('<name />').text(list[i].nombre));
-					element.append($('<title />').text(list[i].titulo));
+					element.append($('<name />').text(list[i].name));
+					element.append($('<title />').text(list[i].title));
 					element.append($('<description />').text(list[i].desc));
 					element.append($('<definition />').text(list[i].defi));
 					element.append($('<units />').text(list[i].unid));
@@ -1743,14 +1743,14 @@ var FlujoNivel = Editor.extend({
 							rels = list[i].relacIng;
 							for(var rel in rels){
 								relation = relations.append('<relation_from />').children('relation_from');
-								relation.text(rels[rel].ori.nombre);
+								relation.text(rels[rel].from.name);
 							}
 						}
 						if(cantRelSal > 0){
 							rels = list[i].relacSal;
 							for(var rel in rels){
 								relation = relations.append('<relation_to />').children('relation_to');
-								relation.text(rels[rel].des.nombre);
+								relation.text(rels[rel].des.name);
 							}
 						}
 					}
@@ -1762,32 +1762,32 @@ var FlujoNivel = Editor.extend({
 							fls = list[i].flujoIng;
 							for(var fl in fls){
 								flow = flows.append('<flow_enter />').children('flow_enter');
-								flow.text(fls[fl].nombre);	
+								flow.text(fls[fl].name);	
 							}
 						}
 						if(cantFluSal > 0){
 							fls = list[i].flujoSal;
 							for(var fl in fls){
 								flow = flows.append('<flow_leave />').children('flow_leave');
-								flow.text(fls[fl].nombre);	
+								flow.text(fls[fl].name);	
 							}
 						}
 					}
 					if(el == 'flujo'){
 						from = element.append('<from />').children('from');
-						from.text(list[i].nivelOri.nombre);
+						from.text(list[i].nivelOri.name);
 						to = element.append('<to />').children('to');
-						to.text(list[i].nivelDes.nombre);
+						to.text(list[i].nivelDes.name);
 					}
 				}
 			}
 			
-			list = fyn.lista['copia'];
+			list = fyn.list['clone'];
 			group = stock_and_flow.append('<copies />').children('copies');
 			for(var i in list){
 				
 				element = group.append('<copy />').children('copy:last');
-				element.append($('<reference />').text(list[i].nombre));
+				element.append($('<reference />').text(list[i].name));
 				
 				pos = list[i].pos();
 				position = element.append('<position />').children('position');
@@ -1802,20 +1802,20 @@ var FlujoNivel = Editor.extend({
 						rels = list[i].relacSal;
 						for(var rel in rels){
 							relation = relations.append('<relation_to />').children('relation_to');
-							relation.text(rels[rel].des.nombre);
+							relation.text(rels[rel].des.name);
 						}
 					}
 				}
 			}
 			
-			list = fyn.lista['relac'];
+			list = fyn.list['relation'];
 			group = stock_and_flow.append('<relations />').children('relations');
 			console.log(group);
 			for(var i in list){
 				
 				relation = group.append('<relation />').children('relation:last');
-				relation.append($('<origin />').text(list[i].ori.nombre));
-				relation.append($('<destination />').text(list[i].des.nombre));
+				relation.append($('<origin />').text(list[i].from.name));
+				relation.append($('<destination />').text(list[i].des.name));
 				relation.append($('<description />').text(list[i].desc));
 				
 				pos = list[i].pos();
@@ -1834,13 +1834,13 @@ var FlujoNivel = Editor.extend({
 				pd.append($('<y />').text(pos[3].y));
 			}
 			
-			list = fyn.lista['sefyn'];
+			list = fyn.list['sefyn'];
 			group = stock_and_flow.append('<sectors />').children('sectors');
 			for(var i in list){
 				
 				sector = group.append('<sector />').children('sector:last');
-				sector.append($('<name />').text(list[i].nombre));
-				sector.append($('<title />').text(list[i].titulo));
+				sector.append($('<name />').text(list[i].name));
+				sector.append($('<title />').text(list[i].title));
 				sector.append($('<description />').text(list[i].desc));
 				
 				pos = list[i].pos();
@@ -1863,17 +1863,17 @@ var FlujoNivel = Editor.extend({
 	},
 	
 	integrarControlesEle: function(el){
-		var nomCont = '#'+el.tipo+'-'+this.id+'-div';
-		$("#menu-elementos-fyn").accordion("option", "active", this.indMenu[el.tipo]);
+		var nomCont = '#'+el.type+'-'+this.id+'-div';
+		$("#menu-elements-fyn").accordion("option", "active", this.indMenu[el.type]);
 		
-		if(nomCont && el.id && el.titulo){
+		if(nomCont && el.id && el.title){
 			var html =
 				"<div id='"+el.id+"_item'"+
 				"class='eleMenu' >"+
 					"<a id='"+el.id+"_item_tit' href='#'>"+
-					"<div id='"+el.id+"_item_nombre' "+
+					"<div id='"+el.id+"_item_name' "+
 					"class='eleTit' >"+
-						el.titulo+
+						el.title+
 					"</div>"+
 					"</a>"+
 					"<div id='"+el.id+"_item_conte' "+
@@ -1944,10 +1944,10 @@ var FlujoNivel = Editor.extend({
 		com.eliminarControlesEle(el);
 	},
 	modTitMenu: function(el){
-		$('#'+el.id+'_item_nombre').html(el.titulo);
+		$('#'+el.id+'_item_name').html(el.title);
 		com.modTitMenu(el);
 	}
-	// fin de la Vista de Evolución.FlujoNivel //
+	// end de la Vista de Evolución.FlujoNivel //
 });
 
 $(document).ready(function() {
@@ -1955,9 +1955,9 @@ $(document).ready(function() {
 	
 	var r = Raphael("svg-div-fyn", $("#lenguaje-fyn").width(), $("#lenguaje-fyn").height());
 	fyn = new FlujoNivel(r);
-	fyn.activarModo(fyn.modo);
+	fyn.activateState(fyn.modo);
 	evo.fyn = fyn;
-	evo.dyn = new Dynamos(evo.fyn.lista);
+	evo.dyn = new Dynamos(evo.fyn.list);
 	
 	// Fin del Controlador del modulo Flujo Nivel //
 });

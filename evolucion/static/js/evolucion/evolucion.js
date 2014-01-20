@@ -5,20 +5,315 @@ $(document).ready(function(){
   (function(){
     
     this.style = {
-      base:         { 'stroke-width': 0,     'stroke': '',     'fill': '#fff', 'fill-opacity': 0},
-      title:        { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'},
-      rectangle:    { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''},
-      border:       { 'stroke': '#008ec7'},
-      dis_border:   { 'stroke': '#fff'}       //atrDes
+      arc:        { 'stroke-width': 2.5,   'stroke': '#555', 'stroke-linecap': 'round'},
+      base:       { 'stroke-width': 0,     'stroke': '',     'fill': '#fff', 'fill-opacity': 0},
+      border:     { 'stroke': '#008ec7'},     //atrBor
+      border_dis: { 'stroke': '#fff'},        //atrDes
+      curve:      { 'stroke-width': 1.0,  'stroke': '#555', 'stroke-linecap': 'round'},
+      figure:     { 'stroke-width': 1.0,   'stroke': '#555', 'fill': '#555', 'stroke-linecap': 'round'},
+      information_relation: { 'stroke-width': 1.5},
+      line:       { 'stroke': '#008ec7',  'stroke-dasharray': '. '}, //atrLin
+      material_relation: { 'stroke-width': 3.0},
+      point:      { 'stroke': '#008ec7', 'fill': '#fff'},  //atrPun
+      rectangle:  { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''},
+      symbol:     { 'font-size': 20,     'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'},
+      title:      { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'}
     };
     
     this.figures = {
+      arcWithArrow: function(r, cp, orientation, feedback){
+        var fig = r.set();
+        var angA = 300;
+        var angB = 240;
+        var Rad = 14;
+        
+        var ip = {  x: cp.x + (Rad * Math.cos(Math.PI*(angA/180))),
+                    y: cp.y - (Rad * Math.sin(Math.PI*(angA/180)))};
+        var fp = {  x: cp.x + (Rad * Math.cos(Math.PI*(angB/180))),
+                    y: cp.y - (Rad * Math.sin(Math.PI*(angB/180)))};
+        fig.pathArc =  [
+                          ["M", ip.x, ip.y],
+                          ["A", Rad, Rad, cp.x, 1, 0, fp.x, fp.y]
+                        ];
+                
+        var angle, pt;
+        if(orientation == "right"){
+          ip.x -= 10;
+          angle = Math.PI;
+          pt = ip;
+        }
+        else if(orientation == "left"){
+          fp.x += 10;
+          angle = 0;
+          pt = fp;
+        }
+        var p0 = {x: pt.x - 10*Math.cos(angle + Math.PI/8), y: pt.y + 10*Math.sin(angle + Math.PI/8)};
+        var p1 = {x: pt.x - 10*Math.cos(angle - Math.PI/8), y: pt.y + 10*Math.sin(angle - Math.PI/8)};
+        
+        fig.pathArrow = [["M", pt.x, pt.y], ["L", p0.x, p0.y], ["L", p1.x, p1.y], ["Z"]];
+        fig.push( r.path(fig.pathArc).attr(style.arc),
+                  r.path(fig.pathArrow).attr(style.figure));
+        
+        if(feedback == "positive"){
+          fig.push(r.text(cp.x, cp.y - 2, "+").attr(style.symbol));
+        }
+        else if(feedback == "negative"){
+          fig.push(r.text(cp.x, cp.y - 2, "-").attr(style.symbol));
+        }
+        return fig;
+      },
+      curve: function(r, points , figureStyle){
+        //points = Parameters x, y, ax, ay, bx, by, zx, zy
+        
+        var curveStyle = utils.clone(style.curve);
+        var arrowStyle = utils.clone(style.figure);
+        
+        curveStyle['stroke']        = figureStyle['color'] || '#555';
+        curveStyle['stroke-width']  = figureStyle['stroke-width'] || 1;
+        arrowStyle['stroke']        = figureStyle['color'] || '#555';
+        arrowStyle['stroke-width']  = figureStyle['stroke-width'] || 1;
+        arrowStyle['fill']          = figureStyle['color'] || '#555';
+         
+        var angle = Math.atan2( ( points.by - points.zy), (points.bx - points.zx) );
+        var p1 = {x: points.zx, y: points.zy};
+        var p2 = {x: p1.x + 10*Math.cos(angle + Math.PI/8), y: p1.y + 10*Math.sin(angle + Math.PI/8)};
+        var p3 = {x: p1.x + 10*Math.cos(angle - Math.PI/8), y: p1.y + 10*Math.sin(angle - Math.PI/8)};
+        
+        var fig = r.set();
+        fig.pathCurve = [["M", points.x, points.y], ["C", points.ax, points.ay, points.bx, points.by, points.zx, points.zy]];
+        fig.pathArrow = [["M", p1.x, p1.y], ["L", p2.x, p2.y], ["L", p3.x, p3.y], ["Z"]];
+        fig.push(
+          r.path(fig.pathCurve).attr(curveStyle),
+          r.path(fig.pathArrow).attr(arrowStyle)
+        );
+        fig.modifyPoints = function(points){
+          
+          this.pathCurve[0][1] = points[0].x;
+          this.pathCurve[0][2] = points[0].y;
+          this.pathCurve[1][1] = points[1].x;
+          this.pathCurve[1][2] = points[1].y;
+          this.pathCurve[1][3] = points[2].x;
+          this.pathCurve[1][4] = points[2].y;
+          this.pathCurve[1][5] = points[3].x;
+          this.pathCurve[1][6] = points[3].y;
+          
+          this[0].attr({path: this.pathCurve});
+          
+          var angle = Math.atan2( ( points[2].y - points[3].y), (points[2].x - points[3].x) );
+          var p1 = {x: points[3].x, y: points[3].y};
+          var p2 = {x: p1.x + 10*Math.cos(angle + Math.PI/8), y: p1.y + 10*Math.sin(angle + Math.PI/8)};
+          var p3 = {x: p1.x + 10*Math.cos(angle - Math.PI/8), y: p1.y + 10*Math.sin(angle - Math.PI/8)};
+          this.pathArrow = [["M", p1.x, p1.y], ["L", p2.x, p2.y], ["L", p3.x, p3.y], ["Z"]];
+          this[1].attr({path: this.pathArrow});
+        };
+        return fig;
+      },
       figure: function(ctx){
         var fig = ctx.r.set();
         fig.border = [];
         fig.moveToPoint = function(p){
           this.transform("T" + (p.x - this.p.x) + "," + (p.y - this.p.y));
         };
+        return fig;
+      },
+      lines: function(r, points , figureStyle){   //linCur
+        var lines = r.path(
+          [["M", points.x, points.y], 
+           ["L", points.ax, points.ay], 
+           ["M", points.bx, points.by], 
+           ["L", points.zx, points.zy]]).attr(figureStyle);
+           
+        lines.modifyPoints = function(points){
+          this.attr({path:[ ["M", points[0].x, points[0].y], 
+                            ["L", points[1].x, points[1].y], 
+                            ["M", points[2].x, points[2].y], 
+                            ["L", points[3].x, points[3].y]]});
+        };
+        return lines;
+      },
+      relation: function(ctx, parent, p, figureStyle){
+        //Delete element s[i].remove(), s.exclude(s[i])
+        
+        var fig = ctx.r.set();
+        var curveStyle = utils.clone(style.curve);
+        
+        fig.state = 'initial';
+        fig.p = [];
+        fig.from = undefined;
+        fig.to = undefined;
+        
+        curveStyle['stroke-width'] = figureStyle['stroke-width'] || curveStyle['stroke-width'];
+        
+        if(!$.isArray(p)){
+          fig.p[0] = p;
+          fig.push(
+            ctx.r.circle(fig.p[0].x, fig.p[0].y, 4).attr(style.point)
+          );
+          fig.moveToPoint = function(p){
+            if(this.p.length == 1){
+              this[0].attr({'cx': p.x, 'cy': p.y});
+            }
+            else if(this.p.length == 4){
+              var ip    = {x: this.p[0].x, y: this.p[0].y};
+              this.p[2] = {x: (p.x + ip.x)/2, y: (p.y + ip.y)/2};
+              this.p[3] = {x: p.x, y: p.y};
+              
+              this[1].modifyPoints(this.p);
+              this[2].attr({'cx': p.x, 'cy': p.y});
+            }
+          };
+          fig.activateSecondControl = function(ctx, pt, alpha){
+            this.state = 'extend';
+            this[0].animate(style.border_dis, 500, function(){ this.remove(); });
+            
+            var dAx = 75 * Math.cos(alpha), dAy = -75 * Math.sin(alpha);
+            this.p[0]={x: pt.x, y: pt.y };
+            this.p[1]={x: pt.x + dAx, y: pt.y + dAy};
+            this.p[2]={x: pt.x, y: pt.y};
+            this.p[3]={x: pt.x, y: pt.y};
+            
+            var points = {  x:  this.p[0].x, y:  this.p[0].y, 
+                            ax: this.p[1].x, ay: this.p[1].y, 
+                            bx: this.p[2].x, by: this.p[2].y, 
+                            zx: this.p[3].x, zy: this.p[3].y  };
+            this.push(
+              figures.curve(ctx.r, points, curveStyle),
+              ctx.r.circle(this.p[0].x, this.p[0].y, 4).attr(style.point)
+            );
+          };
+        }
+        else{
+          fig.state = 'extend';
+          fig.timer = undefined;
+          fig.p = p;
+          var points = {  x:  fig.p[0].x, y:  fig.p[0].y, 
+                ax: fig.p[1].x, ay: fig.p[1].y, 
+                bx: fig.p[2].x, by: fig.p[2].y, 
+                zx: fig.p[3].x, zy: fig.p[3].y };
+          fig.push(
+            figures.curve(ctx.r, points, curveStyle),
+            figures.lines(ctx.r, points, style.line),
+            ctx.r.circle(points.x,  points.y,  4).attr(style.point),
+            ctx.r.circle(points.ax, points.ay, 4).attr(style.point),
+            ctx.r.circle(points.bx, points.by, 4).attr(style.point),
+            ctx.r.circle(points.zx, points.zy, 4).attr(style.point)
+          );
+          
+          var bb, pt;
+          
+          pt = ctx.path.determinePercentage(fig[0].pathCurve, 0.5);
+          fig.push(
+            ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24),
+            ctx.r.image('/static/icons/info.png', pt.x - 24, pt.y - 12, 24, 24)
+          );
+          
+          for(var i=2; i<7; i++){
+            fig[i].toFront();
+          }
+          fig[6].hide();
+          fig[7].hide();
+          
+          fig[2].attr({cursor: "move"});
+          fig[3].attr({cursor: "move"});
+          fig[4].attr({cursor: "move"});
+          fig[5].attr({cursor: "move"});
+          
+          fig.hidePoints =  function(){
+            fig[1].hide();
+            fig[2].hide();
+            fig[3].hide();
+            fig[4].hide();
+            fig[5].hide();
+          };
+          fig.showPoints = function(){
+            fig[1].show();
+            fig[2].show();
+            fig[3].show();
+            fig[4].show();
+            fig[5].show();
+          };
+          fig.update = function(){
+            var pt = ctx.path.determinePercentage(fig[0].pathCurve, 0.5);
+            fig[6].attr('x', pt.x);
+            fig[6].attr('y', pt.y - 12);
+            fig[6].transform('');
+            fig[7].attr('x', pt.x - 24);
+            fig[7].attr('y', pt.y - 12);
+            fig[7].transform('');
+          };
+          
+          fig[2].update = function (dx, dy) {
+            this.transform("...T" + dx + "," + dy);
+            
+            bb = this.getBBox();
+            fig.p[0] = {x: (bb.x + bb.width/2), 
+                  y: (bb.y + bb.height/2)};
+            pt = ctx.path.determinePoint(this.parent.from.border, fig.p[0]);
+                  
+            this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
+                  
+            bb = this.getBBox();
+            fig.p[0] = {x: (bb.x + bb.width/2), 
+                  y: (bb.y + bb.height/2)};
+            fig[3].update(dx, dy);
+          };
+          fig[3].update = function (dx, dy) {
+            this.transform("...T" + dx + "," + dy);
+            
+            var bb = this.getBBox();
+            fig.p[1] = {x: (bb.x + (bb.width)/2), 
+                  y: (bb.y + (bb.height)/2)};
+            fig[0].modifyPoints(fig.p);
+            fig[1].modifyPoints(fig.p);
+            fig.update();
+          };
+          fig[4].update = function (dx, dy) {
+            this.transform("...T" + dx + "," + dy);
+            
+            var bb = this.getBBox();
+            fig.p[2] = {x: (bb.x + (bb.width)/2), 
+                  y: (bb.y + (bb.height)/2)};
+            fig[0].modifyPoints(fig.p);
+            fig[1].modifyPoints(fig.p);
+            fig.update();
+          };
+          fig[5].update = function (dx, dy) {
+            this.transform("...T" + dx + "," + dy);
+            
+            bb = this.getBBox();
+            fig.p[3] = {x: (bb.x + (bb.width)/2), 
+                  y: (bb.y + (bb.height)/2)};
+            pt = ctx.path.determinePoint(this.parent.to.border, fig.p[3]);
+                  
+            this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
+                  
+            bb = this.getBBox();
+            fig.p[3] = {x: (bb.x + (bb.width)/2), 
+                  y: (bb.y + (bb.height)/2)};
+            fig[4].update(dx, dy);
+          };
+          
+          fig[2].drag(moveActions.move, moveActions.start, moveActions.end);
+          fig[3].drag(moveActions.move, moveActions.start, moveActions.end);
+          fig[4].drag(moveActions.move, moveActions.start, moveActions.end);
+          fig[5].drag(moveActions.move, moveActions.start, moveActions.end);
+          fig.hover(
+            function(){
+              fig[6].show();
+              fig[7].show();
+              fig.showPoints();
+              clearInterval(fig.timer);
+            },
+            function(){
+              fig[6].hide();
+              fig[7].hide();
+              fig.timer = setTimeout(function(){
+                fig.hidePoints();
+                }, 2000);
+            }
+          );
+        }
+        utils.parentReference(fig, parent);
         return fig;
       }
     };
@@ -45,7 +340,7 @@ $(document).ready(function(){
         if(fig.type == "set"){
           fig.forEach(function(el){
             if(el.type == "set"){
-              utils.parentRefence(el, parent);
+              utils.parentReference(el, parent);
             }
             else{
               el.parent = parent;
@@ -53,6 +348,23 @@ $(document).ready(function(){
           });
           fig.parent = parent;
         }
+      },
+      textToVar: function(text){
+        return text
+          .toLowerCase()
+          .replace(/\u000A+/g,'_')
+          .replace(/[\u00E0-\u00E5]+/g,'a')
+          .replace(/[\u00E8-\u00EB]+/g,'e')
+          .replace(/[\u00EC-\u00EF]+/g,'i')
+          .replace(/[\u00F2-\u00F6]+/g,'o')
+          .replace(/[\u00F9-\u00FC]+/g,'u')
+          .replace(/\u00F1+/g,'nh')
+          .replace(/[^\w ]+/g,'')
+          .replace(/ +/g,'_');
+      },
+      textToTitle: function(text){
+        text = text.toLowerCase().replace(/\u000A+/g,' ').replace(/ +/g,' ');
+        return text.charAt(0).toUpperCase() + text.slice(1);
       }
     };
     
@@ -71,10 +383,9 @@ $(document).ready(function(){
       },
       changeTitle: function(title){
         this.title = title;
-        this.name = evo.utils.textToVar(title);
-        this.ctx.changeTitle(this);                 //modTitMenu
-        
-        this.fig.changeTitle(this.title);             //camTit
+        this.name = utils.textToVar(title);
+        this.fig.changeTitle(title);                  //camTit
+        this.ctx.changeTitle(this);                   //modTitMenu
         this.border = this.fig.getBorder();
         if(typeof(this.restoreLinks) == 'function'){  //restEnl
           this.restoreLinks();
@@ -98,6 +409,17 @@ $(document).ready(function(){
       },
       integrateCtx: function(){
         this.ctx.integrateControls(this);
+      },
+      viewControls: function(){
+        var obj;
+        if(this.name){
+          obj = this;
+        }else if(this.parent){
+          obj = this.parent;
+        }
+        if(obj){
+          obj.ctx.viewControls(obj);
+        }
       }
     });
     
@@ -123,7 +445,6 @@ $(document).ready(function(){
         this.enteringRelsQua = 0;
         this.leavingRelsQua = 0;
       },
-      
       changeDefinition: function(definition){     	 //camDefi
         this.definition = definition;
       },
@@ -150,64 +471,64 @@ $(document).ready(function(){
           this.leavingRelsQua--;
         }
       },
-      existOriRel: function(des_id){
+      existsOriginRel: function(des_id){
         var idOri, idDes;
-        var existRel = false;
+        var exists = false;
         
         for(var rel in this.leavingRels){
           idOri = false;
           idDes = false;
-          if(this.leavingRels[rel].des.id == des_id){
+          if(this.leavingRels[rel].to.id == des_id){
             idOri = true;
           }
-          if(this.leavingRels[rel].ori.id == this.id){
+          if(this.leavingRels[rel].from.id == this.id){
             idDes = true;
           }
           if(idOri && idDes){
-            existRel = true;
+            exists = true;
             break;
           }
         }
-        return existRel;
+        return exists;
       },
-      exisRelDes: function(ori_id){
+      existsDestinationRel: function(ori_id){
         var idOri, idDes;
-        var existRel = false;
+        var exists = false;
         
         for(var rel in this.enteringRels){
           idOri = false;
           idDes = false;
-          if(this.enteringRels[rel].ori.id == ori_id){
+          if(this.enteringRels[rel].from.id == ori_id){
             idOri = true;
           }
-          if(this.enteringRels[rel].des.id == this.id){
+          if(this.enteringRels[rel].to.id == this.id){
             idDes = true;
           }
           if(idOri && idDes){
-            existRel = true;
+            exists = true;
             break;
           }
         }
-        return existRel;
+        return exists;
       },
       restoreLinks: function(){
         var oriRel, desRel, pts, pt;
         for(var rel in this.leavingRels){
           oriRel = this.leavingRels[rel];
           if(oriRel){
-            //pts = oriRel.obtPtsRel();
-            //pt = this.ctx.detPunEnPath(this.border, pts.po);
-            //oriRel.camPt({po: pt});
-            //oriRel.camTitulo(this.title, oriRel.des.title);
+            //pts = oriRel.getRelationPoints();
+            //pt = this.ctx.path.determinePoint(this.border, pts.po);
+            //oriRel.changePoints({po: pt});
+            //oriRel.changeTitle(this.title, oriRel.des.title);
           }
         }
         for(var rel in this.enteringRels){
           desRel = this.enteringRels[rel];
           if(desRel){
-            //pts = desRel.obtPtsRel();
-            //pt = this.ctx.detPunEnPath(this.border, pts.pd);
-            //desRel.camPt({pd: pt});
-            //desRel.camTitulo(desRel.ori.title, this.title);
+            //pts = desRel.getRelationPoints();
+            //pt = this.ctx.path.determinePoint(this.border, pts.pd);
+            //desRel.changePoints({pd: pt});
+            //desRel.changeTitle(desRel.from.title, this.title);
           }
         }
       },
@@ -233,7 +554,7 @@ $(document).ready(function(){
         
         var border = elFig.getBorder();
         var pp = el.ctx.r.path(border).attr(style.border);
-        pp.animate(style.dis_border, 100, function(){ this.remove(); });
+        pp.animate(style.border_dis, 100, function(){ this.remove(); });
         pp = undefined;
       },
       end: function(){
@@ -267,18 +588,17 @@ $(document).ready(function(){
         
         for(var rel in el.enteringRels){
           if(el.enteringRels[rel]){
-            //el.enteringRels[rel].transUbiCont({pd: {dx: dx, dy: dy}});
+            el.enteringRels[rel].controlMove({pd: {dx: dx, dy: dy}});
           }
         }
         for(var rel in el.leavingRels){
           if(el.leavingRels[rel]){
-            //el.leavingRels[rel].transUbiCont({po: {dx: dx, dy: dy}});
+            el.leavingRels[rel].controlMove({po: {dx: dx, dy: dy}});
           }
         }
         
       },
       remove: function(){
-        
         var obj;
         if(this.name){
           obj = this;
@@ -286,7 +606,6 @@ $(document).ready(function(){
           obj = this.parent;
         }
         if(obj){
-          
           var list      = obj.list;
           var copiesList= obj.copiesList;
           var ref       = obj.ref;
@@ -351,19 +670,194 @@ $(document).ready(function(){
           for(var i in this.copiesList){
             copy = this.copiesList[i]; 
             if(copy){
-              copy.camTitulo(this.title);
+              copy.changeTitle(this.title);
             }
           }
         }
       },
       createTextEditor: function(){
-        this.parent.ctx.viewTextEditor(this.parent);
-      },
-      viewControls: function(){
-        this.parent.ctx.viewControls(this.parent);
+        var obj;
+        if(this.name){
+          obj = this;
+        }else if(this.parent){
+          obj = this.parent;
+        }
+        if(obj){
+          obj.ctx.viewTextEditor(obj);
+        }
       }
     });
     
+    this.Relation = Unit.extend({
+      init: function(ctx){
+        this._super(ctx);
+        
+        this.from     = undefined;
+        this.to       = undefined;
+        this.selected = false;
+      },
+      changePoints: function(pt){
+        var bb;
+        if(pt.po){
+          this.fig[2].transform("...T" + (pt.po.x - this.fig.p[0].x) +
+                                "," + (pt.po.y - this.fig.p[0].y));
+          bb = this.fig[2].getBBox();
+          this.fig.p[0] ={x: (bb.x + (bb.width)/2), 
+                          y: (bb.y + (bb.height)/2)};
+          
+          this.fig[0].modifyPoints(this.fig.p);
+          this.fig[1].modifyPoints(this.fig.p);
+        }
+        else if(pt.pco){
+          this.fig.p[1] = pt.pco;
+        }
+        else if(pt.pcd){
+          this.fig.p[2] = pt.pcd;
+        }
+        else if(pt.pd){
+          this.fig[5].transform("...T" + (pt.pd.x - this.fig.p[3].x) +
+                                "," + (pt.pd.y - this.fig.p[3].y));
+          bb = this.fig[5].getBBox();
+          this.fig.p[3] ={x: (bb.x + (bb.width)/2), 
+                          y: (bb.y + (bb.height)/2)};
+          
+          this.fig[0].modifyPoints(this.fig.p);
+          this.fig[1].modifyPoints(this.fig.p);
+        }
+      },
+      changeTitle: function(from_title, to_title){
+        this.title = this.ctx.relationTitle(from_title, to_title);       
+        this.name = utils.textToVar(this.title);
+        //this.ctx.modTitMenu(this);
+      },
+      controlMove: function(cont){
+        //cont po, pco, pd, pcd
+        var pt, dx, dy;
+        if(cont.po){
+          dx = cont.po.dx;
+          dy = cont.po.dy;
+          
+          pt = this.fig.p[0];
+          this.fig.p[0] ={x: pt.x + dx - (this.fig.dx || 0), 
+                  y: pt.y + dy - (this.fig.dy || 0)};
+          pt = this.fig.p[1];
+          this.fig.p[1] ={x: pt.x + dx - (this.fig.dx || 0), 
+                  y: pt.y + dy - (this.fig.dy || 0)};
+          
+          this.fig[0].modifyPoints(this.fig.p);
+          this.fig[1].modifyPoints(this.fig.p);
+          
+          this.fig[2].transform("...T" + (dx - (this.fig.dx || 0)) +
+                       "," + (dy - (this.fig.dy || 0)));
+          pt = this.fig[2].getBBox();
+          this.fig.p[0] ={x: (pt.x + (pt.width)/2), 
+                  y: (pt.y + (pt.height)/2)};
+                     
+          this.fig[3].transform("...T" + (dx - (this.fig.dx || 0)) +
+                       "," + (dy - (this.fig.dy || 0)));
+          pt = this.fig[3].getBBox();
+          this.fig.p[1] ={x: (pt.x + (pt.width)/2), 
+                  y: (pt.y + (pt.height)/2)};
+        }
+        else if(cont.pd){
+          dx = cont.pd.dx;
+          dy = cont.pd.dy;
+          
+          pt = this.fig.p[2];
+          this.fig.p[2] ={x: pt.x + dx  - (this.fig.dx || 0), 
+                  y: pt.y + dy  - (this.fig.dy || 0)};
+                  
+          pt = this.fig.p[3];
+          this.fig.p[3] ={x: pt.x + dx  - (this.fig.dx || 0), 
+                  y: pt.y + dy  - (this.fig.dy || 0)};
+                  
+          this.fig[0].modifyPoints(this.fig.p);
+          this.fig[1].modifyPoints(this.fig.p);
+          
+          
+          this.fig[4].transform("...T" + (dx - (this.fig.dx || 0)) +
+                       "," + (dy - (this.fig.dy || 0)));
+          pt = this.fig[4].getBBox();
+          this.fig.p[2] ={x: (pt.x + (pt.width)/2), 
+                  y: (pt.y + (pt.height)/2)};
+                       
+          this.fig[5].transform("...T" + (dx - (this.fig.dx || 0)) +
+                       "," + (dy - (this.fig.dy || 0)));
+          pt = this.fig[5].getBBox();
+          this.fig.p[3] ={x: (pt.x + (pt.width)/2), 
+                  y: (pt.y + (pt.height)/2)};
+        }
+        this.fig.dx = dx;
+        this.fig.dy = dy;
+        this.fig.update();
+      },
+      getRelationPoints :function(){
+        return {po: this.fig.p[0], pd: this.fig.p[3]};
+      },
+      moveDelta: function(dx, dy){
+        var bb;
+        
+        this.fig[2].transform("...T" + dx + "," + dy);
+        bb = this.fig[2].getBBox();
+        this.fig.p[0] ={x: (bb.x + (bb.width)/2), 
+                y: (bb.y + (bb.height)/2)};
+      
+        this.fig[3].transform("...T" + dx + "," + dy);
+        bb = this.fig[3].getBBox();
+        this.fig.p[1] ={x: (bb.x + (bb.width)/2), 
+                y: (bb.y + (bb.height)/2)};
+        
+        this.fig[4].transform("...T" + dx + "," + dy);
+        bb = this.fig[4].getBBox();
+        this.fig.p[2] ={x: (bb.x + (bb.width)/2), 
+                y: (bb.y + (bb.height)/2)};
+        
+        this.fig[5].transform("...T" + dx + "," + dy);
+        bb = this.fig[5].getBBox();
+        this.fig.p[3] ={x: (bb.x + (bb.width)/2), 
+                y: (bb.y + (bb.height)/2)};
+        
+        this.fig.update();
+        
+        this.fig[1].modifyPoints(this.fig.p);
+        this.fig[0].modifyPoints(this.fig.p);
+      },
+      viewPoints: function(view){
+        this.selected = view;
+        if(this.selected){
+          this.fig.showPoints();
+        }else{
+          this.fig.hidePoints();
+        }
+      },
+      remove: function(){
+        var relation;
+        if(this.name){
+          relation = this;
+        }else if(this.parent){
+          relation = this.parent;
+        }
+        if(relation){
+          var list  = relation.list;
+          
+          relation.from.delLeavingRels(relation);
+          relation.to.delEnteringRels(relation);
+          
+          if(list[relation.id]){
+            delete(list[relation.id]);
+          } 
+          
+          relation.ctx.deleteControls(relation);
+          var limit = relation.ctx.limitAdjustList(list);
+          relation.ctx.idx[relation.type] = ++limit;
+          
+          relation.fig.remove();
+          relation.fig = undefined;
+          relation = undefined;
+        }
+      }      
+    });
+        
     this.Editor = Class.extend({
       init: function(r){
         this.r = r;
@@ -425,9 +919,9 @@ $(document).ready(function(){
         sel = undefined;
       },
       changeTitle: function(el){
-        var title = el.title;
-        if(title.length > 18){
-          title = title.substring(0,14)+'...'+title.substring(title.length-3, title.length);
+        var title = utils.textToTitle(el.title);
+        if(title.length > 16){
+          title = title.substring(0,12)+'...'+title.substring(title.length-3, title.length);
         }
         $('#'+el.id+'-item>div.panel-heading>a>h4').html(title);
       },
@@ -466,6 +960,28 @@ $(document).ready(function(){
             this.list[i][j].moveDelta(dx, dy);    //mover
           }
         }
+      },
+      relationTitle: function (from_title, to_title) {
+        var title;
+    
+        if(from_title.length > 9){
+          title = from_title.substr(0,4)+'..'+
+                  from_title.substr(-4);
+        }
+        else{
+          title = from_title;
+        }
+        
+        title += '-';
+        
+        if(to_title.length > 9){
+          title += to_title.substr(0,4)+'..'+
+                  to_title.substr(-4);
+        }
+        else{
+          title += to_title;
+        }
+        return title;
       },
       viewControls: function(el){
         var isNotCurrent = false;
@@ -516,6 +1032,7 @@ $(document).ready(function(){
           $("#text-edit-control").remove();  
         });
       },
+      
       panel: {
         getSize: function(){
           return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};
@@ -529,6 +1046,75 @@ $(document).ready(function(){
           $(this.ctx.svgDiv).height(height);
         }
       },
+      path: {
+        determineAngle: function(path, pt){
+          var pp = this.ctx.r.path(path);
+          var tl = pp.getTotalLength();
+          var pr = [];
+          var cp, angle, cx = 0, cy = 0;
+          
+          for(var i=0; i < 50; i++){
+            pr[i] = tl*(i/50);
+            cp = pp.getPointAtLength(pr[i]);
+            cx += cp.x;
+            cy += cp.y;
+          }
+          cp = ({x: cx/50, y: cy/50});
+          angle = Math.atan2( ( cp.y - pt.y), (pt.x - cp.x) );
+          pp.remove();
+          return angle;
+        },
+        determinePoint: function(path, pt){
+          var pp = this.ctx.r.path(path).attr(style.border);
+          var tl = pp.getTotalLength();
+          var ep, diff, idx, minor;
+          var pr = [];
+          var r = [];
+          
+          pr[0]  = 0;
+          pr[10] = tl;
+          
+          for(var i=1; i < 10; i++){
+            pr[i] = tl*(i/10);
+          } 
+          
+          diff = pr[10] - pr[0];
+          
+          while(diff > 2){
+            for(var i=0; i<10; i++){
+              ep = pp.getPointAtLength((pr[i]+pr[i+1])/2);
+              r.push(Math.sqrt(Math.pow(ep.x - pt.x,2)+Math.pow(ep.y - pt.y,2)));
+            }
+            
+            minor = Math.min.apply(Math, r);
+            
+            for(var i=0; i<10; i++){
+              if(r[i] == minor){
+                idx = i;
+                break;
+              }
+            }
+            pr[0] = pr[idx];
+            pr[10] = pr[idx+1];
+            
+            for(var i=1; i<10; i++){
+              pr[i] = (pr[0] + (pr[10]-pr[0])*(i/10));  
+            }     
+            diff = pr[10] - pr[0];
+            r = [];
+          }
+          ep = pp.getPointAtLength(pr[idx]);
+          pp.animate(style.border_dis, 500, function(){ this.remove(); });
+          return {x: ep.x, y: ep.y};
+        },
+        determinePercentage: function(path, percentage){
+          var pp = this.ctx.r.path(path);
+          var pt = pp.getPointAtLength(percentage * pp.getTotalLength());
+          pp.remove();
+          pp = undefined;
+          return pt; 
+        }
+      },
       pointer: {
         getPosition: function(e){
           var offset  = $(this.ctx.svgDiv).offset();
@@ -540,11 +1126,11 @@ $(document).ready(function(){
           var exist = false; 
           for( var l in this.ctx.list){
             for(var e in this.ctx.elements){
-              if(l == this.ctx.elementos[e]){
+              if(l == this.ctx.elements[e]){
                 for(var le in this.ctx.list[l]){
                   exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, p.x, p.y);     
                   if(exist){
-                    return this.list[l][le];
+                    return this.ctx.list[l][le];
                   }
                 }
               }
@@ -560,7 +1146,7 @@ $(document).ready(function(){
         existRelation: function(sector, rel){
           
         }
-      }
+      }   
     });
     
     this.Evolucion = Class.extend({
@@ -725,20 +1311,6 @@ $(document).ready(function(){
           }
         }
       },
-      utils: {
-        textToVar: function(text){
-          return text
-            .toLowerCase()
-            .replace(/[\u00F1]+/g,'nh')
-            .replace(/[\u00E0-\u00E5]+/g,'a')
-            .replace(/[\u00E8-\u00EB]+/g,'e')
-            .replace(/[\u00EC-\u00EF]+/g,'i')
-            .replace(/[\u00F2-\u00F6]+/g,'o')
-            .replace(/[\u00F9-\u00FC]+/g,'u')
-            .replace(/[^\w ]+/g,'')
-            .replace(/ +/g,'_');
-        }
-      },
       verifyBrowsers: function(){
         var IE = (navigator.appName=='Microsoft Internet Explorer')?parseFloat((new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})")).exec(navigator.userAgent)[1]):-1;
         if(IE > -1 && IE < 9){
@@ -749,4 +1321,3 @@ $(document).ready(function(){
     
   })();  
 });
-

@@ -3,7 +3,6 @@
  */
 $(document).ready(function(){
   (function(){
-    
     this.figures = $.extend(this.figures, {
       concept: function(ctx, parent, p, title, figureStyle){
         var bb, op, width, height;
@@ -60,6 +59,10 @@ $(document).ready(function(){
           this[2].attr('y', op.y - 12);
           this[2].transform('');
           
+          this[3].attr('x', op.x + width -36);
+          this[3].attr('y', op.y - 12);
+          this[3].transform('');
+          
         };
         fig.getBorder = function(){
           var bb, op, width, height;
@@ -87,6 +90,171 @@ $(document).ready(function(){
         );
         utils.parentReference(fig, parent);
         return fig;
+      },
+      cycle: function(ctx, parent, p, title, orientation, feedback){        
+        var bb, op, pt, width, height, middle_x, el_size;
+        var fig   = figures.figure(ctx);
+        
+        fig.p = {x: p.x, y: p.y};
+        fig.push(
+          ctx.r.text(fig.p.x, fig.p.y, title).attr(style.title)
+        );
+        
+        bb = fig[0].getBBox();
+        op = {x: bb.x - 2, y: bb.y -1};
+        width = bb.width + 4;
+        height = bb.height + 2;
+        middle_x = op.x + width/2;
+        el_size = 35;
+        pt = {'x': middle_x, 'y': op.y - (el_size/2)};
+        
+        fig.push(
+          ctx.r.rect(op.x, op.y, width, height, 4).attr(style.rectangle),
+          figures.arcWithArrow(ctx.r, pt, orientation, feedback),
+          ctx.r.image('/static/icons/close.png',  op.x + width - 12, op.y - 12, 24, 24),
+          ctx.r.image('/static/icons/info.png', op.x + width -36, op.y - 12, 24, 24)
+        );
+        
+        fig[0].toFront();
+        fig[3].toFront();
+        fig[4].toFront();
+        fig[3].hide();
+        fig[4].hide();
+        
+        for(var i=0; i<3; i++){
+          fig[i].attr({ cursor: "move"});
+        };
+        
+        fig.changeTitle = function(title){
+          var bb, limit, op, width, height, el_size;
+          
+          bb = fig[0].getBBox();
+          limit = bb.y;
+          
+          this[0].attr('text', title);
+          
+          bb = fig[0].getBBox();
+          op = {x: bb.x - 2, y: bb.y -1};
+          width = bb.width + 4;
+          height = bb.height + 2;
+          middle_x = op.x + width/2;
+              
+          this[1].attr('x', op.x);
+          this[1].attr('y', op.y);
+          this[1].attr('width', width);
+          this[1].attr('height', height);
+          this[1].transform('');
+          
+          var dy = bb.y - limit;
+          
+          this[2].transform("...T 0," + dy);
+          
+          this[3].attr('x', op.x + width - 12);
+          this[3].attr('y', op.y - 12);
+          this[3].transform('');
+          
+          this[4].attr('x', op.x + width - 36);
+          this[4].attr('y', op.y - 12);
+          this[4].transform('');
+        };
+        fig.changeOrientation = function(orientation){
+          var bb, op, pt, middle_x, el_size;
+          var arc, anterior_arc;
+          
+          bb = fig[0].getBBox();
+          op = {x: bb.x - 2, y: bb.y -1};
+          middle_x = op.x + width/2;
+          el_size = 35;
+          pt = {'x': middle_x, 'y': op.y - (el_size/2)};
+          
+          arc = figures.arcWithArrow(ctx.r, pt, orientation, parent.feedback);
+          arc.drag(parent.moveFig, parent.start, parent.end);
+          arc.attr({ cursor: "move"});
+          arc.hover(
+            function(){
+              parent.fig[3].show();
+              parent.fig[4].show();
+            },
+            function(){
+              parent.fig[3].hide();
+              parent.fig[4].hide();
+            }
+          );
+          utils.parentReference(arc, parent);
+          
+          anterior_arc = this.splice(2,1, arc);
+          anterior_arc.remove();
+          anterior_arc = undefined;
+        };
+        fig.changeFeedback = function(feedback){
+          var bb, op, pt, middle_x, el_size;
+          var arc, anterior_arc;
+          
+          bb = fig[0].getBBox();
+          op = {x: bb.x - 2, y: bb.y -1};
+          middle_x = op.x + width/2;
+          el_size = 35;
+          pt = {'x': middle_x, 'y': op.y - (el_size/2)};
+          
+          arc = figures.arcWithArrow(ctx.r, pt, parent.orientation, feedback);
+          arc.drag(parent.moveFig, parent.start, parent.end);
+          arc.attr({ cursor: "move"});
+          arc.hover(
+            function(){
+              parent.fig[3].show();
+              parent.fig[4].show();
+            },
+            function(){
+              parent.fig[3].hide();
+              parent.fig[4].hide();
+            }
+          );
+          utils.parentReference(arc, parent);
+          
+          anterior_arc = this.splice(2,1, arc);
+          anterior_arc.remove();
+          anterior_arc = undefined;
+        };
+        fig.getBorder = function(){
+          var bb, op, width, height, middle_x, el_size;
+          var arc;
+          
+          bb = fig[0].getBBox();
+          op = {x: bb.x - 2, y: bb.y -1};
+          width = bb.width + 4;
+          height = bb.height + 2;
+          middle_x = op.x + width/2;
+          el_size = 35;
+          
+          this.border    = [["M", op.x, op.y], 
+                   ["H", op.x + (width - el_size)/2],
+                   ["V", op.y - el_size],
+                   ["H", op.x + (width + el_size)/2],
+                   ["V", op.y ],
+                   ["H", op.x + (width)],
+                   ["V", op.y + height], 
+                   ["H", op.x], 
+                   ["V", op.y]];
+          return this.border;
+        };
+        fig.hover(
+          function(){
+            fig[3].show();
+            fig[4].show();
+          },
+          function(){
+            fig[3].hide();
+            fig[4].hide();
+          }
+        );
+        utils.parentReference(fig, parent);
+        return fig;
+      },
+      materialRelation: function(ctx, parent, p){
+        return figures.relation(ctx, parent, p, style.material_relation);
+      },
+      informationRelation: function(ctx, parent, p){
+        return figures.relation(ctx, parent, p, style.information_relation);
       }
     });
     
@@ -99,13 +267,15 @@ $(document).ready(function(){
         
         this.id           = "concept-"+idx;
         this.title        = title || "Concepto "+idx;
-        this.name         = evo.utils.textToVar(this.title);
+        this.name         = utils.textToVar(this.title);
         
         this.units        = " ";
         this.list         = this.ctx.list.concept;
+        
         this.figGenerator = figures.concept;
         this.figure(p);
         this.integrateCtx();
+        this.viewControls();
       },
       changeUnits: function(units){
         this.units = units;
@@ -119,6 +289,114 @@ $(document).ready(function(){
         }
         this.fig[2].click(this.remove);
         this.fig[3].click(this.viewControls);
+      }
+    });
+    
+    this.Cycle = Element.extend({
+      init: function(ctx, p, title){
+        this._super(ctx);
+        
+        this.type         = "cycle";
+        var idx           = this.ctx.idx[this.type]++;
+        
+        this.id           = "cycle-"+idx;
+        this.title        = title || "Ciclo "+idx;
+        this.name         = utils.textToVar(this.title);
+        
+        this.orientation  = "right";
+        this.feedback     = "positive";
+        this.list         = this.ctx.list.cycle;
+        
+        this.figGenerator = figures.cycle;
+        this.figure(p);
+        this.integrateCtx();
+        this.viewControls();
+      },
+      changeOrientation: function(orientation){
+        if(orientation == "right" || orientation == "left"){
+          this.orientation = orientation;
+          this.fig.changeOrientation(orientation);
+        }
+      },
+      changeFeedback: function(feedback){
+        if(feedback == "positive" || feedback == "negative"){
+          this.feedback = feedback;
+          this.fig.changeFeedback(feedback);
+        }
+      },
+      figure: function(p){
+        this.fig = this.figGenerator(this.ctx, this, p, this.title, this.orientation, this.feedback);
+        this.border = this.fig.getBorder();
+        for(var i=0; i<3; i++){
+          this.fig[i].drag(this.moveFig, this.start, this.end);
+          this.fig[i].dblclick(this.createTextEditor);
+        }
+        this.fig[3].click(this.remove);
+        this.fig[4].click(this.viewControls);
+      }
+    });
+    
+    this.MaterialRel = Relation.extend({
+      init: function(ctx, p, from, to){
+        // p = relation points
+        this._super(ctx);
+        
+        this.type = "material";
+        var idx = this.ctx.idx[this.type]++;
+        
+        this.id = "material-"+idx;
+        this.title = this.ctx.relationTitle(from.title, to.title);       
+        this.name = utils.textToVar(this.title);
+        
+        this.list = this.ctx.list.material;
+        this.from = from;
+        this.to = to;
+                
+        this.from.addLeavingRels(this);
+        this.to.addEnteringRels(this);
+        
+        this.figGenerator = figures.materialRelation;
+        this.figure(p);
+        this.integrateCtx();
+        this.viewControls();
+      },
+      figure: function(p){
+        this.fig = this.figGenerator(this.ctx, this, p);
+        this.fig[6].click(this.remove);
+        this.fig[7].click(this.viewControls);
+        this.viewPoints(this.selected);
+      }
+    });
+    
+    this.InformationRel = Relation.extend({
+      init: function(ctx, p, from, to){
+        this._super(ctx);
+        
+        this.type = "information";
+        var idx = this.ctx.idx[this.type]++;
+        
+        this.id = "information-"+idx;
+        
+        this.title = this.ctx.relationTitle(from.title, to.title);
+        this.name = utils.textToVar(this.title);
+        
+        this.list = this.ctx.list.information;
+        this.from = from;
+        this.to = to;
+        
+        this.from.addLeavingRels(this);
+        this.to.addEnteringRels(this);
+        
+        this.figGenerator = figures.informationRelation;
+        this.figure(p);
+        this.integrateCtx();
+        this.viewControls();
+      },
+      figure: function(p){
+        this.fig = this.figGenerator(this.ctx, this, p);
+        this.fig[6].click(this.remove);
+        this.fig[7].click(this.viewControls);
+        this.viewPoints(this.selected);
       }
     });
     
@@ -145,6 +423,8 @@ $(document).ready(function(){
         this.defActions();
         this.defineCtx();
         this.activateState(this.state);
+        
+        //this.rec['camara'] = this.r.image('/images/camara_normal.png',-24,-24,24,24);
       },
       adjust: function(){
         var workAreaHeight = $('.work-area').height();
@@ -176,47 +456,47 @@ $(document).ready(function(){
           switch(inf.state){
             case 'concept': {
               if(inf.tmp.concept){
-                inf.tmp.concept.remover();
+                inf.tmp.concept.remove();
                 inf.tmp.concept = undefined;
               }
               inf.tmp.concept = figures.concept(inf, undefined, p, "Concepto "+inf.idx['concept'], {});
               break;
             }
-            case 'material': {
-              if(inf.tmp.relma){
-                inf.tmp.relma.remover();
-                inf.tmp.relma = undefined;
-              }
-              inf.tmp.relma = new figRelMa(inf, undefined, p);
-              break;
-            }
-            case 'information': {
-              if(inf.tmp.relin){
-                inf.tmp.relin.remover();
-                inf.tmp.relin = undefined;
-              }
-              inf.tmp.relin = new figRelIn(inf, undefined, p);
-              break;
-            }
             case 'cycle': {
-              if(inf.tmp.ciclo){
-                inf.tmp.ciclo.remover();
-                inf.tmp.ciclo = undefined;
+              if(inf.tmp.cycle){
+                inf.tmp.cycle.remove();
+                inf.tmp.cycle = undefined;
               }
-              inf.tmp.ciclo = new figCiclo(inf, undefined, p, "Ciclo "+ inf.idx['ciclo'], "der", "pos");
+              inf.tmp.cycle = new figures.cycle(inf, undefined, p, "Ciclo "+ inf.idx['cycle'], "right", "positive");
               break;
             }
             case 'clone': {
-              if(inf.tmp.copia){
-                inf.tmp.copia.remover();
-                inf.tmp.copia = undefined;
+              if(inf.tmp.clone){
+                inf.tmp.clone.remove();
+                inf.tmp.clone = undefined;
               }
-              inf.tmp.copia = new figCopia(inf, undefined, p);
+              inf.tmp.clone = new figCopia(inf, undefined, p);
+              break;
+            }
+            case 'material': {
+              if(inf.tmp.material){
+                inf.tmp.material.remove();
+                inf.tmp.material = undefined;
+              }
+              inf.tmp.material = new figures.materialRelation(inf, undefined, p);
+              break;
+            }
+            case 'information': {
+              if(inf.tmp.information){
+                inf.tmp.information.remove();
+                inf.tmp.information = undefined;
+              }
+              inf.tmp.information = new figures.informationRelation(inf, undefined, p);
               break;
             }
             case 'sector': {
               if(inf.tmp.seinf){
-                inf.tmp.seinf.remover();
+                inf.tmp.seinf.remove();
                 inf.tmp.seinf = undefined;
               }
               inf.tmp.seinf = new figSecto(inf, undefined, p, undefined, "Sector "+inf.idx['seinf']);
@@ -233,31 +513,31 @@ $(document).ready(function(){
               }
               break;
             }
-            case 'material': {
-              if(inf.tmp.relma){
-                inf.tmp.relma.remove();
-                inf.tmp.relma = undefined;
-              }
-              break;
-            }
-            case 'information': {
-              if(inf.tmp.relin){
-                inf.tmp.relin.remove();
-                inf.tmp.relin = undefined;
-              }
-              break;
-            }
             case 'cycle': {
-              if(inf.tmp.ciclo){
-                inf.tmp.ciclo.remove();
-                inf.tmp.ciclo = undefined;
+              if(inf.tmp.cycle){
+                inf.tmp.cycle.remove();
+                inf.tmp.cycle = undefined;
               }
               break;
             }
             case 'clone': {
-              if(inf.tmp.copia){
-                inf.tmp.copia.remove();
-                inf.tmp.copia = undefined;
+              if(inf.tmp.clone){
+                inf.tmp.clone.remove();
+                inf.tmp.clone = undefined;
+              }
+              break;
+            }
+            case 'material': {
+              if(inf.tmp.material){
+                inf.tmp.material.remove();
+                inf.tmp.material = undefined;
+              }
+              break;
+            }
+            case 'information': {
+              if(inf.tmp.information){
+                inf.tmp.information.remove();
+                inf.tmp.information = undefined;
               }
               break;
             }
@@ -279,30 +559,31 @@ $(document).ready(function(){
               }
               break;
             }
-            case 'material': {
-              if(inf.tmp.relma){
-                inf.tmp.relma.moveToPoint(p);
-              }
-              break;
-            }
-            case 'information': {
-              if(inf.tmp.relin){
-                inf.tmp.relin.moveToPoint(p);
-              }
-              break;
-            }
             case 'cycle': {
-              if(inf.tmp.ciclo){
-                inf.tmp.ciclo.moveToPoint(p);
+              if(inf.tmp.cycle){
+                inf.tmp.cycle.moveToPoint(p);
               }
               break;
             }
             case 'clone': {
-              if(inf.tmp.copia){
-                inf.tmp.copia.moveToPoint(p);
+              if(inf.tmp.clone){
+                inf.tmp.clone.moveToPoint(p);
               }
               break;
             }
+            case 'material': {
+              if(inf.tmp.material){
+                inf.tmp.material.moveToPoint(p);
+              }
+              break;
+            }
+            case 'information': {
+              if(inf.tmp.information){
+                inf.tmp.information.moveToPoint(p);
+              }
+              break;
+            }
+            
             case 'sector': {
               if(inf.tmp.seinf){
                 inf.tmp.seinf.moveToPoint(p);
@@ -314,7 +595,6 @@ $(document).ready(function(){
         $(this.svgDiv).click(function(e){
           var p = inf.pointer.getPosition(e);
           var alpha;
-          
           switch(inf.state){
             case 'concept': {
               if(inf.tmp.concept){
@@ -326,92 +606,93 @@ $(document).ready(function(){
               }
               break;          
             }
-            case 'material': {
-              var el = inf.existeElPt(p);
-              var relac = inf.tmp.relma;
+            case 'cycle': {
+              var cy = new Cycle(inf, p);
+              inf.list.cycle[cy.id] = cy;
+              
+              inf.activateState('cursor');
+              inf.tmp.cycle.remove();
+              inf.tmp.cycle = undefined;
+              break;
+            }
+            case 'clone': {
+              var el = inf.pointer.existElement(p);
               if(el){
-                p = inf.detPunEnPath(el.border, p);
-                alpha = inf.detAngEnPath(el.border, p);
-                if(relac.estado == 'inicial' && el.connec['aceOri']){
-                  relac.ori = el;
-                  relac.actSegPun(inf, p, alpha);
+                var cp = new Copia(inf, p, el);
+                inf.list.clone[cp.id] = cp;
+                
+                inf.activateState('cursor');
+                inf.tmp.clone.remove();
+                inf.tmp.clone = undefined;
+              }
+              break;
+            }
+            case 'material': {
+              var el = inf.pointer.existElement(p);
+              var relation = inf.tmp.material;
+              if(el){
+                p     = inf.path.determinePoint(el.border, p);
+                alpha = inf.path.determineAngle(el.border, p);
+                
+                if(relation.state == 'initial' && el.connec['oriAce']){
+                  relation.from = el;
+                  relation.activateSecondControl(inf, p, alpha);
                 }
-                else if(relac.estado == 'extendido' && el.connec['aceDes']){
-                  var noEsMismo = false;
-                  var noExRelac = false;
+                else if(relation.state == 'extend' && el.connec['desAce']){
+                  var is_itself = false;
+                  var exist_relation = false;
                     
-                  if(relac.ori.id != el.id){
-                    noEsMismo = true;
+                  if(relation.from.id == el.id){
+                    is_itself = true;
                   }
-                  noExRelac = !el.exisRelDes(relac.ori.id);
+                  exist_relation = el.existsDestinationRel(relation.from.id);
                   
-                  if(noEsMismo && noExRelac){
-                    relac.p[3] = p;
+                  if(!is_itself && !exist_relation){
+                    relation.p[3] = p;
                     
-                    var rm = new RelMa(inf, relac.p, relac.ori, el);
+                    var material = new MaterialRel(inf, relation.p, relation.from, el);
     
-                    inf.list.relma[rm.id] = rm;
+                    inf.list.material[material.id] = material;
                     
-                    inf.activarModo('curso-inf');
-                    inf.tmp.relma.remove();
-                    inf.tmp.relma = undefined;
+                    inf.activateState('cursor');
+                    inf.tmp.material.remove();
+                    inf.tmp.material = undefined;
                   }
                 }
               }
               break;
             }
             case 'information': {
-              var el = inf.existeElPt(p);
-              var relac = inf.tmp.relin;
+              var el = inf.pointer.existElement(p);
+              var relation = inf.tmp.information;
               if(el){
-                p = inf.detPunEnPath(el.border, p);
-                alpha = inf.detAngEnPath(el.border, p);
-                if(relac.estado == 'inicial' && el.connec['aceOri']){
-                  relac.ori = el;
-                  relac.actSegPun(inf, p, alpha);
+                p     = inf.path.determinePoint(el.border, p);
+                alpha = inf.path.determineAngle(el.border, p);
+                if(relation.state == 'initial' && el.connec['oriAce']){
+                  relation.from = el;
+                  relation.activateSecondControl(inf, p, alpha);
                 }
-                else if(relac.estado == 'extendido' && el.connec['aceDes']){
-                  var noEsMismo = false;
-                  var noExRelac = false;
+                else if(relation.state == 'extend' && el.connec['desAce']){
+                  var is_itself = false;
+                  var exist_relation = false;
                     
-                  if(relac.ori.id != el.id){
-                    noEsMismo = true;
+                  if(relation.from.id == el.id){
+                    is_itself = true;
                   }
-                  noExRelac = !el.exisRelDes(relac.ori.id);
+                  exist_relation = el.existsDestinationRel(relation.from.id);
                   
-                  if(noEsMismo && noExRelac){
-                    relac.p[3] = p;
+                  if(!is_itself && !exist_relation){
+                    relation.p[3] = p;
                     
-                    var ri = new RelIn(inf, relac.p, relac.ori, el);
+                    var information = new InformationRel(inf, relation.p, relation.from, el);
     
-                    inf.list.relin[ri.id] = ri;
+                    inf.list.information[information.id] = information;
                     
-                    inf.activarModo('curso-inf');
-                    inf.tmp.relin.remove();
-                    inf.tmp.relin = undefined;
+                    inf.activateState('cursor');
+                    inf.tmp.information.remove();
+                    inf.tmp.information = undefined;
                   }
                 }
-              }
-              break;
-            }
-            case 'cycle': {
-              var ci = new Ciclo(inf, p);
-              inf.list.ciclo[ci.id] = ci;
-              
-              inf.activarModo('curso-inf');
-              inf.tmp.ciclo.remove();
-              inf.tmp.ciclo = undefined;
-              break;
-            }
-            case 'clone': {
-              var el = inf.existeElPt(p);
-              if(el){
-                var cp = new Copia(inf, p, el);
-                inf.list.copia[cp.id] = cp;
-                
-                inf.activarModo('curso-inf');
-                inf.tmp.copia.remove();
-                inf.tmp.copia = undefined;
               }
               break;
             }
@@ -419,7 +700,7 @@ $(document).ready(function(){
               var se = new Secto(inf, p);
               inf.list.seinf[se.id] = se;
               
-              inf.activarModo('curso-inf');
+              inf.activateState('cursor');
               inf.tmp.seinf.remove();
               inf.tmp.seinf = undefined;
               break;
@@ -429,6 +710,7 @@ $(document).ready(function(){
       },
       defineCtx: function(){
         this.panel.ctx = this;
+        this.path.ctx = this;
         this.pointer.ctx = this;
         this.sector.ctx = this;
       },
@@ -486,7 +768,7 @@ $(document).ready(function(){
             break;
           }
           case 'cycle': {
-            nameItemsCont = '#cycles-items';
+            nameItemsCont = '#cycle-items';
             break;
           }
           case 'material': {
@@ -498,7 +780,7 @@ $(document).ready(function(){
             break;
           }
           case 'sector': {
-            nameItemsCont = '#sectors-items';
+            nameItemsCont = '#sector-items';
             break;
           }
         }
@@ -532,31 +814,41 @@ $(document).ready(function(){
                   "<input id='"+el.id+"-units' type='text' name='title' class='form-control' maxlength='200' placeholder='Unidades'>"+
                 "</div>";
           }
-          if(el.orie){
-            html += "<div id='"+el.id+"_item_conte_ori' "+
-                "class='eleContTit'"+
-                ">Orientaci&oacute;n.</div>"+
-                "<form>"+
-                  "<div id='"+el.id+"_item_conte_ori_radio_set'>"+
-                    "<input type='radio' id='"+el.id+"_item_conte_ori_pos_IR' name='"+el.id+"_item_conte_ori_IR' value='der' checked='checked'/>"+
-                    "<label for='"+el.id+"_item_conte_ori_pos_IR'>Derecha</label>"+
-                    "<input type='radio' id='"+el.id+"_item_conte_ori_neg_IR' name='"+el.id+"_item_conte_ori_IR' value='izq' />"+
-                    "<label for='"+el.id+"_item_conte_ori_neg_IR'>Izquierda</label>"+
+          if(el.orientation){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-orientation' class='control-label'>Orientación</label>"+
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-left' value='left'>"+
+                      "Izquierda"+
+                    "</label>"+
                   "</div>"+
-                "</form>";
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-right' value='right'>"+
+                      "Derecha"+
+                    "</label>"+
+                  "</div>"+
+                "</div>";
           }
-          if(el.real){
-            html += "<div id='"+el.id+"_item_conte_rea' "+
-                "class='eleContTit'"+
-                ">Realimentaci&oacute;n.</div>"+
-                "<form>"+
-                  "<div id='"+el.id+"_item_conte_rea_radio_set'>"+
-                    "<input type='radio' id='"+el.id+"_item_conte_rea_pos_IR' name='"+el.id+"_item_conte_rea_IR' value='pos' checked='checked'/>"+
-                    "<label for='"+el.id+"_item_conte_rea_pos_IR'>Positiva</label>"+
-                    "<input type='radio' id='"+el.id+"_item_conte_rea_neg_IR' name='"+el.id+"_item_conte_rea_IR' value='neg' />"+
-                    "<label for='"+el.id+"_item_conte_rea_neg_IR'>Negativa</label>"+
+          if(el.feedback){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-feedback' class='control-label'>Realimentación</label>"+
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative'>"+
+                      "Negativa"+
+                    "</label>"+
                   "</div>"+
-                "</form>";
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive'>"+
+                      "Positiva"+
+                    "</label>"+
+                  "</div>"+
+                "</div>";
           }
           html +=
                 "</div>"+
@@ -565,40 +857,217 @@ $(document).ready(function(){
           
           $(nameItemsCont).append(html);
           
-          $('#'+el.id+'_item_tit').click(function(){
-            $('#'+el.id+'_item_conte').toggle();
-            return false;
-          });
-          if(el.desc){
-            $('#'+el.id+'_item_conte_desc').css('width', '75px');
-            $('#'+el.id+'_item_conte_desc_TA').change(function(){         
-              el.camDesc($(this).val());          
+          if(el.description){
+            $('#'+el.id+'-description').change(function(){         
+              el.changeDescription($(this).val());          
             });
           }
-          if(el.unid){
-            $('#'+el.id+'_item_conte_uni').css('width', '60px');
-            $('#'+el.id+'_item_conte_uni_IT').change(function(){
-              el.camUnids($(this).val());
+          if(el.units){
+            $('#'+el.id+'-units').change(function(){
+              el.changeUnits($(this).val());
             });
           }
-          if(el.orie){
-            $("#"+el.id+"_item_conte_ori_radio_set").buttonset();
-            $("#"+el.id+"_item_conte_ori_radio_set label span").css('padding', '0.1em 0.3em');
-            $("input:radio[name='"+el.id+"_item_conte_ori_IR']").change(function(){
-              el.camOrientacion($(this).val());
+          if(el.orientation){
+            $("input:radio[name='"+el.id+"-orientation']").change(function(){
+              el.changeOrientation($(this).val());
             });
           }
-          if(el.real){
-            $("#"+el.id+"_item_conte_rea_radio_set").buttonset();
-            $("#"+el.id+"_item_conte_rea_radio_set label span").css('padding', '0.1em 0.3em');
-            $("input:radio[name='"+el.id+"_item_conte_rea_IR']").change(function(){
-              el.camRealimentacion($(this).val());
+          if(el.feedback){
+            $("input:radio[name='"+el.id+"-feedback']").change(function(){
+              el.changeFeedback($(this).val());
             });
           }
         }
       },
       deleteControls: function(el){
         $('#'+el.id+'-item').remove();
+      },
+      saveAsDom: function(){
+        var model, influence, size;
+        var elements, element, group, list, position, pos, 
+          relations, cantRelIng, cantRelSal,
+          relation, rels;
+        
+        model = $('#xmldocument model:first');
+        
+        influence = model.children('influence');
+        
+        if($.isEmptyObject(influence[0])){
+          influence = model.append($('<influence />')).children('influence'); 
+        }
+        else{
+          influence.empty();
+        }
+        
+        size = this.obtTamPan();
+        influence.attr('width', size.w);
+        influence.attr('height', size.h);
+        
+        if(model){
+          elements =  {
+            'conce': {'el': 'concept',  'group': 'concepts'},
+            'cycle': {'el': 'cycle',  'group': 'cycles'},
+          };
+          for(var el in elements){
+            list = inf.list[el];        
+            group = influence.append('<'+elements[el]['group']+' />').children(elements[el]['group']);
+            
+            for(var i in list){
+              element = group.append('<'+elements[el]['el']+' />').children(elements[el]['el']+':last');
+              element.append($('<name />').text(list[i].name));
+              element.append($('<title />').text(list[i].title));
+              element.append($('<description />').text(list[i].desc));
+              if(el == 'conce'){
+                element.append($('<units />').text(list[i].unid));
+              }
+              if(el == 'cycle'){
+                element.append($('<orientation />').text(list[i].orientation));
+                element.append($('<feedback />').text(list[i].feedback));
+              }
+              
+              pos = list[i].pos();
+              position = element.append('<position />').children('position');
+              position.append($('<x />').text(pos.x));
+              position.append($('<y />').text(pos.y));
+              
+              if(el == 'conce'){
+                relations = element.append('<relations />').children('relations');
+                cantRelIng = list[i].cantRelIng;
+                cantRelSal = list[i].cantRelSal;
+                
+                if(cantRelIng > 0 || cantRelSal > 0){
+                  if(cantRelIng > 0){
+                    rels = list[i].relacIng;
+                    for(var rel in rels){
+                      relation = relations.append('<relation_from />').children('relation_from:last');
+                      
+                      if(rels[rel].type == 'material'){
+                        relation.attr('type', 'material');
+                      }else if(rels[rel].type == 'relin'){
+                        relation.attr('type', 'information'); 
+                      }
+                      relation.text(rels[rel].from.name);
+                    }
+                  }
+                  if(cantRelSal > 0){
+                    rels = list[i].relacSal;
+                    for(var rel in rels){
+                      relation = relations.append('<relation_to />').children('relation_to:last');
+                      if(rels[rel].type == 'material'){
+                        relation.attr('type', 'material');
+                      }else if(rels[rel].type == 'relin'){
+                        relation.attr('type', 'information'); 
+                      }
+                      relation.text(rels[rel].to.name);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+          list = inf.list['clone'];
+          group = influence.append('<copies />').children('copies');
+          for(var i in list){
+            
+            element = group.append('<copy />').children('copy:last');
+            element.append($('<reference />').text(list[i].name));
+            
+            pos = list[i].pos();
+            position = element.append('<position />').children('position');
+            position.append($('<x />').text(pos.x));
+            position.append($('<y />').text(pos.y));
+            
+            cantRelSal = list[i].cantRelSal;
+            
+            if(cantRelSal > 0){
+              relations = element.append('<relations />').children('relations');
+              if(cantRelSal > 0){
+                rels = list[i].relacSal;
+                for(var rel in rels){
+                  relation = relations.append('<relation_to />').children('relation_to');
+                  relation.text(rels[rel].to.name);
+                }
+              }
+            }
+          }
+          
+          list = inf.list['material'];
+          group = influence.append('<material_relations />').children('material_relations');
+          for(var i in list){
+            
+            relation = group.append('<relation />').children('relation:last');
+            relation.append($('<origin />').text(list[i].from.name));
+            relation.append($('<destination />').text(list[i].to.name));
+            relation.append($('<description />').text(list[i].desc));
+            
+            pos = list[i].pos();
+            position = relation.append('<position />').children('position');
+            po = position.append('<po />').children('po');
+            po.append($('<x />').text(pos[0].x));
+            po.append($('<y />').text(pos[0].y));
+            pco = position.append('<pco />').children('pco');
+            pco.append($('<x />').text(pos[1].x));
+            pco.append($('<y />').text(pos[1].y));
+            pcd = position.append('<pcd />').children('pcd');
+            pcd.append($('<x />').text(pos[2].x));
+            pcd.append($('<y />').text(pos[2].y));
+            pd = position.append('<pd />').children('pd');
+            pd.append($('<x />').text(pos[3].x));
+            pd.append($('<y />').text(pos[3].y));
+          }
+          
+          list = inf.list['relin'];
+          group = influence.append('<information_relations />').children('information_relations');
+          console.log(group);
+          for(var i in list){
+            
+            relation = group.append('<relation />').children('relation:last');
+            relation.append($('<origin />').text(list[i].from.name));
+            relation.append($('<destination />').text(list[i].to.name));
+            relation.append($('<description />').text(list[i].desc));
+            
+            pos = list[i].pos();
+            position = relation.append('<position />').children('position');
+            po = position.append('<po />').children('po');
+            po.append($('<x />').text(pos[0].x));
+            po.append($('<y />').text(pos[0].y));
+            pco = position.append('<pco />').children('pco');
+            pco.append($('<x />').text(pos[1].x));
+            pco.append($('<y />').text(pos[1].y));
+            pcd = position.append('<pcd />').children('pcd');
+            pcd.append($('<x />').text(pos[2].x));
+            pcd.append($('<y />').text(pos[2].y));
+            pd = position.append('<pd />').children('pd');
+            pd.append($('<x />').text(pos[3].x));
+            pd.append($('<y />').text(pos[3].y));
+          }
+          
+          list = inf.list['seinf'];
+          group = influence.append('<sectors />').children('sectors');
+          for(var i in list){
+            
+            sector = group.append('<sector />').children('sector:last');
+            sector.append($('<name />').text(list[i].name));
+            sector.append($('<title />').text(list[i].title));
+            sector.append($('<description />').text(list[i].desc));
+            
+            pos = list[i].pos();
+            position = sector.append('<position />').children('position');
+            position.append($('<x />').text(pos.x));
+            position.append($('<y />').text(pos.y));
+            
+            size = list[i].size();
+            size_sector = sector.append('<size />').children('size');
+            width = size_sector.append('<width />').children('width');
+            width.text(size['width']);
+            height = size_sector.append('<height />').children('height');
+            height.text(size['height']);
+          }   
+        }
+        else{
+          return false;
+        }
       }
     });
   })();
