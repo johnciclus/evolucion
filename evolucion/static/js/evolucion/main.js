@@ -4,6 +4,8 @@ $(document).ready(function(){
     this.evo.inf = this.inf = new Influences();
     this.evo.saf = this.saf = new StockAndFlow();
     
+    //this.evo.dyn = new Dynamos(evo.fyn.list);
+    
     $(window).resize(function(){
       evo.adjust();
     });

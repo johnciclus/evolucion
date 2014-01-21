@@ -400,6 +400,24 @@ $(document).ready(function(){
       }
     });
     
+    this.SectorInf = SecBase.extend({
+      init: function(ctx, p, size, title){
+        this._super(ctx);
+        
+        this.type = 'sectorinf';
+        var idx = this.ctx.idx[this.type]++;
+        
+        this.id = this.type+'-'+idx;
+        this.title = title || "Sector "+idx;
+        this.name = utils.textToVar(this.title);
+        
+        this.list = this.ctx.list[this.type];
+        this.figure(p, size);
+        this.integrateCtx();
+        this.viewDetails();
+      }
+    });
+    
     this.Influences = Editor.extend({
       init: function(){
         this.id       = 'inf';
@@ -408,6 +426,7 @@ $(document).ready(function(){
         this.svg      = '#svg-inf';
         this.svgDiv   = '#svg-div-inf';
         this.language = '#language-inf';
+        this.sidebar  = '#influences-sidebar';
         this.state    = 'cursor';
         
         this._super(this.initWorkArea());
@@ -430,7 +449,6 @@ $(document).ready(function(){
       },
       defActions: function(){
         $(this.svgDiv).mouseenter(function(e){
-          console.log('mouseenter');
           var p = inf.pointer.getPosition(e);
           switch(inf.state){
             case 'concept': {
@@ -586,12 +604,14 @@ $(document).ready(function(){
               break;          
             }
             case 'cycle': {
-              var cy = new Cycle(inf, p);
-              inf.list.cycle[cy.id] = cy;
-              
-              inf.activateState('cursor');
-              inf.tmp.cycle.remove();
-              inf.tmp.cycle = undefined;
+              if(inf.tmp.cycle){
+                var cycle = new Cycle(inf, p);
+                inf.list.cycle[cycle.id] = cycle;
+                
+                inf.activateState('cursor');
+                inf.tmp.cycle.remove();
+                inf.tmp.cycle = undefined;
+              }
               break;
             }
             case 'clone': {
@@ -677,12 +697,14 @@ $(document).ready(function(){
               break;
             }
             case 'sectorinf': {
-              var sectorinf = new Sector(inf, p);
-              inf.list.sectorinf[sectorinf.id] = sectorinf;
-              
-              inf.activateState('cursor');
-              inf.tmp.sectorinf.remove();
-              inf.tmp.sectorinf = undefined;
+              if(inf.tmp.sectorinf){
+                var sectorinf = new SectorInf(inf, p);
+                inf.list.sectorinf[sectorinf.id] = sectorinf;
+                
+                inf.activateState('cursor');
+                inf.tmp.sectorinf.remove();
+                inf.tmp.sectorinf = undefined;
+              }
               break;
             }
           }
@@ -694,129 +716,7 @@ $(document).ready(function(){
         this.pointer.ctx = this;
         this.sector.ctx = this;
       },
-      integrateControls: function(el){
-        var nameItemsCont;
-        
-        switch(el.type){
-          case 'concept': {
-            nameItemsCont = '#concept-items';
-            break;
-          }
-          case 'cycle': {
-            nameItemsCont = '#cycle-items';
-            break;
-          }
-          case 'material': {
-            nameItemsCont = '#material-items';
-            break;
-          }
-          case 'information': {
-            nameItemsCont = '#information-items';
-            break;
-          }
-          case 'sectorinf': {
-            nameItemsCont = '#sectorinf-items';
-            break;
-          }
-        }
-        if(nameItemsCont && el.id && el.title){
-          var html =
-            "<div id='"+el.id+"-item' class='panel panel-default'>"+
-              "<div class='panel-heading'>"+
-                "<a data-toggle='collapse' data-parent='"+nameItemsCont+"' href='#"+el.id+"-item-body'>"+
-                  "<h4 class='panel-title'>"+
-                    el.title+
-                  "</h4>"+
-                "</a>"+
-              "</div>"+
-              "<div id='"+el.id+"-item-body' class='panel-collapse collapse'>"+
-                "<div class='panel-body'>";
-          
-          if(el.description){
-            html +=
-                "<div class='form-group'>"+
-                  "<label for='"+el.id+"-description' class='control-label'>"+
-                    "Descripción"+
-                  "</label>"+
-                  "<textarea id='"+el.id+"-description' name='description' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Descripción'>"+
-                  "</textarea>"+
-                "</div>";
-          }
-          if(el.units){
-            html += 
-                "<div class='form-group'>"+
-                  "<label for='"+el.id+"-units' class='control-label'>Unidades</label>"+
-                  "<input id='"+el.id+"-units' type='text' name='title' class='form-control' maxlength='200' placeholder='Unidades'>"+
-                "</div>";
-          }
-          if(el.orientation){
-            html += 
-                "<div class='form-group'>"+
-                  "<label for='"+el.id+"-orientation' class='control-label'>Orientación</label>"+
-                  "<div class='radio'>"+
-                    "<label>"+
-                      "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-left' value='left'>"+
-                      "Izquierda"+
-                    "</label>"+
-                  "</div>"+
-                  "<div class='radio'>"+
-                    "<label>"+
-                      "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-right' value='right'>"+
-                      "Derecha"+
-                    "</label>"+
-                  "</div>"+
-                "</div>";
-          }
-          if(el.feedback){
-            html += 
-                "<div class='form-group'>"+
-                  "<label for='"+el.id+"-feedback' class='control-label'>Realimentación</label>"+
-                  "<div class='radio'>"+
-                    "<label>"+
-                      "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative'>"+
-                      "Negativa"+
-                    "</label>"+
-                  "</div>"+
-                  "<div class='radio'>"+
-                    "<label>"+
-                      "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive'>"+
-                      "Positiva"+
-                    "</label>"+
-                  "</div>"+
-                "</div>";
-          }
-          html +=
-                "</div>"+
-              "</div>"+
-            "</div>";
-          
-          $(nameItemsCont).append(html);
-          
-          if(el.description){
-            $('#'+el.id+'-description').change(function(){         
-              el.changeDescription($(this).val());          
-            });
-          }
-          if(el.units){
-            $('#'+el.id+'-units').change(function(){
-              el.changeUnits($(this).val());
-            });
-          }
-          if(el.orientation){
-            $("input:radio[name='"+el.id+"-orientation']").change(function(){
-              el.changeOrientation($(this).val());
-            });
-          }
-          if(el.feedback){
-            $("input:radio[name='"+el.id+"-feedback']").change(function(){
-              el.changeFeedback($(this).val());
-            });
-          }
-        }
-      },
-      deleteControls: function(el){
-        $('#'+el.id+'-item').remove();
-      },
+      
       saveAsDom: function(){
         var model, influence, size;
         var elements, element, group, list, position, pos, 
@@ -954,7 +854,6 @@ $(document).ready(function(){
           
           list = inf.list['relin'];
           group = influence.append('<information_relations />').children('information_relations');
-          console.log(group);
           for(var i in list){
             
             relation = group.append('<relation />').children('relation:last');
@@ -1003,7 +902,126 @@ $(document).ready(function(){
         else{
           return false;
         }
-      }
+      },
+      
+      panel: {
+        getSize: function(){
+          return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};
+        },
+        resize: function(width, height){
+          this.ctx.baseLayer.attr({'width': width});
+          this.ctx.baseLayer.attr({'height': height});
+          $(this.ctx.svg).width(width);
+          $(this.ctx.svg).height(height);
+          $(this.ctx.svgDiv).width(width);
+          $(this.ctx.svgDiv).height(height);
+        }
+      },
+      path: {
+        determineAngle: function(path, pt){
+          var pp = this.ctx.r.path(path);
+          var tl = pp.getTotalLength();
+          var pr = [];
+          var cp, angle, cx = 0, cy = 0;
+          
+          for(var i=0; i < 50; i++){
+            pr[i] = tl*(i/50);
+            cp = pp.getPointAtLength(pr[i]);
+            cx += cp.x;
+            cy += cp.y;
+          }
+          cp = ({x: cx/50, y: cy/50});
+          angle = Math.atan2( ( cp.y - pt.y), (pt.x - cp.x) );
+          pp.remove();
+          return angle;
+        },
+        determinePoint: function(path, pt){
+          var pp = this.ctx.r.path(path).attr(style.border);
+          var tl = pp.getTotalLength();
+          var ep, diff, idx, minor;
+          var pr = [];
+          var r = [];
+          
+          pr[0]  = 0;
+          pr[10] = tl;
+          
+          for(var i=1; i < 10; i++){
+            pr[i] = tl*(i/10);
+          } 
+          
+          diff = pr[10] - pr[0];
+          
+          while(diff > 2){
+            for(var i=0; i<10; i++){
+              ep = pp.getPointAtLength((pr[i]+pr[i+1])/2);
+              r.push(Math.sqrt(Math.pow(ep.x - pt.x,2)+Math.pow(ep.y - pt.y,2)));
+            }
+            
+            minor = Math.min.apply(Math, r);
+            
+            for(var i=0; i<10; i++){
+              if(r[i] == minor){
+                idx = i;
+                break;
+              }
+            }
+            pr[0] = pr[idx];
+            pr[10] = pr[idx+1];
+            
+            for(var i=1; i<10; i++){
+              pr[i] = (pr[0] + (pr[10]-pr[0])*(i/10));  
+            }     
+            diff = pr[10] - pr[0];
+            r = [];
+          }
+          ep = pp.getPointAtLength(pr[idx]);
+          pp.animate(style.border_dis, 500, function(){ this.remove(); });
+          return {x: ep.x, y: ep.y};
+        },
+        determinePercentage: function(path, percentage){
+          var pp = this.ctx.r.path(path);
+          var pt = pp.getPointAtLength(percentage * pp.getTotalLength());
+          pp.remove();
+          pp = undefined;
+          return pt; 
+        }
+      },
+      pointer: {
+        getPosition: function(e){
+          var offset  = $(this.ctx.svgDiv).offset();
+          
+          return p    = {x: e.clientX - offset.left, 
+                      y: e.clientY - offset.top};   
+        },
+        existElement: function(p){
+          var exist = false; 
+          for( var l in this.ctx.list){
+            for(var e in this.ctx.elements){
+              if(l == this.ctx.elements[e]){
+                for(var le in this.ctx.list[l]){
+                  exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, p.x, p.y);     
+                  if(exist){
+                    return this.ctx.list[l][le];
+                  }
+                }
+              }
+            }
+          }
+          return undefined;
+        }
+      },
+      sector: {
+        existElement: function(sector, el){
+          var pos = el.position();
+          return Raphael.isPointInsidePath(sector, pos.x, pos.y);
+        },
+        existRelation: function(sector, rel){
+          var pos = rel.position();
+          var existsOri = Raphael.isPointInsidePath(sector, pos[0].x, pos[0].y);
+          var existsDes = Raphael.isPointInsidePath(sector, pos[3].x, pos[3].y);
+          return {'from': existsOri, 'to': existsDes};
+        }
+      } 
     });
   })();
 });

@@ -12,9 +12,9 @@ $(document).ready(function(){
       curve:      { 'stroke-width': 1.0,  'stroke': '#555', 'stroke-linecap': 'round'},
       figure:     { 'stroke-width': 1.0,   'stroke': '#555', 'fill': '#555', 'stroke-linecap': 'round'},
       
-      atrFiE:     { 'stroke-width': 2.0,   'stroke': '#555', 'fill': '#fff', 'stroke-linecap': 'round'},
-      atrFiA:     { 'stroke-width': 2.0,   'stroke': '#555', 'fill': '#f55', 'stroke-linecap': 'round'},
-      atrFiD:     { 'stroke-width': 3.0,   'stroke': '#555', 'fill': '#fff'},
+      standard:   { 'stroke-width': 2.0,   'stroke': '#555', 'fill': '#fff', 'stroke-linecap': 'round'},  //atrFiE
+      FiA:        { 'stroke-width': 2.0,   'stroke': '#555', 'fill': '#f55', 'stroke-linecap': 'round'},  //atrFiA
+      heavy_line: { 'stroke-width': 3.0,   'stroke': '#555', 'fill': '#fff'},                             //atrFiD
       
       information_relation: { 'stroke-width': 1.5},
       line:       { 'stroke': '#008ec7',  'stroke-dasharray': '. '}, //atrLin
@@ -724,7 +724,6 @@ $(document).ready(function(){
         this._super(ctx);
         
         this.definition     = ' ';
-        this.units          = ' ';
         
         this.connec           = {};       //Connections
         this.connec['oriAce'] = true;     // (true || false)      Origin accepts
@@ -957,8 +956,9 @@ $(document).ready(function(){
           this.fig[i].drag(this.moveFig, this.start, this.end);
         }
         this.fig[0].dblclick(this.createTextEditor);
-        this.fig[2].dblclick(this.viewDetails);
+        //this.fig[2].dblclick(this.viewDetails);
         this.fig[3].click(this.remove);
+        this.fig[4].click(this.viewDetails);
       },
       restoreCopies: function(){
         var copy;
@@ -996,15 +996,16 @@ $(document).ready(function(){
         this.title = el.title;
         this.name = utils.textToVar(this.title);
         this.ref = el;
-        el.copiesList[this.id] = this;
+        this.ref.copiesList[this.id] = this;
         
         this.list = this.ctx.list.clone;
         this.connec['desAce'] = false;
         this.figure(p);
         this.integrateCtx();
+        this.ref.viewDetails();
       },
       figure: function(p){
-        this.fig = this.ref.figGenerator(this.ctx, this, p, this.title, {dasharray_fig: "-", dasharray_rec: "- ", color: "#555", cursor: "move"});
+        this.fig = this.ref.figGenerator(this.ctx, this, p, this.title, {'stroke-dasharray': "-", dasharray_rec: "- ", color: "#555", cursor: "move"});
         this.border = this.fig.getBorder();
         var figQua = this.fig.length-1;
         for(var i=0; i<(figQua-1); i++){
@@ -1388,24 +1389,6 @@ $(document).ready(function(){
       }
     });
     
-    this.Sector = SecBase.extend({
-      init: function(ctx, p, size, title){
-        this._super(ctx);
-        
-        this.type = 'sectorinf';
-        var idx = this.ctx.idx[this.type]++;
-        
-        this.id = this.type+'-'+idx;
-        this.title = title || "Sector "+idx;
-        this.name = utils.textToVar(this.title);
-        
-        this.list = this.ctx.list[this.type];
-        this.figure(p, size);
-        this.integrateCtx();
-        this.viewDetails();
-      }
-    });
-    
     this.Editor = Class.extend({
       init: function(r){
         this.r = r;
@@ -1495,6 +1478,9 @@ $(document).ready(function(){
         }
         $('#'+el.id+'-item>div.panel-heading>a>h4').html(title);
       },
+      deleteControls: function(el){
+        $('#'+el.id+'-item').remove();
+      },
       initBaseLayer: function(){
         this.baseLayer = this.r.rect(0, 0, this.r.width, this.r.height).attr(style.base);
         this.baseLayer.ctx = this;
@@ -1560,6 +1546,133 @@ $(document).ready(function(){
           ctx.activateState(name.substring(0,name.indexOf('-')));
         });
       },
+      integrateControls: function(el){
+        var nameItemsCont = '#'+el.type+'-items';
+        
+        if(nameItemsCont && el.id && el.title){
+          var html =
+            "<div id='"+el.id+"-item' class='panel panel-default'>"+
+              "<div class='panel-heading'>"+
+                "<a data-toggle='collapse' data-parent='"+nameItemsCont+"' href='#"+el.id+"-item-body'>"+
+                  "<h4 class='panel-title'>"+
+                    el.title+
+                  "</h4>"+
+                "</a>"+
+              "</div>"+
+              "<div id='"+el.id+"-item-body' class='panel-collapse collapse'>"+
+                "<div class='panel-body'>";
+          
+          if(el.description){
+            html +=
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-description' class='control-label'>"+
+                    "Descripción"+
+                  "</label>"+
+                  "<textarea id='"+el.id+"-description' name='description' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Descripción'>"+
+                  "</textarea>"+
+                "</div>";
+          }
+          if(el.definition){
+            html +=
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-definition' class='control-label'>"+
+                    "Definición"+
+                  "</label>"+
+                  "<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
+                  "</textarea>"+
+                "</div>";
+          }
+          if(el.dimension){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-dimension' class='control-label'>Dimensión</label>"+
+                  "<input id='"+el.id+"-dimension' type='text' name='dimension' class='form-control' maxlength='200' placeholder='Dimensión' value='"+el.dimension+"'>"+
+                "</div>";
+          }
+          if(el.units){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-units' class='control-label'>Unidades</label>"+
+                  "<input id='"+el.id+"-units' type='text' name='units' class='form-control' maxlength='200' placeholder='Unidades' value='"+el.units+"'>"+
+                "</div>";
+          }
+          if(el.orientation){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-orientation' class='control-label'>Orientación</label>"+
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-left' value='left'>"+
+                      "Izquierda"+
+                    "</label>"+
+                  "</div>"+
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-right' value='right'>"+
+                      "Derecha"+
+                    "</label>"+
+                  "</div>"+
+                "</div>";
+          }
+          if(el.feedback){
+            html += 
+                "<div class='form-group'>"+
+                  "<label for='"+el.id+"-feedback' class='control-label'>Realimentación</label>"+
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative'>"+
+                      "Negativa"+
+                    "</label>"+
+                  "</div>"+
+                  "<div class='radio'>"+
+                    "<label>"+
+                      "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive'>"+
+                      "Positiva"+
+                    "</label>"+
+                  "</div>"+
+                "</div>";
+          }
+          html +=
+                "</div>"+
+              "</div>"+
+            "</div>";
+          
+          $(nameItemsCont).append(html);
+          
+          if(el.description){
+            $('#'+el.id+'-description').change(function(){         
+              el.changeDescription($(this).val());          
+            });
+          }
+          if(el.definition){
+            $('#'+el.id+'-definition').change(function(){         
+              el.changeDefinition($(this).val());          
+            });
+          }
+          if(el.dimension){
+            $('#'+el.id+'-dimension').change(function(){
+              el.changeDimension($(this).val());
+            });
+          }
+          if(el.units){
+            $('#'+el.id+'-units').change(function(){
+              el.changeUnits($(this).val());
+            });
+          }
+          if(el.orientation){
+            $("input:radio[name='"+el.id+"-orientation']").change(function(){
+              el.changeOrientation($(this).val());
+            });
+          }
+          if(el.feedback){
+            $("input:radio[name='"+el.id+"-feedback']").change(function(){
+              el.changeFeedback($(this).val());
+            });
+          }
+          
+          //evo.beh.integrateControls(el);
+        }
+      },
       limitAdjustList: function(list){
         var val;
         var limit = -1;
@@ -1624,8 +1737,23 @@ $(document).ready(function(){
           }
         });
         if(isNotCurrent){
+          /*$('#'+el.id+'-item-body').on('shown.bs.collapse', function () {
+            
+          });*/
           $('#'+el.id+'-item-body').collapse('show');
+          
+          /*console.log('show end');
+          var accordion_offset_top = $('#elements-'+el.ctx.id).offset().top;
+          var item_offset_top = $('#'+el.id+'-item').offset().top;
+          var offset = item_offset_top - accordion_offset_top;
+                      
+          console.log(offset);
+          if(offset != 0){
+            $(el.ctx.sidebar).scrollTop(offset);
+          }*/
         }
+        
+        
       },
       viewTextEditor: function(el){
         var bb = el.fig[1].getBBox();
@@ -1648,125 +1776,7 @@ $(document).ready(function(){
           el.changeTitle($(this).val());
           $("#text-edit-control").remove();  
         });
-      },
-      panel: {
-        getSize: function(){
-          return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};
-        },
-        resize: function(width, height){
-          this.ctx.baseLayer.attr({'width': width});
-          this.ctx.baseLayer.attr({'height': height});
-          $(this.ctx.svg).width(width);
-          $(this.ctx.svg).height(height);
-          $(this.ctx.svgDiv).width(width);
-          $(this.ctx.svgDiv).height(height);
-        }
-      },
-      path: {
-        determineAngle: function(path, pt){
-          var pp = this.ctx.r.path(path);
-          var tl = pp.getTotalLength();
-          var pr = [];
-          var cp, angle, cx = 0, cy = 0;
-          
-          for(var i=0; i < 50; i++){
-            pr[i] = tl*(i/50);
-            cp = pp.getPointAtLength(pr[i]);
-            cx += cp.x;
-            cy += cp.y;
-          }
-          cp = ({x: cx/50, y: cy/50});
-          angle = Math.atan2( ( cp.y - pt.y), (pt.x - cp.x) );
-          pp.remove();
-          return angle;
-        },
-        determinePoint: function(path, pt){
-          var pp = this.ctx.r.path(path).attr(style.border);
-          var tl = pp.getTotalLength();
-          var ep, diff, idx, minor;
-          var pr = [];
-          var r = [];
-          
-          pr[0]  = 0;
-          pr[10] = tl;
-          
-          for(var i=1; i < 10; i++){
-            pr[i] = tl*(i/10);
-          } 
-          
-          diff = pr[10] - pr[0];
-          
-          while(diff > 2){
-            for(var i=0; i<10; i++){
-              ep = pp.getPointAtLength((pr[i]+pr[i+1])/2);
-              r.push(Math.sqrt(Math.pow(ep.x - pt.x,2)+Math.pow(ep.y - pt.y,2)));
-            }
-            
-            minor = Math.min.apply(Math, r);
-            
-            for(var i=0; i<10; i++){
-              if(r[i] == minor){
-                idx = i;
-                break;
-              }
-            }
-            pr[0] = pr[idx];
-            pr[10] = pr[idx+1];
-            
-            for(var i=1; i<10; i++){
-              pr[i] = (pr[0] + (pr[10]-pr[0])*(i/10));  
-            }     
-            diff = pr[10] - pr[0];
-            r = [];
-          }
-          ep = pp.getPointAtLength(pr[idx]);
-          pp.animate(style.border_dis, 500, function(){ this.remove(); });
-          return {x: ep.x, y: ep.y};
-        },
-        determinePercentage: function(path, percentage){
-          var pp = this.ctx.r.path(path);
-          var pt = pp.getPointAtLength(percentage * pp.getTotalLength());
-          pp.remove();
-          pp = undefined;
-          return pt; 
-        }
-      },
-      pointer: {
-        getPosition: function(e){
-          var offset  = $(this.ctx.svgDiv).offset();
-          
-          return p    = {x: e.clientX - offset.left, 
-                      y: e.clientY - offset.top};   
-        },
-        existElement: function(p){
-          var exist = false; 
-          for( var l in this.ctx.list){
-            for(var e in this.ctx.elements){
-              if(l == this.ctx.elements[e]){
-                for(var le in this.ctx.list[l]){
-                  exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, p.x, p.y);     
-                  if(exist){
-                    return this.ctx.list[l][le];
-                  }
-                }
-              }
-            }
-          }
-          return undefined;
-        }
-      },
-      sector: {
-        existElement: function(sector, el){
-          var pos = el.position();
-          return Raphael.isPointInsidePath(sector, pos.x, pos.y);
-        },
-        existRelation: function(sector, rel){
-          var pos = rel.position();
-          var existsOri = Raphael.isPointInsidePath(sector, pos[0].x, pos[0].y);
-          var existsDes = Raphael.isPointInsidePath(sector, pos[3].x, pos[3].y);
-          return {'from': existsOri, 'to': existsDes};
-        }
-      }   
+      }        
     });
     
     this.Evolucion = Class.extend({
@@ -1856,8 +1866,8 @@ $(document).ready(function(){
                 title = $(this).attr('title');
                 p      = {'x': Number($(this).attr('x')),
                           'y': Number($(this).attr('y'))};
-                tam    = {'ancho': Number($(this).attr('ancho')), 
-                      'alto':  Number($(this).attr('alto'))};
+                tam    = {'width': Number($(this).attr('width')), 
+                      'height':  Number($(this).attr('height'))};
                 
                 var dp = new Depen(editor.r, p, tam, title);
                 editor.listDepen.push(dp);
