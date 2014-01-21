@@ -74,8 +74,17 @@ a.navbar-brand b {
     padding: 5px;
 }
 
+
 .evo-cursor {
     background-image: url(/static/icons/cursor.png);
+}
+
+.evo-clone {
+    background-image: url(/static/icons/clone.png);
+}
+
+.evo-sector {
+    background-image: url(/static/icons/sector.png);
 }
 
 .evo-concept {
@@ -86,10 +95,6 @@ a.navbar-brand b {
     background-image: url(/static/icons/cycle.png);
 }
 
-.evo-clone {
-    background-image: url(/static/icons/clone.png);
-}
-
 .evo-material-rel {
     background-image: url(/static/icons/material-relation.png);
 }
@@ -98,8 +103,48 @@ a.navbar-brand b {
     background-image: url(/static/icons/information-relation.png);
 }
 
-.evo-sector {
-    background-image: url(/static/icons/sector.png);
+.evo-parameter{
+    background-image: url(/static/icons/parameter.png);
+}
+
+.evo-stock{
+    background-image: url(/static/icons/stock.png);
+}
+
+.evo-flow{
+    background-image: url(/static/icons/flow.png);
+}
+
+.evo-auxiliary{
+    background-image: url(/static/icons/auxiliary.png);
+}
+
+.evo-exogenous{
+    background-image: url(/static/icons/exogenous.png);
+}
+
+.evo-delay{
+    background-image: url(/static/icons/delay.png);
+}
+
+.evo-multiplier{
+    background-image: url(/static/icons/multiplier.png);
+}
+
+.evo-fis{
+    background-image: url(/static/icons/fis.png);
+}
+
+.evo-previousvalue{
+    background-image: url(/static/icons/previousvalue.png);
+}
+
+.evo-submodel{
+    background-image: url(/static/icons/submodel.png);
+}
+
+.evo-relation {
+    background-image: url(/static/icons/relation.png);
 }
 
 .text-edit{
@@ -115,5 +160,3 @@ a.navbar-brand b {
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
-
-

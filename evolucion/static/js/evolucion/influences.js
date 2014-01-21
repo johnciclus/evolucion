@@ -402,17 +402,19 @@ $(document).ready(function(){
     
     this.Influences = Editor.extend({
       init: function(){
-        this._super(this.initWorkArea());
-        
         this.id       = 'inf';
         this.div      = '#influences';
+        this.divArea  = '#influences-area';
         this.svg      = '#svg-inf';
         this.svgDiv   = '#svg-div-inf';
+        this.language = '#language-inf';
         this.state    = 'cursor';
         
-        this.elements = ['concept', 'clone'];
+        this._super(this.initWorkArea());
+        
+        this.elements = ['concept'];
         this.states   = this.elements.concat(
-                        ['cycle', 'material', 'information', 'sectorinf']);
+                        ['clone', 'cycle', 'material', 'information', 'sectorinf']);
         
         for(var i in this.states){
           this.list[this.states[i]] = {};
@@ -426,30 +428,9 @@ $(document).ready(function(){
         
         //this.rec['camara'] = this.r.image('/images/camara_normal.png',-24,-24,24,24);
       },
-      adjust: function(){
-        var workAreaHeight = $('.work-area').height();
-        
-        $('#influences-area .sidebar').height(workAreaHeight);
-        var infToolbarHeight = ($('#influences-area .toolbar').outerHeight()||46);        
-        $('#language-inf').height(workAreaHeight - infToolbarHeight -2);
-        
-        var languageWidth = $("#language-inf").width();
-        var languageHeight = $("#language-inf").height();
-        
-        if(languageWidth<=0){ languageWidth = 1024; }
-        if(languageHeight<=0){ languageHeight = 768; }
-        
-        if($('#svg-inf').width()<languageWidth){
-          $('#svg-inf').width(languageWidth);
-          $('#svg-div-inf').width(languageWidth);
-        }
-        if($('#svg-inf').height()<languageHeight){
-          $('#svg-inf').height(languageHeight);
-          $('#svg-div-inf').height(languageHeight);
-        }
-      },
       defActions: function(){
         $(this.svgDiv).mouseenter(function(e){
+          console.log('mouseenter');
           var p = inf.pointer.getPosition(e);
           switch(inf.state){
             case 'concept': {
@@ -615,6 +596,7 @@ $(document).ready(function(){
             }
             case 'clone': {
               var el = inf.pointer.existElement(p);
+                            
               if(el){
                 var clone = new Clone(inf, p, el);
                 inf.list.clone[clone.id] = clone;
@@ -711,51 +693,6 @@ $(document).ready(function(){
         this.path.ctx = this;
         this.pointer.ctx = this;
         this.sector.ctx = this;
-      },
-      initWorkArea: function(){
-        var workAreaHeight = $('.work-area').height();
-        
-        this.initToolbar();
-        
-        $('#influences-area .sidebar').height(workAreaHeight);
-        var infToolbarHeight = ($('#influences-area .toolbar').outerHeight() || 46);
-        var languageWidth  = ((Math.floor($('.work-area').width()*0.83)-2) || 1024);
-        var languageHeight = workAreaHeight - infToolbarHeight -2;
-        $('#language-inf').height(languageHeight);
-        
-        var svgDiv = $('#svg-div-inf');
-        svgDiv.width(languageWidth);
-        svgDiv.height(languageHeight);
-        
-        var panel = svgDiv[0];
-        var r = Raphael(panel, languageWidth, languageHeight);
-        
-        $('#svg-div-inf svg').attr('id', 'svg-inf');
-        
-        return r;
-      },
-      initToolbar: function(){
-        $('#influences-area .toolbar .btn-group [title]').tooltip({ container: 'body' });
-        
-        $('#influences-area .toolbar .btn').hover(
-          function() {  var name = this.id;
-                        if(name.substring(0,name.indexOf('-')) != inf.state){
-                          $(this).removeClass('btn-primary'); 
-                          $(this).addClass('btn-info');
-                        }
-                     },
-          function() {  var name = this.id;
-                        if(name.substring(0,name.indexOf('-')) != inf.state){
-                          $(this).removeClass('btn-info');
-                          $(this).addClass('btn-primary'); 
-                        }
-                     }
-        );
-        
-        $('#influences-area .toolbar .btn').click(function(){
-          var name = $(this).attr('id');
-          inf.activateState(name.substring(0,name.indexOf('-')));
-        });
       },
       integrateControls: function(el){
         var nameItemsCont;

@@ -1231,21 +1231,6 @@ var Relac = Relacion.extend({
 
 var FlujoNivel = Editor.extend({
 	init: function(r){
-						
-		this.elements = [
-						'param',	'nivel',	'flujo',
-						'vaaux',	'vaexo',	'retar',
-						'multi',	'elfis',	'vaant',
-						'submo',	'clone'];
-		
-		this.modos = this.elements.concat(
-						'relation',	'sefyn');
-		
-		for(var i in this.modos){
-			this.list[this.modos[i]] = {};
-			this.idx[this.modos[i]] = 0;
-			this.tmp[this.modos[i]] = undefined;
-		}
 		
 		this.indMenu = {};
 		for(var i=0; i<10; i++){
@@ -1253,10 +1238,7 @@ var FlujoNivel = Editor.extend({
 		}
 		for(var i=11; i<13; i++){
 			this.indMenu[this.modos[i]]=i-1;
-		}
-						
-		// Fin del modelo Evolución.FlujoNivel //
-		
+		}		
 		
 		// Vista de Evolución.FlujoNivel //
 		this.estTexto = "textEdit";
@@ -1942,14 +1924,6 @@ var FlujoNivel = Editor.extend({
 });
 
 $(document).ready(function() {
-	// Controlador del modulo Flujo Nivel //
-	
-	var r = Raphael("svg-div-fyn", $("#lenguaje-fyn").width(), $("#lenguaje-fyn").height());
-	fyn = new FlujoNivel(r);
-	fyn.activateState(fyn.modo);
-	evo.fyn = fyn;
 	evo.dyn = new Dynamos(evo.fyn.list);
-	
-	// Fin del Controlador del modulo Flujo Nivel //
 });
 
