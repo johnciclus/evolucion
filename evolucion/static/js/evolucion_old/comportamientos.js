@@ -1,23 +1,5 @@
-var com;
-
 var Comportamientos = Class.extend({
 	init: function(){
-		this.id 	 = 'com';
-		
-		this.div     = '#comportamientos';
-		this.len_div = '#lenguaje-com';
-		this.ele_div = '#elementos-com';
-		
-		this.elementos = [
-						'param',	'nivel',	'flujo',
-						'vaaux',	'vaexo',	'retar',
-						'multi',	'elfis',	'vaant',
-						'submo'];
-			
-		this.indMenu = {};
-		for(var i in this.elementos){
-			this.indMenu[this.elementos[i]]=i;
-		}
 		
 		this.graficador = undefined;
 		
@@ -159,13 +141,4 @@ var Comportamientos = Class.extend({
 		});
 		return selec;
 	}
-});
-
-$(document).ready(function() {
-	// Controlador del modulo Comportamientos //
-	
-	com = new Comportamientos();
-	evo.com = com;
-	
-	// Fin del Controlador del modulo Comportamientos //
 });

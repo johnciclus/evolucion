@@ -4,6 +4,7 @@ $(document).ready(function(){
     this.evo.inf = this.inf = new Influences();
     this.evo.saf = this.saf = new StockAndFlow();
     this.evo.equ = this.equ = new Equations();
+    this.evo.beh = this.beh = new Behaviors();
     
     //this.evo.dyn = new Dynamos(evo.fyn.list);
     
