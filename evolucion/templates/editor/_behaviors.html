@@ -4,21 +4,20 @@
   <div id="behaviors-sidebar" class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" role="navigation">
     <div id="elements-beh" class="panel-group">
       <div class='form-group'>
-        <button id="simulate" type="button" class="btn btn-default">Simulate</button>
+        <button id="simulate" type="button" class="btn btn-primary">Simulate</button>
       </div>
       <div class='form-group'>
-        <label for='initial-time' class='control-label'>Tiempo inicial</label>
-        <input id='initial-time' type='text' name='initial-time' class='form-control' maxlength='200' placeholder='Tiempo inicial' value='0'>
+        <label for='initial-time' class='control-label'>{% trans 'initial time'|capfirst %}</label>
+        <input id='initial-time' type='text' name='initial-time' class='form-control' maxlength='200' placeholder="{% trans 'initial time placeholder'|capfirst %}" value='0'>
       </div>
       <div class='form-group'>
-        <label for='final-time' class='control-label'>Tiempo final</label>
-        <input id='final-time' type='text' name='final-time' class='form-control' maxlength='200' placeholder='Tiempo final' value='100'>
+        <label for='final-time' class='control-label'>{% trans 'final time'|capfirst %}</label>
+        <input id='final-time' type='text' name='final-time' class='form-control' maxlength='200' placeholder="{% trans 'final time placeholder'|capfirst %}" value='100'>
       </div>
       <div class='form-group'>
-        <label for='delta-time' class='control-label'>Paso de simulación</label>
-        <input id='delta-time' type='text' name='delta-time' class='form-control' maxlength='200' placeholder='Paso de simulación' value='1'>
-      </div>
-      
+        <label for='delta-time' class='control-label'>{% trans 'delta time'|capfirst %}</label>
+        <input id='delta-time' type='text' name='delta-time' class='form-control' maxlength='200' placeholder="{% trans 'delta time placeholder'|capfirst %}" value='1'>
+      </div>     
       
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -176,13 +175,16 @@
     <p class="pull-left visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav"|capfirst %}</button>
     </p>
-      
+    
+    <div id="toolbar-beh">
+      <ul class="nav nav-tabs">
+        
+      </ul>
+    </div>
     <div id="language-beh" class="language">
-      <div id="contVisualizador">
-          <div id="visualizador">
-              
-          </div>
-      </div>
+      <div class="tab-content">
+        
+      </div>  
     </div>
     <div id="messages-beh" class="messages centered">
           

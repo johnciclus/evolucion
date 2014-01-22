@@ -19,25 +19,32 @@
     </p>
       
     <div id="language-equ" class="language">
-      <pre class="prettyprint linenums">
-      /**
-       * nth element in the fibonacci series.
-       * @param n >= 0
-       * @return the nth element, >= 0.
-       */
-      function fib(n) {
-        var a = 1, b = 1;
-        var tmp;
-        while (--n >= 0) {
-          tmp = a;
-          a += b;
-          b = tmp;
-        }
-        return a;
-      }
-       
-      document.write(fib(10));
-      </pre>
+      <div id="mathematical-code">
+        <pre class="prettyprint linenums">
+  c = a+b 
+        </pre>
+      </div>
+      <div id="javascript-code">
+        <pre class="prettyprint linenums">
+  /**
+   * nth element in the fibonacci series.
+   * @param n >= 0
+   * @return the nth element, >= 0.
+   */
+  function fib(n) {
+    var a = 1, b = 1;
+    var tmp;
+    while (--n >= 0) {
+      tmp = a;
+      a += b;
+      b = tmp;
+    }
+    return a;
+  }
+   
+  document.write(fib(10));
+        </pre>
+      </div>
       
     </div>
     <div id="messages-equ" class="messages centered">

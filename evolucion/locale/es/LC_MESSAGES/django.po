@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 18:56-0500\n"
+"POT-Creation-Date: 2014-01-22 07:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,6 +365,89 @@ msgstr ""
 msgid "Delete?"
 msgstr "borrar?"
 
+#: templates/editor/_behaviors.html:10
+msgid "initial time"
+msgstr ""
+
+#: templates/editor/_behaviors.html:11
+#, fuzzy
+msgid "initial time placeholder"
+msgstr "Nombre(s)"
+
+#: templates/editor/_behaviors.html:14
+msgid "final time"
+msgstr ""
+
+#: templates/editor/_behaviors.html:15
+#, fuzzy
+msgid "final time placeholder"
+msgstr "titulo del modelo"
+
+#: templates/editor/_behaviors.html:18
+msgid "delta time"
+msgstr ""
+
+#: templates/editor/_behaviors.html:19
+#, fuzzy
+msgid "delta time placeholder"
+msgstr "titulo del modelo"
+
+#: templates/editor/_behaviors.html:25
+#: templates/editor/_stock-and-flow.html:10
+msgid "parameters"
+msgstr ""
+
+#: templates/editor/_behaviors.html:40
+#: templates/editor/_stock-and-flow.html:25
+msgid "stocks"
+msgstr ""
+
+#: templates/editor/_behaviors.html:55
+#: templates/editor/_stock-and-flow.html:40
+msgid "flows"
+msgstr ""
+
+#: templates/editor/_behaviors.html:70
+#: templates/editor/_stock-and-flow.html:55
+msgid "auxiliaries"
+msgstr ""
+
+#: templates/editor/_behaviors.html:85
+#: templates/editor/_stock-and-flow.html:70
+msgid "exogenous"
+msgstr ""
+
+#: templates/editor/_behaviors.html:100
+#: templates/editor/_stock-and-flow.html:85
+msgid "delays"
+msgstr ""
+
+#: templates/editor/_behaviors.html:115
+#: templates/editor/_stock-and-flow.html:100
+msgid "multipliers"
+msgstr ""
+
+#: templates/editor/_behaviors.html:130
+#: templates/editor/_stock-and-flow.html:115
+msgid "fis"
+msgstr ""
+
+#: templates/editor/_behaviors.html:145
+#: templates/editor/_stock-and-flow.html:130
+msgid "previous values"
+msgstr ""
+
+#: templates/editor/_behaviors.html:160
+#: templates/editor/_stock-and-flow.html:145
+msgid "submodels"
+msgstr ""
+
+#: templates/editor/_behaviors.html:176 templates/editor/_equations.html:18
+#: templates/editor/_influences.html:88
+#: templates/editor/_stock-and-flow.html:192
+msgid "toggle nav"
+msgstr "navegador lateral"
+
 #: templates/editor/_equations.html:7
 msgid "mathematical language model title"
 msgstr "modelo en lenguaje matemático"
@@ -380,11 +463,6 @@ msgstr "modelo en lenguaje javascript"
 #: templates/editor/_equations.html:12
 msgid "javascript language model content"
 msgstr ""
-
-#: templates/editor/_equations.html:18 templates/editor/_influences.html:88
-#: templates/editor/_stock-and-flow.html:191
-msgid "toggle nav"
-msgstr "navegador lateral"
 
 #: templates/editor/_influences.html:11
 msgid "concepts"
@@ -403,7 +481,7 @@ msgid "information relations"
 msgstr "relaciones de información"
 
 #: templates/editor/_influences.html:71
-#: templates/editor/_stock-and-flow.html:174
+#: templates/editor/_stock-and-flow.html:175
 msgid "sectors"
 msgstr "sectores"
 
@@ -443,178 +521,138 @@ msgstr "titulo del modelo"
 msgid "prose description placeholder"
 msgstr "descripción del modelo"
 
-#: templates/editor/_prose.html:26 templates/editor/base_editor.html:47
+#: templates/editor/_prose.html:26 templates/editor/base_editor.html:51
 msgid "save"
 msgstr "guardar"
 
-#: templates/editor/_stock-and-flow.html:9
-msgid "parameters"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:24
-msgid "stocks"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:39
-msgid "flows"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:54
-msgid "auxiliaries"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:69
-msgid "exogenous"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:84
-msgid "delays"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:99
-msgid "multipliers"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:114
-msgid "fis"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:129
-msgid "previous values"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:144
-msgid "submodels"
-msgstr ""
-
-#: templates/editor/_stock-and-flow.html:159
+#: templates/editor/_stock-and-flow.html:160
 #, fuzzy
 msgid "relations"
 msgstr "ecuaciones"
 
-#: templates/editor/_stock-and-flow.html:195
+#: templates/editor/_stock-and-flow.html:196
 #, fuzzy
 msgid "saf cursor btn title"
 msgstr "cursor"
 
-#: templates/editor/_stock-and-flow.html:198
+#: templates/editor/_stock-and-flow.html:199
 #, fuzzy
 msgid "saf parameter btn title"
 msgstr "sector"
 
-#: templates/editor/_stock-and-flow.html:201
+#: templates/editor/_stock-and-flow.html:202
 #, fuzzy
 msgid "saf stock btn title"
 msgstr "sector"
 
-#: templates/editor/_stock-and-flow.html:204
+#: templates/editor/_stock-and-flow.html:205
 #, fuzzy
 msgid "saf flow btn title"
 msgstr "clon"
 
-#: templates/editor/_stock-and-flow.html:207
+#: templates/editor/_stock-and-flow.html:208
 #, fuzzy
 msgid "saf auxiliary btn title"
 msgstr "cursor"
 
-#: templates/editor/_stock-and-flow.html:210
+#: templates/editor/_stock-and-flow.html:211
 #, fuzzy
 msgid "saf exogenous btn title"
 msgstr "clon"
 
-#: templates/editor/_stock-and-flow.html:213
+#: templates/editor/_stock-and-flow.html:214
 #, fuzzy
 msgid "saf delay btn title"
 msgstr "ciclo"
 
-#: templates/editor/_stock-and-flow.html:216
+#: templates/editor/_stock-and-flow.html:217
 #, fuzzy
 msgid "saf multiplier btn title"
 msgstr "ciclo"
 
-#: templates/editor/_stock-and-flow.html:219
+#: templates/editor/_stock-and-flow.html:220
 #, fuzzy
 msgid "saf fis btn title"
 msgstr "cursor"
 
-#: templates/editor/_stock-and-flow.html:222
+#: templates/editor/_stock-and-flow.html:223
 #, fuzzy
 msgid "saf previousvalue btn title"
 msgstr "ciclo"
 
-#: templates/editor/_stock-and-flow.html:225
+#: templates/editor/_stock-and-flow.html:226
 #, fuzzy
 msgid "saf submodel btn title"
 msgstr "clon"
 
-#: templates/editor/_stock-and-flow.html:228
+#: templates/editor/_stock-and-flow.html:229
 #, fuzzy
 msgid "saf clone btn title"
 msgstr "clon"
 
-#: templates/editor/_stock-and-flow.html:231
+#: templates/editor/_stock-and-flow.html:232
 #, fuzzy
 msgid "saf relation btn title"
 msgstr "relación de material"
 
-#: templates/editor/_stock-and-flow.html:234
+#: templates/editor/_stock-and-flow.html:235
 #, fuzzy
 msgid "saf sector btn title"
 msgstr "sector"
 
-#: templates/editor/base_editor.html:44
+#: templates/editor/base_editor.html:48
 msgid "overview"
 msgstr "resumen"
 
-#: templates/editor/base_editor.html:46
+#: templates/editor/base_editor.html:50
 msgid "open"
 msgstr "abrir"
 
-#: templates/editor/base_editor.html:48
+#: templates/editor/base_editor.html:52
 msgid "download"
 msgstr "descargar"
 
-#: templates/editor/base_editor.html:55
+#: templates/editor/base_editor.html:59
 msgid "prose"
 msgstr "prosa"
 
-#: templates/editor/base_editor.html:56
+#: templates/editor/base_editor.html:60
 msgid "influences"
 msgstr "influencias"
 
-#: templates/editor/base_editor.html:57
+#: templates/editor/base_editor.html:61
 msgid "stock and flow"
 msgstr "flujo nivel"
 
-#: templates/editor/base_editor.html:58
+#: templates/editor/base_editor.html:62
 msgid "equations"
 msgstr "ecuaciones"
 
-#: templates/editor/base_editor.html:59
+#: templates/editor/base_editor.html:63
 msgid "behaviors"
 msgstr "comportamientos"
 
-#: templates/editor/base_editor.html:110
+#: templates/editor/base_editor.html:114
 msgid "sing in"
 msgstr "Inicia sesión"
 
-#: templates/editor/base_editor.html:112
+#: templates/editor/base_editor.html:116
 msgid "username"
 msgstr "nombre de usuario"
 
-#: templates/editor/base_editor.html:113
+#: templates/editor/base_editor.html:117
 msgid "password"
 msgstr "contraseña"
 
-#: templates/editor/base_editor.html:115
+#: templates/editor/base_editor.html:119
 msgid "sing up"
 msgstr "Regístrate"
 
-#: templates/editor/base_editor.html:165
+#: templates/editor/base_editor.html:169
 msgid "browser incompatibility"
 msgstr ""
 
-#: templates/editor/base_editor.html:174
+#: templates/editor/base_editor.html:194
 msgid "close"
 msgstr ""
 

@@ -46,15 +46,3 @@ require.config({
         }
     }
 });
-
-$(document).ready(function(){
-	require(['evolucion'], function() {
-	    // Controlador de Evolución //
-	
-	    evo = new Evolucion();
-	    evo.vIE();
-	    evo.ajustar();
-	    
-	    // Fin de Controlador de Evolución //    
-	});
-});

@@ -807,7 +807,7 @@ $(document).ready(function(){
         
         var border = elFig.getBorder();
         var pp = el.ctx.r.path(border).attr(style.border);
-        pp.animate(style.border_dis, 100, function(){ this.remove()});
+        pp.animate(style.border_dis, 100, function(){ this.remove(); });
         pp = undefined;
       },
       moveFig: function(dx, dy){
@@ -951,7 +951,7 @@ $(document).ready(function(){
         
         var border = elFig.getBorder();
         var pp = el.ctx.r.path(border).attr(style.border);
-        pp.animate(style.border_dis, 100, function(){ this.remove()});
+        pp.animate(style.border_dis, 100, function(){ this.remove(); });
         pp = undefined;
       },
       moverCon: function(con, dx, dy){

@@ -47,9 +47,23 @@ div.svg-input {
     background-color:#FFF;
 }
 
+.navbar-nav>li>a{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
 a.navbar-brand b {
     border-top-color: #ddd;
     border-bottom-color: #ddd;
+}
+
+.nav-tabs{
+    border-width: 0px; 
+}
+
+div.browsers {
+    margin: auto;
+    width: 320px;    
 }
 
 .toolbar-btn {
@@ -73,7 +87,6 @@ a.navbar-brand b {
 .panel-body{
     padding: 5px;
 }
-
 
 .evo-cursor {
     background-image: url(/static/icons/cursor.png);
