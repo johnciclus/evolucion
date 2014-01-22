@@ -2164,6 +2164,9 @@ $(document).ready(function(){
         if(this.saf){
           this.saf.adjust();
         }
+        if(this.equ){
+          this.equ.adjust();
+        }
       },
       aliasArea: function(area_name){
         var idx = this.areas.indexOf(area_name);

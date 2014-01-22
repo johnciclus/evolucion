@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-20 14:21-0500\n"
+"POT-Creation-Date: 2014-01-21 18:56-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,6 +365,27 @@ msgstr ""
 msgid "Delete?"
 msgstr "borrar?"
 
+#: templates/editor/_equations.html:7
+msgid "mathematical language model title"
+msgstr "modelo en lenguaje matemático"
+
+#: templates/editor/_equations.html:8
+msgid "mathematical language model content"
+msgstr ""
+
+#: templates/editor/_equations.html:11
+msgid "javascript language model title"
+msgstr "modelo en lenguaje javascript"
+
+#: templates/editor/_equations.html:12
+msgid "javascript language model content"
+msgstr ""
+
+#: templates/editor/_equations.html:18 templates/editor/_influences.html:88
+#: templates/editor/_stock-and-flow.html:191
+msgid "toggle nav"
+msgstr "navegador lateral"
+
 #: templates/editor/_influences.html:11
 msgid "concepts"
 msgstr "conceptos"
@@ -385,11 +406,6 @@ msgstr "relaciones de información"
 #: templates/editor/_stock-and-flow.html:174
 msgid "sectors"
 msgstr "sectores"
-
-#: templates/editor/_influences.html:88
-#: templates/editor/_stock-and-flow.html:191
-msgid "toggle nav"
-msgstr "navegador lateral"
 
 #: templates/editor/_influences.html:92
 msgid "inf cursor btn title"
