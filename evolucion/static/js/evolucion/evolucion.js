@@ -2105,10 +2105,10 @@ $(document).ready(function(){
           var model = $('#xmldocument model:first');
           $(model).attr('id', 1);
           
-          if(this.pro){
-            this.pro.saveAsDom();
+          if(evo.pro){
+            evo.pro.saveAsDom();
           }
-          if(this.inf){
+          /*if(this.inf){
             this.inf.saveAsDom();
           }
           if(this.saf){
@@ -2119,16 +2119,18 @@ $(document).ready(function(){
           }
           if(this.beh){
             this.com.saveAsDom();
-          }
+          }*/
           
           $.ajax({
-            url: '/save',
-            type: 'POST',
-            //headers: {  'X-CSRF-Token': $("meta[name='csrf-token']").attr('content')},
-            //beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'))},
-            data: {'model': root.html()},
-            success: function(data){
+            url: '/projects/save/',
+            type: 'POST',            
+            data: {
+              'csrfmiddlewaretoken': $("#prose_form input[type='hidden']").val(),
+              'model': root.html()
               
+            },
+            success: function(data){
+              console.log('success')
             },
             error: function(data){
               

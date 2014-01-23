@@ -7,6 +7,11 @@ from django.utils import timezone
 
 from evolucion.projects.models import Project
 
+import logging, sys
+
+logger = logging.getLogger(__name__)
+# print >>sys.stderr, "Groups"
+
 class IndexView(generic.ListView):
     template_name = 'projects/index.html'
     context_object_name = 'latest_projects_list'
@@ -20,15 +25,20 @@ class DetailView(generic.DetailView):
 
 def save(request):
     if request.method == 'POST':
-        title = request.POST["title"]
-        description = request.POST["description"]
+        model = request.POST["model"]
         
-        print request.POST
+        print >>sys.stderr, "---Model---"
+        print >>sys.stderr, model
+            
+        #title = request.POST["title"]
+        #description = request.POST["description"]
         
-        p = Project(title=title, description=description, pub_date=timezone.now())
-        p.save()
-        latest_projects_list = Project.objects.order_by('-pub_date')[:5]
-        context = {'latest_projects_list': latest_projects_list}
+        #print request.POST
+        
+        #p = Project(title=title, description=description, pub_date=timezone.now())
+        #p.save()
+        #latest_projects_list = Project.objects.order_by('-pub_date')[:5]
+        #context = {'latest_projects_list': latest_projects_list}
         #return render(request, 'projects/index.html', context)
         return HttpResponseRedirect('/projects/')
 

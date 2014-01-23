@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
   (function(){
-    this.Equations = Class.extend({
+    this.Prose = Class.extend({
       init: function(){
         this.id       = 'pro';
         this.div      = '#prose';
@@ -26,8 +26,8 @@ $(document).ready(function(){
           prose.empty();
         }
         
-        prose.append($('<title />').text($('#titu_modelo').val()));
-        prose.append($('<description />').text($('#desc_modelo').val())); 
+        prose.append($('<title />').text($('#prose_form #title').val()));
+        prose.append($('<description />').text($('#prose_form #prose-editor').cleanHtml()));
       }
       
     });

@@ -11,7 +11,6 @@ $(document).ready(function(){
         this.toolbar  = '#toolbar-beh';
         this.language = '#language-beh';
         
-        
         this.elements = [ 'parameter', 'stock', 'flow', 
                           'auxiliary', 'exogenous', 'delay',
                           'multiplier', 'fis', 'previousvalue',
@@ -57,18 +56,40 @@ $(document).ready(function(){
         $(this.toolbar+'>ul').append(
           "<li>"+
             "<a href='#"+graph_id+"' data-toggle='tab'>Gráfica "+idx+"&nbsp;"+
-              "<button type='button' class='close' data-dismiss='' aria-hidden='true'>&times;</button>"+
+              "<button type='button' class='close' data-dismiss='' aria-hidden='true' data-toggle='tooltip' data-placement='top' title data-original-title='Elimine este gráfico' >&times;</button>"+
             "</a>"+
           "</li>"
           );
         $(this.language+'>.tab-content').append("<div class='tab-pane' id='"+graph_id+"'></div>");
+                
+        $(this.toolbar+' button:last').tooltip({ container: 'body' });
         
         $(this.toolbar+' a:last').tab('show');
-        $(this.toolbar+' a:last').on('shown.bs.tab', function (e) {
+        
+        $(this.toolbar+' a:last').on('shown.bs.tab', function(e) {
           var href = $(this).attr('href');
           var idx = Number(href.substr(href.lastIndexOf('-')+1));        
           beh.graphRedraw(idx);
         });
+        
+        $(this.toolbar+' button:last').on('click', function(e){
+            var graph_tab = $(this).parents('li');
+            var href = graph_tab.children('a').attr('href');
+            var graph_panel = $(href);
+            
+            delete(beh.graphs[href.slice(1)]);
+                                    
+            graph_tab.remove();
+            graph_panel.remove();
+            
+            var limit = beh.limitAdjustList();
+            
+            beh.graph_idx = ++limit;
+            
+            $('.tooltip').remove();
+            
+            $(beh.toolbar+' a:first').tab('show');
+        });        
         
         this.graphs[graph_id] = new Morris.Line({
           element: graph_id,
@@ -174,6 +195,17 @@ $(document).ready(function(){
             
           $(nomCont).append(html);
         }
+      },
+      limitAdjustList: function(list){
+        var val;
+        var limit = -1;
+        var idx = -1;
+        for(var graph in this.graphs){
+          idx = graph.lastIndexOf('-');
+          val = Number(graph.substr(++idx));
+          limit = (val > limit) ? val : limit;
+        }
+        return limit;
       },
       selectedElements: function(){
         var elmts = $('#menu-elementos-beh input:checkbox');

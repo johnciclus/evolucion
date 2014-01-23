@@ -2,7 +2,7 @@
 
 <form id="prose_form" class="form-horizontal" action="/projects/prose/" method="post">
   <div class="col-lg-8 col-centered">
-    
+    {% csrf_token %}
     <div class="form-group">
       <label for="{{ prose_form.title|id }}" class="control-label">{{ prose_form.title|verbosename }}</label>
       <input  type=       "text" 
@@ -23,7 +23,7 @@
                 placeholder="{% trans 'prose description placeholder'|capfirst %}"></textarea>-->
     
       
-      <div class="btn-toolbar toolbar-editor" data-role="editor-toolbar" data-target="#editor">
+      <div class="btn-toolbar toolbar-editor" data-role="editor-toolbar" data-target="#prose-editor">
         <div class="btn-group">
           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -75,7 +75,7 @@
         </div>
       </div>
       
-      <div id="editor">
+      <div id="prose-editor">
         
       </div>
     </div>
