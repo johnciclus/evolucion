@@ -17,10 +17,9 @@ $(document).ready(function(){
                           'multiplier', 'fis', 'previousvalue',
                           'submodel' ];
         
-        this.graph_name = 'graph-';
+        this.graph_name = 'graph';
         this.graph_idx  = 0;
         
-        this.graphs = {};
         this.graphs = {};
         
         $('#initial-time').change(function(){
@@ -34,17 +33,10 @@ $(document).ready(function(){
         });
         
         this.initWorkArea();
-      },
-      adjust: function(){
-        var workAreaHeight = $('.work-area').height();
-        var toolbarHeigth = $('.toolbar-beh').height() || 41;
         
-        $(this.divArea+' .sidebar').height(workAreaHeight);
-        
-        
-                
-        $(this.language).height(workAreaHeight - toolbarHeigth - 2);
-        
+        $('#save-graph').click(function(){
+          beh.addGraph();
+        });
       },
       adaptGrapher: function(){
         var cant=(evo.dyn.tf-evo.dyn.ti)/evo.dyn.dt;
@@ -58,6 +50,85 @@ $(document).ready(function(){
           $('#contVisualizador').css('width','');
         }
       },
+      addGraph: function(){
+        var idx = this.graph_idx++;
+        var graph_id = this.graph_name+'-' + idx;
+        
+        $(this.toolbar+'>ul').append(
+          "<li>"+
+            "<a href='#"+graph_id+"' data-toggle='tab'>Gráfica "+idx+"&nbsp;"+
+              "<button type='button' class='close' data-dismiss='' aria-hidden='true'>&times;</button>"+
+            "</a>"+
+          "</li>"
+          );
+        $(this.language+'>.tab-content').append("<div class='tab-pane' id='"+graph_id+"'></div>");
+        
+        $(this.toolbar+' a:last').tab('show');
+        $(this.toolbar+' a:last').on('shown.bs.tab', function (e) {
+          var href = $(this).attr('href');
+          var idx = Number(href.substr(href.lastIndexOf('-')+1));        
+          beh.graphRedraw(idx);
+        });
+        
+        this.graphs[graph_id] = new Morris.Line({
+          element: graph_id,
+          
+          data: [
+            { step: '0', a: 20, b: 15 },
+            { step: '1', a: 10, b: 25 },
+            { step: '2', a: 5,  b: 5  },
+            { step: '3', a: 5,  b: 20 },
+            { step: '4', a: 20, b: 25 }
+          ],
+          
+          xkey: 'step',
+          
+          xlabels: 'Paso',
+          
+          ykeys: ['a', 'b'],
+          
+          labels: ['A', 'B'],
+          
+          lineWidth: 2,
+          
+          parseTime: false,
+          
+          hoverCallback: function (index, options, content) {
+            var row = options.data[index];
+            
+            var text =  
+              "<div class='morris-hover-row-label'>"+
+                options.xlabels+": "+row[options.xkey]+
+              "</div>";
+              
+            for(var idx in options.labels){
+              text +=
+                "<div class='morris-hover-point' style='color: "+options.lineColors[idx]+"'>"+
+                  options.labels[idx]+": "+ row[options.ykeys[idx]]+
+                "</div>";
+            }
+            return text;
+          },
+          
+          resize: true
+          
+        });
+      },
+      adjust: function(){
+        this.initWorkArea();
+        
+        var href = $(this.toolbar+ ' li.active a').attr('href');
+        if(href){
+          if(href == '#graph'){
+            this.graphRedraw('');
+          }
+          else{
+            var idx = Number(href.substr(href.lastIndexOf('-')+1));       
+            this.graphRedraw(idx);
+          }
+        }
+                        
+      },
       changeTitle: function(el){
         var tit = $('#'+el.id+'_item_sim_nombre p');
         //var cbx = $('#'+el.id+'_item_sim_nombre input');
@@ -67,8 +138,26 @@ $(document).ready(function(){
       deleteControls: function(el){
         $('#'+el.id+'_item_sim').remove();
       },
+      graphRedraw: function(idx){
+        var graph_name = this.graph_name;
+        
+        if(utils.isNumber(idx)){
+          graph_name += '-'+idx;  
+        }
+        
+        var graph = this.graphs[graph_name];
+        
+        if(graph){
+          graph.redraw();
+        }
+      },
       initWorkArea: function(){
-        this.adjust();
+        var workAreaHeight = $('.work-area').height();
+        var toolbarHeigth = $(this.toolbar).height() || 41;
+        
+        $(this.divArea+' .sidebar').height(workAreaHeight);
+                                
+        $(this.language).height(workAreaHeight - toolbarHeigth - 2);
       },
       integrateControls: function(el){
         var nomCont = '#'+el.tipo+'-'+this.id+'-div';
@@ -112,61 +201,7 @@ $(document).ready(function(){
         
         return false;
       },
-      addGraph: function(){
-        
-        var graph_id = this.graph_name + this.graph_idx++;
-        console.log(graph_id);
-        
-        $(this.toolbar+'>ul').append("<li><a href='#"+graph_id+"' data-toggle='tab'>Gráfica</a></li>");
-        $(this.language+'>.tab-content').append("<div class='tab-pane' id='"+graph_id+"'></div>");
-        
-        $(this.toolbar+' a:last').tab('show');
-        
-        
-        this.graphs[graph_id] = new Morris.Line({
-          element: graph_id,
-          
-          data: [
-            { step: '0', a: 20, b: 15 },
-            { step: '1', a: 10, b: 25 },
-            { step: '2', a: 5,  b: 5  },
-            { step: '3', a: 5,  b: 20 },
-            { step: '4', a: 20, b: 25 }
-          ],
-          
-          xkey: 'step',
-          
-          xlabels: 'Paso',
-          
-          ykeys: ['a', 'b'],
-          
-          labels: ['A', 'B'],
-          
-          lineWidth: 2,
-          
-          parseTime: false,
-          
-          hoverCallback: function (index, options, content) {
-            var row = options.data[index];
-            
-            var text =  
-              "<div class='morris-hover-row-label'>"+
-                options.xlabels+": "+row[options.xkey]+
-              "</div>";
-              
-            for(var idx in options.labels){
-              text +=
-                "<div class='morris-hover-point' style='color: "+options.lineColors[idx]+"'>"+
-                  options.labels[idx]+": "+ row[options.ykeys[idx]]+
-                "</div>";
-            }
-            return text;
-          },
-          
-          resize: true,
-          
-        });
-      },
+      
       saveAsDom: function(){
         var model, behavior;
         
@@ -180,9 +215,7 @@ $(document).ready(function(){
         else{
           behavior.empty();
         } 
-      },
-    
-    
+      }
     });
   })();
 });

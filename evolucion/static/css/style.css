@@ -1,3 +1,7 @@
+svg {
+    width: 100% !important;
+}
+
 div.work-area {
     padding-left: 15px;
     padding-right: 15px;
@@ -21,6 +25,11 @@ div.language {
 
 div.toolbar {
     padding: 5px 0px;
+}
+
+div.toolbar-editor{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 div.messages {
@@ -74,6 +83,10 @@ div.browsers {
 
 .toolbar .btn {
     padding: 5px 15px 0px 15px;
+}
+
+div.toolbar-editor .btn{
+    padding: 5px 10px;
 }
 
 .panel .panel-default{
@@ -176,4 +189,31 @@ div.browsers {
 
 .prettyprinted{
     font-size: 16px;
+}
+
+#editor {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate; 
+    border: 1px solid rgb(204, 204, 204); 
+    padding: 4px; 
+    box-sizing: content-box; 
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+    overflow: scroll;
+    outline: none;
+}
+
+div[data-role="editor-toolbar"] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.dropdown-menu a {
+  cursor: pointer;
 }

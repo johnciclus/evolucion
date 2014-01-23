@@ -640,6 +640,9 @@ $(document).ready(function(){
         var factor = Math.pow(10, dec);
         return Math.round(number*factor)/factor;
       },
+      isNumber: function(n){
+        return !isNaN(parseFloat(n)) && isFinite(n);
+      },
       textToVar: function(text){
         return text
           .toLowerCase()

@@ -3,17 +3,36 @@
 <div class="row row-offcanvas row-offcanvas-left">
   <div id="behaviors-sidebar" class="col-xs-5 col-sm-2 sidebar sidebar-offcanvas" role="navigation">
     <div id="elements-beh" class="panel-group">
+      
       <div class='form-group'>
-        <button id="simulate" type="button" class="btn btn-primary">Simulate</button>
+        <div class="btn-group">
+          <button id="simulate" type="button" class="btn btn-primary">Simulate</button>
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a id="save-graph" href="#">Save Graph</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </div>
       </div>
+      
+      <div class='form-group'>
+        <button  type="button" class="btn btn-primary">Step by step</button>  
+      </div>  
+      
       <div class='form-group'>
         <label for='initial-time' class='control-label'>{% trans 'initial time'|capfirst %}</label>
         <input id='initial-time' type='text' name='initial-time' class='form-control' maxlength='200' placeholder="{% trans 'initial time placeholder'|capfirst %}" value='0'>
       </div>
+      
       <div class='form-group'>
         <label for='final-time' class='control-label'>{% trans 'final time'|capfirst %}</label>
         <input id='final-time' type='text' name='final-time' class='form-control' maxlength='200' placeholder="{% trans 'final time placeholder'|capfirst %}" value='100'>
       </div>
+      
       <div class='form-group'>
         <label for='delta-time' class='control-label'>{% trans 'delta time'|capfirst %}</label>
         <input id='delta-time' type='text' name='delta-time' class='form-control' maxlength='200' placeholder="{% trans 'delta time placeholder'|capfirst %}" value='1'>
@@ -171,6 +190,7 @@
       
     </div>    
   </div>
+  
   <div id="behaviors-workarea" class="col-xs-18 col-sm-10">
     <p class="pull-left visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">{% trans "toggle nav"|capfirst %}</button>
@@ -178,12 +198,16 @@
     
     <div id="toolbar-beh">
       <ul class="nav nav-tabs">
-        
+        <li class="active">
+          <a href='#graph' data-toggle='tab'>Gráfica &nbsp;</a>
+        </li>
       </ul>
     </div>
     <div id="language-beh" class="language">
       <div class="tab-content">
-        
+        <div class='tab-pane active' id='graph'>
+          
+        </div>
       </div>  
     </div>
     <div id="messages-beh" class="messages centered">

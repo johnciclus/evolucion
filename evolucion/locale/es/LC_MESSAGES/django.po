@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 07:35-0500\n"
+"POT-Creation-Date: 2014-01-22 14:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -521,7 +521,7 @@ msgstr "titulo del modelo"
 msgid "prose description placeholder"
 msgstr "descripción del modelo"
 
-#: templates/editor/_prose.html:26 templates/editor/base_editor.html:51
+#: templates/editor/_prose.html:26 templates/editor/base_editor.html:52
 msgid "save"
 msgstr "guardar"
 
@@ -600,59 +600,43 @@ msgstr "relación de material"
 msgid "saf sector btn title"
 msgstr "sector"
 
-#: templates/editor/base_editor.html:48
+#: templates/editor/base_editor.html:49
 msgid "overview"
 msgstr "resumen"
 
-#: templates/editor/base_editor.html:50
+#: templates/editor/base_editor.html:51
 msgid "open"
 msgstr "abrir"
 
-#: templates/editor/base_editor.html:52
+#: templates/editor/base_editor.html:53
 msgid "download"
 msgstr "descargar"
 
-#: templates/editor/base_editor.html:59
+#: templates/editor/base_editor.html:60
 msgid "prose"
 msgstr "prosa"
 
-#: templates/editor/base_editor.html:60
+#: templates/editor/base_editor.html:61
 msgid "influences"
 msgstr "influencias"
 
-#: templates/editor/base_editor.html:61
+#: templates/editor/base_editor.html:62
 msgid "stock and flow"
 msgstr "flujo nivel"
 
-#: templates/editor/base_editor.html:62
+#: templates/editor/base_editor.html:63
 msgid "equations"
 msgstr "ecuaciones"
 
-#: templates/editor/base_editor.html:63
+#: templates/editor/base_editor.html:64
 msgid "behaviors"
 msgstr "comportamientos"
 
-#: templates/editor/base_editor.html:114
-msgid "sing in"
-msgstr "Inicia sesión"
-
-#: templates/editor/base_editor.html:116
-msgid "username"
-msgstr "nombre de usuario"
-
-#: templates/editor/base_editor.html:117
-msgid "password"
-msgstr "contraseña"
-
-#: templates/editor/base_editor.html:119
-msgid "sing up"
-msgstr "Regístrate"
-
-#: templates/editor/base_editor.html:169
+#: templates/editor/base_editor.html:168
 msgid "browser incompatibility"
 msgstr ""
 
-#: templates/editor/base_editor.html:194
+#: templates/editor/base_editor.html:193
 msgid "close"
 msgstr ""
 
@@ -685,19 +669,39 @@ msgstr "Explorar"
 msgid "nav features"
 msgstr "Características"
 
-#: templates/home/_fixedNav.html:19
-msgid "nav about"
+#: templates/home/_fixedNav.html:22
+#, fuzzy
+msgid "about"
 msgstr "Acerca de"
 
-#: templates/home/_fixedNav.html:20
+#: templates/home/_fixedNav.html:25
+#, fuzzy
+msgid "nav history"
+msgstr "Inicio"
+
+#: templates/home/_fixedNav.html:26
+msgid "nav core team"
+msgstr ""
+
+#: templates/home/_fixedNav.html:27
+#, fuzzy
+msgid "nav community"
+msgstr "Acerca de"
+
+#: templates/home/_fixedNav.html:28
+#, fuzzy
+msgid "nav translations"
+msgstr "relaciones de material"
+
+#: templates/home/_fixedNav.html:29
 msgid "nav contact us"
 msgstr "Contáctanos"
 
-#: templates/home/_fixedNav.html:26
+#: templates/home/_fixedNav.html:35
 msgid "nav sign up"
 msgstr "Regístrate"
 
-#: templates/home/_fixedNav.html:27
+#: templates/home/_fixedNav.html:36
 msgid "nav sign in"
 msgstr "Inicia sesión"
 
@@ -825,6 +829,18 @@ msgstr ""
 #: users/views.py:81
 msgid "the username or password is not correct."
 msgstr ""
+
+#~ msgid "sing in"
+#~ msgstr "Inicia sesión"
+
+#~ msgid "username"
+#~ msgstr "nombre de usuario"
+
+#~ msgid "password"
+#~ msgstr "contraseña"
+
+#~ msgid "sing up"
+#~ msgstr "Regístrate"
 
 #~ msgid "concept"
 #~ msgstr "concepto"

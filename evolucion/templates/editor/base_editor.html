@@ -13,13 +13,13 @@
     
     <link rel="shortcut icon" href="{% static 'icons/favicon.png' %}">
     <!-- Bootstrap core CSS -->
+    
     <link href="{% static 'css/bootstrap/bootstrap_spacelab.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap/offcanvas.css' %}" rel="stylesheet">
-    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     <link href="{% static 'css/prettify.css' %}" rel="stylesheet">
     <link href="{% static 'css/morris.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'css/morris.css' %}" rel="stylesheet" >
     
     <!--<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css' />-->
     
@@ -203,30 +203,24 @@
     <!-- JavaScript -->
     <script src="{% static 'js/poo.js' %}"></script>
     <script src="{% static 'js/jquery/jquery-1.10.2.min.js' %}"></script>
+    <script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js"></script>
     <script src="{% static 'js/bootstrap/bootstrap.min.js' %} "></script>
     <script src="{% static 'js/bootstrap/offcanvas.js' %} "></script>
+    <script src="{% static 'js/bootstrap/bootstrap-wysiwyg.js' %} "></script>
     <script src="{% static 'js/raphael/raphael-min.js' %} "></script>
     <script src="{% static 'js/prettify.js' %} "></script>
     <script src="{% static 'js/morris/morris.min.js' %} "></script>
+    
     
     <script src="{% static 'js/evolucion/evolucion.js' %} "></script>
     <script src="{% static 'js/evolucion/influences.js' %} "></script>
     <script src="{% static 'js/evolucion/stockandflow.js' %} "></script>
     <script src="{% static 'js/evolucion/equations.js' %} "></script>
     <script src="{% static 'js/evolucion/behaviors.js' %} "></script>
-    <script src="{% static 'js/evolucion/main.js' %} "></script>
-    
-    <script type="text/javascript">
-      (function(jQuery){
-        jQuery( document ).ready( function() {
-          prettyPrint();
-        } );
-      }(jQuery));
-    </script>
+    <script src="{% static 'js/evolucion/main.js' %} "></script>   
     
     <!-- Page Specific Plugins 
-    <script src="{% static 'js/raphael/raphael-min.js' %}"></script>
-    <script src="{% static 'js/morris/morris.min.js' %}"></script>
+    
     <script src="{% static 'js/morris/chart-data-morris.js' %}"></script>
     <script src="{% static 'js/tablesorter/jquery.tablesorter.js' %}"></script>
     <script src="{% static 'js/tablesorter/tables.js' %}"></script>
