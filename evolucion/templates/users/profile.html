@@ -6,10 +6,11 @@
 
 
 {% block body %}
-    {% include 'home/_carousel.html' %}
-    
+        
     {% block content %}
-    
+      <p>{{ requested_user.username }}</p>
+      
+      
     {% endblock %}
         
     <!-- Bootstrap core JavaScript ================================================== -->
@@ -18,8 +19,6 @@
     <script src="{% static 'js/jquery/jquery-1.10.2.min.js' %}"> </script>
     <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap/holder.js' %}"></script>
-    <script src="{% static 'js/home/main.js' %}"></script>
+    <script src="{% static 'js/users/main.js' %}"></script>
     
 {% endblock %}
-
-

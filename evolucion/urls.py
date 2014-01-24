@@ -22,5 +22,7 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    
+
+    # User page
+    url(r'^(?P<username>\w+)/$', 'evolucion.users.views.profile_view', name='profile_view'),
 )

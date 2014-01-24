@@ -6,9 +6,14 @@
             {{ form_msg }}        
     </div>
     <script type="text/javascript">
-        setTimeout(function() { 
+        setTimeout(function() {
+          $('#signup-link').remove();
+          $('#signin-link').remove();
+          
+          $('#home_nav .navbar-nav').append("{% filter escapejs %}{% include 'users/_user_dropdown.html' %}{% endfilter %}");
+          
           $('#signInModal').modal('hide');
-          //window.open(window.location.origin+"/editor/", "_self"); 
+          window.open(window.location.origin+"/{{ user.username }}/", "_self"); 
         }, 1000);
     </script>
 {% endif %}

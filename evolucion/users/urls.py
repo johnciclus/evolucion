@@ -7,5 +7,7 @@ urlpatterns = patterns('',
     url(r'^get_xml/',  views.get_xml, name='xml'),
     url(r'^get_json/', views.get_json, name='json'),
     url(r'^get_html/', views.get_html, name='html'),
-        
+    
+    # ex: /users/5/
+    #url(r'^(?P<username>\w+)/$', views.profile_view, name='profile_view'),
 )

@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
-from evolucion.users.models import UserForm
+from django.contrib.auth.models import User
+from evolucion.users.models import EvoUser, UserForm
 from evolucion.utils.decorators import ajax_view, AjaxError
 
 import logging, sys
@@ -62,13 +63,14 @@ def sign_in(request):
         user = authenticate(username=params['username'], password=params['password'])
                 
         if user is not None:
-            user.is_active = True
-            user.save()
+            #user.is_active = True
+            #user.save()
             print >>sys.stderr, user.is_active
             if user.is_active:
                 login(request, user)
                 print >>sys.stderr, "request.user"
                 print >>sys.stderr, dir(request.user)
+                print >>sys.stderr, request.user.__class__.__name__
                 print >>sys.stderr, "request.user.is_authenticated()"
                 print >>sys.stderr, request.user.is_authenticated()
                 form_msg = _("welcome to Evolucion Web")
@@ -80,3 +82,14 @@ def sign_in(request):
         else:
             form_msg = _("the username or password is not correct.")
             return render(request, 'users/_signInErrors.html', {'form_msg': form_msg})
+        
+def profile_view(request, username):
+    user = User.objects.get(username=username)
+    
+    context = {'user': request.user, 'requested_user': user}
+    
+    if request.user.is_anonymous():
+        sign_form = UserForm(auto_id=True)
+        context['sign_form'] = sign_form
+        
+    return render(request, 'users/profile.html', context)

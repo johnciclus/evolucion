@@ -11,12 +11,12 @@
         <meta name="description" content="Evolución Web, ambiente para el modelado y la simulación con dinámica de sistemas.">
         <meta name="keywords" content="evolución web, modelado y simulación, herramienta software, dinámica de sistemas">
         <meta name="author" content="John Garavito Suárez">
-        
-        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
-        
+
+        <link rel="shortcut icon" href="{% static 'icons/favicon.png' %}">
     
         <!-- Bootstrap -->
-        <link href="{% static 'css/bootstrap/bootstrap_spacelab.min.css' %}" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet">
         <link href="{% static 'css/bootstrap/bootstrap_home.css' %}" rel="stylesheet">
 
         <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -30,7 +30,11 @@
     <!-- NAVBAR ================================================== -->
     <body>
         {% block nav %} 
-        
+          {% include 'home/_fixedNav.html' %}
+          {% if user.is_anonymous %}
+            {% include 'users/_signUp.html' %}
+            {% include 'users/_signIn.html' %}
+          {% endif %}
         {% endblock %}
         
         {% block body %} 

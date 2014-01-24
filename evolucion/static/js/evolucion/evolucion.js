@@ -2127,7 +2127,6 @@ $(document).ready(function(){
             data: {
               'csrfmiddlewaretoken': $("#prose_form input[type='hidden']").val(),
               'model': root.html()
-              
             },
             success: function(data){
               console.log(data);

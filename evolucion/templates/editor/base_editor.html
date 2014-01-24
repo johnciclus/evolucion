@@ -8,18 +8,18 @@
     <meta name="description" content="Evolución Web, environment for modeling and simulation with system dynamics">
     <meta name="keywords" content="evolución Web, modeling and simulation, software tool, system dynamics">
     <meta name="author" content="John Garavito Suárez">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     
     <title>Evoluci&oacute;n Web - Editor </title>
     
     <link rel="shortcut icon" href="{% static 'icons/favicon.png' %}">
     <!-- Bootstrap core CSS -->
-    
-    <link href="{% static 'css/bootstrap/bootstrap_spacelab.min.css' %}" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap/offcanvas.css' %}" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     <link href="{% static 'css/prettify.css' %}" rel="stylesheet">
     <link href="{% static 'css/morris.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap/bootstrap_editor.css' %}" rel="stylesheet">
     
     <!--<link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css' />-->
     
@@ -35,7 +35,7 @@
     
   </head>
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top " role="navigation">
       <div class="container">
         <div class="navbar-header dropdown">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -62,70 +62,59 @@
             <li><a id="stockandflow-link" href="#" > {% trans "stock and flow"|capfirst %} </a></li>
             <li><a id="equations-link" href="#" > {% trans "equations"|capfirst %} </a></li>
             <li><a id="behaviors-link" href="#" > {% trans "behaviors"|capfirst %} </a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-              </a>
+            
+            
+            <li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-envelope fa-fw"></i><b class="caret"></b></a>
               <ul class="dropdown-menu dropdown-messages">
-                  <li>
-                      <a href="#">
-                          <div>
-                              <strong>John Smith</strong>
-                              <span class="pull-right text-muted">
-                                  <em>Yesterday</em>
-                              </span>
-                          </div>
-                          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                      </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                      <a href="#">
-                          <div>
-                              <strong>John Smith</strong>
-                              <span class="pull-right text-muted">
-                                  <em>Yesterday</em>
-                              </span>
-                          </div>
-                          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                      </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                      <a href="#">
-                          <div>
-                              <strong>John Smith</strong>
-                              <span class="pull-right text-muted">
-                                  <em>Yesterday</em>
-                              </span>
-                          </div>
-                          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                      </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                      <a class="text-center" href="#">
-                          <strong>Read All Messages</strong>
-                          <i class="fa fa-angle-right"></i>
-                      </a>
-                  </li>
+                <li><a href="#">
+                  <div>
+                    <strong>John Smith</strong>
+                    <span class="pull-right text-muted">
+                        <em>Yesterday</em>
+                    </span>
+                  </div>
+                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                </a></li>
+                <li class="divider"></li>
+                <li><a href="#">
+                  <div>
+                    <strong>John Smith</strong>
+                    <span class="pull-right text-muted">
+                        <em>Yesterday</em>
+                    </span>
+                  </div>
+                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                </a></li>
+                <li class="divider"></li>
+                <li><a href="#">
+                  <div>
+                      <strong>John Smith</strong>
+                      <span class="pull-right text-muted">
+                          <em>Yesterday</em>
+                      </span>
+                  </div>
+                  <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                </a></li>
+                <li class="divider"></li>
+                <li><a class="text-center" href="#">
+                  <strong>Read All Messages</strong>
+                  <i class="fa fa-angle-right"></i>
+                </a></li>
               </ul>
               <!-- /.dropdown-messages -->
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
+            <li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i><b class="caret"></b> </a>
+              <ul class="dropdown-menu dropdown-user">
+                  <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                  </li>
+                  <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                  </li>
+              </ul>
             </li>
           </ul>
         </div><!-- /.nav-collapse -->

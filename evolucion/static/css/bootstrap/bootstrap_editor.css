@@ -61,7 +61,7 @@ div.svg-input {
     padding-right: 12px;
 }
 
-a.navbar-brand b {
+.navbar b.caret, .nav a:hover .caret:hover {
     border-top-color: #ddd;
     border-bottom-color: #ddd;
 }
@@ -191,7 +191,7 @@ div.toolbar-editor .btn{
     font-size: 16px;
 }
 
-#prose-editor {
+.prose-editor {
     max-height: 250px;
     height: 250px;
     background-color: white;
