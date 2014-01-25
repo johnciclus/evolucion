@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 14:32-0500\n"
+"POT-Creation-Date: 2014-01-24 23:11-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,84 +365,84 @@ msgstr ""
 msgid "Delete?"
 msgstr "borrar?"
 
-#: templates/editor/_behaviors.html:10
+#: templates/editor/_behaviors.html:27
 msgid "initial time"
 msgstr ""
 
-#: templates/editor/_behaviors.html:11
+#: templates/editor/_behaviors.html:28
 #, fuzzy
 msgid "initial time placeholder"
 msgstr "Nombre(s)"
 
-#: templates/editor/_behaviors.html:14
+#: templates/editor/_behaviors.html:32
 msgid "final time"
 msgstr ""
 
-#: templates/editor/_behaviors.html:15
+#: templates/editor/_behaviors.html:33
 #, fuzzy
 msgid "final time placeholder"
 msgstr "titulo del modelo"
 
-#: templates/editor/_behaviors.html:18
+#: templates/editor/_behaviors.html:37
 msgid "delta time"
 msgstr ""
 
-#: templates/editor/_behaviors.html:19
+#: templates/editor/_behaviors.html:38
 #, fuzzy
 msgid "delta time placeholder"
 msgstr "titulo del modelo"
 
-#: templates/editor/_behaviors.html:25
+#: templates/editor/_behaviors.html:44
 #: templates/editor/_stock-and-flow.html:10
 msgid "parameters"
 msgstr ""
 
-#: templates/editor/_behaviors.html:40
+#: templates/editor/_behaviors.html:59
 #: templates/editor/_stock-and-flow.html:25
 msgid "stocks"
 msgstr ""
 
-#: templates/editor/_behaviors.html:55
+#: templates/editor/_behaviors.html:74
 #: templates/editor/_stock-and-flow.html:40
 msgid "flows"
 msgstr ""
 
-#: templates/editor/_behaviors.html:70
+#: templates/editor/_behaviors.html:89
 #: templates/editor/_stock-and-flow.html:55
 msgid "auxiliaries"
 msgstr ""
 
-#: templates/editor/_behaviors.html:85
+#: templates/editor/_behaviors.html:104
 #: templates/editor/_stock-and-flow.html:70
 msgid "exogenous"
 msgstr ""
 
-#: templates/editor/_behaviors.html:100
+#: templates/editor/_behaviors.html:119
 #: templates/editor/_stock-and-flow.html:85
 msgid "delays"
 msgstr ""
 
-#: templates/editor/_behaviors.html:115
+#: templates/editor/_behaviors.html:134
 #: templates/editor/_stock-and-flow.html:100
 msgid "multipliers"
 msgstr ""
 
-#: templates/editor/_behaviors.html:130
+#: templates/editor/_behaviors.html:149
 #: templates/editor/_stock-and-flow.html:115
 msgid "fis"
 msgstr ""
 
-#: templates/editor/_behaviors.html:145
+#: templates/editor/_behaviors.html:164
 #: templates/editor/_stock-and-flow.html:130
 msgid "previous values"
 msgstr ""
 
-#: templates/editor/_behaviors.html:160
+#: templates/editor/_behaviors.html:179
 #: templates/editor/_stock-and-flow.html:145
 msgid "submodels"
 msgstr ""
 
-#: templates/editor/_behaviors.html:176 templates/editor/_equations.html:18
+#: templates/editor/_behaviors.html:196 templates/editor/_equations.html:18
 #: templates/editor/_influences.html:88
 #: templates/editor/_stock-and-flow.html:192
 msgid "toggle nav"
@@ -513,17 +513,13 @@ msgstr "relación de información"
 msgid "inf sector btn title"
 msgstr "sector"
 
-#: templates/editor/_prose.html:12
+#: templates/editor/_prose.html:13
 msgid "prose title placeholder"
 msgstr "titulo del modelo"
 
-#: templates/editor/_prose.html:22
+#: templates/editor/_prose.html:23
 msgid "prose description placeholder"
 msgstr "descripción del modelo"
-
-#: templates/editor/_prose.html:26 templates/editor/base_editor.html:52
-msgid "save"
-msgstr "guardar"
 
 #: templates/editor/_stock-and-flow.html:160
 #, fuzzy
@@ -608,6 +604,10 @@ msgstr "resumen"
 msgid "open"
 msgstr "abrir"
 
+#: templates/editor/base_editor.html:52
+msgid "save"
+msgstr "guardar"
+
 #: templates/editor/base_editor.html:53
 msgid "download"
 msgstr "descargar"
@@ -632,11 +632,11 @@ msgstr "ecuaciones"
 msgid "behaviors"
 msgstr "comportamientos"
 
-#: templates/editor/base_editor.html:168
+#: templates/editor/base_editor.html:157
 msgid "browser incompatibility"
 msgstr ""
 
-#: templates/editor/base_editor.html:193
+#: templates/editor/base_editor.html:182
 msgid "close"
 msgstr ""
 
@@ -697,11 +697,11 @@ msgstr "relaciones de material"
 msgid "nav contact us"
 msgstr "Contáctanos"
 
-#: templates/home/_fixedNav.html:35
+#: templates/home/_fixedNav.html:38
 msgid "nav sign up"
 msgstr "Regístrate"
 
-#: templates/home/_fixedNav.html:36
+#: templates/home/_fixedNav.html:39
 msgid "nav sign in"
 msgstr "Inicia sesión"
 
@@ -795,6 +795,18 @@ msgstr "Registrarse"
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
+#: templates/users/_user_dropdown.html:8
+msgid "settings"
+msgstr ""
+
+#: templates/users/_user_dropdown.html:11
+msgid "logout"
+msgstr ""
+
+#: users/models.py:13
+msgid "profile"
+msgstr ""
+
 #: users/models.py:14
 msgid "accept_terms"
 msgstr ""
@@ -807,11 +819,11 @@ msgstr "creado en"
 msgid "updated_at"
 msgstr "actualizado en"
 
-#: users/views.py:48
+#: users/views.py:49
 msgid "the user was successfully registered"
 msgstr "el usuario fue exitosamente registrado"
 
-#: users/views.py:74
+#: users/views.py:76
 #, fuzzy
 msgid "welcome to Evolucion Web"
 msgstr ""
@@ -822,11 +834,11 @@ msgstr ""
 "cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
 "amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
 
-#: users/views.py:77
+#: users/views.py:79
 msgid "the user is not active"
 msgstr ""
 
-#: users/views.py:81
+#: users/views.py:83
 msgid "the username or password is not correct."
 msgstr ""
 

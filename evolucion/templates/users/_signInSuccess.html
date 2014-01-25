@@ -13,7 +13,11 @@
           $('#home_nav .navbar-nav').append("{% filter escapejs %}{% include 'users/_user_dropdown.html' %}{% endfilter %}");
           
           $('#signInModal').modal('hide');
-          window.open(window.location.origin+"/{{ user.username }}/", "_self"); 
+          
+          
+          window.open(window.location.origin+"/{{ user.username }}/", "_self");
+          
+           
         }, 1000);
     </script>
 {% endif %}

@@ -17,6 +17,11 @@ logger = logging.getLogger(__name__)
 # print >>sys.stderr, "Groups"
 # c.update(csrf(request))
 
+def edit(request, pk):
+    users = User.objects.get(pk=pk)
+            
+    return render(request, 'users/edit.html')
+
 def get_xml(request):
     users = User.objects.all()
     return HttpResponse(
@@ -83,13 +88,3 @@ def sign_in(request):
             form_msg = _("the username or password is not correct.")
             return render(request, 'users/_signInErrors.html', {'form_msg': form_msg})
         
-def profile_view(request, username):
-    user = User.objects.get(username=username)
-    
-    context = {'user': request.user, 'requested_user': user}
-    
-    if request.user.is_anonymous():
-        sign_form = UserForm(auto_id=True)
-        context['sign_form'] = sign_form
-        
-    return render(request, 'users/profile.html', context)

@@ -8,7 +8,11 @@
 {% block body %}
         
     {% block content %}
-      <p>{{ requested_user.username }}</p>
+      <div class="container">
+        <div class="row">
+          
+        </div><!--/row-->
+      </div>
       
       
     {% endblock %}
@@ -16,9 +20,8 @@
     <!-- Bootstrap core JavaScript ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
   
-    <script src="{% static 'js/jquery/jquery-1.10.2.min.js' %}"> </script>
-    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap/holder.js' %}"></script>
-    <script src="{% static 'js/users/main.js' %}"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/projects/main.js' %}"></script>
     
 {% endblock %}

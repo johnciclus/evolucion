@@ -1,0 +1,37 @@
+{% extends "layouts/base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+
+{% block body %}
+        
+    {% block content %}
+      <div class="container">
+        <div class="row">
+          <div class="jumbotron">
+            <h2>{{ requested_user.first_name|capfirst }} {{ requested_user.last_name|capfirst }}</h2>
+            <p>{{ requested_user.profile|capfirst }}</p>
+          </div>
+          <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/row-->
+      </div>
+      
+      
+    {% endblock %}
+        
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/projects/main.js' %}"></script>
+    
+{% endblock %}

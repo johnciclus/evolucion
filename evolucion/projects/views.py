@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.views import generic
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from evolucion.projects.models import Project
 
@@ -23,6 +24,22 @@ class DetailView(generic.DetailView):
     model = Project
     template_name = 'projects/detail.html'
 
+
+def index(request):
+    #@project = Project.new
+    return HttpResponse("")
+
+def create(request):
+    #@project = Project.new(project_params)
+    #format.js{
+    #    render :partial => 'refresh'
+    #  }
+    return HttpResponse("")
+
+def show(request):
+    #@project = Project.find(params[:id])
+    #format.html
+    return HttpResponse("")
 
 def save(request):
     if request.method == 'POST':
@@ -54,3 +71,14 @@ def save(request):
 #def detail(request, pk):
 #    project = get_object_or_404(Project, pk=pk)
 #    return render(request, 'projects/detail.html', {'project' : project})
+
+def projects_view(request, username):
+    user = User.objects.get(username=username)
+    
+    context = {'user': request.user, 'requested_user': user}
+    
+    if request.user.is_anonymous():
+        sign_form = UserForm(auto_id=True)
+        context['sign_form'] = sign_form
+        
+    return render(request, 'projects/view.html', context)

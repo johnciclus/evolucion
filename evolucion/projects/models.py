@@ -5,7 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
+    #keywords
+    #model
     pub_date = models.DateTimeField('date published')
+    
     def __unicode__(self):
         return self.title
 
