@@ -30,10 +30,10 @@
     <!-- NAVBAR ================================================== -->
     <body>
         {% block nav %} 
-          {% include 'home/_fixedNav.html' %}
+          {% include 'home/_fixed_nav.html' %}
           {% if user.is_anonymous %}
-            {% include 'users/_signUp.html' %}
-            {% include 'users/_signIn.html' %}
+            {% include 'users/_sign_up.html' %}
+            {% include 'users/_sign_in.html' %}
           {% endif %}
         {% endblock %}
         

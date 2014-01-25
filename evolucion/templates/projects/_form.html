@@ -1,0 +1,20 @@
+<p> Formulario </p>
+
+<form action="{% url 'projects:save' %}" method="post">
+{% csrf_token %}
+<input type="text" id="title" name="title" />
+<input type="text" id="description" name="description" />
+<input type="submit" value="Save" />
+</form>
+
+
+<script>
+    $('#project_form').submit(function(e){
+        var self = this;
+        var root = $('#xmldocument');
+        
+        e.preventDefault();
+        $('#project_model').val(root.html());
+        return true;
+    });
+</script>

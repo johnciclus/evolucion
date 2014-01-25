@@ -11,6 +11,29 @@ from django.utils.translation import ugettext_lazy as _
 
 class EvoUser(User):
     profile     = models.TextField(_('profile'))
+    
+    ## Recoverable
+    # t.string   #reset_password_token
+    # t.datetime :reset_password_sent_at
+    
+    ## Trackable
+    #t.integer  :sign_in_count, :default => 0, :null => false
+    #t.datetime :current_sign_in_at
+    #t.datetime :last_sign_in_at
+    #t.string   :current_sign_in_ip
+    #t.string   :last_sign_in_ip  
+
+    ## Confirmable
+    # t.string   :confirmation_token
+    # t.datetime :confirmed_at
+    # t.datetime :confirmation_sent_at
+    # t.string   :unconfirmed_email # Only if using reconfirmable
+    
+    ## Lockable
+    # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
+    # t.string   :unlock_token # Only if unlock strategy is :email or :both
+    # t.datetime :locked_at
+    
     accept_terms= models.BooleanField(_('accept_terms'))
     created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
     updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
@@ -36,9 +59,8 @@ class EvoUser(User):
 #     def __unicode__(self):
 #         return self.username
 # 
+
 class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = EvoUser
-
-    

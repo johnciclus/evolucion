@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', 'evolucion.views.home', name='home'),
         
     # Include app Users:
-    url(r'^users/', include('evolucion.users.urls', namespace='users')),
+    url(r'^user/', include('evolucion.users.urls', namespace='user')),
     
     # Include app Projects:
     url(r'^projects/', include('evolucion.projects.urls', namespace='projects')),
@@ -24,5 +24,8 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # User page
-    url(r'^(?P<username>\w+)/$', 'evolucion.projects.views.projects_view', name='projects_view'),
+    url(r'^(?P<username>\w+)/$', 'evolucion.projects.views.index', name='projects_view'),
+    
+    # Project editor page
+    url(r'^(?P<username>\w+)/(?P<project_name>\w+)$', 'evolucion.projects.views.detail', name='project_editor'),
 )

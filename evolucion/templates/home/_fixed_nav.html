@@ -35,8 +35,8 @@
             
             {% if user.is_anonymous %}
             
-              <li id='signup-link'><a href="#" class="text-primary" data-toggle="modal" data-target="#signUpModal">{% trans "nav sign up" %} </a></li>
-              <li id='signin-link'><a href="#" class="text-primary" data-toggle="modal" data-target="#signInModal">{% trans "nav sign in" %} </a></li>
+              <li id='signup-link'><a href="#" data-toggle="modal" data-target="#signUpModal">{% trans "nav sign up" %} </a></li>
+              <li id='signin-link'><a href="#" data-toggle="modal" data-target="#signInModal">{% trans "nav sign in" %} </a></li>
             
             {% else %}
             

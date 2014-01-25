@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-24 23:11-0500\n"
+"POT-Creation-Date: 2014-01-25 10:45-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: projects/models.py:14
+#: projects/models.py:17
 msgid "prose title"
 msgstr "titulo"
 
-#: projects/models.py:15
+#: projects/models.py:18
 msgid "prose description"
 msgstr "descripción"
 
@@ -746,60 +746,61 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
-#: templates/users/_signIn.html:27 templates/users/_signUp.html:49
+#: templates/users/_sign_in.html:27 templates/users/_sign_up.html:49
 msgid "sign up username placeholder"
 msgstr "Nombre de identificación en el sistema"
 
-#: templates/users/_signIn.html:38 templates/users/_signUp.html:71
+#: templates/users/_sign_in.html:38 templates/users/_sign_up.html:71
 msgid "sign up password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: templates/users/_signInErrors.html:5 templates/users/_signInSuccess.html:5
-#: templates/users/_signUpSuccess.html:5
+#: templates/users/_sign_in_errors.html:5
+#: templates/users/_sign_in_success.html:5
+#: templates/users/_sign_up_success.html:5
 msgid "information"
 msgstr "información"
 
-#: templates/users/_signUp.html:9
+#: templates/users/_sign_up.html:9
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: templates/users/_signUp.html:26
+#: templates/users/_sign_up.html:26
 msgid "sign up first_name placeholder"
 msgstr "Nombre(s)"
 
-#: templates/users/_signUp.html:37
+#: templates/users/_sign_up.html:37
 msgid "sign up last_name placeholder"
 msgstr "Apellido(s)"
 
-#: templates/users/_signUp.html:61
+#: templates/users/_sign_up.html:61
 msgid "sign up email placeholder"
 msgstr "Correo electrónico valido ej: nombre@dominio.com"
 
-#: templates/users/_signUp.html:75
+#: templates/users/_sign_up.html:75
 msgid "sign up confirm_password"
 msgstr "Confirme la contraseña"
 
-#: templates/users/_signUp.html:81
+#: templates/users/_sign_up.html:81
 msgid "sign up confirm_password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: templates/users/_signUp.html:87
+#: templates/users/_sign_up.html:87
 msgid "sign up terms"
 msgstr "Condiciones del servicio de Evolución Web"
 
-#: templates/users/_signUp.html:95
+#: templates/users/_sign_up.html:95
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: templates/users/_signUp.html:100
+#: templates/users/_sign_up.html:100
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
-#: templates/users/_user_dropdown.html:8
+#: templates/users/_user_dropdown.html:7
 msgid "settings"
 msgstr ""
 
-#: templates/users/_user_dropdown.html:11
+#: templates/users/_user_dropdown.html:9
 msgid "logout"
 msgstr ""
 
@@ -819,11 +820,11 @@ msgstr "creado en"
 msgid "updated_at"
 msgstr "actualizado en"
 
-#: users/views.py:49
+#: users/views.py:53
 msgid "the user was successfully registered"
 msgstr "el usuario fue exitosamente registrado"
 
-#: users/views.py:76
+#: users/views.py:80
 #, fuzzy
 msgid "welcome to Evolucion Web"
 msgstr ""
@@ -834,11 +835,11 @@ msgstr ""
 "cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
 "amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
 
-#: users/views.py:79
+#: users/views.py:83
 msgid "the user is not active"
 msgstr ""
 
-#: users/views.py:83
+#: users/views.py:87
 msgid "the username or password is not correct."
 msgstr ""
 

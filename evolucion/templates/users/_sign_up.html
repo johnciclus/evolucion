@@ -2,7 +2,7 @@
 
 <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
   <div class="modal-dialog">
-    <form id="sign_up_form" class="form-horizontal" action="/users/sign_up/" method="post">
+    <form id="sign_up_form" class="form-horizontal" action="/user/sign_up/" method="post">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -12,8 +12,8 @@
             <div class="modal-body">
                 {% csrf_token %}
                 <div id='form_message'>
-                    {% include 'users/_signUpSuccess.html' %}
-                    {% include 'users/_signUpErrors.html' %}
+                    {% include 'users/_sign_up_success.html' %}
+                    {% include 'users/_sign_up_errors.html' %}
                 </div>
                 <div class="form-group">
                     <label for="{{ sign_form.first_name|id }}" class="col-lg-3 control-label">{{ sign_form.first_name|verbosename }}</label>

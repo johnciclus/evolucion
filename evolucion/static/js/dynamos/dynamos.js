@@ -50,7 +50,7 @@ function ATAN(x){
 	return Math.atan(x);
 }
 function ATANH(x){
-	return 0.5 * Math.log((1 + x) / (1 - x))
+	return 0.5 * Math.log((1 + x) / (1 - x));
 }
 function BINOM(n,k){
 	if(n>=0 && k>=0 && (n-k)>=0){
@@ -1232,7 +1232,7 @@ var Dynamos = Class.extend({
 			if(cadena[i]=='['){
 				for(j=i+1; j<cadena.length; j++){
 					if(cadena[j]==']'){
-						val=cadena.substring(i+1,j)
+						val=cadena.substring(i+1,j);
 						if(isFinite(val)){
 							num=parseInt(val);
 							num--;

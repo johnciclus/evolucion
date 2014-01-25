@@ -1,22 +1,15 @@
+
+
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-{% if latest_projects_list %}
-    <ul>
-    {% for project in latest_projects_list %}
-        <li><a href="{% url 'projects:detail' project.id %}">{{ project.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No projects are available.</p>
-{% endif %}
+{% include 'projects/_list.html' %}
 
-<hr />
+<div class="separator"></div>
 
-<p> Formulario </p>
+<h3><span></span>Nuevo proyecto</h3>
 
-<form action="{% url 'projects:save' %}" method="post">
-{% csrf_token %}
-<input type="text" id="title" name="title" />
-<input type="text" id="description" name="description" />
-<input type="submit" value="Save" />
-</form>
+{% include 'projects/_form.html' %}
+
+{% comment %}
+  $('#new_project')[0].reset();
+{% endcomment %}
