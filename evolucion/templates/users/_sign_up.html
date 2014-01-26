@@ -9,8 +9,9 @@
                 <h4 class="modal-title">{% trans 'sign up title'%}</h4>
             </div>
             
+            <form id="sign_up_form" class="form-horizontal" action="/user/sign_up/" method="post">
+              
             <div class="modal-body">
-              <form id="sign_up_form" class="form-horizontal" action="/user/sign_up/" method="post">
                 {% include 'users/_form.html' %}
                 <div class="checkbox">
                   <label>
@@ -18,7 +19,6 @@
                     Acepto las <a href="/terms" target="_blank">{% trans 'sign up terms' %}</a>
                   </label>
                 </div>
-              </form>
             </div>
           
             <div class="modal-footer">
@@ -33,6 +33,8 @@
                     </div>
                 </div>
             </div>
+            
+            </form>
         
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

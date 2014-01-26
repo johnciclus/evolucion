@@ -3,6 +3,7 @@ $(document).ready(function(){
     function formAjax(idForm, idDivResponse){
         if(idForm, idDivResponse){
             var frm = $('#'+idForm);
+            console.log(frm);
             frm.submit(function () {
                 query = $.ajax({
                     type: frm.attr('method'),
@@ -27,7 +28,6 @@ $(document).ready(function(){
                 return false;
             });
         }
-        return false;
     }
     
 	formAjax('sign_in_form', 'signInModal');

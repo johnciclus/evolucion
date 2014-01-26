@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.views import generic
 from django.utils import timezone
-from django.contrib.auth.models import User
 
 from evolucion.projects.models import Project
 from evolucion.users.models import EvoUser, UserForm
@@ -21,10 +20,11 @@ class IndexView(generic.ListView):
     context_object_name = 'projects'
 
     def get(self, request, *args, **kwargs):
-        requested_user = get_object_or_404(User, username = kwargs['username'])
+        requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
         projects = Project.objects.filter(user = requested_user.id)
         
-        context = self.get_context_data(**kwargs)
+        #context = self.get_context_data(**kwargs)
+        context = {}
         context['user'] = request.user
         context['requested_user'] = requested_user
         context['projects'] = projects

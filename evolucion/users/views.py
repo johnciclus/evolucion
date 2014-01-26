@@ -5,7 +5,7 @@ from django.core.context_processors import csrf
 from django.core import serializers
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -19,13 +19,13 @@ logger = logging.getLogger(__name__)
 # c.update(csrf(request))
 
 class UserEdit(generic.edit.FormView):
-    template_name   = 'users/edit.html'
+    model           = EvoUser
     form_class      = UserForm
-    success_url     = '/user/edit/'
+    template_name   = 'users/edit.html'
     
     def get(self, request, *args, **kwargs):
-        user = request.user
-        form = UserForm(auto_id=True, instance=user)
+        user = EvoUser.objects.get(pk=request.user.id)
+        form = UserForm(instance=user, auto_id=True)
         
         context = self.get_context_data(**kwargs)
         context['user'] = request.user
@@ -33,11 +33,42 @@ class UserEdit(generic.edit.FormView):
         
         return render(request, self.template_name, context)
     
+    def post(self, request, *args, **kwargs):
+        #user = self.instance.user
+        user = EvoUser.objects.get(pk=request.user.id)
+        
+        form_class = self.get_form_class()
+        
+        params = request.POST.copy()
+        params['profile']  = ' '
+        params['created_at'] = user.created_at
+        params['updated_at'] = datetime.now()
+        params['date_joined'] = user.date_joined
+        params['last_login'] = user.last_login
+        
+        form = UserForm(data = params, instance=user, auto_id=True)
+       
+        if form.is_valid():
+            user = form.save()
+            form_msg = _("the user was successfully registered")
+            return render(request, 'users/_sign_up_success.html', {'form_msg': form_msg})
+        else:
+            form_errors = form.errors
+            form_cleaned = form.cleaned_data
+            return render(request, 'users/_sign_up_errors.html', {'form_errors': form_errors})
+        
+        #context = {}
+        #context['user'] = user
+        #context['form'] = form
+            
+        #return render(request, 'users/edit.html', context)
+    
     #def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         # form.send_email()
         # return super(UserEdit, self).form_valid(form)
+
 
 def edit(request):
     user = request.user
@@ -67,7 +98,9 @@ def get_json(request):
 def sign_up(request):
     if request.method == 'POST':
         params = request.POST.copy()
-
+        
+        params['profile']  = ''
+        params['is_active'] = True
         params['password'] = make_password(params['password'])
         params['created_at'] = datetime.now()
         params['updated_at'] = datetime.now()

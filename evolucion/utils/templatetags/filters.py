@@ -8,6 +8,10 @@ register = template.Library()
 def id(field): 
     return conditional_escape(field.auto_id)
 
+@register.filter(name='value') 
+def value(field): 
+    return field.value()
+    
 @register.filter(name='verbosename') 
 def verbosename(field): 
     return conditional_escape(field.label)
