@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 #from manifesto.views import ManifestView
 
+from evolucion.projects import views
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -24,8 +26,9 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # User page
-    url(r'^(?P<username>\w+)/$', 'evolucion.projects.views.index', name='projects_view'),
-    
+    #url(r'^(?P<username>\w+)/$', 'evolucion.projects.views.index', name='projects_view'),
+    url(r'^(?P<username>\w+)/$', views.IndexView.as_view(), name='projects_view'),
+        
     # Project editor page
-    url(r'^(?P<username>\w+)/(?P<project_name>\w+)$', 'evolucion.projects.views.detail', name='project_editor'),
+    url(r'^(?P<username>\w+)/(?P<project_name>\w+)/$', 'evolucion.projects.views.detail', name='project_editor'),
 )

@@ -15,10 +15,15 @@
         <link rel="shortcut icon" href="{% static 'icons/favicon.png' %}">
     
         <!-- Bootstrap -->
+        {% block csslinks %}
+        
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/spacelab/bootstrap.min.css" rel="stylesheet">
         <link href="{% static 'css/bootstrap/bootstrap_home.css' %}" rel="stylesheet">
-
+        
+        {% endblock %}
+        
+        
         <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

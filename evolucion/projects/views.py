@@ -8,35 +8,37 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 from evolucion.projects.models import Project
-from evolucion.users.models import UserForm
+from evolucion.users.models import EvoUser, UserForm
 
 import logging, sys
 
 logger = logging.getLogger(__name__)
 # print >>sys.stderr, "Groups"
 
-
-
 class IndexView(generic.ListView):
+    model = Project
     template_name = 'projects/index.html'
-    context_object_name = 'latest_projects_list'
-    def get_queryset(self):
-        return Project.objects.order_by('-pub_date')[:5]
+    context_object_name = 'projects'
+
+    def get(self, request, *args, **kwargs):
+        requested_user = get_object_or_404(User, username = kwargs['username'])
+        projects = Project.objects.filter(user = requested_user.id)
+        
+        context = self.get_context_data(**kwargs)
+        context['user'] = request.user
+        context['requested_user'] = requested_user
+        context['projects'] = projects
+       
+        if request.user.is_anonymous():
+            form = UserForm(auto_id=True)
+            context['form'] = form
+        
+        return render(request, self.template_name, context)
 
 class DetailView(generic.DetailView):
     model = Project
     template_name = 'projects/detail.html'
-
-def index(request, username):
-    user = User.objects.get(username=username)
-    
-    context = {'user': request.user, 'requested_user': user}
-    
-    if request.user.is_anonymous():
-        sign_form = UserForm(auto_id=True)
-        context['sign_form'] = sign_form
-        
-    return render(request, 'projects/view.html', context)
+   
 
 def detail(request, username, project_name):
     

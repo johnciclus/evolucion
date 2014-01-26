@@ -5,9 +5,9 @@ import logging, sys
 logger = logging.getLogger(__name__)
 
 def home(request):
-    sign_form = UserForm(auto_id=True)
+    form = UserForm(auto_id=True)
 
-    context = {'user': request.user, 'sign_form': sign_form}
+    context = {'user': request.user, 'form': form}
     
     print >>sys.stderr, "Sessions Variable"
     print >>sys.stderr, request.session.__class__.__name__

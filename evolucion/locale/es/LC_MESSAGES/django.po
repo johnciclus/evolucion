@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 10:45-0500\n"
+"POT-Creation-Date: 2014-01-25 23:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: projects/models.py:17
+#: projects/models.py:28
 msgid "prose title"
 msgstr "titulo"
 
-#: projects/models.py:18
+#: projects/models.py:29
 msgid "prose description"
 msgstr "descripción"
+
+#: projects/models.py:32 projects/models.py:51 projects/models.py:63
+#: projects/models.py:75 projects/models.py:88 projects/models.py:100
+#: users/models.py:16
+msgid "created_at"
+msgstr "creado en"
+
+#: projects/models.py:33 projects/models.py:52 projects/models.py:64
+#: projects/models.py:76 projects/models.py:89 projects/models.py:101
+#: users/models.py:17
+msgid "updated_at"
+msgstr "actualizado en"
 
 #: templates/admin/404.html:4 templates/admin/404.html.py:8
 msgid "Page not found"
@@ -657,51 +669,51 @@ msgstr "Aprenda más"
 msgid "browse gallery"
 msgstr "Navega por la galería"
 
-#: templates/home/_fixedNav.html:16
+#: templates/home/_fixed_nav.html:16
 msgid "nav home"
 msgstr "Inicio"
 
-#: templates/home/_fixedNav.html:17
+#: templates/home/_fixed_nav.html:17
 msgid "nav explore"
 msgstr "Explorar"
 
-#: templates/home/_fixedNav.html:18
+#: templates/home/_fixed_nav.html:18
 msgid "nav features"
 msgstr "Características"
 
-#: templates/home/_fixedNav.html:22
+#: templates/home/_fixed_nav.html:22
 #, fuzzy
 msgid "about"
 msgstr "Acerca de"
 
-#: templates/home/_fixedNav.html:25
+#: templates/home/_fixed_nav.html:25
 #, fuzzy
 msgid "nav history"
 msgstr "Inicio"
 
-#: templates/home/_fixedNav.html:26
+#: templates/home/_fixed_nav.html:26
 msgid "nav core team"
 msgstr ""
 
-#: templates/home/_fixedNav.html:27
+#: templates/home/_fixed_nav.html:27
 #, fuzzy
 msgid "nav community"
 msgstr "Acerca de"
 
-#: templates/home/_fixedNav.html:28
+#: templates/home/_fixed_nav.html:28
 #, fuzzy
 msgid "nav translations"
 msgstr "relaciones de material"
 
-#: templates/home/_fixedNav.html:29
+#: templates/home/_fixed_nav.html:29
 msgid "nav contact us"
 msgstr "Contáctanos"
 
-#: templates/home/_fixedNav.html:38
+#: templates/home/_fixed_nav.html:38
 msgid "nav sign up"
 msgstr "Regístrate"
 
-#: templates/home/_fixedNav.html:39
+#: templates/home/_fixed_nav.html:39
 msgid "nav sign in"
 msgstr "Inicia sesión"
 
@@ -746,13 +758,37 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
-#: templates/users/_sign_in.html:27 templates/users/_sign_up.html:49
+#: templates/users/_form.html:17
+msgid "sign up first_name placeholder"
+msgstr "Nombre(s)"
+
+#: templates/users/_form.html:28
+msgid "sign up last_name placeholder"
+msgstr "Apellido(s)"
+
+#: templates/users/_form.html:40 templates/users/_sign_in.html:27
 msgid "sign up username placeholder"
 msgstr "Nombre de identificación en el sistema"
 
-#: templates/users/_sign_in.html:38 templates/users/_sign_up.html:71
+#: templates/users/_form.html:52
+msgid "sign up email placeholder"
+msgstr "Correo electrónico valido ej: nombre@dominio.com"
+
+#: templates/users/_form.html:62 templates/users/_sign_in.html:38
 msgid "sign up password placeholder"
 msgstr "Contraseña con letras y numeros"
+
+#: templates/users/_form.html:66
+msgid "sign up confirm_password"
+msgstr "Confirme la contraseña"
+
+#: templates/users/_form.html:72
+msgid "sign up confirm_password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: templates/users/_form.html:78
+msgid "sign up terms"
+msgstr "Condiciones del servicio de Evolución Web"
 
 #: templates/users/_sign_in_errors.html:5
 #: templates/users/_sign_in_success.html:5
@@ -764,35 +800,11 @@ msgstr "información"
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: templates/users/_sign_up.html:26
-msgid "sign up first_name placeholder"
-msgstr "Nombre(s)"
-
-#: templates/users/_sign_up.html:37
-msgid "sign up last_name placeholder"
-msgstr "Apellido(s)"
-
-#: templates/users/_sign_up.html:61
-msgid "sign up email placeholder"
-msgstr "Correo electrónico valido ej: nombre@dominio.com"
-
-#: templates/users/_sign_up.html:75
-msgid "sign up confirm_password"
-msgstr "Confirme la contraseña"
-
-#: templates/users/_sign_up.html:81
-msgid "sign up confirm_password placeholder"
-msgstr "Contraseña con letras y numeros"
-
-#: templates/users/_sign_up.html:87
-msgid "sign up terms"
-msgstr "Condiciones del servicio de Evolución Web"
-
-#: templates/users/_sign_up.html:95
+#: templates/users/_sign_up.html:19
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: templates/users/_sign_up.html:100
+#: templates/users/_sign_up.html:24
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
@@ -808,23 +820,15 @@ msgstr ""
 msgid "profile"
 msgstr ""
 
-#: users/models.py:14
+#: users/models.py:15
 msgid "accept_terms"
 msgstr ""
 
-#: users/models.py:15
-msgid "created_at"
-msgstr "creado en"
-
-#: users/models.py:16
-msgid "updated_at"
-msgstr "actualizado en"
-
-#: users/views.py:53
+#: users/views.py:81
 msgid "the user was successfully registered"
 msgstr "el usuario fue exitosamente registrado"
 
-#: users/views.py:80
+#: users/views.py:108
 #, fuzzy
 msgid "welcome to Evolucion Web"
 msgstr ""
@@ -835,11 +839,11 @@ msgstr ""
 "cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
 "amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
 
-#: users/views.py:83
+#: users/views.py:111
 msgid "the user is not active"
 msgstr ""
 
-#: users/views.py:87
+#: users/views.py:115
 msgid "the username or password is not correct."
 msgstr ""
 

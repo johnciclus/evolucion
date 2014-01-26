@@ -16,24 +16,24 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="{{ sign_form.username|id }}" class="col-lg-3 control-label">{{ sign_form.username|verbosename }}</label>
+                        <label for="{{ form.username|id }}" class="col-lg-3 control-label">{{ form.username|verbosename }}</label>
                         
                         <div class="col-lg-9">
                             <input  type=       "text" 
-                                    id=         "{{ sign_form.username|id }}" 
-                                    name=       "{{ sign_form.username|id }}" 
+                                    id=         "{{ form.username|id }}" 
+                                    name=       "{{ form.username|id }}" 
                                     class=      "form-control" 
-                                    maxlength=  "{{ sign_form.username|maxlength }}" 
+                                    maxlength=  "{{ form.username|maxlength }}" 
                                     placeholder="{% trans 'sign up username placeholder' %}">
                                     
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="{{ sign_form.password|id }}" class="col-lg-3 control-label">{{ sign_form.password|verbosename }}</label>
+                        <label for="{{ form.password|id }}" class="col-lg-3 control-label">{{ form.password|verbosename }}</label>
                         <div class="col-lg-9">
                             <input  type=       "password" 
-                                    id=         "{{ sign_form.password|id }}" 
-                                    name=       "{{ sign_form.password|id }}" 
+                                    id=         "{{ form.password|id }}" 
+                                    name=       "{{ form.password|id }}" 
                                     class=      "form-control" 
                                     placeholder="{% trans 'sign up password placeholder' %}">
                         </div>
