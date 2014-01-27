@@ -1,12 +1,12 @@
 import sys
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.views import generic
 from django.utils import timezone
 
-from evolucion.projects.models import Project
+from evolucion.projects.models import Project, ProjectManager
 from evolucion.users.models import EvoUser, UserForm
 
 import logging, sys
@@ -21,9 +21,8 @@ class IndexView(generic.ListView):
 
     def get(self, request, *args, **kwargs):
         requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
-        projects = Project.objects.filter(user = requested_user.id)
+        projects = requested_user.project_set.all()
         
-        #context = self.get_context_data(**kwargs)
         context = {}
         context['user'] = request.user
         context['requested_user'] = requested_user
@@ -34,6 +33,42 @@ class IndexView(generic.ListView):
             context['form'] = form
         
         return render(request, self.template_name, context)
+    
+class NewView(generic.edit.CreateView):
+    model = Project
+    template_name = 'projects/index.html'
+    context_object_name = 'projects'
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            
+            user = get_object_or_404(EvoUser, pk = request.user.id)
+            params = request.POST
+            
+            print >>sys.stderr, user.id
+            print >>sys.stderr, request.POST
+            print >>sys.stderr, params
+            
+            project = Project.objects.create_project(title = params['title'], description = params['description'], keywords = '', model = '', user = user)
+            
+            return redirect('/'+user.username+'/')
+        
+            #requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
+            #projects = Project.objects.filter(user = requested_user.id)
+            
+            #context = self.get_context_data(**kwargs)
+            #context = {}
+            #context['user'] = request.user
+            #context['requested_user'] = requested_user
+            #context['projects'] = projects
+           
+            #if request.user.is_anonymous():
+            #    form = UserForm(auto_id=True)
+            #    context['form'] = form
+            
+            #return render(request, self.template_name, context)
+        else:
+            return redirect('/')
 
 class DetailView(generic.DetailView):
     model = Project

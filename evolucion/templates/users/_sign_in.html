@@ -9,12 +9,11 @@
                     <h4 class="modal-title">Inicia sesión:</h4>
                 </div>        
                 <div class="modal-body">
-                    {% csrf_token %}
                     <div id='form-message'>
-                        {% include 'users/_sign_up_success.html' %}
-                        {% include 'users/_sign_up_errors.html' %}
+                      
                     </div>
                     
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="{{ form.username|id }}" class="col-lg-3 control-label">{{ form.username|verbosename }}</label>
                         
@@ -24,7 +23,7 @@
                                     name=       "{{ form.username|id }}" 
                                     class=      "form-control" 
                                     maxlength=  "{{ form.username|maxlength }}" 
-                                    placeholder="{% trans 'sign up username placeholder' %}">
+                                    placeholder="{% trans 'sign up username placeholder'|capfirst %}">
                                     
                         </div>
                     </div>
@@ -35,7 +34,7 @@
                                     id=         "{{ form.password|id }}" 
                                     name=       "{{ form.password|id }}" 
                                     class=      "form-control" 
-                                    placeholder="{% trans 'sign up password placeholder' %}">
+                                    placeholder="{% trans 'sign up password placeholder'|capfirst %}">
                         </div>
                     </div>
                     <div class="checkbox">

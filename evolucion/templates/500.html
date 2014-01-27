@@ -3,7 +3,13 @@
 {% load staticfiles i18n %}
 
 {% block body %}
-
-  {% trans "Server error (500)" %}
-
+  {% block content %}
+      <div class="container">
+        <div class="row">
+          <div class="jumbotron">
+            <h2>{% trans "Server error (500)" %}</h2>
+          </div>
+        </div><!--/row-->
+      </div>
+    {% endblock %}
 {% endblock %}

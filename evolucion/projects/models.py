@@ -6,13 +6,31 @@ from django.utils.translation import ugettext_lazy as _
 
 from evolucion.users.models import EvoUser
 
+import logging, sys
+
+class ProjectManager(models.Manager):
+    def create_project(self, title, description, keywords, model, user):
+        print >>sys.stderr, user
+        project = self.create(title = title, 
+                              description = description, 
+                              keywords = keywords,
+                              model = model,
+                              created_at=datetime.now(),
+                              updated_at=datetime.now(),
+                              user_id = user.id)
+        return project
+
 class Project(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.CharField(max_length=300)
-    #keywords
-    #model
-    pub_date = models.DateTimeField('date published')
+    name        = models.CharField(max_length=50)
+    title       = models.CharField(max_length=50)
+    description = models.TextField()
+    keywords    = models.CharField(max_length=200)
+    model       = models.TextField()
+    created_at  = models.DateTimeField(_('created at'), default=datetime.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=datetime.now)
     user = models.ForeignKey(EvoUser)
+    
+    objects = ProjectManager()
     
     #has_one :prose,       :dependent => :destroy
     #has_one :influence,   :dependent => :destroy

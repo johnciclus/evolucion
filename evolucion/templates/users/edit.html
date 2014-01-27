@@ -2,29 +2,35 @@
 
 {% load staticfiles i18n %}
 
-{% block nav %} 
+{% block nav %}
   {% include 'layouts/_user_nav.html' %}
+  {% if user.is_anonymous %}
+    {% include 'users/_sign_up.html' %}
+    {% include 'users/_sign_in.html' %}
+  {% endif %}
 {% endblock %}
 
 
 {% block body %}
-        
     {% block content %}
       <div class="container">
         <div class="row">
-          <div id="edit-container" class="well">
-            <form id="edit-form" class="form-horizontal" action="/user/edit/" method="post">
-              <fieldset>
-                <legend>{% trans 'user editing'|capfirst %}</legend>
-                {% include 'users/_form.html' %}
-                <div class="form-group">
-                  <div class="col-lg-12 col-centered">
-                    <button type="submit" class="btn btn-primary">{% trans 'save submit text' %}</button>
+          
+          {% if user.is_authenticated %}
+            <div id="edit-container" class="well">
+              <form id="edit-form" class="form-horizontal" action="/user/edit/" method="post">
+                <fieldset>
+                  <legend>{% trans 'user editing'|capfirst %}</legend>
+                  {% include 'users/_form.html' %}
+                  <div class="form-group">
+                    <div class="col-lg-12 col-centered">
+                      <button type="submit" class="btn btn-primary">{% trans 'save submit text' %}</button>
+                    </div>
                   </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
+                </fieldset>
+              </form>
+            </div>
+          {% endif %}
         </div><!--/row-->
       </div>
       

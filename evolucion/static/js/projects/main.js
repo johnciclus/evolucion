@@ -9,18 +9,10 @@ $(document).ready(function(){
                     url: frm.attr('action'),
                     data: frm.serialize(),
                     success: function (data, textStatus, jqXHR) {
-                        console.log(textStatus);
-                        console.log(jqXHR);
-                        console.log(jqXHR.status);
-                        console.log(jqXHR.complete());
-                        console.log(jqXHR.getResponseHeader('method'));
-                        console.log(query.getAllResponseHeaders());
-                        $('#form_message').remove();
-                        $('#'+idDivResponse+' .modal-body').prepend("<div id='form_message'>"+data+"</div>");
+                        $('#'+idDivResponse+' #form-message').html(data);
                     },
                     error: function(data) {
-                        $('#form_message').remove();
-                        $('#'+idDivResponse+' .modal-body').prepend("<div id='form_message'><p>Problemas de conexión, por favor refresque la página.</p></div>");
+                        $('#'+idDivResponse+' #form-message').html("<p>Problemas de conexión, por favor refresque la página.</p>");
                     }
                 });
                 return false;

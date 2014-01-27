@@ -7,13 +7,13 @@ class ProseInline(admin.TabularInline):
 class ProjectAdmin(admin.ModelAdmin):
     fieldsets = [
          (None, {'fields': ['title', 'description'] }),
-         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+         ('Date information', {'fields': ['created_at', 'updated_at'], 'classes': ['collapse']}),
     ]
     inlines = [ProseInline]
     
     search_fields = ['title']
-    list_filter = ['pub_date']
-    list_display = ('title', 'pub_date')
-    date_hierarchy = 'pub_date'
+    list_filter = ['created_at']
+    list_display = ('title', 'created_at')
+    date_hierarchy = 'created_at'
     
 admin.site.register(Project, ProjectAdmin)

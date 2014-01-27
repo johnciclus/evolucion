@@ -1,10 +1,5 @@
 {% load staticfiles filters i18n %}
-
   {% csrf_token %}
-  <div id='form-message'>
-      {% include 'users/_sign_up_success.html' %}
-      {% include 'users/_sign_up_errors.html' %}
-  </div>
   <div class="form-group">
       <label for="{{ form.first_name|id }}" class="col-lg-3 control-label">{{ form.first_name|verbosename }}</label>
       <div class="col-lg-9">
@@ -13,8 +8,7 @@
                   name=       "{{ form.first_name|id }}" 
                   class=      "form-control" 
                   maxlength=  "{{ form.first_name|maxlength }}" 
-                  placeholder="{% trans 'sign up first_name placeholder' %}"
-                  
+                  placeholder="{% trans 'sign up first_name placeholder'|capfirst %}"
                   value=      "{{ form.first_name.value|default_if_none:'' }}">
       </div>
   </div>
@@ -26,7 +20,7 @@
                   name=       "{{ form.last_name|id }}" 
                   class=      "form-control" 
                   maxlength=  "{{ form.last_name|maxlength }}" 
-                  placeholder="{% trans 'sign up last_name placeholder' %}"
+                  placeholder="{% trans 'sign up last_name placeholder'|capfirst %}"
                   value=      "{{ form.last_name.value|default_if_none:'' }}">
       </div>
   </div>
@@ -36,7 +30,7 @@
           <textarea id=         "{{ form.occupation|id }}" 
                     name=       "{{ form.occupation|id }}" 
                     class=      "form-control" 
-                    placeholder="{% trans 'sign up occupation placeholder' %}">{{ form.occupation.value|default_if_none:'' }}</textarea>
+                    placeholder="{% trans 'sign up occupation placeholder'|capfirst %}">{{ form.occupation.value|default_if_none:'' }}</textarea>
       </div>
   </div>
   <div class="form-group">
@@ -47,7 +41,7 @@
                   name=       "{{ form.username|id }}" 
                   class=      "form-control" 
                   maxlength=  "{{ form.username|maxlength }}" 
-                  placeholder="{% trans 'sign up username placeholder' %}"
+                  placeholder="{% trans 'sign up username placeholder'|capfirst %}"
                   value=      "{{ form.username.value|default_if_none:'' }}">
                   
       </div>
@@ -60,7 +54,7 @@
                   name=       "{{ form.email|id }}" 
                   class=      "form-control" 
                   maxlength=  "{{ form.email|maxlength }}" 
-                  placeholder="{% trans 'sign up email placeholder' %}"
+                  placeholder="{% trans 'sign up email placeholder'|capfirst %}"
                   value=      "{{ form.email.value|default_if_none:'' }}">
       </div>
   </div>

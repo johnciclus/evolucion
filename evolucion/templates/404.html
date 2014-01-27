@@ -3,7 +3,15 @@
 {% load staticfiles i18n %}
 
 {% block body %}
-
-  {% trans "Page not found" %}
+  
+  {% block content %}
+      <div class="container">
+        <div class="row">
+          <div class="jumbotron">
+            <h2>{% trans "Page not found" %}</h2>
+          </div>
+        </div><!--/row-->
+      </div>
+    {% endblock %}
 
 {% endblock %}
