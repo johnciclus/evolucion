@@ -1,9 +1,10 @@
 {% extends "layouts/base.html" %}
 
-{% load staticfiles %}
+{% load staticfiles i18n %}
 
-{% load i18n %}
-
+{% block nav %} 
+  {% include 'layouts/_user_nav.html' %}
+{% endblock %}
 
 {% block body %}
         
@@ -11,8 +12,8 @@
       <div class="container">
         <div class="row">
           <div class="jumbotron">
-            <h2>{{ requested_user.first_name|capfirst }} {{ requested_user.last_name|capfirst }}</h2>
-            <p>{{ requested_user.profile|capfirst }}</p>
+            <h2>{{ requested_user.username|capfirst }}</h2>
+            <p>{{ requested_user.occupation|capfirst }}</p>
           </div>
           <div class="row">
             <div class="col-6 col-sm-6 col-lg-4">

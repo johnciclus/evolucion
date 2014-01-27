@@ -1,0 +1,5 @@
+{% load i18n %}
+
+<li class="active"><a href="/">      {% trans "nav home"|capfirst %}       </a></li>
+<li><a href="/explore/">             {% trans "nav explore"|capfirst %}    </a></li>
+<li><a href="/{{ user.username }}/"> {% trans "nav my projects"|capfirst %}   </a></li>

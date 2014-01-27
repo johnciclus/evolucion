@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      {% include 'layouts/_header_nav.html' %}
+    </div>
+    <div id='home_nav' class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        {% include 'layouts/_main_user_content.html' %}  
+        
+        <li class="divider-vertical"></li>
+        
+        {% if user.is_anonymous %}
+        
+          {% include 'layouts/_sign_nav.html' %}
+          
+        {% else %}
+        
+          {% include 'layouts/_user_dropdown.html' %}
+        
+        {% endif %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>

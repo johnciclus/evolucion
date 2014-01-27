@@ -10,11 +10,11 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class EvoUser(User):
-    profile     = models.TextField(_('profile'))
+    occupation  = models.TextField(_('occupation'), max_length=200)
     
-    accept_terms= models.BooleanField(_('accept_terms'))
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    accept_terms= models.BooleanField(_('accept terms'))
+    created_at  = models.DateTimeField(_('created at'), default=datetime.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=datetime.now)
     
     objects = UserManager()
     

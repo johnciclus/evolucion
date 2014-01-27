@@ -1,14 +1,13 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Evolución translate file EN -> ES
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# John Garavito <jfgaravito@simon.uis.edu.co>, 2014.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 23:47-0500\n"
+"POT-Creation-Date: 2014-01-27 10:36-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,23 +27,26 @@ msgstr "descripción"
 
 #: projects/models.py:32 projects/models.py:51 projects/models.py:63
 #: projects/models.py:75 projects/models.py:88 projects/models.py:100
-#: users/models.py:16
 msgid "created_at"
-msgstr "creado en"
+msgstr "creado el"
 
 #: projects/models.py:33 projects/models.py:52 projects/models.py:64
 #: projects/models.py:76 projects/models.py:89 projects/models.py:101
-#: users/models.py:17
 msgid "updated_at"
-msgstr "actualizado en"
+msgstr "actualizado el"
 
-#: templates/admin/404.html:4 templates/admin/404.html.py:8
+#: templates/404.html:7 templates/admin/404.html:4
+#: templates/admin/404.html.py:8
 msgid "Page not found"
-msgstr ""
+msgstr "Página no encontrada"
+
+#: templates/500.html:7 templates/admin/500.html:11
+msgid "Server error (500)"
+msgstr "Error del servidor (500)"
 
 #: templates/admin/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Lo sentimos, la página solicitada no fue encontrada"
 
 #: templates/admin/500.html:6 templates/admin/app_index.html:7
 #: templates/admin/base.html:47 templates/admin/change_form.html:19
@@ -54,19 +56,15 @@ msgstr ""
 #: templates/admin/invalid_setup.html:6 templates/admin/object_history.html:7
 #: templates/admin/auth/user/change_password.html:13
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: templates/admin/500.html:7
 msgid "Server error"
-msgstr ""
-
-#: templates/admin/500.html:11
-msgid "Server error (500)"
-msgstr ""
+msgstr "Error del servidor"
 
 #: templates/admin/500.html:14
 msgid "Server Error <em>(500)</em>"
-msgstr ""
+msgstr "Error del servidor <em>(500)</em>"
 
 #: templates/admin/500.html:15
 msgid ""
@@ -76,11 +74,11 @@ msgstr ""
 
 #: templates/admin/actions.html:4
 msgid "Run the selected action"
-msgstr ""
+msgstr "Ejecutar la acción seleccionada"
 
 #: templates/admin/actions.html:4
 msgid "Go"
-msgstr ""
+msgstr "Ir"
 
 #: templates/admin/actions.html:11
 msgid "Click here to select the objects across all pages"
@@ -93,7 +91,7 @@ msgstr ""
 
 #: templates/admin/actions.html:13
 msgid "Clear selection"
-msgstr ""
+msgstr "Limpiar selección"
 
 #: templates/admin/app_index.html:10 templates/admin/index.html:21
 #, python-format
@@ -102,25 +100,25 @@ msgstr ""
 
 #: templates/admin/base.html:28
 msgid "Welcome,"
-msgstr ""
+msgstr "Bienvenido,"
 
 #: templates/admin/base.html:33
 msgid "Documentation"
-msgstr ""
+msgstr "Documentación"
 
 #: templates/admin/base.html:36
 #: templates/admin/auth/user/change_password.html:17
 #: templates/admin/auth/user/change_password.html:51
 msgid "Change password"
-msgstr ""
+msgstr "Cambiar password"
 
 #: templates/admin/base.html:38
 msgid "Log out"
-msgstr ""
+msgstr "Cerrar sesión"
 
 #: templates/admin/base_site.html:4
 msgid "Evolución site admin"
-msgstr ""
+msgstr "Evolución sitio de administración"
 
 #: templates/admin/base_site.html:7
 msgid "Evolución administration"
@@ -128,11 +126,11 @@ msgstr ""
 
 #: templates/admin/change_form.html:22 templates/admin/index.html:33
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: templates/admin/change_form.html:32 templates/admin/object_history.html:11
 msgid "History"
-msgstr ""
+msgstr "Historia"
 
 #: templates/admin/change_form.html:33
 #: templates/admin/edit_inline/stacked.html:9
@@ -379,80 +377,77 @@ msgstr "borrar?"
 
 #: templates/editor/_behaviors.html:27
 msgid "initial time"
-msgstr ""
+msgstr "tiempo inicial"
 
 #: templates/editor/_behaviors.html:28
-#, fuzzy
 msgid "initial time placeholder"
-msgstr "Nombre(s)"
+msgstr "tiempo inicial"
 
 #: templates/editor/_behaviors.html:32
 msgid "final time"
-msgstr ""
+msgstr "tiempo final"
 
 #: templates/editor/_behaviors.html:33
-#, fuzzy
 msgid "final time placeholder"
-msgstr "titulo del modelo"
+msgstr "tiempo final"
 
 #: templates/editor/_behaviors.html:37
 msgid "delta time"
-msgstr ""
+msgstr "tiempo del paso"
 
 #: templates/editor/_behaviors.html:38
-#, fuzzy
 msgid "delta time placeholder"
-msgstr "titulo del modelo"
+msgstr "tiempo del paso"
 
 #: templates/editor/_behaviors.html:44
 #: templates/editor/_stock-and-flow.html:10
 msgid "parameters"
-msgstr ""
+msgstr "parametros"
 
 #: templates/editor/_behaviors.html:59
 #: templates/editor/_stock-and-flow.html:25
 msgid "stocks"
-msgstr ""
+msgstr "niveles"
 
 #: templates/editor/_behaviors.html:74
 #: templates/editor/_stock-and-flow.html:40
 msgid "flows"
-msgstr ""
+msgstr "flujos"
 
 #: templates/editor/_behaviors.html:89
 #: templates/editor/_stock-and-flow.html:55
 msgid "auxiliaries"
-msgstr ""
+msgstr "var. auxiliares"
 
 #: templates/editor/_behaviors.html:104
 #: templates/editor/_stock-and-flow.html:70
 msgid "exogenous"
-msgstr ""
+msgstr "var. exogenas"
 
 #: templates/editor/_behaviors.html:119
 #: templates/editor/_stock-and-flow.html:85
 msgid "delays"
-msgstr ""
+msgstr "retardos"
 
 #: templates/editor/_behaviors.html:134
 #: templates/editor/_stock-and-flow.html:100
 msgid "multipliers"
-msgstr ""
+msgstr "multiplicadores"
 
 #: templates/editor/_behaviors.html:149
 #: templates/editor/_stock-and-flow.html:115
 msgid "fis"
-msgstr ""
+msgstr "fis"
 
 #: templates/editor/_behaviors.html:164
 #: templates/editor/_stock-and-flow.html:130
 msgid "previous values"
-msgstr ""
+msgstr "val. anteriores"
 
 #: templates/editor/_behaviors.html:179
 #: templates/editor/_stock-and-flow.html:145
 msgid "submodels"
-msgstr ""
+msgstr "submodelos"
 
 #: templates/editor/_behaviors.html:196 templates/editor/_equations.html:18
 #: templates/editor/_influences.html:88
@@ -467,6 +462,8 @@ msgstr "modelo en lenguaje matemático"
 #: templates/editor/_equations.html:8
 msgid "mathematical language model content"
 msgstr ""
+"modelo de simulación en lenguaje matematico, tipo sistema de ecuaciones "
+"discretas"
 
 #: templates/editor/_equations.html:11
 msgid "javascript language model title"
@@ -475,6 +472,8 @@ msgstr "modelo en lenguaje javascript"
 #: templates/editor/_equations.html:12
 msgid "javascript language model content"
 msgstr ""
+"modelo de simulación en lenguaje computacional, especificamente Javascript "
+"que permite exportar el codigo"
 
 #: templates/editor/_influences.html:11
 msgid "concepts"
@@ -534,77 +533,62 @@ msgid "prose description placeholder"
 msgstr "descripción del modelo"
 
 #: templates/editor/_stock-and-flow.html:160
-#, fuzzy
 msgid "relations"
-msgstr "ecuaciones"
+msgstr "relaciones"
 
 #: templates/editor/_stock-and-flow.html:196
-#, fuzzy
 msgid "saf cursor btn title"
 msgstr "cursor"
 
 #: templates/editor/_stock-and-flow.html:199
-#, fuzzy
 msgid "saf parameter btn title"
-msgstr "sector"
+msgstr "parametro"
 
 #: templates/editor/_stock-and-flow.html:202
-#, fuzzy
 msgid "saf stock btn title"
-msgstr "sector"
+msgstr "nivel"
 
 #: templates/editor/_stock-and-flow.html:205
-#, fuzzy
 msgid "saf flow btn title"
-msgstr "clon"
+msgstr "flujo"
 
 #: templates/editor/_stock-and-flow.html:208
-#, fuzzy
 msgid "saf auxiliary btn title"
-msgstr "cursor"
+msgstr "var. auxiliar"
 
 #: templates/editor/_stock-and-flow.html:211
-#, fuzzy
 msgid "saf exogenous btn title"
-msgstr "clon"
+msgstr "var. exogena"
 
 #: templates/editor/_stock-and-flow.html:214
-#, fuzzy
 msgid "saf delay btn title"
-msgstr "ciclo"
+msgstr "retraso"
 
 #: templates/editor/_stock-and-flow.html:217
-#, fuzzy
 msgid "saf multiplier btn title"
-msgstr "ciclo"
+msgstr "multiplicador"
 
 #: templates/editor/_stock-and-flow.html:220
-#, fuzzy
 msgid "saf fis btn title"
-msgstr "cursor"
+msgstr "fis"
 
 #: templates/editor/_stock-and-flow.html:223
-#, fuzzy
 msgid "saf previousvalue btn title"
-msgstr "ciclo"
+msgstr "val. anterior"
 
 #: templates/editor/_stock-and-flow.html:226
-#, fuzzy
 msgid "saf submodel btn title"
-msgstr "clon"
+msgstr "submodelo"
 
 #: templates/editor/_stock-and-flow.html:229
-#, fuzzy
 msgid "saf clone btn title"
 msgstr "clon"
 
 #: templates/editor/_stock-and-flow.html:232
-#, fuzzy
 msgid "saf relation btn title"
-msgstr "relación de material"
+msgstr "relación"
 
 #: templates/editor/_stock-and-flow.html:235
-#, fuzzy
 msgid "saf sector btn title"
 msgstr "sector"
 
@@ -646,80 +630,31 @@ msgstr "comportamientos"
 
 #: templates/editor/base_editor.html:157
 msgid "browser incompatibility"
-msgstr ""
+msgstr "incompatibilidad del navegador de internet"
 
 #: templates/editor/base_editor.html:182
 msgid "close"
-msgstr ""
+msgstr "cerrar"
 
 #: templates/editor/index.html:6
-#, fuzzy
 msgid "home"
-msgstr "Inicio"
+msgstr "inicio"
 
 #: templates/home/_carousel.html:20
 msgid "sign up today"
-msgstr "Regístrate hoy"
+msgstr "regístrate hoy"
 
 #: templates/home/_carousel.html:31
 msgid "learn more"
-msgstr "Aprenda más"
+msgstr "aprenda más"
 
 #: templates/home/_carousel.html:41
 msgid "browse gallery"
-msgstr "Navega por la galería"
-
-#: templates/home/_fixed_nav.html:16
-msgid "nav home"
-msgstr "Inicio"
-
-#: templates/home/_fixed_nav.html:17
-msgid "nav explore"
-msgstr "Explorar"
-
-#: templates/home/_fixed_nav.html:18
-msgid "nav features"
-msgstr "Características"
-
-#: templates/home/_fixed_nav.html:22
-#, fuzzy
-msgid "about"
-msgstr "Acerca de"
-
-#: templates/home/_fixed_nav.html:25
-#, fuzzy
-msgid "nav history"
-msgstr "Inicio"
-
-#: templates/home/_fixed_nav.html:26
-msgid "nav core team"
-msgstr ""
-
-#: templates/home/_fixed_nav.html:27
-#, fuzzy
-msgid "nav community"
-msgstr "Acerca de"
-
-#: templates/home/_fixed_nav.html:28
-#, fuzzy
-msgid "nav translations"
-msgstr "relaciones de material"
-
-#: templates/home/_fixed_nav.html:29
-msgid "nav contact us"
-msgstr "Contáctanos"
-
-#: templates/home/_fixed_nav.html:38
-msgid "nav sign up"
-msgstr "Regístrate"
-
-#: templates/home/_fixed_nav.html:39
-msgid "nav sign in"
-msgstr "Inicia sesión"
+msgstr "navega por la galería"
 
 #: templates/home/index.html:16
 msgid "welcome title"
-msgstr "Bienvenido a Evolución Web"
+msgstr "bienvenido a Evolución Web"
 
 #: templates/home/index.html:17
 msgid "welcome content"
@@ -758,94 +693,161 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
-#: templates/users/_form.html:17
-msgid "sign up first_name placeholder"
-msgstr "Nombre(s)"
+#: templates/layouts/_main_nav_content.html:3
+#: templates/layouts/_main_user_content.html:3
+msgid "nav home"
+msgstr "inicio"
 
-#: templates/users/_form.html:28
-msgid "sign up last_name placeholder"
-msgstr "Apellido(s)"
+#: templates/layouts/_main_nav_content.html:4
+#: templates/layouts/_main_user_content.html:4
+msgid "nav explore"
+msgstr "explorar"
 
-#: templates/users/_form.html:40 templates/users/_sign_in.html:27
-msgid "sign up username placeholder"
-msgstr "Nombre de identificación en el sistema"
+#: templates/layouts/_main_nav_content.html:5
+msgid "nav features"
+msgstr "características"
 
-#: templates/users/_form.html:52
-msgid "sign up email placeholder"
-msgstr "Correo electrónico valido ej: nombre@dominio.com"
+#: templates/layouts/_main_nav_content.html:9
+msgid "about"
+msgstr "acerca de"
 
-#: templates/users/_form.html:62 templates/users/_sign_in.html:38
-msgid "sign up password placeholder"
-msgstr "Contraseña con letras y numeros"
+#: templates/layouts/_main_nav_content.html:12
+msgid "nav history"
+msgstr "historia"
 
-#: templates/users/_form.html:66
-msgid "sign up confirm_password"
-msgstr "Confirme la contraseña"
+#: templates/layouts/_main_nav_content.html:13
+msgid "nav core team"
+msgstr "equipo de desarrollo"
 
-#: templates/users/_form.html:72
-msgid "sign up confirm_password placeholder"
-msgstr "Contraseña con letras y numeros"
+#: templates/layouts/_main_nav_content.html:14
+msgid "nav community"
+msgstr "comunidad"
 
-#: templates/users/_form.html:78
-msgid "sign up terms"
-msgstr "Condiciones del servicio de Evolución Web"
+#: templates/layouts/_main_nav_content.html:15
+msgid "nav translations"
+msgstr "traductores"
 
+#: templates/layouts/_main_nav_content.html:16
+msgid "nav contact us"
+msgstr "contáctanos"
+
+#: templates/layouts/_main_user_content.html:5
+msgid "nav my projects"
+msgstr "mis projectos"
+
+#: templates/layouts/_sign_nav.html:3
+msgid "nav sign up"
+msgstr "regístrate"
+
+#: templates/layouts/_sign_nav.html:4
+msgid "nav sign in"
+msgstr "inicia sesión"
+
+#: templates/layouts/_user_dropdown.html:7
+msgid "settings"
+msgstr "opciones"
+
+#: templates/layouts/_user_dropdown.html:9
+msgid "logout"
+msgstr "cerrar sesión"
+
+#: templates/users/_edit_errors.html:5 templates/users/_edit_success.html:5
 #: templates/users/_sign_in_errors.html:5
 #: templates/users/_sign_in_success.html:5
 #: templates/users/_sign_up_success.html:5
 msgid "information"
 msgstr "información"
 
+#: templates/users/_form.html:16
+msgid "sign up first_name placeholder"
+msgstr "nombre(s)"
+
+#: templates/users/_form.html:29
+msgid "sign up last_name placeholder"
+msgstr "apellido(s)"
+
+#: templates/users/_form.html:39
+msgid "sign up occupation placeholder"
+msgstr "ocupación ej: ingeniero"
+
+#: templates/users/_form.html:50 templates/users/_sign_in.html:27
+msgid "sign up username placeholder"
+msgstr "nombre de identificación en el sistema"
+
+#: templates/users/_form.html:63
+msgid "sign up email placeholder"
+msgstr "correo electrónico valido ej: nombre@dominio.com"
+
+#: templates/users/_form_password.html:10 templates/users/_sign_in.html:38
+msgid "sign up password placeholder"
+msgstr "Contraseña con letras y numeros"
+
+#: templates/users/_form_password.html:14
+msgid "sign up confirm_password"
+msgstr "Confirme la contraseña"
+
+#: templates/users/_form_password.html:20
+msgid "sign up confirm_password placeholder"
+msgstr "Contraseña con letras y numeros"
+
 #: templates/users/_sign_up.html:9
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: templates/users/_sign_up.html:19
+#: templates/users/_sign_up.html:21
+msgid "sign up terms"
+msgstr "Condiciones del servicio de Evolución Web"
+
+#: templates/users/_sign_up.html:29
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: templates/users/_sign_up.html:24
+#: templates/users/_sign_up.html:34
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
-#: templates/users/_user_dropdown.html:7
-msgid "settings"
-msgstr ""
+#: templates/users/edit.html:18
+msgid "user editing"
+msgstr "edición de usuario"
 
-#: templates/users/_user_dropdown.html:9
-msgid "logout"
-msgstr ""
+#: templates/users/edit.html:22
+msgid "save submit text"
+msgstr "Guardar"
 
 #: users/models.py:13
-msgid "profile"
-msgstr ""
+msgid "occupation"
+msgstr "ocupación"
 
 #: users/models.py:15
-msgid "accept_terms"
-msgstr ""
-
-#: users/views.py:81
-msgid "the user was successfully registered"
-msgstr "el usuario fue exitosamente registrado"
-
-#: users/views.py:108
 #, fuzzy
+msgid "accept terms"
+msgstr "acepta las condiciones del servicio"
+
+#: users/models.py:16
+#, fuzzy
+msgid "created at"
+msgstr "creado el"
+
+#: users/models.py:17
+#, fuzzy
+msgid "updated at"
+msgstr "actualizado el"
+
+#: users/views.py:53 users/views.py:113
+msgid "the user was successfully registered"
+msgstr "el usuario fue registrado exitosamente"
+
+#: users/views.py:140
 msgid "welcome to Evolucion Web"
-msgstr ""
-"Bienvenido a la plataforma Evolución Web, tecnología que permite realizar "
-"modelamiento y simulación con Dinámica de Sistemas en un ambiente basado en "
-"Internet, además de permitir estas funcionalidades, este proyecto busca "
-"plantear y desarrollar tecnologías de modelado colaborativo en un futuro "
-"cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
-"amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
+msgstr "Bienvenido a Evolución Web"
 
-#: users/views.py:111
+#: users/views.py:143
 msgid "the user is not active"
-msgstr ""
+msgstr "el usuario no esta activo"
 
-#: users/views.py:115
+#: users/views.py:147
 msgid "the username or password is not correct."
-msgstr ""
+msgstr "el nombre de usuario o contrase esta incorrecta"
 
 #~ msgid "sing in"
 #~ msgstr "Inicia sesión"

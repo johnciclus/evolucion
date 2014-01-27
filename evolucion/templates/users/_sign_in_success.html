@@ -2,17 +2,17 @@
 
 {% if form_msg %}
     <div class="alert alert-success">
-        <a href="#signUpModal" class="alert-link">{% trans "information"|capfirst %}</a>
+        <a href="#sign-in-modal" class="alert-link">{% trans "information"|capfirst %}</a>
             {{ form_msg }}        
     </div>
     <script type="text/javascript">
         setTimeout(function() {
-          $('#signup-link').remove();
-          $('#signin-link').remove();
+          $('#sign-up-link').remove();
+          $('#sign-in-link').remove();
           
           $('#home_nav .navbar-nav').append("{% filter escapejs %}{% include 'users/_user_dropdown.html' %}{% endfilter %}");
           
-          $('#signInModal').modal('hide');
+          $('#sign-in-modal').modal('hide');
           
           
           window.open(window.location.origin+"/{{ user.username }}/", "_self");

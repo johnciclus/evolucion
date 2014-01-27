@@ -1,7 +1,7 @@
 {% load staticfiles filters i18n %}
 
   {% csrf_token %}
-  <div id='form_message'>
+  <div id='form-message'>
       {% include 'users/_sign_up_success.html' %}
       {% include 'users/_sign_up_errors.html' %}
   </div>
@@ -31,6 +31,15 @@
       </div>
   </div>
   <div class="form-group">
+      <label for="{{ form.occupation|id }}" class="col-lg-3 control-label">{{ form.occupation|verbosename }}</label>
+      <div class="col-lg-9">
+          <textarea id=         "{{ form.occupation|id }}" 
+                    name=       "{{ form.occupation|id }}" 
+                    class=      "form-control" 
+                    placeholder="{% trans 'sign up occupation placeholder' %}">{{ form.occupation.value|default_if_none:'' }}</textarea>
+      </div>
+  </div>
+  <div class="form-group">
       <label for="{{ form.username|id }}" class="col-lg-3 control-label">{{ form.username|verbosename }}</label>
       <div class="col-lg-9">
           <input  type=       "text" 
@@ -53,25 +62,5 @@
                   maxlength=  "{{ form.email|maxlength }}" 
                   placeholder="{% trans 'sign up email placeholder' %}"
                   value=      "{{ form.email.value|default_if_none:'' }}">
-      </div>
-  </div>
-  <div class="form-group">
-      <label for="{{ form.password|id }}" class="col-lg-3 control-label">{{ form.password|verbosename }}</label>
-      <div class="col-lg-9">
-          <input  type=       "password" 
-                  id=         "{{ form.password|id }}" 
-                  name=       "{{ form.password|id }}" 
-                  class=      "form-control" 
-                  placeholder="{% trans 'sign up password placeholder' %}">
-      </div>
-  </div>
-  <div class="form-group">
-      <label for="confirm_password" class="col-lg-3 control-label">{% trans 'sign up confirm_password' %}</label>
-      <div class="col-lg-9">
-          <input  type=       "password" 
-                  id=         "confirm_password" 
-                  name=       "confirm_password" 
-                  class=      "form-control" 
-                  placeholder="{% trans 'sign up confirm_password placeholder' %}">
       </div>
   </div>

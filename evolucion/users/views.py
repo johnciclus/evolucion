@@ -40,10 +40,10 @@ class UserEdit(generic.edit.FormView):
         form_class = self.get_form_class()
         
         params = request.POST.copy()
-        params['profile']  = ' '
+        params['password']   = user.password
         params['created_at'] = user.created_at
         params['updated_at'] = datetime.now()
-        params['date_joined'] = user.date_joined
+        params['date_joined']= user.date_joined
         params['last_login'] = user.last_login
         
         form = UserForm(data = params, instance=user, auto_id=True)
@@ -51,11 +51,11 @@ class UserEdit(generic.edit.FormView):
         if form.is_valid():
             user = form.save()
             form_msg = _("the user was successfully registered")
-            return render(request, 'users/_sign_up_success.html', {'form_msg': form_msg})
+            return render(request, 'users/_edit_success.html', {'form_msg': form_msg})
         else:
             form_errors = form.errors
             form_cleaned = form.cleaned_data
-            return render(request, 'users/_sign_up_errors.html', {'form_errors': form_errors})
+            return render(request, 'users/_edit_errors.html', {'form_errors': form_errors})
         
         #context = {}
         #context['user'] = user
@@ -99,7 +99,6 @@ def sign_up(request):
     if request.method == 'POST':
         params = request.POST.copy()
         
-        params['profile']  = ''
         params['is_active'] = True
         params['password'] = make_password(params['password'])
         params['created_at'] = datetime.now()
@@ -107,7 +106,7 @@ def sign_up(request):
         params['date_joined'] = datetime.now()
         params['last_login'] = datetime.now()
 
-        form = UserForm(params)
+        form = UserForm(data = params, auto_id=True)
         
         if form.is_valid():
             user = form.save()

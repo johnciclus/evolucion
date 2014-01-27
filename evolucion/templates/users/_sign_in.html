@@ -1,8 +1,8 @@
 {% load staticfiles filters i18n %}
 
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModal" aria-hidden="true">
+<div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="sign-in-modal" aria-hidden="true">
     <div class="modal-dialog">
-        <form id="sign_in_form" class="form-horizontal" action="/user/sign_in/" method="post">
+        <form id="sign-in-form" class="form-horizontal" action="/user/sign_in/" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -10,7 +10,7 @@
                 </div>        
                 <div class="modal-body">
                     {% csrf_token %}
-                    <div id='form_message'>
+                    <div id='form-message'>
                         {% include 'users/_sign_up_success.html' %}
                         {% include 'users/_sign_up_errors.html' %}
                     </div>

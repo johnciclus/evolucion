@@ -2,10 +2,10 @@
 
 {% if form_msg %}
     <div class="alert alert-success">
-        <a href="#signUpModal" class="alert-link">{% trans "information"|capfirst %}</a>
+        <a href="#sign-up-modal" class="alert-link">{% trans "information"|capfirst %}</a>
             {{ form_msg }}        
     </div>
     <script type="text/javascript">
-        setTimeout(function(){ $('#signUpModal').modal('hide'); }, 1000);
+        setTimeout(function(){ $('#sign-up-modal').modal('hide'); }, 1000);
     </script>
 {% endif %}

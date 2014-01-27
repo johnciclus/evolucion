@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<li class="active"><a href="/">{% trans "nav home"|capfirst %}       </a></li>
+<li><a href="/explore">        {% trans "nav explore"|capfirst %}    </a></li>
+
+{% if user.is_anonymous %}
+        
+  <li><a href="/features">       {% trans "nav features"|capfirst %}   </a></li>
+
+{% else %}
+
+  <li><a href="/{{ user.username }}/"> {% trans "nav my projects"|capfirst %}   </a></li>
+
+{% endif %}
+
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      {% trans "about"|capfirst %}  <i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="#history">        {% trans "nav history"|capfirst %}    </a></li>
+      <li><a href="#core-team">      {% trans "nav core team"|capfirst %}  </a></li>
+      <li><a href="#community">      {% trans "nav community"|capfirst %}  </a></li>
+      <li><a href="#translations">   {% trans "nav translations"|capfirst %}  </a></li>
+      <li><a href="#contact-us">     {% trans "nav contact us"|capfirst %} </a></li>        
+    </ul>
+    <!-- /.dropdown-user -->
+</li>

@@ -1,1 +1,9 @@
-<p>No se encontro el registro</p>
+{% extends "layouts/base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block body %}
+
+  {% trans "Page not found" %}
+
+{% endblock %}
