@@ -1,13 +1,13 @@
-import sys
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.views import generic
+from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
-from evolucion.projects.models import Project, ProjectManager
 from evolucion.users.models import EvoUser, UserForm
+from evolucion.projects.models import Project, ProjectManager, ProseForm
 
 import logging, sys
 
@@ -45,42 +45,47 @@ class NewView(generic.edit.CreateView):
             user = get_object_or_404(EvoUser, pk = request.user.id)
             params = request.POST
             
-            print >>sys.stderr, user.id
-            print >>sys.stderr, request.POST
-            print >>sys.stderr, params
+            print >>sys.stderr, user
+            print >>sys.stderr, Project.objects
+            print >>sys.stderr, dir(Project)
             
-            project = Project.objects.create_project(title = params['title'], description = params['description'], keywords = '', model = '', user = user)
+            project = Project.objects.create_project(title = params['title'], 
+                                                     description = params['description'], 
+                                                     keywords = '', 
+                                                     model = '', 
+                                                     user = user)
             
-            return redirect('/'+user.username+'/')
+            context = {}
+            context['form_msg'] = _("the project was successfully registered") 
+            context['project'] = project
+            
+            return render(request, 'projects/_new_success.html', context)
         
-            #requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
-            #projects = Project.objects.filter(user = requested_user.id)
-            
-            #context = self.get_context_data(**kwargs)
-            #context = {}
-            #context['user'] = request.user
-            #context['requested_user'] = requested_user
-            #context['projects'] = projects
-           
-            #if request.user.is_anonymous():
-            #    form = UserForm(auto_id=True)
-            #    context['form'] = form
-            
-            #return render(request, self.template_name, context)
         else:
             return redirect('/')
 
-class DetailView(generic.DetailView):
+class DetailView(generic.View):
     model = Project
-    template_name = 'projects/detail.html'
-   
-
-def detail(request, username, project_name):
+    template_name = 'editor/index.html'
     
-    return HttpResponse("<p>"+username+": "+project_name+"</p>")
-    #project = get_object_or_404(Project, pk=pk)
-    #return render(request, 'projects/detail.html', {'project' : project})
-
+    def get(self, request, *args, **kwargs):
+        requested_user    = get_object_or_404(EvoUser, username = kwargs['username'])
+        requested_project = get_object_or_404(Project, name = kwargs['project_name'])
+        
+        prose_form = ProseForm(auto_id=True)
+        
+        context = {}
+        context['user'] = request.user
+        context['requested_user'] = requested_user
+        context['requested_project'] = requested_project
+        context['prose_form'] = prose_form
+               
+        if request.user.is_anonymous():
+            form = UserForm(auto_id=True)
+            context['form'] = form
+        
+        return render(request, self.template_name, context)
+   
 
 def create(request):
     #@project = Project.new(project_params)

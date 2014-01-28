@@ -1,5 +1,4 @@
 import re
-from datetime import datetime
 
 from django import forms
 from django.core import validators
@@ -7,38 +6,38 @@ from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User, UserManager
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils import timezone
 
 class EvoUser(User):
     occupation  = models.TextField(_('occupation'), max_length=200)
     
     accept_terms= models.BooleanField(_('accept terms'))
-    created_at  = models.DateTimeField(_('created at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     objects = UserManager()
     
     ## Recoverable
     # t.string   #reset_password_token
-    # t.datetime :reset_password_sent_at
+    # t. :reset_password_sent_at
     
     ## Trackable
     #t.integer  :sign_in_count, :default => 0, :null => false
-    #t.datetime :current_sign_in_at
-    #t.datetime :last_sign_in_at
+    #t. :current_sign_in_at
+    #t. :last_sign_in_at
     #t.string   :current_sign_in_ip
     #t.string   :last_sign_in_ip  
 
     ## Confirmable
     # t.string   :confirmation_token
-    # t.datetime :confirmed_at
-    # t.datetime :confirmation_sent_at
+    # t. :confirmed_at
+    # t. :confirmation_sent_at
     # t.string   :unconfirmed_email # Only if using reconfirmable
     
     ## Lockable
     # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
     # t.string   :unlock_token # Only if unlock strategy is :email or :both
-    # t.datetime :locked_at
+    # t. :locked_at
     
     
 # class User(models.Model):
@@ -53,9 +52,9 @@ class EvoUser(User):
 #     password    = models.CharField(_('password'), max_length=128)
 #     accept_terms= models.BooleanField(_('accept_terms'))
 #     
-#     last_login = models.DateTimeField(_('last_login'), default=datetime.now)
-#     created_at = models.DateTimeField(_('created_at'), default=datetime.now)
-#     updated_at = models.DateTimeField(_('updated_at'), default=datetime.now)
+#     last_login = models.DateTimeField(_('last_login'), default=timezone.now)
+#     created_at = models.DateTimeField(_('created_at'), default=timezone.now)
+#     updated_at = models.DateTimeField(_('updated_at'), default=timezone.now)
 #     
 #     def __unicode__(self):
 #         return self.username

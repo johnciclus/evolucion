@@ -13,7 +13,7 @@
           $('#home_nav .navbar-nav').append("{% filter escapejs %}{% include 'layouts/_user_dropdown.html' %}{% endfilter %}");
           
           $('#sign-in-modal').modal('hide');
-          
+          window.history.pushState({},'','/');
           window.open(window.location.origin+"/{{ user.username }}/", "_self");
         }, 1000);
     </script>

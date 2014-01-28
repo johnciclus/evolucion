@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% if form_msg %}
+    <div class="alert alert-success">
+        <a href="#" class="alert-link">{% trans "information"|capfirst %}</a>
+            {{ form_msg }}        
+    </div>
+    <script type="text/javascript">
+        setTimeout(function() {        
+          $('#projects-container').prepend("{% filter escapejs %}{% include 'projects/_new_project.html' %}{% endfilter %}");
+          setTimeout(function(){ $('#form-message').children().remove(); }, 5000);
+          
+          window.history.pushState({},'',window.location.pathname);
+        }, 1000);
+    </script>
+{% endif %}

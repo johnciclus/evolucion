@@ -1,8 +1,8 @@
-from datetime import datetime
-
 from django.db import models
 from django.forms import ModelForm
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 
 from evolucion.users.models import EvoUser
 
@@ -10,13 +10,15 @@ import logging, sys
 
 class ProjectManager(models.Manager):
     def create_project(self, title, description, keywords, model, user):
-        print >>sys.stderr, user
-        project = self.create(title = title, 
+        
+        
+        project = self.create(name  = slugify(title),
+                              title = title, 
                               description = description, 
                               keywords = keywords,
                               model = model,
-                              created_at=datetime.now(),
-                              updated_at=datetime.now(),
+                              created_at=timezone.now(),
+                              updated_at=timezone.now(),
                               user_id = user.id)
         return project
 
@@ -26,11 +28,19 @@ class Project(models.Model):
     description = models.TextField()
     keywords    = models.CharField(max_length=200)
     model       = models.TextField()
-    created_at  = models.DateTimeField(_('created at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
+    
     user = models.ForeignKey(EvoUser)
     
     objects = ProjectManager()
+    
+    def get_url(self):
+        return self.user.username+'/'+self.name+'/'
+    
+    def get_button_id(self):
+        return self.user.username+'_'+self.name
+
     
     #has_one :prose,       :dependent => :destroy
     #has_one :influence,   :dependent => :destroy
@@ -47,8 +57,8 @@ class Prose(models.Model):
     description = models.TextField(_('prose description'), max_length=2000)
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
     
     def __unicode__(self):
         return self.title
@@ -66,8 +76,8 @@ class Influences(models.Model):
     #has_many :relation_infs,  :dependent => :destroy
     
     
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -78,8 +88,8 @@ class StockAndFlow(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -90,8 +100,8 @@ class Stockandflow(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -103,8 +113,8 @@ class Equations(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -115,8 +125,8 @@ class Behaviors(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=datetime.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=datetime.now)
+    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
     
     def __unicode__(self):
         return self

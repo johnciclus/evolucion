@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-27 10:36-0500\n"
+"POT-Creation-Date: 2014-01-28 00:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: projects/models.py:28
+#: projects/models.py:28 users/models.py:15
+msgid "created at"
+msgstr "creado el"
+
+#: projects/models.py:29 users/models.py:16
+msgid "updated at"
+msgstr "actualizado el"
+
+#: projects/models.py:46
 msgid "prose title"
 msgstr "titulo"
 
-#: projects/models.py:29
+#: projects/models.py:47
 msgid "prose description"
 msgstr "descripción"
 
-#: projects/models.py:32 projects/models.py:51 projects/models.py:63
-#: projects/models.py:75 projects/models.py:88 projects/models.py:100
+#: projects/models.py:50 projects/models.py:69 projects/models.py:81
+#: projects/models.py:93 projects/models.py:106 projects/models.py:118
 msgid "created_at"
 msgstr "creado el"
 
-#: projects/models.py:33 projects/models.py:52 projects/models.py:64
-#: projects/models.py:76 projects/models.py:89 projects/models.py:101
+#: projects/models.py:51 projects/models.py:70 projects/models.py:82
+#: projects/models.py:94 projects/models.py:107 projects/models.py:119
 msgid "updated_at"
 msgstr "actualizado el"
 
-#: templates/404.html:7 templates/admin/404.html:4
+#: projects/views.py:59
+msgid "the project was successfully registered"
+msgstr "el proyecto fue registrado exitosamente"
+
+#: templates/404.html:11 templates/admin/404.html:4
 #: templates/admin/404.html.py:8
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: templates/500.html:7 templates/admin/500.html:11
+#: templates/500.html:10 templates/admin/500.html:11
 msgid "Server error (500)"
 msgstr "Error del servidor (500)"
 
@@ -703,37 +715,38 @@ msgstr "inicio"
 msgid "nav explore"
 msgstr "explorar"
 
-#: templates/layouts/_main_nav_content.html:5
+#: templates/layouts/_main_nav_content.html:8
 msgid "nav features"
 msgstr "características"
 
-#: templates/layouts/_main_nav_content.html:9
-msgid "about"
-msgstr "acerca de"
-
 #: templates/layouts/_main_nav_content.html:12
-msgid "nav history"
-msgstr "historia"
-
-#: templates/layouts/_main_nav_content.html:13
-msgid "nav core team"
-msgstr "equipo de desarrollo"
-
-#: templates/layouts/_main_nav_content.html:14
-msgid "nav community"
-msgstr "comunidad"
-
-#: templates/layouts/_main_nav_content.html:15
-msgid "nav translations"
-msgstr "traductores"
-
-#: templates/layouts/_main_nav_content.html:16
-msgid "nav contact us"
-msgstr "contáctanos"
-
 #: templates/layouts/_main_user_content.html:5
 msgid "nav my projects"
 msgstr "mis projectos"
+
+#: templates/layouts/_main_nav_content.html:18
+msgid "about"
+msgstr "acerca de"
+
+#: templates/layouts/_main_nav_content.html:21
+msgid "nav history"
+msgstr "historia"
+
+#: templates/layouts/_main_nav_content.html:22
+msgid "nav core team"
+msgstr "equipo de desarrollo"
+
+#: templates/layouts/_main_nav_content.html:23
+msgid "nav community"
+msgstr "comunidad"
+
+#: templates/layouts/_main_nav_content.html:24
+msgid "nav translations"
+msgstr "traductores"
+
+#: templates/layouts/_main_nav_content.html:25
+msgid "nav contact us"
+msgstr "contáctanos"
 
 #: templates/layouts/_sign_nav.html:3
 msgid "nav sign up"
@@ -751,34 +764,59 @@ msgstr "opciones"
 msgid "logout"
 msgstr "cerrar sesión"
 
-#: templates/users/_edit_errors.html:5 templates/users/_edit_success.html:5
-#: templates/users/_sign_in_errors.html:5
+#: templates/projects/_new_project.html:12 templates/projects/index.html:34
+#: templates/projects/index.html.py:68
+msgid "launch project"
+msgstr "lanzar projecto"
+
+#: templates/projects/_new_success.html:5 templates/users/_edit_errors.html:5
+#: templates/users/_edit_success.html:5 templates/users/_sign_in_errors.html:5
 #: templates/users/_sign_in_success.html:5
 #: templates/users/_sign_up_success.html:5
 msgid "information"
 msgstr "información"
 
-#: templates/users/_form.html:16
+#: templates/projects/index.html:47
+msgid "new project"
+msgstr "mis projectos"
+
+#: templates/projects/index.html:53
+msgid "title"
+msgstr "titulo"
+
+#: templates/projects/index.html:55
+msgid "new project title"
+msgstr "titulo del nuevo projecto"
+
+#: templates/projects/index.html:60
+msgid "description"
+msgstr "descripción"
+
+#: templates/projects/index.html:63
+msgid "project description"
+msgstr "descripción del nuevo projecto"
+
+#: templates/users/_form.html:11
 msgid "sign up first_name placeholder"
 msgstr "nombre(s)"
 
-#: templates/users/_form.html:29
+#: templates/users/_form.html:23
 msgid "sign up last_name placeholder"
 msgstr "apellido(s)"
 
-#: templates/users/_form.html:39
+#: templates/users/_form.html:33
 msgid "sign up occupation placeholder"
 msgstr "ocupación ej: ingeniero"
 
-#: templates/users/_form.html:50 templates/users/_sign_in.html:27
+#: templates/users/_form.html:44 templates/users/_sign_in.html:26
 msgid "sign up username placeholder"
 msgstr "nombre de identificación en el sistema"
 
-#: templates/users/_form.html:63
+#: templates/users/_form.html:57
 msgid "sign up email placeholder"
 msgstr "correo electrónico valido ej: nombre@dominio.com"
 
-#: templates/users/_form_password.html:10 templates/users/_sign_in.html:38
+#: templates/users/_form_password.html:10 templates/users/_sign_in.html:37
 msgid "sign up password placeholder"
 msgstr "Contraseña con letras y numeros"
 
@@ -794,58 +832,47 @@ msgstr "Contraseña con letras y numeros"
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: templates/users/_sign_up.html:21
+#: templates/users/_sign_up.html:24
 msgid "sign up terms"
 msgstr "Condiciones del servicio de Evolución Web"
 
-#: templates/users/_sign_up.html:29
+#: templates/users/_sign_up.html:32
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: templates/users/_sign_up.html:34
+#: templates/users/_sign_up.html:37
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
-#: templates/users/edit.html:18
+#: templates/users/edit.html:23
 msgid "user editing"
 msgstr "edición de usuario"
 
-#: templates/users/edit.html:22
+#: templates/users/edit.html:27
 msgid "save submit text"
 msgstr "Guardar"
 
-#: users/models.py:13
+#: users/models.py:12
 msgid "occupation"
 msgstr "ocupación"
 
-#: users/models.py:15
-#, fuzzy
+#: users/models.py:14
 msgid "accept terms"
 msgstr "acepta las condiciones del servicio"
 
-#: users/models.py:16
-#, fuzzy
-msgid "created at"
-msgstr "creado el"
-
-#: users/models.py:17
-#, fuzzy
-msgid "updated at"
-msgstr "actualizado el"
-
-#: users/views.py:53 users/views.py:113
+#: users/views.py:37 users/views.py:110
 msgid "the user was successfully registered"
 msgstr "el usuario fue registrado exitosamente"
 
-#: users/views.py:140
+#: users/views.py:64
 msgid "welcome to Evolucion Web"
 msgstr "Bienvenido a Evolución Web"
 
-#: users/views.py:143
+#: users/views.py:67
 msgid "the user is not active"
 msgstr "el usuario no esta activo"
 
-#: users/views.py:147
+#: users/views.py:71
 msgid "the username or password is not correct."
 msgstr "el nombre de usuario o contrase esta incorrecta"
 

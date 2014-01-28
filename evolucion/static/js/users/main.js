@@ -1,4 +1,5 @@
-$(document).ready(function(){
+(function(jQuery){
+  jQuery(document).ready(function() {
     
     function formAjax(idForm, idDivResponse){
         if(idForm, idDivResponse){
@@ -22,4 +23,6 @@ $(document).ready(function(){
     }
     
   formAjax('edit-form', 'edit-container');
-});
+  
+  });
+}(jQuery));

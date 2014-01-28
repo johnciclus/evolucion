@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.http import HttpResponse
 from django.core.context_processors import csrf
 from django.core import serializers
@@ -7,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, render_to_response, redirect
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 from django.views import generic
 
 from evolucion.users.models import EvoUser, UserForm
@@ -23,10 +22,10 @@ def sign_up(request):
         params = request.POST.copy()
         
         params['password'] = make_password(params['password'])
-        params['created_at'] = datetime.now()
-        params['updated_at'] = datetime.now()
-        params['date_joined'] = datetime.now()
-        params['last_login'] = datetime.now()
+        params['created_at'] = timezone.now()
+        params['updated_at'] = timezone.now()
+        params['date_joined'] = timezone.now()
+        params['last_login'] = timezone.now()
 
         form = UserForm(data = params, auto_id=True)
         
@@ -100,7 +99,7 @@ class UserEdit(generic.edit.FormView):
         params = request.POST.copy()
         params['password']   = user.password
         params['created_at'] = user.created_at
-        params['updated_at'] = datetime.now()
+        params['updated_at'] = timezone.now()
         params['date_joined']= user.date_joined
         params['last_login'] = user.last_login
         

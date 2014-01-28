@@ -10,12 +10,10 @@
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data, textStatus, jqXHR) {
-              $('#form-message').remove();
-              $('#'+idDivResponse+' .modal-body').prepend("<div id='form-message'>"+data+"</div>");
+              $('#'+idDivResponse+' #form-message').html(data);
             },
             error: function(data) {
-              $('#form-message').remove();
-              $('#'+idDivResponse+' .modal-body').prepend("<div id='form-message'><p>Problemas de conexión, por favor refresque la página.</p></div>");
+              $('#'+idDivResponse+' #form-message').html("<p>Problemas de conexión, por favor refresque la página.</p>");
             }
           });
           return false;
