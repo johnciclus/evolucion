@@ -14,7 +14,7 @@ import logging, sys
 logger = logging.getLogger(__name__)
 # print >>sys.stderr, "Groups"
 
-class IndexView(generic.ListView):
+class IndexView(generic.View):
     model = Project
     template_name = 'projects/index.html'
     context_object_name = 'projects'
@@ -34,7 +34,7 @@ class IndexView(generic.ListView):
         
         return render(request, self.template_name, context)
     
-class NewView(generic.edit.CreateView):
+class NewView(generic.View):
     model = Project
     template_name = 'projects/index.html'
     context_object_name = 'projects'
@@ -64,7 +64,7 @@ class NewView(generic.edit.CreateView):
         else:
             return redirect('/')
 
-class DetailView(generic.View):
+class EditorView(generic.View):
     model = Project
     template_name = 'editor/index.html'
     

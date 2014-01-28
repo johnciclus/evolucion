@@ -26,12 +26,11 @@
               <div class="well">
                 <fieldset>
                     <legend>{{ project.title|capfirst }}</legend>
-                    {{ project.title|urlize }}
                     <p>{{ project.description|capfirst }}</p>
                     
                     <div class="form-group">
                       <div class="col-lg-12 col-centered">
-                        <button id="{{ project.get_button_id }}" class="btn btn-primary btn-open">{% trans 'open project'|capfirst%}</button> 
+                        <button id="{{ requested_user.username }}-{{ project.name }}" class="btn btn-primary btn-open">{% trans 'open project'|capfirst%}</button> 
                       </div>
                     </div>
                   </fieldset>

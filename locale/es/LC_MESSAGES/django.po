@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-28 00:22-0500\n"
+"POT-Creation-Date: 2014-01-28 09:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,175 +17,184 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: projects/models.py:28 users/models.py:15
+#: evolucion/projects/models.py:31 evolucion/users/models.py:15
 msgid "created at"
 msgstr "creado el"
 
-#: projects/models.py:29 users/models.py:16
+#: evolucion/projects/models.py:32 evolucion/users/models.py:16
 msgid "updated at"
 msgstr "actualizado el"
 
-#: projects/models.py:46
+#: evolucion/projects/models.py:56
 msgid "prose title"
 msgstr "titulo"
 
-#: projects/models.py:47
+#: evolucion/projects/models.py:57
 msgid "prose description"
 msgstr "descripción"
 
-#: projects/models.py:50 projects/models.py:69 projects/models.py:81
-#: projects/models.py:93 projects/models.py:106 projects/models.py:118
+#: evolucion/projects/models.py:60 evolucion/projects/models.py:79
+#: evolucion/projects/models.py:91 evolucion/projects/models.py:103
+#: evolucion/projects/models.py:116 evolucion/projects/models.py:128
 msgid "created_at"
 msgstr "creado el"
 
-#: projects/models.py:51 projects/models.py:70 projects/models.py:82
-#: projects/models.py:94 projects/models.py:107 projects/models.py:119
+#: evolucion/projects/models.py:61 evolucion/projects/models.py:80
+#: evolucion/projects/models.py:92 evolucion/projects/models.py:104
+#: evolucion/projects/models.py:117 evolucion/projects/models.py:129
 msgid "updated_at"
 msgstr "actualizado el"
 
-#: projects/views.py:59
+#: evolucion/projects/views.py:59
 msgid "the project was successfully registered"
 msgstr "el proyecto fue registrado exitosamente"
 
-#: templates/404.html:11 templates/admin/404.html:4
-#: templates/admin/404.html.py:8
+#: evolucion/templates/404.html:11 evolucion/templates/admin/404.html:4
+#: evolucion/templates/admin/404.html:8
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: templates/500.html:10 templates/admin/500.html:11
+#: evolucion/templates/500.html:10 evolucion/templates/admin/500.html:11
 msgid "Server error (500)"
 msgstr "Error del servidor (500)"
 
-#: templates/admin/404.html:10
+#: evolucion/templates/admin/404.html:10
 msgid "We're sorry, but the requested page could not be found."
 msgstr "Lo sentimos, la página solicitada no fue encontrada"
 
-#: templates/admin/500.html:6 templates/admin/app_index.html:7
-#: templates/admin/base.html:47 templates/admin/change_form.html:19
-#: templates/admin/change_list.html:41
-#: templates/admin/delete_confirmation.html:7
-#: templates/admin/delete_selected_confirmation.html:7
-#: templates/admin/invalid_setup.html:6 templates/admin/object_history.html:7
-#: templates/admin/auth/user/change_password.html:13
+#: evolucion/templates/admin/500.html:6
+#: evolucion/templates/admin/app_index.html:7
+#: evolucion/templates/admin/base.html:47
+#: evolucion/templates/admin/change_form.html:19
+#: evolucion/templates/admin/change_list.html:41
+#: evolucion/templates/admin/delete_confirmation.html:7
+#: evolucion/templates/admin/delete_selected_confirmation.html:7
+#: evolucion/templates/admin/invalid_setup.html:6
+#: evolucion/templates/admin/object_history.html:7
+#: evolucion/templates/admin/auth/user/change_password.html:13
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/admin/500.html:7
+#: evolucion/templates/admin/500.html:7
 msgid "Server error"
 msgstr "Error del servidor"
 
-#: templates/admin/500.html:14
+#: evolucion/templates/admin/500.html:14
 msgid "Server Error <em>(500)</em>"
 msgstr "Error del servidor <em>(500)</em>"
 
-#: templates/admin/500.html:15
+#: evolucion/templates/admin/500.html:15
 msgid ""
 "There's been an error. It's been reported to the site administrators via "
 "email and should be fixed shortly. Thanks for your patience."
 msgstr ""
 
-#: templates/admin/actions.html:4
+#: evolucion/templates/admin/actions.html:4
 msgid "Run the selected action"
 msgstr "Ejecutar la acción seleccionada"
 
-#: templates/admin/actions.html:4
+#: evolucion/templates/admin/actions.html:4
 msgid "Go"
 msgstr "Ir"
 
-#: templates/admin/actions.html:11
+#: evolucion/templates/admin/actions.html:11
 msgid "Click here to select the objects across all pages"
 msgstr ""
 
-#: templates/admin/actions.html:11
+#: evolucion/templates/admin/actions.html:11
 #, python-format
 msgid "Select all %(total_count)s %(module_name)s"
 msgstr ""
 
-#: templates/admin/actions.html:13
+#: evolucion/templates/admin/actions.html:13
 msgid "Clear selection"
 msgstr "Limpiar selección"
 
-#: templates/admin/app_index.html:10 templates/admin/index.html:21
+#: evolucion/templates/admin/app_index.html:10
+#: evolucion/templates/admin/index.html:21
 #, python-format
 msgid "%(name)s"
 msgstr ""
 
-#: templates/admin/base.html:28
+#: evolucion/templates/admin/base.html:28
 msgid "Welcome,"
 msgstr "Bienvenido,"
 
-#: templates/admin/base.html:33
+#: evolucion/templates/admin/base.html:33
 msgid "Documentation"
 msgstr "Documentación"
 
-#: templates/admin/base.html:36
-#: templates/admin/auth/user/change_password.html:17
-#: templates/admin/auth/user/change_password.html:51
+#: evolucion/templates/admin/base.html:36
+#: evolucion/templates/admin/auth/user/change_password.html:17
+#: evolucion/templates/admin/auth/user/change_password.html:51
 msgid "Change password"
 msgstr "Cambiar password"
 
-#: templates/admin/base.html:38
+#: evolucion/templates/admin/base.html:38
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/admin/base_site.html:4
+#: evolucion/templates/admin/base_site.html:4
 msgid "Evolución site admin"
 msgstr "Evolución sitio de administración"
 
-#: templates/admin/base_site.html:7
+#: evolucion/templates/admin/base_site.html:7
 msgid "Evolución administration"
 msgstr ""
 
-#: templates/admin/change_form.html:22 templates/admin/index.html:33
+#: evolucion/templates/admin/change_form.html:22
+#: evolucion/templates/admin/index.html:33
 msgid "Add"
 msgstr "Agregar"
 
-#: templates/admin/change_form.html:32 templates/admin/object_history.html:11
+#: evolucion/templates/admin/change_form.html:32
+#: evolucion/templates/admin/object_history.html:11
 msgid "History"
 msgstr "Historia"
 
-#: templates/admin/change_form.html:33
-#: templates/admin/edit_inline/stacked.html:9
-#: templates/admin/edit_inline/tabular.html:30
+#: evolucion/templates/admin/change_form.html:33
+#: evolucion/templates/admin/edit_inline/stacked.html:9
+#: evolucion/templates/admin/edit_inline/tabular.html:30
 msgid "View on site"
 msgstr ""
 
-#: templates/admin/change_form.html:44 templates/admin/change_list.html:67
-#: templates/admin/login.html:17
-#: templates/admin/auth/user/change_password.html:27
+#: evolucion/templates/admin/change_form.html:44
+#: evolucion/templates/admin/change_list.html:67
+#: evolucion/templates/admin/login.html:17
+#: evolucion/templates/admin/auth/user/change_password.html:27
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/admin/change_list.html:58
+#: evolucion/templates/admin/change_list.html:58
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: templates/admin/change_list.html:78
+#: evolucion/templates/admin/change_list.html:78
 msgid "Filter"
 msgstr ""
 
-#: templates/admin/change_list_results.html:17
+#: evolucion/templates/admin/change_list_results.html:17
 msgid "Remove from sorting"
 msgstr ""
 
-#: templates/admin/change_list_results.html:18
+#: evolucion/templates/admin/change_list_results.html:18
 #, python-format
 msgid "Sorting priority: %(priority_number)s"
 msgstr ""
 
-#: templates/admin/change_list_results.html:19
+#: evolucion/templates/admin/change_list_results.html:19
 msgid "Toggle sorting"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:11
-#: templates/admin/submit_line.html:4
+#: evolucion/templates/admin/delete_confirmation.html:11
+#: evolucion/templates/admin/submit_line.html:4
 msgid "Delete"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:18
+#: evolucion/templates/admin/delete_confirmation.html:18
 #, python-format
 msgid ""
 "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
@@ -193,30 +202,30 @@ msgid ""
 "following types of objects:"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:26
+#: evolucion/templates/admin/delete_confirmation.html:26
 #, python-format
 msgid ""
 "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
 "following protected related objects:"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:34
+#: evolucion/templates/admin/delete_confirmation.html:34
 #, python-format
 msgid ""
 "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
 "All of the following related items will be deleted:"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:39
-#: templates/admin/delete_selected_confirmation.html:44
+#: evolucion/templates/admin/delete_confirmation.html:39
+#: evolucion/templates/admin/delete_selected_confirmation.html:44
 msgid "Yes, I'm sure"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:10
+#: evolucion/templates/admin/delete_selected_confirmation.html:10
 msgid "Delete multiple objects"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:17
+#: evolucion/templates/admin/delete_selected_confirmation.html:17
 #, python-format
 msgid ""
 "Deleting the selected %(objects_name)s would result in deleting related "
@@ -224,451 +233,453 @@ msgid ""
 "types of objects:"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:25
+#: evolucion/templates/admin/delete_selected_confirmation.html:25
 #, python-format
 msgid ""
 "Deleting the selected %(objects_name)s would require deleting the following "
 "protected related objects:"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:33
+#: evolucion/templates/admin/delete_selected_confirmation.html:33
 #, python-format
 msgid ""
 "Are you sure you want to delete the selected %(objects_name)s? All of the "
 "following objects and their related items will be deleted:"
 msgstr ""
 
-#: templates/admin/filter.html:2
+#: evolucion/templates/admin/filter.html:2
 #, python-format
 msgid " By %(filter_title)s "
 msgstr ""
 
-#: templates/admin/index.html:20
+#: evolucion/templates/admin/index.html:20
 #, python-format
 msgid "Models in the %(name)s application"
 msgstr ""
 
-#: templates/admin/index.html:39
+#: evolucion/templates/admin/index.html:39
 msgid "Change"
 msgstr ""
 
-#: templates/admin/index.html:49
+#: evolucion/templates/admin/index.html:49
 msgid "You don't have permission to edit anything."
 msgstr ""
 
-#: templates/admin/index.html:57
+#: evolucion/templates/admin/index.html:57
 msgid "Recent Actions"
 msgstr ""
 
-#: templates/admin/index.html:58
+#: evolucion/templates/admin/index.html:58
 msgid "My Actions"
 msgstr ""
 
-#: templates/admin/index.html:62
+#: evolucion/templates/admin/index.html:62
 msgid "None available"
 msgstr ""
 
-#: templates/admin/index.html:76
+#: evolucion/templates/admin/index.html:76
 msgid "Unknown content"
 msgstr ""
 
-#: templates/admin/invalid_setup.html:12
+#: evolucion/templates/admin/invalid_setup.html:12
 msgid ""
 "Something's wrong with your database installation. Make sure the appropriate "
 "database tables have been created, and make sure the database is readable by "
 "the appropriate user."
 msgstr ""
 
-#: templates/admin/login.html:37
+#: evolucion/templates/admin/login.html:37
 msgid "Password:"
 msgstr ""
 
-#: templates/admin/login.html:44
+#: evolucion/templates/admin/login.html:44
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: templates/admin/login.html:48
+#: evolucion/templates/admin/login.html:48
 msgid "Log in"
 msgstr ""
 
-#: templates/admin/object_history.html:23
+#: evolucion/templates/admin/object_history.html:23
 msgid "Date/time"
 msgstr ""
 
-#: templates/admin/object_history.html:24
+#: evolucion/templates/admin/object_history.html:24
 msgid "User"
 msgstr ""
 
-#: templates/admin/object_history.html:25
+#: evolucion/templates/admin/object_history.html:25
 msgid "Action"
 msgstr ""
 
-#: templates/admin/object_history.html:39
+#: evolucion/templates/admin/object_history.html:39
 msgid ""
 "This object doesn't have a change history. It probably wasn't added via this "
 "admin site."
 msgstr ""
 
-#: templates/admin/pagination.html:10
+#: evolucion/templates/admin/pagination.html:10
 msgid "Show all"
 msgstr ""
 
-#: templates/admin/pagination.html:11 templates/admin/submit_line.html:3
+#: evolucion/templates/admin/pagination.html:11
+#: evolucion/templates/admin/submit_line.html:3
 msgid "Save"
 msgstr ""
 
-#: templates/admin/search_form.html:7
+#: evolucion/templates/admin/search_form.html:7
 msgid "Search"
 msgstr ""
 
-#: templates/admin/search_form.html:9
+#: evolucion/templates/admin/search_form.html:9
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/admin/search_form.html:9
+#: evolucion/templates/admin/search_form.html:9
 #, python-format
 msgid "%(full_result_count)s total"
 msgstr ""
 
-#: templates/admin/submit_line.html:5
+#: evolucion/templates/admin/submit_line.html:5
 msgid "Save as new"
 msgstr ""
 
-#: templates/admin/submit_line.html:6
+#: evolucion/templates/admin/submit_line.html:6
 msgid "Save and add another"
 msgstr ""
 
-#: templates/admin/submit_line.html:7
+#: evolucion/templates/admin/submit_line.html:7
 msgid "Save and continue editing"
 msgstr ""
 
-#: templates/admin/auth/user/add_form.html:6
+#: evolucion/templates/admin/auth/user/add_form.html:6
 msgid ""
 "First, enter a username and password. Then, you'll be able to edit more user "
 "options."
 msgstr ""
 
-#: templates/admin/auth/user/add_form.html:8
+#: evolucion/templates/admin/auth/user/add_form.html:8
 msgid "Enter a username and password."
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:31
+#: evolucion/templates/admin/auth/user/change_password.html:31
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:38
+#: evolucion/templates/admin/auth/user/change_password.html:38
 msgid "Password"
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:44
+#: evolucion/templates/admin/auth/user/change_password.html:44
 msgid "Password (again)"
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:45
+#: evolucion/templates/admin/auth/user/change_password.html:45
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: templates/admin/edit_inline/stacked.html:26
-#: templates/admin/edit_inline/tabular.html:76
+#: evolucion/templates/admin/edit_inline/stacked.html:26
+#: evolucion/templates/admin/edit_inline/tabular.html:76
 msgid "Remove"
 msgstr ""
 
-#: templates/admin/edit_inline/stacked.html:27
-#: templates/admin/edit_inline/tabular.html:75
+#: evolucion/templates/admin/edit_inline/stacked.html:27
+#: evolucion/templates/admin/edit_inline/tabular.html:75
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: templates/admin/edit_inline/tabular.html:17
+#: evolucion/templates/admin/edit_inline/tabular.html:17
 msgid "Delete?"
 msgstr "borrar?"
 
-#: templates/editor/_behaviors.html:27
+#: evolucion/templates/editor/_behaviors.html:27
 msgid "initial time"
 msgstr "tiempo inicial"
 
-#: templates/editor/_behaviors.html:28
+#: evolucion/templates/editor/_behaviors.html:28
 msgid "initial time placeholder"
 msgstr "tiempo inicial"
 
-#: templates/editor/_behaviors.html:32
+#: evolucion/templates/editor/_behaviors.html:32
 msgid "final time"
 msgstr "tiempo final"
 
-#: templates/editor/_behaviors.html:33
+#: evolucion/templates/editor/_behaviors.html:33
 msgid "final time placeholder"
 msgstr "tiempo final"
 
-#: templates/editor/_behaviors.html:37
+#: evolucion/templates/editor/_behaviors.html:37
 msgid "delta time"
 msgstr "tiempo del paso"
 
-#: templates/editor/_behaviors.html:38
+#: evolucion/templates/editor/_behaviors.html:38
 msgid "delta time placeholder"
 msgstr "tiempo del paso"
 
-#: templates/editor/_behaviors.html:44
-#: templates/editor/_stock-and-flow.html:10
+#: evolucion/templates/editor/_behaviors.html:44
+#: evolucion/templates/editor/_stock-and-flow.html:10
 msgid "parameters"
 msgstr "parametros"
 
-#: templates/editor/_behaviors.html:59
-#: templates/editor/_stock-and-flow.html:25
+#: evolucion/templates/editor/_behaviors.html:59
+#: evolucion/templates/editor/_stock-and-flow.html:25
 msgid "stocks"
 msgstr "niveles"
 
-#: templates/editor/_behaviors.html:74
-#: templates/editor/_stock-and-flow.html:40
+#: evolucion/templates/editor/_behaviors.html:74
+#: evolucion/templates/editor/_stock-and-flow.html:40
 msgid "flows"
 msgstr "flujos"
 
-#: templates/editor/_behaviors.html:89
-#: templates/editor/_stock-and-flow.html:55
+#: evolucion/templates/editor/_behaviors.html:89
+#: evolucion/templates/editor/_stock-and-flow.html:55
 msgid "auxiliaries"
 msgstr "var. auxiliares"
 
-#: templates/editor/_behaviors.html:104
-#: templates/editor/_stock-and-flow.html:70
+#: evolucion/templates/editor/_behaviors.html:104
+#: evolucion/templates/editor/_stock-and-flow.html:70
 msgid "exogenous"
 msgstr "var. exogenas"
 
-#: templates/editor/_behaviors.html:119
-#: templates/editor/_stock-and-flow.html:85
+#: evolucion/templates/editor/_behaviors.html:119
+#: evolucion/templates/editor/_stock-and-flow.html:85
 msgid "delays"
 msgstr "retardos"
 
-#: templates/editor/_behaviors.html:134
-#: templates/editor/_stock-and-flow.html:100
+#: evolucion/templates/editor/_behaviors.html:134
+#: evolucion/templates/editor/_stock-and-flow.html:100
 msgid "multipliers"
 msgstr "multiplicadores"
 
-#: templates/editor/_behaviors.html:149
-#: templates/editor/_stock-and-flow.html:115
+#: evolucion/templates/editor/_behaviors.html:149
+#: evolucion/templates/editor/_stock-and-flow.html:115
 msgid "fis"
 msgstr "fis"
 
-#: templates/editor/_behaviors.html:164
-#: templates/editor/_stock-and-flow.html:130
+#: evolucion/templates/editor/_behaviors.html:164
+#: evolucion/templates/editor/_stock-and-flow.html:130
 msgid "previous values"
 msgstr "val. anteriores"
 
-#: templates/editor/_behaviors.html:179
-#: templates/editor/_stock-and-flow.html:145
+#: evolucion/templates/editor/_behaviors.html:179
+#: evolucion/templates/editor/_stock-and-flow.html:145
 msgid "submodels"
 msgstr "submodelos"
 
-#: templates/editor/_behaviors.html:196 templates/editor/_equations.html:18
-#: templates/editor/_influences.html:88
-#: templates/editor/_stock-and-flow.html:192
+#: evolucion/templates/editor/_behaviors.html:196
+#: evolucion/templates/editor/_equations.html:18
+#: evolucion/templates/editor/_influences.html:88
+#: evolucion/templates/editor/_stock-and-flow.html:192
 msgid "toggle nav"
 msgstr "navegador lateral"
 
-#: templates/editor/_equations.html:7
+#: evolucion/templates/editor/_equations.html:7
 msgid "mathematical language model title"
 msgstr "modelo en lenguaje matemático"
 
-#: templates/editor/_equations.html:8
+#: evolucion/templates/editor/_equations.html:8
 msgid "mathematical language model content"
 msgstr ""
 "modelo de simulación en lenguaje matematico, tipo sistema de ecuaciones "
 "discretas"
 
-#: templates/editor/_equations.html:11
+#: evolucion/templates/editor/_equations.html:11
 msgid "javascript language model title"
 msgstr "modelo en lenguaje javascript"
 
-#: templates/editor/_equations.html:12
+#: evolucion/templates/editor/_equations.html:12
 msgid "javascript language model content"
 msgstr ""
 "modelo de simulación en lenguaje computacional, especificamente Javascript "
 "que permite exportar el codigo"
 
-#: templates/editor/_influences.html:11
+#: evolucion/templates/editor/_influences.html:11
 msgid "concepts"
 msgstr "conceptos"
 
-#: templates/editor/_influences.html:26
+#: evolucion/templates/editor/_influences.html:26
 msgid "cycles"
 msgstr "ciclos"
 
-#: templates/editor/_influences.html:41
+#: evolucion/templates/editor/_influences.html:41
 msgid "material relations"
 msgstr "relaciones de material"
 
-#: templates/editor/_influences.html:56
+#: evolucion/templates/editor/_influences.html:56
 msgid "information relations"
 msgstr "relaciones de información"
 
-#: templates/editor/_influences.html:71
-#: templates/editor/_stock-and-flow.html:175
+#: evolucion/templates/editor/_influences.html:71
+#: evolucion/templates/editor/_stock-and-flow.html:175
 msgid "sectors"
 msgstr "sectores"
 
-#: templates/editor/_influences.html:92
+#: evolucion/templates/editor/_influences.html:92
 msgid "inf cursor btn title"
 msgstr "cursor"
 
-#: templates/editor/_influences.html:95
+#: evolucion/templates/editor/_influences.html:95
 msgid "inf concept btn title"
 msgstr "concepto"
 
-#: templates/editor/_influences.html:98
+#: evolucion/templates/editor/_influences.html:98
 msgid "inf cycle btn title"
 msgstr "ciclo"
 
-#: templates/editor/_influences.html:101
+#: evolucion/templates/editor/_influences.html:101
 msgid "inf clone btn title"
 msgstr "clon"
 
-#: templates/editor/_influences.html:104
+#: evolucion/templates/editor/_influences.html:104
 msgid "inf material relation btn title"
 msgstr "relación de material"
 
-#: templates/editor/_influences.html:107
+#: evolucion/templates/editor/_influences.html:107
 msgid "inf information relation btn title"
 msgstr "relación de información"
 
-#: templates/editor/_influences.html:110
+#: evolucion/templates/editor/_influences.html:110
 msgid "inf sector btn title"
 msgstr "sector"
 
-#: templates/editor/_prose.html:13
+#: evolucion/templates/editor/_prose.html:13
 msgid "prose title placeholder"
 msgstr "titulo del modelo"
 
-#: templates/editor/_prose.html:23
+#: evolucion/templates/editor/_prose.html:23
 msgid "prose description placeholder"
 msgstr "descripción del modelo"
 
-#: templates/editor/_stock-and-flow.html:160
+#: evolucion/templates/editor/_stock-and-flow.html:160
 msgid "relations"
 msgstr "relaciones"
 
-#: templates/editor/_stock-and-flow.html:196
+#: evolucion/templates/editor/_stock-and-flow.html:196
 msgid "saf cursor btn title"
 msgstr "cursor"
 
-#: templates/editor/_stock-and-flow.html:199
+#: evolucion/templates/editor/_stock-and-flow.html:199
 msgid "saf parameter btn title"
 msgstr "parametro"
 
-#: templates/editor/_stock-and-flow.html:202
+#: evolucion/templates/editor/_stock-and-flow.html:202
 msgid "saf stock btn title"
 msgstr "nivel"
 
-#: templates/editor/_stock-and-flow.html:205
+#: evolucion/templates/editor/_stock-and-flow.html:205
 msgid "saf flow btn title"
 msgstr "flujo"
 
-#: templates/editor/_stock-and-flow.html:208
+#: evolucion/templates/editor/_stock-and-flow.html:208
 msgid "saf auxiliary btn title"
 msgstr "var. auxiliar"
 
-#: templates/editor/_stock-and-flow.html:211
+#: evolucion/templates/editor/_stock-and-flow.html:211
 msgid "saf exogenous btn title"
 msgstr "var. exogena"
 
-#: templates/editor/_stock-and-flow.html:214
+#: evolucion/templates/editor/_stock-and-flow.html:214
 msgid "saf delay btn title"
 msgstr "retraso"
 
-#: templates/editor/_stock-and-flow.html:217
+#: evolucion/templates/editor/_stock-and-flow.html:217
 msgid "saf multiplier btn title"
 msgstr "multiplicador"
 
-#: templates/editor/_stock-and-flow.html:220
+#: evolucion/templates/editor/_stock-and-flow.html:220
 msgid "saf fis btn title"
 msgstr "fis"
 
-#: templates/editor/_stock-and-flow.html:223
+#: evolucion/templates/editor/_stock-and-flow.html:223
 msgid "saf previousvalue btn title"
 msgstr "val. anterior"
 
-#: templates/editor/_stock-and-flow.html:226
+#: evolucion/templates/editor/_stock-and-flow.html:226
 msgid "saf submodel btn title"
 msgstr "submodelo"
 
-#: templates/editor/_stock-and-flow.html:229
+#: evolucion/templates/editor/_stock-and-flow.html:229
 msgid "saf clone btn title"
 msgstr "clon"
 
-#: templates/editor/_stock-and-flow.html:232
+#: evolucion/templates/editor/_stock-and-flow.html:232
 msgid "saf relation btn title"
 msgstr "relación"
 
-#: templates/editor/_stock-and-flow.html:235
+#: evolucion/templates/editor/_stock-and-flow.html:235
 msgid "saf sector btn title"
 msgstr "sector"
 
-#: templates/editor/base_editor.html:49
+#: evolucion/templates/editor/base_editor.html:49
 msgid "overview"
 msgstr "resumen"
 
-#: templates/editor/base_editor.html:51
+#: evolucion/templates/editor/base_editor.html:51
 msgid "open"
 msgstr "abrir"
 
-#: templates/editor/base_editor.html:52
+#: evolucion/templates/editor/base_editor.html:52
 msgid "save"
 msgstr "guardar"
 
-#: templates/editor/base_editor.html:53
+#: evolucion/templates/editor/base_editor.html:53
 msgid "download"
 msgstr "descargar"
 
-#: templates/editor/base_editor.html:60
+#: evolucion/templates/editor/base_editor.html:60
 msgid "prose"
 msgstr "prosa"
 
-#: templates/editor/base_editor.html:61
+#: evolucion/templates/editor/base_editor.html:61
 msgid "influences"
 msgstr "influencias"
 
-#: templates/editor/base_editor.html:62
+#: evolucion/templates/editor/base_editor.html:62
 msgid "stock and flow"
 msgstr "flujo nivel"
 
-#: templates/editor/base_editor.html:63
+#: evolucion/templates/editor/base_editor.html:63
 msgid "equations"
 msgstr "ecuaciones"
 
-#: templates/editor/base_editor.html:64
+#: evolucion/templates/editor/base_editor.html:64
 msgid "behaviors"
 msgstr "comportamientos"
 
-#: templates/editor/base_editor.html:157
+#: evolucion/templates/editor/base_editor.html:157
 msgid "browser incompatibility"
 msgstr "incompatibilidad del navegador de internet"
 
-#: templates/editor/base_editor.html:182
+#: evolucion/templates/editor/base_editor.html:182
 msgid "close"
 msgstr "cerrar"
 
-#: templates/editor/index.html:6
+#: evolucion/templates/editor/index.html:6
 msgid "home"
 msgstr "inicio"
 
-#: templates/home/_carousel.html:20
+#: evolucion/templates/home/_carousel.html:20
 msgid "sign up today"
 msgstr "regístrate hoy"
 
-#: templates/home/_carousel.html:31
+#: evolucion/templates/home/_carousel.html:31
 msgid "learn more"
 msgstr "aprenda más"
 
-#: templates/home/_carousel.html:41
+#: evolucion/templates/home/_carousel.html:41
 msgid "browse gallery"
 msgstr "navega por la galería"
 
-#: templates/home/index.html:16
+#: evolucion/templates/home/index.html:16
 msgid "welcome title"
 msgstr "bienvenido a Evolución Web"
 
-#: templates/home/index.html:17
+#: evolucion/templates/home/index.html:17
 msgid "welcome content"
 msgstr ""
 "Bienvenido a la plataforma Evolución Web, tecnología que permite realizar "
@@ -678,26 +689,27 @@ msgstr ""
 "cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
 "amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
 
-#: templates/home/index.html:18 templates/home/index.html.py:24
-#: templates/home/index.html:30
+#: evolucion/templates/home/index.html:18
+#: evolucion/templates/home/index.html:24
+#: evolucion/templates/home/index.html:30
 msgid "view details"
 msgstr "Mayor información"
 
-#: templates/home/index.html:22
+#: evolucion/templates/home/index.html:22
 msgid "features title"
 msgstr "Características"
 
-#: templates/home/index.html:23
+#: evolucion/templates/home/index.html:23
 msgid "features content"
 msgstr ""
 "Evolución Web integra las siguientes caracteristicas del modelamiento de "
 "sistemas"
 
-#: templates/home/index.html:28
+#: evolucion/templates/home/index.html:28
 msgid "explore title"
 msgstr "Explore los proyectos"
 
-#: templates/home/index.html:29
+#: evolucion/templates/home/index.html:29
 msgid "explore content"
 msgstr ""
 "Los proyectos desarrollados dentro de la plataforma Evolución Web, son por "
@@ -705,174 +717,182 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
-#: templates/layouts/_main_nav_content.html:3
-#: templates/layouts/_main_user_content.html:3
+#: evolucion/templates/layouts/_main_nav_content.html:3
+#: evolucion/templates/layouts/_main_user_content.html:3
 msgid "nav home"
 msgstr "inicio"
 
-#: templates/layouts/_main_nav_content.html:4
-#: templates/layouts/_main_user_content.html:4
+#: evolucion/templates/layouts/_main_nav_content.html:4
+#: evolucion/templates/layouts/_main_user_content.html:4
 msgid "nav explore"
 msgstr "explorar"
 
-#: templates/layouts/_main_nav_content.html:8
+#: evolucion/templates/layouts/_main_nav_content.html:8
 msgid "nav features"
 msgstr "características"
 
-#: templates/layouts/_main_nav_content.html:12
-#: templates/layouts/_main_user_content.html:5
+#: evolucion/templates/layouts/_main_nav_content.html:12
+#: evolucion/templates/layouts/_main_user_content.html:5
 msgid "nav my projects"
 msgstr "mis projectos"
 
-#: templates/layouts/_main_nav_content.html:18
+#: evolucion/templates/layouts/_main_nav_content.html:18
 msgid "about"
 msgstr "acerca de"
 
-#: templates/layouts/_main_nav_content.html:21
+#: evolucion/templates/layouts/_main_nav_content.html:21
 msgid "nav history"
 msgstr "historia"
 
-#: templates/layouts/_main_nav_content.html:22
+#: evolucion/templates/layouts/_main_nav_content.html:22
 msgid "nav core team"
 msgstr "equipo de desarrollo"
 
-#: templates/layouts/_main_nav_content.html:23
+#: evolucion/templates/layouts/_main_nav_content.html:23
 msgid "nav community"
 msgstr "comunidad"
 
-#: templates/layouts/_main_nav_content.html:24
+#: evolucion/templates/layouts/_main_nav_content.html:24
 msgid "nav translations"
 msgstr "traductores"
 
-#: templates/layouts/_main_nav_content.html:25
+#: evolucion/templates/layouts/_main_nav_content.html:25
 msgid "nav contact us"
 msgstr "contáctanos"
 
-#: templates/layouts/_sign_nav.html:3
+#: evolucion/templates/layouts/_sign_nav.html:3
 msgid "nav sign up"
 msgstr "regístrate"
 
-#: templates/layouts/_sign_nav.html:4
+#: evolucion/templates/layouts/_sign_nav.html:4
 msgid "nav sign in"
 msgstr "inicia sesión"
 
-#: templates/layouts/_user_dropdown.html:7
+#: evolucion/templates/layouts/_user_dropdown.html:7
 msgid "settings"
 msgstr "opciones"
 
-#: templates/layouts/_user_dropdown.html:9
+#: evolucion/templates/layouts/_user_dropdown.html:9
 msgid "logout"
 msgstr "cerrar sesión"
 
-#: templates/projects/_new_project.html:12 templates/projects/index.html:34
-#: templates/projects/index.html.py:68
+#: evolucion/templates/projects/_new_project.html:12
+#: evolucion/templates/projects/index.html:68
 msgid "launch project"
 msgstr "lanzar projecto"
 
-#: templates/projects/_new_success.html:5 templates/users/_edit_errors.html:5
-#: templates/users/_edit_success.html:5 templates/users/_sign_in_errors.html:5
-#: templates/users/_sign_in_success.html:5
-#: templates/users/_sign_up_success.html:5
+#: evolucion/templates/projects/_new_success.html:5
+#: evolucion/templates/users/_edit_errors.html:5
+#: evolucion/templates/users/_edit_success.html:5
+#: evolucion/templates/users/_sign_in_errors.html:5
+#: evolucion/templates/users/_sign_in_success.html:5
+#: evolucion/templates/users/_sign_up_success.html:5
 msgid "information"
 msgstr "información"
 
-#: templates/projects/index.html:47
-msgid "new project"
-msgstr "mis projectos"
+#: evolucion/templates/projects/index.html:34
+msgid "open project"
+msgstr "abrir projecto"
 
-#: templates/projects/index.html:53
+#: evolucion/templates/projects/index.html:47
+msgid "new project"
+msgstr "nuevo proyecto"
+
+#: evolucion/templates/projects/index.html:53
 msgid "title"
 msgstr "titulo"
 
-#: templates/projects/index.html:55
+#: evolucion/templates/projects/index.html:55
 msgid "new project title"
 msgstr "titulo del nuevo projecto"
 
-#: templates/projects/index.html:60
+#: evolucion/templates/projects/index.html:60
 msgid "description"
 msgstr "descripción"
 
-#: templates/projects/index.html:63
+#: evolucion/templates/projects/index.html:63
 msgid "project description"
 msgstr "descripción del nuevo projecto"
 
-#: templates/users/_form.html:11
+#: evolucion/templates/users/_form.html:11
 msgid "sign up first_name placeholder"
 msgstr "nombre(s)"
 
-#: templates/users/_form.html:23
+#: evolucion/templates/users/_form.html:23
 msgid "sign up last_name placeholder"
 msgstr "apellido(s)"
 
-#: templates/users/_form.html:33
+#: evolucion/templates/users/_form.html:33
 msgid "sign up occupation placeholder"
 msgstr "ocupación ej: ingeniero"
 
-#: templates/users/_form.html:44 templates/users/_sign_in.html:26
+#: evolucion/templates/users/_form.html:44
+#: evolucion/templates/users/_sign_in.html:26
 msgid "sign up username placeholder"
 msgstr "nombre de identificación en el sistema"
 
-#: templates/users/_form.html:57
+#: evolucion/templates/users/_form.html:57
 msgid "sign up email placeholder"
 msgstr "correo electrónico valido ej: nombre@dominio.com"
 
-#: templates/users/_form_password.html:10 templates/users/_sign_in.html:37
+#: evolucion/templates/users/_form_password.html:10
+#: evolucion/templates/users/_sign_in.html:37
 msgid "sign up password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: templates/users/_form_password.html:14
+#: evolucion/templates/users/_form_password.html:14
 msgid "sign up confirm_password"
 msgstr "Confirme la contraseña"
 
-#: templates/users/_form_password.html:20
+#: evolucion/templates/users/_form_password.html:20
 msgid "sign up confirm_password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: templates/users/_sign_up.html:9
+#: evolucion/templates/users/_sign_up.html:9
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: templates/users/_sign_up.html:24
+#: evolucion/templates/users/_sign_up.html:24
 msgid "sign up terms"
 msgstr "Condiciones del servicio de Evolución Web"
 
-#: templates/users/_sign_up.html:32
+#: evolucion/templates/users/_sign_up.html:32
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: templates/users/_sign_up.html:37
+#: evolucion/templates/users/_sign_up.html:37
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
-#: templates/users/edit.html:23
+#: evolucion/templates/users/edit.html:23
 msgid "user editing"
 msgstr "edición de usuario"
 
-#: templates/users/edit.html:27
+#: evolucion/templates/users/edit.html:27
 msgid "save submit text"
 msgstr "Guardar"
 
-#: users/models.py:12
+#: evolucion/users/models.py:12
 msgid "occupation"
 msgstr "ocupación"
 
-#: users/models.py:14
+#: evolucion/users/models.py:14
 msgid "accept terms"
 msgstr "acepta las condiciones del servicio"
 
-#: users/views.py:37 users/views.py:110
+#: evolucion/users/views.py:37 evolucion/users/views.py:110
 msgid "the user was successfully registered"
 msgstr "el usuario fue registrado exitosamente"
 
-#: users/views.py:64
+#: evolucion/users/views.py:64
 msgid "welcome to Evolucion Web"
 msgstr "Bienvenido a Evolución Web"
 
-#: users/views.py:67
+#: evolucion/users/views.py:67
 msgid "the user is not active"
 msgstr "el usuario no esta activo"
 
-#: users/views.py:71
+#: evolucion/users/views.py:71
 msgid "the username or password is not correct."
 msgstr "el nombre de usuario o contrase esta incorrecta"
 

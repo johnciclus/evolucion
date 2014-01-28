@@ -27,5 +27,5 @@ urlpatterns = patterns('',
     url(r'^(?P<username>\w+)/$', views.IndexView.as_view(), name='projects_view'),
         
     # Project editor page
-    url(r'^(?P<username>\w+)/(?P<project_name>\w+)/$', views.DetailView.as_view(), name='project_editor'),
+    url(r'^(?P<username>\w+)/(?P<project_name>[-\w]+)/$', views.EditorView.as_view(), name='project_editor'),
 )

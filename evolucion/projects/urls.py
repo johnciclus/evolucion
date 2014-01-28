@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^new/$', views.NewView.as_view(), name='new'),
     
     # ex: /projects/5/
-    url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^(?P<pk>\d+)/$', views.EditorView.as_view(), name='detail'),
     
     url(r'^save/$', views.save, name='save'),
 )

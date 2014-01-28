@@ -84,7 +84,7 @@ STATICFILES_FINDERS = (
 )
 
 LOCALE_PATHS = (
-    '/www/evolucion/evolucion/locale/',
+    '/www/evolucion/locale/',
 )
 
 # Make this unique, and don't share it with anybody.

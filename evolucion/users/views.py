@@ -71,7 +71,7 @@ def sign_in(request):
             form_msg = _("the username or password is not correct.")
             return render(request, 'users/_sign_in_errors.html', {'form_msg': form_msg})
 
-class UserEdit(generic.edit.FormView):
+class UserEdit(generic.View):
     model           = EvoUser
     form_class      = UserForm
     template_name   = 'users/edit.html'
