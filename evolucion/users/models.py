@@ -52,9 +52,9 @@ class EvoUser(User):
 #     password    = models.CharField(_('password'), max_length=128)
 #     accept_terms= models.BooleanField(_('accept_terms'))
 #     
-#     last_login = models.DateTimeField(_('last_login'), default=timezone.now)
-#     created_at = models.DateTimeField(_('created_at'), default=timezone.now)
-#     updated_at = models.DateTimeField(_('updated_at'), default=timezone.now)
+#     last_login  = models.DateTimeField(_('last_login'), default=timezone.now)
+#     created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
+#     updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
 #     
 #     def __unicode__(self):
 #         return self.username

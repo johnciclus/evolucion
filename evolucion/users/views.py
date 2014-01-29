@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.core.context_processors import csrf
 from django.core import serializers
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, render_to_response, redirect
 from django.utils.translation import ugettext_lazy as _
@@ -70,6 +70,12 @@ def sign_in(request):
         else:
             form_msg = _("the username or password is not correct.")
             return render(request, 'users/_sign_in_errors.html', {'form_msg': form_msg})
+
+def user_logout(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            logout(request)
+            return redirect('/')
 
 class UserEdit(generic.View):
     model           = EvoUser

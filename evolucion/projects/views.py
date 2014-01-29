@@ -3,16 +3,18 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.views import generic
+from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
+
 from evolucion.users.models import EvoUser, UserForm
-from evolucion.projects.models import Project, ProjectManager, ProseForm
+from evolucion.projects.models import Project, ProjectForm, ProseForm
 
 import logging, sys
 
 logger = logging.getLogger(__name__)
-# print >>sys.stderr, "Groups"
+# print >>sys.stderr, "Text"
 
 class IndexView(generic.View):
     model = Project
@@ -41,26 +43,37 @@ class NewView(generic.View):
 
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated():
-            
             user = get_object_or_404(EvoUser, pk = request.user.id)
-            params = request.POST
+            params = request.POST.copy()
             
-            print >>sys.stderr, user
-            print >>sys.stderr, Project.objects
-            print >>sys.stderr, dir(Project)
+            params['name']      = slugify(params['title'])
+            params['keywords']  = ' ' 
+            params['model']     = ' '
+            params['hits']      = 0
+            params['stars']     = 0
+            params['created_at']= timezone.now()
+            params['updated_at']= timezone.now()
+            params['user']      = user
             
-            project = Project.objects.create_project(title = params['title'], 
-                                                     description = params['description'], 
-                                                     keywords = '', 
-                                                     model = '', 
-                                                     user = user)
+            form = ProjectForm(data = params, auto_id=True)
+            
+            print >>sys.stderr, "form"
+            print >>sys.stderr, form
+            print >>sys.stderr, "is valid"
+            print >>sys.stderr, form.is_valid()
             
             context = {}
-            context['form_msg'] = _("the project was successfully registered") 
-            context['project'] = project
+            context['user'] = user
             
-            return render(request, 'projects/_new_success.html', context)
-        
+            if form.is_valid():
+                project = form.save() 
+                context['project'] = project
+                context['form_msg'] = _("the project was successfully registered")
+                return render(request, 'projects/_new_success.html', context)
+            else:
+                form_errors = form.errors
+                form_cleaned = form.cleaned_data
+                return render(request, 'projects/_new_errors.html', {'form_errors': form_errors}) 
         else:
             return redirect('/')
 

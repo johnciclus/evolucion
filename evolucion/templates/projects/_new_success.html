@@ -6,11 +6,12 @@
             {{ form_msg }}        
     </div>
     <script type="text/javascript">
-        setTimeout(function() {        
+        setTimeout(function() {
           $('#projects-container').prepend("{% filter escapejs %}{% include 'projects/_new_project.html' %}{% endfilter %}");
+          $('#new-project-modal').modal('hide');
           setTimeout(function(){ $('#form-message').children().remove(); }, 5000);
           
-          window.history.pushState({},'',window.location.pathname);
+          //window.history.pushState({},'',window.location.pathname);
         }, 1000);
     </script>
 {% endif %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-28 09:18-0500\n"
+"POT-Creation-Date: 2014-01-28 16:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -777,9 +777,9 @@ msgid "logout"
 msgstr "cerrar sesión"
 
 #: evolucion/templates/projects/_new_project.html:12
-#: evolucion/templates/projects/index.html:68
-msgid "launch project"
-msgstr "lanzar projecto"
+#: evolucion/templates/projects/index.html:33
+msgid "open project"
+msgstr "abrir projecto"
 
 #: evolucion/templates/projects/_new_success.html:5
 #: evolucion/templates/users/_edit_errors.html:5
@@ -790,29 +790,29 @@ msgstr "lanzar projecto"
 msgid "information"
 msgstr "información"
 
-#: evolucion/templates/projects/index.html:34
-msgid "open project"
-msgstr "abrir projecto"
-
-#: evolucion/templates/projects/index.html:47
+#: evolucion/templates/projects/index.html:46
 msgid "new project"
 msgstr "nuevo proyecto"
 
-#: evolucion/templates/projects/index.html:53
+#: evolucion/templates/projects/index.html:52
 msgid "title"
 msgstr "titulo"
 
-#: evolucion/templates/projects/index.html:55
+#: evolucion/templates/projects/index.html:54
 msgid "new project title"
 msgstr "titulo del nuevo projecto"
 
-#: evolucion/templates/projects/index.html:60
+#: evolucion/templates/projects/index.html:59
 msgid "description"
 msgstr "descripción"
 
-#: evolucion/templates/projects/index.html:63
+#: evolucion/templates/projects/index.html:62
 msgid "project description"
 msgstr "descripción del nuevo projecto"
+
+#: evolucion/templates/projects/index.html:67
+msgid "launch project"
+msgstr "lanzar projecto"
 
 #: evolucion/templates/users/_form.html:11
 msgid "sign up first_name placeholder"

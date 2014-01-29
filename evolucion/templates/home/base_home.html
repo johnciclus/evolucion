@@ -1,8 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% load staticfiles %}
-
-{% load i18n %}
+{% load staticfiles i18n %}
 
 
 {% block body %}
@@ -11,9 +9,7 @@
     {% block content %}
     
     {% endblock %}
-        
-    <!-- Bootstrap core JavaScript ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    
     <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/main_home' %}"></script>
     
 {% endblock %}

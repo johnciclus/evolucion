@@ -7,33 +7,37 @@ from django.utils import timezone
 from evolucion.users.models import EvoUser
 
 import logging, sys
+from docutils.parsers.rst.directives.html import Meta
 
 class ProjectManager(models.Manager):
     def create_project(self, title, description, keywords, model, user):
         
-        
-        project = self.create(name  = slugify(title),
-                              title = title, 
+        project = self.create(name  =       slugify(title),
+                              title =       title, 
                               description = description, 
-                              keywords = keywords,
-                              model = model,
-                              created_at=timezone.now(),
-                              updated_at=timezone.now(),
-                              user_id = user.id)
+                              keywords =    keywords,
+                              model =       model,
+                              hits  =       0,
+                              stars =       0,
+                              created_at=   timezone.now(),
+                              updated_at=   timezone.now(),
+                              user_id =     user.id)
         return project
 
 class Project(models.Model):
-    name        = models.CharField(max_length=50)
-    title       = models.CharField(max_length=50)
-    description = models.TextField()
-    keywords    = models.CharField(max_length=200)
-    model       = models.TextField()
+    name        = models.SlugField(_('name'), max_length=50, unique=True)
+    title       = models.CharField(_('title'), max_length=50, unique=True)
+    description = models.TextField(_('description'))
+    keywords    = models.CharField(_('keywords'), max_length=200)
+    model       = models.TextField(_('model'))
+    hits        = models.IntegerField(_('hits'))
+    stars       = models.IntegerField(_('stars'))
     created_at  = models.DateTimeField(_('created at'), default=timezone.now)
     updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     user = models.ForeignKey(EvoUser)
     
-    objects = ProjectManager()
+    #objects = ProjectManager()
     
     def get_url(self):
         return self.user.username+'/'+self.name+'/'
@@ -50,6 +54,10 @@ class Project(models.Model):
     
     def __unicode__(self):
         return self.title
+
+class ProjectForm(ModelForm):
+    class Meta:
+        model = Project
 
 class Prose(models.Model):
     project = models.OneToOneField(Project, primary_key=True)

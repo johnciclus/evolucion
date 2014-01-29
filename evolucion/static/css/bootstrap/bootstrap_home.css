@@ -21,10 +21,12 @@ body {
 /* CUSTOMIZE Basic CSS
 -------------------------------------------------- */
 
-.col-centered{
-    float: none;
-    margin: 0 auto;
+div.centered {
     text-align: center;
+}
+
+.row{
+    margin-bottom: 40px;
 }
 
 .modal-footer {

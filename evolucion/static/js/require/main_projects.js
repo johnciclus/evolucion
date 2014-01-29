@@ -3,7 +3,6 @@ require.config({
     paths: {
         jquery:     '//code.jquery.com/jquery-1.11.0.min',
         bootstrap:  '//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min',
-        holder:     'bootstrap/holder',
         utils:      'evolucion/utils'
     },
     shim: {
@@ -16,4 +15,4 @@ require.config({
     }
 });
 
-requirejs(['home/main']);
+requirejs(['projects/main']);

@@ -11,14 +11,86 @@
 {% endblock %}
 
 {% block body %}
+    {% if user.is_authenticated %}
+    <div class="modal fade" id="new-project-modal" tabindex="-1" role="dialog" aria-labelledby="new-project-modal" aria-hidden="true">
+      <div class="modal-dialog">
+          <form id="new-project-form" class="form-horizontal" action="/projects/new/" method="post">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">{% trans 'new project'|capfirst%}</h4>
+                  </div>        
+                  <div class="modal-body">
+                      <div id='form-message'>
+                        
+                      </div>
+                      
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="title" class="col-lg-3 control-label">{% trans 'title'|capfirst %}</label>
+                        <div class="col-lg-9">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="{% trans 'new project title'|capfirst %}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="description" class="col-lg-3 control-label">{% trans 'description'|capfirst %}</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" rows="3" id="description" name="description"></textarea>
+                          <span class="help-block">{% trans 'project description'|capfirst %}</span>
+                        </div>
+                      </div>
+                      <!--
+                      <div class="form-group">
+                          <label for=" form.password|id " class="col-lg-3 control-label"> form.password|verbosename </label>
+                          <div class="col-lg-9">
+                              <input  type=       "password" 
+                                      id=         " form.password|id " 
+                                      name=       " form.password|id " 
+                                      class=      "form-control" 
+                                      placeholder=" trans 'sign up password placeholder'|capfirst ">
+                          </div>
+                      </div>-->
+                  </div>
+                  <div class="modal-footer">
+                      <div class="form-group">
+                          <div class="col-lg-12 centered">
+                              <button type="submit" class="btn btn-primary">{% trans 'launch project'|capfirst%}</button> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>
+    {% endif %}
+    
     {% block content %}
+        
       <div class="container">
+        <div class="page-header centered">
+          <h1 id="progress">{{ requested_user.username|capfirst }}</h1>
+          <p>{{ requested_user.occupation|capfirst }}</p>
+        </div>
+        
+        {% if user.is_authenticated %}
         <div class="row">
-          <div class="jumbotron">
-            <h2>{{ requested_user.username|capfirst }}</h2>
-            <p>{{ requested_user.occupation|capfirst }}</p>
+          <div id="toolbar-project" class="toolbar centered">
+            <button id="new" type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-project-modal">
+              {% trans 'new project'|capfirst %}
+            </button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary disabled">{% trans 'order by'|capfirst %}</button>
+              <button type="button" class="btn btn-primary dropdown-toggle disabled" data-toggle="dropdown"><span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#">{% trans 'title'|capfirst %}</a></li>
+                <li><a href="#">{% trans 'creation date'|capfirst %}</a></li>
+                <li><a href="#">{% trans 'number of hits'|capfirst %}</a></li>
+                <li><a href="#">{% trans 'number of stars'|capfirst %}</a></li>
+              </ul>
+            </div>   
           </div>
-        </div><!--/row-->
+        </div>
+        {% endif %}
         
         <div id="projects-container" class="row">  
           {% for project in projects %}
@@ -29,7 +101,7 @@
                     <p>{{ project.description|capfirst }}</p>
                     
                     <div class="form-group">
-                      <div class="col-lg-12 col-centered">
+                      <div class="col-lg-12 centered">
                         <button id="{{ requested_user.username }}-{{ project.name }}" class="btn btn-primary btn-open">{% trans 'open project'|capfirst%}</button> 
                       </div>
                     </div>
@@ -37,52 +109,11 @@
               </div>
             </div><!--/span-->
           {% endfor %}
-          
-          {% if user.is_authenticated %}
-            <div class="col-6 col-sm-6 col-lg-4">
-              <div class="well">
-                <form id="new-project-form" class="form-horizontal" action="/projects/new/" method="post">
-                  <fieldset>
-                    <legend>{% trans 'new project'|capfirst%}</legend>
-                    <div id='form-message'>
-                      
-                    </div>
-                    {% csrf_token %}
-                    <div class="form-group">
-                      <label for="title" class="col-lg-3 control-label">{% trans 'title'|capfirst %}</label>
-                      <div class="col-lg-9">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="{% trans 'new project title'|capfirst %}">
-                      </div>
-                    </div>
-               
-                    <div class="form-group">
-                      <label for="description" class="col-lg-3 control-label">{% trans 'description'|capfirst %}</label>
-                      <div class="col-lg-9">
-                        <textarea class="form-control" rows="3" id="description" name="description"></textarea>
-                        <span class="help-block">{% trans 'project description'|capfirst %}</span>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-lg-12 col-centered">
-                        <button type="submit" class="btn btn-primary">{% trans 'launch project'|capfirst%}</button> 
-                      </div>
-                    </div>
-                  </fieldset>
-                </form>
-              </div>
-            </div><!--/span-->
-          {% endif %}
-        </div><!--/row-->
+        </div>
       </div>
       
       
     {% endblock %}
-        
-    <!-- Bootstrap core JavaScript ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-  
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/projects/main.js' %}"></script>
     
+    <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/main_projects' %}"></script>
 {% endblock %}
