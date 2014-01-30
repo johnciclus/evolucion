@@ -7,9 +7,8 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
-
 from evolucion.users.models import EvoUser, UserForm
-from evolucion.projects.models import Project, ProjectForm, ProseForm
+from evolucion.projects.models import Project, ProjectForm, Prose, ProseForm
 
 import logging, sys
 
@@ -37,31 +36,16 @@ class IndexView(generic.View):
         return render(request, self.template_name, context)
     
 class NewView(generic.View):
-    model = Project
-    template_name = 'projects/index.html'
-    context_object_name = 'projects'
-
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated():
             user = get_object_or_404(EvoUser, pk = request.user.id)
             params = request.POST.copy()
             
-            params['name']      = slugify(params['title'])
-            params['keywords']  = ' ' 
-            params['model']     = ' '
-            params['hits']      = 0
-            params['stars']     = 0
-            params['created_at']= timezone.now()
-            params['updated_at']= timezone.now()
+            params['name']      = slugify(params['title']) or '-'
             params['user']      = user
-            
+                        
             form = ProjectForm(data = params, auto_id=True)
-            
-            print >>sys.stderr, "form"
-            print >>sys.stderr, form
-            print >>sys.stderr, "is valid"
-            print >>sys.stderr, form.is_valid()
-            
+                        
             context = {}
             context['user'] = user
             
@@ -78,14 +62,14 @@ class NewView(generic.View):
             return redirect('/')
 
 class EditorView(generic.View):
-    model = Project
     template_name = 'editor/index.html'
     
     def get(self, request, *args, **kwargs):
         requested_user    = get_object_or_404(EvoUser, username = kwargs['username'])
-        requested_project = get_object_or_404(Project, name = kwargs['project_name'])
+        requested_project = get_object_or_404(requested_user.project_set, name = kwargs['project_name'])
         
-        prose_form = ProseForm(auto_id=True)
+        prose = Prose(title = requested_project.title, description = requested_project.description, project = requested_project)
+        prose_form = ProseForm(instance = prose, auto_id = True)
         
         context = {}
         context['user'] = request.user

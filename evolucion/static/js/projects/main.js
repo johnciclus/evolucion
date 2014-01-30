@@ -5,4 +5,6 @@ require(['utils'], function() {
     utils.formAjax('#new-project-form', '#new-project-form #form-message');
     
     $('.btn-open').on('click', utils.openProject);
+    
+    $('#logout').on('click', function(){ utils.logout(); });
 });

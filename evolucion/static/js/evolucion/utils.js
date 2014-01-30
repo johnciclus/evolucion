@@ -22,12 +22,17 @@ utils.formAjax = function(id_form, id_response){
   }
 };
 
-utils.openProject = function (e) {
+utils.openProject = function () {
   var id = this.id;
   var idx = id.indexOf('-');
   var username = id.substring(0,idx);
   var modelname = id.substr(idx+1);
   window.open("/"+username+"/"+modelname+'/');
+};
+
+utils.logout = function(){
+ $('#logout-form').submit();
+ return false; 
 };
 
 window.utils = utils;

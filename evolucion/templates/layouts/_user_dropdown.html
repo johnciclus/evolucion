@@ -7,10 +7,9 @@
       <li><a href='#'><i class='fa fa-gear fa-fw'></i>{% trans 'settings'|capfirst %}</a></li>
       <li class='divider'></li>
       <li>
-        <form action="/user/logout/" method="post">
+        <a id='logout' href='#'><i class='fa fa-sign-out fa-fw'></i> {% trans 'logout'|capfirst %} </a>
+        <form id='logout-form' action="/user/logout/" method="post">
           {% csrf_token %}
-          <a href='login.html'><i class='fa fa-sign-out fa-fw'></i> {% trans 'logout'|capfirst %} </a>
-          <button type="submit" class="btn btn-primary">Iniciar sesión</button> 
         </form>
       </li>
   </ul>

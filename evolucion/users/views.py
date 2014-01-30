@@ -75,7 +75,9 @@ def user_logout(request):
     if request.method == 'POST':
         if request.user.is_authenticated():
             logout(request)
-            return redirect('/')
+            response = redirect('/')
+            response.delete_cookie('sessionid')
+            return response
 
 class UserEdit(generic.View):
     model           = EvoUser

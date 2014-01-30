@@ -9,64 +9,35 @@ from evolucion.users.models import EvoUser
 import logging, sys
 from docutils.parsers.rst.directives.html import Meta
 
-class ProjectManager(models.Manager):
-    def create_project(self, title, description, keywords, model, user):
-        
-        project = self.create(name  =       slugify(title),
-                              title =       title, 
-                              description = description, 
-                              keywords =    keywords,
-                              model =       model,
-                              hits  =       0,
-                              stars =       0,
-                              created_at=   timezone.now(),
-                              updated_at=   timezone.now(),
-                              user_id =     user.id)
-        return project
-
 class Project(models.Model):
     name        = models.SlugField(_('name'), max_length=50, unique=True)
     title       = models.CharField(_('title'), max_length=50, unique=True)
     description = models.TextField(_('description'))
-    keywords    = models.CharField(_('keywords'), max_length=200)
-    model       = models.TextField(_('model'))
-    hits        = models.IntegerField(_('hits'))
-    stars       = models.IntegerField(_('stars'))
+    keywords    = models.CharField(_('keywords'), max_length=200, null=True, blank=True)
+    model       = models.TextField(_('model'), null=True, blank=True)
+    hits        = models.IntegerField(_('hits'), default=0)
+    stars       = models.IntegerField(_('stars'), default=0)
     created_at  = models.DateTimeField(_('created at'), default=timezone.now)
     updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
-    user = models.ForeignKey(EvoUser)
-    
-    #objects = ProjectManager()
-    
-    def get_url(self):
-        return self.user.username+'/'+self.name+'/'
-    
-    def get_button_id(self):
-        return self.user.username+'_'+self.name
+    user        = models.ForeignKey(EvoUser)
 
-    
-    #has_one :prose,       :dependent => :destroy
-    #has_one :influence,   :dependent => :destroy
-    #has_one :stockandflow,:dependent => :destroy
-    #has_one :equation,    :dependent => :destroy
-    #has_one :behavior,    :dependent => :destroy
-    
     def __unicode__(self):
         return self.title
 
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
+        fields = ('title', 'description', 'name', 'keywords', 'model', 'user')
 
 class Prose(models.Model):
-    project = models.OneToOneField(Project, primary_key=True)
     title = models.CharField(_('prose title'), max_length=200)
     description = models.TextField(_('prose description'), max_length=2000)
-    #model
-    
+    model       = models.TextField(_('model'), null=True, blank=True)
     created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
     updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
+    
+    project = models.OneToOneField(Project, primary_key=True)
     
     def __unicode__(self):
         return self.title
@@ -74,6 +45,7 @@ class Prose(models.Model):
 class ProseForm(ModelForm):
     class Meta:
         model = Prose
+        fields = ('title', 'description', 'model', 'project')
         
 class Influences(models.Model):
     project = models.OneToOneField(Project, primary_key=True)
@@ -101,19 +73,6 @@ class StockAndFlow(models.Model):
     
     def __unicode__(self):
         return self
-
-class Stockandflow(models.Model):
-    project = models.OneToOneField(Project, primary_key=True)
-    #width
-    #height
-    #model
-    
-    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
-    
-    def __unicode__(self):
-        return self
-
 
 class Equations(models.Model):
     project = models.OneToOneField(Project, primary_key=True)

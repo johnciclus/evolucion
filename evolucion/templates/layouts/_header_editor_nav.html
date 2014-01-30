@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+  <span class="sr-only">Toggle navigation</span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</button>
+<a href="#" class="navbar-brand dropdown-toggle" data-toggle="dropdown">Evolución<b class="caret"></b></a>
+<ul class="dropdown-menu">
+  <li><a id="overview-link" href="#"> {% trans "overview"|capfirst %} </a></li>
+  <li class="divider"></li>
+  <li><a id="open"      href="#"> {% trans "open"|capfirst %} </a></li>
+  <li><a id="save"      href="#"> {% trans "save"|capfirst %} </a></li>
+  <li><a id="download"  href="#"> {% trans "download"|capfirst %} </a></li>
+  <li><a href="#" class="text-primary" data-toggle="modal" data-target="#alertBrowserModal">Browser </a></li>
+</ul>
