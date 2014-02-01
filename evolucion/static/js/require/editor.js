@@ -2,9 +2,9 @@ require.config({
     baseUrl: '/static/js/',
     paths: {
         poo:            'poo',
-        jquery:         '//code.jquery.com/jquery-1.11.0.min',
-        jquery_hotkeys: '//mindmup.s3.amazonaws.com/lib/jquery.hotkeys',
-        bootstrap:      '//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min',
+        jquery:         'jquery/jquery-1.11.0.min',                 //'//code.jquery.com/jquery-1.11.0.min',
+        jquery_hotkeys: 'jquery/jquery.hotkeys',                    //'//mindmup.s3.amazonaws.com/lib/jquery.hotkeys',
+        bootstrap:      'bootstrap/bootstrap.min',                  //'//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min',
         offcanvas:      'bootstrap/offcanvas',
         prettify:       'bootstrap/prettify',
         wysiwyg:        'bootstrap/bootstrap-wysiwyg',

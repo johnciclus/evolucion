@@ -78,6 +78,9 @@ class Editor(generic.View):
         
         prose_form = ProseForm(instance = prose, auto_id = True)
         
+        #return HttpResponse( serializers.serialize("xml", projects),
+        #                     content_type = 'text/xml; charset=utf8')
+        
         context = {}
         context['user']              = request.user
         context['requested_user']    = requested_user
@@ -96,22 +99,35 @@ class Save(generic.View):
         
         model = request.POST['model']
         
-        xml_model   = ET.fromstring(model.encode('utf-8'))
-        user_name   = xml_model.attrib['user_name']
-        project_name= xml_model.attrib['project_name']
-        prose       = xml_model.find('prose')
+        model_xml   = ET.fromstring(model.encode('utf-8'))
+        user_name   = model_xml.attrib['user_name']
+        project_name= model_xml.attrib['project_name']
         
         
-        print >>sys.stderr, "xml_model"
-        print >>sys.stderr, xml_model
-        print >>sys.stderr, prose.find('title').text
+        print >>sys.stderr, "model_xml"
+        print >>sys.stderr, model_xml
         
         user  = get_object_or_404(EvoUser, username = user_name)
         project = user.project_set.get(name = project_name)
         
-        print >>sys.stderr, "project"
-        print >>sys.stderr, project
-        print >>sys.stderr, dir(project)
+        project.model = model
+        
+        try:
+            project.full_clean()
+            project.save()
+        except ValidationError as e:
+            pass
+        
+        prose_xml           = model_xml.find('prose')
+        prose, created      = Prose.objects.get_or_create(project = project)
+        prose.title         = prose_xml.find('title').text
+        prose.description   = prose_xml.find('description').text
+        
+        try:
+            prose.full_clean()
+            prose.save()
+        except ValidationError as e:
+            pass
         
         return render(request, 'projects/_confirmation.html', context)
 
@@ -138,13 +154,4 @@ class SaveEquations(generic.View):
 class SaveBehavior(generic.View):
     def post(self, request, *args, **kwargs):
         context = {}
-        return render(request, 'projects/_confirmation.html', context)
-    
-def save(request):
-    projects = Project.objects.all()
-    
-    return HttpResponse( serializers.serialize("xml", projects),
-                         content_type = 'text/xml; charset=utf8')
-  
-    #latest_projects_list = Project.objects.order_by('-pub_date')[:5]
-        
+        return render(request, 'projects/_confirmation.html', context)        

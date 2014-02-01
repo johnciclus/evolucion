@@ -725,7 +725,7 @@ this.EleBase = Unit.extend({
   init: function(ctx){
     this._super(ctx);
     
-    this.definition     = ' ';
+    this.definition     = '';
     
     this.connec           = {};       //Connections
     this.connec['oriAce'] = true;     // (true || false)      Origin accepts
@@ -904,7 +904,7 @@ this.EleBase = Unit.extend({
     }        
     if(obj){
       var list      = obj.list;
-      var copiesList= obj.copiesList;
+      var clonesList= obj.clonesList;
       var ref       = obj.ref;
                    
       if(list[obj.id]){
@@ -918,16 +918,20 @@ this.EleBase = Unit.extend({
         obj.enteringRels[i].remove();
       }
       
-      if(copiesList){
-        for(var i in copiesList){
-          copiesList[i].remove();
+      if(clonesList){
+        for(var i in clonesList){
+          clonesList[i].remove();
         }
       }
       if(ref){
-        var copiesList = ref.copiesList;
-        for(var i in copiesList){
-          if(copiesList[i].id == obj.id){
-            delete(copiesList[i]);
+        var clonesList = ref.clonesList;
+        for(var i in clonesList){
+          if(clonesList[i].id == obj.id){
+            delete(clonesList[i]);
+            var limit = obj.ctx.limitAdjustList(clonesList);
+            ref.clonesListQua = ++limit;
+            
+            console.log(ref.clonesListQua);
           }
         }
       }
@@ -947,9 +951,10 @@ this.Element = EleBase.extend({
   init: function(ctx){
     this._super(ctx);
     
-    this.dimension = 1;
+    this.dimension = undefined;
     
-    this.copiesList = {};
+    this.clonesList = {};
+    this.clonesListQua = 0;
   },
   figure: function(p){
     this.fig = this.figGenerator(this.ctx, this, p, this.title, {cursor: "move"});
@@ -963,12 +968,12 @@ this.Element = EleBase.extend({
     this.fig[4].click(this.viewDetails);
   },
   restoreCopies: function(){
-    var copy;
-    if(this.copiesList){
-      for(var i in this.copiesList){
-        copy = this.copiesList[i]; 
-        if(copy){
-          copy.changeTitle(this.title);
+    var clone;
+    if(this.clonesList){
+      for(var i in this.clonesList){
+        clone = this.clonesList[i]; 
+        if(clone){
+          clone.changeTitle(this.title);
         }
       }
     }
@@ -995,10 +1000,12 @@ this.Clone = EleBase.extend({
         
     this.id = 'clone-'+idx;
     
+    this.ref = el;     
+    this.ref.clonesList[this.id] = this;
+    var idx_clone = this.ref.clonesListQua++;
+    
     this.title = el.title;
-    this.name = utils.textToVar(this.title);
-    this.ref = el;
-    this.ref.copiesList[this.id] = this;
+    this.name = utils.textToVar(this.title+" "+this.type+" "+idx_clone);
     
     this.list = this.ctx.list.clone;
     this.connec['desAce'] = false;
@@ -2102,10 +2109,13 @@ this.Evolucion = Class.extend({
     save: function(){
       var frm = $('#save_form');
       
-      var model = $('#xmldocument model:first');
+      var model = $('#xmldocument model:first');     
       
       if(evo.pro){
         evo.pro.saveAsDom();
+      }
+      if(evo.inf){
+        evo.inf.saveAsDom();
       }
       
       var root =  $('#xmldocument');
@@ -2119,7 +2129,6 @@ this.Evolucion = Class.extend({
           'model':                root.html()
         },
         success: function (data, textStatus, jqXHR) {
-          console.log('success');
           evo.messages.success(data);
         },
         error: function(data) {
@@ -2130,9 +2139,7 @@ this.Evolucion = Class.extend({
       
       
       /*
-      /*if(this.inf){
-        this.inf.saveAsDom();
-      }
+      /*
       if(this.saf){
         this.saf.saveAsDom();
       }
@@ -2240,8 +2247,7 @@ this.Evolucion = Class.extend({
             //'<strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.'+
           '</div>'
         ).children(':last-child');
-        console.log(message);
-        message.slideDown(1000).delay(10000).slideUp(1000, function(){console.log(message); this.remove();});
+        message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
       }
     },
     warning: function(message){

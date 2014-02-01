@@ -32,6 +32,7 @@ require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations
       
     utils_gui.initToolbarBootstrapBindings();
     $('#prose-editor').wysiwyg({ fileUploadError: utils_gui.showErrorAlert} );
+    $('#prose-editor').html($('#prose-editor').text());
     
     window.prettyPrint && prettyPrint();
   
