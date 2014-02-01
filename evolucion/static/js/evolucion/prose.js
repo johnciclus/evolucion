@@ -1,8 +1,7 @@
 /* Evolucion - Prose
  * By John Garavito
  */
-$(document).ready(function(){
-  (function(){
+
     this.Prose = Class.extend({
       init: function(){
         this.id       = 'pro';
@@ -25,11 +24,12 @@ $(document).ready(function(){
         else{
           prose.empty();
         }
+
+        var title =       $(this.divArea+' #title');
+        var description = $(this.divArea+' #prose-editor');
         
-        prose.append($('<title />').text($('#prose_form #title').val()));
-        prose.append($('<description />').text($('#prose_form #prose-editor').cleanHtml()));
+        prose.append($('<title />').text(title.val()));
+        prose.append($('<description />').text(description.cleanHtml()));
       }
       
     });
-  })();
-});

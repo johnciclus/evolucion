@@ -1,4 +1,4 @@
-{% load staticfiles filters i18n %}
+{% load filters i18n %}
   {% csrf_token %}
   <div class="form-group">
       <label for="{{ form.first_name|id }}" class="col-lg-3 control-label">{{ form.first_name|verbosename }}</label>

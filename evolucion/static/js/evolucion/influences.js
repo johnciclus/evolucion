@@ -1,8 +1,7 @@
 /* Evolucion - Influences
  * By John Garavito
  */
-$(document).ready(function(){
-  (function(){
+
     this.figures = $.extend(this.figures, {
       concept: function(ctx, parent, p, title, figureStyle){
         var bb, op, width, height;
@@ -1023,5 +1022,3 @@ $(document).ready(function(){
         }
       } 
     });
-  })();
-});

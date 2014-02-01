@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-28 16:25-0500\n"
+"POT-Creation-Date: 2014-01-31 11:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,66 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: evolucion/projects/models.py:31 evolucion/users/models.py:15
+#: evolucion/projects/models.py:13
+#, fuzzy
+msgid "name"
+msgstr "nombre de usuario"
+
+#: evolucion/projects/models.py:14 evolucion/templates/projects/index.html:30
+#: evolucion/templates/projects/index.html:85
+msgid "title"
+msgstr "titulo"
+
+#: evolucion/projects/models.py:15 evolucion/templates/projects/index.html:36
+msgid "description"
+msgstr "descripción"
+
+#: evolucion/projects/models.py:16
+msgid "keywords"
+msgstr ""
+
+#: evolucion/projects/models.py:17 evolucion/projects/models.py:36
+#, fuzzy
+msgid "model"
+msgstr "submodelos"
+
+#: evolucion/projects/models.py:18
+msgid "hits"
+msgstr ""
+
+#: evolucion/projects/models.py:19
+msgid "stars"
+msgstr ""
+
+#: evolucion/projects/models.py:20 evolucion/users/models.py:15
 msgid "created at"
 msgstr "creado el"
 
-#: evolucion/projects/models.py:32 evolucion/users/models.py:16
+#: evolucion/projects/models.py:21 evolucion/users/models.py:16
 msgid "updated at"
 msgstr "actualizado el"
 
-#: evolucion/projects/models.py:56
+#: evolucion/projects/models.py:34
 msgid "prose title"
 msgstr "titulo"
 
-#: evolucion/projects/models.py:57
+#: evolucion/projects/models.py:35
 msgid "prose description"
 msgstr "descripción"
 
-#: evolucion/projects/models.py:60 evolucion/projects/models.py:79
-#: evolucion/projects/models.py:91 evolucion/projects/models.py:103
-#: evolucion/projects/models.py:116 evolucion/projects/models.py:128
+#: evolucion/projects/models.py:37 evolucion/projects/models.py:59
+#: evolucion/projects/models.py:71 evolucion/projects/models.py:83
+#: evolucion/projects/models.py:95
 msgid "created_at"
 msgstr "creado el"
 
-#: evolucion/projects/models.py:61 evolucion/projects/models.py:80
-#: evolucion/projects/models.py:92 evolucion/projects/models.py:104
-#: evolucion/projects/models.py:117 evolucion/projects/models.py:129
+#: evolucion/projects/models.py:38 evolucion/projects/models.py:60
+#: evolucion/projects/models.py:72 evolucion/projects/models.py:84
+#: evolucion/projects/models.py:96
 msgid "updated_at"
 msgstr "actualizado el"
 
-#: evolucion/projects/views.py:59
+#: evolucion/projects/views.py:53
 msgid "the project was successfully registered"
 msgstr "el proyecto fue registrado exitosamente"
 
@@ -551,7 +582,7 @@ msgstr "sector"
 msgid "prose title placeholder"
 msgstr "titulo del modelo"
 
-#: evolucion/templates/editor/_prose.html:23
+#: evolucion/templates/editor/_prose.html:24
 msgid "prose description placeholder"
 msgstr "descripción del modelo"
 
@@ -615,53 +646,13 @@ msgstr "relación"
 msgid "saf sector btn title"
 msgstr "sector"
 
-#: evolucion/templates/editor/base_editor.html:49
-msgid "overview"
-msgstr "resumen"
-
-#: evolucion/templates/editor/base_editor.html:51
-msgid "open"
-msgstr "abrir"
-
-#: evolucion/templates/editor/base_editor.html:52
-msgid "save"
-msgstr "guardar"
-
-#: evolucion/templates/editor/base_editor.html:53
-msgid "download"
-msgstr "descargar"
-
-#: evolucion/templates/editor/base_editor.html:60
-msgid "prose"
-msgstr "prosa"
-
 #: evolucion/templates/editor/base_editor.html:61
-msgid "influences"
-msgstr "influencias"
-
-#: evolucion/templates/editor/base_editor.html:62
-msgid "stock and flow"
-msgstr "flujo nivel"
-
-#: evolucion/templates/editor/base_editor.html:63
-msgid "equations"
-msgstr "ecuaciones"
-
-#: evolucion/templates/editor/base_editor.html:64
-msgid "behaviors"
-msgstr "comportamientos"
-
-#: evolucion/templates/editor/base_editor.html:157
 msgid "browser incompatibility"
 msgstr "incompatibilidad del navegador de internet"
 
-#: evolucion/templates/editor/base_editor.html:182
+#: evolucion/templates/editor/base_editor.html:86
 msgid "close"
 msgstr "cerrar"
-
-#: evolucion/templates/editor/index.html:6
-msgid "home"
-msgstr "inicio"
 
 #: evolucion/templates/home/_carousel.html:20
 msgid "sign up today"
@@ -717,46 +708,82 @@ msgstr ""
 "cualquier persona por medio de internet puede conocer las actualizaciones de "
 "cada modelo "
 
-#: evolucion/templates/layouts/_main_nav_content.html:3
-#: evolucion/templates/layouts/_main_user_content.html:3
+#: evolucion/templates/layouts/_editor_content.html:3
+msgid "prose"
+msgstr "prosa"
+
+#: evolucion/templates/layouts/_editor_content.html:4
+msgid "influences"
+msgstr "influencias"
+
+#: evolucion/templates/layouts/_editor_content.html:5
+msgid "stock and flow"
+msgstr "flujo nivel"
+
+#: evolucion/templates/layouts/_editor_content.html:6
+msgid "equations"
+msgstr "ecuaciones"
+
+#: evolucion/templates/layouts/_editor_content.html:7
+msgid "behaviors"
+msgstr "comportamientos"
+
+#: evolucion/templates/layouts/_editor_header.html:11
+msgid "overview"
+msgstr "resumen"
+
+#: evolucion/templates/layouts/_editor_header.html:13
+msgid "open"
+msgstr "abrir"
+
+#: evolucion/templates/layouts/_editor_header.html:14
+msgid "save"
+msgstr "guardar"
+
+#: evolucion/templates/layouts/_editor_header.html:15
+msgid "download"
+msgstr "descargar"
+
+#: evolucion/templates/layouts/_home_content.html:3
+#: evolucion/templates/layouts/_user_content.html:3
 msgid "nav home"
 msgstr "inicio"
 
-#: evolucion/templates/layouts/_main_nav_content.html:4
-#: evolucion/templates/layouts/_main_user_content.html:4
+#: evolucion/templates/layouts/_home_content.html:4
+#: evolucion/templates/layouts/_user_content.html:4
 msgid "nav explore"
 msgstr "explorar"
 
-#: evolucion/templates/layouts/_main_nav_content.html:8
+#: evolucion/templates/layouts/_home_content.html:8
 msgid "nav features"
 msgstr "características"
 
-#: evolucion/templates/layouts/_main_nav_content.html:12
-#: evolucion/templates/layouts/_main_user_content.html:5
+#: evolucion/templates/layouts/_home_content.html:12
+#: evolucion/templates/layouts/_user_content.html:5
 msgid "nav my projects"
 msgstr "mis projectos"
 
-#: evolucion/templates/layouts/_main_nav_content.html:18
+#: evolucion/templates/layouts/_home_content.html:18
 msgid "about"
 msgstr "acerca de"
 
-#: evolucion/templates/layouts/_main_nav_content.html:21
+#: evolucion/templates/layouts/_home_content.html:21
 msgid "nav history"
 msgstr "historia"
 
-#: evolucion/templates/layouts/_main_nav_content.html:22
+#: evolucion/templates/layouts/_home_content.html:22
 msgid "nav core team"
 msgstr "equipo de desarrollo"
 
-#: evolucion/templates/layouts/_main_nav_content.html:23
+#: evolucion/templates/layouts/_home_content.html:23
 msgid "nav community"
 msgstr "comunidad"
 
-#: evolucion/templates/layouts/_main_nav_content.html:24
+#: evolucion/templates/layouts/_home_content.html:24
 msgid "nav translations"
 msgstr "traductores"
 
-#: evolucion/templates/layouts/_main_nav_content.html:25
+#: evolucion/templates/layouts/_home_content.html:25
 msgid "nav contact us"
 msgstr "contáctanos"
 
@@ -772,12 +799,12 @@ msgstr "inicia sesión"
 msgid "settings"
 msgstr "opciones"
 
-#: evolucion/templates/layouts/_user_dropdown.html:9
+#: evolucion/templates/layouts/_user_dropdown.html:10
 msgid "logout"
 msgstr "cerrar sesión"
 
 #: evolucion/templates/projects/_new_project.html:12
-#: evolucion/templates/projects/index.html:33
+#: evolucion/templates/projects/index.html:110
 msgid "open project"
 msgstr "abrir projecto"
 
@@ -790,29 +817,59 @@ msgstr "abrir projecto"
 msgid "information"
 msgstr "información"
 
-#: evolucion/templates/projects/index.html:46
+#: evolucion/templates/projects/index.html:21
+#: evolucion/templates/projects/index.html:79
 msgid "new project"
 msgstr "nuevo proyecto"
 
-#: evolucion/templates/projects/index.html:52
-msgid "title"
-msgstr "titulo"
-
-#: evolucion/templates/projects/index.html:54
+#: evolucion/templates/projects/index.html:32
 msgid "new project title"
 msgstr "titulo del nuevo projecto"
 
-#: evolucion/templates/projects/index.html:59
-msgid "description"
-msgstr "descripción"
-
-#: evolucion/templates/projects/index.html:62
+#: evolucion/templates/projects/index.html:39
 msgid "project description"
 msgstr "descripción del nuevo projecto"
 
-#: evolucion/templates/projects/index.html:67
+#: evolucion/templates/projects/index.html:57
 msgid "launch project"
 msgstr "lanzar projecto"
+
+#: evolucion/templates/projects/index.html:82
+msgid "order by"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:86
+#, fuzzy
+msgid "creation date"
+msgstr "creado el"
+
+#: evolucion/templates/projects/index.html:87
+msgid "number of hits"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:88
+msgid "number of stars"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:96
+#, fuzzy
+msgid "own projects"
+msgstr "abrir projecto"
+
+#: evolucion/templates/projects/index.html:97
+#, fuzzy
+msgid "own projects description"
+msgstr "descripción del nuevo projecto"
+
+#: evolucion/templates/projects/index.html:120
+#, fuzzy
+msgid "fork projects"
+msgstr "abrir projecto"
+
+#: evolucion/templates/projects/index.html:121
+#, fuzzy
+msgid "fork projects description"
+msgstr "descripción del nuevo projecto"
 
 #: evolucion/templates/users/_form.html:11
 msgid "sign up first_name placeholder"
@@ -848,19 +905,19 @@ msgstr "Confirme la contraseña"
 msgid "sign up confirm_password placeholder"
 msgstr "Contraseña con letras y numeros"
 
-#: evolucion/templates/users/_sign_up.html:9
+#: evolucion/templates/users/_sign_up.html:8
 msgid "sign up title"
 msgstr "Regístrate en Evolución Web"
 
-#: evolucion/templates/users/_sign_up.html:24
+#: evolucion/templates/users/_sign_up.html:23
 msgid "sign up terms"
 msgstr "Condiciones del servicio de Evolución Web"
 
-#: evolucion/templates/users/_sign_up.html:32
+#: evolucion/templates/users/_sign_up.html:31
 msgid "sign up submit text"
 msgstr "Registrarse"
 
-#: evolucion/templates/users/_sign_up.html:37
+#: evolucion/templates/users/_sign_up.html:36
 msgid "sign up log in text"
 msgstr "Iniciar sesión"
 
@@ -880,7 +937,7 @@ msgstr "ocupación"
 msgid "accept terms"
 msgstr "acepta las condiciones del servicio"
 
-#: evolucion/users/views.py:37 evolucion/users/views.py:110
+#: evolucion/users/views.py:37 evolucion/users/views.py:118
 msgid "the user was successfully registered"
 msgstr "el usuario fue registrado exitosamente"
 
@@ -896,11 +953,11 @@ msgstr "el usuario no esta activo"
 msgid "the username or password is not correct."
 msgstr "el nombre de usuario o contrase esta incorrecta"
 
+#~ msgid "home"
+#~ msgstr "inicio"
+
 #~ msgid "sing in"
 #~ msgstr "Inicia sesión"
-
-#~ msgid "username"
-#~ msgstr "nombre de usuario"
 
 #~ msgid "password"
 #~ msgstr "contraseña"

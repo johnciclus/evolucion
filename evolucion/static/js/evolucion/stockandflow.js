@@ -1,8 +1,7 @@
 /* Evolucion - Stock and Flow
  * By John Garavito
  */
-$(document).ready(function(){
-  (function(){
+
     this.figures = $.extend(this.figures, {
       saf_base: function(ctx, parent, figGenerator, p, title, figureStyle){
         var bb, op, width, height, el_size;
@@ -2016,5 +2015,3 @@ $(document).ready(function(){
         return undefined;
       }
     });
-  })();
-});

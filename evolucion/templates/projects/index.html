@@ -68,8 +68,8 @@
         
       <div class="container">
         <div class="page-header centered">
-          <h1 id="progress">{{ requested_user.username|capfirst }}</h1>
-          <p>{{ requested_user.occupation|capfirst }}</p>
+          <h1>{{ requested_user.username|capfirst }}</h1>
+          <p> {{ requested_user.occupation|capfirst }}</p>
         </div>
         
         {% if user.is_authenticated %}
@@ -92,6 +92,11 @@
         </div>
         {% endif %}
         
+        <div class="page-header">
+          <h1>{% trans 'own projects'|capfirst %}</h1>
+          <p> {% trans 'own projects description'|capfirst %}</p>
+        </div>
+        
         <div id="projects-container" class="row">  
           {% for project in projects %}
             <div class="col-6 col-sm-6 col-lg-4">
@@ -110,10 +115,16 @@
             </div><!--/span-->
           {% endfor %}
         </div>
+        
+        <div class="page-header">
+          <h1>{% trans 'fork projects'|capfirst %}</h1>
+          <p> {% trans 'fork projects description'|capfirst %}</p>
+        </div>
+        
       </div>
       
       
     {% endblock %}
     
-    <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/main_projects' %}"></script>
+    <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/projects' %}"></script>
 {% endblock %}

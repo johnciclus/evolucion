@@ -2,102 +2,101 @@
 
 {% load staticfiles filters i18n %}
 
-    {% block csslinks %}
-    
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/spacelab/bootstrap.min.css" rel="stylesheet">
-    <link href="{% static 'css/bootstrap/offcanvas.css' %}" rel="stylesheet">
-    <link href="{% static 'css/prettify.css' %}" rel="stylesheet">
-    <link href="{% static 'css/morris.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap/bootstrap_editor.css' %}" rel="stylesheet">
-    
-    {% endblock %}
-    
-    
-    {% block nav %}
-      {% include 'layouts/_editor_nav.html' %}
-      {% if user.is_anonymous %}
-        {% include 'users/_sign_up.html' %}
-        {% include 'users/_sign_in.html' %}
-      {% endif %}
-    {% endblock %}
-    
-    
-    {% block body %} 
-    
-    <div class="work-area">
-      <div id="overview-area" class="container">
-          {% block home %}
-              
-          {% endblock%}
-      </div>
-      
-      <div id="prose-area" class="container">
-        {% include 'editor/_prose.html' %}
-      </div>
+{% block csslinks %}
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/spacelab/bootstrap.min.css" rel="stylesheet">
+<link href="{% static 'css/bootstrap/offcanvas.css' %}" rel="stylesheet">
+<link href="{% static 'css/prettify.css' %}" rel="stylesheet">
+<link href="{% static 'css/morris.css' %}" rel="stylesheet">
+<link href="{% static 'css/bootstrap/bootstrap_editor.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+
+{% block nav %}
+  {% include 'layouts/_editor_nav.html' %}
+  {% if user.is_anonymous %}
+    {% include 'users/_sign_up.html' %}
+    {% include 'users/_sign_in.html' %}
+  {% endif %}
+{% endblock %}
+
+
+{% block body %} 
+
+<div class="work-area">
+  <div id="overview-area" class="container">
+      {% block home %}
+          
+      {% endblock%}
+  </div>
   
-      <div id="influences-area">
-        {% include 'editor/_influences.html' %}
-      </div>
-      
-      <div id="stockandflow-area">
-        {% include 'editor/_stock-and-flow.html' %}
-      </div>
-      
-      <div id="equations-area">
-        {% include 'editor/_equations.html' %}
-      </div>
-      
-      <div id="behaviors-area">
-        {% include 'editor/_behaviors.html' %}
-      </div>
-    </div>
-    
-    <div class="modal fade" id="alertBrowserModal" tabindex="-1" role="dialog" aria-labelledby="alertBrowserModal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">{% trans 'browser incompatibility' %}</h4>
-          </div>        
-          <div class="modal-body">
-            <p>Evolución Web no es compatible con su navegador de internet, 
-                los siguientes navegadores son compatibles: </p>
-            <div id="browsers" class="browsers">
-                <a href="https://www.google.com/intl/es/chrome/browser/" target="_blank">
-                  <img src="/static/images/google-chrome.png" alt="Google Chrome" height="150" width="150">
-                </a>
-                <a href="http://www.apple.com/es/safari/" target="_blank">
-                  <img src="/static/images/safari.png" alt="Safari" height="150" width="150">
-                </a>
-                <a href="http://www.opera.com/download/" target="_blank">
-                  <img src="/static/images/opera.png" alt="Opera" height="150" width="150">
-                    
-                </a>
-                <a href="http://www.mozilla.org/es-ES/firefox/new/" target="_blank">
-                  <img src="/static/images/mozilla-firefox.png" alt="Mozilla Firefox" height="150" width="150">    
-                </a>            
-            </div>
+  <div id="prose-area" class="container">
+    {% include 'editor/_prose.html' %}
+  </div>
+
+  <div id="influences-area">
+    {% include 'editor/_influences.html' %}
+  </div>
+  
+  <div id="stockandflow-area">
+    {% include 'editor/_stock-and-flow.html' %}
+  </div>
+  
+  <div id="equations-area">
+    {% include 'editor/_equations.html' %}
+  </div>
+  
+  <div id="behaviors-area">
+    {% include 'editor/_behaviors.html' %}
+  </div>
+</div>
+
+<div class="modal fade" id="alertBrowserModal" tabindex="-1" role="dialog" aria-labelledby="alertBrowserModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">{% trans 'browser incompatibility' %}</h4>
+      </div>        
+      <div class="modal-body">
+        <p>Evolución Web no es compatible con su navegador de internet, 
+            los siguientes navegadores son compatibles: </p>
+        <div id="browsers" class="browsers">
+            <a href="https://www.google.com/intl/es/chrome/browser/" target="_blank">
+              <img src="/static/images/google-chrome.png" alt="Google Chrome" height="150" width="150">
+            </a>
+            <a href="http://www.apple.com/es/safari/" target="_blank">
+              <img src="/static/images/safari.png" alt="Safari" height="150" width="150">
+            </a>
+            <a href="http://www.opera.com/download/" target="_blank">
+              <img src="/static/images/opera.png" alt="Opera" height="150" width="150">
                 
-          </div>
-          <div class="modal-footer">
-            <div class="form-group">
-              <div class="col-lg-12 col-centered">
-                <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{% trans 'close'|capfirst %}</button> 
-              </div>
-            </div>
-          </div>
-        </div>        
+            </a>
+            <a href="http://www.mozilla.org/es-ES/firefox/new/" target="_blank">
+              <img src="/static/images/mozilla-firefox.png" alt="Mozilla Firefox" height="150" width="150">    
+            </a>            
+        </div>
+            
       </div>
-    </div>
-    
-    <xml id="xmldocument" style="display: none"><model></model></xml>
-    
-    <!-- JavaScript -->
-    
-    <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/main_editor' %}"></script>
-    
+      <div class="modal-footer">
+        <div class="form-group">
+          <div class="col-lg-12 col-centered">
+            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">{% trans 'close'|capfirst %}</button> 
+          </div>
+        </div>
+      </div>
+    </div>        
+  </div>
+</div>
 
+<xml id="xmldocument" style="display: none"><model user_name="{{ user.username }}" project_name="{{ project.name }}"></model></xml>
 
-    
-    {% endblock %}
+<script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/editor' %}"></script>
+
+<form id="save_form" class="form-horizontal" action="/projects/save/" method="post">
+    {% csrf_token %}
+</form>
+
+{% endblock %}

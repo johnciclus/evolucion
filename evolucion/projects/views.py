@@ -7,6 +7,8 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
+from xml.etree import ElementTree as ET
+
 from evolucion.users.models import EvoUser, UserForm
 from evolucion.projects.models import Project, ProjectForm, Prose, ProseForm
 
@@ -15,19 +17,17 @@ import logging, sys
 logger = logging.getLogger(__name__)
 # print >>sys.stderr, "Text"
 
-class IndexView(generic.View):
-    model = Project
+class Index(generic.View):
     template_name = 'projects/index.html'
-    context_object_name = 'projects'
 
     def get(self, request, *args, **kwargs):
         requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
         projects = requested_user.project_set.all()
         
         context = {}
-        context['user'] = request.user
-        context['requested_user'] = requested_user
-        context['projects'] = projects
+        context['user']             = request.user
+        context['requested_user']   = requested_user
+        context['projects']         = projects
        
         if request.user.is_anonymous():
             form = UserForm(auto_id=True)
@@ -35,7 +35,7 @@ class IndexView(generic.View):
         
         return render(request, self.template_name, context)
     
-class NewView(generic.View):
+class Create(generic.View):
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated():
             user = get_object_or_404(EvoUser, pk = request.user.id)
@@ -61,21 +61,28 @@ class NewView(generic.View):
         else:
             return redirect('/')
 
-class EditorView(generic.View):
+class Editor(generic.View):
     template_name = 'editor/index.html'
     
     def get(self, request, *args, **kwargs):
         requested_user    = get_object_or_404(EvoUser, username = kwargs['username'])
-        requested_project = get_object_or_404(requested_user.project_set, name = kwargs['project_name'])
+        project = get_object_or_404(requested_user.project_set, name = kwargs['project_name'])
         
-        prose = Prose(title = requested_project.title, description = requested_project.description, project = requested_project)
+        try:
+            prose = project.prose
+        except Prose.DoesNotExist:
+            prose = None        
+        
+        if prose is None:
+            prose = Prose(title = project.title, description = project.description, project = project)
+        
         prose_form = ProseForm(instance = prose, auto_id = True)
         
         context = {}
-        context['user'] = request.user
-        context['requested_user'] = requested_user
-        context['requested_project'] = requested_project
-        context['prose_form'] = prose_form
+        context['user']              = request.user
+        context['requested_user']    = requested_user
+        context['project']           = project
+        context['prose_form']        = prose_form
                
         if request.user.is_anonymous():
             form = UserForm(auto_id=True)
@@ -83,47 +90,61 @@ class EditorView(generic.View):
         
         return render(request, self.template_name, context)
    
+class Save(generic.View):
+    def post(self, request, *args, **kwargs):
+        context = {}
+        
+        model = request.POST['model']
+        
+        xml_model   = ET.fromstring(model.encode('utf-8'))
+        user_name   = xml_model.attrib['user_name']
+        project_name= xml_model.attrib['project_name']
+        prose       = xml_model.find('prose')
+        
+        
+        print >>sys.stderr, "xml_model"
+        print >>sys.stderr, xml_model
+        print >>sys.stderr, prose.find('title').text
+        
+        user  = get_object_or_404(EvoUser, username = user_name)
+        project = user.project_set.get(name = project_name)
+        
+        print >>sys.stderr, "project"
+        print >>sys.stderr, project
+        print >>sys.stderr, dir(project)
+        
+        return render(request, 'projects/_confirmation.html', context)
 
-def create(request):
-    #@project = Project.new(project_params)
-    #format.js{
-    #    render :partial => 'refresh'
-    #  }
-    return HttpResponse("")
+class SaveProse(generic.View):
+    def post(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'projects/_confirmation.html', context)
 
-def show(request):
-    #@project = Project.find(params[:id])
-    #format.html
-    return HttpResponse("")
-#
-#saveProse
-#saveInfluence
-#saveStockAndFlow
-#saveEquations
-#saveBehavior
+class SaveInfluence(generic.View):
+    def post(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'projects/_confirmation.html', context)
 
+class SaveStockAndFlow(generic.View):
+    def post(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'projects/_confirmation.html', context)
+
+class SaveEquations(generic.View):
+    def post(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'projects/_confirmation.html', context)
+
+class SaveBehavior(generic.View):
+    def post(self, request, *args, **kwargs):
+        context = {}
+        return render(request, 'projects/_confirmation.html', context)
+    
 def save(request):
-    if request.method == 'POST':
-        model = request.POST["model"]
-        
-        print >>sys.stderr, "---Model---"
-        print >>sys.stderr, model
-        
-        projects = Project.objects.all()
-        
-        return HttpResponse( serializers.serialize("xml", projects),
-                             content_type = 'text/xml; charset=utf8')
-        
-            
-        #title = request.POST["title"]
-        #description = request.POST["description"]
-        
-        
-        
-        #p = Project(title=title, description=description, pub_date=timezone.now())
-        #p.save()
-        #latest_projects_list = Project.objects.order_by('-pub_date')[:5]
-        #context = {'latest_projects_list': latest_projects_list}
-        #return render(request, 'projects/index.html', context)
-        #return HttpResponseRedirect('/projects/')
+    projects = Project.objects.all()
+    
+    return HttpResponse( serializers.serialize("xml", projects),
+                         content_type = 'text/xml; charset=utf8')
+  
+    #latest_projects_list = Project.objects.order_by('-pub_date')[:5]
         

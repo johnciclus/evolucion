@@ -3,5 +3,13 @@
 {% load i18n %}
 
 {% block home %}
-    {% trans "home"|capfirst %}
+
+    <div class="page-header centered">
+      <h1>{{ project.title|capfirst }}</h1>
+      <p> {{ project.description|capfirst }}</p>
+    </div>
+    <div >
+      <p>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</p>
+    </div>
+    
 {% endblock%}

@@ -1,8 +1,7 @@
 /* Evolucion - Behaviors
  * By John Garavito
  */
-$(document).ready(function(){
-  (function(){
+
     this.Behaviors = Class.extend({
       init: function(){
         this.id       = 'beh';
@@ -249,5 +248,4 @@ $(document).ready(function(){
         } 
       }
     });
-  })();
-});
+

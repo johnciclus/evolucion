@@ -1,8 +1,7 @@
 /* Evolucion - Equations
  * By John Garavito
  */
-$(document).ready(function(){
-  (function(){
+
     this.Equations = Class.extend({
       init: function(){
         this.id       = 'equ';
@@ -73,5 +72,3 @@ $(document).ready(function(){
       }
       
     });
-  })();
-});

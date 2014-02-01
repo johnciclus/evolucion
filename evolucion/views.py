@@ -3,7 +3,7 @@ from django.views import generic
 
 from evolucion.users.models import UserForm
 
-class IndexView(generic.View):
+class Index(generic.View):
     def get(self, request, *args, **kwargs):
         form = UserForm(auto_id=True)
             
