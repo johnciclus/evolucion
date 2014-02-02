@@ -35,10 +35,14 @@ require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations
     $('#prose-editor').wysiwyg({ fileUploadError: utils_gui.showErrorAlert} );
     $('#prose-editor').html($('#prose-editor').text());
     
-    $('#xmldocument').html($('#model').text());
+    var text_model = $('#model').text();
+    
+    if(text_model.search('<model')>=0){
+      $('#xmldocument').html(text_model);
+      this.evo.openDOM();      
+    }
     $('#model').remove();
     
-    this.evo.readXML();
     this.evo.hideAreas();
     this.evo.showArea('overview');
         

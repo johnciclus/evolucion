@@ -52,16 +52,18 @@ class ProseForm(ModelForm):
         fields = ('title', 'description', 'model', 'project')
         
 class Influences(models.Model):
-    project = models.OneToOneField(Project, primary_key=True)
-    #width
-    #height
-    #model
-    #has_many :element_infs,   :dependent => :destroy
-    #has_many :relation_infs,  :dependent => :destroy
-    
-    
+    model       = models.TextField(_('model'), null=True, blank=True)
+    concepts    = models.IntegerField(_('concepts'), default=0)
+    cycles      = models.IntegerField(_('cycles'), default=0)
+    clones      = models.IntegerField(_('clones'), default=0)
+    material    = models.IntegerField(_('material'), default=0)
+    information = models.IntegerField(_('information'), default=0)
+    sector      = models.IntegerField(_('sector'), default=0)
+            
     created_at  = models.DateTimeField(_('created at'), default=timezone.now)
     updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
+    
+    project = models.OneToOneField(Project, primary_key=True)
     
     def __unicode__(self):
         return self
@@ -103,43 +105,45 @@ class Behaviors(models.Model):
         return self
 
 class ElementInf(models.Model):
-    influences = models.OneToOneField(Influences, primary_key=True)
-      #t.string :name,       :null => false            
-      #t.string :type_el,    :null => false
-      #t.string :title,      :null => false
-      #t.string :description
-      #t.string :units
-      #t.integer :pos_x,     :null => false
-      #t.integer :pos_y,     :null => false
-      
-      #t.references :influence, :null => false
-      #t.timestamps
+    influences = models.ForeignKey(Influences)
+    
+    #t.string :name,       :null => false            
+    #t.string :type_el,    :null => false
+    #t.string :title,      :null => false
+    #t.string :description
+    #t.string :units
+    #t.integer :pos_x,     :null => false
+    #t.integer :pos_y,     :null => false
+    
+    #t.references :influence, :null => false
+    #t.timestamps
     def __unicode__(self):
         return self
     
 class RelationInf(models.Model):
-    influences = models.OneToOneField(Influences, primary_key=True)
-      #t.string  :type_rel,      :null => false
-      #t.string  :description
-      #t.float   :po_x,          :null => false
-      #t.float   :po_y,          :null => false
-      #t.float   :pco_x,         :null => false
-      #t.float   :pco_y,         :null => false
-      #t.float   :pd_x,          :null => false
-      #t.float   :pd_y,          :null => false
-      #t.float   :pcd_x,         :null => false
-      #t.float   :pcd_y,         :null => false
-      # 
-      #t.references :origin,     :null => false
-      #t.references :destination,:null => false
-      #t.references :influence,  :null => false
-      #t.timestamps
-      
-      #belongs_to :origin,     :class_name => 'ElementInf'
-      #belongs_to :destination,:class_name => 'ElementInf'
-      
-      #has_many :origin_relations,     :foreign_key => 'origin_id',      :class_name => 'RelationInf'
-      #has_many :destination_relations,:foreign_key => 'destination_id', :class_name => 'RelationInf'
+    influences = models.ForeignKey(Influences)
+    
+    #t.string  :type_rel,      :null => false
+    #t.string  :description
+    #t.float   :po_x,          :null => false
+    #t.float   :po_y,          :null => false
+    #t.float   :pco_x,         :null => false
+    #t.float   :pco_y,         :null => false
+    #t.float   :pd_x,          :null => false
+    #t.float   :pd_y,          :null => false
+    #t.float   :pcd_x,         :null => false
+    #t.float   :pcd_y,         :null => false
+    # 
+    #t.references :origin,     :null => false
+    #t.references :destination,:null => false
+    #t.references :influence,  :null => false
+    #t.timestamps
+    
+    #belongs_to :origin,     :class_name => 'ElementInf'
+    #belongs_to :destination,:class_name => 'ElementInf'
+    
+    #has_many :origin_relations,     :foreign_key => 'origin_id',      :class_name => 'RelationInf'
+    #has_many :destination_relations,:foreign_key => 'destination_id', :class_name => 'RelationInf'
     def __unicode__(self):
         return self
 
@@ -151,39 +155,39 @@ class SectorInf(models.Model):
 
 class ElementSaf(models.Model):
     influences = models.OneToOneField(StockAndFlow, primary_key=True)
-      #t.string :name,       :null => false            
-      #t.string :type_el,    :null => false
-      #t.string :title,      :null => false
-      #t.string :description
-      #t.string :units
-      #t.integer :pos_x,     :null => false
-      #t.integer :pos_y,     :null => false
-      
-      #t.references :influence, :null => false
-      #t.timestamps
+    #t.string :name,       :null => false            
+    #t.string :type_el,    :null => false
+    #t.string :title,      :null => false
+    #t.string :description
+    #t.string :units
+    #t.integer :pos_x,     :null => false
+    #t.integer :pos_y,     :null => false
+    
+    #t.references :influence, :null => false
+    #t.timestamps
     def __unicode__(self):
         return self
     
 class RelationSaf(models.Model):
     stock_and_flow = models.OneToOneField(StockAndFlow, primary_key=True)
-      #t.string  :type_rel,      :null => false
-      #t.string  :description
-      #t.float   :po_x,          :null => false
-      #t.float   :po_y,          :null => false
-      #t.float   :pco_x,         :null => false
-      #t.float   :pco_y,         :null => false
-      #t.float   :pd_x,          :null => false
-      #t.float   :pd_y,          :null => false
-      #t.float   :pcd_x,         :null => false
-      #t.float   :pcd_y,         :null => false
-      # 
-      #t.references :origin,     :null => false
-      #t.references :destination,:null => false
-      #t.references :influence,  :null => false
-      #t.timestamps
-      
-      #has_many :origin_relations,     :foreign_key => 'origin_id',      :class_name => 'RelationInf'
-      #has_many :destination_relations,:foreign_key => 'destination_id', :class_name => 'RelationInf'
+    #t.string  :type_rel,      :null => false
+    #t.string  :description
+    #t.float   :po_x,          :null => false
+    #t.float   :po_y,          :null => false
+    #t.float   :pco_x,         :null => false
+    #t.float   :pco_y,         :null => false
+    #t.float   :pd_x,          :null => false
+    #t.float   :pd_y,          :null => false
+    #t.float   :pcd_x,         :null => false
+    #t.float   :pcd_y,         :null => false
+    # 
+    #t.references :origin,     :null => false
+    #t.references :destination,:null => false
+    #t.references :influence,  :null => false
+    #t.timestamps
+    
+    #has_many :origin_relations,     :foreign_key => 'origin_id',      :class_name => 'RelationInf'
+    #has_many :destination_relations,:foreign_key => 'destination_id', :class_name => 'RelationInf'
     def __unicode__(self):
         return self
     

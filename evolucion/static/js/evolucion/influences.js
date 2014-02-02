@@ -729,38 +729,10 @@ this.Influences = Editor.extend({
     this.objects.ctx = this;
   },
   
-  elementAsDOM: function(obj){
-    var element = $('<'+obj.type+' />');
-    return element;
-  },
-  relationAsDOM: function(obj){
-    var relation = $('<relation />');
-    relation.append($('<origin />').text(obj.from.name));
-    relation.append($('<destination />').text(obj.to.name));
-    relation.append($('<description />').text(obj.description));
-    
-    var pos = obj.position();
-    position = relation.append('<position />').children('position');
-    op = position.append('<op />').children('op');
-    op.append($('<x />').text(pos[0].x));
-    op.append($('<y />').text(pos[0].y));
-    opc = position.append('<opc />').children('opc');
-    opc.append($('<x />').text(pos[1].x));
-    opc.append($('<y />').text(pos[1].y));
-    dpc = position.append('<dpc />').children('dpc');
-    dpc.append($('<x />').text(pos[2].x));
-    dpc.append($('<y />').text(pos[2].y));
-    dp = position.append('<dp />').children('dp');
-    dp.append($('<x />').text(pos[3].x));
-    dp.append($('<y />').text(pos[3].y));
-    
-    return relation;
-  },
-  saveAsDom: function(){
+  saveAsDOM: function(){
     var model, influences, size;
-    var elements, element, group, groups, list, pos, position, 
-      relations, enteringRelsQua, leavingRelsQua,
-      relation, rels;
+    var elements, element, group, list, position, pos, 
+        relation, relations, enteringRelsQua, leavingRelsQua, rels;
     
     model = $('#xmldocument model:first');
     
@@ -779,15 +751,16 @@ this.Influences = Editor.extend({
     influences.attr('height', size.h+'px');
     
     if(model){
-      groups =  {
+      elements =  {
         'concept':  'concepts',
         'cycle':    'cycles'
       };
-      for(var el in groups){
+      for(var el in elements){
         list = inf.list[el];
-        group = influences.append('<'+groups[el]+' />').children(groups[el]);
+        group = influences.append('<'+elements[el]+' />').children(elements[el]);
         
         for(var i in list){
+          
           element = group.append('<'+el+' />').children(el+':last');
           element.append($('<name />').text(list[i].name));
           element.append($('<title />').text(list[i].title));
@@ -823,13 +796,14 @@ this.Influences = Editor.extend({
                   }else if(rels[rel].type == 'information'){
                     relation.attr('type', 'information'); 
                   }
+                  
                   relation.text(rels[rel].from.name);
                 }
               }
               if(leavingRelsQua > 0){
                 rels = list[i].leavingRels;
                 for(var rel in rels){
-                  relation = relations.append('<relation_to />').children('to_relation:last');
+                  relation = relations.append('<to_relation />').children('to_relation:last');
                   if(rels[rel].type == 'material'){
                     relation.attr('type', 'material');
                   }else if(rels[rel].type == 'information'){
@@ -846,26 +820,8 @@ this.Influences = Editor.extend({
       list = inf.list['clone'];
       group = influences.append('<clones />').children('clones');
       for(var i in list){
-        
-        element = group.append('<clone />').children('clone:last');
-        element.append($('<name />').text(list[i].name));
-        element.append($('<reference />').text(list[i].ref.name));
-        
-        pos = list[i].position();
-        position = element.append('<position />').children('position');
-        position.append($('<x />').text(pos.x));
-        position.append($('<y />').text(pos.y));
-        
-        leavingRelsQua = list[i].leavingRelsQua;
-        
-        if(leavingRelsQua > 0){
-          relations = element.append('<relations />').children('relations');
-          rels = list[i].leavingRels;
-          for(var rel in rels){
-            relation = relations.append('<to_relation />').children('relation_to');
-            relation.text(rels[rel].to.name);
-          }
-        }
+        element = this.cloneAsDOM(list[i]);
+        group.append(element);
       }
       
       list = inf.list['material'];
@@ -885,28 +841,165 @@ this.Influences = Editor.extend({
       list = inf.list['sectorinf'];
       group = influences.append('<sectors />').children('sectors');
       for(var i in list){
+        sectorinf = this.sectorAsDOM(list[i]);
+        group.append(sectorinf);
         
-        sectorinf = group.append('<sectorinf />').children('sectorinf:last');
-        sectorinf.append($('<name />').text(list[i].name));
-        sectorinf.append($('<title />').text(list[i].title));
-        sectorinf.append($('<description />').text(list[i].description));
-        
-        pos = list[i].position();
-        position = sectorinf.append('<position />').children('position');
-        position.append($('<x />').text(pos.x));
-        position.append($('<y />').text(pos.y));
-        
-        size = list[i].size();
-        size_sector = sectorinf.append('<size />').children('size');
-        width = size_sector.append('<width />').children('width');
-        width.text(size['width']);
-        height = size_sector.append('<height />').children('height');
-        height.text(size['height']);
       }   
     }
     else{
       return false;
     }
+  },
+  openAsDOM: function(model){
+    
+      var name, title, description, units, position, pos, relations, from_relations, to_relations,  p, pc, size, from, to;
+      var width, height;
+      
+      var influences  = model.children('influences');
+      
+      width = Number(influences.attr('width').replace('px',''));
+      height= Number(influences.attr('height').replace('px',''));
+      
+      inf.panel.resize(width, height);
+        
+      var concepts  = influences.find('concepts>concept');
+      
+      concepts.each(function( idx, concept ) {
+        name          = $(concept).children('name').text();
+        title         = $(concept).children('title').text();
+        description   = $(concept).children('description').text();
+        units         = $(concept).children('units').text();
+        
+        position      = $(concept).children('position');
+        relations     = $(concept).children('relations');
+        
+        from_relations = [];
+        to_relations   = [];
+        
+        $(relations).children('from_relation').each(function( idx, relation ) {
+          from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
+        });
+        
+        $(relations).children('to_relation').each(function( idx, relation ) {
+          to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
+        });
+        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+        
+        var c = new Concept(inf, pos, title, description, units);
+        inf.list.concept[c.id] = c;
+      });
+      
+      var cycles  = influences.find('cycles>cycle');
+      
+      cycles.each(function( idx, cycle ) {
+        name          = $(cycle).children('name').text();
+        title         = $(cycle).children('title').text();
+        description   = $(cycle).children('description').text();
+        orientation   = $(cycle).children('orientation').text();
+        feedback      = $(cycle).children('feedback').text();
+        position      = $(cycle).children('position');
+                        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+        
+        var c = new Cycle(inf, pos, title, description, orientation, feedback);
+        inf.list.cycle[c.id] = c;
+      });
+      
+      var clones  = influences.find('clones>clone');
+      
+      clones.each(function( idx, cycle ) {
+        name          = $(cycle).children('name').text();
+        reference     = $(cycle).children('reference').text();
+        
+        position      = $(cycle).children('position');
+        relations     = $(cycle).children('relations');
+        
+        from_relations = [];
+        to_relations   = [];
+        
+        $(relations).children('from_relation').each(function( idx, relation ) {
+          from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
+        });
+        
+        $(relations).children('to_relation').each(function( idx, relation ) {
+          to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
+        });
+        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+          
+        var el = inf.objects.getByName(reference);
+        
+        if(el){        
+          var c = new Clone(inf, pos, el);
+          inf.list.clone[c.id] = c;
+        }
+      });
+      
+      var material_relations  = influences.find('material_relations>relation');
+      
+      material_relations.each(function( idx, relation ) {
+        origin          = $(relation).children('origin').text();
+        destination     = $(relation).children('destination').text();
+        description     = $(relation).children('description').text();
+        
+        position      = $(relation).children('position');
+                
+        pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
+                {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
+                {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
+                {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
+              ];
+        
+        var from_el = inf.objects.getByName(origin);
+        var to_el   = inf.objects.getByName(destination);
+                
+        if(from_el && to_el){        
+          var rel = new MaterialRel(inf, pos, from_el, to_el, description);
+          inf.list.material[rel.id] = rel;
+        }
+      });
+      
+      var information_relations  = influences.find('information_relations>relation');
+      
+      information_relations.each(function( idx, relation ) {
+        origin          = $(relation).children('origin').text();
+        destination     = $(relation).children('destination').text();
+        description     = $(relation).children('description').text();
+        
+        position      = $(relation).children('position');
+                
+        pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
+                {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
+                {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
+                {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
+              ];
+        
+        var from_el = inf.objects.getByName(origin);
+        var to_el   = inf.objects.getByName(destination);
+                
+        if(from_el && to_el){        
+          var rel = new InformationRel(inf, pos, from_el, to_el, description);
+          inf.list.information[rel.id] = rel;
+        }
+      });
+      
+      var sectors  = influences.find('sectors>sectorinf');
+      
+      sectors.each(function( idx, sector ) {
+        name          = $(sector).children('name').text();
+        title         = $(sector).children('title').text();
+        description   = $(sector).children('description').text();
+        
+        position      = $(sector).children('position');
+        size          = $(sector).children('size');
+                        
+        pos = {'x':     Number($(position).children('x').text()), 'y':      Number($(position).children('y').text())};
+        sis = {'width': Number($(size).children('width').text()), 'height': Number($(size).children('height').text())};
+        
+        var s = new SectorInf(inf, pos, sis, title, description);
+        inf.list.sectorinf[s.id] = s;
+      });
   },
   
   objects: {

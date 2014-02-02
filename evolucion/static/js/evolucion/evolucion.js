@@ -1810,7 +1810,109 @@ this.Editor = Class.extend({
       el.changeTitle($(this).val());
       $("#text-edit-control").remove();  
     });
-  }        
+  },        
+  
+  cloneAsDOM: function(obj){
+    var element = $('<clone />');
+    element.append($('<name />').text(obj.name));
+    element.append($('<reference />').text(obj.ref.name));
+    
+    pos = obj.position();
+    position = element.append('<position />').children('position');
+    position.append($('<x />').text(pos.x));
+    position.append($('<y />').text(pos.y));
+    
+    leavingRelsQua = obj.leavingRelsQua;
+    
+    if(leavingRelsQua > 0){
+      relations = element.append('<relations />').children('relations');
+      rels = obj.leavingRels;
+      for(var rel in rels){
+        relation = relations.append('<to_relation />').children('to_relation');
+        relation.text(rels[rel].to.name);
+      }
+    }
+    return element;
+  },
+  elementAsDOM: function(obj){
+    var element = $('<'+obj.type+' />');
+    element.append($('<name />').text(obj.name));
+    element.append($('<title />').text(obj.title));
+    element.append($('<description />').text(obj.description));
+    element.append($('<definition />').text(obj.definition));
+    element.append($('<units />').text(obj.units));
+    element.append($('<dimension />').text(obj.dimension));
+    
+    pos = obj.position();
+    position = element.append('<position />').children('position');
+    position.append($('<x />').text(pos.x));
+    position.append($('<y />').text(pos.y));
+    
+    relations = element.append('<relations />').children('relations');
+              
+    enteringRelsQua = obj.enteringRelsQua;
+    leavingRelsQua  = obj.leavingRelsQua;
+    
+    if(enteringRelsQua > 0 || leavingRelsQua > 0){
+      if(enteringRelsQua > 0){
+        rels = obj.enteringRels;
+        for(var rel in rels){
+          relation = relations.append('<from_relation />').children('from_relation');
+          relation.text(rels[rel].from.name);
+        }
+      }
+      if(leavingRelsQua > 0){
+        rels = obj.relacSal;
+        for(var rel in rels){
+          relation = relations.append('<to_relation />').children('to_relation');
+          relation.text(rels[rel].to.name);
+        }
+      }
+    }
+    return element;
+  },
+  relationAsDOM: function(obj){
+    var relation = $('<relation />');
+    relation.append($('<origin />').text(obj.from.name));
+    relation.append($('<destination />').text(obj.to.name));
+    relation.append($('<description />').text(obj.description));
+    
+    var pos = obj.position();
+    position = relation.append('<position />').children('position');
+    op = position.append('<op />').children('op');
+    op.append($('<x />').text(pos[0].x));
+    op.append($('<y />').text(pos[0].y));
+    opc = position.append('<opc />').children('opc');
+    opc.append($('<x />').text(pos[1].x));
+    opc.append($('<y />').text(pos[1].y));
+    dpc = position.append('<dpc />').children('dpc');
+    dpc.append($('<x />').text(pos[2].x));
+    dpc.append($('<y />').text(pos[2].y));
+    dp = position.append('<dp />').children('dp');
+    dp.append($('<x />').text(pos[3].x));
+    dp.append($('<y />').text(pos[3].y));
+    
+    return relation;
+  },
+  sectorAsDOM: function(obj){
+    var sector = $('<'+obj.type+' />');
+    sector.append($('<name />').text(obj.name));
+    sector.append($('<title />').text(obj.title));
+    sector.append($('<description />').text(obj.description));
+    
+    pos = obj.position();
+    position = sector.append('<position />').children('position');
+    position.append($('<x />').text(pos.x));
+    position.append($('<y />').text(pos.y));
+    
+    size = obj.size();
+    size_sector = sector.append('<size />').children('size');
+    width = size_sector.append('<width />').children('width');
+    width.text(size['width']);
+    height = size_sector.append('<height />').children('height');
+    height.text(size['height']);
+    return sector;
+  }
 });
 
 this.Evolucion = Class.extend({
@@ -1874,11 +1976,23 @@ this.Evolucion = Class.extend({
     },
     save: function(){
       if(evo.pro){
-        evo.pro.saveAsDom();
+        evo.pro.saveAsDOM();
       }
       if(evo.inf){
-        evo.inf.saveAsDom();
+        evo.inf.saveAsDOM();
       }
+      if(evo.saf){
+        evo.saf.saveAsDOM();
+      }
+      
+      /*if(evo.equ){
+        evo.equ.saveAsDOM();
+      }
+      if(evo.beh){
+        evo.com.saveAsDOM();
+      }
+      */
+      
       
       var root =  $('#xmldocument');
       var csrf =  $("#save_form > input[name='csrfmiddlewaretoken']");
@@ -1899,25 +2013,11 @@ this.Evolucion = Class.extend({
           evo.messages.error(data);
           //$(id_response).html("<p>Problemas de conexión, por favor refresque la página.</p>");
         }
-      });    
-      
-      
-      /*
-      if(this.saf){
-        this.saf.saveAsDom();
-      }
-      if(this.equ){
-        this.equ.saveAsDom();
-      }
-      if(this.beh){
-        this.com.saveAsDom();
-      }
-      */
-            
+      });            
     },
     simulate: function(){
       if(this.saf){
-        this.saf.saveAsDom();
+        this.saf.saveAsDOM();
       }
       
       var stock_and_flow  = $('#xmldocument model stock_and_flow');
@@ -2023,164 +2123,15 @@ this.Evolucion = Class.extend({
       }
     }
   },
-  readXML: function(){
+  openDOM: function(){
     //evo.inf.reset();
     //evo.saf.reset();
    
     var root        = $('#xmldocument');
     var model       = root.children('model:first');
-    var influences  = model.children('influences');
     
-    var groups;
-    var width, height;
-    var name, title, description, units, position, pos, relations, from_relations, to_relations,  p, pc, size, from, to;
-
-    width = Number(influences.attr('width').replace('px',''));
-    height= Number(influences.attr('height').replace('px',''));
-    
-    inf.panel.resize(width, height);
-       
-    if(model){
-      
-      var concepts  = influences.find('concepts>concept');
-      
-      concepts.each(function( idx, concept ) {
-        name          = $(concept).children('name').text();
-        title         = $(concept).children('title').text();
-        description   = $(concept).children('description').text();
-        units         = $(concept).children('units').text();
-        
-        position      = $(concept).children('position');
-        relations     = $(concept).children('relations');
-        
-        from_relations = [];
-        to_relations   = [];
-        
-        $(relations).children('from_relation').each(function( idx, relation ) {
-          from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
-        });
-        
-        $(relations).children('to_relation').each(function( idx, relation ) {
-          to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
-        });
-        
-        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
-        
-        var c = new Concept(inf, pos, title, description, units);
-        inf.list.concept[c.id] = c;
-      });
-      
-      var cycles  = influences.find('cycles>cycle');
-      
-      cycles.each(function( idx, cycle ) {
-        name          = $(cycle).children('name').text();
-        title         = $(cycle).children('title').text();
-        description   = $(cycle).children('description').text();
-        orientation   = $(cycle).children('orientation').text();
-        feedback      = $(cycle).children('feedback').text();
-        position      = $(cycle).children('position');
-                        
-        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
-        
-        var c = new Cycle(inf, pos, title, description, orientation, feedback);
-        inf.list.cycle[c.id] = c;
-      });
-      
-      var clones  = influences.find('clones>clone');
-      
-      clones.each(function( idx, cycle ) {
-        name          = $(cycle).children('name').text();
-        reference     = $(cycle).children('reference').text();
-        
-        position      = $(cycle).children('position');
-        relations     = $(cycle).children('relations');
-        
-        from_relations = [];
-        to_relations   = [];
-        
-        $(relations).children('from_relation').each(function( idx, relation ) {
-          from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
-        });
-        
-        $(relations).children('to_relation').each(function( idx, relation ) {
-          to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
-        });
-        
-        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
-          
-        var el = inf.objects.getByName(reference);
-        
-        if(el){        
-          var c = new Clone(inf, pos, el);
-          inf.list.clone[c.id] = c;
-        }
-      });
-      
-      var material_relations  = influences.find('material_relations>relation');
-      
-      material_relations.each(function( idx, relation ) {
-        origin          = $(relation).children('origin').text();
-        destination     = $(relation).children('destination').text();
-        description     = $(relation).children('description').text();
-        
-        position      = $(relation).children('position');
-                
-        pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
-                {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
-                {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
-                {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
-              ];
-        
-        var from_el = inf.objects.getByName(origin);
-        var to_el   = inf.objects.getByName(destination);
-                
-        if(from_el && to_el){        
-          var rel = new MaterialRel(inf, pos, from_el, to_el, description);
-          inf.list.material[rel.id] = rel;
-        }
-      });
-      
-      var information_relations  = influences.find('information_relations>relation');
-      
-      information_relations.each(function( idx, relation ) {
-        origin          = $(relation).children('origin').text();
-        destination     = $(relation).children('destination').text();
-        description     = $(relation).children('description').text();
-        
-        position      = $(relation).children('position');
-                
-        pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
-                {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
-                {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
-                {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
-              ];
-        
-        var from_el = inf.objects.getByName(origin);
-        var to_el   = inf.objects.getByName(destination);
-                
-        if(from_el && to_el){        
-          var rel = new InformationRel(inf, pos, from_el, to_el, description);
-          inf.list.information[rel.id] = rel;
-        }
-      });
-      
-      var sectors  = influences.find('sectors>sectorinf');
-      
-      sectors.each(function( idx, sector ) {
-        name          = $(sector).children('name').text();
-        title         = $(sector).children('title').text();
-        description   = $(sector).children('description').text();
-        
-        position      = $(sector).children('position');
-        size          = $(sector).children('size');
-                        
-        pos = {'x':     Number($(position).children('x').text()), 'y':      Number($(position).children('y').text())};
-        sis = {'width': Number($(size).children('width').text()), 'height': Number($(size).children('height').text())};
-        
-        var s = new SectorInf(inf, pos, sis, title, description);
-        inf.list.sectorinf[s.id] = s;
-      });
-      
+    if(model.length>0){
+      evo.inf.openAsDOM(model);
     }
   },
   verifyBrowsers: function(){

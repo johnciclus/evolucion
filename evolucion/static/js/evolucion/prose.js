@@ -11,7 +11,7 @@ this.Prose = Class.extend({
     
   },
   
-  saveAsDom: function(){
+  saveAsDOM: function(){
     var model, prose;
     
     model = $('#xmldocument model:first');

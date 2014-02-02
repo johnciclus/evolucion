@@ -472,35 +472,35 @@ this.figures = $.extend(this.figures, {
             
       fig.parent.border = fig.getBorder();
     };
-    fig.conNivelOri = function(nivel){
+    fig.conNivelOri = function(stock){
       var el = fig.parent;
-      nivel.agreFluSal(el);
-      el.originFlow = nivel;
+      stock.agreFluSal(el);
+      el.originStock = stock;
       fig[2][7].update(0, 0);
       fig[2][5].hide();
     };
-    fig.conNivelDes = function(nivel){
+    fig.conNivelDes = function(stock){
       var el = fig.parent;
-      nivel.agreFluIng(el);
-      el.destinationFlow = nivel;
+      stock.agreFluIng(el);
+      el.destinationStock = stock;
       fig[2][8].update(0, 0);
       fig[2][6].hide();
     };
     fig.desNivelOri = function(){
       var el = fig.parent;
       
-      if(el.originFlow){
-        el.originFlow.elimFluSal(el);
-        el.originFlow = undefined;
+      if(el.originStock){
+        el.originStock.elimFluSal(el);
+        el.originStock = undefined;
         fig[2][5].show();
       }
     };
     fig.desNivelDes = function(){
       var el = fig.parent;
       
-      if(el.destinationFlow){
-        el.destinationFlow.elimFluIng(el);
-        el.destinationFlow = undefined;
+      if(el.destinationStock){
+        el.destinationStock.elimFluIng(el);
+        el.destinationStock = undefined;
         fig[2][6].show();
       }
     };
@@ -508,11 +508,11 @@ this.figures = $.extend(this.figures, {
       var bb, op, podx, pt;
       var el = fig.parent;
       
-      if(el.originFlow){
+      if(el.originStock){
         bb = fig[2][7].getBBox();
         op = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         podx = {x: op.x + dx, y: op.y + dy};
-        pt = el.ctx.path.determinePoint(el.originFlow.border, podx);
+        pt = el.ctx.path.determinePoint(el.originStock.border, podx);
         
         fig[2][7].transform("...T"+(pt.x-op.x)+","+(pt.y-op.y));  
       }
@@ -525,11 +525,11 @@ this.figures = $.extend(this.figures, {
       var bb, pd, pddx, pt;
       var el = fig.parent;
       
-      if(el.destinationFlow){
+      if(el.destinationStock){
         bb = fig[2][8].getBBox();
         pd = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         pddx = {x: pd.x + dx, y: pd.y + dy};
-        pt = el.ctx.path.determinePoint(el.destinationFlow.border, pddx);
+        pt = el.ctx.path.determinePoint(el.destinationStock.border, pddx);
         
         fig[2][8].transform("...T"+(pt.x-pd.x)+","+(pt.y-pd.y));  
       }
@@ -650,7 +650,7 @@ this.figures = $.extend(this.figures, {
     
     return figures.saf_base(ctx, parent, figGenerator, p, title, figureStyle);
   },
-  previousvalue: function(ctx, parent, p, title, figureStyle){
+  previous: function(ctx, parent, p, title, figureStyle){
     var figGenerator = function(r, cp, figureStyle){
       var fig = r.set();
       var standardStyle = utils.clone(style.standard);
@@ -883,8 +883,8 @@ this.Flow = Element.extend({
     
     this.list = this.ctx.list.flow;
     
-    this.originFlow = undefined;
-    this.destinationFlow = undefined;
+    this.originStock = undefined;
+    this.destinationStock = undefined;
     
     this.figGenerator = figures.flow;
     this.figure(p);
@@ -1004,7 +1004,7 @@ this.Flow = Element.extend({
     }
     //console.log(el);
     var elFig = el.fig;
-    var bb, pt, nivel;
+    var bb, pt, stock;
     
     elFig.dx = 0;
     elFig.dy = 0;
@@ -1015,9 +1015,9 @@ this.Flow = Element.extend({
     if(this == elFig[2][7]){
       bb = elFig[2][7].getBBox();
       pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-      nivel = el.ctx.existeNivelPt(pt);
-      if(nivel){
-        elFig.conNivelOri(nivel);
+      stock = el.ctx.existeNivelPt(pt);
+      if(stock){
+        elFig.conNivelOri(stock);
       }
       else{
         elFig.desNivelOri();
@@ -1026,9 +1026,9 @@ this.Flow = Element.extend({
     else if(this == elFig[2][8]){
       bb = elFig[2][8].getBBox();
       pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-      nivel = el.ctx.existeNivelPt(pt);
-      if(nivel){
-        elFig.conNivelDes(nivel);
+      stock = el.ctx.existeNivelPt(pt);
+      if(stock){
+        elFig.conNivelDes(stock);
       }
       else{
         elFig.desNivelDes();
@@ -1163,23 +1163,23 @@ this.Fis = Element.extend({
   }
 });
 
-this.Previousvalue = Element.extend({
+this.Previous = Element.extend({
   init: function(ctx, p, title){
     this._super(ctx);
     
-    this.type = "previousvalue";
+    this.type = "previous";
     var idx = this.ctx.idx[this.type]++;
     
-    this.id = "previousvalue-"+idx;
+    this.id = "previous-"+idx;
     this.title = title || "Val. Anterior "+idx;
     this.name = utils.textToVar(this.title);
     this.definition = " ";
     this.dimension = 1;
     this.units = "Adimensional";
     
-    this.list = this.ctx.list.previousvalue;
+    this.list = this.ctx.list.previous;
     
-    this.figGenerator = figures.previousvalue;
+    this.figGenerator = figures.previous;
     this.figure(p);
     this.integrateCtx();
     this.viewDetails();
@@ -1275,7 +1275,7 @@ this.StockAndFlow = Editor.extend({
     
     this.elements = [ 'parameter', 'stock', 'flow', 
                       'auxiliary', 'exogenous', 'delay',
-                      'multiplier', 'fis', 'previousvalue',
+                      'multiplier', 'fis', 'previous',
                       'submodel'];
     this.states   = this.elements.concat(
                     ['clone', 'relation', 'sectorsaf']);
@@ -1326,8 +1326,8 @@ this.StockAndFlow = Editor.extend({
           saf.tmp.fis = new figures.fis(saf, undefined, p, "FIS "+saf.idx.fis, {cursor: "move"});
           break;
         }
-        case 'previousvalue': {
-          saf.tmp.previousvalue = new figures.previousvalue(saf, undefined, p, "Val. Anterior "+saf.idx.previousvalue, {cursor: "move"});
+        case 'previous': {
+          saf.tmp.previous = new figures.previous(saf, undefined, p, "Val. Anterior "+saf.idx.previous, {cursor: "move"});
           break;
         }
         case 'submodel': {
@@ -1406,10 +1406,10 @@ this.StockAndFlow = Editor.extend({
           }
           break;
         }
-        case 'previousvalue': {
-          if(saf.tmp.previousvalue){
-            saf.tmp.previousvalue.remove();
-            saf.tmp.previousvalue = undefined;
+        case 'previous': {
+          if(saf.tmp.previous){
+            saf.tmp.previous.remove();
+            saf.tmp.previous = undefined;
           }
           break;
         }
@@ -1494,9 +1494,9 @@ this.StockAndFlow = Editor.extend({
           }
           break;
         }
-        case 'previousvalue': {
-          if(saf.tmp.previousvalue){
-            saf.tmp.previousvalue.moveToPoint(p);
+        case 'previous': {
+          if(saf.tmp.previous){
+            saf.tmp.previous.moveToPoint(p);
           }
           break;
         }
@@ -1618,14 +1618,14 @@ this.StockAndFlow = Editor.extend({
           }
           break;
         }
-        case 'previousvalue': {
-          if(saf.tmp.previousvalue){
-            var previousvalue = new Previousvalue(saf, p);
-            saf.list.previousvalue[previousvalue.id] = previousvalue;
+        case 'previous': {
+          if(saf.tmp.previous){
+            var previous = new Previous(saf, p);
+            saf.list.previous[previous.id] = previous;
             
             saf.activateState('cursor');
-            saf.tmp.previousvalue.remove();
-            saf.tmp.previousvalue = undefined;
+            saf.tmp.previous.remove();
+            saf.tmp.previous = undefined;
           }
           break;
         }
@@ -1693,7 +1693,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'sectorsaf': {
           if(saf.tmp.sectorsaf){
-            var sectorsaf = new Sectorsaf(saf, p);
+            var sectorsaf = new SectorSaf(saf, p);
             saf.list.sectorsaf[sectorsaf.id] = sectorsaf;
             
             saf.activateState('cursor');
@@ -1712,9 +1712,12 @@ this.StockAndFlow = Editor.extend({
     this.sector.ctx = this;
   },
   
-  saveAsDom: function(){
-    var model, prose, influence, stock_and_flow, behavior, list;
-    var elements, element, group, position, position, op, pco, pd, pcd, relations, relation, flows, flow, rels, enteringRelsQua, leavingRelsQua, cantFluIng, cantFluSal, from, to, size, size_sector, width, height;
+  saveAsDOM: function(){
+    var model, stockandflow, size;
+    var elements, element, group, position, position, pos,
+        relation, relations, op, pco, pd, pcd, flows, flow, rels, 
+        enteringRelsQua, leavingRelsQua, enteringFlowQua, leavingFlowQua, 
+        from, to, size, size_sector, width, height;
     
     model = $('#xmldocument model:first');
     
@@ -1727,164 +1730,83 @@ this.StockAndFlow = Editor.extend({
       stock_and_flow.empty();
     }
     
-    size = this.obtTamPan();
-    stock_and_flow.attr('width', size.w);
-    stock_and_flow.attr('height', size.h);
+    size = this.panel.getSize();
+    stock_and_flow.attr('width', size.w+'px');
+    stock_and_flow.attr('height', size.h+'px');
     
     if(model){
     
       elements =  { 
-        'param': {'el': 'parameter',  'group': 'parameters'},
-        'nivel': {'el': 'stock',      'group': 'stocks'},
-        'flujo': {'el': 'flow',     'group': 'flows'},
-        'vaaux': {'el': 'auxiliary',  'group': 'auxiliaries'},
-        'vaexo': {'el': 'exogenous',  'group': 'vars_exogenous'},
-        'retar': {'el': 'delay',    'group': 'delays'},
-        'multi': {'el': 'multiplier',   'group': 'multipliers'},
-        'elfis': {'el': 'fis',      'group': 'vars_fis'},
-        'vaant': {'el': 'previous',   'group': 'vars_previous'},
-        'submo': {'el': 'submodel',   'group': 'submodels'} 
+        'parameter':  'parameters',
+        'stock':      'stocks',
+        'flow':       'flows',
+        'auxiliary':  'auxiliaries',
+        'exogenous':  'exogenous_vars',
+        'delay':      'delays',
+        'multiplier': 'multipliers',
+        'fis':        'fis_vars',
+        'previous':   'previous_vals',
+        'submodel':   'submodels'
       };
       for(var el in elements){
-        list = fyn.list[el];
-        group = stock_and_flow.append('<'+elements[el]['group']+' />').children(elements[el]['group']);
+        list = saf.list[el];
+        group = stock_and_flow.append('<'+elements[el]+' />').children(elements[el]);
         
         for(var i in list){
-          
-          element = group.append('<'+elements[el]['el']+' />').children(elements[el]['el']+':last');
-          element.append($('<name />').text(list[i].name));
-          element.append($('<title />').text(list[i].title));
-          element.append($('<description />').text(list[i].description));
-          element.append($('<definition />').text(list[i].definition));
-          element.append($('<units />').text(list[i].units));
-          element.append($('<dimension />').text(list[i].dimension));
-          
-          position = list[i].position();
-          position = element.append('<position />').children('position');
-          position.append($('<x />').text(position.x));
-          position.append($('<y />').text(position.y));
-          
-          relations = element.append('<relations />').children('relations');
+          element = this.elementAsDOM(list[i]);
+          group.append(element);
                     
-          enteringRelsQua = list[i].enteringRelsQua;
-          leavingRelsQua  = list[i].leavingRelsQua;
-          
-          if(enteringRelsQua > 0 || leavingRelsQua > 0){
-            if(enteringRelsQua > 0){
-              rels = list[i].enteringRels;
-              for(var rel in rels){
-                relation = relations.append('<relation_from />').children('relation_from');
-                relation.text(rels[rel].from.name);
-              }
-            }
-            if(leavingRelsQua > 0){
-              rels = list[i].relacSal;
-              for(var rel in rels){
-                relation = relations.append('<relation_to />').children('relation_to');
-                relation.text(rels[rel].des.name);
-              }
-            }
-          }
-          if(el == 'nivel'){
-            cantFluIng = list[i].cantFluIng;
-            cantFluSal = list[i].cantFluSal;
+          if(el == 'stock'){
+            enteringFlowQua = list[i].enteringFlowQua;
+            leavingFlowQua = list[i].leavingFlowQua;
             flows = element.append('<stock_flows />').children('stock_flows');
-            if(cantFluIng > 0){
+            if(enteringFlowQua > 0){
               fls = list[i].flujoIng;
               for(var fl in fls){
-                flow = flows.append('<flow_enter />').children('flow_enter');
+                flow = flows.append('<enteringFlow />').children('enteringFlow');
                 flow.text(fls[fl].name);  
               }
             }
-            if(cantFluSal > 0){
+            if(leavingFlowQua > 0){
               fls = list[i].flujoSal;
               for(var fl in fls){
-                flow = flows.append('<flow_leave />').children('flow_leave');
+                flow = flows.append('<leavingFlow />').children('leavingFlow');
                 flow.text(fls[fl].name);  
               }
             }
           }
-          if(el == 'flujo'){
-            from = element.append('<from />').children('from');
-            from.text(list[i].nivelOri.name);
-            to = element.append('<to />').children('to');
-            to.text(list[i].nivelDes.name);
-          }
-        }
-      }
-      
-      list = fyn.list['clone'];
-      group = stock_and_flow.append('<clones />').children('clones');
-      for(var i in list){
-        
-        element = group.append('<copy />').children('copy:last');
-        element.append($('<reference />').text(list[i].name));
-        
-        position = list[i].position();
-        position = element.append('<position />').children('position');
-        position.append($('<x />').text(position.x));
-        position.append($('<y />').text(position.y));
-        
-        leavingRelsQua = list[i].leavingRelsQua;
-        
-        if(leavingRelsQua > 0){
-          relations = element.append('<relations />').children('relations');
-          if(leavingRelsQua > 0){
-            rels = list[i].relacSal;
-            for(var rel in rels){
-              relation = relations.append('<relation_to />').children('relation_to');
-              relation.text(rels[rel].des.name);
+          if(el == 'flow'){
+            if(list[i].originStock){
+              from = element.append('<from />').children('from');
+              from.text(list[i].originStock.name);
+            }
+            if(list[i].destinationStock){
+              to = element.append('<to />').children('to');
+              to.text(list[i].destinationStock.name);
             }
           }
         }
       }
       
-      list = fyn.list['relation'];
-      group = stock_and_flow.append('<relations />').children('relations');
-      console.log(group);
+      list = saf.list['clone'];
+      group = stock_and_flow.append('<clones />').children('clones');
       for(var i in list){
-        
-        relation = group.append('<relation />').children('relation:last');
-        relation.append($('<origin />').text(list[i].from.name));
-        relation.append($('<destination />').text(list[i].des.name));
-        relation.append($('<description />').text(list[i].description));
-        
-        position = list[i].position();
-        position = relation.append('<position />').children('position');
-        op = position.append('<op />').children('op');
-        op.append($('<x />').text(position[0].x));
-        op.append($('<y />').text(position[0].y));
-        pco = position.append('<pco />').children('pco');
-        pco.append($('<x />').text(position[1].x));
-        pco.append($('<y />').text(position[1].y));
-        pcd = position.append('<pcd />').children('pcd');
-        pcd.append($('<x />').text(position[2].x));
-        pcd.append($('<y />').text(position[2].y));
-        pd = position.append('<pd />').children('pd');
-        pd.append($('<x />').text(position[3].x));
-        pd.append($('<y />').text(position[3].y));
+        element = this.cloneAsDOM(list[i]);
+        group.append(element);
       }
       
-      list = fyn.list['sefyn'];
+      list = saf.list['relation'];
+      group = stock_and_flow.append('<relations />').children('relations');
+      for(var i in list){
+        relation = this.relationAsDOM(list[i]);
+        group.append(relation);
+      }
+      
+      list = saf.list['sectorsaf'];
       group = stock_and_flow.append('<sectors />').children('sectors');
       for(var i in list){
-        
-        sector = group.append('<sector />').children('sector:last');
-        sector.append($('<name />').text(list[i].name));
-        sector.append($('<title />').text(list[i].title));
-        sector.append($('<description />').text(list[i].description));
-        
-        position = list[i].position();
-        position = sector.append('<position />').children('position');
-        position.append($('<x />').text(position.x));
-        position.append($('<y />').text(position.y));
-        
-        size = list[i].size();
-        size_sector = sector.append('<size />').children('size');
-        width = size_sector.append('<width />').children('width');
-        width.text(size['width']);
-        height = size_sector.append('<height />').children('height');
-        height.text(size['height']);
+        sectorsaf = this.sectorAsDOM(list[i]);
+        group.append(sectorsaf);
       }
     
     }

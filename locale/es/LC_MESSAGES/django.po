@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-01 19:34-0500\n"
+"POT-Creation-Date: 2014-02-01 23:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,7 @@ msgid "keywords"
 msgstr "palabras clave"
 
 #: evolucion/projects/models.py:17 evolucion/projects/models.py:40
+#: evolucion/projects/models.py:55
 msgid "model"
 msgstr "submodelo"
 
@@ -47,15 +48,15 @@ msgid "stars"
 msgstr "estrellas"
 
 #: evolucion/projects/models.py:20 evolucion/projects/models.py:41
-#: evolucion/projects/models.py:63 evolucion/projects/models.py:75
-#: evolucion/projects/models.py:87 evolucion/projects/models.py:99
+#: evolucion/projects/models.py:63 evolucion/projects/models.py:77
+#: evolucion/projects/models.py:89 evolucion/projects/models.py:101
 #: evolucion/users/models.py:15
 msgid "created at"
 msgstr "creado el"
 
 #: evolucion/projects/models.py:21 evolucion/projects/models.py:42
-#: evolucion/projects/models.py:64 evolucion/projects/models.py:76
-#: evolucion/projects/models.py:88 evolucion/projects/models.py:100
+#: evolucion/projects/models.py:64 evolucion/projects/models.py:78
+#: evolucion/projects/models.py:90 evolucion/projects/models.py:102
 #: evolucion/users/models.py:16
 msgid "updated at"
 msgstr "actualizado el"
@@ -67,6 +68,39 @@ msgstr "titulo"
 #: evolucion/projects/models.py:39
 msgid "prose description"
 msgstr "descripción"
+
+#: evolucion/projects/models.py:56
+#: evolucion/templates/editor/_influences.html:11
+msgid "concepts"
+msgstr "conceptos"
+
+#: evolucion/projects/models.py:57
+#: evolucion/templates/editor/_influences.html:26
+msgid "cycles"
+msgstr "ciclos"
+
+#: evolucion/projects/models.py:58
+msgid "clones"
+msgstr ""
+
+#: evolucion/projects/models.py:59
+#, fuzzy
+msgid "material"
+msgstr "relación de material"
+
+#: evolucion/projects/models.py:60
+#: evolucion/templates/projects/_new_success.html:5
+#: evolucion/templates/users/_edit_errors.html:5
+#: evolucion/templates/users/_edit_success.html:5
+#: evolucion/templates/users/_sign_in_errors.html:5
+#: evolucion/templates/users/_sign_in_success.html:5
+#: evolucion/templates/users/_sign_up_success.html:5
+msgid "information"
+msgstr "información"
+
+#: evolucion/projects/models.py:61
+msgid "sector"
+msgstr "sector"
 
 #: evolucion/projects/views.py:55
 msgid "the project was successfully registered"
@@ -522,14 +556,6 @@ msgstr ""
 "modelo de simulación en lenguaje computacional, especificamente Javascript "
 "que permite exportar el codigo"
 
-#: evolucion/templates/editor/_influences.html:11
-msgid "concepts"
-msgstr "conceptos"
-
-#: evolucion/templates/editor/_influences.html:26
-msgid "cycles"
-msgstr "ciclos"
-
 #: evolucion/templates/editor/_influences.html:41
 msgid "material relations"
 msgstr "relaciones de material"
@@ -723,6 +749,26 @@ msgstr "incompatibilidad del navegador de internet"
 msgid "close"
 msgstr "cerrar"
 
+#: evolucion/templates/editor/index.html:19
+#: evolucion/templates/layouts/_editor_content.html:4
+msgid "influences"
+msgstr "influencias"
+
+#: evolucion/templates/editor/index.html:30
+#: evolucion/templates/layouts/_editor_content.html:5
+msgid "stock and flow"
+msgstr "flujo nivel"
+
+#: evolucion/templates/editor/index.html:41
+#: evolucion/templates/layouts/_editor_content.html:6
+msgid "equations"
+msgstr "ecuaciones"
+
+#: evolucion/templates/editor/index.html:52
+#: evolucion/templates/layouts/_editor_content.html:7
+msgid "behaviors"
+msgstr "comportamientos"
+
 #: evolucion/templates/home/_carousel.html:20
 msgid "sign up today"
 msgstr "regístrate hoy"
@@ -735,11 +781,11 @@ msgstr "aprenda más"
 msgid "browse gallery"
 msgstr "navega por la galería"
 
-#: evolucion/templates/home/index.html:16
+#: evolucion/templates/home/index.html:14
 msgid "welcome title"
 msgstr "bienvenido a Evolución Web"
 
-#: evolucion/templates/home/index.html:17
+#: evolucion/templates/home/index.html:15
 msgid "welcome content"
 msgstr ""
 "Bienvenido a la plataforma Evolución Web, tecnología que permite realizar "
@@ -749,27 +795,27 @@ msgstr ""
 "cercano. Evolución Web hace uso de tecnologías web de ultima generación, que "
 "amplían las nuevas posibilidades en cuanto al modela-miento y la simulación."
 
-#: evolucion/templates/home/index.html:18
-#: evolucion/templates/home/index.html:24
-#: evolucion/templates/home/index.html:30
+#: evolucion/templates/home/index.html:16
+#: evolucion/templates/home/index.html:22
+#: evolucion/templates/home/index.html:28
 msgid "view details"
 msgstr "Mayor información"
 
-#: evolucion/templates/home/index.html:22
+#: evolucion/templates/home/index.html:20
 msgid "features title"
 msgstr "Características"
 
-#: evolucion/templates/home/index.html:23
+#: evolucion/templates/home/index.html:21
 msgid "features content"
 msgstr ""
 "Evolución Web integra las siguientes caracteristicas del modelamiento de "
 "sistemas"
 
-#: evolucion/templates/home/index.html:28
+#: evolucion/templates/home/index.html:26
 msgid "explore title"
 msgstr "Explore los proyectos"
 
-#: evolucion/templates/home/index.html:29
+#: evolucion/templates/home/index.html:27
 msgid "explore content"
 msgstr ""
 "Los proyectos desarrollados dentro de la plataforma Evolución Web, son por "
@@ -780,22 +826,6 @@ msgstr ""
 #: evolucion/templates/layouts/_editor_content.html:3
 msgid "prose"
 msgstr "prosa"
-
-#: evolucion/templates/layouts/_editor_content.html:4
-msgid "influences"
-msgstr "influencias"
-
-#: evolucion/templates/layouts/_editor_content.html:5
-msgid "stock and flow"
-msgstr "flujo nivel"
-
-#: evolucion/templates/layouts/_editor_content.html:6
-msgid "equations"
-msgstr "ecuaciones"
-
-#: evolucion/templates/layouts/_editor_content.html:7
-msgid "behaviors"
-msgstr "comportamientos"
 
 #: evolucion/templates/layouts/_editor_header.html:11
 msgid "overview"
@@ -876,15 +906,6 @@ msgstr "cerrar sesión"
 #: evolucion/templates/projects/index.html:114
 msgid "open project"
 msgstr "abrir projecto"
-
-#: evolucion/templates/projects/_new_success.html:5
-#: evolucion/templates/users/_edit_errors.html:5
-#: evolucion/templates/users/_edit_success.html:5
-#: evolucion/templates/users/_sign_in_errors.html:5
-#: evolucion/templates/users/_sign_in_success.html:5
-#: evolucion/templates/users/_sign_up_success.html:5
-msgid "information"
-msgstr "información"
 
 #: evolucion/templates/projects/index.html:22
 #: evolucion/templates/projects/index.html:82
@@ -1047,14 +1068,8 @@ msgstr "el nombre de usuario o contrase esta incorrecta"
 #~ msgid "cycle"
 #~ msgstr "ciclo"
 
-#~ msgid "material relation"
-#~ msgstr "relación de material"
-
 #~ msgid "information relation"
 #~ msgstr "relación de información"
-
-#~ msgid "sector"
-#~ msgstr "sector"
 
 #~ msgid "first_name"
 #~ msgstr "nombre propio"

@@ -167,8 +167,8 @@ div.toolbar-editor .btn{
     background-image: url(/static/icons/fis.png);
 }
 
-.evo-previousvalue{
-    background-image: url(/static/icons/previousvalue.png);
+.evo-previous{
+    background-image: url(/static/icons/previous.png);
 }
 
 .evo-submodel{
