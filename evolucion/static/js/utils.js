@@ -10,7 +10,6 @@ utils_gui.formAjax = function(id_form, id_response){
           url: frm.attr('action'),
           data: frm.serialize(),
           success: function (data, textStatus, jqXHR) {
-            console.log('form ajax');
             $(id_response).html(data);
           },
           error: function(data) {

@@ -258,7 +258,7 @@ this.figures = $.extend(this.figures, {
 });
 
 this.Concept = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, pos, title, description, units){
     this._super(ctx);
     
     this.type         = "concept";
@@ -268,11 +268,12 @@ this.Concept = Element.extend({
     this.title        = title || "Concepto "+idx;
     this.name         = utils.textToVar(this.title);
     
-    this.units        = " ";
+    this.description  = description || " ";
+    this.units        = units || " ";
     this.list         = this.ctx.list.concept;
     
     this.figGenerator = figures.concept;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   },
@@ -292,7 +293,7 @@ this.Concept = Element.extend({
 });
 
 this.Cycle = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, pos, title, description, orientation, feedback){
     this._super(ctx);
     
     this.type         = "cycle";
@@ -302,17 +303,18 @@ this.Cycle = Element.extend({
     this.title        = title || "Ciclo "+idx;
     this.name         = utils.textToVar(this.title);
     
-    this.orientation  = "right";
-    this.feedback     = "positive";
+    this.description  = description || " ";
+    this.orientation  = orientation || "right";
+    this.feedback     = feedback    || "positive";
     this.list         = this.ctx.list.cycle;
     
-    this.enteringRels = undefined;
-    this.enteringRelsQua = undefined;
-    this.leavingRels = undefined;
+    this.enteringRels   = undefined;
+    this.enteringRelsQua= undefined;
+    this.leavingRels    = undefined;
     this.leavingRelsQua = undefined;
     
     this.figGenerator = figures.cycle;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
 },
@@ -341,7 +343,7 @@ this.Cycle = Element.extend({
 });
 
 this.MaterialRel = Relation.extend({
-  init: function(ctx, p, from, to){
+  init: function(ctx, pos, from, to, description){
     // p = relation points
   this._super(ctx);
   
@@ -351,6 +353,7 @@ this.MaterialRel = Relation.extend({
   this.id = "material-"+idx;
     this.title = this.ctx.relationTitle(from.title, to.title);       
     this.name = utils.textToVar(this.title);
+    this.description = description || " ";
     
     this.list = this.ctx.list.material;
     this.from = from;
@@ -360,12 +363,12 @@ this.MaterialRel = Relation.extend({
     this.to.addEnteringRels(this);
     
     this.figGenerator = figures.materialRelation;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   },
-  figure: function(p){
-    this.fig = this.figGenerator(this.ctx, this, p);
+  figure: function(pos){
+    this.fig = this.figGenerator(this.ctx, this, pos);
     this.fig[6].click(this.remove);
     this.fig[7].click(this.viewDetails);
     this.viewPoints(this.selected);
@@ -373,16 +376,17 @@ this.MaterialRel = Relation.extend({
 });
 
 this.InformationRel = Relation.extend({
-  init: function(ctx, p, from, to){
+  init: function(ctx, pos, from, to, description){
     this._super(ctx);
     
     this.type = "information";
-  var idx = this.ctx.idx[this.type]++;
+    var idx = this.ctx.idx[this.type]++;
   
-  this.id = "information-"+idx;
+    this.id = "information-"+idx;
     
     this.title = this.ctx.relationTitle(from.title, to.title);
     this.name = utils.textToVar(this.title);
+    this.description = description || " ";
     
     this.list = this.ctx.list.information;
     this.from = from;
@@ -392,12 +396,12 @@ this.InformationRel = Relation.extend({
     this.to.addEnteringRels(this);
     
     this.figGenerator = figures.informationRelation;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   },
-  figure: function(p){
-    this.fig = this.figGenerator(this.ctx, this, p);
+  figure: function(pos){
+    this.fig = this.figGenerator(this.ctx, this, pos);
     this.fig[6].click(this.remove);
     this.fig[7].click(this.viewDetails);
     this.viewPoints(this.selected);
@@ -405,15 +409,16 @@ this.InformationRel = Relation.extend({
 });
 
 this.SectorInf = SecBase.extend({
-  init: function(ctx, p, size, title){
+  init: function(ctx, p, size, title, description){
     this._super(ctx);
     
     this.type = 'sectorinf';
-  var idx = this.ctx.idx[this.type]++;
+    var idx = this.ctx.idx[this.type]++;
   
-  this.id = this.type+'-'+idx;
-  this.title = title || "Sector "+idx;
+    this.id = this.type+'-'+idx;
+    this.title = title || "Sector "+idx;
     this.name = utils.textToVar(this.title);
+    this.description = description || " ";
     
     this.list = this.ctx.list[this.type];
     this.figure(p, size);
@@ -654,6 +659,8 @@ this.Influences = Editor.extend({
               if(!is_itself && !exist_relation){
                 relation.p[3] = p;
                 
+                console.log(relation.p);
+                
                 var material = new MaterialRel(inf, relation.p, relation.from, el);
   
                 inf.list.material[material.id] = material;
@@ -719,8 +726,36 @@ this.Influences = Editor.extend({
     this.path.ctx = this;
     this.pointer.ctx = this;
     this.sector.ctx = this;
+    this.objects.ctx = this;
   },
   
+  elementAsDOM: function(obj){
+    var element = $('<'+obj.type+' />');
+    return element;
+  },
+  relationAsDOM: function(obj){
+    var relation = $('<relation />');
+    relation.append($('<origin />').text(obj.from.name));
+    relation.append($('<destination />').text(obj.to.name));
+    relation.append($('<description />').text(obj.description));
+    
+    var pos = obj.position();
+    position = relation.append('<position />').children('position');
+    op = position.append('<op />').children('op');
+    op.append($('<x />').text(pos[0].x));
+    op.append($('<y />').text(pos[0].y));
+    opc = position.append('<opc />').children('opc');
+    opc.append($('<x />').text(pos[1].x));
+    opc.append($('<y />').text(pos[1].y));
+    dpc = position.append('<dpc />').children('dpc');
+    dpc.append($('<x />').text(pos[2].x));
+    dpc.append($('<y />').text(pos[2].y));
+    dp = position.append('<dp />').children('dp');
+    dp.append($('<x />').text(pos[3].x));
+    dp.append($('<y />').text(pos[3].y));
+    
+    return relation;
+  },
   saveAsDom: function(){
     var model, influences, size;
     var elements, element, group, groups, list, pos, position, 
@@ -740,8 +775,8 @@ this.Influences = Editor.extend({
     
     size = this.panel.getSize();
     
-    influences.attr('width',  size.w);
-    influences.attr('height', size.h);
+    influences.attr('width',  size.w+'px');
+    influences.attr('height', size.h+'px');
     
     if(model){
       groups =  {
@@ -781,7 +816,7 @@ this.Influences = Editor.extend({
               if(enteringRelsQua > 0){
                 rels = list[i].enteringRels;
                 for(var rel in rels){
-                  relation = relations.append('<relation_from />').children('relation_from:last');
+                  relation = relations.append('<from_relation />').children('from_relation:last');
                   
                   if(rels[rel].type == 'material'){
                     relation.attr('type', 'material');
@@ -794,7 +829,7 @@ this.Influences = Editor.extend({
               if(leavingRelsQua > 0){
                 rels = list[i].leavingRels;
                 for(var rel in rels){
-                  relation = relations.append('<relation_to />').children('relation_to:last');
+                  relation = relations.append('<relation_to />').children('to_relation:last');
                   if(rels[rel].type == 'material'){
                     relation.attr('type', 'material');
                   }else if(rels[rel].type == 'information'){
@@ -827,7 +862,7 @@ this.Influences = Editor.extend({
           relations = element.append('<relations />').children('relations');
           rels = list[i].leavingRels;
           for(var rel in rels){
-            relation = relations.append('<relation_to />').children('relation_to');
+            relation = relations.append('<to_relation />').children('relation_to');
             relation.text(rels[rel].to.name);
           }
         }
@@ -873,36 +908,22 @@ this.Influences = Editor.extend({
       return false;
     }
   },
-  elementAsDOM: function(obj){
-    var element = $('<'+obj.type+' />');
-    return element;
+  
+  objects: {
+    getByName: function(name){
+      var elmts = this.ctx.elements;
+      var list;
+      for( var el in elmts ){
+        list = this.ctx.list[elmts[el]];
+        for(var i in list){
+          if(list[i].name == name){
+            return list[i];  
+          }
+        }
+      }
+      return false;
+    }
   },
-  
-  relationAsDOM: function(obj){
-    var relation = $('<relation />');
-    relation.append($('<origin />').text(obj.from.name));
-    relation.append($('<destination />').text(obj.to.name));
-    relation.append($('<description />').text(obj.description));
-    
-    var pos = obj.position();
-    position = relation.append('<position />').children('position');
-    op = position.append('<op />').children('op');
-    op.append($('<x />').text(pos[0].x));
-    op.append($('<y />').text(pos[0].y));
-    opc = position.append('<opc />').children('opc');
-    opc.append($('<x />').text(pos[1].x));
-    opc.append($('<y />').text(pos[1].y));
-    dpc = position.append('<dpc />').children('dpc');
-    dpc.append($('<x />').text(pos[2].x));
-    dpc.append($('<y />').text(pos[2].y));
-    dp = position.append('<dp />').children('dp');
-    dp.append($('<x />').text(pos[3].x));
-    dp.append($('<y />').text(pos[3].y));
-    
-    return relation;
-  },
-  
-  
   panel: {
     getSize: function(){
       return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};

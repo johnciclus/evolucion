@@ -10,8 +10,8 @@ import logging, sys
 from docutils.parsers.rst.directives.html import Meta
 
 class Project(models.Model):
-    name        = models.SlugField(_('name'), max_length=50, unique=True)
-    title       = models.CharField(_('title'), max_length=50, unique=True)
+    name        = models.SlugField(_('name'), max_length=50)
+    title       = models.CharField(_('title'), max_length=50)
     description = models.TextField(_('description'))
     keywords    = models.CharField(_('keywords'), max_length=200, null=True, blank=True)
     model       = models.TextField(_('model'), null=True, blank=True)
@@ -21,7 +21,11 @@ class Project(models.Model):
     updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     user        = models.ForeignKey(EvoUser)
-
+    #base_on     = models.ForeignKey(Project)
+    
+    class Meta:
+        unique_together = ("user", "name")
+    
     def __unicode__(self):
         return self.title
 
@@ -34,8 +38,8 @@ class Prose(models.Model):
     title = models.CharField(_('prose title'), max_length=200)
     description = models.TextField(_('prose description'), max_length=2000)
     model       = models.TextField(_('model'), null=True, blank=True)
-    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     project = models.OneToOneField(Project, primary_key=True)
     
@@ -56,8 +60,8 @@ class Influences(models.Model):
     #has_many :relation_infs,  :dependent => :destroy
     
     
-    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -68,8 +72,8 @@ class StockAndFlow(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -80,8 +84,8 @@ class Equations(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     def __unicode__(self):
         return self
@@ -92,8 +96,8 @@ class Behaviors(models.Model):
     #height
     #model
     
-    created_at  = models.DateTimeField(_('created_at'), default=timezone.now)
-    updated_at  = models.DateTimeField(_('updated_at'), default=timezone.now)
+    created_at  = models.DateTimeField(_('created at'), default=timezone.now)
+    updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     def __unicode__(self):
         return self

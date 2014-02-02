@@ -65,8 +65,8 @@ class Editor(generic.View):
     template_name = 'editor/index.html'
     
     def get(self, request, *args, **kwargs):
-        requested_user    = get_object_or_404(EvoUser, username = kwargs['username'])
-        project = get_object_or_404(requested_user.project_set, name = kwargs['project_name'])
+        requested_user  = get_object_or_404(EvoUser, username = kwargs['username'])
+        project         = get_object_or_404(requested_user.project_set, name = kwargs['project_name'])
         
         try:
             prose = project.prose
@@ -103,10 +103,6 @@ class Save(generic.View):
         user_name   = model_xml.attrib['user_name']
         project_name= model_xml.attrib['project_name']
         
-        
-        print >>sys.stderr, "model_xml"
-        print >>sys.stderr, model_xml
-        
         user  = get_object_or_404(EvoUser, username = user_name)
         project = user.project_set.get(name = project_name)
         
@@ -118,40 +114,34 @@ class Save(generic.View):
         except ValidationError as e:
             pass
         
-        prose_xml           = model_xml.find('prose')
+        self.SaveProse(project, model_xml.find('prose'))
+        
+        return render(request, 'projects/_confirmation.html', context)
+
+    def SaveProse(self, project, prose_xml):
         prose, created      = Prose.objects.get_or_create(project = project)
         prose.title         = prose_xml.find('title').text
         prose.description   = prose_xml.find('description').text
+        prose.model         = ET.tostring(prose_xml)
         
         try:
             prose.full_clean()
             prose.save()
         except ValidationError as e:
             pass
-        
-        return render(request, 'projects/_confirmation.html', context)
 
-class SaveProse(generic.View):
-    def post(self, request, *args, **kwargs):
+    def saveInfluence():    
         context = {}
         return render(request, 'projects/_confirmation.html', context)
-
-class SaveInfluence(generic.View):
-    def post(self, request, *args, **kwargs):
+    
+    def saveStockAndFlow():
         context = {}
         return render(request, 'projects/_confirmation.html', context)
-
-class SaveStockAndFlow(generic.View):
-    def post(self, request, *args, **kwargs):
+    
+    def saveEquations():
         context = {}
         return render(request, 'projects/_confirmation.html', context)
-
-class SaveEquations(generic.View):
-    def post(self, request, *args, **kwargs):
-        context = {}
-        return render(request, 'projects/_confirmation.html', context)
-
-class SaveBehavior(generic.View):
-    def post(self, request, *args, **kwargs):
+    
+    def saveBehavior():
         context = {}
         return render(request, 'projects/_confirmation.html', context)        

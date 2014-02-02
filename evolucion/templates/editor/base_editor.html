@@ -94,12 +94,12 @@
   </div>
 </div>
 
+<div id="model">{{ project.model }}</div>
+
+<form id="save_form" class="form-horizontal" action="/projects/save/" method="post">{% csrf_token %}</form>
+
 <xml id="xmldocument" style="display: none"><model user_name="{{ user.username }}" project_name="{{ project.name }}"></model></xml>
 
 <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/editor' %}"></script>
-
-<form id="save_form" class="form-horizontal" action="/projects/save/" method="post">
-    {% csrf_token %}
-</form>
 
 {% endblock %}

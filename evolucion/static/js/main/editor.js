@@ -7,6 +7,7 @@ require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations
     this.evo.equ = this.equ = new Equations();
     this.evo.beh = this.beh = new Behaviors();
     
+    
     //this.beh.graphs['graph'].redraw();
       
     //this.evo.dyn = new Dynamos(evo.fyn.list);
@@ -34,13 +35,21 @@ require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations
     $('#prose-editor').wysiwyg({ fileUploadError: utils_gui.showErrorAlert} );
     $('#prose-editor').html($('#prose-editor').text());
     
+    $('#xmldocument').html($('#model').text());
+    $('#model').remove();
+    
+    this.evo.readXML();
+    this.evo.hideAreas();
+    this.evo.showArea('overview');
+        
+    utils_gui.formAjax('#sign-in-form',     '#sign-in-modal #form-message');
+    utils_gui.formAjax('#sign-up-form',     '#sign-up-modal #form-message');
+    
+    $('#logout').on('click', function(){ utils_gui.logout(); });
+    
     window.prettyPrint && prettyPrint();
   
-    /*utils.formAjax('#sign-in-form',     '#sign-in-modal #form-message');
-    utils.formAjax('#sign-up-form',     '#sign-up-modal #form-message');
-    utils.formAjax('#new-project-form', '#new-project-form #form-message');
-    
-    $('.btn-open').on('click', utils.openProject);
-    
-    $('#logout').on('click', function(){ utils.logout(); });*/
+    /*
+    utils_gui.formAjax('#new-project-form', '#new-project-form #form-message');
+    */
 });

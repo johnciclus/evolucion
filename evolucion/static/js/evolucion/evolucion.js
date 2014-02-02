@@ -192,9 +192,9 @@ this.figures = {
       fig.timer = undefined;
       fig.p = p;
       var points = {  x:  fig.p[0].x, y:  fig.p[0].y, 
-            ax: fig.p[1].x, ay: fig.p[1].y, 
-            bx: fig.p[2].x, by: fig.p[2].y, 
-            zx: fig.p[3].x, zy: fig.p[3].y };
+                      ax: fig.p[1].x, ay: fig.p[1].y, 
+                      bx: fig.p[2].x, by: fig.p[2].y, 
+                      zx: fig.p[3].x, zy: fig.p[3].y };
       fig.push(
         figures.curve(ctx.r, points, curveStyle),
         figures.lines(ctx.r, points, style.line),
@@ -417,9 +417,9 @@ this.figures = {
       height = bb.height;
       
       cp = {  p0x: op.x,      p0y: op.y,
-          p1x: op.x + width,  p1y: op.y, 
-          p2x: op.x + width,  p2y: op.y + height, 
-          p3x: op.x,          p3y: op.y + height};
+              p1x: op.x + width,  p1y: op.y, 
+              p2x: op.x + width,  p2y: op.y + height, 
+              p3x: op.x,          p3y: op.y + height};
               
       this[3].attr('cx', cp.p0x);
       this[3].attr('cy', cp.p0y);
@@ -696,6 +696,7 @@ this.Unit = Class.extend({
   moveDelta: function(dx, dy){                    //mover
     var bb = this.fig[0].getBBox();
     this.fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+    console.log(this.fig.p);
     
     this.fig.transform("...T" + dx + "," + dy);
     this.border = this.fig.getBorder();
@@ -992,7 +993,7 @@ this.Element = EleBase.extend({
 });
 
 this.Clone = EleBase.extend({
-  init: function(ctx, p, el){
+  init: function(ctx, pos, el){
     this._super(ctx);
     
     this.type = "clone";
@@ -1009,7 +1010,7 @@ this.Clone = EleBase.extend({
     
     this.list = this.ctx.list.clone;
     this.connec['desAce'] = false;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.ref.viewDetails();
   },
@@ -1295,10 +1296,12 @@ this.SecBase = Unit.extend({
   end: function(){
     var el = this.parent;
     var elFig = el.fig;   
-    var list;
+    var list, bb;
     
     elFig.dx = 0;
     elFig.dy = 0;
+    bb = elFig[1].getBBox();
+    elFig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     
     list = el.relations;
     
@@ -1578,6 +1581,7 @@ this.Editor = Class.extend({
                 "Descripción"+
               "</label>"+
               "<textarea id='"+el.id+"-description' name='description' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Descripción'>"+
+              el.description+
               "</textarea>"+
             "</div>";
       }
@@ -1588,6 +1592,7 @@ this.Editor = Class.extend({
                 "Definición"+
               "</label>"+
               "<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
+              el.definition+
               "</textarea>"+
             "</div>";
       }
@@ -1606,36 +1611,56 @@ this.Editor = Class.extend({
             "</div>";
       }
       if(el.orientation){
+        var left_checked  = '';
+        var right_checked = '';
+        
+        if(el.orientation == 'left'){
+          left_checked  = 'checked';
+        }
+        else if(el.orientation == 'right'){
+          right_checked = 'checked';
+        }
+        
         html += 
             "<div class='form-group'>"+
               "<label for='"+el.id+"-orientation' class='control-label'>Orientación</label>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-left' value='left'>"+
+                  "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-left' value='left' "+left_checked+">"+
                   "Izquierda"+
                 "</label>"+
               "</div>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-right' value='right'>"+
+                  "<input type='radio' name='"+el.id+"-orientation' id='"+el.id+"-orientation-right' value='right' "+right_checked+">"+
                   "Derecha"+
                 "</label>"+
               "</div>"+
             "</div>";
       }
       if(el.feedback){
+        var negative_checked  = '';
+        var positive_checked = '';
+        
+        if(el.feedback == 'negative'){
+          negative_checked  = 'checked';
+        }
+        else if(el.feedback == 'positive'){
+          positive_checked = 'checked';
+        }
+        
         html += 
             "<div class='form-group'>"+
               "<label for='"+el.id+"-feedback' class='control-label'>Realimentación</label>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative'>"+
+                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative' "+negative_checked+">"+
                   "Negativa"+
                 "</label>"+
               "</div>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive'>"+
+                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive' "+positive_checked+">"+
                   "Positiva"+
                 "</label>"+
               "</div>"+
@@ -1796,7 +1821,6 @@ this.Evolucion = Class.extend({
     this.alias =  ['ove', 'pro', 'inf', 'saf', 'equ', 'beh'];
   
     for(i in this.areas){
-      $('#'+this.areas[i]+'-area').hide();
       $('#'+this.areas[i]+'-link').click(function(event){
           event.preventDefault();
           var area = this.id.substring(0, this.id.lastIndexOf('-'));
@@ -1807,21 +1831,13 @@ this.Evolucion = Class.extend({
               $('#'+evo.areas[j]+'-area').hide();
           }
           evo.areas.splice(idx,0,area);
-          $('#'+area+'-area').show();
-          evo.current_container = area;
+          
+          evo.showArea(area);
       });
     }
     
     var workAreaHeight = $(window).height() - parseInt($('body').css('padding-top'));
     $('.work-area').height(workAreaHeight);
-    
-    $('#overview-area').show();
-    
-    /* 
-     *require([evo.current_container], function() {
-          
-      }); 
-     */
   },
   actions: {
     download: function(){
@@ -1856,261 +1872,7 @@ this.Evolucion = Class.extend({
       });
       return false;      
     },
-    readXML: function(){
-      editor.reiniciar();
-
-      var ancho_svg, alto_svg;
-      var name, title, p, pc, tam, desde, hasta;
-      
-      $(modelo).find('modelo:first').each(function(){
-        ancho_svg = $(this).attr('ancho_svg').replace('px','');
-        alto_svg  = $(this).attr('alto_svg').replace('px','');
-        ancho_svg = Number(ancho_svg);
-        alto_svg = Number(alto_svg);
-        editor.modTamPan(ancho_svg, alto_svg);
-        
-        $(this).find('list_depen:first').each(function(){
-          $(this).find('depen').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            tam    = {'width': Number($(this).attr('width')), 
-                  'height':  Number($(this).attr('height'))};
-            
-            var dp = new Depen(editor.r, p, tam, title);
-            editor.listDepen.push(dp);
-          });
-        });
-        
-        $(this).find('list_activ:first').each(function(){
-          $(this).find('activ').each(function(){
-            name = $(this).attr('name');
-            rol = $(this).attr('rol');
-            desc = $(this).attr('descri');
-            tiem = $(this).attr('tiempo');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var ac = new Activ(editor.r, p, rol, desc, tiem);
-            editor.listActiv.push(ac);
-          });
-        });
-        
-        $(this).find('list_tabla:first').each(function(){
-          $(this).find('tabla').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var ta = new Tabla(editor.r, p, title);
-            editor.listTabla.push(ta);
-          });
-        });
-        
-        $(this).find('list_u_entr:first').each(function(){
-          $(this).find('u_entr').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var ue = new UEntr(editor.r, p, title);
-            editor.listUEntr.push(ue);
-          });
-        });
-        
-        $(this).find('list_u_sale:first').each(function(){
-          $(this).find('u_sale').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var us = new USale(editor.r, p, title);
-            editor.listUSale.push(us);
-          });
-        });
-        
-        $(this).find('list_archi:first').each(function(){
-          $(this).find('archi').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var ar = new Archi(editor.r, p, title);
-            editor.listArchi.push(ar);
-          });
-        });
-        
-        $(this).find('list_carpe:first').each(function(){
-          $(this).find('carpe').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var ca = new Carpe(editor.r, p, title);
-            editor.listCarpe.push(ca);
-          });
-        });
-        
-        $(this).find('list_compu:first').each(function(){
-          $(this).find('compu').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var co = new Compu(editor.r, p, title);
-            editor.listCompu.push(co);
-          });
-        });
-        
-        $(this).find('list_based:first').each(function(){
-          $(this).find('based').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var bd = new BaseD(editor.r, p, title);
-            editor.listBaseD.push(bd);
-          });
-        });
-        
-        $(this).find('list_actbd:first').each(function(){
-          $(this).find('actbd').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var abd = new ActDB(editor.r, p, title);
-            editor.listActDB.push(abd);
-          });
-        });
-        
-        $(this).find('list_docum:first').each(function(){
-          $(this).find('docum').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var doc = new Docum(editor.r, p, title);
-            editor.listDocum.push(doc);
-          });
-        });
-        
-        $(this).find('list_docms:first').each(function(){
-          $(this).find('docms').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var dcs = new Docms(editor.r, p, title);
-            editor.listDocms.push(dcs);
-          });
-        });
-        
-        $(this).find('list_impre:first').each(function(){
-          $(this).find('impre').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var im = new Impre(editor.r, p, title);
-            editor.listImpre.push(im);
-          });
-        });
-        
-        $(this).find('list_papel:first').each(function(){
-          $(this).find('papel').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var pp = new Papel(editor.r, p, title);
-            editor.listPapel.push(pp);
-          });
-        });
-        
-        $(this).find('list_incon:first').each(function(){
-          $(this).find('incon').each(function(){
-            name = $(this).attr('name');
-            title = $(this).attr('title');
-            
-            p      = {'x': Number($(this).attr('x')),
-                      'y': Number($(this).attr('y'))};
-            
-            var inc = new Incon(editor.r, p, title);
-            editor.listIncon.push(inc);
-          });
-        });
-        
-        $(this).find('list_union:first').each(function(){
-          $(this).find('union').each(function(){
-            
-            desde = $(this).attr('desde');
-            hasta = $(this).attr('hasta');
-            tie_ini = $(this).attr('tie_ini');
-            tie_fin = $(this).attr('tie_fin');
-            
-            pc      = $(this).attr('pc');
-            eval('var pc='+pc);
-            
-            var un = new Union(editor.r, pc, 
-              editor.busEleNom(desde),
-              editor.busEleNom(hasta),
-              tie_ini, tie_fin);
-            editor.listUnion.push(un);
-          });
-        });
-        
-        $(this).find('list_undob:first').each(function(){
-          $(this).find('undob').each(function(){
-            
-            desde = $(this).attr('desde');
-            hasta = $(this).attr('hasta');
-            
-            pc      = $(this).attr('pc');
-            eval('var pc='+pc);
-            
-            var un = new UnDob(editor.r, pc, 
-              editor.busEleNom(desde),
-              editor.busEleNom(hasta));
-              
-            editor.listUnDob.push(un);
-          });
-        });
-        
-        
-      });
-    },
     save: function(){
-      var frm = $('#save_form');
-      
-      var model = $('#xmldocument model:first');     
-      
       if(evo.pro){
         evo.pro.saveAsDom();
       }
@@ -2120,7 +1882,9 @@ this.Evolucion = Class.extend({
       
       var root =  $('#xmldocument');
       var csrf =  $("#save_form > input[name='csrfmiddlewaretoken']");
-
+      
+      var frm  =  $('#save_form');
+      
       $.ajax({
         type: frm.attr('method'),
         url: frm.attr('action'),
@@ -2139,7 +1903,6 @@ this.Evolucion = Class.extend({
       
       
       /*
-      /*
       if(this.saf){
         this.saf.saveAsDom();
       }
@@ -2149,21 +1912,7 @@ this.Evolucion = Class.extend({
       if(this.beh){
         this.com.saveAsDom();
       }
-      
-      $.ajax({
-        url: '/projects/save/',
-        type: 'POST',            
-        data: {
-          'csrfmiddlewaretoken': $("#prose_form input[type='hidden']").val(),
-          'model': root.html()
-        },
-        success: function(data){
-          console.log(data);
-        },
-        error: function(data){
-          
-        }   
-      });*/
+      */
             
     },
     simulate: function(){
@@ -2208,6 +1957,15 @@ this.Evolucion = Class.extend({
     var idx = this.areas.indexOf(area_name);
     if(idx >=0){ return this.alias[idx]; }
     return undefined;
+  },
+  hideAreas: function(){
+    for(i in this.areas){
+      $('#'+this.areas[i]+'-area').hide();
+    }
+  },
+  showArea: function(area){
+    $('#'+area+'-area').show();
+    this.current_container = area;
   },
   messages: {
     error: function(message){
@@ -2263,6 +2021,166 @@ this.Evolucion = Class.extend({
         ).children(':last-child');
         message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
       }
+    }
+  },
+  readXML: function(){
+    //evo.inf.reset();
+    //evo.saf.reset();
+   
+    var root        = $('#xmldocument');
+    var model       = root.children('model:first');
+    var influences  = model.children('influences');
+    
+    var groups;
+    var width, height;
+    var name, title, description, units, position, pos, relations, from_relations, to_relations,  p, pc, size, from, to;
+
+    width = Number(influences.attr('width').replace('px',''));
+    height= Number(influences.attr('height').replace('px',''));
+    
+    inf.panel.resize(width, height);
+       
+    if(model){
+      
+      var concepts  = influences.find('concepts>concept');
+      
+      concepts.each(function( idx, concept ) {
+        name          = $(concept).children('name').text();
+        title         = $(concept).children('title').text();
+        description   = $(concept).children('description').text();
+        units         = $(concept).children('units').text();
+        
+        position      = $(concept).children('position');
+        relations     = $(concept).children('relations');
+        
+        from_relations = [];
+        to_relations   = [];
+        
+        $(relations).children('from_relation').each(function( idx, relation ) {
+          from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
+        });
+        
+        $(relations).children('to_relation').each(function( idx, relation ) {
+          to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
+        });
+        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+        
+        var c = new Concept(inf, pos, title, description, units);
+        inf.list.concept[c.id] = c;
+      });
+      
+      var cycles  = influences.find('cycles>cycle');
+      
+      cycles.each(function( idx, cycle ) {
+        name          = $(cycle).children('name').text();
+        title         = $(cycle).children('title').text();
+        description   = $(cycle).children('description').text();
+        orientation   = $(cycle).children('orientation').text();
+        feedback      = $(cycle).children('feedback').text();
+        position      = $(cycle).children('position');
+                        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+        
+        var c = new Cycle(inf, pos, title, description, orientation, feedback);
+        inf.list.cycle[c.id] = c;
+      });
+      
+      var clones  = influences.find('clones>clone');
+      
+      clones.each(function( idx, cycle ) {
+        name          = $(cycle).children('name').text();
+        reference     = $(cycle).children('reference').text();
+        
+        position      = $(cycle).children('position');
+        relations     = $(cycle).children('relations');
+        
+        from_relations = [];
+        to_relations   = [];
+        
+        $(relations).children('from_relation').each(function( idx, relation ) {
+          from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
+        });
+        
+        $(relations).children('to_relation').each(function( idx, relation ) {
+          to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
+        });
+        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+          
+        var el = inf.objects.getByName(reference);
+        
+        if(el){        
+          var c = new Clone(inf, pos, el);
+          inf.list.clone[c.id] = c;
+        }
+      });
+      
+      var material_relations  = influences.find('material_relations>relation');
+      
+      material_relations.each(function( idx, relation ) {
+        origin          = $(relation).children('origin').text();
+        destination     = $(relation).children('destination').text();
+        description     = $(relation).children('description').text();
+        
+        position      = $(relation).children('position');
+                
+        pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
+                {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
+                {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
+                {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
+              ];
+        
+        var from_el = inf.objects.getByName(origin);
+        var to_el   = inf.objects.getByName(destination);
+                
+        if(from_el && to_el){        
+          var rel = new MaterialRel(inf, pos, from_el, to_el, description);
+          inf.list.material[rel.id] = rel;
+        }
+      });
+      
+      var information_relations  = influences.find('information_relations>relation');
+      
+      information_relations.each(function( idx, relation ) {
+        origin          = $(relation).children('origin').text();
+        destination     = $(relation).children('destination').text();
+        description     = $(relation).children('description').text();
+        
+        position      = $(relation).children('position');
+                
+        pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
+                {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
+                {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
+                {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
+              ];
+        
+        var from_el = inf.objects.getByName(origin);
+        var to_el   = inf.objects.getByName(destination);
+                
+        if(from_el && to_el){        
+          var rel = new InformationRel(inf, pos, from_el, to_el, description);
+          inf.list.information[rel.id] = rel;
+        }
+      });
+      
+      var sectors  = influences.find('sectors>sectorinf');
+      
+      sectors.each(function( idx, sector ) {
+        name          = $(sector).children('name').text();
+        title         = $(sector).children('title').text();
+        description   = $(sector).children('description').text();
+        
+        position      = $(sector).children('position');
+        size          = $(sector).children('size');
+                        
+        pos = {'x':     Number($(position).children('x').text()), 'y':      Number($(position).children('y').text())};
+        sis = {'width': Number($(size).children('width').text()), 'height': Number($(size).children('height').text())};
+        
+        var s = new SectorInf(inf, pos, sis, title, description);
+        inf.list.sectorinf[s.id] = s;
+      });
+      
     }
   },
   verifyBrowsers: function(){

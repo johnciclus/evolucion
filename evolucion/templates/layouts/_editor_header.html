@@ -11,7 +11,11 @@
   <li><a id="overview-link" href="#"> {% trans "overview"|capfirst %} </a></li>
   <li class="divider"></li>
   <li><a id="open"      href="#"> {% trans "open"|capfirst %} </a></li>
+  
+  {% if user.id == requested_user.id %}
   <li><a id="save"      href="#"> {% trans "save"|capfirst %} </a></li>
+  {% endif %}
+  
   <li><a id="download"  href="#"> {% trans "download"|capfirst %} </a></li>
   <li><a href="#" class="text-primary" data-toggle="modal" data-target="#alertBrowserModal">Browser </a></li>
 </ul>

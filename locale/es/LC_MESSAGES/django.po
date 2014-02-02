@@ -7,76 +7,68 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-31 11:26-0500\n"
+"POT-Creation-Date: 2014-02-01 19:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: evolucion/projects/models.py:13
-#, fuzzy
 msgid "name"
-msgstr "nombre de usuario"
+msgstr "nombre del proyecto"
 
-#: evolucion/projects/models.py:14 evolucion/templates/projects/index.html:30
-#: evolucion/templates/projects/index.html:85
+#: evolucion/projects/models.py:14 evolucion/templates/projects/index.html:31
+#: evolucion/templates/projects/index.html:88
 msgid "title"
 msgstr "titulo"
 
-#: evolucion/projects/models.py:15 evolucion/templates/projects/index.html:36
+#: evolucion/projects/models.py:15 evolucion/templates/projects/index.html:37
 msgid "description"
 msgstr "descripción"
 
 #: evolucion/projects/models.py:16
 msgid "keywords"
-msgstr ""
+msgstr "palabras clave"
 
-#: evolucion/projects/models.py:17 evolucion/projects/models.py:36
-#, fuzzy
+#: evolucion/projects/models.py:17 evolucion/projects/models.py:40
 msgid "model"
-msgstr "submodelos"
+msgstr "submodelo"
 
 #: evolucion/projects/models.py:18
 msgid "hits"
-msgstr ""
+msgstr "visitas"
 
 #: evolucion/projects/models.py:19
 msgid "stars"
-msgstr ""
+msgstr "estrellas"
 
-#: evolucion/projects/models.py:20 evolucion/users/models.py:15
+#: evolucion/projects/models.py:20 evolucion/projects/models.py:41
+#: evolucion/projects/models.py:63 evolucion/projects/models.py:75
+#: evolucion/projects/models.py:87 evolucion/projects/models.py:99
+#: evolucion/users/models.py:15
 msgid "created at"
 msgstr "creado el"
 
-#: evolucion/projects/models.py:21 evolucion/users/models.py:16
+#: evolucion/projects/models.py:21 evolucion/projects/models.py:42
+#: evolucion/projects/models.py:64 evolucion/projects/models.py:76
+#: evolucion/projects/models.py:88 evolucion/projects/models.py:100
+#: evolucion/users/models.py:16
 msgid "updated at"
 msgstr "actualizado el"
 
-#: evolucion/projects/models.py:34
+#: evolucion/projects/models.py:38
 msgid "prose title"
 msgstr "titulo"
 
-#: evolucion/projects/models.py:35
+#: evolucion/projects/models.py:39
 msgid "prose description"
 msgstr "descripción"
 
-#: evolucion/projects/models.py:37 evolucion/projects/models.py:59
-#: evolucion/projects/models.py:71 evolucion/projects/models.py:83
-#: evolucion/projects/models.py:95
-msgid "created_at"
-msgstr "creado el"
-
-#: evolucion/projects/models.py:38 evolucion/projects/models.py:60
-#: evolucion/projects/models.py:72 evolucion/projects/models.py:84
-#: evolucion/projects/models.py:96
-msgid "updated_at"
-msgstr "actualizado el"
-
-#: evolucion/projects/views.py:53
+#: evolucion/projects/views.py:55
 msgid "the project was successfully registered"
 msgstr "el proyecto fue registrado exitosamente"
 
@@ -131,11 +123,12 @@ msgstr "Ir"
 #: evolucion/templates/admin/actions.html:11
 msgid "Click here to select the objects across all pages"
 msgstr ""
+"Haga clic aquí para seleccionar los objetos a través de todas las páginas"
 
 #: evolucion/templates/admin/actions.html:11
 #, python-format
 msgid "Select all %(total_count)s %(module_name)s"
-msgstr ""
+msgstr "Seleccionar todos los %(total_count)s %(module_name)s"
 
 #: evolucion/templates/admin/actions.html:13
 msgid "Clear selection"
@@ -145,7 +138,7 @@ msgstr "Limpiar selección"
 #: evolucion/templates/admin/index.html:21
 #, python-format
 msgid "%(name)s"
-msgstr ""
+msgstr "%(name)s"
 
 #: evolucion/templates/admin/base.html:28
 msgid "Welcome,"
@@ -171,7 +164,7 @@ msgstr "Evolución sitio de administración"
 
 #: evolucion/templates/admin/base_site.html:7
 msgid "Evolución administration"
-msgstr ""
+msgstr "Evolución, administración"
 
 #: evolucion/templates/admin/change_form.html:22
 #: evolucion/templates/admin/index.html:33
@@ -187,7 +180,7 @@ msgstr "Historia"
 #: evolucion/templates/admin/edit_inline/stacked.html:9
 #: evolucion/templates/admin/edit_inline/tabular.html:30
 msgid "View on site"
-msgstr ""
+msgstr "Ver en el sitio"
 
 #: evolucion/templates/admin/change_form.html:44
 #: evolucion/templates/admin/change_list.html:67
@@ -578,13 +571,89 @@ msgstr "relación de información"
 msgid "inf sector btn title"
 msgstr "sector"
 
-#: evolucion/templates/editor/_prose.html:13
+#: evolucion/templates/editor/_prose.html:12
 msgid "prose title placeholder"
 msgstr "titulo del modelo"
 
-#: evolucion/templates/editor/_prose.html:24
+#: evolucion/templates/editor/_prose.html:23
 msgid "prose description placeholder"
 msgstr "descripción del modelo"
+
+#: evolucion/templates/editor/_prose.html:28
+msgid "font"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:33
+msgid "font Size"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:41
+msgid "bold (Ctrl/Cmd+B)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:42
+msgid "italic (Ctrl/Cmd+I)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:43
+msgid "strikethrough"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:44
+msgid "underline (Ctrl/Cmd+U)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:47
+msgid "bullet list"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:48
+msgid "number list"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:49
+msgid "reduce indent (Shift+Tab)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:50
+msgid "indent (Tab)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:53
+msgid "align Left (Ctrl/Cmd+L)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:54
+msgid "center (Ctrl/Cmd+E)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:55
+msgid "align Right (Ctrl/Cmd+R)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:56
+msgid "justify (Ctrl/Cmd+J)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:63
+msgid "hyperlink"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:66
+msgid "remove Hyperlink"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:70
+msgid "insert picture (or just drag & drop)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:74
+msgid "undo (Ctrl/Cmd+Z)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:75
+msgid "redo (Ctrl/Cmd+Y)"
+msgstr ""
 
 #: evolucion/templates/editor/_stock-and-flow.html:160
 msgid "relations"
@@ -646,11 +715,11 @@ msgstr "relación"
 msgid "saf sector btn title"
 msgstr "sector"
 
-#: evolucion/templates/editor/base_editor.html:61
+#: evolucion/templates/editor/base_editor.html:64
 msgid "browser incompatibility"
 msgstr "incompatibilidad del navegador de internet"
 
-#: evolucion/templates/editor/base_editor.html:86
+#: evolucion/templates/editor/base_editor.html:89
 msgid "close"
 msgstr "cerrar"
 
@@ -736,11 +805,11 @@ msgstr "resumen"
 msgid "open"
 msgstr "abrir"
 
-#: evolucion/templates/layouts/_editor_header.html:14
+#: evolucion/templates/layouts/_editor_header.html:16
 msgid "save"
 msgstr "guardar"
 
-#: evolucion/templates/layouts/_editor_header.html:15
+#: evolucion/templates/layouts/_editor_header.html:19
 msgid "download"
 msgstr "descargar"
 
@@ -795,16 +864,16 @@ msgstr "regístrate"
 msgid "nav sign in"
 msgstr "inicia sesión"
 
-#: evolucion/templates/layouts/_user_dropdown.html:7
+#: evolucion/templates/layouts/_user_dropdown.html:47
 msgid "settings"
 msgstr "opciones"
 
-#: evolucion/templates/layouts/_user_dropdown.html:10
+#: evolucion/templates/layouts/_user_dropdown.html:50
 msgid "logout"
 msgstr "cerrar sesión"
 
 #: evolucion/templates/projects/_new_project.html:12
-#: evolucion/templates/projects/index.html:110
+#: evolucion/templates/projects/index.html:114
 msgid "open project"
 msgstr "abrir projecto"
 
@@ -817,59 +886,60 @@ msgstr "abrir projecto"
 msgid "information"
 msgstr "información"
 
-#: evolucion/templates/projects/index.html:21
-#: evolucion/templates/projects/index.html:79
+#: evolucion/templates/projects/index.html:22
+#: evolucion/templates/projects/index.html:82
 msgid "new project"
 msgstr "nuevo proyecto"
 
-#: evolucion/templates/projects/index.html:32
+#: evolucion/templates/projects/index.html:33
 msgid "new project title"
 msgstr "titulo del nuevo projecto"
 
-#: evolucion/templates/projects/index.html:39
+#: evolucion/templates/projects/index.html:40
 msgid "project description"
 msgstr "descripción del nuevo projecto"
 
-#: evolucion/templates/projects/index.html:57
+#: evolucion/templates/projects/index.html:58
 msgid "launch project"
 msgstr "lanzar projecto"
 
-#: evolucion/templates/projects/index.html:82
+#: evolucion/templates/projects/index.html:85
 msgid "order by"
-msgstr ""
+msgstr "ordenar por"
 
-#: evolucion/templates/projects/index.html:86
-#, fuzzy
+#: evolucion/templates/projects/index.html:89
 msgid "creation date"
-msgstr "creado el"
+msgstr "fecha de creación"
 
-#: evolucion/templates/projects/index.html:87
+#: evolucion/templates/projects/index.html:90
 msgid "number of hits"
-msgstr ""
+msgstr "numero de visualizaciones"
 
-#: evolucion/templates/projects/index.html:88
+#: evolucion/templates/projects/index.html:91
 msgid "number of stars"
-msgstr ""
+msgstr "numero de estrellas"
 
-#: evolucion/templates/projects/index.html:96
-#, fuzzy
+#: evolucion/templates/projects/index.html:100
 msgid "own projects"
-msgstr "abrir projecto"
+msgstr "proyectos propios"
 
-#: evolucion/templates/projects/index.html:97
-#, fuzzy
+#: evolucion/templates/projects/index.html:101
 msgid "own projects description"
-msgstr "descripción del nuevo projecto"
+msgstr "proyectos de autoría del usuario"
 
-#: evolucion/templates/projects/index.html:120
-#, fuzzy
+#: evolucion/templates/projects/index.html:116
+msgid "copy project"
+msgstr "copiar projecto"
+
+#: evolucion/templates/projects/index.html:127
 msgid "fork projects"
-msgstr "abrir projecto"
+msgstr "proyectos basados en otras autorías"
 
-#: evolucion/templates/projects/index.html:121
-#, fuzzy
+#: evolucion/templates/projects/index.html:128
 msgid "fork projects description"
-msgstr "descripción del nuevo projecto"
+msgstr ""
+"proyectos basados en proyectos de otros autores, que se desarrollan en "
+"versiones independientes de acuerdo al criterio del autor"
 
 #: evolucion/templates/users/_form.html:11
 msgid "sign up first_name placeholder"
@@ -952,6 +1022,12 @@ msgstr "el usuario no esta activo"
 #: evolucion/users/views.py:71
 msgid "the username or password is not correct."
 msgstr "el nombre de usuario o contrase esta incorrecta"
+
+#~ msgid "created_at"
+#~ msgstr "creado el"
+
+#~ msgid "updated_at"
+#~ msgstr "actualizado el"
 
 #~ msgid "home"
 #~ msgstr "inicio"
