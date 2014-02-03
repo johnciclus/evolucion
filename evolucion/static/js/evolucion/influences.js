@@ -853,14 +853,14 @@ this.Influences = Editor.extend({
   openAsDOM: function(model){
     
       var name, title, description, units, position, pos, relations, from_relations, to_relations,  p, pc, size, from, to;
-      var width, height;
+      
       
       var influences  = model.children('influences');
       
-      width = Number(influences.attr('width').replace('px',''));
-      height= Number(influences.attr('height').replace('px',''));
+      var width = Number(influences.attr('width').replace('px',''));
+      var height= Number(influences.attr('height').replace('px',''));
       
-      inf.panel.resize(width, height);
+      this.panel.resize(width, height);
         
       var concepts  = influences.find('concepts>concept');
       
@@ -908,12 +908,12 @@ this.Influences = Editor.extend({
       
       var clones  = influences.find('clones>clone');
       
-      clones.each(function( idx, cycle ) {
-        name          = $(cycle).children('name').text();
-        reference     = $(cycle).children('reference').text();
+      clones.each(function( idx, clone ) {
+        name          = $(clone).children('name').text();
+        reference     = $(clone).children('reference').text();
         
-        position      = $(cycle).children('position');
-        relations     = $(cycle).children('relations');
+        position      = $(clone).children('position');
+        relations     = $(clone).children('relations');
         
         from_relations = [];
         to_relations   = [];

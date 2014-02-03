@@ -1857,14 +1857,14 @@ this.Editor = Class.extend({
       if(enteringRelsQua > 0){
         rels = obj.enteringRels;
         for(var rel in rels){
-          relation = relations.append('<from_relation />').children('from_relation');
+          relation = relations.append('<entering_relation />').children('entering_relation');
           relation.text(rels[rel].from.name);
         }
       }
       if(leavingRelsQua > 0){
-        rels = obj.relacSal;
+        rels = obj.leavingRels;
         for(var rel in rels){
-          relation = relations.append('<to_relation />').children('to_relation');
+          relation = relations.append('<leaving_relation />').children('leaving_relation');
           relation.text(rels[rel].to.name);
         }
       }
@@ -2132,6 +2132,7 @@ this.Evolucion = Class.extend({
     
     if(model.length>0){
       evo.inf.openAsDOM(model);
+      evo.saf.openAsDOM(model);
     }
   },
   verifyBrowsers: function(){

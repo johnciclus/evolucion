@@ -710,7 +710,7 @@ this.figures = $.extend(this.figures, {
 });
 
 this.Parameter = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "parameter";
@@ -719,22 +719,23 @@ this.Parameter = Element.extend({
     this.id = "parameter-"+idx;
     this.title = title || "Parametro "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
-    
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
+        
     this.list = this.ctx.list.parameter;
     this.connec['desAce'] = false;
     
     this.figGenerator = figures.parameter;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Stock = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "stock";
@@ -743,9 +744,10 @@ this.Stock = Element.extend({
     this.id = "stock-"+idx;
     this.title = title || "Nivel "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.stock;
     
@@ -867,7 +869,7 @@ this.Stock = Element.extend({
 });
 
 this.Flow = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "flow";
@@ -876,9 +878,10 @@ this.Flow = Element.extend({
     this.id = "flow-"+idx;
     this.title = title || "Flujo "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     this.selected = false;
     
     this.list = this.ctx.list.flow;
@@ -1048,7 +1051,7 @@ this.Flow = Element.extend({
 });
 
 this.Auxiliary = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "auxiliary";
@@ -1057,9 +1060,10 @@ this.Auxiliary = Element.extend({
     this.id = "auxiliary-"+idx;
     this.title = title || "Var. auxiliar "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.auxiliary;
     
@@ -1071,7 +1075,7 @@ this.Auxiliary = Element.extend({
 });
 
 this.Exogenous = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "exogenous";
@@ -1080,9 +1084,10 @@ this.Exogenous = Element.extend({
     this.id = "exogenous-"+idx;
     this.title = title || "Var. exogena "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.exogenous;
     this.connec['desAce'] = false;
@@ -1095,7 +1100,7 @@ this.Exogenous = Element.extend({
 });
 
 this.Delay = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "delay";
@@ -1104,9 +1109,10 @@ this.Delay = Element.extend({
     this.id = "delay-"+idx;
     this.title = title || "Retardo "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.delay;
     
@@ -1118,7 +1124,7 @@ this.Delay = Element.extend({
 });
 
 this.Multiplier = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "multiplier";
@@ -1127,9 +1133,10 @@ this.Multiplier = Element.extend({
     this.id = "multiplier-"+idx;
     this.title = title || "Multiplicador "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.multiplier;
     
@@ -1141,7 +1148,7 @@ this.Multiplier = Element.extend({
 });
 
 this.Fis = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "fis";
@@ -1150,9 +1157,10 @@ this.Fis = Element.extend({
     this.id = "fis-"+idx;
     this.title = title || "FIS "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.fis;
     
@@ -1164,7 +1172,7 @@ this.Fis = Element.extend({
 });
 
 this.Previous = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "previous";
@@ -1173,9 +1181,10 @@ this.Previous = Element.extend({
     this.id = "previous-"+idx;
     this.title = title || "Val. Anterior "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.previous;
     
@@ -1187,7 +1196,7 @@ this.Previous = Element.extend({
 });
 
 this.Submodel = Element.extend({
-  init: function(ctx, p, title){
+  init: function(ctx, p, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "submodel";
@@ -1196,9 +1205,10 @@ this.Submodel = Element.extend({
     this.id = "submodel-"+idx;
     this.title = title || "Submodelo "+idx;
     this.name = utils.textToVar(this.title);
-    this.definition = " ";
-    this.dimension = 1;
-    this.units = "Adimensional";
+    this.description = description || " "; 
+    this.definition =  definition || " ";
+    this.units = units || "Adimensional";
+    this.dimension = dimension || 1;
     
     this.list = this.ctx.list.submodel;
     this.connec['desAce'] = false;
@@ -1211,7 +1221,7 @@ this.Submodel = Element.extend({
 });
 
 this.RelationSaf = Relation.extend({
-  init: function(ctx, p, from, to){
+  init: function(ctx, p, from, to, description){
     this._super(ctx);
     
     this.type = "relation";
@@ -1221,6 +1231,7 @@ this.RelationSaf = Relation.extend({
     
     this.title = this.ctx.relationTitle(from.title, to.title);
     this.name = utils.textToVar(this.title);
+    this.description = description || " ";
     
     this.list = this.ctx.list.relation;
     this.from = from;
@@ -1710,6 +1721,7 @@ this.StockAndFlow = Editor.extend({
     this.path.ctx = this;
     this.pointer.ctx = this;
     this.sector.ctx = this;
+    this.objects.ctx = this;
   },
   
   saveAsDOM: function(){
@@ -1814,7 +1826,152 @@ this.StockAndFlow = Editor.extend({
       return false;
     }
   },
+  openAsDOM: function(model){
+    var stock_and_flow  = model.children('stock_and_flow');
+    
+    var width = Number(stock_and_flow.attr('width').replace('px',''));
+    var height= Number(stock_and_flow.attr('height').replace('px',''));
+    
+    var group, name, title, description, definition, 
+        units, dimension, position, pos, relations, 
+        enteringRels, leavingRels, el;
+    
+    this.panel.resize(width, height);
+    
+    var elements = [{ 'class': Parameter,   'el': 'parameter',  'group':  'parameters'    },
+                    { 'class': Stock,       'el': 'stock',      'group':  'stocks'        },
+                    { 'class': Flow,        'el': 'flow',       'group':  'flows'         },
+                    { 'class': Auxiliary,   'el': 'auxiliary',  'group':  'auxiliaries'   },
+                    { 'class': Exogenous,   'el': 'exogenous',  'group':  'exogenous_vars'},
+                    { 'class': Delay,       'el': 'delay',      'group':  'delays'        },
+                    { 'class': Multiplier,  'el': 'multiplier', 'group':  'multipliers'   },
+                    { 'class': Fis,         'el': 'fis',        'group':  'fis_vars'      },
+                    { 'class': Previous,    'el': 'previous',   'group':  'previous_vals' },
+                    { 'class': Submodel,    'el': 'submodel',   'group':  'submodels'     }];
+        
+    $.each(elements, function(idx, values){
+            
+      group = stock_and_flow.find(values.group+'>'+values.el);
+      
+      group.each(function( idx, element ) {
+        name          = $(element).children('name').text();
+        title         = $(element).children('title').text();
+        description   = $(element).children('description').text();
+        definition    = $(element).children('definition').text();
+        units         = $(element).children('units').text();
+        dimension     = $(element).children('dimension').text();
+        
+        position      = $(element).children('position');
+        relations     = $(element).children('relations');
+        
+        enteringRels  = [];
+        leavingRels   = [];
+        
+        $(relations).children('entering_relation').each(function( idx, relation ) {
+          enteringRels.push({'from': $(relation).text()});
+        });
+        
+        $(relations).children('leaving_relation').each(function( idx, relation ) {
+          leavingRels.push({'to': $(relation).text()});
+        });
+        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+        
+        el = new values.class(saf, pos, title, description, definition, units, dimension);
+        saf.list[values.el][el.id] = el;
+      });
+    });
+    
+    var clones  = stock_and_flow.find('clones>clone');
+      
+    clones.each(function( idx, clone ) {
+      name          = $(clone).children('name').text();
+      reference     = $(clone).children('reference').text();
+      
+      position      = $(clone).children('position');
+      relations     = $(clone).children('relations');
+      
+      from_relations = [];
+      to_relations   = [];
+      
+      $(relations).children('from_relation').each(function( idx, relation ) {
+        from_relations.push({'type': $(relation).attr('type'), 'from': $(relation).text()});
+      });
+      
+      $(relations).children('to_relation').each(function( idx, relation ) {
+        to_relations.push({'type': $(relation).attr('type'), 'to': $(relation).text()});
+      });
+      
+      pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
+        
+      var el = saf.objects.getByName(reference);
+      
+      if(el){        
+        var c = new Clone(saf, pos, el);
+        saf.list.clone[c.id] = c;
+      }
+    });
+      
+    var relations  = stock_and_flow.find('relations>relation');
+      
+    relations.each(function( idx, relation ) {
+      origin          = $(relation).children('origin').text();
+      destination     = $(relation).children('destination').text();
+      description     = $(relation).children('description').text();
+      
+      position      = $(relation).children('position');
+              
+      pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
+              {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
+              {'x': Number($(position).find('dpc>x').text()), 'y': Number($(position).find('dpc>y').text()) },
+              {'x': Number($(position).find('dp>x').text()),  'y': Number($(position).find('dp>y').text()) }
+            ];
+      
+      var from_el = saf.objects.getByName(origin);
+      var to_el   = saf.objects.getByName(destination);
+              
+      if(from_el && to_el){        
+        var rel = new RelationSaf(saf, pos, from_el, to_el, description);
+        saf.list.relation[rel.id] = rel;
+      }
+    });
+    
+    var sectors  = stock_and_flow.find('sectors>sectorsaf');
+      
+    sectors.each(function( idx, sector ) {
+      name          = $(sector).children('name').text();
+      title         = $(sector).children('title').text();
+      description   = $(sector).children('description').text();
+      
+      position      = $(sector).children('position');
+      size          = $(sector).children('size');
+                      
+      pos = {'x':     Number($(position).children('x').text()), 'y':      Number($(position).children('y').text())};
+      sis = {'width': Number($(size).children('width').text()), 'height': Number($(size).children('height').text())};
+      
+      var s = new SectorSaf(saf, pos, sis, title, description);
+      saf.list.sectorsaf[s.id] = s;
+    });
+    
+    //
+    
+  },
   
+  objects: {
+    getByName: function(name){
+      var elmts = this.ctx.elements;
+      var list;
+      for( var el in elmts ){
+        list = this.ctx.list[elmts[el]];
+        for(var i in list){
+          if(list[i].name == name){
+            return list[i];  
+          }
+        }
+      }
+      return false;
+    }
+  },
   panel: {
     getSize: function(){
       return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};
