@@ -9,15 +9,17 @@ this.Equations = Class.extend({
     this.divArea  = '#equations-area';
     this.language = '#language-equ';
     
-    this.code  = '';
+    this.code     = {};
     
     this.initWorkArea();
     
     $('#mathematical-language').click(function(){
-      evo.equ.model.mathematical_model([]);
+      equ.model.mathematical_model([]);
+      equ.activateItem(this.id);
     });
     $('#javascript-language').click(function(){
-      evo.equ.model.javascript_model([]);
+      equ.model.javascript_model([]);
+      equ.activateItem(this.id);
     });
   },
   adjust: function(){
@@ -28,46 +30,65 @@ this.Equations = Class.extend({
     $(this.language).height(workAreaHeight - 2);
     
   },
+  activateItem: function(item){
+    var item_active = $('#elements-equ>a.active').attr('id');
+    if(item_active != item){
+      $('#'+item_active).removeClass('active');
+      $('#'+item).addClass('active');
+    }
+  },
   initWorkArea: function(){
     this.adjust();
   },
   model: {
     mathematical_model: function(elments){
-      evo.dyn.loadListas(saf.list);
-      var code = evo.dyn.genCodigoMT(elments);
+            
+      var code = evo.dyn.generateMath(elments);
       
-      $(this.len_div).empty();
-      $("<pre id='code' class='code' lang='js'></pre>").appendTo(this.len_div);
-      $('#code').text(code);
-      $('#code').highlight({source:1, zebra:1, indent:'space', list:'ol'});
-      return code;      
+      equ.code['mathematical'] = code;
+      
+      var container = $('<div id="mathematical-code" />');
+            
+      container.append($("<pre class='prettyprint linenums' />").text(code));
+      
+      $(equ.language).html(container);
+      
+      window.prettyPrint && prettyPrint();
     },
     javascript_model: function(elments){
-      evo.dyn.loadListas(saf.list);
-      this.code = evo.dyn.genCodigoJS(elments);
+            
+      var code = evo.dyn.generateJS(elments);
       
-      $(this.len_div).empty();
-      $("<pre id='code' class='code' lang='js'></pre>").appendTo(this.len_div);
-      $('#code').text(this.code);
-      $('#code').highlight({source:1, zebra:1, indent:'space', list:'ol'});
+      equ.code['javascript'] = code;
       
-      return this.code;   
+      var container = $('<div id="javascript-code" />');
+      
+      container.append($("<pre class='prettyprint linenums' />").text(code));
+      
+      $(equ.language).html(container);
+      
+      window.prettyPrint && prettyPrint();
     }
   }, 
-  
-  
-  saveAsDom: function(){
+
+  saveAsDOM: function(){
     var model, equations;
     
     model = $('#xmldocument model:first');
     
-    equation = model.children('equation');
+    equations = model.children('equations');
     
-    if($.isEmptyObject(equation[0])){
-      equation = model.append($('<equation />')).find('equation');  
+    if($.isEmptyObject(equations[0])){
+      equations = model.append($('<equations />')).find('equations');  
     }
     else{
-      equation.empty();
+      equations.empty();
+    }
+  
+    if(equations){
+      codes = equations.append('<codes />').children('codes');
+      codes.append($('<mathematical />').text(equ.code['mathematical']));
+      codes.append($('<javascript />').text(equ.code['javascript']));
     }
   }
   

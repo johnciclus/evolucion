@@ -18,6 +18,8 @@ require.config({
         equations:      'evolucion/equations',
         behaviors:      'evolucion/behaviors',
         
+        dynamos:        'dynamos/dynamos',
+        
         utils:          'utils'
     },
     shim: {
@@ -62,6 +64,9 @@ require.config({
         },
         behaviors: {
             deps:['evolucion', 'morris']
+        },
+        dynamos: {
+            deps:['poo', 'jquery', 'stockandflow']
         }
     }
 });

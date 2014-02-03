@@ -1,4 +1,4 @@
-/********************************
+ /********************************
  * Dynamos, Javascript library for System Dynamics Simulations
  * By John Garavito Suárez
  * MIT Licensed.
@@ -612,168 +612,161 @@ function XOR(x,y){
 ********************************/
 
 var Dynamos = Class.extend({
-	init: function(listas){
-		this.elmts={};
-
-		this.param={}, 		this.vaaux={},		this.vaexo={},
-		this.nivel={},		this.flujo={},		this.retar={},		
-		this.multi={}, 		this.elfis={}, 		this.vaant={},		
-		this.submo={},  	this.copia={};
+	init: function(lists){   
+		this.elements={};
+    this.static_elements={};
+    
+    if(lists){
+  		this.parameter=lists.parameter,   this.auxiliary=lists.auxiliary,   this.exogenous=lists.exogenous,
+      this.stock=lists.stock,           this.flow=lists.flow,             this.delay=lists.delay,   
+      this.multiplier=lists.multiplier, this.fis=lists.fis,               this.previous=lists.previous,   
+      this.submodel=lists.submodel,     this.clone=lists.clone;
+		}
 		
-		this.estaticos={};
-
-		this.pri; 
-		this.ti=0, this.tf=100, this.dt=1;
+		this.priority;
+		 
+		this.it=0, this.ft=100, this.dt=1;
 		
 		this.series = {};
-		
-		this.loadListas(listas);	
 	},
-	loadListas: function(listasElmts){
-		this.param=listasElmts.param, 		this.vaaux=listasElmts.vaaux,		this.vaexo=listasElmts.vaexo,
-		this.nivel=listasElmts.nivel,		this.flujo=listasElmts.flujo,		this.retar=listasElmts.retar,		
-		this.multi=listasElmts.multi, 		this.elfis=listasElmts.elfis, 		this.vaant=listasElmts.vaant,		
-		this.submo=listasElmts.submo,  		this.copia=listasElmts.copia;
-		
-		this.estaElementos();
-		this.pri=this.estaPrioridad();
-	},
-	anaElem: function(elemAna, tipo){
-		var elem = new Object();
-		elemAna.children('id').each(function(){
-			elem.id = $(this).text();
+	analyze: function(element, type){
+		var element = new Object();
+		element.children('id').each(function(){
+			element.id = $(this).text();
 		});
-		elemAna.children('dim').each(function(){
-			elem.dim = parseInt($(this).text());
+		element.children('dimension').each(function(){
+			element.dimension = parseInt($(this).text());
 		});
-		elemAna.children('defi').each(function(){
-			elem.defi = $(this).text();
+		element.children('definition').each(function(){
+			element.definition = $(this).text();
 		});
-		elemAna.children('des').each(function(){
-			elem.des = $(this).text();
+		element.children('des').each(function(){
+			element.des = $(this).text();
 		});
-		elemAna.children('flujos').each(function(){
+		element.children('flujos').each(function(){
 			$(this).children('entran').each(function(){
-				elem.flujoIng=[];
+				element.enteringFlow=[];
 				$(this).children('ing').each(function(){
-					elem.flujoIng.push($(this).text());
+					element.enteringFlow.push($(this).text());
 				});
 			});
 			$(this).children('salen').each(function(){
-				elem.flujoSal=[];
+				element.leavingFlow=[];
 				$(this).children('sal').each(function(){
-					elem.flujoSal.push($(this).text());
+					element.leavingFlow.push($(this).text());
 				});
 			});
 		});
-		elemAna.children('conexiones').each(function(){
+		element.children('conexiones').each(function(){
 			$(this).children('entran').each(function(){
-				elem.relacIng=[];
+				element.enteringRels=[];
 				$(this).children('ing').each(function(){
-					elem.relacIng.push($(this).text());
+					element.enteringRels.push($(this).text());
 				});
 			});
 			$(this).children('salen').each(function(){
-				elem.relacSal=[];
+				element.leavingRels=[];
 				$(this).children('sal').each(function(){
-					elem.relacSal.push($(this).text());
+					element.leavingRels.push($(this).text());
 				});
 			});
 		});
-		elem.tipo = tipo;
+		element.type = type;
 		var div;
-		switch(tipo){
-			case 'param':
-				sysDyn.parametros.push(elem);
+		switch(type){
+			case 'parameter':
+				sysDyn.parametros.push(element);
 				div = '#divParametros';
 			break;
-			case 'vaaux':
-				sysDyn.auxiliares.push(elem);
+			case 'auxiliary':
+				sysDyn.auxiliares.push(element);
 				div = '#divAuxiliares';
 			break;
-			case 'nivel':
-				sysDyn.niveles.push(elem);
+			case 'stock':
+				sysDyn.niveles.push(element);
 				div = '#divNiveles';
 			break;
-			case 'flujo':
-				sysDyn.flujos.push(elem);
+			case 'flow':
+				sysDyn.flujos.push(element);
 				div = '#divFlujos';
 			break;
-			case 'multi':
-				sysDyn.multiplicadores.push(elem);
+			case 'multiplier':
+				sysDyn.multiplicadores.push(element);
 				div = '#divMultiplicadores';
 			break;
 			
 		}
-		$('<div class="campo"></div>').html('<label for="'+elem.id+'_tx"><input type="checkbox" id="'+elem.id+'_cb"/>'+elem.id+': </label><input id="'+elem.id+'_tx" type="text" value="'+elem.defi+'">').appendTo(div);
+		$('<div class="campo"></div>').html('<label for="'+element.id+'_tx"><input type="checkbox" id="'+element.id+'_cb"/>'+element.id+': </label><input id="'+element.id+'_tx" type="text" value="'+element.definition+'">').appendTo(div);
 	},
-	estaElementos: function(){
-		for(var i in this.param){
-			this.elmts[this.param[i].id] = this.param[i];
+	
+	setElements: function(){
+		this.elements={};
+		for(var i in this.parameter){
+			this.elements[this.parameter[i].id] = this.parameter[i];
 		}
-		for(var i in this.vaaux){
-			this.elmts[this.vaaux[i].id] = this.vaaux[i];
+		for(var i in this.auxiliary){
+			this.elements[this.auxiliary[i].id] = this.auxiliary[i];
 		}
-		for(var i in this.vaexo){
-			this.elmts[this.vaexo[i].id] = this.vaexo[i];
+		for(var i in this.exogenous){
+			this.elements[this.exogenous[i].id] = this.exogenous[i];
 		}
-		for(var i in this.nivel){
-			this.elmts[this.nivel[i].id] = this.nivel[i];
+		for(var i in this.stock){
+			this.elements[this.stock[i].id] = this.stock[i];
 		}
-		for(var i in this.flujo){
-			this.elmts[this.flujo[i].id] = this.flujo[i];
+		for(var i in this.flow){
+			this.elements[this.flow[i].id] = this.flow[i];
 		}
-		for(var i in this.retar){
-			this.elmts[this.retar[i].id] = this.retar[i];
+		for(var i in this.delay){
+			this.elements[this.delay[i].id] = this.delay[i];
 		}
-		for(var i in this.multi){
-			this.elmts[this.multi[i].id] = this.multi[i];
+		for(var i in this.multiplier){
+			this.elements[this.multiplier[i].id] = this.multiplier[i];
 		}
-		for(var i in this.elfis){
-			this.elmts[this.elfis[i].id] = this.elfis[i];
+		for(var i in this.fis){
+			this.elements[this.fis[i].id] = this.fis[i];
 		}
-		for(var i in this.vaant){
-			this.elmts[this.vaant[i].id] = this.vaant[i];
+		for(var i in this.previous){
+			this.elements[this.previous[i].id] = this.previous[i];
 		}
-		for(var i in this.submo){
-			this.elmts[this.submo[i].id] = this.submo[i];
+		for(var i in this.submodel){
+			this.elements[this.submodel[i].id] = this.submodel[i];
 		}
 	},
-	estaPrioridad: function(){
-		var pilaAdm=[], pilaEsp=[];
-		var cant = 0;
-		for(var i in this.elmts){
-			pilaEsp.push(i);
-			cant++;
+	setPriority: function(){
+		var allowed_stack=[], standby_stack=[];
+		var quantity = 0;
+		for(var i in this.elements){
+			standby_stack.push(i);
+			quantity++;
 		}
 		
-		while(pilaAdm.length < cant){
-			for(var i=0; i<pilaEsp.length; i++){
-				if(this.elmts[pilaEsp[i]].cantRelIng == 0){
-					pilaAdm.push(pilaEsp[i]);
-					pilaEsp.splice(i,1);
+		while(allowed_stack.length < quantity){
+			for(var i=0; i<standby_stack.length; i++){
+				if(this.elements[standby_stack[i]].enteringRelsQua == 0){
+					allowed_stack.push(standby_stack[i]);
+					standby_stack.splice(i,1);
 					i--;
 				}
-				else if(this.esAdmitido(this.elmts[pilaEsp[i]], pilaAdm)){
-					pilaAdm.push(pilaEsp[i]);
-					pilaEsp.splice(i,1);
+				else if(this.isAdmitted(this.elements[standby_stack[i]], allowed_stack)){
+					allowed_stack.push(standby_stack[i]);
+					standby_stack.splice(i,1);
 					i--;
 				}
 			}
 		}
-		return pilaAdm;
+		return allowed_stack;
 	},
-	esAdmitido: function(el, pilaAdm){
+	isAdmitted: function(element, allowed_stack){
 		var esAdm=true;
 		var esAdmAct;
 		var relIni;
 		
-		for(var i in el.relacIng){
+		for(var i in element.enteringRels){
 			esAdmAct=false;
-			for(var j=0; j<pilaAdm.length; j++){			
-				if(el.relacIng[i].ori.id == pilaAdm[j]){
+			for(var j=0; j<allowed_stack.length; j++){			
+				if(element.enteringRels[i].ori.id == allowed_stack[j]){
 					esAdmAct=true;
-					j=pilaAdm.length;
+					j=allowed_stack.length;
 				}
 			}
 			esAdm = (esAdm && esAdmAct);
@@ -783,319 +776,324 @@ var Dynamos = Class.extend({
 		}
 		return esAdm;
 	},
-	genCodigoJS: function(elmts){
-		var el;
-		var codigo=
+	
+	generateJS: function(evaluated){
+		this.setElements();
+    this.priority=this.setPriority();
+		
+		var element;
+		var code=
 		'var t_serie=[];';
 		
-		for(var i in elmts){
-			el = this.elmts[elmts[i]];
-			codigo+=
-			'\n'+'var '+el.nombre+'_serie=[];';
+		for(var i in evaluated){
+			element = this.elements[evaluated[i]];
+			code+=
+			'\n'+'var '+element.name+'_serie=[];';
 		}
 		
-		codigo+=
+		code+=
 		'\n'+
-		'\n'+'var ti='+this.ti+';'+
-		'\n'+'var tf='+this.tf+';'+
+		'\n'+'var it='+this.it+';'+
+		'\n'+'var ft='+this.ft+';'+
 		'\n'+'var dt='+this.dt+';'+
-		'\n'+'var t=ti;'+
+		'\n'+'var t=it;'+
 		'\n';
-		for(var i in this.pri){
-			/*if($("#"+el.nombre+'_cb').is(':checked')){
-				if(el.dim == 1){
-					codigo+=
-					'\n'+'var '+el.nombre+'_serie=[];';
+		for(var i in this.priority){
+			/*if($("#"+element.name+'_cb').is(':checked')){
+				if(element.dimension == 1){
+					code+=
+					'\n'+'var '+element.name+'_serie=[];';
 				}
-				else if(el.dim > 1){
-					for(var j=0; j<el.dim; j++){
-						codigo+=
-						'\n'+'var '+el.nombre+'_'+j+'_serie=[];';
+				else if(element.dimension > 1){
+					for(var j=0; j<element.dimension; j++){
+						code+=
+						'\n'+'var '+element.name+'_'+j+'_serie=[];';
 					}
 				}
 			}*/
-			el = this.elmts[this.pri[i]];
+			element = this.elements[this.priority[i]];
 			
-			if(	el.tipo=='param' || el.tipo=='nivel' || el.tipo=='flujo' || el.tipo=='vaaux'){
-				/*if(esEstatico(elmts[pri[i]])){
-					estaticos.push(elmts[pri[i]].nombre);
+			if(	element.type=='parameter' || element.type=='stock' || element.type=='flow' || element.type=='auxiliary'){
+				/*if(isStatic(elements[priority[i]])){
+					static_elements.push(elements[priority[i]].name);
 				}*/
-				codigo+=
-				'\n'+'var '+el.nombre+'='+this.adapVector(el.defi)+';';
+				code+=
+				'\n'+'var '+element.name+'='+this.arrayAdapt(element.definition)+';';
 			}
-			else if(el.tipo=='multi'){
-				if(el.dim == 1){
-					codigo+=
-					'\n'+'var '+el.nombre+'_func='+this.adapVector(el.defi)+';';
-					codigo+=
-					'\n'+'var '+el.nombre+'='+el.nombre+'_func('+el.relacIng[0]+');';
+			else if(element.type=='multiplier'){
+				if(element.dimension == 1){
+					code+=
+					'\n'+'var '+element.name+'_func='+this.arrayAdapt(element.definition)+';';
+					code+=
+					'\n'+'var '+element.name+'='+element.name+'_func('+element.enteringRels[0]+');';
 				}
-				else if(el.dim > 1){
-					// Falta definir codigo para multiplicadores con dimensión mayor que uno.
+				else if(element.dimension > 1){
+					// Falta definir code para multiplicadores con dimensión mayor que uno.
 				}
 			}
 		}
 		
-		codigo+=
+		code+=
 		'\n'+
-		'\n'+'while(t<=tf){';
+		'\n'+'while(t<=ft){';
 		
-		for(var i in elmts){
-			el = this.elmts[elmts[i]];
-			codigo+=
-			'\n\t'+el.nombre+'_serie.push('+el.nombre+');';
+		for(var i in evaluated){
+			element = this.elements[evaluated[i]];
+			code+=
+			'\n\t'+element.name+'_serie.push('+element.name+');';
 		}
 		
-		codigo+=
+		code+=
 		'\n\t'+'t_serie.push(t);'+
 		'\n\t'+'t=t+dt;';
 		
-		for(var i in this.pri){
-			/*if($("#"+el.nombre+'_cb').is(':checked')){
-				if(el.dim == 1){
-					codigo+=
-					'\n\t'+el.nombre+'_serie.push(roundDec('+el.nombre+',4));';
+		for(var i in this.priority){
+			/*if($("#"+element.name+'_cb').is(':checked')){
+				if(element.dimension == 1){
+					code+=
+					'\n\t'+element.name+'_serie.push(roundDec('+element.name+',4));';
 				}
-				else if(el.dim > 1){
-					for(var j=0; j<el.dim; j++){
-						codigo+=
-						'\n\t'+el.nombre+'_'+j+'_serie.push(roundDec('+el.nombre+'['+j+']'+',4));';
+				else if(element.dimension > 1){
+					for(var j=0; j<element.dimension; j++){
+						code+=
+						'\n\t'+element.name+'_'+j+'_serie.push(roundDec('+element.name+'['+j+']'+',4));';
 					}
 				}
 			}*/
 			
-			el = this.elmts[this.pri[i]];
+			element = this.elements[this.priority[i]];
 			
-			if(el.tipo=='vaaux' || el.tipo=='flujo'){
-				if(el.dim == 1){
-					codigo+=
-					'\n\t'+el.nombre+'='+this.adapVector(el.defi)+';';
+			if(element.type=='auxiliary' || element.type=='flow'){
+				if(element.dimension == 1){
+					code+=
+					'\n\t'+element.name+'='+this.arrayAdapt(element.definition)+';';
 				}
-				else if(el.dim > 1){
-					var vector=this.sepVector(el.defi);
-					for(var j=0; j<el.dim; j++){
-						vector[j]=this.adapVector(vector[j]);
-						codigo+=
-						'\n\t'+el.nombre+'['+j+']='+vector[j]+';';
+				else if(element.dimension > 1){
+					var vector=this.arrayConvert(element.definition);
+					for(var j=0; j<element.dimension; j++){
+						vector[j]=this.arrayAdapt(vector[j]);
+						code+=
+						'\n\t'+element.name+'['+j+']='+vector[j]+';';
 					}
 				}
 			}
-			else if(el.tipo=='multi'){
-				if(el.dim == 1){
-					codigo+=
-					'\n\t'+el.nombre+'='+el.nombre+'_func('+el.relacIng[0]+');';
+			else if(element.type=='multiplier'){
+				if(element.dimension == 1){
+					code+=
+					'\n\t'+element.name+'='+element.name+'_func('+element.enteringRels[0]+');';
 				}
-				else if(el.dim > 1){
-					// Falta definir codigo para multiplicadores con dimensión mayor que uno.
+				else if(element.dimension > 1){
+					// Falta definir code para multiplicadores con dimensión mayor que uno.
 				}
 			}
-			else if(el.tipo=='nivel'){
-				if(el.dim == 1){
-					if(el.cantFluIng > 0 || el.cantFluSal > 0){
+			else if(element.type=='stock'){
+				if(element.dimension == 1){
+					if(element.cantFluIng > 0 || element.cantFluSal > 0){
 						var ind=0;
-						codigo+=
-						'\n\t'+el.nombre+'='+el.nombre+'+(';
+						code+=
+						'\n\t'+element.name+'='+element.name+'+(';
 						
-						for(var j in el.flujoIng){
-							codigo+=
-							el.flujoIng[j].nombre;
-							if(ind != (el.cantFluIng-1)){
-								codigo+='+';
+						for(var j in element.enteringFlow){
+							code+=
+							element.enteringFlow[j].name;
+							if(ind != (element.cantFluIng-1)){
+								code+='+';
 								console.log('+');
 							}
 							ind++;
 						}
-						for(var j in el.flujoSal){
-							codigo+=
-							'-'+el.flujoSal[j].nombre;
+						for(var j in element.leavingFlow){
+							code+=
+							'-'+element.leavingFlow[j].name;
 						}
-						codigo+=
+						code+=
 						')*dt;';
 					}
 				}
-				else if(el.dim > 1){
-					for(var k=0; k<el.dim; k++){
-						codigo+=			
-						'\n\t'+el.nombre+'['+k+']='+el.nombre+'['+k+']+'+'(';
+				else if(element.dimension > 1){
+					for(var k=0; k<element.dimension; k++){
+						code+=			
+						'\n\t'+element.name+'['+k+']='+element.name+'['+k+']+'+'(';
 						
-						var flujoIng=el.flujoIng;
-						var flujoSal=el.flujoSal;
+						var enteringFlow=element.enteringFlow;
+						var leavingFlow=element.leavingFlow;
 						
-						for(var j=0; j<flujoIng.length-1;j++){
-							codigo+=
-							flujoIng[j]+'['+k+']+';
+						for(var j=0; j<enteringFlow.length-1;j++){
+							code+=
+							enteringFlow[j]+'['+k+']+';
 						}
-						if(flujoIng.length>0){
-							codigo+=
-							flujoIng[flujoIng.length-1]+'['+k+']';
+						if(enteringFlow.length>0){
+							code+=
+							enteringFlow[enteringFlow.length-1]+'['+k+']';
 						}
-						for(var j=0; j<flujoSal.length;j++){
-							codigo+=
-							'-'+flujoSal[j]+'['+k+']';
+						for(var j=0; j<leavingFlow.length;j++){
+							code+=
+							'-'+leavingFlow[j]+'['+k+']';
 						}
-						codigo+=
+						code+=
 						')*dt;';
 					}
 				}
 			}
 		
 		}
-		codigo+=
+		code+=
 		'\n'+'}';
-		return codigo;
+		return code;
 	},
-	genCodigoMT: function(elmts){
-		var el, codigo='';
+	generateMath: function(evaluated){
+		this.setElements();
+    this.priority=this.setPriority();
 		
-		for(var i in this.pri){
-			/*if($("#"+el.nombre+'_cb').is(':checked')){
-				if(el.dim == 1){
-					codigo+=
-					'\n'+el.nombre+'_serie.push(roundDec('+el.nombre+',4));';
+		var element, code='';
+		
+		for(var i in this.priority){
+			/*if($("#"+element.name+'_cb').is(':checked')){
+				if(element.dimension == 1){
+					code+=
+					'\n'+element.name+'_serie.push(roundDec('+element.name+',4));';
 				}
-				else if(el.dim > 1){
-					for(var j=0; j<el.dim; j++){
-						codigo+=
-						'\n'+el.nombre+'_'+j+'_serie.push(roundDec('+el.nombre+'['+j+']'+',4));';
+				else if(element.dimension > 1){
+					for(var j=0; j<element.dimension; j++){
+						code+=
+						'\n'+element.name+'_'+j+'_serie.push(roundDec('+element.name+'['+j+']'+',4));';
 					}
 				}
 			}*/
 			
-			el = this.elmts[this.pri[i]];
+			element = this.elements[this.priority[i]];
 			
-			if(el.tipo=='vaaux' || el.tipo=='flujo'){
-				if(el.dim == 1){
-					codigo+=
-					'\n'+el.nombre+'(t+Δ) = '+this.adapVector(el.defi)+';';
+			if(element.type=='auxiliary' || element.type=='flow'){
+				if(element.dimension == 1){
+					code+=
+					'\n'+element.name+'(t+Δ) = '+this.arrayAdapt(element.definition)+';';
 				}
-				else if(el.dim > 1){
-					var vector=this.sepVector(el.defi);
-					for(var j=0; j<el.dim; j++){
-						vector[j]=this.adapVector(vector[j]);
-						codigo+=
-						'\n'+el.nombre+'['+j+']='+vector[j]+';';
+				else if(element.dimension > 1){
+					var vector=this.arrayConvert(element.definition);
+					for(var j=0; j<element.dimension; j++){
+						vector[j]=this.arrayAdapt(vector[j]);
+						code+=
+						'\n'+element.name+'['+j+']='+vector[j]+';';
 					}
 				}
 			}
-			else if(el.tipo=='multi'){
-				if(el.dim == 1){
-					codigo+=
-					'\n'+el.nombre+'(t+Δ) = '+el.nombre+'_func('+el.relacIng[0]+');';
+			else if(element.type=='multiplier'){
+				if(element.dimension == 1){
+					code+=
+					'\n'+element.name+'(t+Δ) = '+element.name+'_func('+element.enteringRels[0]+');';
 				}
-				else if(el.dim > 1){
-					// Falta definir codigo para multiplicadores con dimensión mayor que uno.
+				else if(element.dimension > 1){
+					// Falta definir code para multiplicadores con dimensión mayor que uno.
 				}
 			}
-			else if(el.tipo=='nivel'){
-				if(el.dim == 1){
-					if(el.cantFluIng > 0 || el.cantFluSal > 0){
+			else if(element.type=='stock'){
+				if(element.dimension == 1){
+					if(element.cantFluIng > 0 || element.cantFluSal > 0){
 						var ind=0;
-						codigo+=
-						'\n'+el.nombre+'(t+Δ) = '+el.nombre+'(t)+(';
+						code+=
+						'\n'+element.name+'(t+Δ) = '+element.name+'(t)+(';
 						
-						for(var j in el.flujoIng){
-							codigo+=
-							el.flujoIng[j].nombre;
-							if(ind != (el.cantFluIng-1)){
-								codigo+='+';
+						for(var j in element.enteringFlow){
+							code+=
+							element.enteringFlow[j].name;
+							if(ind != (element.cantFluIng-1)){
+								code+='+';
 								console.log('+');
 							}
 							ind++;
 						}
-						for(var j in el.flujoSal){
-							codigo+=
-							'-'+el.flujoSal[j].nombre;
+						for(var j in element.leavingFlow){
+							code+=
+							'-'+element.leavingFlow[j].name;
 						}
-						codigo+=
+						code+=
 						')*Δ;';
 					}
 				}
-				else if(el.dim > 1){
-					for(var k=0; k<el.dim; k++){
-						codigo+=			
-						'\n'+el.nombre+'['+k+']='+el.nombre+'['+k+']+'+'(';
+				else if(element.dimension > 1){
+					for(var k=0; k<element.dimension; k++){
+						code+=			
+						'\n'+element.name+'['+k+']='+element.name+'['+k+']+'+'(';
 						
-						var flujoIng=el.flujoIng;
-						var flujoSal=el.flujoSal;
+						var enteringFlow=element.enteringFlow;
+						var leavingFlow=element.leavingFlow;
 						
-						for(var j=0; j<flujoIng.length-1;j++){
-							codigo+=
-							flujoIng[j]+'['+k+']+';
+						for(var j=0; j<enteringFlow.length-1;j++){
+							code+=
+							enteringFlow[j]+'['+k+']+';
 						}
-						if(flujoIng.length>0){
-							codigo+=
-							flujoIng[flujoIng.length-1]+'['+k+']';
+						if(enteringFlow.length>0){
+							code+=
+							enteringFlow[enteringFlow.length-1]+'['+k+']';
 						}
-						for(var j=0; j<flujoSal.length;j++){
-							codigo+=
-							'-'+flujoSal[j]+'['+k+']';
+						for(var j=0; j<leavingFlow.length;j++){
+							code+=
+							'-'+leavingFlow[j]+'['+k+']';
 						}
-						codigo+=
+						code+=
 						')*dt;';
 					}
 				}
 			}
 		}
-		return codigo;
+		return code;
 	},
-	simular: function(elmts){
-		var codigo, tiempo, elseval;
+	simulate: function(elements){
+		var code, time, elseval;
 		
-		this.estaElementos();
-		this.pri=this.estaPrioridad();
-		codigo = this.genCodigoJS(elmts);
+		code = this.generateJS(elements);
 		this.series = {};
 		elseval = {};
-		tiempo;
+		time;
 		
-		console.log(codigo);
+		console.log(code);
 		
-		jQuery.globalEval(codigo);
+		jQuery.globalEval(code);
 		
 		jQuery.globalEval('console.log(evo);');
 		
-		tiempo = eval('t_serie');
-		this.series['tiempo'] = tiempo;
+		time = eval('t_serie');
+		this.series['time'] = time;
 		
-		var nombre;
+		var name;
 		
-		for(var i in elmts){
-			nombre = this.elmts[elmts[i]].nombre+'_serie';
-			elseval[elmts[i]] = eval(nombre);
+		for(var i in elements){
+			name = this.elements[elements[i]].name+'_serie';
+			elseval[elements[i]] = eval(name);
 		}
 		this.series['elseval'] = elseval;
 		
 		return this.series;
 	},
 	
-	load: function(modelFyN, viewer, divs, controls){
-		var response = $.get(modelFyN, modelLoaded);
+	load: function(modelSAF, viewer, divs, controls){
+		var response = $.get(modelSAF, modelLoaded);
 		this.viewer = viewer;
 		function modelLoaded(data, textStatus, jqXHR){
 			if(textStatus == 'success'){
 				var model = response.responseXML;
 				
-				$(divs.param).empty();
-				$(divs.vaaux).empty();
-				$(divs.nivel).empty();
-				$(divs.flujo).empty();
-				$(divs.multi).empty();
+				$(divs.parameter).empty();
+				$(divs.auxiliary).empty();
+				$(divs.stock).empty();
+				$(divs.flow).empty();
+				$(divs.multiplier).empty();
 				
 				$(model).find('flujonivel').each(function(){
-					$(this).children('param').each(function(){ 
-						this.anaElem($(this), 'param');
+					$(this).children('parameter').each(function(){ 
+						this.analyze($(this), 'parameter');
 					});
-					$(this).children('vaaux').each(function(){ 
-						this.anaElem($(this), 'vaaux');
+					$(this).children('auxiliary').each(function(){ 
+						this.analyze($(this), 'auxiliary');
 					});
-					$(this).children('nivel').each(function(){ 
-						this.anaElem($(this), 'nivel');
+					$(this).children('stock').each(function(){ 
+						this.analyze($(this), 'stock');
 					});
-					$(this).children('flujo').each(function(){ 
-						this.anaElem($(this), 'flujo');
+					$(this).children('flow').each(function(){ 
+						this.analyze($(this), 'flow');
 					});
-					$(this).children('multi').each(function(){ 
-						this.anaElem($(this), 'multi');
+					$(this).children('multiplier').each(function(){ 
+						this.analyze($(this), 'multiplier');
 					});
 				});
 				
@@ -1103,19 +1101,19 @@ var Dynamos = Class.extend({
 				$(divs.accordion+' .ui-accordion-content').css('height', '470px');
 				$(divs.accordion+' .ui-accordion-content').css('overflow-y', 'scroll'); 
 				
-				$(controls.ti).val(this.ti);
-				$(controls.tf).val(this.tf);
+				$(controls.it).val(this.it);
+				$(controls.ft).val(this.ft);
 				$(controls.dt).val(this.dt); 
 				
-				$(controls.ti).change(function(){
-					this.ti=$(controls.ti).val();
+				$(controls.it).change(function(){
+					this.it=$(controls.it).val();
 					this.adapVisualizador();
-					this.simular(this.viewer);
+					this.simulate(this.viewer);
 				});
-				$(controls.tf).change(function(){
-					this.tf=$(controls.tf).val();
+				$(controls.ft).change(function(){
+					this.ft=$(controls.ft).val();
 					this.adapVisualizador();
-					this.simular(this.viewer);
+					this.simulate(this.viewer);
 				});
 				$(controls.dt).change(function(){
 					this.dt=$(controls.dt).val();
@@ -1123,40 +1121,41 @@ var Dynamos = Class.extend({
 						this.dt=1;
 					}
 					this.adapVisualizador();
-					this.simular(this.viewer);
+					this.simulate(this.viewer);
 				});
 				
-				this.estaElementos();
-				this.pri=this.estaPrioridad();
+				this.setElements();
+				this.priority=this.setPriority();
 				
-				for(var i=0;i<this.elmts.length;i++){
-					if(this.elmts[i].tipo=='param'){
-						//$("#"+this.elmts[i].id).spinner({step: 0.01});
-						//$("#"+this.elmts[i].id).addClass('ui-widget-content');
+				for(var i=0;i<this.elements.length;i++){
+					if(this.elements[i].type=='parameter'){
+						//$("#"+this.elements[i].id).spinner({step: 0.01});
+						//$("#"+this.elements[i].id).addClass('ui-widget-content');
 					}
-					$("#"+this.elmts[i].id+"_cb").unbind();
-					$("#"+this.elmts[i].id+"_cb").change(function(){
-						this.simular(this.viewer);
+					$("#"+this.elements[i].id+"_cb").unbind();
+					$("#"+this.elements[i].id+"_cb").change(function(){
+						this.simulate(this.viewer);
 						console.log('change');
 					});
-					$("#"+this.elmts[i].id+"_tx").unbind();
-					$("#"+this.elmts[i].id+"_tx").change(function(){
-						this.camDef($(this).attr('id'), $(this).val());
-						this.simular(this.viewer);
+					$("#"+this.elements[i].id+"_tx").unbind();
+					$("#"+this.elements[i].id+"_tx").change(function(){
+						this.changeDefinition($(this).attr('id'), $(this).val());
+						this.simulate(this.viewer);
 					});
 				};
 			};
 		};
 	},
-	esEstatico: function(elem){
+	
+	isStatic: function(element){
 		var estAct = false;
 		var estAnt;
-		if(elem.relacIng){
-			for(var i=0; i<elem.relacIng.length; i++){
+		if(element.enteringRels){
+			for(var i=0; i<element.enteringRels.length; i++){
 				estAnt=estAct;
 				estAct=false;
-				for(var j in this.param){
-					if(elem.relacIng[i]==this.param[j].id){
+				for(var j in this.parameter){
+					if(element.enteringRels[i]==this.parameter[j].id){
 						if((i!=0) && (!estAnt)){
 							return false;
 						}
@@ -1164,8 +1163,8 @@ var Dynamos = Class.extend({
 						break;
 					}
 				}
-				for(var j in estaticos){
-					if(elem.relacIng[i]==this.estaticos[j]){
+				for(var j in static_elements){
+					if(element.enteringRels[i]==this.static_elements[j]){
 						if((i!=0) && (!estAnt)){
 							return false;
 						}
@@ -1177,15 +1176,15 @@ var Dynamos = Class.extend({
 		}
 		return estAct;
 	},
-	sepVector: function(cadena){
+	arrayConvert: function(text){
 		var llave=0;   	//[ ]
 		var paren=0;	//( )
 		var corche=0;	//{ }
 		var ini=0;
 		var fin=0;
 		var vector=[];
-		for(var i=0; i<cadena.length; i++){
-			switch(cadena[i]){
+		for(var i=0; i<text.length; i++){
+			switch(text[i]){
 				case '[':
 					llave++;
 				break;
@@ -1208,66 +1207,67 @@ var Dynamos = Class.extend({
 					if(llave==1 && paren==0 && corche==0){
 						ini=fin;
 						fin=i;
-						vector.push(cadena.substring(ini+1,fin));
+						vector.push(text.substring(ini+1,fin));
 					}
 				break;
 			}
 		}
 		ini=fin;
-		fin=cadena.length-1;
-		vector.push(cadena.substring(ini+1,fin));
+		fin=text.length-1;
+		vector.push(text.substring(ini+1,fin));
 		return vector;
 	},
-	adapVector: function(cadena){
+	arrayAdapt: function(text){
 		var j=0;
 		var num;
 		var val;
 		/*var vCad=[];
-		for(var i=0; i<cadena.length; i++){
-			vCad.push(cadena[i]);
+		for(var i=0; i<text.length; i++){
+			vCad.push(text[i]);
 		}*/ 
 		//falta definir función para numero con más de un digito
 		
-		for(var i=0; i<cadena.length; i++){
-			if(cadena[i]=='['){
-				for(j=i+1; j<cadena.length; j++){
-					if(cadena[j]==']'){
-						val=cadena.substring(i+1,j);
+		for(var i=0; i<text.length; i++){
+			if(text[i]=='['){
+				for(j=i+1; j<text.length; j++){
+					if(text[j]==']'){
+						val=text.substring(i+1,j);
+						console.log(val);
 						if(isFinite(val)){
 							num=parseInt(val);
 							num--;
-							cadena=cadena.substring(0,i+1)+num+cadena.substring(j,cadena.length);
+							text=text.substring(0,i+1)+num+text.substring(j,text.length);
 						}
 						i=j+1;
-						j=cadena.length;
+						j=text.length;
 					}
-					else if(cadena[j]=='['){
+					else if(text[j]=='['){
 						i=j;
 					}
 				}
 			}
 		}
-		return cadena;
+		return text;
 	},
 		
-	camDef: function(idArg, valArg){
-		for(var i=0; i<this.elmts.length;i++){
-			if(this.elmts[i].id==idArg){
-				this.elmts[i].defi=valArg;
-				i=this.elmts.length;
+	changeDefinition: function(id, definition){
+		for(var i=0; i<this.elements.length;i++){
+			if(this.elements[i].id==id){
+				this.elements[i].definition=definition;
+				i=this.elements.length;
 			}
 		}
 	},
 	reset: function(){
-		this.elmts={};
+		this.elements={};
 	
-		this.param={}, 		this.vaaux={},		this.vaexo={},
-		this.nivel={},		this.flujo={},		this.retar={},		
-		this.multi={}, 		this.elfis={}, 		this.vaant={},		
-		this.submo={},  	this.copia={};
+		this.parameter={},  this.auxiliary={},  this.exogenous={},
+		this.stock={},		  this.flow={},       this.delay={},		
+		this.multiplier={}, this.fis={},        this.previous={},		
+		this.submodel={},   this.clone={};
 		
-		this.estaticos={};
-		this.pri, this.ti=0, this.tf=100, this.dt=1;
+		this.static_elements={};
+		this.priority, this.it=0, this.ft=100, this.dt=1;
 		this.viewer = '';
 		
 		if(this.chart){

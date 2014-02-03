@@ -1,4 +1,4 @@
-require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations', 'behaviors'], function() {
+require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations', 'behaviors', 'dynamos'], function() {
     
     this.evo = new Evolucion();
     this.evo.pro = this.pro = new Prose();
@@ -6,11 +6,9 @@ require(['utils', 'evolucion', 'prose', 'influences', 'stockandflow', 'equations
     this.evo.saf = this.saf = new StockAndFlow();
     this.evo.equ = this.equ = new Equations();
     this.evo.beh = this.beh = new Behaviors();
-    
+    this.evo.dyn = this.dyn = new Dynamos(this.evo.saf.list);
     
     //this.beh.graphs['graph'].redraw();
-      
-    //this.evo.dyn = new Dynamos(evo.fyn.list);
     
     $(window).resize(function(){
       evo.adjust();

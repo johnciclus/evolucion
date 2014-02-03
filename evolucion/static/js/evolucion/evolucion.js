@@ -687,13 +687,13 @@ this.Unit = Class.extend({
       this.restoreCopies();
     }
   },
-  changeDescription: function(description){       //camDesc
+  changeDescription: function(description){       
     this.description = description;
   },
-  position: function(){                           //pos
+  position: function(){                           
     return this.fig.p;
   },
-  moveDelta: function(dx, dy){                    //mover
+  moveDelta: function(dx, dy){                    
     var bb = this.fig[0].getBBox();
     this.fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     console.log(this.fig.p);
@@ -957,14 +957,13 @@ this.Element = EleBase.extend({
     this.clonesList = {};
     this.clonesListQua = 0;
   },
-  figure: function(p){
-    this.fig = this.figGenerator(this.ctx, this, p, this.title, {cursor: "move"});
+  figure: function(pos){
+    this.fig = this.figGenerator(this.ctx, this, pos, this.title, {cursor: "move"});
     this.border = this.fig.getBorder();
     for(var i=0; i<3; i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
     }
     this.fig[0].dblclick(this.createTextEditor);
-    //this.fig[2].dblclick(this.viewDetails);
     this.fig[3].click(this.remove);
     this.fig[4].click(this.viewDetails);
   },
@@ -1983,6 +1982,9 @@ this.Evolucion = Class.extend({
       }
       if(evo.saf){
         evo.saf.saveAsDOM();
+      }
+      if(evo.equ){
+        evo.equ.saveAsDOM();
       }
       
       /*if(evo.equ){

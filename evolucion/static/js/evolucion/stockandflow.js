@@ -1746,7 +1746,7 @@ this.StockAndFlow = Editor.extend({
     stock_and_flow.attr('width', size.w+'px');
     stock_and_flow.attr('height', size.h+'px');
     
-    if(model){
+    if(stock_and_flow){
     
       elements =  { 
         'parameter':  'parameters',
@@ -1773,14 +1773,14 @@ this.StockAndFlow = Editor.extend({
             leavingFlowQua = list[i].leavingFlowQua;
             flows = element.append('<stock_flows />').children('stock_flows');
             if(enteringFlowQua > 0){
-              fls = list[i].flujoIng;
+              fls = list[i].enteringFlow;
               for(var fl in fls){
                 flow = flows.append('<enteringFlow />').children('enteringFlow');
                 flow.text(fls[fl].name);  
               }
             }
             if(leavingFlowQua > 0){
-              fls = list[i].flujoSal;
+              fls = list[i].leavingFlow;
               for(var fl in fls){
                 flow = flows.append('<leavingFlow />').children('leavingFlow');
                 flow.text(fls[fl].name);  
