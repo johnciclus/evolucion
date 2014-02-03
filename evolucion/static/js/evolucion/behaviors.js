@@ -21,23 +21,25 @@ this.Behaviors = Class.extend({
     this.graphs = {};
     
     $('#initial-time').change(function(){
-      evo.dyn.ti = Number($('#initial-time').val());
+      evo.dyn.it = Number($('#initial-time').val());
     });
     $('#final-time').change(function(){
-      evo.dyn.tf = Number($('#final-time').val());
+      evo.dyn.ft = Number($('#final-time').val());
     });
     $('#delta-time').change(function(){
       evo.dyn.dt = Number($('#delta-time').val());
     });
     
     this.initWorkArea();
-    
+    $('#simulate').click(function(){
+      beh.simulate();
+    });
     $('#save-graph').click(function(){
       beh.addGraph();
     });
   },
   adaptGrapher: function(){
-    var cant=(evo.dyn.tf-evo.dyn.ti)/evo.dyn.dt;
+    var cant=(evo.dyn.ft-evo.dyn.it)/evo.dyn.dt;
     var anchoContVis = $('#contVisualizador').css('width');
     anchoContVis=anchoContVis.substring(0,anchoContVis.length-2);
     
@@ -48,6 +50,7 @@ this.Behaviors = Class.extend({
       $('#contVisualizador').css('width','');
     }
   },
+  
   addGraph: function(){
     var idx = this.graph_idx++;
     var graph_id = this.graph_name+'-' + idx;
@@ -58,7 +61,7 @@ this.Behaviors = Class.extend({
           "<button type='button' class='close' data-dismiss='' aria-hidden='true' data-toggle='tooltip' data-placement='top' title data-original-title='Elimine este gráfico' >&times;</button>"+
         "</a>"+
       "</li>"
-      );
+    );
     $(this.language+'>.tab-content').append("<div class='tab-pane' id='"+graph_id+"'></div>");
             
     $(this.toolbar+' button:last').tooltip({ container: 'body' });
@@ -152,11 +155,11 @@ this.Behaviors = Class.extend({
   changeTitle: function(el){
     var tit = $('#'+el.id+'_item_sim_nombre p');
     //var cbx = $('#'+el.id+'_item_sim_nombre input');
-    tit.html(el.titulo);
+    tit.html(el.title);
     //cbx.val(el.nombre);
   },
   deleteControls: function(el){
-    $('#'+el.id+'_item_sim').remove();
+    //$('#'+el.id+'_item_sim').remove();
   },
   graphRedraw: function(idx){
     var graph_name = this.graph_name;
@@ -180,19 +183,27 @@ this.Behaviors = Class.extend({
     $(this.language).height(workAreaHeight - toolbarHeigth - 2);
   },
   integrateControls: function(el){
-    var nomCont = '#'+el.tipo+'-'+this.id+'-div';
-    
-    if(el.id && el.titulo && nomCont && this.indMenu[el.tipo]){
+    var nameItemsCont = '#'+el.type+'-list-beh';
+    var is_simulate = (this.elements.indexOf(el.type) != -1);
+
+    if(nameItemsCont && el.id && el.title && is_simulate){
       var html =
-        "<div id='"+el.id+"_item_sim' class='eleMenu' >"+
-          "<div id='"+el.id+"_item_sim_nombre' "+
-          "class='eleTit' >"+
-            "<input type='checkbox' id='"+el.id+"_item_sim_cb' value='"+el.id+"'>"+
-            "<p>"+el.titulo+"</p>"+
+        "<div id='"+el.id+"-item-sim' class='panel panel-default'>"+
+          "<div class='panel-heading'>"+
+            "<div class='form-group'>"+
+              "<h4 class='panel-title'>"+
+                el.title+
+              "</h4>"+
+              "<div class='checkbox'>"+
+                "<label>"+
+                  "<input type='checkbox' name='"+el.id+"-sim' id='"+el.id+"-sim' value='"+el.id+"'>"+
+                  el.name+
+                "</label>"+
+              "</div>"+
+            "</div>"+
           "</div>"+
-        "</div>";
-        
-      $(nomCont).append(html);
+        "</div>";        
+      $(nameItemsCont).append(html);
     }
   },
   limitAdjustList: function(list){
@@ -207,33 +218,95 @@ this.Behaviors = Class.extend({
     return limit;
   },
   selectedElements: function(){
-    var elmts = $('#menu-elementos-beh input:checkbox');
+    var elements = $('#elements-beh input:checkbox');
     var selec = [];
-    elmts.each(function(i){
-      if($(this).is(':checked')){
-        selec.push($(this).val());
+    elements.each(function(i, el){
+      if($(el).is(':checked')){
+        selec.push($(el).val());
       }
     });
     return selec;
   },
   simulate: function(){
-    var elmts = beh.elemtsSelec();
-    var series = ecu.simular(elmts);
+    var elements = beh.selectedElements();
+    var series = evo.dyn.simulate(elements);
     var elmts_eval = [];
+    var element;
+    var data = [];
+    var time = series['time'];
     
-    for(var i in elmts){
-      elmts_eval.push({
-        name: evo.dyn.elmts[elmts[i]].titulo,
-        data: series.elseval[elmts[i]]
+    console.log(series);
+   
+   var keys = [], key_labels = [];
+   for(var el in series.elseval){
+    keys.push(el);
+    element = saf.objects.getById(el);
+    key_labels.push(element.title);
+   }
+   
+   if(keys.length>0){
+     
+     for(var i in time){
+       var obj = {};
+       obj['time'] = time[i];
+       for(var el in series.elseval){
+        obj[el] = series.elseval[el][i]; 
+       }
+       data.push(obj);
+     }
+     
+      var graph_id = this.graph_name;
+      
+      if(this.graphs[graph_id]){
+        console.log($('#'+graph_id).html(''));
+        delete(this.graphs[graph_id]);
+      }
+      
+      this.graphs[graph_id] = new Morris.Line({
+        element: graph_id,
+        
+        data: data,
+        
+        xkey: 'time',
+        
+        xlabels: 'Paso',
+        
+        ykeys: keys,
+        
+        labels: key_labels,
+        
+        lineWidth: 2,
+        
+        parseTime: false,
+        
+        hoverCallback: function (index, options, content) {
+          var row = options.data[index];
+          
+          var text =  
+            "<div class='morris-hover-row-label'>"+
+              options.xlabels+": "+row[options.xkey]+
+            "</div>";
+            
+          for(var idx in options.labels){
+            text +=
+              "<div class='morris-hover-point' style='color: "+options.lineColors[idx]+"'>"+
+                options.labels[idx]+": "+ row[options.ykeys[idx]]+
+              "</div>";
+          }
+          return text;
+        },
+        
+        resize: true
+        
       });
     }
-    
-    beh.adapVisualizador();
+    //var code = evo.dyn.generateJS([]);
+    //beh.adapVisualizador();
     
     return false;
   },
   
-  saveAsDom: function(){
+  saveAsDOM: function(){
     var model, behavior;
     
     model = $('#xmldocument model:first');

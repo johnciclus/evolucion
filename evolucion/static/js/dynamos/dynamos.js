@@ -888,7 +888,7 @@ var Dynamos = Class.extend({
 			}
 			else if(element.type=='stock'){
 				if(element.dimension == 1){
-					if(element.cantFluIng > 0 || element.cantFluSal > 0){
+					if(element.enteringFlowQua > 0 || element.leavingFlowQua > 0){
 						var ind=0;
 						code+=
 						'\n\t'+element.name+'='+element.name+'+(';
@@ -896,7 +896,7 @@ var Dynamos = Class.extend({
 						for(var j in element.enteringFlow){
 							code+=
 							element.enteringFlow[j].name;
-							if(ind != (element.cantFluIng-1)){
+							if(ind != (element.enteringFlowQua-1)){
 								code+='+';
 								console.log('+');
 							}
@@ -988,7 +988,7 @@ var Dynamos = Class.extend({
 			}
 			else if(element.type=='stock'){
 				if(element.dimension == 1){
-					if(element.cantFluIng > 0 || element.cantFluSal > 0){
+					if(element.enteringFlowQua > 0 || element.leavingFlowQua > 0){
 						var ind=0;
 						code+=
 						'\n'+element.name+'(t+Δ) = '+element.name+'(t)+(';
@@ -996,7 +996,7 @@ var Dynamos = Class.extend({
 						for(var j in element.enteringFlow){
 							code+=
 							element.enteringFlow[j].name;
-							if(ind != (element.cantFluIng-1)){
+							if(ind != (element.enteringFlowQua-1)){
 								code+='+';
 								console.log('+');
 							}

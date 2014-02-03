@@ -836,17 +836,17 @@ this.EleBase = Unit.extend({
     
     elFig.dx = 0;
     elFig.dy = 0;
-    
-    for(var rel in el.leavingRels){
-      if(el.leavingRels[rel]){
-        el.leavingRels[rel].fig.dx = 0;
-        el.leavingRels[rel].fig.dy = 0;
-      }
-    }
+
     for(var rel in el.enteringRels){
       if(el.enteringRels[rel]){
         el.enteringRels[rel].fig.dx = 0;
         el.enteringRels[rel].fig.dy = 0;
+      }
+    }
+    for(var rel in el.leavingRels){
+      if(el.leavingRels[rel]){
+        el.leavingRels[rel].fig.dx = 0;
+        el.leavingRels[rel].fig.dy = 0;
       }
     }
     
@@ -1560,6 +1560,10 @@ this.Editor = Class.extend({
   integrateControls: function(el){
     var nameItemsCont = '#'+el.type+'-items';
     
+    if(el.ctx.id=='saf'){
+      evo.beh.integrateControls(el);
+    }
+    
     if(nameItemsCont && el.id && el.title){
       var html =
         "<div id='"+el.id+"-item' class='panel panel-default'>"+
@@ -1571,7 +1575,10 @@ this.Editor = Class.extend({
             "</a>"+
           "</div>"+
           "<div id='"+el.id+"-item-body' class='panel-collapse collapse'>"+
-            "<div class='panel-body'>";
+            "<div class='panel-body'>"+
+              "<div class='form-group centered'>"+
+                "<p>Nombre: <b>"+el.name+"</b></p>"+
+              "</div>";
       
       if(el.description){
         html +=
@@ -1639,7 +1646,7 @@ this.Editor = Class.extend({
       }
       if(el.feedback){
         var negative_checked  = '';
-        var positive_checked = '';
+        var positive_checked  = '';
         
         if(el.feedback == 'negative'){
           negative_checked  = 'checked';
@@ -1702,8 +1709,7 @@ this.Editor = Class.extend({
           el.changeFeedback($(this).val());
         });
       }
-      
-      //evo.beh.integrateControls(el);
+
     }
   },
   limitAdjustList: function(list){
@@ -1986,14 +1992,9 @@ this.Evolucion = Class.extend({
       if(evo.equ){
         evo.equ.saveAsDOM();
       }
-      
-      /*if(evo.equ){
-        evo.equ.saveAsDOM();
-      }
       if(evo.beh){
-        evo.com.saveAsDOM();
+        evo.beh.saveAsDOM();
       }
-      */
       
       
       var root =  $('#xmldocument');

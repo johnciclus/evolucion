@@ -221,16 +221,16 @@ this.figures = $.extend(this.figures, {
       this[2][7].hide();
       this[2][8].hide();
     };
-    fig.detAli = function(op, pd){
+    fig.detAli = function(op, dp){
       var type, ang, tol = 2;
       /*  Identificadores type flecha:
        *  V: vertical   -> (U: arriba, D: abajo)
        *  H: horizontal -> (L: izquieda, R: derecha)
        *  N: ninguno
        */
-      ang = Math.atan2( ( op.y - pd.y), (pd.x - op.x) );
-      if(pd.x - op.x > tol){
-        if(pd.y - op.y > tol){
+      ang = Math.atan2( ( op.y - dp.y), (dp.x - op.x) );
+      if(dp.x - op.x > tol){
+        if(dp.y - op.y > tol){
           if(ang > (-1/4)*Math.PI){
             type = 'HRVD';
             ang = (-1/2)*Math.PI;
@@ -240,7 +240,7 @@ this.figures = $.extend(this.figures, {
             ang = 0;
           }
         }
-        else if(pd.y - op.y < -1*tol){
+        else if(dp.y - op.y < -1*tol){
           if(ang > (1/4)*Math.PI){
             type = 'VUHR';
             ang = 0;
@@ -255,8 +255,8 @@ this.figures = $.extend(this.figures, {
           ang = 0;
         }
       }
-      else if(pd.x - op.x < -1*tol){
-        if(pd.y - op.y > tol){
+      else if(dp.x - op.x < -1*tol){
+        if(dp.y - op.y > tol){
           if(ang > (-3/4)*Math.PI){
             type = 'VDHL';
             ang = Math.PI;
@@ -266,7 +266,7 @@ this.figures = $.extend(this.figures, {
             ang = (-1/2)*Math.PI;
           }
         }
-        else if(pd.y - op.y < -1*tol){
+        else if(dp.y - op.y < -1*tol){
           if(ang > (3/4)*Math.PI){
             type = 'HLVU';
             ang = (1/2)*Math.PI;
@@ -282,11 +282,11 @@ this.figures = $.extend(this.figures, {
         }
       }
       else{
-        if(pd.y > op.y){
+        if(dp.y > op.y){
           type = 'VD';
           ang = (-1/2)*Math.PI;
         }
-        else if(pd.y < op.y){
+        else if(dp.y < op.y){
           type = 'VU';
           ang = (1/2)*Math.PI;
         }
@@ -300,7 +300,7 @@ this.figures = $.extend(this.figures, {
       return res;
     };
     fig.update = function(){
-      var bb, op, pd, cp, pe, p0, p1, pt;
+      var bb, op, dp, cp, pe, p0, p1, pt;
       var dx, dy, dx_nub_Ori = 0, dy_nub_Ori = 0, dx_nub_Des = 0, dy_nub_Des = 0;
       var ancho_tex = 0, alto_tex = 0;
       var ali, ang, ang_fin, sin_ang, cos_ang; 
@@ -312,12 +312,12 @@ this.figures = $.extend(this.figures, {
       bb = fig[2][7].getBBox();
       op = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
       bb = fig[2][8].getBBox();
-      pd = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+      dp = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
       
-      ali = fig.detAli(op, pd);
+      ali = fig.detAli(op, dp);
       
-      sin_ang = roundDec(Math.sin(ali.ang),4);
-      cos_ang = roundDec(Math.cos(ali.ang),4);
+      sin_ang = utils.roundDec(Math.sin(ali.ang),4);
+      cos_ang = utils.roundDec(Math.cos(ali.ang),4);
       
       switch(ali.type[1]){
         case 'U':
@@ -340,15 +340,15 @@ this.figures = $.extend(this.figures, {
       
       if(ali.type.length <= 2){
         if(ali.type[0] == 'H'){
-          pe = {x: pd.x,  y: op.y};
+          pe = {x: dp.x,  y: op.y};
           cp = {x: (op.x + pe.x)/2,  y: op.y + 11};
         }
         else if(ali.type[0] == 'V'){
-          pe = {x: op.x,  y: pd.y};
+          pe = {x: op.x,  y: dp.y};
           cp = {x: op.x + 11*sin_ang,  y: (op.y + pe.y)/2};
         }
         else{
-          pe = {x: pd.x,  y: pd.y};
+          pe = {x: dp.x,  y: dp.y};
           cp = {x: op.x,  y: op.y};
         }
         ang_fin = sin_ang*(-90);
@@ -359,15 +359,15 @@ this.figures = $.extend(this.figures, {
       }
       else if(ali.type.length == 4){
         if(ali.type[0] == 'H'){
-          pe = {x: pd.x,  y: op.y};
+          pe = {x: dp.x,  y: op.y};
           cp = {x: (op.x + pe.x)/2,  y: op.y + 11*sin_ang};
         }
         else if(ali.type[0] == 'V'){
-          pe = {x: op.x,  y: pd.y};
+          pe = {x: op.x,  y: dp.y};
           cp = {x: op.x + 11*cos_ang,  y: (op.y + pe.y)/2};
         }
         else{
-          pe = {x: pd.x,  y: pd.y};
+          pe = {x: dp.x,  y: dp.y};
           cp = {x: op.x,  y: op.y};
         }
         
@@ -430,8 +430,8 @@ this.figures = $.extend(this.figures, {
           y: cp.y - 11.5*sin_ang - (bb.y + bb.height/2)};
       fig[2][1].transform("...T" + pt.x + "," + pt.y);
       
-      p0 = {x: pd.x - 12*Math.cos(ali.ang + Math.PI/8), y: pd.y + 12*Math.sin(ali.ang + Math.PI/8)};
-      p1 = {x: pd.x - 12*Math.cos(ali.ang - Math.PI/8), y: pd.y + 12*Math.sin(ali.ang - Math.PI/8)};
+      p0 = {x: dp.x - 12*Math.cos(ali.ang + Math.PI/8), y: dp.y + 12*Math.sin(ali.ang + Math.PI/8)};
+      p1 = {x: dp.x - 12*Math.cos(ali.ang - Math.PI/8), y: dp.y + 12*Math.sin(ali.ang - Math.PI/8)};
       
       fig[2].pathLinI = [
         ["M", op.x, op.y],
@@ -439,10 +439,10 @@ this.figures = $.extend(this.figures, {
       ];
       fig[2].pathLinD = [
         ["M", pe.x, pe.y],
-        ["L", pd.x, pd.y]
+        ["L", dp.x, dp.y]
       ];
       fig[2].pathArrow = [
-        ["M", pd.x, pd.y], 
+        ["M", dp.x, dp.y], 
         ["L", p0.x, p0.y], 
         ["L", p1.x, p1.y], 
         ["Z"]
@@ -461,45 +461,46 @@ this.figures = $.extend(this.figures, {
       fig[2][5].transform("...T" + pt.x + "," + pt.y);
       
       bb = fig[2][6].getBBox();
-      pt = {  x: pd.x + dx_nub_Des - (bb.x + bb.width/2),  
-          y: pd.y + dy_nub_Des - (bb.y + bb.height/2)};
+      pt = {  x: dp.x + dx_nub_Des - (bb.x + bb.width/2),  
+          y: dp.y + dy_nub_Des - (bb.y + bb.height/2)};
       fig[2][6].transform("...T" + pt.x + "," + pt.y);
       
       bb = fig[3].getBBox();
       pt = {  x: cp.x + ancho_tex/2 - (bb.x + bb.width/2),  
-          y: cp.y + 15*sin_ang - 12 - alto_tex - bb.y};
-      fig[3].transform("...T" + pt.x + "," + pt.y); 
+              y: cp.y + 15*sin_ang - 12 - alto_tex - bb.y};
+      fig[3].transform("...T" + pt.x + "," + pt.y);
+      fig[4].transform("...T" + pt.x + "," + pt.y); 
             
       fig.parent.border = fig.getBorder();
     };
-    fig.conNivelOri = function(stock){
+    fig.connOriginStock = function(stock){
       var el = fig.parent;
-      stock.agreFluSal(el);
+      stock.addLeavingFlow(el);
       el.originStock = stock;
       fig[2][7].update(0, 0);
       fig[2][5].hide();
     };
-    fig.conNivelDes = function(stock){
+    fig.connDestinationStock = function(stock){
       var el = fig.parent;
-      stock.agreFluIng(el);
+      stock.addEnteringFlow(el);
       el.destinationStock = stock;
       fig[2][8].update(0, 0);
       fig[2][6].hide();
     };
-    fig.desNivelOri = function(){
+    fig.disOriginStock = function(){
       var el = fig.parent;
       
       if(el.originStock){
-        el.originStock.elimFluSal(el);
+        el.originStock.deleteLeavingFlow(el);
         el.originStock = undefined;
         fig[2][5].show();
       }
     };
-    fig.desNivelDes = function(){
+    fig.disDestinationStock = function(){
       var el = fig.parent;
       
       if(el.destinationStock){
-        el.destinationStock.elimFluIng(el);
+        el.destinationStock.deleteEnteringFlow(el);
         el.destinationStock = undefined;
         fig[2][6].show();
       }
@@ -522,16 +523,16 @@ this.figures = $.extend(this.figures, {
       fig.update();
     };
     fig[2][8].update = function (dx, dy){
-      var bb, pd, pddx, pt;
+      var bb, dp, pddx, pt;
       var el = fig.parent;
       
       if(el.destinationStock){
         bb = fig[2][8].getBBox();
-        pd = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-        pddx = {x: pd.x + dx, y: pd.y + dy};
+        dp = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+        pddx = {x: dp.x + dx, y: dp.y + dy};
         pt = el.ctx.path.determinePoint(el.destinationStock.border, pddx);
         
-        fig[2][8].transform("...T"+(pt.x-pd.x)+","+(pt.y-pd.y));  
+        fig[2][8].transform("...T"+(pt.x-dp.x)+","+(pt.y-dp.y));  
       }
       else{
         fig[2][8].transform("...T" + dx + "," + dy);
@@ -735,7 +736,7 @@ this.Parameter = Element.extend({
 });
 
 this.Stock = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "stock";
@@ -758,29 +759,29 @@ this.Stock = Element.extend({
     this.leavingFlowQua = 0;
     
     this.figGenerator = figures.stock;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   },
-  agreFluIng: function(flu){
+  addEnteringFlow: function(flu){
     if(!this.enteringFlow[flu.id]){
       this.enteringFlow[flu.id] = flu;
       this.enteringFlowQua++;
     }
   },
-  agreFluSal: function(flu){
+  addLeavingFlow: function(flu){
     if(!this.leavingFlow[flu.id]){
       this.leavingFlow[flu.id] = flu;
       this.leavingFlowQua++;
     }
   },
-  elimFluIng: function(flu){
+  deleteEnteringFlow: function(flu){
     if(this.enteringFlow[flu.id]){
       delete(this.enteringFlow[flu.id]);
       this.enteringFlowQua--;
     }
   },
-  elimFluSal: function(flu){
+  deleteLeavingFlow: function(flu){
     if(this.leavingFlow[flu.id]){
       delete(this.leavingFlow[flu.id]);
       this.leavingFlowQua--;
@@ -797,9 +798,9 @@ this.Stock = Element.extend({
       el.enteringRels[rel].fig.dx = 0;
       el.enteringRels[rel].fig.dy = 0;
     }
-    for(var rel in el.relacSal){
-      el.relacSal[rel].fig.dx = 0;
-      el.relacSal[rel].fig.dy = 0;
+    for(var rel in el.leavingRels){
+      el.leavingRels[rel].fig.dx = 0;
+      el.leavingRels[rel].fig.dy = 0;
     }
     for(var f in el.enteringFlow){
       el.enteringFlow[f].start();
@@ -812,32 +813,6 @@ this.Stock = Element.extend({
     var pp = el.ctx.r.path(border).attr(style.border);
     pp.animate(style.border_dis, 100, function(){ this.remove(); });
     pp = undefined;
-  },
-  moveFig: function(dx, dy){
-    var el = this.parent;
-    var elFig = el.fig;
-    var dx_fig = dx - elFig.dx;
-    var dy_fig = dy - elFig.dy;
-    
-    elFig.transform("...T" + dx_fig + "," + dy_fig);
-    el.border = elFig.getBorder();
-
-    for(var rel in el.enteringRels){
-      el.enteringRels[rel].controlMove({pd: {dx: dx, dy: dy}});
-    }
-    for(var rel in el.relacSal){
-        el.relacSal[rel].controlMove({op: {dx: dx, dy: dy}});
-    }
-    for(var f in el.enteringFlow){
-      el.enteringFlow[f].moverConDes(dx_fig, dy_fig);
-    }
-    for(var f in el.leavingFlow){
-      el.leavingFlow[f].moverConOri(dx_fig, dy_fig);
-    }
-    
-    elFig.dx = dx;
-    elFig.dy = dy;
-    
   },
   end: function(){
     var el = this.parent;
@@ -854,9 +829,9 @@ this.Stock = Element.extend({
       el.enteringRels[rel].fig.dx = 0;
       el.enteringRels[rel].fig.dy = 0;
     }
-    for(var rel in el.relacSal){
-      el.relacSal[rel].fig.dx = 0;
-      el.relacSal[rel].fig.dy = 0;
+    for(var rel in el.leavingRels){
+      el.leavingRels[rel].fig.dx = 0;
+      el.leavingRels[rel].fig.dy = 0;
     }
     for(var f in el.enteringFlow){
       el.enteringFlow[f].end();
@@ -865,11 +840,37 @@ this.Stock = Element.extend({
       el.leavingFlow[f].end();
     }
     el.border = elFig.getBorder();
+  },
+  moveFig: function(dx, dy){
+    var el = this.parent;
+    var elFig = el.fig;
+    var dx_fig = dx - elFig.dx;
+    var dy_fig = dy - elFig.dy;
+    
+    elFig.transform("...T" + dx_fig + "," + dy_fig);
+    el.border = elFig.getBorder();
+
+    for(var rel in el.enteringRels){
+      el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}});
+    }
+    for(var rel in el.leavingRels){
+        el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}});
+    }
+    for(var f in el.enteringFlow){
+      el.enteringFlow[f].moveDestinationControl(dx_fig, dy_fig);
+    }
+    for(var f in el.leavingFlow){
+      el.leavingFlow[f].moveOriginControl(dx_fig, dy_fig);
+    }
+    
+    elFig.dx = dx;
+    elFig.dy = dy;
+    
   }
 });
 
 this.Flow = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "flow";
@@ -890,76 +891,29 @@ this.Flow = Element.extend({
     this.destinationStock = undefined;
     
     this.figGenerator = figures.flow;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   },
-  figure: function(p){
-    this.fig = this.figGenerator(this.ctx, this, p, this.title, {});
+  figure: function(pos){
+    this.fig = this.figGenerator(this.ctx, this, pos, this.title, {});
     this.border = this.fig.getBorder();
     this.fig[0].dblclick(this.createTextEditor);
-    this.fig[3].click(this.remove);
-    for(var i=0; i<7; i++){
-      this.fig[2][i].click(this.controles);
-    }
     this.fig[2][7].drag(this.moveFig, this.start, this.end);
     this.fig[2][8].drag(this.moveFig, this.start, this.end);
+    this.fig[3].click(this.remove);
+    this.fig[4].click(this.viewDetails);
     this.viewControls(this.selected);
   },
-  viewControls: function(vis){
-    this.selected = vis;
+  viewControls: function(selected){
+    this.selected = selected;
     if(this.selected){
       this.fig.showPoints();
     }else{
       this.fig.hidePoints();
     }
   },
-  controles: function(e){
-    this.parent.viewControls(!this.parent.selected);
-  },
-  moverConOri: function(dx, dy){
-    this.moverCon(this.fig[2][7], dx, dy);
-  },
-  moverConDes: function(dx, dy){
-    this.moverCon(this.fig[2][8], dx, dy);
-  },
-  start: function(){
-    var el;
-    if(this.type){
-      el = this;
-    }else if(this.parent){
-      el = this.parent;
-    }
-    //console.log(el);
-    var elFig = el.fig; 
-    var pt;
-    
-    elFig.dx = 0;
-    elFig.dy = 0;
-    
-    for(var rel in el.enteringRels){
-      if(el.enteringRels[rel]){
-        pt = el.enteringRels[rel].getRelationPoints();
-        pt = pt.pd;
-        el.enteringRels[rel].fig.dx = pt.x;
-        el.enteringRels[rel].fig.dy = pt.y;
-      }
-    }
-    for(var rel in el.relacSal){
-      if(el.relacSal[rel]){
-        pt = el.relacSal[rel].getRelationPoints();
-        pt = pt.op;
-        el.relacSal[rel].fig.dx = pt.x;
-        el.relacSal[rel].fig.dy = pt.y;
-      }
-    }
-    
-    var border = elFig.getBorder();
-    var pp = el.ctx.r.path(border).attr(style.border);
-    pp.animate(style.border_dis, 100, function(){ this.remove(); });
-    pp = undefined;
-  },
-  moverCon: function(con, dx, dy){
+  moveControl: function(con, dx, dy){
     var el = con.parent;
     var elFig = el.fig;
     var pt, bb, dx_rel, dy_rel;
@@ -979,28 +933,75 @@ this.Flow = Element.extend({
     for(var rel in el.enteringRels){
       if(el.enteringRels[rel]){
         pt = el.enteringRels[rel].getRelationPoints();
-        pt = pt.pd;
-        el.enteringRels[rel].controlMove({pd: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
+        pt = pt.dp;
+        el.enteringRels[rel].controlMove({dp: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
       }
     }
-    for(var rel in el.relacSal){
-      if(el.relacSal[rel]){
-        pt = el.relacSal[rel].getRelationPoints();
+    for(var rel in el.leavingRels){
+      if(el.leavingRels[rel]){
+        pt = el.leavingRels[rel].getRelationPoints();
         pt = pt.op;
-        el.relacSal[rel].controlMove({op: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
+        el.leavingRels[rel].controlMove({op: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
       }
     }
     
     elFig.dx = dx;
     elFig.dy = dy;
   },
-  moveFig: function(dx, dy){
-    var el = this.parent;
-    el.moverCon(this, dx, dy);
+  moveOriginControl: function(dx, dy){
+    this.moveControl(this.fig[2][7], dx, dy);
+  },
+  moveDestinationControl: function(dx, dy){
+    this.moveControl(this.fig[2][8], dx, dy);
+  },
+  originStockPosition:  function(){
+    var bb = this.fig[2][7].getBBox();
+    return {'x': bb.x + bb.width/2, 'y': bb.y + bb.height/2};
+  },
+  destinationStockPosition:  function(){
+    var bb = this.fig[2][8].getBBox();
+    return {'x': bb.x + bb.width/2, 'y': bb.y + bb.height/2};
+  },
+  
+  start: function(){
+    var el;
+    if(this.name){
+      el = this;
+    }else if(this.parent){
+      el = this.parent;
+    }
+    
+    var elFig = el.fig; 
+    var pt;
+    
+    elFig.dx = 0;
+    elFig.dy = 0;
+    
+    for(var rel in el.enteringRels){
+      if(el.enteringRels[rel]){
+        pt = el.enteringRels[rel].getRelationPoints();
+        pt = pt.dp;
+        el.enteringRels[rel].fig.dx = pt.x;
+        el.enteringRels[rel].fig.dy = pt.y;
+      }
+    }
+    for(var rel in el.leavingRels){
+      if(el.leavingRels[rel]){
+        pt = el.leavingRels[rel].getRelationPoints();
+        pt = pt.op;
+        el.leavingRels[rel].fig.dx = pt.x;
+        el.leavingRels[rel].fig.dy = pt.y;
+      }
+    }
+    
+    var border = elFig.getBorder();
+    var pp = el.ctx.r.path(border).attr(style.border);
+    pp.animate(style.border_dis, 100, function(){ this.remove(); });
+    pp = undefined;
   },
   end: function(){
     var el;
-    if(this.type){
+    if(this.name){
       el = this;
     }else if(this.parent){
       el = this.parent;
@@ -1020,10 +1021,10 @@ this.Flow = Element.extend({
       pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
       stock = el.ctx.existeNivelPt(pt);
       if(stock){
-        elFig.conNivelOri(stock);
+        elFig.connOriginStock(stock);
       }
       else{
-        elFig.desNivelOri();
+        elFig.disOriginStock();
       }
     }
     else if(this == elFig[2][8]){
@@ -1031,10 +1032,10 @@ this.Flow = Element.extend({
       pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
       stock = el.ctx.existeNivelPt(pt);
       if(stock){
-        elFig.conNivelDes(stock);
+        elFig.connDestinationStock(stock);
       }
       else{
-        elFig.desNivelDes();
+        elFig.disDestinationStock();
       }
     }
     
@@ -1042,16 +1043,20 @@ this.Flow = Element.extend({
       el.enteringRels[rel].fig.dx = 0;
       el.enteringRels[rel].fig.dy = 0;
     }
-    for(var rel in el.relacSal){
-      el.relacSal[rel].fig.dx = 0;
-      el.relacSal[rel].fig.dy = 0;
+    for(var rel in el.leavingRels){
+      el.leavingRels[rel].fig.dx = 0;
+      el.leavingRels[rel].fig.dy = 0;
     }
     el.border = elFig.getBorder();
+  },
+  moveFig: function(dx, dy){
+    var el = this.parent;
+    el.moveControl(this, dx, dy);
   }
 });
 
 this.Auxiliary = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "auxiliary";
@@ -1068,14 +1073,14 @@ this.Auxiliary = Element.extend({
     this.list = this.ctx.list.auxiliary;
     
     this.figGenerator = figures.auxiliary;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Exogenous = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "exogenous";
@@ -1093,14 +1098,14 @@ this.Exogenous = Element.extend({
     this.connec['desAce'] = false;
     
     this.figGenerator = figures.exogenous;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Delay = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "delay";
@@ -1117,14 +1122,14 @@ this.Delay = Element.extend({
     this.list = this.ctx.list.delay;
     
     this.figGenerator = figures.delay;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Multiplier = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "multiplier";
@@ -1141,14 +1146,14 @@ this.Multiplier = Element.extend({
     this.list = this.ctx.list.multiplier;
     
     this.figGenerator = figures.multiplier;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Fis = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "fis";
@@ -1165,14 +1170,14 @@ this.Fis = Element.extend({
     this.list = this.ctx.list.fis;
     
     this.figGenerator = figures.fis;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Previous = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "previous";
@@ -1189,14 +1194,14 @@ this.Previous = Element.extend({
     this.list = this.ctx.list.previous;
     
     this.figGenerator = figures.previous;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.Submodel = Element.extend({
-  init: function(ctx, p, title, description, definition, units, dimension){
+  init: function(ctx, pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "submodel";
@@ -1214,14 +1219,14 @@ this.Submodel = Element.extend({
     this.connec['desAce'] = false;
     
     this.figGenerator = figures.submodel;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   }
 });
 
 this.RelationSaf = Relation.extend({
-  init: function(ctx, p, from, to, description){
+  init: function(ctx, pos, from, to, description){
     this._super(ctx);
     
     this.type = "relation";
@@ -1241,12 +1246,12 @@ this.RelationSaf = Relation.extend({
     this.to.addEnteringRels(this);
     
     this.figGenerator = figures.relation;
-    this.figure(p);
+    this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
   },
-  figure: function(p){
-    this.fig = this.figGenerator(this.ctx, this, p, {});
+  figure: function(pos){
+    this.fig = this.figGenerator(this.ctx, this, pos, {});
     this.fig[6].click(this.remove);
     this.fig[7].click(this.viewDetails);
     this.viewPoints(this.selected);
@@ -1254,7 +1259,7 @@ this.RelationSaf = Relation.extend({
 });
 
 this.SectorSaf = SecBase.extend({
-  init: function(ctx, p, size, title){
+  init: function(ctx, pos, size, title){
     this._super(ctx);
     
     this.type = 'sectorsaf';
@@ -1265,7 +1270,7 @@ this.SectorSaf = SecBase.extend({
     this.name = utils.textToVar(this.title);
     
     this.list = this.ctx.list[this.type];
-    this.figure(p, size);
+    this.figure(pos, size);
     this.integrateCtx();
     this.viewDetails();
   }
@@ -1303,58 +1308,58 @@ this.StockAndFlow = Editor.extend({
   },
   defActions: function(){
     $(this.svgDiv).mouseenter(function(e){
-      var p = saf.pointer.getPosition(e);
+      var pos = saf.pointer.getPosition(e);
       switch(saf.state){
         case 'parameter': {
-          saf.tmp.parameter = new figures.parameter(saf, undefined, p, "Parametro "+saf.idx.parameter, {cursor: "move"});
+          saf.tmp.parameter = new figures.parameter(saf, undefined, pos, "Parametro "+saf.idx.parameter, {cursor: "move"});
           break;
         }
         case 'stock': {
-          saf.tmp.stock = new figures.stock(saf, undefined, p, "Nivel "+saf.idx.stock, {cursor: "move"});
+          saf.tmp.stock = new figures.stock(saf, undefined, pos, "Nivel "+saf.idx.stock, {cursor: "move"});
           break;
         }
         case 'flow': {
-          saf.tmp.flow = new figures.flow(saf, undefined, p, "Flujo "+saf.idx.flow, {cursor: "move"});
+          saf.tmp.flow = new figures.flow(saf, undefined, pos, "Flujo "+saf.idx.flow, {cursor: "move"});
           break;
         }
         case 'auxiliary': {
-          saf.tmp.auxiliary = new figures.auxiliary(saf, undefined, p, "Var. auxiliar "+saf.idx.auxiliary, {cursor: "move"});
+          saf.tmp.auxiliary = new figures.auxiliary(saf, undefined, pos, "Var. auxiliar "+saf.idx.auxiliary, {cursor: "move"});
           break;
         }
         case 'exogenous': {
-          saf.tmp.exogenous = new figures.exogenous(saf, undefined, p, "Var. exogena "+saf.idx.exogenous, {cursor: "move"});
+          saf.tmp.exogenous = new figures.exogenous(saf, undefined, pos, "Var. exogena "+saf.idx.exogenous, {cursor: "move"});
           break;
         }
         case 'delay': {
-          saf.tmp.delay = new figures.delay(saf, undefined, p, "Retardo "+saf.idx.delay, {cursor: "move"});
+          saf.tmp.delay = new figures.delay(saf, undefined, pos, "Retardo "+saf.idx.delay, {cursor: "move"});
           break;
         }
         case 'multiplier': {
-          saf.tmp.multiplier = new figures.multiplier(saf, undefined, p, "Multiplicador "+saf.idx.multiplier, {cursor: "move"});
+          saf.tmp.multiplier = new figures.multiplier(saf, undefined, pos, "Multiplicador "+saf.idx.multiplier, {cursor: "move"});
           break;
         }
         case 'fis': {
-          saf.tmp.fis = new figures.fis(saf, undefined, p, "FIS "+saf.idx.fis, {cursor: "move"});
+          saf.tmp.fis = new figures.fis(saf, undefined, pos, "FIS "+saf.idx.fis, {cursor: "move"});
           break;
         }
         case 'previous': {
-          saf.tmp.previous = new figures.previous(saf, undefined, p, "Val. Anterior "+saf.idx.previous, {cursor: "move"});
+          saf.tmp.previous = new figures.previous(saf, undefined, pos, "Val. Anterior "+saf.idx.previous, {cursor: "move"});
           break;
         }
         case 'submodel': {
-          saf.tmp.submodel = new figures.submodel(saf, undefined, p, "Submodelo "+saf.idx.submodel, {cursor: "move"});
+          saf.tmp.submodel = new figures.submodel(saf, undefined, pos, "Submodelo "+saf.idx.submodel, {cursor: "move"});
           break;
         }
         case 'clone': {
-          saf.tmp.clone = new figures.clone(saf, undefined, p);
+          saf.tmp.clone = new figures.clone(saf, undefined, pos);
           break;
         }
         case 'relation': {
-          saf.tmp.relation = new figures.relation(saf, undefined, p, {});
+          saf.tmp.relation = new figures.relation(saf, undefined, pos, {});
           break;
         }       
         case 'sectorsaf': {
-          saf.tmp.sectorsaf = new figures.sector(saf, undefined, p, undefined, "Sector "+saf.idx.sectorsaf);
+          saf.tmp.sectorsaf = new figures.sector(saf, undefined, pos, undefined, "Sector "+saf.idx.sectorsaf);
           break;
         }
       }
@@ -1455,95 +1460,95 @@ this.StockAndFlow = Editor.extend({
       }
     });
     $(this.svgDiv).mousemove(function(e){
-      var p = saf.pointer.getPosition(e);
+      var pos = saf.pointer.getPosition(e);
       switch(saf.state){
         case 'parameter': {
           if(saf.tmp.parameter){
-            saf.tmp.parameter.moveToPoint(p);
+            saf.tmp.parameter.moveToPoint(pos);
           }
           break;
         }
         case 'stock': {
           if(saf.tmp.stock){
-            saf.tmp.stock.moveToPoint(p);
+            saf.tmp.stock.moveToPoint(pos);
           }
           break;
         }
         case 'flow': {
           if(saf.tmp.flow){
-            saf.tmp.flow.moveToPoint(p);
+            saf.tmp.flow.moveToPoint(pos);
           }
           break;
         }
         case 'auxiliary': {
           if(saf.tmp.auxiliary){
-            saf.tmp.auxiliary.moveToPoint(p);
+            saf.tmp.auxiliary.moveToPoint(pos);
           }
           break;
         }
         case 'exogenous': {
           if(saf.tmp.exogenous){
-            saf.tmp.exogenous.moveToPoint(p);
+            saf.tmp.exogenous.moveToPoint(pos);
           }
           break;
         }
         case 'delay': {
           if(saf.tmp.delay){
-            saf.tmp.delay.moveToPoint(p);
+            saf.tmp.delay.moveToPoint(pos);
           }
           break;
         }
         case 'multiplier': {
           if(saf.tmp.multiplier){
-            saf.tmp.multiplier.moveToPoint(p);
+            saf.tmp.multiplier.moveToPoint(pos);
           }
           break;
         }
         case 'fis': {
           if(saf.tmp.fis){
-            saf.tmp.fis.moveToPoint(p);
+            saf.tmp.fis.moveToPoint(pos);
           }
           break;
         }
         case 'previous': {
           if(saf.tmp.previous){
-            saf.tmp.previous.moveToPoint(p);
+            saf.tmp.previous.moveToPoint(pos);
           }
           break;
         }
         case 'submodel': {
           if(saf.tmp.submodel){
-            saf.tmp.submodel.moveToPoint(p);
+            saf.tmp.submodel.moveToPoint(pos);
           }
           break;
         }
         case 'clone': {
           if(saf.tmp.clone){
-            saf.tmp.clone.moveToPoint(p);
+            saf.tmp.clone.moveToPoint(pos);
           }
           break;
         }
         case 'relation': {
           if(saf.tmp.relation){
-            saf.tmp.relation.moveToPoint(p);
+            saf.tmp.relation.moveToPoint(pos);
           }
           break;
         }
         case 'sectorsaf': {
           if(saf.tmp.sectorsaf){
-            saf.tmp.sectorsaf.moveToPoint(p);
+            saf.tmp.sectorsaf.moveToPoint(pos);
           }
           break;
         }
       }
     });
     $(this.svgDiv).click(function(e){
-      var p = saf.pointer.getPosition(e);
+      var pos = saf.pointer.getPosition(e);
       var alpha;
       switch(saf.state){
         case 'parameter': {
           if(saf.tmp.parameter){
-            var parameter = new Parameter(saf, p);
+            var parameter = new Parameter(saf, pos);
             saf.list.parameter[parameter.id] = parameter;
             
             saf.activateState('cursor');
@@ -1554,7 +1559,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'stock': {
           if(saf.tmp.stock){
-            var stock = new Stock(saf, p);
+            var stock = new Stock(saf, pos);
             saf.list.stock[stock.id] = stock;
             
             saf.activateState('cursor');
@@ -1565,7 +1570,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'flow': {
           if(saf.tmp.flow){
-            var flow = new Flow(saf, p);
+            var flow = new Flow(saf, pos);
             saf.list.flow[flow.id] = flow;
             
             saf.activateState('cursor');
@@ -1576,7 +1581,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'auxiliary': {
           if(saf.tmp.auxiliary){
-            var auxiliary = new Auxiliary(saf, p);
+            var auxiliary = new Auxiliary(saf, pos);
             saf.list.auxiliary[auxiliary.id] = auxiliary;
             
             saf.activateState('cursor');
@@ -1587,7 +1592,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'exogenous': {
           if(saf.tmp.exogenous){
-            var exogenous = new Exogenous(saf, p);
+            var exogenous = new Exogenous(saf, pos);
             saf.list.exogenous[exogenous.id] = exogenous;
             
             saf.activateState('cursor');
@@ -1598,7 +1603,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'delay': {
           if(saf.tmp.delay){
-            var delay = new Delay(saf, p);
+            var delay = new Delay(saf, pos);
             saf.list.delay[delay.id] = delay;
             
             saf.activateState('cursor');
@@ -1609,7 +1614,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'multiplier': {
           if(saf.tmp.multiplier){
-          var multiplier = new Multiplier(saf, p);
+          var multiplier = new Multiplier(saf, pos);
             saf.list.multiplier[multiplier.id] = multiplier;
             
             saf.activateState('cursor');
@@ -1620,7 +1625,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'fis': {
           if(saf.tmp.fis){
-            var fis = new Fis(saf, p);
+            var fis = new Fis(saf, pos);
             saf.list.fis[fis.id] = fis;
             
             saf.activateState('cursor');
@@ -1631,7 +1636,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'previous': {
           if(saf.tmp.previous){
-            var previous = new Previous(saf, p);
+            var previous = new Previous(saf, pos);
             saf.list.previous[previous.id] = previous;
             
             saf.activateState('cursor');
@@ -1642,7 +1647,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'submodel': {
           if(saf.tmp.submodel){
-            var submodel = new Submodel(saf, p);
+            var submodel = new Submodel(saf, pos);
             saf.list.submodel[submodel.id] = submodel;
             
             saf.activateState('cursor');
@@ -1652,9 +1657,9 @@ this.StockAndFlow = Editor.extend({
           break;
         }
         case 'clone': {
-          var el = saf.pointer.existElement(p);
+          var el = saf.pointer.existElement(pos);
           if(el){
-            var cp = new Clone(saf, p, el);
+            var cp = new Clone(saf, pos, el);
             saf.list.clone[cp.id] = cp;
             
             saf.activateState('cursor');
@@ -1664,14 +1669,14 @@ this.StockAndFlow = Editor.extend({
           break;
         }
         case 'relation': {
-          var el = saf.pointer.existElement(p);
+          var el = saf.pointer.existElement(pos);
           var relation = saf.tmp.relation;
           if(el){
-            p     = saf.path.determinePoint(el.border, p);
-            alpha = saf.path.determineAngle(el.border, p);
+            pos     = saf.path.determinePoint(el.border, pos);
+            alpha = saf.path.determineAngle(el.border, pos);
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
-              relation.activateSecondControl(saf, p, alpha);
+              relation.activateSecondControl(saf, pos, alpha);
             }
             else if(relation.state == 'extend' && el.connec['desAce']){
               var is_itself = false;
@@ -1688,7 +1693,7 @@ this.StockAndFlow = Editor.extend({
               destination_relation  = el.existsDestinationRel(relation.from.id);
               
               if(!is_itself && !exist_origin_relation && !destination_relation){
-                relation.p[3] = p;
+                relation.p[3] = pos;
                 
                 var rel = new RelationSaf(saf, relation.p, relation.from, el);
 
@@ -1704,7 +1709,7 @@ this.StockAndFlow = Editor.extend({
         }
         case 'sectorsaf': {
           if(saf.tmp.sectorsaf){
-            var sectorsaf = new SectorSaf(saf, p);
+            var sectorsaf = new SectorSaf(saf, pos);
             saf.list.sectorsaf[sectorsaf.id] = sectorsaf;
             
             saf.activateState('cursor');
@@ -1727,7 +1732,7 @@ this.StockAndFlow = Editor.extend({
   saveAsDOM: function(){
     var model, stockandflow, size;
     var elements, element, group, position, position, pos,
-        relation, relations, op, pco, pd, pcd, flows, flow, rels, 
+        relation, relations, op, pco, dp, pcd, flows, flow, rels, 
         enteringRelsQua, leavingRelsQua, enteringFlowQua, leavingFlowQua, 
         from, to, size, size_sector, width, height;
     
@@ -1771,30 +1776,39 @@ this.StockAndFlow = Editor.extend({
           if(el == 'stock'){
             enteringFlowQua = list[i].enteringFlowQua;
             leavingFlowQua = list[i].leavingFlowQua;
-            flows = element.append('<stock_flows />').children('stock_flows');
+            
+            stock_flows = element.append('<stock_flows />').children('stock_flows');
             if(enteringFlowQua > 0){
               fls = list[i].enteringFlow;
               for(var fl in fls){
-                flow = flows.append('<enteringFlow />').children('enteringFlow');
+                flow = stock_flows.append('<enteringFlow />').children('enteringFlow');
                 flow.text(fls[fl].name);  
               }
             }
             if(leavingFlowQua > 0){
               fls = list[i].leavingFlow;
               for(var fl in fls){
-                flow = flows.append('<leavingFlow />').children('leavingFlow');
+                flow = stock_flows.append('<leavingFlow />').children('leavingFlow');
                 flow.text(fls[fl].name);  
               }
             }
           }
           if(el == 'flow'){
             if(list[i].originStock){
-              from = element.append('<from />').children('from');
-              from.text(list[i].originStock.name);
+              var pos = list[i].originStockPosition();
+              origin = element.append('<origin />').children('origin');
+              origin.append($('<name />').text(list[i].originStock.name)); 
+              position = origin.append('<position />').children('position');
+              position.append($('<x />').text(pos.x));
+              position.append($('<y />').text(pos.y));
             }
             if(list[i].destinationStock){
-              to = element.append('<to />').children('to');
-              to.text(list[i].destinationStock.name);
+              var pos = list[i].destinationStockPosition();
+              destination = element.append('<destination />').children('destination');
+              destination.append($('<name />').text(list[i].destinationStock.name));
+              position = destination.append('<position />').children('position');
+              position.append($('<x />').text(pos.x));
+              position.append($('<y />').text(pos.y));
             }
           }
         }
@@ -1952,9 +1966,7 @@ this.StockAndFlow = Editor.extend({
       var s = new SectorSaf(saf, pos, sis, title, description);
       saf.list.sectorsaf[s.id] = s;
     });
-    
-    //
-    
+
   },
   
   objects: {
@@ -1965,6 +1977,19 @@ this.StockAndFlow = Editor.extend({
         list = this.ctx.list[elmts[el]];
         for(var i in list){
           if(list[i].name == name){
+            return list[i];  
+          }
+        }
+      }
+      return false;
+    },
+    getById: function(id){
+      var elmts = this.ctx.elements;
+      var list;
+      for( var el in elmts ){
+        list = this.ctx.list[elmts[el]];
+        for(var i in list){
+          if(list[i].id == id){
             return list[i];  
           }
         }
@@ -2058,16 +2083,16 @@ this.StockAndFlow = Editor.extend({
     getPosition: function(e){
       var offset  = $(this.ctx.svgDiv).offset();
       
-      return p    = {x: e.clientX - offset.left, 
+      return pos    = {x: e.clientX - offset.left, 
                   y: e.clientY - offset.top};   
     },
-    existElement: function(p){
+    existElement: function(pos){
       var exist = false; 
       for( var l in this.ctx.list){
         for(var e in this.ctx.elements){
           if(l == this.ctx.elements[e]){
             for(var le in this.ctx.list[l]){
-              exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, p.x, p.y);     
+              exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, pos.x, pos.y);     
               if(exist){
                 return this.ctx.list[l][le];
               }
@@ -2091,11 +2116,11 @@ this.StockAndFlow = Editor.extend({
     }
   },
   
-  existeNivelPt: function(p){
+  existeNivelPt: function(pos){
     var existe = false;
     if(this.list.stock){  
       for( var n in this.list.stock){
-        existe = Raphael.isPointInsidePath(this.list.stock[n].border, p.x, p.y);     
+        existe = Raphael.isPointInsidePath(this.list.stock[n].border, pos.x, pos.y);     
         if(existe){
           return this.list.stock[n];
         }
