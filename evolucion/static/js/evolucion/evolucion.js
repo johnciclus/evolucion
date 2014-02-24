@@ -252,14 +252,14 @@ this.figures = {
         
         bb = this.getBBox();
         fig.p[0] = {x: (bb.x + bb.width/2), 
-              y: (bb.y + bb.height/2)};
+                    y: (bb.y + bb.height/2)};
         pt = ctx.path.determinePoint(this.parent.from.border, fig.p[0]);
               
         this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
               
         bb = this.getBBox();
         fig.p[0] = {x: (bb.x + bb.width/2), 
-              y: (bb.y + bb.height/2)};
+                    y: (bb.y + bb.height/2)};
         fig[3].update(dx, dy);
       };
       fig[3].update = function (dx, dy) {
@@ -302,12 +302,16 @@ this.figures = {
       fig[3].drag(moveActions.move, moveActions.start, moveActions.end);
       fig[4].drag(moveActions.move, moveActions.start, moveActions.end);
       fig[5].drag(moveActions.move, moveActions.start, moveActions.end);
+      
       fig.hover(
         function(){
           fig[6].show();
           fig[7].show();
           fig.showPoints();
           clearInterval(fig.timer);
+          
+          console.log('Control Point\'s');
+          console.log(fig.parent.position());
         },
         function(){
           fig[6].hide();
@@ -838,16 +842,12 @@ this.EleBase = Unit.extend({
     elFig.dy = 0;
 
     for(var rel in el.enteringRels){
-      if(el.enteringRels[rel]){
-        el.enteringRels[rel].fig.dx = 0;
-        el.enteringRels[rel].fig.dy = 0;
-      }
+      el.enteringRels[rel].fig.dx = 0;
+      el.enteringRels[rel].fig.dy = 0;
     }
     for(var rel in el.leavingRels){
-      if(el.leavingRels[rel]){
-        el.leavingRels[rel].fig.dx = 0;
-        el.leavingRels[rel].fig.dy = 0;
-      }
+      el.leavingRels[rel].fig.dx = 0;
+      el.leavingRels[rel].fig.dy = 0;
     }
     
     var border = elFig.getBorder();
@@ -885,14 +885,10 @@ this.EleBase = Unit.extend({
     elFig.dy = dy;
     
     for(var rel in el.enteringRels){
-      if(el.enteringRels[rel]){
-        el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}});
-      }
+      el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}});
     }
     for(var rel in el.leavingRels){
-      if(el.leavingRels[rel]){
-        el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}});
-      }
+      el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}});
     }
     
   },
@@ -1067,8 +1063,9 @@ this.Relation = Unit.extend({
     this.name = utils.textToVar(this.title);
     //this.ctx.modTitMenu(this);
   },
-  controlMove: function(cont){
+  controlMove: function(cont, restore){
     //cont op, pco, dp, pcd
+    
     var pt, dx, dy;
     if(cont.op){
       dx = cont.op.dx;
@@ -1080,6 +1077,21 @@ this.Relation = Unit.extend({
       pt = this.fig.p[1];
       this.fig.p[1] ={x: pt.x + dx - (this.fig.dx || 0), 
               y: pt.y + dy - (this.fig.dy || 0)};
+      
+      if(restore){
+        console.log('\nrestore');
+        console.log(this.id);
+        console.log(this.to);
+        
+        pt = this.ctx.path.determinePoint(this.to.border, this.fig.p[3]);
+        
+        console.log(pt);
+        
+        this.fig.p[3] ={x: pt.x, 
+                        y: pt.y};
+        
+      }
+      
       
       this.fig[0].modifyPoints(this.fig.p);
       this.fig[1].modifyPoints(this.fig.p);
@@ -1102,27 +1114,40 @@ this.Relation = Unit.extend({
       
       pt = this.fig.p[2];
       this.fig.p[2] ={x: pt.x + dx  - (this.fig.dx || 0), 
-              y: pt.y + dy  - (this.fig.dy || 0)};
+                      y: pt.y + dy  - (this.fig.dy || 0)};
               
       pt = this.fig.p[3];
       this.fig.p[3] ={x: pt.x + dx  - (this.fig.dx || 0), 
-              y: pt.y + dy  - (this.fig.dy || 0)};
-              
+                      y: pt.y + dy  - (this.fig.dy || 0)};
+      
+      if(restore){
+        console.log('\nrestore');
+        console.log(this.id);
+        console.log(this.from);
+        
+        pt = this.ctx.path.determinePoint(this.from.border, this.fig.p[0]);
+        
+        console.log(pt);
+        
+        this.fig.p[0] ={x: pt.x, 
+                        y: pt.y};
+      }
+      
       this.fig[0].modifyPoints(this.fig.p);
       this.fig[1].modifyPoints(this.fig.p);
       
       
       this.fig[4].transform("...T" + (dx - (this.fig.dx || 0)) +
-                   "," + (dy - (this.fig.dy || 0)));
+                            "," + (dy - (this.fig.dy || 0)));
       pt = this.fig[4].getBBox();
       this.fig.p[2] ={x: (pt.x + (pt.width)/2), 
-              y: (pt.y + (pt.height)/2)};
+                      y: (pt.y + (pt.height)/2)};
                    
       this.fig[5].transform("...T" + (dx - (this.fig.dx || 0)) +
-                   "," + (dy - (this.fig.dy || 0)));
+                            "," + (dy - (this.fig.dy || 0)));
       pt = this.fig[5].getBBox();
       this.fig.p[3] ={x: (pt.x + (pt.width)/2), 
-              y: (pt.y + (pt.height)/2)};
+                      y: (pt.y + (pt.height)/2)};
     }
     this.fig.dx = dx;
     this.fig.dy = dy;
@@ -1488,6 +1513,7 @@ this.Editor = Class.extend({
       title = title.substring(0,12)+'...'+title.substring(title.length-3, title.length);
     }
     $('#'+el.id+'-item>div.panel-heading>a>h4').html(title);
+    $('#'+el.id+'-item-body>div.panel-body>.name-field>p>b').html(el.name);
   },
   deleteControls: function(el){
     $('#'+el.id+'-item').remove();
@@ -1576,7 +1602,7 @@ this.Editor = Class.extend({
           "</div>"+
           "<div id='"+el.id+"-item-body' class='panel-collapse collapse'>"+
             "<div class='panel-body'>"+
-              "<div class='form-group centered'>"+
+              "<div class='form-group centered name-field'>"+
                 "<p>Nombre: <b>"+el.name+"</b></p>"+
               "</div>";
       

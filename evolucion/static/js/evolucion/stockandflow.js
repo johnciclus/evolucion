@@ -802,6 +802,7 @@ this.Stock = Element.extend({
       el.leavingRels[rel].fig.dx = 0;
       el.leavingRels[rel].fig.dy = 0;
     }
+    
     for(var f in el.enteringFlow){
       el.enteringFlow[f].start();
     }
@@ -833,29 +834,39 @@ this.Stock = Element.extend({
       el.leavingRels[rel].fig.dx = 0;
       el.leavingRels[rel].fig.dy = 0;
     }
+    
     for(var f in el.enteringFlow){
       el.enteringFlow[f].end();
     }
     for(var f in el.leavingFlow){
       el.leavingFlow[f].end();
     }
+    
     el.border = elFig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
     var elFig = el.fig;
+    
     var dx_fig = dx - elFig.dx;
     var dy_fig = dy - elFig.dy;
     
     elFig.transform("...T" + dx_fig + "," + dy_fig);
     el.border = elFig.getBorder();
-
+    
     for(var rel in el.enteringRels){
-      el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}});
+      var from = el.enteringRels[rel].from;
+      if(from.type != 'flow'){
+        el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}}, false);  
+      }
     }
     for(var rel in el.leavingRels){
-        el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}});
+      var to = el.leavingRels[rel].to;
+      if(to.type != 'flow'){
+        el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}}, false);
+      }
     }
+    
     for(var f in el.enteringFlow){
       el.enteringFlow[f].moveDestinationControl(dx_fig, dy_fig);
     }
@@ -934,14 +945,14 @@ this.Flow = Element.extend({
       if(el.enteringRels[rel]){
         pt = el.enteringRels[rel].getRelationPoints();
         pt = pt.dp;
-        el.enteringRels[rel].controlMove({dp: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
+        el.enteringRels[rel].controlMove({dp: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}}, true);
       }
     }
     for(var rel in el.leavingRels){
       if(el.leavingRels[rel]){
         pt = el.leavingRels[rel].getRelationPoints();
         pt = pt.op;
-        el.leavingRels[rel].controlMove({op: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}});
+        el.leavingRels[rel].controlMove({op: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}}, true);
       }
     }
     
