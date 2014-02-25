@@ -640,8 +640,8 @@ this.Influences = Editor.extend({
           var el = inf.pointer.existElement(p);
           var relation = inf.tmp.material;
           if(el){
-            p     = inf.path.determinePoint(el.border, p);
-            alpha = inf.path.determineAngle(el.border, p);
+            p     = inf.path.nearestPoint(el.border, p);
+            alpha = inf.path.angleFromPoint(el.border, p);
             
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
@@ -677,8 +677,8 @@ this.Influences = Editor.extend({
           var el = inf.pointer.existElement(p);
           var relation = inf.tmp.information;
           if(el){
-            p     = inf.path.determinePoint(el.border, p);
-            alpha = inf.path.determineAngle(el.border, p);
+            p     = inf.path.nearestPoint(el.border, p);
+            alpha = inf.path.angleFromPoint(el.border, p);
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
               relation.activateSecondControl(inf, p, alpha);
@@ -1031,7 +1031,7 @@ this.Influences = Editor.extend({
     }
   },
   path: {
-    determineAngle: function(path, pt){
+    angleFromPoint: function(path, pt){
       var pp = this.ctx.r.path(path);
       var tl = pp.getTotalLength();
       var pr = [];
@@ -1048,7 +1048,7 @@ this.Influences = Editor.extend({
       pp.remove();
       return angle;
     },
-    determinePoint: function(path, pt){
+    nearestPoint: function(path, pt){
       var pp = this.ctx.r.path(path).attr(style.border);
       var tl = pp.getTotalLength();
       var ep, diff, idx, minor;
@@ -1091,7 +1091,7 @@ this.Influences = Editor.extend({
       pp.animate(style.border_dis, 500, function(){ this.remove(); });
       return {x: ep.x, y: ep.y};
     },
-    determinePercentage: function(path, percentage){
+    pointFromPercentage: function(path, percentage){
       var pp = this.ctx.r.path(path);
       var pt = pp.getPointAtLength(percentage * pp.getTotalLength());
       pp.remove();

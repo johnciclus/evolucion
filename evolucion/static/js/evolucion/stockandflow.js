@@ -305,7 +305,7 @@ this.figures = $.extend(this.figures, {
       var ancho_tex = 0, alto_tex = 0;
       var ali, ang, ang_fin, sin_ang, cos_ang; 
       var el = this.parent;
-      var elFig = el.fig; 
+      var fig = el.fig; 
       
       bb = fig[2][0].getBBox();
       cp = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
@@ -513,7 +513,7 @@ this.figures = $.extend(this.figures, {
         bb = fig[2][7].getBBox();
         op = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         podx = {x: op.x + dx, y: op.y + dy};
-        pt = el.ctx.path.determinePoint(el.originStock.border, podx);
+        pt = el.ctx.path.nearestPoint(el.originStock.border, podx);
         
         fig[2][7].transform("...T"+(pt.x-op.x)+","+(pt.y-op.y));  
       }
@@ -530,7 +530,7 @@ this.figures = $.extend(this.figures, {
         bb = fig[2][8].getBBox();
         dp = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         pddx = {x: dp.x + dx, y: dp.y + dy};
-        pt = el.ctx.path.determinePoint(el.destinationStock.border, pddx);
+        pt = el.ctx.path.nearestPoint(el.destinationStock.border, pddx);
         
         fig[2][8].transform("...T"+(pt.x-dp.x)+","+(pt.y-dp.y));  
       }
@@ -763,36 +763,36 @@ this.Stock = Element.extend({
     this.integrateCtx();
     this.viewDetails();
   },
-  addEnteringFlow: function(flu){
-    if(!this.enteringFlow[flu.id]){
-      this.enteringFlow[flu.id] = flu;
+  addEnteringFlow: function(flow){
+    if(!this.enteringFlow[flow.id]){
+      this.enteringFlow[flow.id] = flow;
       this.enteringFlowQua++;
     }
   },
-  addLeavingFlow: function(flu){
-    if(!this.leavingFlow[flu.id]){
-      this.leavingFlow[flu.id] = flu;
+  addLeavingFlow: function(flow){
+    if(!this.leavingFlow[flow.id]){
+      this.leavingFlow[flow.id] = flow;
       this.leavingFlowQua++;
     }
   },
-  deleteEnteringFlow: function(flu){
-    if(this.enteringFlow[flu.id]){
-      delete(this.enteringFlow[flu.id]);
+  deleteEnteringFlow: function(flow){
+    if(this.enteringFlow[flow.id]){
+      delete(this.enteringFlow[flow.id]);
       this.enteringFlowQua--;
     }
   },
-  deleteLeavingFlow: function(flu){
-    if(this.leavingFlow[flu.id]){
-      delete(this.leavingFlow[flu.id]);
+  deleteLeavingFlow: function(flow){
+    if(this.leavingFlow[flow.id]){
+      delete(this.leavingFlow[flow.id]);
       this.leavingFlowQua--;
     }
   },
   start: function(){
     var el = this.parent;
-    var elFig = el.fig;
+    var fig = el.fig;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
     
     for(var rel in el.enteringRels){
       el.enteringRels[rel].fig.dx = 0;
@@ -810,21 +810,21 @@ this.Stock = Element.extend({
       el.leavingFlow[f].start();
     }
     
-    var border = elFig.getBorder();
+    var border = fig.getBorder();
     var pp = el.ctx.r.path(border).attr(style.border);
     pp.animate(style.border_dis, 100, function(){ this.remove(); });
     pp = undefined;
   },
   end: function(){
     var el = this.parent;
-    var elFig = el.fig;   
+    var fig = el.fig;   
     var bb;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
     
-    bb = elFig[1].getBBox();
-    elFig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+    bb = fig[1].getBBox();
+    fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     
     for(var rel in el.enteringRels){
       el.enteringRels[rel].fig.dx = 0;
@@ -842,41 +842,39 @@ this.Stock = Element.extend({
       el.leavingFlow[f].end();
     }
     
-    el.border = elFig.getBorder();
+    el.border = fig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
-    var elFig = el.fig;
+    var fig = el.fig;
     
-    var dx_fig = dx - elFig.dx;
-    var dy_fig = dy - elFig.dy;
+    fig.transform("...T" + (dx - fig.dx) + "," + (dy - fig.dy));
+    el.border = fig.getBorder();
     
-    elFig.transform("...T" + dx_fig + "," + dy_fig);
-    el.border = elFig.getBorder();
+    var from, to;
     
     for(var rel in el.enteringRels){
-      var from = el.enteringRels[rel].from;
+      from = el.enteringRels[rel].from;
       if(from.type != 'flow'){
         el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}}, false);  
       }
     }
     for(var rel in el.leavingRels){
-      var to = el.leavingRels[rel].to;
+      to = el.leavingRels[rel].to;
       if(to.type != 'flow'){
         el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}}, false);
       }
     }
     
     for(var f in el.enteringFlow){
-      el.enteringFlow[f].moveDestinationControl(dx_fig, dy_fig);
+      el.enteringFlow[f].moveDestinationControl(dx, dy);
     }
     for(var f in el.leavingFlow){
-      el.leavingFlow[f].moveOriginControl(dx_fig, dy_fig);
+      el.leavingFlow[f].moveOriginControl(dx, dy);
     }
     
-    elFig.dx = dx;
-    elFig.dy = dy;
-    
+    fig.dx = dx;
+    fig.dy = dy;
   }
 });
 
@@ -924,40 +922,46 @@ this.Flow = Element.extend({
       this.fig.hidePoints();
     }
   },
-  moveControl: function(con, dx, dy){
-    var el = con.parent;
-    var elFig = el.fig;
-    var pt, bb, dx_rel, dy_rel;
+  moveControl: function(control, dx, dy){
+    var el = control.parent;
+    var fig = el.fig;
+    var pt, bb, rel_x, rel_y;
     
-    bb = elFig[1].getBBox();
-    dx_rel= bb.x + bb.width/2;
-    dy_rel= bb.y + bb.height/2;
+    bb = fig[1].getBBox();
+    rel_x= bb.x + bb.width/2;
+    rel_y= bb.y + bb.height/2;
     
-    con.update(dx - elFig.dx, dy - elFig.dy);
-    el.border = elFig.getBorder();
+    console.log('dx');
+    console.log(dx);
+    console.log('dy');
+    console.log(dy);
     
-    bb = elFig[1].getBBox();
+    console.log('fig.dx');
+    console.log(fig.dx);
+    console.log('fig.dy');
+    console.log(fig.dy);
+        
+    control.update(dx - fig.dx, dy - fig.dy);
+    el.border = fig.getBorder();
+    
+    bb = fig[1].getBBox();
     pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-    dx_rel = pt.x - dx_rel;
-    dy_rel = pt.y - dy_rel;
+    rel_x = pt.x - rel_x;
+    rel_y = pt.y - rel_y;
     
     for(var rel in el.enteringRels){
-      if(el.enteringRels[rel]){
-        pt = el.enteringRels[rel].getRelationPoints();
-        pt = pt.dp;
-        el.enteringRels[rel].controlMove({dp: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}}, true);
-      }
+      pt = el.enteringRels[rel].getRelationPoints();
+      pt = pt.dp;
+      el.enteringRels[rel].controlMove({dp: {dx: pt.x + rel_x, dy: pt.y + rel_y}}, true);
     }
     for(var rel in el.leavingRels){
-      if(el.leavingRels[rel]){
-        pt = el.leavingRels[rel].getRelationPoints();
-        pt = pt.op;
-        el.leavingRels[rel].controlMove({op: {dx: pt.x + dx_rel, dy: pt.y + dy_rel}}, true);
-      }
+      pt = el.leavingRels[rel].getRelationPoints();
+      pt = pt.op;
+      el.leavingRels[rel].controlMove({op: {dx: pt.x + rel_x, dy: pt.y + rel_y}}, true);
     }
     
-    elFig.dx = dx;
-    elFig.dy = dy;
+    fig.dx = dx;
+    fig.dy = dy;
   },
   moveOriginControl: function(dx, dy){
     this.moveControl(this.fig[2][7], dx, dy);
@@ -982,11 +986,11 @@ this.Flow = Element.extend({
       el = this.parent;
     }
     
-    var elFig = el.fig; 
+    var fig = el.fig; 
     var pt;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
     
     for(var rel in el.enteringRels){
       if(el.enteringRels[rel]){
@@ -994,6 +998,9 @@ this.Flow = Element.extend({
         pt = pt.dp;
         el.enteringRels[rel].fig.dx = pt.x;
         el.enteringRels[rel].fig.dy = pt.y;
+
+        //Only for stocks
+        el.enteringRels[rel].fig.pt_percent = el.ctx.path.percentageFromPath(el.enteringRels[rel].from.border, el.enteringRels[rel].fig.p[0]);
       }
     }
     for(var rel in el.leavingRels){
@@ -1002,10 +1009,13 @@ this.Flow = Element.extend({
         pt = pt.op;
         el.leavingRels[rel].fig.dx = pt.x;
         el.leavingRels[rel].fig.dy = pt.y;
+        
+        //Only for stocks
+        el.leavingRels[rel].fig.pt_percent = el.ctx.path.percentageFromPath(el.leavingRels[rel].to.border, el.leavingRels[rel].fig.p[3]);
       }
     }
     
-    var border = elFig.getBorder();
+    var border = fig.getBorder();
     var pp = el.ctx.r.path(border).attr(style.border);
     pp.animate(style.border_dis, 100, function(){ this.remove(); });
     pp = undefined;
@@ -1017,36 +1027,36 @@ this.Flow = Element.extend({
     }else if(this.parent){
       el = this.parent;
     }
-    //console.log(el);
-    var elFig = el.fig;
+
+    var fig = el.fig;
     var bb, pt, stock;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
     
-    bb = elFig[1].getBBox();
-    elFig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+    bb = fig[1].getBBox();
+    fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     
-    if(this == elFig[2][7]){
-      bb = elFig[2][7].getBBox();
+    if(this == fig[2][7]){
+      bb = fig[2][7].getBBox();
       pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
       stock = el.ctx.existeNivelPt(pt);
       if(stock){
-        elFig.connOriginStock(stock);
+        fig.connOriginStock(stock);
       }
       else{
-        elFig.disOriginStock();
+        fig.disOriginStock();
       }
     }
-    else if(this == elFig[2][8]){
-      bb = elFig[2][8].getBBox();
+    else if(this == fig[2][8]){
+      bb = fig[2][8].getBBox();
       pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
       stock = el.ctx.existeNivelPt(pt);
       if(stock){
-        elFig.connDestinationStock(stock);
+        fig.connDestinationStock(stock);
       }
       else{
-        elFig.disDestinationStock();
+        fig.disDestinationStock();
       }
     }
     
@@ -1058,7 +1068,7 @@ this.Flow = Element.extend({
       el.leavingRels[rel].fig.dx = 0;
       el.leavingRels[rel].fig.dy = 0;
     }
-    el.border = elFig.getBorder();
+    el.border = fig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
@@ -1683,8 +1693,8 @@ this.StockAndFlow = Editor.extend({
           var el = saf.pointer.existElement(pos);
           var relation = saf.tmp.relation;
           if(el){
-            pos     = saf.path.determinePoint(el.border, pos);
-            alpha = saf.path.determineAngle(el.border, pos);
+            pos     = saf.path.nearestPoint(el.border, pos);
+            alpha = saf.path.angleFromPoint(el.border, pos);
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
               relation.activateSecondControl(saf, pos, alpha);
@@ -2022,7 +2032,7 @@ this.StockAndFlow = Editor.extend({
     }
   },
   path: {
-    determineAngle: function(path, pt){
+    angleFromPoint: function(path, pt){
       var pp = this.ctx.r.path(path);
       var tl = pp.getTotalLength();
       var pr = [];
@@ -2039,10 +2049,17 @@ this.StockAndFlow = Editor.extend({
       pp.remove();
       return angle;
     },
-    determinePoint: function(path, pt){
+    nearestPoint: function(path, pt){
       var pp = this.ctx.r.path(path).attr(style.border);
+      
+      var ep = pp.getPointAtLength(this.percentageFromPath(path, pt));
+      pp.animate(style.border_dis, 500, function(){ this.remove(); });
+      return {x: ep.x, y: ep.y};
+    },
+    percentageFromPath: function(path, pt){
+      var pp = this.ctx.r.path(path);
       var tl = pp.getTotalLength();
-      var ep, diff, idx, minor;
+      var diff, idx, minor;
       var pr = [];
       var r = [];
       
@@ -2078,24 +2095,30 @@ this.StockAndFlow = Editor.extend({
         diff = pr[10] - pr[0];
         r = [];
       }
-      ep = pp.getPointAtLength(pr[idx]);
-      pp.animate(style.border_dis, 500, function(){ this.remove(); });
-      return {x: ep.x, y: ep.y};
+      pp.remove();
+      return pr[idx];
     },
-    determinePercentage: function(path, percentage){
+    pointFromPercentage: function(path, percentage){
       var pp = this.ctx.r.path(path);
       var pt = pp.getPointAtLength(percentage * pp.getTotalLength());
       pp.remove();
       pp = undefined;
       return pt; 
-    }
+    },
+    pointFromlength: function(path, length){
+      var pp = this.ctx.r.path(path);
+      var pt = pp.getPointAtLength(length);
+      pp.remove();
+      pp = undefined;
+      return pt; 
+    },
   },
   pointer: {
     getPosition: function(e){
       var offset  = $(this.ctx.svgDiv).offset();
       
-      return pos    = {x: e.clientX - offset.left, 
-                  y: e.clientY - offset.top};   
+      return pos  = {x: e.clientX - offset.left, 
+                     y: e.clientY - offset.top};   
     },
     existElement: function(pos){
       var exist = false; 

@@ -206,7 +206,7 @@ this.figures = {
       
       var bb, pt;
       
-      pt = ctx.path.determinePercentage(fig[0].pathCurve, 0.5);
+      pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
       fig.push(
         ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24),
         ctx.r.image('/static/icons/info.png', pt.x - 24, pt.y - 12, 24, 24)
@@ -238,7 +238,7 @@ this.figures = {
         fig[5].show();
       };
       fig.update = function(){
-        var pt = ctx.path.determinePercentage(fig[0].pathCurve, 0.5);
+        var pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
         fig[6].attr('x', pt.x);
         fig[6].attr('y', pt.y - 12);
         fig[6].transform('');
@@ -253,7 +253,7 @@ this.figures = {
         bb = this.getBBox();
         fig.p[0] = {x: (bb.x + bb.width/2), 
                     y: (bb.y + bb.height/2)};
-        pt = ctx.path.determinePoint(this.parent.from.border, fig.p[0]);
+        pt = ctx.path.nearestPoint(this.parent.from.border, fig.p[0]);
               
         this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
               
@@ -288,7 +288,7 @@ this.figures = {
         bb = this.getBBox();
         fig.p[3] = {x: (bb.x + (bb.width)/2), 
               y: (bb.y + (bb.height)/2)};
-        pt = ctx.path.determinePoint(this.parent.to.border, fig.p[3]);
+        pt = ctx.path.nearestPoint(this.parent.to.border, fig.p[3]);
               
         this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
               
@@ -700,8 +700,7 @@ this.Unit = Class.extend({
   moveDelta: function(dx, dy){                    
     var bb = this.fig[0].getBBox();
     this.fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-    console.log(this.fig.p);
-    
+        
     this.fig.transform("...T" + dx + "," + dy);
     this.border = this.fig.getBorder();
   },
@@ -819,7 +818,7 @@ this.EleBase = Unit.extend({
       oriRel = this.leavingRels[rel];
       if(oriRel){
         //pts = oriRel.getRelationPoints();
-        //pt = this.ctx.path.determinePoint(this.border, pts.op);
+        //pt = this.ctx.path.nearestPoint(this.border, pts.op);
         //oriRel.changePoints({op: pt});
         //oriRel.changeTitle(this.title, oriRel.des.title);
       }
@@ -828,7 +827,7 @@ this.EleBase = Unit.extend({
       desRel = this.enteringRels[rel];
       if(desRel){
         //pts = desRel.getRelationPoints();
-        //pt = this.ctx.path.determinePoint(this.border, pts.dp);
+        //pt = this.ctx.path.nearestPoint(this.border, pts.dp);
         //desRel.changePoints({dp: pt});
         //desRel.changeTitle(desRel.from.title, this.title);
       }
@@ -836,10 +835,10 @@ this.EleBase = Unit.extend({
   },
   start: function(){
     var el = this.parent;
-    var elFig = el.fig;
+    var fig = el.fig;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
 
     for(var rel in el.enteringRels){
       el.enteringRels[rel].fig.dx = 0;
@@ -850,21 +849,21 @@ this.EleBase = Unit.extend({
       el.leavingRels[rel].fig.dy = 0;
     }
     
-    var border = elFig.getBorder();
+    var border = fig.getBorder();
     var pp = el.ctx.r.path(border).attr(style.border);
     pp.animate(style.border_dis, 100, function(){ this.remove(); });
     pp = undefined;
   },
   end: function(){
     var el = this.parent;
-    var elFig = el.fig;   
+    var fig = el.fig;   
     var bb;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
     
-    bb = elFig[1].getBBox();
-    elFig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+    bb = fig[1].getBBox();
+    fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     
     for(var rel in el.enteringRels){
       el.enteringRels[rel].fig.dx = 0;
@@ -874,15 +873,15 @@ this.EleBase = Unit.extend({
       el.leavingRels[rel].fig.dx = 0;
       el.leavingRels[rel].fig.dy = 0;
     }
-    el.border = elFig.getBorder();
+    el.border = fig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
-    var elFig = el.fig;   
+    var fig = el.fig;   
       
-    elFig.transform("...T" + (dx - elFig.dx) + "," + (dy - elFig.dy));
-    elFig.dx = dx;
-    elFig.dy = dy;
+    fig.transform("...T" + (dx - fig.dx) + "," + (dy - fig.dy));
+    fig.dx = dx;
+    fig.dy = dy;
     
     for(var rel in el.enteringRels){
       el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}});
@@ -1079,19 +1078,33 @@ this.Relation = Unit.extend({
               y: pt.y + dy - (this.fig.dy || 0)};
       
       if(restore){
-        console.log('\nrestore');
+        console.log('\nrestore origin');
         console.log(this.id);
         console.log(this.to);
         
-        pt = this.ctx.path.determinePoint(this.to.border, this.fig.p[3]);
+        console.log('Relation Point ');
+        console.log(this.fig.pt_percent);
+        
+        pt = this.ctx.path.pointFromlength(this.to.border, this.fig.pt_percent);
         
         console.log(pt);
+        console.log(this.fig.p);
         
-        this.fig.p[3] ={x: pt.x, 
-                        y: pt.y};
+        var pre_pt = this.fig.p[3];
+        var dx_con = pt.x - pre_pt.x;
+        var dy_con = pt.y - pre_pt.y;
+                
+        this.fig.p[3] ={ x: pt.x, 
+                         y: pt.y };
+                         
+        pt = this.fig.p[2];
+        this.fig.p[2] ={ x: pt.x + dx_con, 
+                         y: pt.y + dy_con };
+        
+        this.fig[4].transform("...T" + dx_con + "," + dy_con);
+        this.fig[5].transform("...T" + dx_con + "," + dy_con);
         
       }
-      
       
       this.fig[0].modifyPoints(this.fig.p);
       this.fig[1].modifyPoints(this.fig.p);
@@ -1112,6 +1125,8 @@ this.Relation = Unit.extend({
       dx = cont.dp.dx;
       dy = cont.dp.dy;
       
+      var percent;
+      
       pt = this.fig.p[2];
       this.fig.p[2] ={x: pt.x + dx  - (this.fig.dx || 0), 
                       y: pt.y + dy  - (this.fig.dy || 0)};
@@ -1121,21 +1136,33 @@ this.Relation = Unit.extend({
                       y: pt.y + dy  - (this.fig.dy || 0)};
       
       if(restore){
-        console.log('\nrestore');
+        console.log('\nRestore destination');
         console.log(this.id);
         console.log(this.from);
         
-        pt = this.ctx.path.determinePoint(this.from.border, this.fig.p[0]);
+        console.log('Relation Point ');
+        console.log(this.fig.pt_percent);
         
-        console.log(pt);
+        pt = this.ctx.path.pointFromlength(this.from.border, this.fig.pt_percent);
         
-        this.fig.p[0] ={x: pt.x, 
-                        y: pt.y};
+        var pre_pt = this.fig.p[0];
+        var dx_con = pt.x - pre_pt.x;
+        var dy_con = pt.y - pre_pt.y;
+                
+        this.fig.p[0] ={ x: pt.x, 
+                         y: pt.y };
+                         
+        pt = this.fig.p[1];
+        this.fig.p[1] ={ x: pt.x + dx_con, 
+                         y: pt.y + dy_con };
+        
+        this.fig[2].transform("...T" + dx_con + "," + dy_con);
+        this.fig[3].transform("...T" + dx_con + "," + dy_con);
+        
       }
       
       this.fig[0].modifyPoints(this.fig.p);
       this.fig[1].modifyPoints(this.fig.p);
-      
       
       this.fig[4].transform("...T" + (dx - (this.fig.dx || 0)) +
                             "," + (dy - (this.fig.dy || 0)));
@@ -1261,11 +1288,11 @@ this.SecBase = Unit.extend({
   },
   start: function(){
     var el = this.parent;
-    var elFig = el.fig;
+    var fig = el.fig;
     var list;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
+    fig.dx = 0;
+    fig.dy = 0;
     
     el.selectElements();
     
@@ -1282,18 +1309,18 @@ this.SecBase = Unit.extend({
       }
     }
     
-    var border = elFig.getBorder();
+    var border = fig.getBorder();
     var pp = el.ctx.r.path(border).attr(style.border);
     pp.animate(style.border_dis, 100, function(){ this.remove();});
   },
   moveFig: function(dx, dy){
     var el = this.parent;
-    var elFig = el.fig;   
+    var fig = el.fig;   
     var listEle = el.elements;
     var list = el.relations;
     var pt;
-    var dx_fig = dx - elFig.dx;
-    var dy_fig = dy - elFig.dy;
+    var dx_fig = dx - fig.dx;
+    var dy_fig = dy - fig.dy;
     
     for(var i in listEle){
       listEle[i].moveDelta(dx_fig, dy_fig);
@@ -1312,20 +1339,20 @@ this.SecBase = Unit.extend({
       }
     }
     
-    elFig.transform("...T" + (dx_fig) + "," + (dy_fig));    
-    elFig.dx = dx;
-    elFig.dy = dy;
+    fig.transform("...T" + (dx_fig) + "," + (dy_fig));    
+    fig.dx = dx;
+    fig.dy = dy;
     
   },
   end: function(){
     var el = this.parent;
-    var elFig = el.fig;   
+    var fig = el.fig;   
     var list, bb;
     
-    elFig.dx = 0;
-    elFig.dy = 0;
-    bb = elFig[1].getBBox();
-    elFig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+    fig.dx = 0;
+    fig.dy = 0;
+    bb = fig[1].getBBox();
+    fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     
     list = el.relations;
     
@@ -1340,7 +1367,7 @@ this.SecBase = Unit.extend({
       }
     }
     
-    el.border = elFig.getBorder();
+    el.border = fig.getBorder();
   },
   selectElements: function(){
     var area = this.fig.getArea();
@@ -1807,12 +1834,10 @@ this.Editor = Class.extend({
       });*/
       $('#'+el.id+'-item-body').collapse('show');
       
-      /*console.log('show end');
-      var accordion_offset_top = $('#elements-'+el.ctx.id).offset().top;
+      /*var accordion_offset_top = $('#elements-'+el.ctx.id).offset().top;
       var item_offset_top = $('#'+el.id+'-item').offset().top;
       var offset = item_offset_top - accordion_offset_top;
-                  
-      console.log(offset);
+
       if(offset != 0){
         $(el.ctx.sidebar).scrollTop(offset);
       }*/
