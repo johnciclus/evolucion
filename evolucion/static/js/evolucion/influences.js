@@ -282,7 +282,7 @@ this.Concept = Element.extend({
   },
   figure: function(p){
     this.fig = this.figGenerator(this.ctx, this, p, this.title, {});
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     for(var i=0; i<2; i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
       this.fig[i].dblclick(this.createTextEditor);
@@ -332,7 +332,7 @@ this.Cycle = Element.extend({
     },
   figure: function(p){
     this.fig = this.figGenerator(this.ctx, this, p, this.title, this.orientation, this.feedback);
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     for(var i=0; i<3; i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
       this.fig[i].dblclick(this.createTextEditor);
@@ -640,8 +640,8 @@ this.Influences = Editor.extend({
           var el = inf.pointer.existElement(p);
           var relation = inf.tmp.material;
           if(el){
-            p     = inf.path.nearestPoint(el.border, p);
-            alpha = inf.path.angleFromPoint(el.border, p);
+            p     = inf.path.nearestPoint(el.fig.border, p);
+            alpha = inf.path.angleFromPoint(el.fig.border, p);
             
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
@@ -677,8 +677,8 @@ this.Influences = Editor.extend({
           var el = inf.pointer.existElement(p);
           var relation = inf.tmp.information;
           if(el){
-            p     = inf.path.nearestPoint(el.border, p);
-            alpha = inf.path.angleFromPoint(el.border, p);
+            p     = inf.path.nearestPoint(el.fig.border, p);
+            alpha = inf.path.angleFromPoint(el.fig.border, p);
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
               relation.activateSecondControl(inf, p, alpha);
@@ -1112,7 +1112,7 @@ this.Influences = Editor.extend({
         for(var e in this.ctx.elements){
           if(l == this.ctx.elements[e]){
             for(var le in this.ctx.list[l]){
-              exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, p.x, p.y);     
+              exist = Raphael.isPointInsidePath(this.ctx.list[l][le].fig.border, p.x, p.y);     
               if(exist){
                 return this.ctx.list[l][le];
               }

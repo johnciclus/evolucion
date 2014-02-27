@@ -471,7 +471,7 @@ this.figures = $.extend(this.figures, {
       fig[3].transform("...T" + pt.x + "," + pt.y);
       fig[4].transform("...T" + pt.x + "," + pt.y); 
             
-      fig.parent.border = fig.getBorder();
+      fig.border = fig.getBorder();
     };
     fig.connOriginStock = function(stock){
       var el = fig.parent;
@@ -513,7 +513,7 @@ this.figures = $.extend(this.figures, {
         bb = fig[2][7].getBBox();
         op = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         podx = {x: op.x + dx, y: op.y + dy};
-        pt = el.ctx.path.nearestPoint(el.originStock.border, podx);
+        pt = el.ctx.path.nearestPoint(el.originStock.fig.border, podx);
         
         fig[2][7].transform("...T"+(pt.x-op.x)+","+(pt.y-op.y));  
       }
@@ -530,7 +530,7 @@ this.figures = $.extend(this.figures, {
         bb = fig[2][8].getBBox();
         dp = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         pddx = {x: dp.x + dx, y: dp.y + dy};
-        pt = el.ctx.path.nearestPoint(el.destinationStock.border, pddx);
+        pt = el.ctx.path.nearestPoint(el.destinationStock.fig.border, pddx);
         
         fig[2][8].transform("...T"+(pt.x-dp.x)+","+(pt.y-dp.y));  
       }
@@ -842,26 +842,52 @@ this.Stock = Element.extend({
       el.leavingFlow[f].end();
     }
     
-    el.border = fig.getBorder();
+    fig.border = fig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
     var fig = el.fig;
     
     fig.transform("...T" + (dx - fig.dx) + "," + (dy - fig.dy));
-    el.border = fig.getBorder();
+    fig.border = fig.getBorder();
     
     var from, to;
     
     for(var rel in el.enteringRels){
       from = el.enteringRels[rel].from;
-      if(from.type != 'flow'){
+      var is_related = false;
+      
+      if(from.originStock){
+        if(from.originStock.id == el.id){
+          is_related = true;
+        }
+      }
+      if(from.destinationStock){
+        if(from.destinationStock.id == el.id){
+          is_related = true;
+        }
+      }
+      
+      if(!is_related || from.type != 'flow'){
         el.enteringRels[rel].controlMove({dp: {dx: dx, dy: dy}}, false);  
       }
     }
     for(var rel in el.leavingRels){
       to = el.leavingRels[rel].to;
-      if(to.type != 'flow'){
+      var is_related = false;
+      
+      if(to.originStock){
+        if(to.originStock.id == el.id){
+          is_related = true;
+        }
+      }
+      if(to.destinationStock){
+        if(to.destinationStock.id == el.id){
+          is_related = true;
+        }
+      }
+      
+      if(!is_related || to.type != 'flow'){
         el.leavingRels[rel].controlMove({op: {dx: dx, dy: dy}}, false);
       }
     }
@@ -906,7 +932,7 @@ this.Flow = Element.extend({
   },
   figure: function(pos){
     this.fig = this.figGenerator(this.ctx, this, pos, this.title, {});
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     this.fig[0].dblclick(this.createTextEditor);
     this.fig[2][7].drag(this.moveFig, this.start, this.end);
     this.fig[2][8].drag(this.moveFig, this.start, this.end);
@@ -930,19 +956,9 @@ this.Flow = Element.extend({
     bb = fig[1].getBBox();
     rel_x= bb.x + bb.width/2;
     rel_y= bb.y + bb.height/2;
-    
-    console.log('dx');
-    console.log(dx);
-    console.log('dy');
-    console.log(dy);
-    
-    console.log('fig.dx');
-    console.log(fig.dx);
-    console.log('fig.dy');
-    console.log(fig.dy);
         
     control.update(dx - fig.dx, dy - fig.dy);
-    el.border = fig.getBorder();
+    fig.border = fig.getBorder();
     
     bb = fig[1].getBBox();
     pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
@@ -1000,7 +1016,7 @@ this.Flow = Element.extend({
         el.enteringRels[rel].fig.dy = pt.y;
 
         //Only for stocks
-        el.enteringRels[rel].fig.pt_percent = el.ctx.path.percentageFromPath(el.enteringRels[rel].from.border, el.enteringRels[rel].fig.p[0]);
+        el.enteringRels[rel].fig.pt_percent = el.ctx.path.percentageFromPath(el.enteringRels[rel].from.fig.border, el.enteringRels[rel].fig.p[0]);
       }
     }
     for(var rel in el.leavingRels){
@@ -1011,7 +1027,7 @@ this.Flow = Element.extend({
         el.leavingRels[rel].fig.dy = pt.y;
         
         //Only for stocks
-        el.leavingRels[rel].fig.pt_percent = el.ctx.path.percentageFromPath(el.leavingRels[rel].to.border, el.leavingRels[rel].fig.p[3]);
+        el.leavingRels[rel].fig.pt_percent = el.ctx.path.percentageFromPath(el.leavingRels[rel].to.fig.border, el.leavingRels[rel].fig.p[3]);
       }
     }
     
@@ -1068,7 +1084,7 @@ this.Flow = Element.extend({
       el.leavingRels[rel].fig.dx = 0;
       el.leavingRels[rel].fig.dy = 0;
     }
-    el.border = fig.getBorder();
+    fig.border = fig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
@@ -1693,8 +1709,8 @@ this.StockAndFlow = Editor.extend({
           var el = saf.pointer.existElement(pos);
           var relation = saf.tmp.relation;
           if(el){
-            pos     = saf.path.nearestPoint(el.border, pos);
-            alpha = saf.path.angleFromPoint(el.border, pos);
+            pos     = saf.path.nearestPoint(el.fig.border, pos);
+            alpha = saf.path.angleFromPoint(el.fig.border, pos);
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
               relation.activateSecondControl(saf, pos, alpha);
@@ -2126,7 +2142,7 @@ this.StockAndFlow = Editor.extend({
         for(var e in this.ctx.elements){
           if(l == this.ctx.elements[e]){
             for(var le in this.ctx.list[l]){
-              exist = Raphael.isPointInsidePath(this.ctx.list[l][le].border, pos.x, pos.y);     
+              exist = Raphael.isPointInsidePath(this.ctx.list[l][le].fig.border, pos.x, pos.y);     
               if(exist){
                 return this.ctx.list[l][le];
               }
@@ -2154,7 +2170,7 @@ this.StockAndFlow = Editor.extend({
     var existe = false;
     if(this.list.stock){  
       for( var n in this.list.stock){
-        existe = Raphael.isPointInsidePath(this.list.stock[n].border, pos.x, pos.y);     
+        existe = Raphael.isPointInsidePath(this.list.stock[n].fig.border, pos.x, pos.y);     
         if(existe){
           return this.list.stock[n];
         }

@@ -253,7 +253,8 @@ this.figures = {
         bb = this.getBBox();
         fig.p[0] = {x: (bb.x + bb.width/2), 
                     y: (bb.y + bb.height/2)};
-        pt = ctx.path.nearestPoint(this.parent.from.border, fig.p[0]);
+        
+        pt = ctx.path.nearestPoint(this.parent.from.fig.border, fig.p[0]);
               
         this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
               
@@ -288,7 +289,7 @@ this.figures = {
         bb = this.getBBox();
         fig.p[3] = {x: (bb.x + (bb.width)/2), 
               y: (bb.y + (bb.height)/2)};
-        pt = ctx.path.nearestPoint(this.parent.to.border, fig.p[3]);
+        pt = ctx.path.nearestPoint(this.parent.to.fig.border, fig.p[3]);
               
         this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
               
@@ -309,9 +310,6 @@ this.figures = {
           fig[7].show();
           fig.showPoints();
           clearInterval(fig.timer);
-          
-          console.log('Control Point\'s');
-          console.log(fig.parent.position());
         },
         function(){
           fig[6].hide();
@@ -674,7 +672,6 @@ this.Unit = Class.extend({
     this.description  = ' ';
     
     this.fig          = undefined;
-    this.border       = [];
     
     this.ctx = ctx;
   },
@@ -683,7 +680,7 @@ this.Unit = Class.extend({
     this.name = utils.textToVar(title);
     this.fig.changeTitle(title);                  //camTit
     this.ctx.changeTitle(this);                   //modTitMenu
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     if(typeof(this.restoreLinks) == 'function'){  //restEnl
       this.restoreLinks();
     }
@@ -702,7 +699,7 @@ this.Unit = Class.extend({
     this.fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
         
     this.fig.transform("...T" + dx + "," + dy);
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
   },
   integrateCtx: function(){
     this.ctx.integrateControls(this);
@@ -738,7 +735,6 @@ this.EleBase = Unit.extend({
     this.connec['desQua'] = 'n';      // ('0' || '1' || 'n')  Destination Quantity
     
     this.figGenerator = undefined;
-    this.border = [];
     
     this.enteringRels = {};
     this.leavingRels  = {};
@@ -873,7 +869,7 @@ this.EleBase = Unit.extend({
       el.leavingRels[rel].fig.dx = 0;
       el.leavingRels[rel].fig.dy = 0;
     }
-    el.border = fig.getBorder();
+    fig.border = fig.getBorder();
   },
   moveFig: function(dx, dy){
     var el = this.parent;
@@ -954,7 +950,7 @@ this.Element = EleBase.extend({
   },
   figure: function(pos){
     this.fig = this.figGenerator(this.ctx, this, pos, this.title, {cursor: "move"});
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     for(var i=0; i<3; i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
     }
@@ -1010,7 +1006,7 @@ this.Clone = EleBase.extend({
   },
   figure: function(p){
     this.fig = this.ref.figGenerator(this.ctx, this, p, this.title, {'stroke-dasharray': "-", dasharray_rec: "- ", color: "#555", cursor: "move"});
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     var figQua = this.fig.length-1;
     for(var i=0; i<(figQua-1); i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
@@ -1085,7 +1081,7 @@ this.Relation = Unit.extend({
         console.log('Relation Point ');
         console.log(this.fig.pt_percent);
         
-        pt = this.ctx.path.pointFromlength(this.to.border, this.fig.pt_percent);
+        pt = this.ctx.path.pointFromlength(this.to.fig.border, this.fig.pt_percent);
         
         console.log(pt);
         console.log(this.fig.p);
@@ -1143,7 +1139,7 @@ this.Relation = Unit.extend({
         console.log('Relation Point ');
         console.log(this.fig.pt_percent);
         
-        pt = this.ctx.path.pointFromlength(this.from.border, this.fig.pt_percent);
+        pt = this.ctx.path.pointFromlength(this.from.fig.border, this.fig.pt_percent);
         
         var pre_pt = this.fig.p[0];
         var dx_con = pt.x - pre_pt.x;
@@ -1257,7 +1253,7 @@ this.SecBase = Unit.extend({
   },
   figure: function(p, size){
     this.fig = figures.sector(this.ctx, this, p, size, this.title);
-    this.border = this.fig.getBorder();
+    this.fig.border = this.fig.getBorder();
     for(var i=0; i<3; i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
     }
@@ -1367,7 +1363,7 @@ this.SecBase = Unit.extend({
       }
     }
     
-    el.border = fig.getBorder();
+    fig.border = fig.getBorder();
   },
   selectElements: function(){
     var area = this.fig.getArea();
