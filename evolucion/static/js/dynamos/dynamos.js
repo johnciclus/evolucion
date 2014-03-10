@@ -640,8 +640,8 @@ var Dynamos = Class.extend({
 		element.children('definition').each(function(){
 			element.definition = $(this).text();
 		});
-		element.children('des').each(function(){
-			element.des = $(this).text();
+		element.children('description').each(function(){
+			element.description = $(this).text();
 		});
 		element.children('flujos').each(function(){
 			$(this).children('entran').each(function(){
@@ -763,8 +763,10 @@ var Dynamos = Class.extend({
 		
 		for(var i in element.enteringRels){
 			esAdmAct=false;
-			for(var j=0; j<allowed_stack.length; j++){			
-				if(element.enteringRels[i].ori.id == allowed_stack[j]){
+			for(var j=0; j<allowed_stack.length; j++){
+			  console.log('isAdmitted');
+			  console.log(element);
+				if(element.enteringRels[i].from.id == allowed_stack[j]){
 					esAdmAct=true;
 					j=allowed_stack.length;
 				}

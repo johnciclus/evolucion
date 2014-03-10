@@ -26,8 +26,8 @@ this.figures = $.extend(this.figures, {
     fig.push(
       ctx.r.rect(op.x, op.y, width, height, 4).attr(rectangleStyle),
       figGenerator(ctx.r, {'x': op.x + width/2, 'y': op.y - el_size/2}, figureStyle),
-      ctx.r.image('/static/icons/close.png',  op.x + width - 12, op.y - 12, 24, 24),
-      ctx.r.image('/static/icons/info.png', op.x + width -36, op.y - 12, 24, 24)
+      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)
     );
     
     fig[1].toFront();
@@ -66,9 +66,13 @@ this.figures = $.extend(this.figures, {
       var dy = bb.y - lim;
       this[2].transform("...T 0," + dy);
       
-      this[3].attr('x', op.x + width - 12);
-      this[3].attr('y', op.y - 12);
+      this[3].attr('x', op.x - 18);
+      this[3].attr('y', op.y - 18);
       this[3].transform('');
+      
+      this[4].attr('x', op.x + width - 6);
+      this[4].attr('y', op.y - 18);
+      this[4].transform('');
     };
     
     fig.getBorder = function(){
@@ -148,50 +152,51 @@ this.figures = $.extend(this.figures, {
                 ["M", cp.x - 5, cp.y - 15],
                 ["H", cp.x + 5]
             ];
-        fig.pathLinI = [
-                ["M", cp.x - 30, cp.y - 11],
-                ["H", cp.x + 15]
-            ];
-        fig.pathLinD = [
-                ["M", cp.x + 15, cp.y - 11],
-                ["H", cp.x + 30]
-            ];
-        fig.pathArrow = [
-            ["M", cp.x + 30, cp.y - 11], 
-            ["L", p0.x, p0.y], 
-            ["L", p1.x, p1.y], 
-            ["Z"]
+      fig.pathLinI = [
+              ["M", cp.x - 30, cp.y - 11],
+              ["H", cp.x + 15]
           ];
-        fig.pathNubI = [
-                ["M", cp.x - 30, cp.y - 11],
-                ["A", 6, 6, cp.x - 30, 1, 0, cp.x - 40, cp.y - 21],
-                ["A", 6, 6, cp.x - 40, 1, 0, cp.x - 50, cp.y - 11],
-                ["A", 6, 6, cp.x - 50, 1, 0, cp.x - 40, cp.y - 1],
-                ["A", 6, 6, cp.x - 40, 1, 0, cp.x - 30, cp.y - 11]
-            ];
-        fig.pathNubD = [
-                ["M", cp.x + 30, cp.y - 11],
-                ["A", 6, 6, cp.x + 30, 1, 1, cp.x + 40, cp.y - 21],
-                ["A", 6, 6, cp.x + 40, 1, 1, cp.x + 50, cp.y - 11],
-                ["A", 6, 6, cp.x + 50, 1, 1, cp.x + 40, cp.y - 1],
-                ["A", 6, 6, cp.x + 40, 1, 1, cp.x + 30, cp.y - 11]
-            ];  
-        
-      fig.push(r.circle(cp.x, cp.y + 2, 10).attr(standardStyle),
-           r.path(fig.pathT).attr(standardStyle),
-           r.path(fig.pathLinI).attr(style.heavy_line),
-           r.path(fig.pathLinD).attr(style.heavy_line),
-           r.path(fig.pathArrow).attr(style.figure),
-           r.path(fig.pathNubI).attr(standardStyle),
-           r.path(fig.pathNubD).attr(standardStyle),
-           r.circle(cp.x - 30, cp.y - 11, 4).attr(style.point),
-           r.circle(cp.x + 30, cp.y - 11, 4).attr(style.point));
+      fig.pathLinD = [
+              ["M", cp.x + 15, cp.y - 11],
+              ["H", cp.x + 30]
+          ];
+      fig.pathArrow = [
+          ["M", cp.x + 30, cp.y - 11], 
+          ["L", p0.x, p0.y], 
+          ["L", p1.x, p1.y], 
+          ["Z"]
+        ];
+      fig.pathNubI = [
+              ["M", cp.x - 30, cp.y - 11],
+              ["A", 6, 6, cp.x - 30, 1, 0, cp.x - 40, cp.y - 21],
+              ["A", 6, 6, cp.x - 40, 1, 0, cp.x - 50, cp.y - 11],
+              ["A", 6, 6, cp.x - 50, 1, 0, cp.x - 40, cp.y - 1],
+              ["A", 6, 6, cp.x - 40, 1, 0, cp.x - 30, cp.y - 11]
+          ];
+      fig.pathNubD = [
+              ["M", cp.x + 30, cp.y - 11],
+              ["A", 6, 6, cp.x + 30, 1, 1, cp.x + 40, cp.y - 21],
+              ["A", 6, 6, cp.x + 40, 1, 1, cp.x + 50, cp.y - 11],
+              ["A", 6, 6, cp.x + 50, 1, 1, cp.x + 40, cp.y - 1],
+              ["A", 6, 6, cp.x + 40, 1, 1, cp.x + 30, cp.y - 11]
+          ];  
+      
+      fig.push(
+        r.circle(cp.x, cp.y + 2, 10).attr(standardStyle),
+        r.path(fig.pathT).attr(standardStyle),
+        r.path(fig.pathLinI).attr(style.heavy_line),
+        r.path(fig.pathLinD).attr(style.heavy_line),
+        r.path(fig.pathArrow).attr(style.figure),
+        r.path(fig.pathNubI).attr(standardStyle),
+        r.path(fig.pathNubD).attr(standardStyle),
+        r.circle(cp.x - 30, cp.y - 11, 4).attr(style.point),
+        r.circle(cp.x + 30, cp.y - 11, 4).attr(style.point));
            
       fig[7].toFront();     
       fig[8].toFront();
       fig[7].attr({cursor: "move"});      
       fig[8].attr({cursor: "move"});
-        return fig;
+      return fig;
     };
     
     
@@ -457,19 +462,31 @@ this.figures = $.extend(this.figures, {
       
       bb = fig[2][5].getBBox();
       pt = {  x: op.x + dx_nub_Ori - (bb.x + bb.width/2),
-          y: op.y + dy_nub_Ori - (bb.y + bb.height/2)};
+              y: op.y + dy_nub_Ori - (bb.y + bb.height/2)};
       fig[2][5].transform("...T" + pt.x + "," + pt.y);
       
       bb = fig[2][6].getBBox();
       pt = {  x: dp.x + dx_nub_Des - (bb.x + bb.width/2),  
-          y: dp.y + dy_nub_Des - (bb.y + bb.height/2)};
+              y: dp.y + dy_nub_Des - (bb.y + bb.height/2)};
       fig[2][6].transform("...T" + pt.x + "," + pt.y);
       
+      
+      bb = fig[1].getBBox();
+      /*
       bb = fig[3].getBBox();
       pt = {  x: cp.x + ancho_tex/2 - (bb.x + bb.width/2),  
-              y: cp.y + 15*sin_ang - 12 - alto_tex - bb.y};
+              y: cp.y + 15*sin_ang - 18 - alto_tex - bb.y};
+              
       fig[3].transform("...T" + pt.x + "," + pt.y);
-      fig[4].transform("...T" + pt.x + "," + pt.y); 
+      fig[4].transform("...T" + pt.x + "," + pt.y);*/
+     
+      this[3].attr('x', bb.x - 18);
+      this[3].attr('y', bb.y - 18);
+      this[3].transform('');
+      
+      this[4].attr('x', bb.x + ancho_tex -6);
+      this[4].attr('y', bb.y - 18);
+      this[4].transform('');
             
       fig.border = fig.getBorder();
     };
@@ -936,8 +953,8 @@ this.Flow = Element.extend({
     this.fig[0].dblclick(this.createTextEditor);
     this.fig[2][7].drag(this.moveFig, this.start, this.end);
     this.fig[2][8].drag(this.moveFig, this.start, this.end);
-    this.fig[3].click(this.remove);
-    this.fig[4].click(this.viewDetails);
+    this.fig[3].click(this.viewDetails);
+    this.fig[4].click(this.remove);
     this.viewControls(this.selected);
   },
   viewControls: function(selected){
@@ -1289,8 +1306,8 @@ this.RelationSaf = Relation.extend({
   },
   figure: function(pos){
     this.fig = this.figGenerator(this.ctx, this, pos, {});
-    this.fig[6].click(this.remove);
-    this.fig[7].click(this.viewDetails);
+    this.fig[6].click(this.viewDetails);
+    this.fig[7].click(this.remove);
     this.viewPoints(this.selected);
   }
 });

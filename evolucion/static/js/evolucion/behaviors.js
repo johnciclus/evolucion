@@ -229,6 +229,7 @@ this.Behaviors = Class.extend({
   },
   simulate: function(){
     var elements = beh.selectedElements();
+    console.log(elements);
     var series = evo.dyn.simulate(elements);
     var elmts_eval = [];
     var element;

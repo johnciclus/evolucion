@@ -24,8 +24,8 @@ this.figures = $.extend(this.figures, {
     
     fig.push(
       ctx.r.rect(op.x, op.y, width, height, 4).attr(rectangleStyle),
-      ctx.r.image('/static/icons/close.png',  op.x + width - 12, op.y - 12, 24, 24),
-      ctx.r.image('/static/icons/info.png', op.x + width -36, op.y - 12, 24, 24)
+      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)
     );
     
     fig[0].toFront();
@@ -54,12 +54,12 @@ this.figures = $.extend(this.figures, {
       this[1].attr('height', height);
       this[1].transform('');
       
-      this[2].attr('x', op.x + width - 12);
-      this[2].attr('y', op.y - 12);
+      this[2].attr('x', op.x - 18);
+      this[2].attr('y', op.y - 18);
       this[2].transform('');
       
-      this[3].attr('x', op.x + width -36);
-      this[3].attr('y', op.y - 12);
+      this[3].attr('x', op.x + width -6);
+      this[3].attr('y', op.y - 18);
       this[3].transform('');
       
     };
@@ -110,8 +110,8 @@ this.figures = $.extend(this.figures, {
     fig.push(
       ctx.r.rect(op.x, op.y, width, height, 4).attr(style.rectangle),
       figures.arcWithArrow(ctx.r, pt, orientation, feedback),
-      ctx.r.image('/static/icons/close.png',  op.x + width - 12, op.y - 12, 24, 24),
-      ctx.r.image('/static/icons/info.png', op.x + width -36, op.y - 12, 24, 24)
+      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)
     );
     
     fig[0].toFront();
@@ -148,12 +148,12 @@ this.figures = $.extend(this.figures, {
       
       this[2].transform("...T 0," + dy);
       
-      this[3].attr('x', op.x + width - 12);
-      this[3].attr('y', op.y - 12);
+      this[3].attr('x', op.x - 18);
+      this[3].attr('y', op.y - 18);
       this[3].transform('');
       
-      this[4].attr('x', op.x + width - 36);
-      this[4].attr('y', op.y - 12);
+      this[4].attr('x', op.x + width - 6);
+      this[4].attr('y', op.y - 18);
       this[4].transform('');
     };
     fig.changeOrientation = function(orientation){
@@ -236,19 +236,19 @@ this.figures = $.extend(this.figures, {
                ["V", op.y]];
         return this.border;
       };
-      fig.hover(
-        function(){
-          fig[3].show();
-          fig[4].show();
-        },
-        function(){
-          fig[3].hide();
-          fig[4].hide();
-        }
-      );
-      utils.parentReference(fig, parent);
-      return fig;
-    },
+    fig.hover(
+      function(){
+        fig[3].show();
+        fig[4].show();
+      },
+      function(){
+        fig[3].hide();
+        fig[4].hide();
+      }
+    );
+    utils.parentReference(fig, parent);
+    return fig;
+  },
   materialRelation: function(ctx, parent, p){
     return figures.relation(ctx, parent, p, style.material_relation);
   },
@@ -287,8 +287,8 @@ this.Concept = Element.extend({
       this.fig[i].drag(this.moveFig, this.start, this.end);
       this.fig[i].dblclick(this.createTextEditor);
     }
-    this.fig[2].click(this.remove);
-    this.fig[3].click(this.viewDetails);
+    this.fig[2].click(this.viewDetails);
+    this.fig[3].click(this.remove);
   }
 });
 
@@ -337,20 +337,20 @@ this.Cycle = Element.extend({
       this.fig[i].drag(this.moveFig, this.start, this.end);
       this.fig[i].dblclick(this.createTextEditor);
     }
-    this.fig[3].click(this.remove);
-    this.fig[4].click(this.viewDetails);
+    this.fig[3].click(this.viewDetails);
+    this.fig[4].click(this.remove);
   }
 });
 
 this.MaterialRel = Relation.extend({
   init: function(ctx, pos, from, to, description){
     // p = relation points
-  this._super(ctx);
-  
-  this.type = "material";
-  var idx = this.ctx.idx[this.type]++;
-  
-  this.id = "material-"+idx;
+    this._super(ctx);
+    
+    this.type = "material";
+    var idx = this.ctx.idx[this.type]++;
+    
+    this.id = "material-"+idx;
     this.title = this.ctx.relationTitle(from.title, to.title);       
     this.name = utils.textToVar(this.title);
     this.description = description || " ";
@@ -369,8 +369,8 @@ this.MaterialRel = Relation.extend({
   },
   figure: function(pos){
     this.fig = this.figGenerator(this.ctx, this, pos);
-    this.fig[6].click(this.remove);
-    this.fig[7].click(this.viewDetails);
+    this.fig[6].click(this.viewDetails);
+    this.fig[7].click(this.remove);
     this.viewPoints(this.selected);
   }
 });
@@ -402,8 +402,8 @@ this.InformationRel = Relation.extend({
   },
   figure: function(pos){
     this.fig = this.figGenerator(this.ctx, this, pos);
-    this.fig[6].click(this.remove);
-    this.fig[7].click(this.viewDetails);
+    this.fig[6].click(this.viewDetails);
+    this.fig[7].click(this.remove);
     this.viewPoints(this.selected);
   }
 });
@@ -658,9 +658,7 @@ this.Influences = Editor.extend({
               
               if(!is_itself && !exist_relation){
                 relation.p[3] = p;
-                
-                console.log(relation.p);
-                
+                                
                 var material = new MaterialRel(inf, relation.p, relation.from, el);
   
                 inf.list.material[material.id] = material;

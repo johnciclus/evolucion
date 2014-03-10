@@ -121,7 +121,7 @@ this.figures = {
     };
     return fig;
   },
-  lines: function(r, points , figureStyle){   //linCur
+  lines: function(r, points , figureStyle){
     var lines = r.path(
       [["M", points.x, points.y], 
        ["L", points.ax, points.ay], 
@@ -208,8 +208,8 @@ this.figures = {
       
       pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
       fig.push(
-        ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24),
-        ctx.r.image('/static/icons/info.png', pt.x - 24, pt.y - 12, 24, 24)
+        ctx.r.image('/static/icons/info.png',  pt.x - 24, pt.y - 12, 24, 24),
+        ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24)
       );
       
       for(var i=2; i<7; i++){
@@ -239,10 +239,10 @@ this.figures = {
       };
       fig.update = function(){
         var pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
-        fig[6].attr('x', pt.x);
+        fig[6].attr('x', pt.x - 24);
         fig[6].attr('y', pt.y - 12);
         fig[6].transform('');
-        fig[7].attr('x', pt.x - 24);
+        fig[7].attr('x', pt.x);
         fig[7].attr('y', pt.y - 12);
         fig[7].transform('');
       };
@@ -342,7 +342,7 @@ this.figures = {
   sector: function (ctx, parent, p, size, title){
     var fig = figures.figure(ctx);
     var cp, bb, op, width, height, middle_x, middle_y;
-    var size_dp = size || {'width': 250, 'height': 500};
+    var size_dp = size || {'width': 200, 'height': 400};
     
     fig.p = {x: p.x, y: p.y};
     fig.push(
@@ -368,8 +368,8 @@ this.figures = {
       ctx.r.circle(cp.p1x, cp.p1y, 4).attr(style.point),
       ctx.r.circle(cp.p2x, cp.p2y, 4).attr(style.point),
       ctx.r.circle(cp.p3x, cp.p3y, 4).attr(style.point),
-      ctx.r.image('/static/icons/close.png', op.x + width - 12, op.y - 12, 24, 24),
-      ctx.r.image('/static/icons/info.png', op.x + width - 36, op.y - 12, 24, 24)          
+      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)          
     );
       
     fig[1].toFront();
@@ -394,8 +394,8 @@ this.figures = {
       this[0].attr('text', title);
       
       bb = this[0].getBBox();
-      op = {x: bb.x - 2, y: bb.y -1};
-      width = bb.width + 4;
+      op = {x: bb.x - 2, y: bb.y - 1};
+      width  = bb.width + 4;
       height = bb.height + 2;
       middle_x = op.x + width/2;
       
@@ -409,16 +409,20 @@ this.figures = {
       this[2].attr('y', op.y + height + 2);
       this[2].transform('');
       
-      this[7].attr('x', op.x + width - 12);
-      this[7].attr('y', op.y - 12);
+      this[7].attr('x', op.x - 18);
+      this[7].attr('y', op.y - 18);
       this[7].transform('');
+      
+      this[8].attr('x', op.x + width - 6);
+      this[8].attr('y', op.y - 18);
+      this[8].transform('');
       
       bb = this[2].getBBox();
       op = {x: bb.x, y: bb.y};
-      width = bb.width;
+      width  = bb.width;
       height = bb.height;
       
-      cp = {  p0x: op.x,      p0y: op.y,
+      cp = {  p0x: op.x,          p0y: op.y,
               p1x: op.x + width,  p1y: op.y, 
               p2x: op.x + width,  p2y: op.y + height, 
               p3x: op.x,          p3y: op.y + height};
@@ -475,6 +479,9 @@ this.figures = {
       fig[4].hide();
       fig[5].hide();
       fig[6].hide();
+    };
+    fig.updateBorder = function(){
+      this.border = this.getBorder();
     };
     
     fig[3].update = function (dx, dy) {
@@ -922,8 +929,6 @@ this.EleBase = Unit.extend({
             delete(clonesList[i]);
             var limit = obj.ctx.limitAdjustList(clonesList);
             ref.clonesListQua = ++limit;
-            
-            console.log(ref.clonesListQua);
           }
         }
       }
@@ -955,8 +960,8 @@ this.Element = EleBase.extend({
       this.fig[i].drag(this.moveFig, this.start, this.end);
     }
     this.fig[0].dblclick(this.createTextEditor);
-    this.fig[3].click(this.remove);
-    this.fig[4].click(this.viewDetails);
+    this.fig[3].click(this.viewDetails);
+    this.fig[4].click(this.remove);
   },
   restoreCopies: function(){
     var clone;
@@ -1011,8 +1016,8 @@ this.Clone = EleBase.extend({
     for(var i=0; i<(figQua-1); i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
     }
-    this.fig[figQua-1].click(this.remove);
-    this.fig[figQua].click(this.viewDetails);
+    this.fig[figQua-1].click(this.viewDetails);
+    this.fig[figQua].click(this.remove);
   }
 });
 
@@ -1247,19 +1252,19 @@ this.SecBase = Unit.extend({
   init: function(ctx){
     this._super(ctx);
     
-    this.elements = {};
+    this.elements  = {};
     this.relations = {};
-    this.selected = false;
+    this.selected  = false;
   },
   figure: function(p, size){
     this.fig = figures.sector(this.ctx, this, p, size, this.title);
-    this.fig.border = this.fig.getBorder();
+    this.fig.updateBorder();
     for(var i=0; i<3; i++){
       this.fig[i].drag(this.moveFig, this.start, this.end);
     }
     this.fig[2].click(this.controls);
-    this.fig[7].click(this.remove);
-    this.fig[8].click(this.viewDetails);
+    this.fig[7].click(this.viewDetails);
+    this.fig[8].click(this.remove);
     this.fig[0].dblclick(this.createTextEditor);
     this.viewControls(this.selected);
   },
