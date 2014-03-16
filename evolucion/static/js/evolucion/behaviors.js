@@ -152,11 +152,11 @@ this.Behaviors = Class.extend({
     }
                     
   },
-  changeTitle: function(el){
-    var tit = $('#'+el.id+'_item_sim_nombre p');
-    //var cbx = $('#'+el.id+'_item_sim_nombre input');
-    tit.html(el.title);
-    //cbx.val(el.nombre);
+  changeTitle: function(el){    
+    var container = $('#'+el.type+'-items-beh>#'+el.id+'-item-sim>div>div');
+    
+    $(container).children('h4').html(el.title);
+    $(container).find('label').html(el.title);
   },
   deleteControls: function(el){
     //$('#'+el.id+'_item_sim').remove();
@@ -183,7 +183,7 @@ this.Behaviors = Class.extend({
     $(this.language).height(workAreaHeight - toolbarHeigth - 2);
   },
   integrateControls: function(el){
-    var nameItemsCont = '#'+el.type+'-list-beh';
+    var nameItemsCont = '#'+el.type+'-items-beh';
     var is_simulate = (this.elements.indexOf(el.type) != -1);
 
     if(nameItemsCont && el.id && el.title && is_simulate){
@@ -195,8 +195,8 @@ this.Behaviors = Class.extend({
                 el.title+
               "</h4>"+
               "<div class='checkbox'>"+
+                "<input type='checkbox' name='"+el.id+"-sim' id='"+el.id+"-sim' value='"+el.id+"'>"+
                 "<label>"+
-                  "<input type='checkbox' name='"+el.id+"-sim' id='"+el.id+"-sim' value='"+el.id+"'>"+
                   el.name+
                 "</label>"+
               "</div>"+

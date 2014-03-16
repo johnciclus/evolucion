@@ -5,9 +5,9 @@
 this.style = {
   arc:        { 'stroke-width': 2.5,   'stroke': '#555', 'stroke-linecap': 'round'},
   base:       { 'stroke-width': 0,     'stroke': '',     'fill': '#fff', 'fill-opacity': 0},
-  border:     { 'stroke': '#008ec7'},     //atrBor
-  border_dis: { 'stroke': '#fff'},        //atrDes
-  container:  { 'stroke': '#888', 'stroke-width': 2.5 },   //atrCon
+  border:     { 'stroke': '#008ec7'},     
+  border_dis: { 'stroke': '#fff'},        
+  container:  { 'stroke': '#888', 'stroke-width': 2.5 },   
   curve:      { 'stroke-width': 1.0,  'stroke': '#555', 'stroke-linecap': 'round'},
   figure:     { 'stroke-width': 1.0,   'stroke': '#555', 'fill': '#555', 'stroke-linecap': 'round'},
   
@@ -684,14 +684,15 @@ this.Unit = Class.extend({
   },
   changeTitle: function(title){
     this.title = title;
-    this.name = utils.textToVar(title);
-    this.fig.changeTitle(title);                  //camTit
-    this.ctx.changeTitle(this);                   //modTitMenu
+    this.name  = utils.textToVar(title);
+    this.fig.changeTitle(title);                  
+    this.ctx.changeTitle(this);                   
     this.fig.border = this.fig.getBorder();
-    if(typeof(this.restoreLinks) == 'function'){  //restEnl
-      this.restoreLinks();
+    
+    if(typeof(this.restoreRelations) == 'function'){
+      this.restoreRelations();
     }
-    if(typeof(this.restoreCopies) == 'function'){ //restNomCop
+    if(typeof(this.restoreCopies) == 'function'){
       this.restoreCopies();
     }
   },
@@ -758,6 +759,7 @@ this.EleBase = Unit.extend({
   addEnteringRels: function(rel){
     this.enteringRels[rel.id] = rel;
     this.enteringRelsQua++;
+    this.ctx.addRelationToElement(rel);
   },
   addLeavingRels: function(rel){
     this.leavingRels[rel.id] = rel;
@@ -767,6 +769,7 @@ this.EleBase = Unit.extend({
     if(this.enteringRels[rel.id]){
       delete(this.enteringRels[rel.id]);
       this.enteringRelsQua--;
+      this.ctx.delRelationToElement(rel);
     }
   },
   delLeavingRels: function(rel){
@@ -815,24 +818,25 @@ this.EleBase = Unit.extend({
     }
     return exists;
   },
-  restoreLinks: function(){
-    var oriRel, desRel, pts, pt;
+  
+  restoreRelations: function(){
+    var from, to, pts, pt;
     for(var rel in this.leavingRels){
-      oriRel = this.leavingRels[rel];
-      if(oriRel){
-        //pts = oriRel.getRelationPoints();
+      from = this.leavingRels[rel];
+      if(from){
+        //pts = from.getRelationPoints();
         //pt = this.ctx.path.nearestPoint(this.border, pts.op);
-        //oriRel.changePoints({op: pt});
-        //oriRel.changeTitle(this.title, oriRel.des.title);
+        //from.changePoints({op: pt});
+        //from.changeTitle(this.title, from.des.title);
       }
     }
     for(var rel in this.enteringRels){
-      desRel = this.enteringRels[rel];
-      if(desRel){
-        //pts = desRel.getRelationPoints();
+      to = this.enteringRels[rel];
+      if(to){
+        //pts = to.getRelationPoints();
         //pt = this.ctx.path.nearestPoint(this.border, pts.dp);
-        //desRel.changePoints({dp: pt});
-        //desRel.changeTitle(desRel.from.title, this.title);
+        //to.changePoints({dp: pt});
+        //to.changeTitle(to.from.title, this.title);
       }
     }
   },
@@ -1535,16 +1539,34 @@ this.Editor = Class.extend({
     }
     sel = undefined;
   },
+  addRelationToElement: function(relation){
+    $('#'+relation.to.id+'-relations').append("<option value="+relation.from.id+">"+relation.from.title+"</option>");
+  },
   changeTitle: function(el){
     var title = utils.textToTitle(el.title);
+    var relation;
+    
     if(title.length > 16){
       title = title.substring(0,12)+'...'+title.substring(title.length-3, title.length);
     }
     $('#'+el.id+'-item>div.panel-heading>a>h4').html(title);
     $('#'+el.id+'-item-body>div.panel-body>.name-field>p>b').html(el.name);
+    
+    if(el.ctx.id=='saf'){
+      console.log('relations');
+      for(var rel in el.leavingRels){
+        relation = el.leavingRels[rel];
+        console.log($("#"+relation.to.id+"-relations option[value='"+relation.from.id+"']").html(el.title));
+      }
+      
+      evo.beh.changeTitle(el);
+    }
   },
   deleteControls: function(el){
     $('#'+el.id+'-item').remove();
+  },
+  delRelationToElement: function(relation){
+    $("#"+relation.to.id+"-relations option[value='"+relation.from.id+"']").remove(); 
   },
   initBaseLayer: function(){
     this.baseLayer = this.r.rect(0, 0, this.r.width, this.r.height).attr(style.base);
@@ -1654,6 +1676,13 @@ this.Editor = Class.extend({
               "<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
               el.definition+
               "</textarea>"+
+            "</div>"+
+            "<div class='form-group'>"+
+              "<label for='"+el.id+"-relations' class='control-label'>"+
+                "Elementos relacionados"+
+              "</label>"+
+              "<select id='"+el.id+"-relations' multiple class='form-control'>"+
+              "</select>"+
             "</div>";
       }
       if(el.dimension){
@@ -1742,6 +1771,15 @@ this.Editor = Class.extend({
         $('#'+el.id+'-definition').change(function(){         
           el.changeDefinition($(this).val());          
         });
+        
+        $('#'+el.id+"-relations").dblclick(function(){
+          var select = $(this).val();
+          var related_el = el.ctx.objects.getById(select[0]);
+          var definition = $('#'+el.id+'-definition').val();
+          
+          $('#'+el.id+'-definition').val(definition+related_el.name);
+        });
+        
       }
       if(el.dimension){
         $('#'+el.id+'-dimension').change(function(){
@@ -1867,7 +1905,10 @@ this.Editor = Class.extend({
       el.changeTitle($(this).val());
       $("#text-edit-control").remove();  
     });
-  },        
+  },
+  titleValid: function(title){
+    return false;
+  },      
   
   cloneAsDOM: function(obj){
     var element = $('<clone />');

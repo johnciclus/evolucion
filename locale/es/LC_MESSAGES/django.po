@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-03 01:02-0500\n"
+"POT-Creation-Date: 2014-03-12 20:21-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -455,6 +455,22 @@ msgstr ""
 msgid "Delete?"
 msgstr "borrar?"
 
+#: evolucion/templates/editor/_behaviors.html:9
+msgid "simulate"
+msgstr "simular"
+
+#: evolucion/templates/editor/_behaviors.html:15
+msgid "save Graph"
+msgstr "salvar gráfico"
+
+#: evolucion/templates/editor/_behaviors.html:17
+msgid "separated link"
+msgstr "enlace separado"
+
+#: evolucion/templates/editor/_behaviors.html:23
+msgid "step by step"
+msgstr "paso a paso"
+
 #: evolucion/templates/editor/_behaviors.html:27
 msgid "initial time"
 msgstr "tiempo inicial"
@@ -742,11 +758,11 @@ msgstr "relación"
 msgid "saf sector btn title"
 msgstr "sector"
 
-#: evolucion/templates/editor/base_editor.html:64
+#: evolucion/templates/editor/base_editor.html:62
 msgid "browser incompatibility"
 msgstr "incompatibilidad del navegador de internet"
 
-#: evolucion/templates/editor/base_editor.html:89
+#: evolucion/templates/editor/base_editor.html:87
 msgid "close"
 msgstr "cerrar"
 

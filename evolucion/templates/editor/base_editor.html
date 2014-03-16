@@ -16,7 +16,6 @@
 
 {% endblock %}
 
-
 {% block nav %}
   {% include 'layouts/_editor_nav.html' %}
   {% if user.is_anonymous %}
@@ -25,14 +24,13 @@
   {% endif %}
 {% endblock %}
 
-
 {% block body %} 
 
 <div class="work-area">
   <div id="overview-area" class="container">
       {% block home %}
           
-      {% endblock%}
+      {% endblock %}
   </div>
   
   <div id="prose-area" class="container">

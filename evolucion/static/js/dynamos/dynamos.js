@@ -8,6 +8,7 @@
 /********************************
  *Librerias Integradas de Evolucion Web
 ********************************/
+
 var PI 		= Math.PI;
 var LN2		= Math.LN2;
 var TRUE  	= true;
@@ -1047,8 +1048,6 @@ var Dynamos = Class.extend({
 		this.series = {};
 		elseval = {};
 		time;
-		
-		console.log(code);
 		
 		jQuery.globalEval(code);
 		
