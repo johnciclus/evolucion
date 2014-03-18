@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+
+{% load staticfiles i18n %}
+
+
+{% block csslinks %}
+
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap/bootstrap_home.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mathquill/mathquill.css' %}" rel="stylesheet">
+  <link href="{% static 'css/mathquill/style.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+        
+{% block scripts %}
+
+  <script type="text/javascript" src="{% static 'js/jquery/jquery-1.11.0.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/mathquill/mathquill.js' %}"></script>
+{% endblock %}
+
+
+{% block body %}
+  <span id="editable-math" class="mathquill-editable">\frac{d}{dx}\sqrt{x}=</span>
+  <textarea id="latex-source" style="width:80%;vertical-align:top"></textarea>
+{% endblock %}

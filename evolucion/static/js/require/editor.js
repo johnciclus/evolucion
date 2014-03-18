@@ -10,7 +10,8 @@ require.config({
         wysiwyg:        'bootstrap/bootstrap-wysiwyg',
         raphael:        'raphael/raphael-min',
         morris:         'morris/morris.min',
-                
+        mathquill:      'mathquill/mathquill',
+        
         evolucion:      'evolucion/evolucion',
         prose:          'evolucion/prose',
         influences:     'evolucion/influences',
@@ -57,7 +58,7 @@ require.config({
             deps:['evolucion', 'raphael']
         },
         stockandflow: {
-            deps:['evolucion', 'raphael']
+            deps:['evolucion', 'raphael', 'mathquill']
         },
         equations: {
             deps:['evolucion']

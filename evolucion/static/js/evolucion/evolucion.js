@@ -1673,9 +1673,14 @@ this.Editor = Class.extend({
               "<label for='"+el.id+"-definition' class='control-label'>"+
                 "Definición"+
               "</label>"+
-              "<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
-              el.definition+
-              "</textarea>"+
+              "<div class='panel panel-default'>"+
+                "<div class='panel-body'>"+          
+                  "<span id='"+el.id+"-math' class='mathquill-editable'>\\frac{d}{dx}\sqrt{x}=</span>"+
+                  //"<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
+                  //  el.definition+
+                  //"</textarea>"+
+                "</div>"+
+              "</div>"+
             "</div>"+
             "<div class='form-group'>"+
               "<label for='"+el.id+"-relations' class='control-label'>"+
@@ -1771,6 +1776,8 @@ this.Editor = Class.extend({
         $('#'+el.id+'-definition').change(function(){         
           el.changeDefinition($(this).val());          
         });
+        
+        jQuery('.mathquill-editable:not(.mathquill-rendered-math)').mathquill('editable');
         
         $('#'+el.id+"-relations").dblclick(function(){
           var select = $(this).val();
