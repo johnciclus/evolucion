@@ -5,24 +5,28 @@
 {% block content %}
     
     {% include 'home/_carousel.html' %}
-
+    
+    
+    
     <div class="container marketing">
     <!-- Three columns of text below the carousel -->
+      <hr class="featurette-divider">
+      
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <img src="/static/images/welcome.png" alt="Generic placeholder image">
           <h2>{% trans "welcome title"|capfirst %}</h2>
           <p> {% trans "welcome content"|capfirst %}</p>
           <p><a class="btn btn-primary" href="#" role="button"> {% trans "view details"|capfirst %} &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <img src="/static/images/checklist.png" alt="Generic placeholder image">
           <h2>{% trans "features title" %}</h2>
           <p> {% trans "features content" %}</p>
           <p><a class="btn btn-primary" href="#" role="button"> {% trans "view details"|capfirst %} &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
+          <img src="/static/images/explore.png" alt="Generic placeholder image">
           <h2>{% trans "explore title" %}</h2>
           <p> {% trans "explore content" %}</p>
           <p><a class="btn btn-primary" href="#" role="button"> {% trans "view details"|capfirst %} &raquo;</a></p>
@@ -36,11 +40,11 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">Lenguaje en prosa.</h2>
+          <p class="lead">El lenguaje en prosa permite describir el fenómeno de manera textual, en Evolución web se integra un editor de texto enriquecido que definir este lenguaje de la dinámica de sistemas.</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="/static/images/prose.png" alt="Generic placeholder image">
         </div>
       </div>
 
@@ -48,11 +52,11 @@
 
       <div class="row featurette">
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="/static/images/influences.png" alt="Generic placeholder image">
         </div>
         <div class="col-md-7">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">Lenguaje de influencias.</h2>
+          <p class="lead">El lenguaje de influencia describe mediante elementos, ciclos y relaciones visuales, una visión general del fenómeno permitiendo identificar los ciclos de realimentación.</p>
         </div>
       </div>
 
@@ -60,14 +64,38 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">Lenguaje de flujo nivel.</h2>
+          <p class="lead">El lenguaje de flujo nivel permite modelar la estructura del fenómeno en estudio mediante un lenguaje visual que tiene asociado ecuaciones matemáticas, las cuales permiten la simulación del sistema.</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive" src="/static/images/stockandflow.png" alt="Generic placeholder image">
+        </div>
+      </div>
+      
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/equations.png" alt="Generic placeholder image">
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje de Ecuaciones.</h2>
+          <p class="lead">El lenguaje de Ecuaciones representa la estructura del fenómeno mediante un conjunto de ecuaciones diferenciales que permiten simular el comportamento del sistema.</p>
         </div>
       </div>
 
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje de Comportamientos.</h2>
+          <p class="lead">El lenguaje de Comportamientos permite analizar visualmente el comportamiento del sistema con la finalidad de validar si simula aproximadamente el sistema.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/behaviors.png" alt="Generic placeholder image">
+        </div>
+      </div>
+      
       <hr class="featurette-divider">
 
       <!-- /END THE FEATURETTES -->

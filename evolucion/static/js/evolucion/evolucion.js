@@ -764,8 +764,11 @@ this.EleBase = Unit.extend({
     var elements= '';
     for(var re in this.enteringRels){
       elements += "/'"+this.enteringRels[re].from.name+"'";
-    }    
-    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
+    }
+    if(this.ctx.id == 'saf'){
+      this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
+      console.log(this.ctx.rules.replace("/'%'",elements));
+    }
   },
   addLeavingRels: function(rel){
     this.leavingRels[rel.id] = rel;
@@ -779,8 +782,10 @@ this.EleBase = Unit.extend({
       var elements= '';
       for(var re in this.enteringRels){
         elements += "/'"+this.enteringRels[re].from.name+"'";
-      }    
-      this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
+      }
+      if(this.ctx.id == 'saf'){    
+        this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
+      }
     }
   },
   delLeavingRels: function(rel){
@@ -1561,7 +1566,8 @@ this.Editor = Class.extend({
     }
     $('#'+el.id+'-item>div.panel-heading>a>h4').html(title);
     $('#'+el.id+'-item-body>div.panel-body>.name-field>p>b').html(el.name);
-    
+    $('#'+el.id+'-item-body>div.panel-body>.definition-field .panel-heading').html(el.name+'(t)=');
+        
     if(el.ctx.id=='saf'){
       var elements= '';
       var to;
@@ -1685,7 +1691,7 @@ this.Editor = Class.extend({
       }
       if(el.definition){
         html +=
-            "<div class='form-group'>"+
+            "<div class='form-group definition-field'>"+
               "<label for='"+el.id+"-math' class='control-label'>"+
                 "Definición"+
               "</label>"+

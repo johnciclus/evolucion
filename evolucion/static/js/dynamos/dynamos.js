@@ -821,12 +821,12 @@ var Dynamos = Class.extend({
 					static_elements.push(elements[priority[i]].name);
 				}*/
 				code+=
-				'\n'+'var '+element.name+'='+this.arrayAdapt(element.definition)+';';
+				'\n'+'var '+element.name+'='+this.arrayAdapt(element.parser.parse(element.definition))+';';
 			}
 			else if(element.type=='multiplier'){
 				if(element.dimension == 1){
 					code+=
-					'\n'+'var '+element.name+'_func='+this.arrayAdapt(element.definition)+';';
+					'\n'+'var '+element.name+'_func='+this.arrayAdapt(element.parser.parse(element.definition))+';';
 					code+=
 					'\n'+'var '+element.name+'='+element.name+'_func('+element.enteringRels[0]+');';
 				}
@@ -869,10 +869,10 @@ var Dynamos = Class.extend({
 			if(element.type=='auxiliary' || element.type=='flow'){
 				if(element.dimension == 1){
 					code+=
-					'\n\t'+element.name+'='+this.arrayAdapt(element.definition)+';';
+					'\n\t'+element.name+'='+this.arrayAdapt(element.parser.parse(element.definition))+';';
 				}
 				else if(element.dimension > 1){
-					var vector=this.arrayConvert(element.definition);
+					var vector=this.arrayConvert(element.parser.parse(element.definition));
 					for(var j=0; j<element.dimension; j++){
 						vector[j]=this.arrayAdapt(vector[j]);
 						code+=

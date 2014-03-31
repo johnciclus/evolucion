@@ -1,23 +1,22 @@
-{% load i18n %}
-{% load staticfiles %} 
+{% load staticfiles i18n %}
  
  <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="evoCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#evoCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#evoCarousel" data-slide-to="1"></li>
+        <li data-target="#evoCarousel" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner">
         <div class="item active">
           <img src="{% static 'images/lienzo_mini.jpg' %}"  alt="First slide">
           <div class="container">
             <div class="carousel-caption">   
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">{% trans "sign up today"|capfirst %} </a></p>
+              <h1>Ambiente de modelado y simulaci&oacute;n.</h1>
+              <p>Evoluci&oacute;n web es un ambiente que recopila las caracter&Iacute;sticas del proyecto Evoluci&oacute;n y las implementa en un ambiente en la internet, con lo cual surgen nuevas posibilidades en el campo del modelado y la simulaci&oacute;n con Din&aacute;mica de Sistemas.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button" data-toggle="modal" data-target="#sign-up-modal">{% trans "sign up today"|capfirst %} </a></p>
             
             </div>
           </div>
@@ -26,8 +25,8 @@
           <img src="{% static 'images/creativity_mini.jpg' %}" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <h1>Din&aacute;mica de sistemas.</h1>
+              <p>Evoluci&oacute;n Web hace uso del paradigma de la Din&aacute;mica de Sistemas, que permite representar fen&oacute;menos del mundo real mediante diversos lenguajes como textual, visual y matem&aacute;tico, contribuyendo de esta manera en los procesos de aprendizaje y toma de decisiones.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">{% trans "learn more"|capfirst %}</a></p>
             </div>
           </div>
@@ -36,13 +35,13 @@
           <img src="{% static 'images/complex_mini.jpg' %}" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <h1>Tecnolog&iacute;as Web.</h1>
+              <p>Evoluci&oacute;n Web es una herramienta nativa de la Internet que implementa diversos est&aacute;ndares que contribuyen en la accesibilidad, la usabilidad, la ubicuidad y la compatibilidad tanto de los modelos din&aacute;mico sist&eacute;micos como de la herramienta misma.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">{% trans "browse gallery"|capfirst %}</a></p>
             </div>
           </div>
         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      <a class="left carousel-control" href="#evoCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#evoCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
