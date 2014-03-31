@@ -18,29 +18,21 @@ logger = logging.getLogger(__name__)
 # print >>sys.stderr, "Text"
 
 class Index(generic.View):
+    template_name = 'projects/index.html'
     def get(self, request, *args, **kwargs):
-        form = UserForm(auto_id=True)
+        requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
+        projects = requested_user.project_set.all()
+        
+        context = {}
+        context['user']             = request.user
+        context['requested_user']   = requested_user
+        context['projects']         = projects
+       
+        if request.user.is_anonymous():
+            form = UserForm(auto_id=True)
+            context['form'] = form
             
-        context = {'user': request.user, 'form': form}
-
-        return render(request, 'home/math.html', context)
-    
-    #template_name = 'projects/index.html'
-    #
-    #def get(self, request, *args, **kwargs):
-    #    requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
-    #    projects = requested_user.project_set.all()
-    #    
-    #    context = {}
-    #    context['user']             = request.user
-    #    context['requested_user']   = requested_user
-    #    context['projects']         = projects
-    #   
-    #    if request.user.is_anonymous():
-    #        form = UserForm(auto_id=True)
-    #        context['form'] = form
-    #    
-    #    return render(request, self.template_name, context)
+        return render(request, self.template_name, context)
     
 class Create(generic.View):
     def post(self, request, *args, **kwargs):

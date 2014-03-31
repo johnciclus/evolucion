@@ -31,8 +31,9 @@
 }
 .mathquill-editable,
 .mathquill-embedded-latex .mathquill-editable {
-  border: 1px solid gray;
-  padding: 2px;
+  margin: 10px 0px;
+  padding: 2px 5px;
+  width: 100%;
 }
 .mathquill-embedded-latex .mathquill-editable {
   margin: 1px;
@@ -97,7 +98,7 @@
   line-height: inherit;
   margin: 0;
   padding: 0;
-  border-color: black;
+  border-color: #ccc;
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
@@ -143,11 +144,11 @@
   font-family: monospace, Symbola, serif;
 }
 .mathquill-rendered-math .overline {
-  border-top: 1px solid black;
+  border-top: 1px solid #ccc;
   margin-top: 1px;
 }
 .mathquill-rendered-math .underline {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 1px;
 }
 .mathquill-rendered-math .binary-operator {

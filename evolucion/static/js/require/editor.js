@@ -11,6 +11,7 @@ require.config({
         raphael:        'raphael/raphael-min',
         morris:         'morris/morris.min',
         mathquill:      'mathquill/mathquill',
+        peg:            'peg/peg-0.8.0.min',
         
         evolucion:      'evolucion/evolucion',
         prose:          'evolucion/prose',
@@ -45,6 +46,9 @@ require.config({
         morris:{
             deps:['jquery', 'raphael']
         },
+        mathquill:{
+            deps:['jquery']
+        },
         utils:{
             deps:['jquery', 'bootstrap']
         },
@@ -58,7 +62,7 @@ require.config({
             deps:['evolucion', 'raphael']
         },
         stockandflow: {
-            deps:['evolucion', 'raphael', 'mathquill']
+            deps:['evolucion', 'raphael', 'mathquill', 'peg']
         },
         equations: {
             deps:['evolucion']

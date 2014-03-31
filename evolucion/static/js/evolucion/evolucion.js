@@ -654,7 +654,7 @@ this.utils = {
   textToVar: function(text){
     return text
       .toLowerCase()
-      .replace(/\u000A+/g,'_')
+      .replace(/\u000A+/g,'')
       .replace(/[\u00E0-\u00E5]+/g,'a')
       .replace(/[\u00E8-\u00EB]+/g,'e')
       .replace(/[\u00EC-\u00EF]+/g,'i')
@@ -662,7 +662,8 @@ this.utils = {
       .replace(/[\u00F9-\u00FC]+/g,'u')
       .replace(/\u00F1+/g,'nh')
       .replace(/[^\w ]+/g,'')
-      .replace(/ +/g,'_');
+      .replace(/ +/g,'')
+      .replace(/_+/g,'');
   },
   textToTitle: function(text){
     text = text.toLowerCase().replace(/\u000A+/g,' ').replace(/ +/g,' ');
@@ -750,16 +751,21 @@ this.EleBase = Unit.extend({
     this.enteringRelsQua = 0;
     this.leavingRelsQua = 0;
   },
-  changeDefinition: function(definition){     	 //camDefi
+  changeDefinition: function(definition){     	 
     this.definition = definition;
   },
-  changeUnits: function(units){               	 //camUnid
+  changeUnits: function(units){
     this.units = units;
   },
   addEnteringRels: function(rel){
     this.enteringRels[rel.id] = rel;
     this.enteringRelsQua++;
     this.ctx.addRelationToElement(rel);
+    var elements= '';
+    for(var re in this.enteringRels){
+      elements += "/'"+this.enteringRels[re].from.name+"'";
+    }    
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
   },
   addLeavingRels: function(rel){
     this.leavingRels[rel.id] = rel;
@@ -770,6 +776,11 @@ this.EleBase = Unit.extend({
       delete(this.enteringRels[rel.id]);
       this.enteringRelsQua--;
       this.ctx.delRelationToElement(rel);
+      var elements= '';
+      for(var re in this.enteringRels){
+        elements += "/'"+this.enteringRels[re].from.name+"'";
+      }    
+      this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
     }
   },
   delLeavingRels: function(rel){
@@ -818,25 +829,24 @@ this.EleBase = Unit.extend({
     }
     return exists;
   },
-  
   restoreRelations: function(){
-    var from, to, pts, pt;
+    var from, to, relation, to, pts, pt;
     for(var rel in this.leavingRels){
-      from = this.leavingRels[rel];
-      if(from){
-        //pts = from.getRelationPoints();
-        //pt = this.ctx.path.nearestPoint(this.border, pts.op);
-        //from.changePoints({op: pt});
-        //from.changeTitle(this.title, from.des.title);
+      relation = this.leavingRels[rel];
+      if(relation){
+        pts = relation.getRelationPoints();
+        pt = this.ctx.path.nearestPoint(this.fig.border, pts.op);
+        relation.changePoints({op: pt});
+        relation.changeTitle(this.title, relation.to.title);
       }
     }
     for(var rel in this.enteringRels){
-      to = this.enteringRels[rel];
-      if(to){
-        //pts = to.getRelationPoints();
-        //pt = this.ctx.path.nearestPoint(this.border, pts.dp);
-        //to.changePoints({dp: pt});
-        //to.changeTitle(to.from.title, this.title);
+      relation = this.enteringRels[rel];
+      if(relation){
+        pts = relation.getRelationPoints();
+        pt = this.ctx.path.nearestPoint(this.fig.border, pts.dp);
+        relation.changePoints({dp: pt});
+        relation.changeTitle(relation.from.title, this.title);
       }
     }
   },
@@ -1553,12 +1563,18 @@ this.Editor = Class.extend({
     $('#'+el.id+'-item-body>div.panel-body>.name-field>p>b').html(el.name);
     
     if(el.ctx.id=='saf'){
-      console.log('relations');
+      var elements= '';
+      var to;
       for(var rel in el.leavingRels){
         relation = el.leavingRels[rel];
-        console.log($("#"+relation.to.id+"-relations option[value='"+relation.from.id+"']").html(el.title));
+        to = relation.to;
+        $("#"+to.id+"-relations option[value='"+el.id+"']").html(el.title);
+                                
+        for(var re in to.enteringRels){
+          elements += "/'"+to.enteringRels[re].from.name+"'";
+        }
+        to.parser = PEG.buildParser(this.rules.replace("/'%'",elements));       
       }
-      
       evo.beh.changeTitle(el);
     }
   },
@@ -1670,18 +1686,22 @@ this.Editor = Class.extend({
       if(el.definition){
         html +=
             "<div class='form-group'>"+
-              "<label for='"+el.id+"-definition' class='control-label'>"+
+              "<label for='"+el.id+"-math' class='control-label'>"+
                 "Definición"+
               "</label>"+
               "<div class='panel panel-default'>"+
-                "<div class='panel-body'>"+          
-                  "<span id='"+el.id+"-math' class='mathquill-editable'>\\frac{d}{dx}\sqrt{x}=</span>"+
-                  //"<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
-                  //  el.definition+
-                  //"</textarea>"+
+                "<div class='panel-heading math-style'>"+el.name+"(t) =</div>"+
+                "<div id='"+el.id+"-math-editor' class='panel-body'>"+
+                  "<span id='"+el.id+"-math' name='definition' class='mathquill-editable'>"+
+                    el.definition+
+                  "</span>"+
                 "</div>"+
               "</div>"+
+              //"<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
+              //  el.definition+
+              //"</textarea>"+
             "</div>"+
+            
             "<div class='form-group'>"+
               "<label for='"+el.id+"-relations' class='control-label'>"+
                 "Elementos relacionados"+
@@ -1773,18 +1793,48 @@ this.Editor = Class.extend({
         });
       }
       if(el.definition){
-        $('#'+el.id+'-definition').change(function(){         
-          el.changeDefinition($(this).val());          
-        });
+        var latexMath = $('#'+el.id+'-math');
         
-        jQuery('.mathquill-editable:not(.mathquill-rendered-math)').mathquill('editable');
+        latexMath.mathquill('editable');
+        
+        latexMath.focusout( function() {
+          var latex = latexMath.mathquill('latex');
+          console.log(latex);
+          try{
+            el.parser.parse(latex);
+            
+            var relation;
+            var valid = true;
+            
+            for(var rel in el.enteringRels){
+              relation = el.enteringRels[rel];
+              if(latex.search(relation.from.name) == -1){
+                valid = false;
+              }
+            }
+            if(valid){       
+              $('#'+el.id+'-math-editor').parent().removeClass('math-error');
+              el.changeDefinition(latex);
+            }
+            else{
+              $('#'+el.id+'-math-editor').parent().addClass('math-error');  
+            }
+          }
+          catch(error){
+            $('#'+el.id+'-math-editor').parent().addClass('math-error');
+            console.log('error');
+            console.log(error);
+          }
+        });
         
         $('#'+el.id+"-relations").dblclick(function(){
           var select = $(this).val();
           var related_el = el.ctx.objects.getById(select[0]);
-          var definition = $('#'+el.id+'-definition').val();
           
-          $('#'+el.id+'-definition').val(definition+related_el.name);
+          var definition = latexMath.mathquill('latex');
+          
+          latexMath.mathquill('latex', definition+related_el.name);
+          console.log(definition+related_el.name);
         });
         
       }

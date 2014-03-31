@@ -743,6 +743,8 @@ this.Parameter = Element.extend({
     this.dimension = dimension || 1;
         
     this.list = this.ctx.list.parameter;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
+    
     this.connec['desAce'] = false;
     
     this.figGenerator = figures.parameter;
@@ -768,6 +770,7 @@ this.Stock = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.stock;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.enteringFlow = {};
     this.leavingFlow = {};
@@ -938,6 +941,7 @@ this.Flow = Element.extend({
     this.selected = false;
     
     this.list = this.ctx.list.flow;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.originStock = undefined;
     this.destinationStock = undefined;
@@ -1125,6 +1129,7 @@ this.Auxiliary = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.auxiliary;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.figGenerator = figures.auxiliary;
     this.figure(pos);
@@ -1149,6 +1154,7 @@ this.Exogenous = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.exogenous;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     this.connec['desAce'] = false;
     
     this.figGenerator = figures.exogenous;
@@ -1174,6 +1180,7 @@ this.Delay = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.delay;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.figGenerator = figures.delay;
     this.figure(pos);
@@ -1198,6 +1205,7 @@ this.Multiplier = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.multiplier;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.figGenerator = figures.multiplier;
     this.figure(pos);
@@ -1222,6 +1230,7 @@ this.Fis = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.fis;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.figGenerator = figures.fis;
     this.figure(pos);
@@ -1246,6 +1255,7 @@ this.Previous = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.previous;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
     this.figGenerator = figures.previous;
     this.figure(pos);
@@ -1270,6 +1280,7 @@ this.Submodel = Element.extend({
     this.dimension = dimension || 1;
     
     this.list = this.ctx.list.submodel;
+    this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     this.connec['desAce'] = false;
     
     this.figGenerator = figures.submodel;
@@ -1340,6 +1351,8 @@ this.StockAndFlow = Editor.extend({
     this.language = '#language-saf';
     this.sidebar  = '#stockandflow-sidebar';
     this.state    = 'cursor';
+    
+    this.rules    = "start = bin bin = arg_one:spe sym:('+'/'-'/'*'/'/') arg_two:bin { return arg_one + sym + arg_two; } / one_arg:spe '\\\\cdot' two_arg:bin { return one_arg +'*'+ two_arg; } / one_arg:spe '^{' two_arg:bin '}' { return 'Math.pow('+one_arg +','+ two_arg+')'} / one_arg:spe '^' two_arg:bin { return 'Math.pow('+one_arg +','+ two_arg+')'; } / spe spe = '\\\\' arg:una { return arg; } / '\\\\frac{' one_arg:bin '}{' two_arg:bin '}' {return '('+ one_arg +'/'+ two_arg +')'; } / '\\\\sqrt[' one_arg:bin ']{' two_arg:bin '}' {return 'Math.pow(' + two_arg + ',1/' + one_arg + ')';} / con una = 'left|' arg:bin '\\\\right|' { return 'Math.abs('+arg+')'; } / 'left(' one_arg:bin '\\\\right)' { return '('+one_arg+')'; } / 'sqrt{' arg:bin '}' {return 'Math.sqrt('+arg+')'; } / fun:('sin'/'cos'/'tan') '\\\\left(' arg:bin '\\\\right)' { return 'Math.'+ fun + '('+arg+')'; } / 'csc' arg:bin { return '1/Math.sin('+arg+')'; } / 'sec' arg:bin { return '1/Math.cos('+arg+')'; } / 'cot' arg:bin { return '1/Math.tan('+arg+')'; } con = '\\\\pi' {return 'Math.PI';} / 'e' {return 'Math.E';} / var var = 't'/'it'/'ft'/'dt'/'%'/num num = arg:$([+-]?[0-9]*[.][0-9]+) { return arg; } / arg:$([+-]?[0-9]+) { return arg; }";
     
     this._super(this.initWorkArea());
     

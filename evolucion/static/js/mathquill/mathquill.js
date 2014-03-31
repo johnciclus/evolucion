@@ -1967,7 +1967,11 @@ LatexCmds['√'] = P(MathCommand, function(_, _super) {
   };
   _.redraw = function() {
     var block = this.ends[R].jQ;
-    scale(block.prev(), 1, block.innerHeight()/+block.css('fontSize').slice(0,-2) - .1);
+    var height = block.innerHeight();
+    if(height == -1){
+      height = block.css('fontSize').slice(0,-2);
+    }
+    scale(block.prev(), 1, height/+block.css('fontSize').slice(0,-2) - .1);
   };
 });
 
@@ -3031,7 +3035,6 @@ LatexCmds.opencurlybrace = bind(VanillaSymbol, '\\opencurlybrace ', '&#123;');
 LatexCmds.closecurlybrace = bind(VanillaSymbol, '\\closecurlybrace ', '&#125;');
 
 //various symbols
-
 LatexCmds.caret = bind(VanillaSymbol,'\\caret ','^');
 LatexCmds.underscore = bind(VanillaSymbol,'\\underscore ','_');
 LatexCmds.backslash = bind(VanillaSymbol,'\\backslash ','\\');
