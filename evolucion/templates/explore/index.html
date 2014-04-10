@@ -1,0 +1,43 @@
+{% extends "layouts/base.html" %}
+
+{% load staticfiles i18n %}
+
+
+{% block body %}
+    {% block content %}
+      <div class="container">
+        <div class="page-header">
+          <h1>{% trans 'all projects'|capfirst %}</h1>
+          <p> {% trans 'all projects description'|capfirst %}</p>
+        </div>
+        
+        <div id="projects-container" class="row">  
+          {% for project in projects %}
+            <div class="col-6 col-sm-6 col-lg-4">
+              <div class="well">
+                <fieldset>
+                    <legend>{{ project.title|capfirst }}</legend>
+                    <b> {{ project.user|capfirst }}</b>
+                    <br />
+                    <p>{{ project.description|capfirst }}</p>
+                    
+                    <div class="form-group">
+                      <div class="col-lg-12 centered">
+                        <button id="{{ project.user.username }}-{{ project.name }}" class="btn btn-primary btn-open">{% trans 'open project'|capfirst%}</button>
+                      </div>
+                    </div>
+                  </fieldset>
+              </div>
+            </div><!--/span-->
+          {% endfor %}
+        </div>
+        
+      </div>
+    
+    {% endblock %}
+    
+    <script src="{% static 'js/require/require.js' %}" data-main="{% static 'js/require/explore' %}"></script>
+    
+{% endblock %}
+
+

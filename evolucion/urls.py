@@ -8,7 +8,10 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Root page:
     url(r'^$', views.Index.as_view(), name='home'),
-        
+    
+    # Explore page:
+    url(r'^explore/', views.Explore.as_view(), name='home'),
+                           
     # Include app Users:
     url(r'^user/', include('evolucion.users.urls', namespace='user')),
     

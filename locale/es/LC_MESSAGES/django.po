@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 05:53-0300\n"
+"POT-Creation-Date: 2014-04-10 15:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -786,6 +786,14 @@ msgstr "ecuaciones"
 msgid "behaviors"
 msgstr "comportamientos"
 
+#: evolucion/templates/explore/index.html:10
+msgid "all projects"
+msgstr "Todos los proyectos"
+
+#: evolucion/templates/explore/index.html:11
+msgid "all projects description"
+msgstr "Listado de todos los proyectos existentes en Evolución Web"
+
 #: evolucion/templates/home/_carousel.html:19
 msgid "sign up today"
 msgstr "regístrate hoy"
@@ -798,29 +806,29 @@ msgstr "aprenda más"
 msgid "browse gallery"
 msgstr "navega por la galería"
 
-#: evolucion/templates/home/index.html:14
+#: evolucion/templates/home/index.html:16
 msgid "welcome title"
 msgstr "bienvenido a Evolución Web"
 
-#: evolucion/templates/home/index.html:15
+#: evolucion/templates/home/index.html:17
 msgid "welcome content"
 msgstr ""
 "Evolución Web es una tecnología que permite realizar modelamiento y "
-"simulación con Dinámica de Sistemas en un ambiente basado en Internet, "
-"este proyecto busca plantear y desarrollar tecnologías de modelado "
-"colaborativo en un futuro cercano."
+"simulación con Dinámica de Sistemas en un ambiente basado en Internet, este "
+"proyecto busca plantear y desarrollar tecnologías de modelado colaborativo "
+"en un futuro cercano."
 
-#: evolucion/templates/home/index.html:16
-#: evolucion/templates/home/index.html:22
-#: evolucion/templates/home/index.html:28
+#: evolucion/templates/home/index.html:18
+#: evolucion/templates/home/index.html:24
+#: evolucion/templates/home/index.html:30
 msgid "view details"
 msgstr "Mayor información"
 
-#: evolucion/templates/home/index.html:20
+#: evolucion/templates/home/index.html:22
 msgid "features title"
 msgstr "Características"
 
-#: evolucion/templates/home/index.html:21
+#: evolucion/templates/home/index.html:23
 msgid "features content"
 msgstr ""
 "Evolución Web integra los cinco lenguajes de la metodología de modelado y "
@@ -830,11 +838,11 @@ msgstr ""
 "que amplían las nuevas posibilidades en cuanto a la usabilidad del "
 "aplicativoen cada una de sus funcionalidades"
 
-#: evolucion/templates/home/index.html:26
+#: evolucion/templates/home/index.html:28
 msgid "explore title"
 msgstr "Explore los proyectos"
 
-#: evolucion/templates/home/index.html:27
+#: evolucion/templates/home/index.html:29
 msgid "explore content"
 msgstr ""
 "Los proyectos desarrollados dentro de la plataforma Evolución Web, son por "
