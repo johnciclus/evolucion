@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-15 11:58-0500\n"
+"POT-Creation-Date: 2014-07-28 12:07-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,156 +17,240 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: views.py:20
-msgid "welcome"
+#: evolucion/projects/models.py:13
+msgid "name"
 msgstr ""
 
-#: views.py:21
-msgid "welcome title"
+#: evolucion/projects/models.py:14 evolucion/templates/projects/index.html:31
+#: evolucion/templates/projects/index.html:88
+msgid "title"
 msgstr ""
 
-#: views.py:22
-msgid "home nav"
-msgstr "Home"
+#: evolucion/projects/models.py:15 evolucion/templates/projects/index.html:37
+msgid "description"
+msgstr ""
 
-#: templates/admin/404.html:4 templates/admin/404.html.py:8
+#: evolucion/projects/models.py:16
+msgid "keywords"
+msgstr ""
+
+#: evolucion/projects/models.py:17 evolucion/projects/models.py:40
+#: evolucion/projects/models.py:55
+msgid "model"
+msgstr ""
+
+#: evolucion/projects/models.py:18
+msgid "hits"
+msgstr ""
+
+#: evolucion/projects/models.py:19
+msgid "stars"
+msgstr ""
+
+#: evolucion/projects/models.py:20 evolucion/projects/models.py:41
+#: evolucion/projects/models.py:63 evolucion/projects/models.py:77
+#: evolucion/projects/models.py:89 evolucion/projects/models.py:101
+#: evolucion/users/models.py:15
+msgid "created at"
+msgstr ""
+
+#: evolucion/projects/models.py:21 evolucion/projects/models.py:42
+#: evolucion/projects/models.py:64 evolucion/projects/models.py:78
+#: evolucion/projects/models.py:90 evolucion/projects/models.py:102
+#: evolucion/users/models.py:16
+msgid "updated at"
+msgstr ""
+
+#: evolucion/projects/models.py:38
+msgid "prose title"
+msgstr ""
+
+#: evolucion/projects/models.py:39
+msgid "prose description"
+msgstr ""
+
+#: evolucion/projects/models.py:56
+#: evolucion/templates/editor/_influences.html:11
+msgid "concepts"
+msgstr ""
+
+#: evolucion/projects/models.py:57
+#: evolucion/templates/editor/_influences.html:26
+msgid "cycles"
+msgstr ""
+
+#: evolucion/projects/models.py:58
+msgid "clones"
+msgstr ""
+
+#: evolucion/projects/models.py:59
+msgid "material"
+msgstr ""
+
+#: evolucion/projects/models.py:60
+#: evolucion/templates/projects/_new_success.html:5
+#: evolucion/templates/users/_edit_errors.html:5
+#: evolucion/templates/users/_edit_success.html:5
+#: evolucion/templates/users/_sign_in_errors.html:5
+#: evolucion/templates/users/_sign_in_success.html:5
+#: evolucion/templates/users/_sign_up_success.html:5
+msgid "information"
+msgstr ""
+
+#: evolucion/projects/models.py:61
+msgid "sector"
+msgstr ""
+
+#: evolucion/projects/views.py:54
+msgid "the project was successfully registered"
+msgstr ""
+
+#: evolucion/templates/404.html:11 evolucion/templates/admin/404.html:4
+#: evolucion/templates/admin/404.html:8
 msgid "Page not found"
 msgstr ""
 
-#: templates/admin/404.html:10
-msgid "We're sorry, but the requested page could not be found."
-msgstr ""
-
-#: templates/admin/500.html:6 templates/admin/app_index.html:7
-#: templates/admin/base.html:47 templates/admin/change_form.html:19
-#: templates/admin/change_list.html:41
-#: templates/admin/delete_confirmation.html:7
-#: templates/admin/delete_selected_confirmation.html:7
-#: templates/admin/invalid_setup.html:6 templates/admin/object_history.html:7
-#: templates/admin/auth/user/change_password.html:13
-msgid "Home"
-msgstr ""
-
-#: templates/admin/500.html:7
-msgid "Server error"
-msgstr ""
-
-#: templates/admin/500.html:11
+#: evolucion/templates/500.html:10 evolucion/templates/admin/500.html:11
 msgid "Server error (500)"
 msgstr ""
 
-#: templates/admin/500.html:14
+#: evolucion/templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: evolucion/templates/admin/500.html:6
+#: evolucion/templates/admin/app_index.html:7
+#: evolucion/templates/admin/base.html:47
+#: evolucion/templates/admin/change_form.html:19
+#: evolucion/templates/admin/change_list.html:41
+#: evolucion/templates/admin/delete_confirmation.html:7
+#: evolucion/templates/admin/delete_selected_confirmation.html:7
+#: evolucion/templates/admin/invalid_setup.html:6
+#: evolucion/templates/admin/object_history.html:7
+#: evolucion/templates/admin/auth/user/change_password.html:13
+msgid "Home"
+msgstr ""
+
+#: evolucion/templates/admin/500.html:7
+msgid "Server error"
+msgstr ""
+
+#: evolucion/templates/admin/500.html:14
 msgid "Server Error <em>(500)</em>"
 msgstr ""
 
-#: templates/admin/500.html:15
+#: evolucion/templates/admin/500.html:15
 msgid ""
 "There's been an error. It's been reported to the site administrators via "
 "email and should be fixed shortly. Thanks for your patience."
 msgstr ""
 
-#: templates/admin/actions.html:4
+#: evolucion/templates/admin/actions.html:4
 msgid "Run the selected action"
 msgstr ""
 
-#: templates/admin/actions.html:4
+#: evolucion/templates/admin/actions.html:4
 msgid "Go"
 msgstr ""
 
-#: templates/admin/actions.html:11
+#: evolucion/templates/admin/actions.html:11
 msgid "Click here to select the objects across all pages"
 msgstr ""
 
-#: templates/admin/actions.html:11
+#: evolucion/templates/admin/actions.html:11
 #, python-format
 msgid "Select all %(total_count)s %(module_name)s"
 msgstr ""
 
-#: templates/admin/actions.html:13
+#: evolucion/templates/admin/actions.html:13
 msgid "Clear selection"
 msgstr ""
 
-#: templates/admin/app_index.html:10 templates/admin/index.html:21
+#: evolucion/templates/admin/app_index.html:10
+#: evolucion/templates/admin/index.html:21
 #, python-format
 msgid "%(name)s"
 msgstr ""
 
-#: templates/admin/base.html:28
+#: evolucion/templates/admin/base.html:28
 msgid "Welcome,"
 msgstr ""
 
-#: templates/admin/base.html:33
+#: evolucion/templates/admin/base.html:33
 msgid "Documentation"
 msgstr ""
 
-#: templates/admin/base.html:36
-#: templates/admin/auth/user/change_password.html:17
-#: templates/admin/auth/user/change_password.html:51
+#: evolucion/templates/admin/base.html:36
+#: evolucion/templates/admin/auth/user/change_password.html:17
+#: evolucion/templates/admin/auth/user/change_password.html:51
 msgid "Change password"
 msgstr ""
 
-#: templates/admin/base.html:38
+#: evolucion/templates/admin/base.html:38
 msgid "Log out"
 msgstr ""
 
-#: templates/admin/base_site.html:4
+#: evolucion/templates/admin/base_site.html:4
 msgid "Evolución site admin"
 msgstr ""
 
-#: templates/admin/base_site.html:7
+#: evolucion/templates/admin/base_site.html:7
 msgid "Evolución administration"
 msgstr ""
 
-#: templates/admin/change_form.html:22 templates/admin/index.html:33
+#: evolucion/templates/admin/change_form.html:22
+#: evolucion/templates/admin/index.html:33
 msgid "Add"
 msgstr ""
 
-#: templates/admin/change_form.html:32 templates/admin/object_history.html:11
+#: evolucion/templates/admin/change_form.html:32
+#: evolucion/templates/admin/object_history.html:11
 msgid "History"
 msgstr ""
 
-#: templates/admin/change_form.html:33
-#: templates/admin/edit_inline/stacked.html:9
-#: templates/admin/edit_inline/tabular.html:30
+#: evolucion/templates/admin/change_form.html:33
+#: evolucion/templates/admin/edit_inline/stacked.html:9
+#: evolucion/templates/admin/edit_inline/tabular.html:30
 msgid "View on site"
 msgstr ""
 
-#: templates/admin/change_form.html:44 templates/admin/change_list.html:67
-#: templates/admin/login.html:17
-#: templates/admin/auth/user/change_password.html:27
+#: evolucion/templates/admin/change_form.html:44
+#: evolucion/templates/admin/change_list.html:67
+#: evolucion/templates/admin/login.html:17
+#: evolucion/templates/admin/auth/user/change_password.html:27
 msgid "Please correct the error below."
 msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/admin/change_list.html:58
+#: evolucion/templates/admin/change_list.html:58
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: templates/admin/change_list.html:78
+#: evolucion/templates/admin/change_list.html:78
 msgid "Filter"
 msgstr ""
 
-#: templates/admin/change_list_results.html:17
+#: evolucion/templates/admin/change_list_results.html:17
 msgid "Remove from sorting"
 msgstr ""
 
-#: templates/admin/change_list_results.html:18
+#: evolucion/templates/admin/change_list_results.html:18
 #, python-format
 msgid "Sorting priority: %(priority_number)s"
 msgstr ""
 
-#: templates/admin/change_list_results.html:19
+#: evolucion/templates/admin/change_list_results.html:19
 msgid "Toggle sorting"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:11
-#: templates/admin/submit_line.html:4
+#: evolucion/templates/admin/delete_confirmation.html:11
+#: evolucion/templates/admin/submit_line.html:4
 msgid "Delete"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:18
+#: evolucion/templates/admin/delete_confirmation.html:18
 #, python-format
 msgid ""
 "Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
@@ -174,30 +258,30 @@ msgid ""
 "following types of objects:"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:26
+#: evolucion/templates/admin/delete_confirmation.html:26
 #, python-format
 msgid ""
 "Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
 "following protected related objects:"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:34
+#: evolucion/templates/admin/delete_confirmation.html:34
 #, python-format
 msgid ""
 "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
 "All of the following related items will be deleted:"
 msgstr ""
 
-#: templates/admin/delete_confirmation.html:39
-#: templates/admin/delete_selected_confirmation.html:44
+#: evolucion/templates/admin/delete_confirmation.html:39
+#: evolucion/templates/admin/delete_selected_confirmation.html:44
 msgid "Yes, I'm sure"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:10
+#: evolucion/templates/admin/delete_selected_confirmation.html:10
 msgid "Delete multiple objects"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:17
+#: evolucion/templates/admin/delete_selected_confirmation.html:17
 #, python-format
 msgid ""
 "Deleting the selected %(objects_name)s would result in deleting related "
@@ -205,165 +289,763 @@ msgid ""
 "types of objects:"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:25
+#: evolucion/templates/admin/delete_selected_confirmation.html:25
 #, python-format
 msgid ""
 "Deleting the selected %(objects_name)s would require deleting the following "
 "protected related objects:"
 msgstr ""
 
-#: templates/admin/delete_selected_confirmation.html:33
+#: evolucion/templates/admin/delete_selected_confirmation.html:33
 #, python-format
 msgid ""
 "Are you sure you want to delete the selected %(objects_name)s? All of the "
 "following objects and their related items will be deleted:"
 msgstr ""
 
-#: templates/admin/filter.html:2
+#: evolucion/templates/admin/filter.html:2
 #, python-format
 msgid " By %(filter_title)s "
 msgstr ""
 
-#: templates/admin/index.html:20
+#: evolucion/templates/admin/index.html:20
 #, python-format
 msgid "Models in the %(name)s application"
 msgstr ""
 
-#: templates/admin/index.html:39
+#: evolucion/templates/admin/index.html:39
 msgid "Change"
 msgstr ""
 
-#: templates/admin/index.html:49
+#: evolucion/templates/admin/index.html:49
 msgid "You don't have permission to edit anything."
 msgstr ""
 
-#: templates/admin/index.html:57
+#: evolucion/templates/admin/index.html:57
 msgid "Recent Actions"
 msgstr ""
 
-#: templates/admin/index.html:58
+#: evolucion/templates/admin/index.html:58
 msgid "My Actions"
 msgstr ""
 
-#: templates/admin/index.html:62
+#: evolucion/templates/admin/index.html:62
 msgid "None available"
 msgstr ""
 
-#: templates/admin/index.html:76
+#: evolucion/templates/admin/index.html:76
 msgid "Unknown content"
 msgstr ""
 
-#: templates/admin/invalid_setup.html:12
+#: evolucion/templates/admin/invalid_setup.html:12
 msgid ""
 "Something's wrong with your database installation. Make sure the appropriate "
 "database tables have been created, and make sure the database is readable by "
 "the appropriate user."
 msgstr ""
 
-#: templates/admin/login.html:37
+#: evolucion/templates/admin/login.html:37
 msgid "Password:"
 msgstr ""
 
-#: templates/admin/login.html:44
+#: evolucion/templates/admin/login.html:44
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: templates/admin/login.html:48
+#: evolucion/templates/admin/login.html:48
 msgid "Log in"
 msgstr ""
 
-#: templates/admin/object_history.html:23
+#: evolucion/templates/admin/object_history.html:23
 msgid "Date/time"
 msgstr ""
 
-#: templates/admin/object_history.html:24
+#: evolucion/templates/admin/object_history.html:24
 msgid "User"
 msgstr ""
 
-#: templates/admin/object_history.html:25
+#: evolucion/templates/admin/object_history.html:25
 msgid "Action"
 msgstr ""
 
-#: templates/admin/object_history.html:39
+#: evolucion/templates/admin/object_history.html:39
 msgid ""
 "This object doesn't have a change history. It probably wasn't added via this "
 "admin site."
 msgstr ""
 
-#: templates/admin/pagination.html:10
+#: evolucion/templates/admin/pagination.html:10
 msgid "Show all"
 msgstr ""
 
-#: templates/admin/pagination.html:11 templates/admin/submit_line.html:3
+#: evolucion/templates/admin/pagination.html:11
+#: evolucion/templates/admin/submit_line.html:3
 msgid "Save"
 msgstr ""
 
-#: templates/admin/search_form.html:7
+#: evolucion/templates/admin/search_form.html:7
 msgid "Search"
 msgstr ""
 
-#: templates/admin/search_form.html:9
+#: evolucion/templates/admin/search_form.html:9
 #, python-format
 msgid "%(counter)s result"
 msgid_plural "%(counter)s results"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/admin/search_form.html:9
+#: evolucion/templates/admin/search_form.html:9
 #, python-format
 msgid "%(full_result_count)s total"
 msgstr ""
 
-#: templates/admin/submit_line.html:5
+#: evolucion/templates/admin/submit_line.html:5
 msgid "Save as new"
 msgstr ""
 
-#: templates/admin/submit_line.html:6
+#: evolucion/templates/admin/submit_line.html:6
 msgid "Save and add another"
 msgstr ""
 
-#: templates/admin/submit_line.html:7
+#: evolucion/templates/admin/submit_line.html:7
 msgid "Save and continue editing"
 msgstr ""
 
-#: templates/admin/auth/user/add_form.html:6
+#: evolucion/templates/admin/auth/user/add_form.html:6
 msgid ""
 "First, enter a username and password. Then, you'll be able to edit more user "
 "options."
 msgstr ""
 
-#: templates/admin/auth/user/add_form.html:8
+#: evolucion/templates/admin/auth/user/add_form.html:8
 msgid "Enter a username and password."
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:31
+#: evolucion/templates/admin/auth/user/change_password.html:31
 #, python-format
 msgid "Enter a new password for the user <strong>%(username)s</strong>."
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:38
+#: evolucion/templates/admin/auth/user/change_password.html:38
 msgid "Password"
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:44
+#: evolucion/templates/admin/auth/user/change_password.html:44
 msgid "Password (again)"
 msgstr ""
 
-#: templates/admin/auth/user/change_password.html:45
+#: evolucion/templates/admin/auth/user/change_password.html:45
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: templates/admin/edit_inline/stacked.html:26
-#: templates/admin/edit_inline/tabular.html:76
+#: evolucion/templates/admin/edit_inline/stacked.html:26
+#: evolucion/templates/admin/edit_inline/tabular.html:76
 msgid "Remove"
 msgstr ""
 
-#: templates/admin/edit_inline/stacked.html:27
-#: templates/admin/edit_inline/tabular.html:75
+#: evolucion/templates/admin/edit_inline/stacked.html:27
+#: evolucion/templates/admin/edit_inline/tabular.html:75
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: templates/admin/edit_inline/tabular.html:17
+#: evolucion/templates/admin/edit_inline/tabular.html:17
 msgid "Delete?"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:9
+msgid "simulate"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:15
+msgid "save Graph"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:17
+msgid "separated link"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:23
+msgid "step by step"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:27
+msgid "initial time"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:28
+msgid "initial time placeholder"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:32
+msgid "final time"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:33
+msgid "final time placeholder"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:37
+msgid "delta time"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:38
+msgid "delta time placeholder"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:44
+#: evolucion/templates/editor/_stock-and-flow.html:10
+msgid "parameters"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:59
+#: evolucion/templates/editor/_stock-and-flow.html:25
+msgid "stocks"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:74
+#: evolucion/templates/editor/_stock-and-flow.html:40
+msgid "flows"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:89
+#: evolucion/templates/editor/_stock-and-flow.html:55
+msgid "auxiliaries"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:104
+#: evolucion/templates/editor/_stock-and-flow.html:70
+msgid "exogenous"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:119
+#: evolucion/templates/editor/_stock-and-flow.html:85
+msgid "delays"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:134
+#: evolucion/templates/editor/_stock-and-flow.html:100
+msgid "multipliers"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:149
+#: evolucion/templates/editor/_stock-and-flow.html:115
+msgid "fis"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:164
+#: evolucion/templates/editor/_stock-and-flow.html:130
+msgid "previous values"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:179
+#: evolucion/templates/editor/_stock-and-flow.html:145
+msgid "submodels"
+msgstr ""
+
+#: evolucion/templates/editor/_behaviors.html:196
+#: evolucion/templates/editor/_equations.html:18
+#: evolucion/templates/editor/_influences.html:88
+#: evolucion/templates/editor/_stock-and-flow.html:192
+#, fuzzy
+msgid "toggle nav"
+msgstr "Home"
+
+#: evolucion/templates/editor/_equations.html:7
+msgid "mathematical language model title"
+msgstr ""
+
+#: evolucion/templates/editor/_equations.html:8
+msgid "mathematical language model content"
+msgstr ""
+
+#: evolucion/templates/editor/_equations.html:11
+msgid "javascript language model title"
+msgstr ""
+
+#: evolucion/templates/editor/_equations.html:12
+msgid "javascript language model content"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:41
+msgid "material relations"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:56
+msgid "information relations"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:71
+#: evolucion/templates/editor/_stock-and-flow.html:175
+msgid "sectors"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:92
+msgid "inf cursor btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:95
+msgid "inf concept btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:98
+msgid "inf cycle btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:101
+msgid "inf clone btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:104
+msgid "inf material relation btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:107
+msgid "inf information relation btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_influences.html:110
+msgid "inf sector btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:12
+msgid "prose title placeholder"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:23
+msgid "prose description placeholder"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:28
+msgid "font"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:33
+msgid "font Size"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:41
+msgid "bold (Ctrl/Cmd+B)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:42
+msgid "italic (Ctrl/Cmd+I)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:43
+msgid "strikethrough"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:44
+msgid "underline (Ctrl/Cmd+U)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:47
+msgid "bullet list"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:48
+msgid "number list"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:49
+msgid "reduce indent (Shift+Tab)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:50
+msgid "indent (Tab)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:53
+msgid "align Left (Ctrl/Cmd+L)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:54
+msgid "center (Ctrl/Cmd+E)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:55
+msgid "align Right (Ctrl/Cmd+R)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:56
+msgid "justify (Ctrl/Cmd+J)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:63
+msgid "hyperlink"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:66
+msgid "remove Hyperlink"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:70
+msgid "insert picture (or just drag & drop)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:74
+msgid "undo (Ctrl/Cmd+Z)"
+msgstr ""
+
+#: evolucion/templates/editor/_prose.html:75
+msgid "redo (Ctrl/Cmd+Y)"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:160
+msgid "relations"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:196
+msgid "saf cursor btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:199
+msgid "saf parameter btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:202
+msgid "saf stock btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:205
+msgid "saf flow btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:208
+msgid "saf auxiliary btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:211
+msgid "saf exogenous btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:214
+msgid "saf delay btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:217
+msgid "saf multiplier btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:220
+msgid "saf fis btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:223
+msgid "saf previous btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:226
+msgid "saf submodel btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:229
+msgid "saf clone btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:232
+msgid "saf relation btn title"
+msgstr ""
+
+#: evolucion/templates/editor/_stock-and-flow.html:235
+msgid "saf sector btn title"
+msgstr ""
+
+#: evolucion/templates/editor/base_editor.html:64
+msgid "browser incompatibility"
+msgstr ""
+
+#: evolucion/templates/editor/base_editor.html:89
+msgid "close"
+msgstr ""
+
+#: evolucion/templates/editor/index.html:19
+#: evolucion/templates/layouts/_editor_content.html:4
+msgid "influences"
+msgstr ""
+
+#: evolucion/templates/editor/index.html:30
+#: evolucion/templates/layouts/_editor_content.html:5
+msgid "stock and flow"
+msgstr ""
+
+#: evolucion/templates/editor/index.html:41
+#: evolucion/templates/layouts/_editor_content.html:6
+msgid "equations"
+msgstr ""
+
+#: evolucion/templates/editor/index.html:52
+#: evolucion/templates/layouts/_editor_content.html:7
+msgid "behaviors"
+msgstr ""
+
+#: evolucion/templates/explore/index.html:10
+msgid "all projects"
+msgstr ""
+
+#: evolucion/templates/explore/index.html:11
+msgid "all projects description"
+msgstr ""
+
+#: evolucion/templates/explore/index.html:26
+#: evolucion/templates/projects/_new_project.html:12
+#: evolucion/templates/projects/index.html:114
+msgid "open project"
+msgstr ""
+
+#: evolucion/templates/home/_carousel.html:19
+msgid "sign up today"
+msgstr ""
+
+#: evolucion/templates/home/_carousel.html:30
+msgid "learn more"
+msgstr ""
+
+#: evolucion/templates/home/_carousel.html:40
+msgid "browse gallery"
+msgstr ""
+
+#: evolucion/templates/home/index.html:16
+msgid "welcome title"
+msgstr ""
+
+#: evolucion/templates/home/index.html:17
+msgid "welcome content"
+msgstr ""
+
+#: evolucion/templates/home/index.html:18
+#: evolucion/templates/home/index.html:24
+#: evolucion/templates/home/index.html:30
+msgid "view details"
+msgstr ""
+
+#: evolucion/templates/home/index.html:22
+msgid "features title"
+msgstr ""
+
+#: evolucion/templates/home/index.html:23
+msgid "features content"
+msgstr ""
+
+#: evolucion/templates/home/index.html:28
+msgid "explore title"
+msgstr ""
+
+#: evolucion/templates/home/index.html:29
+msgid "explore content"
+msgstr ""
+
+#: evolucion/templates/layouts/_editor_content.html:3
+msgid "prose"
+msgstr ""
+
+#: evolucion/templates/layouts/_editor_header.html:11
+msgid "overview"
+msgstr ""
+
+#: evolucion/templates/layouts/_editor_header.html:13
+msgid "open"
+msgstr ""
+
+#: evolucion/templates/layouts/_editor_header.html:16
+msgid "save"
+msgstr ""
+
+#: evolucion/templates/layouts/_editor_header.html:19
+msgid "download"
+msgstr ""
+
+#: evolucion/templates/layouts/_home_content.html:3
+#: evolucion/templates/layouts/_user_content.html:3
+msgid "nav home"
+msgstr "home"
+
+#: evolucion/templates/layouts/_home_content.html:4
+#: evolucion/templates/layouts/_user_content.html:4
+msgid "nav explore"
+msgstr "explore projects"
+
+#: evolucion/templates/layouts/_home_content.html:8
+msgid "nav features"
+msgstr "features"
+
+#: evolucion/templates/layouts/_home_content.html:12
+#: evolucion/templates/layouts/_user_content.html:5
+msgid "nav my projects"
+msgstr "my projects"
+
+#: evolucion/templates/layouts/_home_content.html:18
+msgid "about"
+msgstr ""
+
+#: evolucion/templates/layouts/_home_content.html:21
+msgid "nav history"
+msgstr ""
+
+#: evolucion/templates/layouts/_home_content.html:22
+msgid "nav core team"
+msgstr ""
+
+#: evolucion/templates/layouts/_home_content.html:23
+msgid "nav community"
+msgstr ""
+
+#: evolucion/templates/layouts/_home_content.html:24
+msgid "nav translations"
+msgstr ""
+
+#: evolucion/templates/layouts/_home_content.html:25
+msgid "nav contact us"
+msgstr ""
+
+#: evolucion/templates/layouts/_sign_nav.html:3
+msgid "nav sign up"
+msgstr "Sign up"
+
+#: evolucion/templates/layouts/_sign_nav.html:4
+msgid "nav sign in"
+msgstr "Sign in"
+
+#: evolucion/templates/layouts/_user_dropdown.html:47
+msgid "settings"
+msgstr ""
+
+#: evolucion/templates/layouts/_user_dropdown.html:50
+msgid "logout"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:22
+#: evolucion/templates/projects/index.html:82
+msgid "new project"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:33
+msgid "new project title"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:40
+msgid "project description"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:58
+msgid "launch project"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:85
+msgid "order by"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:89
+msgid "creation date"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:90
+msgid "number of hits"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:91
+msgid "number of stars"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:100
+msgid "own projects"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:101
+msgid "own projects description"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:116
+msgid "copy project"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:127
+msgid "fork projects"
+msgstr ""
+
+#: evolucion/templates/projects/index.html:128
+msgid "fork projects description"
+msgstr ""
+
+#: evolucion/templates/users/_form.html:11
+msgid "sign up first_name placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_form.html:23
+msgid "sign up last_name placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_form.html:33
+msgid "sign up occupation placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_form.html:44
+#: evolucion/templates/users/_sign_in.html:26
+msgid "sign up username placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_form.html:57
+msgid "sign up email placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_form_password.html:10
+#: evolucion/templates/users/_sign_in.html:37
+msgid "sign up password placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_form_password.html:14
+msgid "sign up confirm_password"
+msgstr ""
+
+#: evolucion/templates/users/_form_password.html:20
+msgid "sign up confirm_password placeholder"
+msgstr ""
+
+#: evolucion/templates/users/_sign_up.html:8
+msgid "sign up title"
+msgstr ""
+
+#: evolucion/templates/users/_sign_up.html:23
+msgid "sign up terms"
+msgstr ""
+
+#: evolucion/templates/users/_sign_up.html:31
+msgid "sign up submit text"
+msgstr ""
+
+#: evolucion/templates/users/_sign_up.html:36
+msgid "sign up log in text"
+msgstr ""
+
+#: evolucion/templates/users/edit.html:23
+msgid "user editing"
+msgstr ""
+
+#: evolucion/templates/users/edit.html:27
+msgid "save submit text"
+msgstr ""
+
+#: evolucion/users/models.py:12
+msgid "occupation"
+msgstr ""
+
+#: evolucion/users/models.py:14
+msgid "accept terms"
+msgstr ""
+
+#: evolucion/users/views.py:37 evolucion/users/views.py:118
+msgid "the user was successfully registered"
+msgstr ""
+
+#: evolucion/users/views.py:64
+msgid "welcome to Evolucion Web"
+msgstr ""
+
+#: evolucion/users/views.py:67
+msgid "the user is not active"
+msgstr ""
+
+#: evolucion/users/views.py:71
+msgid "the username or password is not correct."
 msgstr ""

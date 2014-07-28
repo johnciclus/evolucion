@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-10 15:38-0300\n"
+"POT-Creation-Date: 2014-07-28 12:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -794,13 +794,55 @@ msgstr "Todos los proyectos"
 msgid "all projects description"
 msgstr "Listado de todos los proyectos existentes en Evolución Web"
 
+#: evolucion/templates/explore/index.html:26
+#: evolucion/templates/projects/_new_project.html:12
+#: evolucion/templates/projects/index.html:114
+msgid "open project"
+msgstr "abrir projecto"
+
+#: evolucion/templates/home/_carousel.html:17
+msgid "carrousel title one"
+msgstr "ambiente de modelado y simulación."
+
+#: evolucion/templates/home/_carousel.html:18
+msgid "carrousel content one"
+msgstr ""
+"Evolución web es un ambiente que recopila las características del proyecto "
+"Evolución y las implementa en un ambiente en la internet, con lo cual surgen "
+"nuevas posibilidades en el campo del modelado y la simulación con Dinámica "
+"de Sistemas."
+
 #: evolucion/templates/home/_carousel.html:19
 msgid "sign up today"
 msgstr "regístrate hoy"
 
+#: evolucion/templates/home/_carousel.html:28
+msgid "carrousel title two"
+msgstr "dinámica de sistemas."
+
+#: evolucion/templates/home/_carousel.html:29
+msgid "carrousel content two"
+msgstr ""
+"Evolución Web hace uso del paradigma de la Dinámica de Sistemas, que permite "
+"representar fenómenos del mundo real mediante diversos lenguajes como "
+"textual, visual y matemático, contribuyendo de esta manera en los procesos "
+"de aprendizaje y toma de decisiones.</p>"
+
 #: evolucion/templates/home/_carousel.html:30
 msgid "learn more"
 msgstr "aprenda más"
+
+#: evolucion/templates/home/_carousel.html:38
+msgid "carrousel title three"
+msgstr "tecnologías Web."
+
+#: evolucion/templates/home/_carousel.html:39
+msgid "carrousel content three"
+msgstr ""
+"Evolución Web es una herramienta nativa de la Internet que implementa "
+"diversos estándares que contribuyen en la accesibilidad, la usabilidad, la "
+"ubicuidad y la compatibilidad tanto de los modelos dinámico sistémicos como "
+"de la herramienta misma."
 
 #: evolucion/templates/home/_carousel.html:40
 msgid "browse gallery"
@@ -929,11 +971,6 @@ msgstr "opciones"
 #: evolucion/templates/layouts/_user_dropdown.html:50
 msgid "logout"
 msgstr "cerrar sesión"
-
-#: evolucion/templates/projects/_new_project.html:12
-#: evolucion/templates/projects/index.html:114
-msgid "open project"
-msgstr "abrir projecto"
 
 #: evolucion/templates/projects/index.html:22
 #: evolucion/templates/projects/index.html:82

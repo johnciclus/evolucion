@@ -15,7 +15,7 @@ from evolucion.projects.models import Project, ProjectForm, Prose, ProseForm
 import logging, sys
 
 logger = logging.getLogger(__name__)
-# print >>sys.stderr, "Text"
+print >>sys.stderr, "Text"
 
 class Index(generic.View):
     template_name = 'projects/index.html'
