@@ -52,7 +52,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/www/evolucion/media'
+MEDIA_ROOT = 'media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -71,7 +71,7 @@ MEDIA_URL = '/media/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'staticfiles'), 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -86,7 +86,7 @@ STATICFILES_FINDERS = (
 )
 
 LOCALE_PATHS = (
-    '/www/evolucion/locale/',
+    os.path.join(BASE_DIR, 'locale'),
 )
 
 # Make this unique, and don't share it with anybody.
@@ -116,7 +116,7 @@ ROOT_URLCONF = 'evolucion.urls'
 WSGI_APPLICATION = 'evolucion.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/www/evolucion/evolucion/templates/',
+    os.path.join(BASE_DIR, 'evolucion/templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
