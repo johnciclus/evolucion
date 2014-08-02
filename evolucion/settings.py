@@ -4,6 +4,8 @@ import os
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(BASE_DIR)
+ALLOWED_HOSTS = ['evolucion.herokuapp.com']
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
@@ -59,19 +61,9 @@ MEDIA_ROOT = 'media'
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = '/media/'
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
-#STATIC_ROOT = '/www/evolucion/static'
-
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
-#STATIC_URL = '/static/'
-
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'), 
+    os.path.join(BASE_DIR, 'static'), 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -86,7 +78,7 @@ STATICFILES_FINDERS = (
 )
 
 LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(PROJECT_DIR, 'locale'),
 )
 
 # Make this unique, and don't share it with anybody.
@@ -116,7 +108,7 @@ ROOT_URLCONF = 'evolucion.urls'
 WSGI_APPLICATION = 'evolucion.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'evolucion/templates'),
+    os.path.join(BASE_DIR, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
