@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 print >>sys.stderr, "Text"
 
 class Index(generic.View):
-    template_name = 'projects/index.html'
     def get(self, request, *args, **kwargs):
         requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
         projects = requested_user.project_set.all()
@@ -32,7 +31,7 @@ class Index(generic.View):
             form = UserForm(auto_id=True)
             context['form'] = form
             
-        return render(request, self.template_name, context)
+        return render(request, 'projects/index.html', context)
     
 class Create(generic.View):
     def post(self, request, *args, **kwargs):

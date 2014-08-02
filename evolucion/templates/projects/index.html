@@ -22,9 +22,7 @@
                           <h4 class="modal-title">{% trans 'new project'|capfirst%}</h4>
                       </div>        
                       <div class="modal-body">
-                          <div id='form-message'>
-                            
-                          </div>
+                          <div id='form-message'></div>
                           
                           {% csrf_token %}
                           <div class="form-group">
@@ -36,21 +34,16 @@
                           <div class="form-group">
                             <label for="description" class="col-lg-3 control-label">{% trans 'description'|capfirst %}</label>
                             <div class="col-lg-9">
-                              <textarea class="form-control" rows="3" id="description" name="description"></textarea>
-                              <span class="help-block">{% trans 'project description'|capfirst %}</span>
+                              <textarea class="form-control" rows="3" id="description" name="description" placeholder="{% trans 'project description'|capfirst %}"></textarea>
                             </div>
                           </div>
-                          <!--
                           <div class="form-group">
-                              <label for=" form.password|id " class="col-lg-3 control-label"> form.password|verbosename </label>
-                              <div class="col-lg-9">
-                                  <input  type=       "password" 
-                                          id=         " form.password|id " 
-                                          name=       " form.password|id " 
-                                          class=      "form-control" 
-                                          placeholder=" trans 'sign up password placeholder'|capfirst ">
-                              </div>
-                          </div>-->
+                            <label class="col-lg-3 control-label">{% trans 'visibility'|capfirst %}</label>
+                            <div class="col-lg-9">
+                              <label for="vis_public">  <input id="vis_public"  type="radio" name="is_public" value="true" checked="checked"> {% trans 'public'|capfirst %} </label> &nbsp;&nbsp;
+                              <label for="vis_private"> <input id="vis_private" type="radio" name="is_public" value="false"> {% trans 'private'|capfirst %} </label>
+                            </div>
+                          </div>
                       </div>
                       <div class="modal-footer">
                           <div class="form-group">
