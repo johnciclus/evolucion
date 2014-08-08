@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-07 10:12-0300\n"
+"POT-Creation-Date: 2014-08-08 11:59-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,6 @@ msgid "prose description"
 msgstr "descripción"
 
 #: evolucion/projects/models.py:57
-#: evolucion/templates/editor/_influences.html:11
 msgid "concepts"
 msgstr "conceptos"
 
@@ -576,6 +575,10 @@ msgstr ""
 "modelo de simulación en lenguaje computacional, especificamente Javascript "
 "que permite exportar el codigo"
 
+#: evolucion/templates/editor/_influences.html:11
+msgid "elements"
+msgstr "elementos"
+
 #: evolucion/templates/editor/_influences.html:41
 msgid "material relations"
 msgstr "relaciones de material"
@@ -594,8 +597,8 @@ msgid "inf cursor btn title"
 msgstr "cursor"
 
 #: evolucion/templates/editor/_influences.html:95
-msgid "inf concept btn title"
-msgstr "concepto"
+msgid "inf element btn title"
+msgstr "elemento"
 
 #: evolucion/templates/editor/_influences.html:98
 msgid "inf cycle btn title"
@@ -1127,6 +1130,9 @@ msgstr "el usuario no esta activo"
 #: evolucion/users/views.py:71
 msgid "the username or password is not correct."
 msgstr "el nombre de usuario o contrase esta incorrecta"
+
+#~ msgid "inf concept btn title"
+#~ msgstr "concepto"
 
 #~ msgid "created_at"
 #~ msgstr "creado el"

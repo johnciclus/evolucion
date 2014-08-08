@@ -3,7 +3,7 @@
  */
 
 this.figures = $.extend(this.figures, {
-  concept: function(ctx, parent, p, title, figureStyle){
+  element: function(ctx, parent, p, title, figureStyle){
     var bb, op, width, height;
     var fig             = figures.figure(ctx);
     var titleStyle      = utils.clone(style.title);
@@ -257,22 +257,22 @@ this.figures = $.extend(this.figures, {
   }
 });
 
-this.Concept = Element.extend({
+this.ElementInf = Element.extend({
   init: function(ctx, pos, title, description, units){
     this._super(ctx);
     
-    this.type         = "concept";
+    this.type         = "element";
     var idx           = this.ctx.idx[this.type]++;
     
-    this.id           = "concept-"+idx;
-    this.title        = title || "Concepto "+idx;
+    this.id           = "element-"+idx;
+    this.title        = title || "Elemento "+idx;
     this.name         = utils.textToVar(this.title);
     
     this.description  = description || " ";
     this.units        = units || " ";
-    this.list         = this.ctx.list.concept;
+    this.list         = this.ctx.list.element;
     
-    this.figGenerator = figures.concept;
+    this.figGenerator = figures.element;
     this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
@@ -409,7 +409,22 @@ this.InformationRel = Relation.extend({
   	}
   },
   changeInfluence: function(influence){
-  	console.log(influence);
+  	var words = influence.split(" ");
+  	
+  	if(words[0] == '+' || words[0] == '-' || words[0] == 'none'){
+  		if(words.length == 1){
+  			this.influence = influence;
+	  		this.fig.changeInfluences(influence);
+  		}
+  		else if(words.length == 2){
+	  		if(words[1] == 'tl' || words[1] == 't' || words[1] == 'tr'||
+	  		   words[1] == 'l'  || words[1] == 'r' ||
+	  		   words[1] == 'bl' || words[1] == 'b' || words[1] == 'br'){
+	  			this.influence = influence;
+	  			this.fig.changeInfluences(influence);
+	  		}
+  		}
+  	}
   },
   figure: function(pos){
     this.fig = this.figGenerator(this.ctx, this, pos, this.delay, this.influence);
@@ -451,7 +466,7 @@ this.Influences = Editor.extend({
     
     this._super(this.initWorkArea());
     
-    this.elements = ['concept', 'clone'];
+    this.elements = ['element', 'clone'];
     this.states   = this.elements.concat(
                     ['cycle', 'material', 'information', 'sectorinf']);
     
@@ -471,12 +486,12 @@ this.Influences = Editor.extend({
     $(this.svgDiv).mouseenter(function(e){
       var p = inf.pointer.getPosition(e);
       switch(inf.state){
-        case 'concept': {
-          if(inf.tmp.concept){
-            inf.tmp.concept.remove();
-            inf.tmp.concept = undefined;
+        case 'element': {
+          if(inf.tmp.element){
+            inf.tmp.element.remove();
+            inf.tmp.element = undefined;
           }
-          inf.tmp.concept = figures.concept(inf, undefined, p, "Concepto "+inf.idx['concept'], {});
+          inf.tmp.element = figures.element(inf, undefined, p, "Elemento "+inf.idx['element'], {});
           break;
         }
         case 'cycle': {
@@ -523,10 +538,10 @@ this.Influences = Editor.extend({
     });
     $(this.svgDiv).mouseleave(function(e){
       switch(inf.state){
-        case 'concept': {
-          if(inf.tmp.concept){
-            inf.tmp.concept.remove();
-            inf.tmp.concept = undefined;
+        case 'element': {
+          if(inf.tmp.element){
+            inf.tmp.element.remove();
+            inf.tmp.element = undefined;
           }
           break;
         }
@@ -570,9 +585,9 @@ this.Influences = Editor.extend({
     $(this.svgDiv).mousemove(function(e){
       var p = inf.pointer.getPosition(e);
       switch(inf.state){
-        case 'concept': {
-          if(inf.tmp.concept){
-            inf.tmp.concept.moveToPoint(p);            
+        case 'element': {
+          if(inf.tmp.element){
+            inf.tmp.element.moveToPoint(p);            
           }
           break;
         }
@@ -613,13 +628,13 @@ this.Influences = Editor.extend({
       var p = inf.pointer.getPosition(e);
       var alpha;
       switch(inf.state){
-        case 'concept': {
-          if(inf.tmp.concept){
-            var c = new Concept(inf, p);
-            inf.list.concept[c.id] = c;
+        case 'element': {
+          if(inf.tmp.element){
+            var c = new ElementInf(inf, p);
+            inf.list.element[c.id] = c;
             inf.activateState('cursor');
-            inf.tmp.concept.remove();
-            inf.tmp.concept = undefined;
+            inf.tmp.element.remove();
+            inf.tmp.element = undefined;
           }
           break;          
         }
@@ -761,7 +776,7 @@ this.Influences = Editor.extend({
     
     if(model){
       elements =  {
-        'concept':  'concepts',
+        'element':  'elements',
         'cycle':    'cycles'
       };
       for(var el in elements){
@@ -871,16 +886,16 @@ this.Influences = Editor.extend({
       
       this.panel.resize(width, height);
         
-      var concepts  = influences.find('concepts>concept');
+      var elements  = influences.find('elements>element');
       
-      concepts.each(function( idx, concept ) {
-        name          = $(concept).children('name').text();
-        title         = $(concept).children('title').text();
-        description   = $(concept).children('description').text();
-        units         = $(concept).children('units').text();
+      elements.each(function( idx, element ) {
+        name          = $(element).children('name').text();
+        title         = $(element).children('title').text();
+        description   = $(element).children('description').text();
+        units         = $(element).children('units').text();
         
-        position      = $(concept).children('position');
-        relations     = $(concept).children('relations');
+        position      = $(element).children('position');
+        relations     = $(element).children('relations');
         
         from_relations = [];
         to_relations   = [];
@@ -895,8 +910,8 @@ this.Influences = Editor.extend({
         
         pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
         
-        var c = new Concept(inf, pos, title, description, units);
-        inf.list.concept[c.id] = c;
+        var c = new ElementInf(inf, pos, title, description, units);
+        inf.list.element[c.id] = c;
       });
       
       var cycles  = influences.find('cycles>cycle');

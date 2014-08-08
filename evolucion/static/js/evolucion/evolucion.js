@@ -221,32 +221,36 @@ this.figures = {
       	if(words.length == 2){
       		switch(words[1]){
       			case 'tl':
-      				fig.sym_dx = -10;
-      				fig.sym_dy = -10;
+      				this.sym_dx = -10;
+      				this.sym_dy = -10;
       				break;
       			case 't':
-      				fig.sym_dy = -10;
+      				this.sym_dx =  0;
+      				this.sym_dy = -10;
       				break;
       			case 'tr':
-      				fig.sym_dx =  10;
-      				fig.sym_dy = -10;
+      				this.sym_dx =  10;
+      				this.sym_dy = -10;
       				break;
       			case 'l':
-      				fig.sym_dx = -10;
+      				this.sym_dx = -10;
+      				this.sym_dy =  0;
       				break;
       			case 'r':
-      				fig.sym_dx =  10;
+      				this.sym_dx =  10;
+      				this.sym_dy =  0;
       				break;
       			case 'bl':
-      				fig.sym_dx = -10;
-      				fig.sym_dy =  10;
+      				this.sym_dx = -10;
+      				this.sym_dy =  10;
       				break;
       			case 'b':
-      				fig.sym_dy =  10;
+      				this.sym_dx =  0;
+      				this.sym_dy =  10;
       				break;
       			case 'br':
-      				fig.sym_dx =  10;
-      				fig.sym_dy =  10;
+      				this.sym_dx =  10;
+      				this.sym_dy =  10;
       				break;
       		}
       	}
@@ -361,6 +365,60 @@ this.figures = {
 	  	fig.changeDelay = function(delay){
 	  		var delay_symbol = (delay=="yes") ? "||" : "";
 	  		fig[7].attr({text: delay_symbol});
+	  	};
+	  	fig.changeInfluences = function(influence){
+	  		var words = influence.split(" ");
+	  		var inf_symbol;
+	  		
+	  		if(words[0] == 'none'){
+	  			inf_symbol = "";
+	  		}
+	  		if(words[0] == '+' || words[0] == '-'){
+	  			inf_symbol = words[0];
+	  			this.sym_dx = 0;
+	  			this.sym_dy = -10;
+	  		}
+	  		if(words.length == 2){	
+	      		switch(words[1]){
+	      			case 'tl':
+	      				this.sym_dx = -10;
+	      				this.sym_dy = -10;
+	      				break;
+	      			case 't':
+	      				this.sym_dx =  0;
+	      				this.sym_dy = -10;
+	      				break;
+	      			case 'tr':
+	      				this.sym_dx =  10;
+	      				this.sym_dy = -10;
+	      				break;
+	      			case 'l':
+	      				this.sym_dx = -10;
+	      				this.sym_dy =  0;
+	      				break;
+	      			case 'r':
+	      				this.sym_dx =  10;
+	      				this.sym_dy =  0;
+	      				break;
+	      			case 'bl':
+	      				this.sym_dx = -10;
+	      				this.sym_dy =  10;
+	      				break;
+	      			case 'b':
+	      				this.sym_dx =  0;
+	      				this.sym_dy =  10;
+	      				break;
+	      			case 'br':
+	      				this.sym_dx =  10;
+	      				this.sym_dy =  10;
+	      				break;
+	      		}
+	      	}
+	      	
+	  		this[6].attr({text: inf_symbol});
+	  		this[6].attr('x', this.p[3].x + this.sym_dx);
+			this[6].attr('y', this.p[3].y + this.sym_dy);
+			this[6].transform('');
 	  	};
 	  	
 		fig.hover(
@@ -1908,19 +1966,19 @@ this.Editor = Class.extend({
               "<label for='"+el.id+"-influence' class='control-label'>Influencia</label>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-none-influence' value=' ' "+none_checked+">"+
+                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-none-influence' value='none' "+none_checked+">"+
                   "Ninguna"+
                 "</label>"+
               "</div>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-positive-influence' value='positive' "+pos_checked+">"+
+                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-positive-influence' value='+' "+pos_checked+">"+
                   "Positiva"+
                 "</label>"+
               "</div>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-negative-influence' value='negative' "+neg_checked+">"+
+                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-negative-influence' value='-' "+neg_checked+">"+
                   "Negativa"+
                 "</label>"+
               "</div>"+
@@ -2031,20 +2089,30 @@ this.Editor = Class.extend({
       }
       if(el.influence){
         $("input:radio[name='"+el.id+"-influence']").change(function(){
-          
-          console.log($(this).val());
-          console.log($("input:radio[name='"+el.id+"-inf-pos']").val());
-          
+          var id = this.name.substring(0, this.name.indexOf("-influence"));
           var influence = $(this).val();
+          
           if(influence != "none"){
-          	influence += " "+$("input:radio[name='"+el.id+"-inf-pos']").val();
+          	var position = $("input:radio[name='"+id+"-inf-pos']:checked").val();
+          	if(position){
+          		influence += " "+position;
+          	}
           }
+          
           el.changeInfluence(influence);
         });
         
         $("input:radio[name='"+el.id+"-inf-pos']").change(function(){
-          console.log($("input:radio[name='"+el.id+"-influence']").val());
-          console.log($(this).val());
+          var id = this.name.substring(0, this.name.indexOf("-inf-pos"));
+          var influence = $("input:radio[name='"+id+"-influence']:checked").val();
+          if(influence != "none"){
+          	position = $(this).val();
+          	if(position){
+          		influence += " "+position;
+          	}
+          }
+          
+          el.changeInfluence(influence);
         });
         
       }
