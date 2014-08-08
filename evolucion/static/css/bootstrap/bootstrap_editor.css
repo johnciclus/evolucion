@@ -56,6 +56,10 @@ div.svg-input {
     background-color:#FFF;
 }
 
+.centered{
+	text-align: center;
+}
+
 .navbar-nav>li>a{
     padding-left: 12px;
     padding-right: 12px;

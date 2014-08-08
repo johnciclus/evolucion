@@ -92,7 +92,7 @@ this.figures = $.extend(this.figures, {
   },
   cycle: function(ctx, parent, p, title, orientation, feedback){        
     var bb, op, pt, width, height, middle_x, el_size;
-    var fig   = figures.figure(ctx);
+    var fig = figures.figure(ctx);
     
     fig.p = {x: p.x, y: p.y};
     fig.push(
@@ -250,10 +250,10 @@ this.figures = $.extend(this.figures, {
     return fig;
   },
   materialRelation: function(ctx, parent, p){
-    return figures.relation(ctx, parent, p, style.material_relation);
+    return figures.influenceRelation(ctx, parent, p, style.material_relation);
   },
-  informationRelation: function(ctx, parent, p){
-    return figures.relation(ctx, parent, p, style.information_relation);
+  informationRelation: function(ctx, parent, p, delay, influence){
+    return figures.influenceRelation(ctx, parent, p, delay, influence, style.information_relation);
   }
 });
 
@@ -376,17 +376,19 @@ this.MaterialRel = Relation.extend({
 });
 
 this.InformationRel = Relation.extend({
-  init: function(ctx, pos, from, to, description){
+  init: function(ctx, pos, from, to, description, delay, influence){
     this._super(ctx);
     
     this.type = "information";
     var idx = this.ctx.idx[this.type]++;
   
     this.id = "information-"+idx;
+    this.title 			= this.ctx.relationTitle(from.title, to.title);
+    this.name 			= utils.textToVar(this.title);
     
-    this.title = this.ctx.relationTitle(from.title, to.title);
-    this.name = utils.textToVar(this.title);
-    this.description = description || " ";
+    this.description 	= description 	|| " ";
+    this.delay 			= delay 		|| "not";
+    this.influence 		= influence 	|| "none";
     
     this.list = this.ctx.list.information;
     this.from = from;
@@ -400,10 +402,19 @@ this.InformationRel = Relation.extend({
     this.integrateCtx();
     this.viewDetails();
   },
+  changeDelay: function(delay){
+  	if(delay == 'yes' || delay == 'not'){
+  		this.delay = delay;
+  		this.fig.changeDelay(delay);
+  	}
+  },
+  changeInfluence: function(influence){
+  	console.log(influence);
+  },
   figure: function(pos){
-    this.fig = this.figGenerator(this.ctx, this, pos);
-    this.fig[6].click(this.viewDetails);
-    this.fig[7].click(this.remove);
+    this.fig = this.figGenerator(this.ctx, this, pos, this.delay, this.influence);
+    this.fig[8].click(this.viewDetails);
+    this.fig[9].click(this.remove);
     this.viewPoints(this.selected);
   }
 });
@@ -1001,7 +1012,7 @@ this.Influences = Editor.extend({
   },
   
   objects: {
-    getByName: function(name){
+	getByName: function(name){
       var elmts = this.ctx.elements;
       var list;
       for( var el in elmts ){
@@ -1132,5 +1143,5 @@ this.Influences = Editor.extend({
       var existsDes = Raphael.isPointInsidePath(sector, position[3].x, position[3].y);
       return {'from': existsOri, 'to': existsDes};
       }
-    } 
+  } 
 });

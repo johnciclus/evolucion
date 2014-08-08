@@ -53,11 +53,11 @@ def sign_in(request):
         if user is not None:
             #user.is_active = True
             #user.save()
-            print >>sys.stderr, user.is_active
+            #print >>sys.stderr, user.is_active
             if user.is_active:
                 login(request, user)
-                print >>sys.stderr, "request.user"
-                print >>sys.stderr, dir(request.user)
+                #print >>sys.stderr, "request.user"
+                #print >>sys.stderr, dir(request.user)
                 print >>sys.stderr, request.user.__class__.__name__
                 print >>sys.stderr, "request.user.is_authenticated()"
                 print >>sys.stderr, request.user.is_authenticated()

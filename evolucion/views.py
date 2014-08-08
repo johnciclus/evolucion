@@ -16,7 +16,7 @@ class Explore(generic.View):
     def get(self, request, *args, **kwargs):
         form = UserForm(auto_id=True)
         
-        projects = Project.objects.all()
+        projects = Project.objects.filter(is_public=True)
                
         context = {}
         context['user']             = request.user

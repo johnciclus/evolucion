@@ -15,19 +15,24 @@ from evolucion.projects.models import Project, ProjectForm, Prose, ProseForm
 import logging, sys
 
 logger = logging.getLogger(__name__)
-print >>sys.stderr, "Text"
-
+#print >>sys.stderr, "Text"
+ 
 class Index(generic.View):
     def get(self, request, *args, **kwargs):
+        user = request.user
         requested_user = get_object_or_404(EvoUser, username = kwargs['username'])
-        projects = requested_user.project_set.all()
-        
+                
+        if user.is_authenticated() and user.username == requested_user.username:
+            projects = requested_user.project_set.all()
+        else:
+            projects = requested_user.project_set.filter(is_public=True)
+            
         context = {}
-        context['user']             = request.user
+        context['user']             = user
         context['requested_user']   = requested_user
         context['projects']         = projects
        
-        if request.user.is_anonymous():
+        if user.is_anonymous():
             form = UserForm(auto_id=True)
             context['form'] = form
             

@@ -20,8 +20,8 @@ this.style = {
   material_relation: { 'stroke-width': 3.0},
   point:      { 'stroke': '#008ec7', 'fill': '#fff'},  //atrPun
   rectangle:  { 'stroke': '#aaa', 'fill': '#fff', 'stroke-dasharray': ''},
-  symbol:     { 'font-size': 20,     'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'},
-  text:       {  'font-size': 12, 'font-family': 'Verdana', 'fill': '#000'},  //atrTex
+  symbol:     { 'font-size': 20, 'font-family': 'Verdana', 'fill': '#555', 'stroke': '#555'},
+  text:       { 'font-size': 12, 'font-family': 'Verdana', 'fill': '#000'},  //atrTex
   title:      { 'font-size': 14, 'font-family': 'Verdana', 'fill': '#000'}  //atrTit
 };
 
@@ -60,10 +60,10 @@ this.figures = {
               r.path(fig.pathArrow).attr(style.figure));
     
     if(feedback == "positive"){
-      fig.push(r.text(cp.x, cp.y - 2, "+").attr(style.symbol));
+      fig.push(r.text(cp.x, cp.y - 1, "+").attr(style.symbol));
     }
     else if(feedback == "negative"){
-      fig.push(r.text(cp.x, cp.y - 2, "-").attr(style.symbol));
+      fig.push(r.text(cp.x, cp.y - 1, "-").attr(style.symbol));
     }
     return fig;
   },
@@ -203,125 +203,187 @@ this.figures = {
         ctx.r.circle(points.bx, points.by, 4).attr(style.point),
         ctx.r.circle(points.zx, points.zy, 4).attr(style.point)
       );
-      
-      var bb, pt;
-      
-      pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
-      fig.push(
-        ctx.r.image('/static/icons/info.png',  pt.x - 24, pt.y - 12, 24, 24),
-        ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24)
-      );
-      
-      for(var i=2; i<7; i++){
-        fig[i].toFront();
-      }
-      fig[6].hide();
-      fig[7].hide();
-      
-      fig[2].attr({cursor: "move"});
-      fig[3].attr({cursor: "move"});
-      fig[4].attr({cursor: "move"});
-      fig[5].attr({cursor: "move"});
-      
-      fig.hidePoints =  function(){
-        fig[1].hide();
-        fig[2].hide();
-        fig[3].hide();
-        fig[4].hide();
-        fig[5].hide();
-      };
-      fig.showPoints = function(){
-        fig[1].show();
-        fig[2].show();
-        fig[3].show();
-        fig[4].show();
-        fig[5].show();
-      };
-      fig.update = function(){
-        var pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
-        fig[6].attr('x', pt.x - 24);
-        fig[6].attr('y', pt.y - 12);
-        fig[6].transform('');
-        fig[7].attr('x', pt.x);
-        fig[7].attr('y', pt.y - 12);
-        fig[7].transform('');
-      };
-      
-      fig[2].update = function (dx, dy) {
-        this.transform("...T" + dx + "," + dy);
-        
-        bb = this.getBBox();
-        fig.p[0] = {x: (bb.x + bb.width/2), 
-                    y: (bb.y + bb.height/2)};
-        
-        pt = ctx.path.nearestPoint(this.parent.from.fig.border, fig.p[0]);
-              
-        this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
-              
-        bb = this.getBBox();
-        fig.p[0] = {x: (bb.x + bb.width/2), 
-                    y: (bb.y + bb.height/2)};
-        fig[3].update(dx, dy);
-      };
-      fig[3].update = function (dx, dy) {
-        this.transform("...T" + dx + "," + dy);
-        
-        var bb = this.getBBox();
-        fig.p[1] = {x: (bb.x + (bb.width)/2), 
-              y: (bb.y + (bb.height)/2)};
-        fig[0].modifyPoints(fig.p);
-        fig[1].modifyPoints(fig.p);
-        fig.update();
-      };
-      fig[4].update = function (dx, dy) {
-        this.transform("...T" + dx + "," + dy);
-        
-        var bb = this.getBBox();
-        fig.p[2] = {x: (bb.x + (bb.width)/2), 
-              y: (bb.y + (bb.height)/2)};
-        fig[0].modifyPoints(fig.p);
-        fig[1].modifyPoints(fig.p);
-        fig.update();
-      };
-      fig[5].update = function (dx, dy) {
-        this.transform("...T" + dx + "," + dy);
-        
-        bb = this.getBBox();
-        fig.p[3] = {x: (bb.x + (bb.width)/2), 
-              y: (bb.y + (bb.height)/2)};
-        pt = ctx.path.nearestPoint(this.parent.to.fig.border, fig.p[3]);
-              
-        this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
-              
-        bb = this.getBBox();
-        fig.p[3] = {x: (bb.x + (bb.width)/2), 
-              y: (bb.y + (bb.height)/2)};
-        fig[4].update(dx, dy);
-      };
-      
-      fig[2].drag(moveActions.move, moveActions.start, moveActions.end);
-      fig[3].drag(moveActions.move, moveActions.start, moveActions.end);
-      fig[4].drag(moveActions.move, moveActions.start, moveActions.end);
-      fig[5].drag(moveActions.move, moveActions.start, moveActions.end);
-      
-      fig.hover(
-        function(){
-          fig[6].show();
-          fig[7].show();
-          fig.showPoints();
-          clearInterval(fig.timer);
-        },
-        function(){
-          fig[6].hide();
-          fig[7].hide();
-          fig.timer = setTimeout(function(){
-            fig.hidePoints();
-            }, 2000);
-        }
-      );
     }
-    utils.parentReference(fig, parent);
     return fig;
+  },
+  
+  influenceRelation: function(ctx, parent, p, delay, influence, figureStyle){
+  	var fig = this.relation(ctx, parent, p, figureStyle);
+  	if($.isArray(p)){
+		var bb, pt;
+		var words = influence.split(" ");
+		var delay_symbol = (delay=="yes") ? "||" : "";
+		var inf_symbol = (influence=="none") ? "" : words[0];
+      	
+      	fig.sym_dx = 0, fig.sym_dy=0;
+      	
+      	pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
+      	if(words.length == 2){
+      		switch(words[1]){
+      			case 'tl':
+      				fig.sym_dx = -10;
+      				fig.sym_dy = -10;
+      				break;
+      			case 't':
+      				fig.sym_dy = -10;
+      				break;
+      			case 'tr':
+      				fig.sym_dx =  10;
+      				fig.sym_dy = -10;
+      				break;
+      			case 'l':
+      				fig.sym_dx = -10;
+      				break;
+      			case 'r':
+      				fig.sym_dx =  10;
+      				break;
+      			case 'bl':
+      				fig.sym_dx = -10;
+      				fig.sym_dy =  10;
+      				break;
+      			case 'b':
+      				fig.sym_dy =  10;
+      				break;
+      			case 'br':
+      				fig.sym_dx =  10;
+      				fig.sym_dy =  10;
+      				break;
+      		}
+      	}
+      			
+		fig.push(
+			ctx.r.text(fig.p[3].x + fig.sym_dx, fig.p[3].y + fig.sym_dy, inf_symbol).attr(style.symbol),
+			ctx.r.text(pt.x, pt.y, delay_symbol).attr(style.symbol),
+			ctx.r.image('/static/icons/info.png',  pt.x - 24, pt.y - 12, 24, 24),
+			ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24)
+		);
+	  	
+	  	for(var i=2; i<6; i++){
+			fig[i].toFront();
+		}
+		fig[8].hide();
+		fig[9].hide();
+	  
+		fig[2].attr({cursor: "move"});
+		fig[3].attr({cursor: "move"});
+		fig[4].attr({cursor: "move"});
+		fig[5].attr({cursor: "move"});
+		fig[6].attr({cursor: "default"});
+		fig[7].attr({cursor: "default"});
+	  
+		fig.hidePoints =  function(){
+			fig[1].hide();
+			fig[2].hide();
+			fig[3].hide();
+			fig[4].hide();
+			fig[5].hide();
+		};
+		fig.showPoints = function(){
+		    fig[1].show();
+		    fig[2].show();
+		    fig[3].show();
+		    fig[4].show();
+		    fig[5].show();
+		};
+		fig.update = function(){
+	    	var pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
+	    	fig[6].attr('x', fig.p[3].x + fig.sym_dx);
+			fig[6].attr('y', fig.p[3].y + fig.sym_dy);
+			fig[6].transform('');
+	    	fig[7].attr('x', pt.x);
+			fig[7].attr('y', pt.y);
+			fig[7].transform('');
+	    	fig[8].attr('x', pt.x - 24);
+			fig[8].attr('y', pt.y - 12);
+			fig[8].transform('');
+			fig[9].attr('x', pt.x);
+			fig[9].attr('y', pt.y - 12);
+			fig[9].transform('');
+		};
+	  
+		fig[2].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		
+			bb = this.getBBox();
+			fig.p[0] = {x: (bb.x + bb.width/2), 
+			            y: (bb.y + bb.height/2)};
+			
+			pt = ctx.path.nearestPoint(this.parent.from.fig.border, fig.p[0]);
+			      
+			this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
+			          
+			    bb = this.getBBox();
+			    fig.p[0] = {x: (bb.x + bb.width/2), 
+			                y: (bb.y + bb.height/2)};
+			    fig[3].update(dx, dy);
+		};
+		fig[3].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		    
+		    var bb = this.getBBox();
+		    fig.p[1] = {x: (bb.x + (bb.width)/2), 
+		          y: (bb.y + (bb.height)/2)};
+		    fig[0].modifyPoints(fig.p);
+		    fig[1].modifyPoints(fig.p);
+		    fig.update();
+		};
+		fig[4].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		    
+		    var bb = this.getBBox();
+		    fig.p[2] = {x: (bb.x + (bb.width)/2), 
+		          y: (bb.y + (bb.height)/2)};
+		    fig[0].modifyPoints(fig.p);
+		    fig[1].modifyPoints(fig.p);
+		    fig.update();
+		};
+		fig[5].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		
+			bb = this.getBBox();
+			fig.p[3] = {x: (bb.x + (bb.width)/2), 
+			      y: (bb.y + (bb.height)/2)};
+			pt = ctx.path.nearestPoint(this.parent.to.fig.border, fig.p[3]);
+			      
+			this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
+		          
+		    bb = this.getBBox();
+		    fig.p[3] = {x: (bb.x + (bb.width)/2), 
+		          y: (bb.y + (bb.height)/2)};
+		    fig[4].update(dx, dy);
+		};
+	  
+		fig[2].drag(moveActions.move, moveActions.start, moveActions.end);
+		fig[3].drag(moveActions.move, moveActions.start, moveActions.end);
+		fig[4].drag(moveActions.move, moveActions.start, moveActions.end);
+		fig[5].drag(moveActions.move, moveActions.start, moveActions.end);
+	  	
+	  	fig.changeDelay = function(delay){
+	  		var delay_symbol = (delay=="yes") ? "||" : "";
+	  		fig[7].attr({text: delay_symbol});
+	  	};
+	  	
+		fig.hover(
+	    	function(){
+				fig[8].show();
+				fig[9].show();
+				fig.showPoints();
+				clearInterval(fig.timer);
+	    	},
+			function(){
+				fig[8].hide();
+				fig[9].hide();
+				fig.timer = setTimeout(function(){
+	        		fig.hidePoints();
+	        	}, 2000);
+			}
+		);
+	}
+	utils.parentReference(fig, parent);
+  	return fig;
+  },
+  stockAndFlowfRelation: function(ctx, parent, p, figureStyle){
+	
   },
   
   clone: function(ctx, parent, p){
@@ -340,7 +402,7 @@ this.figures = {
     return fig;
   },
   sector: function (ctx, parent, p, size, title){
-    var fig = figures.figure(ctx);
+    var fig = this.figure(ctx);
     var cp, bb, op, width, height, middle_x, middle_y;
     var size_dp = size || {'width': 200, 'height': 400};
     
@@ -1658,10 +1720,6 @@ this.Editor = Class.extend({
   integrateControls: function(el){
     var nameItemsCont = '#'+el.type+'-items';
     
-    if(el.ctx.id=='saf'){
-      evo.beh.integrateControls(el);
-    }
-    
     if(nameItemsCont && el.id && el.title){
       var html =
         "<div id='"+el.id+"-item' class='panel panel-default'>"+
@@ -1759,14 +1817,14 @@ this.Editor = Class.extend({
             "</div>";
       }
       if(el.feedback){
-        var negative_checked  = '';
-        var positive_checked  = '';
+        var neg_checked  = '';
+        var pos_checked  = '';
         
         if(el.feedback == 'negative'){
-          negative_checked  = 'checked';
+          neg_checked  = 'checked';
         }
         else if(el.feedback == 'positive'){
-          positive_checked = 'checked';
+          pos_checked = 'checked';
         }
         
         html += 
@@ -1774,16 +1832,118 @@ this.Editor = Class.extend({
               "<label for='"+el.id+"-feedback' class='control-label'>Realimentación</label>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative' "+negative_checked+">"+
+                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-negative' value='negative' "+neg_checked+">"+
                   "Negativa"+
                 "</label>"+
               "</div>"+
               "<div class='radio'>"+
                 "<label>"+
-                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive' "+positive_checked+">"+
+                  "<input type='radio' name='"+el.id+"-feedback' id='"+el.id+"-feedback-positive' value='positive' "+pos_checked+">"+
                   "Positiva"+
                 "</label>"+
               "</div>"+
+            "</div>";
+      }
+      if(el.delay){
+        var yes_checked  = '';
+        var not_checked  = '';
+        
+        if(el.delay == 'yes'){
+          yes_checked  = 'checked';
+        }
+        else if(el.delay == 'not'){
+          not_checked  = 'checked';
+        }
+        
+        html += 
+            "<div class='form-group'>"+
+              "<label for='"+el.id+"-delay' class='control-label'>Retraso</label>"+
+              "<div class='radio'>"+
+                "<label>"+
+                  "<input type='radio' name='"+el.id+"-delay' id='"+el.id+"-yes-delay' value='yes' "+yes_checked+">"+
+                  "Sí"+
+                "</label>"+
+              "</div>"+
+              "<div class='radio'>"+
+                "<label>"+
+                  "<input type='radio' name='"+el.id+"-delay' id='"+el.id+"-not-delay' value='not' "+not_checked+">"+
+                  "No"+
+                "</label>"+
+              "</div>"+
+            "</div>";
+      }
+      if(el.influence){
+        var pos_checked 	= '';
+        var neg_checked 	= '';
+        var none_checked  	= '';
+        var words = el.influence.split(" ");
+        var symbol = words[0];
+        var inf_pos_checked = [];
+        
+        if(symbol == '+'){
+          pos_checked  = 'checked';
+        }
+        else if(symbol == '-'){
+          neg_checked  = 'checked';
+        }
+        else if(symbol == 'none'){
+          none_checked = 'checked';
+        }
+        
+        inf_pos_checked['tl'] = '';
+        inf_pos_checked['t']  = '';
+        inf_pos_checked['tr'] = '';
+        inf_pos_checked['l']  = '';
+        inf_pos_checked['r']  = '';
+        inf_pos_checked['bl'] = '';
+        inf_pos_checked['b']  = '';
+        inf_pos_checked['bl'] = '';
+        
+        if(words.length == 2){
+        	inf_pos_checked[words[1]] = 'checked';	
+        }
+        
+        html += 
+            "<div class='form-group'>"+
+              "<label for='"+el.id+"-influence' class='control-label'>Influencia</label>"+
+              "<div class='radio'>"+
+                "<label>"+
+                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-none-influence' value=' ' "+none_checked+">"+
+                  "Ninguna"+
+                "</label>"+
+              "</div>"+
+              "<div class='radio'>"+
+                "<label>"+
+                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-positive-influence' value='positive' "+pos_checked+">"+
+                  "Positiva"+
+                "</label>"+
+              "</div>"+
+              "<div class='radio'>"+
+                "<label>"+
+                  "<input type='radio' name='"+el.id+"-influence' id='"+el.id+"-negative-influence' value='negative' "+neg_checked+">"+
+                  "Negativa"+
+                "</label>"+
+              "</div>"+
+              "<p class='centered' for='"+el.id+"-inf-position'>Posición</label>"+
+              "<table class='table table-bordered table-striped centered '>"+
+			      "<tbody>"+
+			        "<tr>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-tl' value='tl' "+inf_pos_checked['tl']+"></td>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-t'  value='t'  "+inf_pos_checked['t']+"></td>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-tr' value='tr' "+inf_pos_checked['tr']+"></td>"+
+			        "</tr>"+
+			        "<tr>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-l'  value='l'  "+inf_pos_checked['l']+"></td>"+
+			          "<td> </td>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-r'  value='r'  "+inf_pos_checked['r']+"></td>"+
+			        "</tr>"+
+			        "<tr>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-bl' value='bl' "+inf_pos_checked['bl']+"></td>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-b'  value='b'  "+inf_pos_checked['b']+"></td>"+
+			          "<td><input type='radio' name='"+el.id+"-inf-pos' id='"+el.id+"-inf-pos-br' value='br' "+inf_pos_checked['br']+"></td>"+
+			        "</tr>"+
+			      "</tbody>"+
+			    "</table>"+       
             "</div>";
       }
       html +=
@@ -1864,7 +2024,34 @@ this.Editor = Class.extend({
           el.changeFeedback($(this).val());
         });
       }
-
+	  if(el.delay){
+        $("input:radio[name='"+el.id+"-delay']").change(function(){
+          el.changeDelay($(this).val());
+        });
+      }
+      if(el.influence){
+        $("input:radio[name='"+el.id+"-influence']").change(function(){
+          
+          console.log($(this).val());
+          console.log($("input:radio[name='"+el.id+"-inf-pos']").val());
+          
+          var influence = $(this).val();
+          if(influence != "none"){
+          	influence += " "+$("input:radio[name='"+el.id+"-inf-pos']").val();
+          }
+          el.changeInfluence(influence);
+        });
+        
+        $("input:radio[name='"+el.id+"-inf-pos']").change(function(){
+          console.log($("input:radio[name='"+el.id+"-influence']").val());
+          console.log($(this).val());
+        });
+        
+      }
+    }
+  
+  	if(el.ctx.id=='saf'){
+      evo.beh.integrateControls(el);
     }
   },
   limitAdjustList: function(list){

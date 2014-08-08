@@ -17,10 +17,10 @@
               <div class="well">
                 <fieldset>
                     <legend>{{ project.title|capfirst }}</legend>
-                    <b> {{ project.user|capfirst }}</b>
-                    <br />
-                    <p>{{ project.description|capfirst }}</p>
                     
+                    <p><b>{% trans 'description'|capfirst %}: </b>{{ project.description|capfirst }}</p>
+                    <br />
+                    <p><b>{% trans 'author'|capfirst %}: </b> <a href="/{{ project.user.username }}">{{ project.user.first_name|capfirst }} {{ project.user.last_name|capfirst }}</a></p>
                     <div class="form-group">
                       <div class="col-lg-12 centered">
                         <button id="{{ project.user.username }}-{{ project.name }}" class="btn btn-primary btn-open">{% trans 'open project'|capfirst%}</button>
