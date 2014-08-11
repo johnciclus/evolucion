@@ -208,49 +208,50 @@ this.figures = {
   },
   
   influenceRelation: function(ctx, parent, p, delay, influence, figureStyle){
-  	var fig = this.relation(ctx, parent, p, figureStyle);
+  	var fig = figures.relation(ctx, parent, p, figureStyle);
+  	
   	if($.isArray(p)){
 		var bb, pt;
 		var words = influence.split(" ");
-		var delay_symbol = (delay=="yes") ? "||" : "";
-		var inf_symbol = (influence=="none") ? "" : words[0];
+		var inf_symbol   = (influence=="none") ? "" : words[0];
+      	var delay_symbol = (delay=="yes") ? "||" : "";
       	
       	fig.sym_dx = 0, fig.sym_dy=0;
-      	
       	pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
+      	
       	if(words.length == 2){
       		switch(words[1]){
       			case 'tl':
-      				this.sym_dx = -10;
-      				this.sym_dy = -10;
+      				fig.sym_dx = -10;
+      				fig.sym_dy = -10;
       				break;
       			case 't':
-      				this.sym_dx =  0;
-      				this.sym_dy = -10;
+      				fig.sym_dx =  0;
+      				fig.sym_dy = -10;
       				break;
       			case 'tr':
-      				this.sym_dx =  10;
-      				this.sym_dy = -10;
+      				fig.sym_dx =  10;
+      				fig.sym_dy = -10;
       				break;
       			case 'l':
-      				this.sym_dx = -10;
-      				this.sym_dy =  0;
+      				fig.sym_dx = -10;
+      				fig.sym_dy =  0;
       				break;
       			case 'r':
-      				this.sym_dx =  10;
-      				this.sym_dy =  0;
+      				fig.sym_dx =  10;
+      				fig.sym_dy =  0;
       				break;
       			case 'bl':
-      				this.sym_dx = -10;
-      				this.sym_dy =  10;
+      				fig.sym_dx = -10;
+      				fig.sym_dy =  10;
       				break;
       			case 'b':
-      				this.sym_dx =  0;
-      				this.sym_dy =  10;
+      				fig.sym_dx =  0;
+      				fig.sym_dy =  10;
       				break;
       			case 'br':
-      				this.sym_dx =  10;
-      				this.sym_dy =  10;
+      				fig.sym_dx =  10;
+      				fig.sym_dy =  10;
       				break;
       		}
       	}
@@ -440,8 +441,129 @@ this.figures = {
 	utils.parentReference(fig, parent);
   	return fig;
   },
+  
   stockAndFlowfRelation: function(ctx, parent, p, figureStyle){
-	
+	var fig = figures.relation(ctx, parent, p, figureStyle);
+  	
+  	if($.isArray(p)){
+		var bb, pt;
+		pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
+      	
+      	fig.push(
+			ctx.r.image('/static/icons/info.png',  pt.x - 24, pt.y - 12, 24, 24),
+			ctx.r.image('/static/icons/close.png', pt.x, pt.y - 12, 24, 24)
+		);
+	  	
+	  	for(var i=2; i<6; i++){
+			fig[i].toFront();
+		}
+		fig[6].hide();
+		fig[7].hide();
+	  
+		fig[2].attr({cursor: "move"});
+		fig[3].attr({cursor: "move"});
+		fig[4].attr({cursor: "move"});
+		fig[5].attr({cursor: "move"});
+	  
+		fig.hidePoints =  function(){
+			fig[1].hide();
+			fig[2].hide();
+			fig[3].hide();
+			fig[4].hide();
+			fig[5].hide();
+		};
+		fig.showPoints = function(){
+		    fig[1].show();
+		    fig[2].show();
+		    fig[3].show();
+		    fig[4].show();
+		    fig[5].show();
+		};
+		fig.update = function(){
+	    	var pt = ctx.path.pointFromPercentage(fig[0].pathCurve, 0.5);
+	    	fig[6].attr('x', pt.x - 24);
+			fig[6].attr('y', pt.y - 12);
+			fig[6].transform('');
+			fig[7].attr('x', pt.x);
+			fig[7].attr('y', pt.y - 12);
+			fig[7].transform('');
+		};
+	  
+		fig[2].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		
+			bb = this.getBBox();
+			fig.p[0] = {x: (bb.x + bb.width/2), 
+			            y: (bb.y + bb.height/2)};
+			
+			pt = ctx.path.nearestPoint(this.parent.from.fig.border, fig.p[0]);
+			      
+			this.transform("...T" + (pt.x - fig.p[0].x) + "," + (pt.y - fig.p[0].y));
+			          
+			    bb = this.getBBox();
+			    fig.p[0] = {x: (bb.x + bb.width/2), 
+			                y: (bb.y + bb.height/2)};
+			    fig[3].update(dx, dy);
+		};
+		fig[3].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		    
+		    var bb = this.getBBox();
+		    fig.p[1] = {x: (bb.x + (bb.width)/2), 
+		          y: (bb.y + (bb.height)/2)};
+		    fig[0].modifyPoints(fig.p);
+		    fig[1].modifyPoints(fig.p);
+		    fig.update();
+		};
+		fig[4].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		    
+		    var bb = this.getBBox();
+		    fig.p[2] = {x: (bb.x + (bb.width)/2), 
+		          y: (bb.y + (bb.height)/2)};
+		    fig[0].modifyPoints(fig.p);
+		    fig[1].modifyPoints(fig.p);
+		    fig.update();
+		};
+		fig[5].update = function (dx, dy) {
+		    this.transform("...T" + dx + "," + dy);
+		
+			bb = this.getBBox();
+			fig.p[3] = {x: (bb.x + (bb.width)/2), 
+			      y: (bb.y + (bb.height)/2)};
+			pt = ctx.path.nearestPoint(this.parent.to.fig.border, fig.p[3]);
+			      
+			this.transform("...T" + (pt.x - fig.p[3].x) + "," + (pt.y - fig.p[3].y));
+		          
+		    bb = this.getBBox();
+		    fig.p[3] = {x: (bb.x + (bb.width)/2), 
+		          y: (bb.y + (bb.height)/2)};
+		    fig[4].update(dx, dy);
+		};
+	  
+		fig[2].drag(moveActions.move, moveActions.start, moveActions.end);
+		fig[3].drag(moveActions.move, moveActions.start, moveActions.end);
+		fig[4].drag(moveActions.move, moveActions.start, moveActions.end);
+		fig[5].drag(moveActions.move, moveActions.start, moveActions.end);
+	  		  	
+		fig.hover(
+	    	function(){
+				fig[6].show();
+				fig[7].show();
+				fig.showPoints();
+				clearInterval(fig.timer);
+	    	},
+			function(){
+				fig[6].hide();
+				fig[7].hide();
+				fig.timer = setTimeout(function(){
+	        		fig.hidePoints();
+	        	}, 2000);
+			}
+		);
+	}
+	utils.parentReference(fig, parent);
+  	return fig;
   },
   
   clone: function(ctx, parent, p){
@@ -460,7 +582,8 @@ this.figures = {
     return fig;
   },
   sector: function (ctx, parent, p, size, title){
-    var fig = this.figure(ctx);
+    
+    var fig = figures.figure(ctx);
     var cp, bb, op, width, height, middle_x, middle_y;
     var size_dp = size || {'width': 200, 'height': 400};
     
@@ -488,8 +611,8 @@ this.figures = {
       ctx.r.circle(cp.p1x, cp.p1y, 4).attr(style.point),
       ctx.r.circle(cp.p2x, cp.p2y, 4).attr(style.point),
       ctx.r.circle(cp.p3x, cp.p3y, 4).attr(style.point),
-      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
-      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)          
+      ctx.r.image('/static/icons/info.png',  op.x - 16, op.y - 16, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 8, op.y - 16, 24, 24)          
     );
       
     fig[1].toFront();
@@ -529,12 +652,12 @@ this.figures = {
       this[2].attr('y', op.y + height + 2);
       this[2].transform('');
       
-      this[7].attr('x', op.x - 18);
-      this[7].attr('y', op.y - 18);
+      this[7].attr('x', op.x - 16);
+      this[7].attr('y', op.y - 16);
       this[7].transform('');
       
-      this[8].attr('x', op.x + width - 6);
-      this[8].attr('y', op.y - 18);
+      this[8].attr('x', op.x + width - 8);
+      this[8].attr('y', op.y - 16);
       this[8].transform('');
       
       bb = this[2].getBBox();
@@ -804,9 +927,9 @@ this.Unit = Class.extend({
     this.ctx = ctx;
   },
   changeTitle: function(title){
-    this.title = title;
-    this.name  = utils.textToVar(title);
-    this.fig.changeTitle(title);                  
+  	this.title = this.ctx.validateTitle(this, title);
+    this.name  = utils.textToVar(this.title);
+    this.fig.changeTitle(this.title);                  
     this.ctx.changeTitle(this);                   
     this.fig.border = this.fig.getBorder();
     
@@ -1200,7 +1323,7 @@ this.Relation = Unit.extend({
   changeTitle: function(from_title, to_title){
     this.title = this.ctx.relationTitle(from_title, to_title);       
     this.name = utils.textToVar(this.title);
-    //this.ctx.modTitMenu(this);
+    this.ctx.changeTitle(this);
   },
   controlMove: function(cont, restore){
     //cont op, pco, dp, pcd
@@ -2162,6 +2285,35 @@ this.Editor = Class.extend({
     }
     return title;
   },
+  validateTitle: function(el, title){
+  	var exist;
+  	var name;
+  	var list;
+	var new_title = title;
+	var count = 0;
+	
+	do{
+		exist = false;
+		name = utils.textToVar(new_title);
+	  	for(var element in this.elements){
+	  		list = this.list[this.elements[element]];
+	  		for(var item in list){
+	  			if(el.id != list[item].id && name == list[item].name){
+					exist = true;  				
+	  			}
+	  		}
+	  	}
+	  	if(exist){
+	  		count++;
+	  		new_title = title + " " + count;
+	  	}
+	  	else{
+	  		exist = false;
+	  	}
+   } while (exist)
+   
+  	return new_title;
+  },
   viewDetails: function(el){
     var isNotCurrent = false;
     var lists = $('#elements-'+el.ctx.id+'>div>.panel-collapse.in');
@@ -2309,6 +2461,13 @@ this.Editor = Class.extend({
     dp.append($('<y />').text(pos[3].y));
     
     return relation;
+  },
+  relationInfAsDOM: function(obj){
+  	var information = this.relationAsDOM(obj);
+  	information.append($('<delay />').text(obj.delay));
+  	information.append($('<influence />').text(obj.influence));
+  	
+  	return information;
   },
   sectorAsDOM: function(obj){
     var sector = $('<'+obj.type+' />');

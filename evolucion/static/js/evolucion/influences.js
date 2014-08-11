@@ -24,8 +24,8 @@ this.figures = $.extend(this.figures, {
     
     fig.push(
       ctx.r.rect(op.x, op.y, width, height, 4).attr(rectangleStyle),
-      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
-      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)
+      ctx.r.image('/static/icons/info.png',  op.x - 16, op.y - 16, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 8, op.y - 16, 24, 24)
     );
     
     fig[0].toFront();
@@ -54,12 +54,12 @@ this.figures = $.extend(this.figures, {
       this[1].attr('height', height);
       this[1].transform('');
       
-      this[2].attr('x', op.x - 18);
-      this[2].attr('y', op.y - 18);
+      this[2].attr('x', op.x - 16);
+      this[2].attr('y', op.y - 16);
       this[2].transform('');
       
-      this[3].attr('x', op.x + width -6);
-      this[3].attr('y', op.y - 18);
+      this[3].attr('x', op.x + width -8);
+      this[3].attr('y', op.y - 16);
       this[3].transform('');
       
     };
@@ -90,7 +90,7 @@ this.figures = $.extend(this.figures, {
     utils.parentReference(fig, parent);
     return fig;
   },
-  cycle: function(ctx, parent, p, title, orientation, feedback){        
+  cycle: function(ctx, parent, p, title, orientation, feedback){
     var bb, op, pt, width, height, middle_x, el_size;
     var fig = figures.figure(ctx);
     
@@ -110,8 +110,8 @@ this.figures = $.extend(this.figures, {
     fig.push(
       ctx.r.rect(op.x, op.y, width, height, 4).attr(style.rectangle),
       figures.arcWithArrow(ctx.r, pt, orientation, feedback),
-      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
-      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)
+      ctx.r.image('/static/icons/info.png',  op.x - 16, op.y - 16, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 8, op.y - 16, 24, 24)
     );
     
     fig[0].toFront();
@@ -148,12 +148,12 @@ this.figures = $.extend(this.figures, {
       
       this[2].transform("...T 0," + dy);
       
-      this[3].attr('x', op.x - 18);
-      this[3].attr('y', op.y - 18);
+      this[3].attr('x', op.x - 16);
+      this[3].attr('y', op.y - 16);
       this[3].transform('');
       
-      this[4].attr('x', op.x + width - 6);
-      this[4].attr('y', op.y - 18);
+      this[4].attr('x', op.x + width - 8);
+      this[4].attr('y', op.y - 16);
       this[4].transform('');
     };
     fig.changeOrientation = function(orientation){
@@ -249,8 +249,8 @@ this.figures = $.extend(this.figures, {
     utils.parentReference(fig, parent);
     return fig;
   },
-  materialRelation: function(ctx, parent, p){
-    return figures.influenceRelation(ctx, parent, p, style.material_relation);
+  materialRelation: function(ctx, parent, p, delay, influence){
+    return figures.influenceRelation(ctx, parent, p, delay, influence, style.material_relation);
   },
   informationRelation: function(ctx, parent, p, delay, influence){
     return figures.influenceRelation(ctx, parent, p, delay, influence, style.information_relation);
@@ -343,7 +343,7 @@ this.Cycle = Element.extend({
 });
 
 this.MaterialRel = Relation.extend({
-  init: function(ctx, pos, from, to, description){
+  init: function(ctx, pos, from, to, description, delay, influence){
     // p = relation points
     this._super(ctx);
     
@@ -353,11 +353,14 @@ this.MaterialRel = Relation.extend({
     this.id = "material-"+idx;
     this.title = this.ctx.relationTitle(from.title, to.title);       
     this.name = utils.textToVar(this.title);
-    this.description = description || " ";
+    
+    this.description 	= description || " ";
+    this.delay 			= delay 		|| "not";
+    this.influence 		= influence 	|| "none";
     
     this.list = this.ctx.list.material;
     this.from = from;
-    this.to = to;
+    this.to   = to;
             
     this.from.addLeavingRels(this);
     this.to.addEnteringRels(this);
@@ -367,10 +370,34 @@ this.MaterialRel = Relation.extend({
     this.integrateCtx();
     this.viewDetails();
   },
+  changeDelay: function(delay){
+  	if(delay == 'yes' || delay == 'not'){
+  		this.delay = delay;
+  		this.fig.changeDelay(delay);
+  	}
+  },
+  changeInfluence: function(influence){
+  	var words = influence.split(" ");
+  	
+  	if(words[0] == '+' || words[0] == '-' || words[0] == 'none'){
+  		if(words.length == 1){
+  			this.influence = influence;
+	  		this.fig.changeInfluences(influence);
+  		}
+  		else if(words.length == 2){
+	  		if(words[1] == 'tl' || words[1] == 't' || words[1] == 'tr'||
+	  		   words[1] == 'l'  || words[1] == 'r' ||
+	  		   words[1] == 'bl' || words[1] == 'b' || words[1] == 'br'){
+	  			this.influence = influence;
+	  			this.fig.changeInfluences(influence);
+	  		}
+  		}
+  	}
+  },
   figure: function(pos){
-    this.fig = this.figGenerator(this.ctx, this, pos);
-    this.fig[6].click(this.viewDetails);
-    this.fig[7].click(this.remove);
+    this.fig = this.figGenerator(this.ctx, this, pos, this.delay, this.influence);
+    this.fig[8].click(this.viewDetails);
+    this.fig[9].click(this.remove);
     this.viewPoints(this.selected);
   }
 });
@@ -382,7 +409,7 @@ this.InformationRel = Relation.extend({
     this.type = "information";
     var idx = this.ctx.idx[this.type]++;
   
-    this.id = "information-"+idx;
+    this.id 			= "information-"+idx;
     this.title 			= this.ctx.relationTitle(from.title, to.title);
     this.name 			= utils.textToVar(this.title);
     
@@ -480,7 +507,6 @@ this.Influences = Editor.extend({
     this.defineCtx();
     this.activateState(this.state);
     
-    //this.rec['camara'] = this.r.image('/images/camara_normal.png',-24,-24,24,24);
   },
   defActions: function(){
     $(this.svgDiv).mouseenter(function(e){
@@ -851,14 +877,14 @@ this.Influences = Editor.extend({
       list = inf.list['material'];
       group = influences.append('<material_relations />').children('material_relations');
       for(var i in list){
-        relation = this.relationAsDOM(list[i]);
+        relation = this.relationInfAsDOM(list[i]);
         group.append(relation);
       }
       
       list = inf.list['information'];
       group = influences.append('<information_relations />').children('information_relations');
       for(var i in list){
-        relation = this.relationAsDOM(list[i]);
+        relation = this.relationInfAsDOM(list[i]);
         group.append(relation);
       }
       
@@ -963,11 +989,13 @@ this.Influences = Editor.extend({
       var material_relations  = influences.find('material_relations>relation');
       
       material_relations.each(function( idx, relation ) {
-        origin          = $(relation).children('origin').text();
-        destination     = $(relation).children('destination').text();
-        description     = $(relation).children('description').text();
+        origin      = $(relation).children('origin').text();
+        destination = $(relation).children('destination').text();
+        description = $(relation).children('description').text();
+        delay     	= $(relation).children('delay').text();
+        influence  	= $(relation).children('influence').text();
         
-        position      = $(relation).children('position');
+        position    = $(relation).children('position');
                 
         pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
                 {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
@@ -979,7 +1007,7 @@ this.Influences = Editor.extend({
         var to_el   = inf.objects.getByName(destination);
                 
         if(from_el && to_el){        
-          var rel = new MaterialRel(inf, pos, from_el, to_el, description);
+          var rel = new MaterialRel(inf, pos, from_el, to_el, description, delay, influence);
           inf.list.material[rel.id] = rel;
         }
       });
@@ -987,10 +1015,12 @@ this.Influences = Editor.extend({
       var information_relations  = influences.find('information_relations>relation');
       
       information_relations.each(function( idx, relation ) {
-        origin          = $(relation).children('origin').text();
-        destination     = $(relation).children('destination').text();
-        description     = $(relation).children('description').text();
-        
+        origin      = $(relation).children('origin').text();
+        destination = $(relation).children('destination').text();
+        description = $(relation).children('description').text();
+        delay     	= $(relation).children('delay').text();
+        influence  	= $(relation).children('influence').text();
+                
         position      = $(relation).children('position');
                 
         pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
@@ -1003,7 +1033,7 @@ this.Influences = Editor.extend({
         var to_el   = inf.objects.getByName(destination);
                 
         if(from_el && to_el){        
-          var rel = new InformationRel(inf, pos, from_el, to_el, description);
+          var rel = new InformationRel(inf, pos, from_el, to_el, description, delay, influence);
           inf.list.information[rel.id] = rel;
         }
       });

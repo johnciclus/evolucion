@@ -26,8 +26,8 @@ this.figures = $.extend(this.figures, {
     fig.push(
       ctx.r.rect(op.x, op.y, width, height, 4).attr(rectangleStyle),
       figGenerator(ctx.r, {'x': op.x + width/2, 'y': op.y - el_size/2}, figureStyle),
-      ctx.r.image('/static/icons/info.png',  op.x - 18, op.y - 18, 24, 24),
-      ctx.r.image('/static/icons/close.png', op.x + width - 6, op.y - 18, 24, 24)
+      ctx.r.image('/static/icons/info.png',  op.x - 16, op.y - 16, 24, 24),
+      ctx.r.image('/static/icons/close.png', op.x + width - 8, op.y - 16, 24, 24)
     );
     
     fig[1].toFront();
@@ -66,12 +66,12 @@ this.figures = $.extend(this.figures, {
       var dy = bb.y - lim;
       this[2].transform("...T 0," + dy);
       
-      this[3].attr('x', op.x - 18);
-      this[3].attr('y', op.y - 18);
+      this[3].attr('x', op.x - 16);
+      this[3].attr('y', op.y - 16);
       this[3].transform('');
       
-      this[4].attr('x', op.x + width - 6);
-      this[4].attr('y', op.y - 18);
+      this[4].attr('x', op.x + width - 8);
+      this[4].attr('y', op.y - 16);
       this[4].transform('');
     };
     
@@ -480,12 +480,12 @@ this.figures = $.extend(this.figures, {
       fig[3].transform("...T" + pt.x + "," + pt.y);
       fig[4].transform("...T" + pt.x + "," + pt.y);*/
      
-      this[3].attr('x', bb.x - 18);
-      this[3].attr('y', bb.y - 18);
+      this[3].attr('x', bb.x - 16);
+      this[3].attr('y', bb.y - 16);
       this[3].transform('');
       
-      this[4].attr('x', bb.x + ancho_tex -6);
-      this[4].attr('y', bb.y - 18);
+      this[4].attr('x', bb.x + ancho_tex -8);
+      this[4].attr('y', bb.y - 16);
       this[4].transform('');
             
       fig.border = fig.getBorder();
@@ -1310,7 +1310,7 @@ this.RelationSaf = Relation.extend({
     this.from.addLeavingRels(this);
     this.to.addEnteringRels(this);
     
-    this.figGenerator = figures.relation;
+    this.figGenerator = figures.stockAndFlowfRelation;
     this.figure(pos);
     this.integrateCtx();
     this.viewDetails();
