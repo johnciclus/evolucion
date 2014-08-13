@@ -156,10 +156,11 @@ this.Behaviors = Class.extend({
     var container = $('#'+el.type+'-items-beh>#'+el.id+'-item-sim>div>div');
     
     $(container).children('h4').html(el.title);
-    $(container).find('label').html(el.title);
+    $(container).find('p').html(el.title);
   },
   deleteControls: function(el){
-    //$('#'+el.id+'_item_sim').remove();
+  	console.log(el);
+    $('#'+el.id+'-item-sim').remove();
   },
   graphRedraw: function(idx){
     var graph_name = this.graph_name;
@@ -195,9 +196,9 @@ this.Behaviors = Class.extend({
                 el.title+
               "</h4>"+
               "<div class='checkbox'>"+
-                "<input type='checkbox' name='"+el.id+"-sim' id='"+el.id+"-sim' value='"+el.id+"'>"+
                 "<label>"+
-                  el.name+
+                	"<input type='checkbox' name='"+el.id+"-sim' id='"+el.id+"-sim' value='"+el.id+"'>"+
+                	"<p>"+el.name+"</p>"+
                 "</label>"+
               "</div>"+
             "</div>"+

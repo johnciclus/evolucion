@@ -1167,11 +1167,7 @@ this.EleBase = Unit.extend({
       var list      = obj.list;
       var clonesList= obj.clonesList;
       var ref       = obj.ref;
-                   
-      if(list[obj.id]){
-        delete(list[obj.id]);
-      }
-      
+            
       for(var i in obj.leavingRels){
         obj.leavingRels[i].remove();
       }
@@ -1184,7 +1180,7 @@ this.EleBase = Unit.extend({
           clonesList[i].remove();
         }
       }
-      if(ref){
+      else if(ref){
         var clonesList = ref.clonesList;
         for(var i in clonesList){
           if(clonesList[i].id == obj.id){
@@ -1195,6 +1191,14 @@ this.EleBase = Unit.extend({
         }
       }
       
+      if(obj.ctx.id == "saf"){
+      	beh.deleteControls(obj);
+      }
+      
+      if(list[obj.id]){
+        delete(list[obj.id]);
+      }
+      
       obj.ctx.deleteControls(obj);
       var limit = obj.ctx.limitAdjustList(list);
       obj.ctx.idx[obj.type] = ++limit;
@@ -1202,6 +1206,8 @@ this.EleBase = Unit.extend({
       obj.fig.remove();
       obj.fig = undefined;
       obj = undefined;
+      
+      
     }
   }
 });

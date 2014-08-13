@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-08 11:59-0300\n"
+"POT-Creation-Date: 2014-08-11 17:53-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -609,12 +609,12 @@ msgid "inf clone btn title"
 msgstr "clon"
 
 #: evolucion/templates/editor/_influences.html:104
-msgid "inf material relation btn title"
-msgstr "relación de material"
-
-#: evolucion/templates/editor/_influences.html:107
 msgid "inf information relation btn title"
 msgstr "relación de información"
+
+#: evolucion/templates/editor/_influences.html:107
+msgid "inf material relation btn title"
+msgstr "relación de material"
 
 #: evolucion/templates/editor/_influences.html:110
 msgid "inf sector btn title"
