@@ -121,11 +121,11 @@ function FACT(x){
 function FRAC(x){
 	return x-INT(x);
 }
-function int(x){
-	return parseInt(roundDec(x,10));
-}
+/*function int(x){
+	return parseInt(utils.roundDec(x,10));
+}*/
 function INT(x){
-	return parseInt(roundDec(x,10));
+	return parseInt(utils.roundDec(x,10));
 }
 function GRADTODEG(x){
 	return 90*(x/100);
@@ -200,7 +200,7 @@ function INTLINEAL(){
 		}
 		else{
 			var xa, ya, xs, ys;
-			var ind=roundDec(((x-x1)/dx),4);
+			var ind=utils.roundDec(((x-x1)/dx),4);
 			ind=INT(ind);
 			if(ind==(y.length-1)){
 				ind--;
@@ -274,7 +274,7 @@ function INTPASO(){
 			}
 		}
 		else{
-			var ind=roundDec(((x-x1)/dx),4);
+			var ind=utils.roundDec(((x-x1)/dx),4);
 			ind=INT(ind);
 			if(ind==(y.length-1)){
 				ind--;
@@ -421,7 +421,7 @@ function INTSPLINE(){
 			}
 		}
 		else{
-			var ind=roundDec(((x-x1)/dx),4);
+			var ind=utils.roundDec(((x-x1)/dx),4);
 			ind=INT(ind);
 			if(ind==(y.length-1)){
 				ind--;
@@ -474,8 +474,16 @@ function NOT(x){
 		return !x;
 	}
 }
-function NUMEROACIERTOS(pob, pro){	//Pendiente
-	
+function NUMEROACIERTOS(pob, pro){
+	var successes = 0;
+	var value;
+	for(var i=1; i<=pob; i++){
+		value = Math.random();
+		if(value > (1-pro)){
+			successes++;	
+		}
+	}
+	return successes;
 }
 function OR(){
 	var rst;
@@ -502,7 +510,7 @@ function POWER(base, exp){
 	return Math.pow(base,exp);
 }
 function PRED(x){
-	return Math.floor(roundDec(x,10));
+	return Math.floor(utils.roundDec(x,10));
 }
 function PROD(){
 	var p;
@@ -549,7 +557,7 @@ function RETARDO(datos, t_ajuste, orden, v_ini){ //Pendiente
 	
 }
 function ROUND(x){
-	return roundDec(x,0);
+	return utils.roundDec(x,0);
 }
 function SIGN(x){
 	return x/Math.abs(x);
@@ -854,12 +862,12 @@ var Dynamos = Class.extend({
 			/*if($("#"+element.name+'_cb').is(':checked')){
 				if(element.dimension == 1){
 					code+=
-					'\n\t'+element.name+'_serie.push(roundDec('+element.name+',4));';
+					'\n\t'+element.name+'_serie.push(utils.roundDec('+element.name+',4));';
 				}
 				else if(element.dimension > 1){
 					for(var j=0; j<element.dimension; j++){
 						code+=
-						'\n\t'+element.name+'_'+j+'_serie.push(roundDec('+element.name+'['+j+']'+',4));';
+						'\n\t'+element.name+'_'+j+'_serie.push(utils.roundDec('+element.name+'['+j+']'+',4));';
 					}
 				}
 			}*/
@@ -954,12 +962,12 @@ var Dynamos = Class.extend({
 			/*if($("#"+element.name+'_cb').is(':checked')){
 				if(element.dimension == 1){
 					code+=
-					'\n'+element.name+'_serie.push(roundDec('+element.name+',4));';
+					'\n'+element.name+'_serie.push(utils.roundDec('+element.name+',4));';
 				}
 				else if(element.dimension > 1){
 					for(var j=0; j<element.dimension; j++){
 						code+=
-						'\n'+element.name+'_'+j+'_serie.push(roundDec('+element.name+'['+j+']'+',4));';
+						'\n'+element.name+'_'+j+'_serie.push(utils.roundDec('+element.name+'['+j+']'+',4));';
 					}
 				}
 			}*/

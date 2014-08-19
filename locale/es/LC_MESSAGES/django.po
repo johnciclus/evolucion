@@ -734,7 +734,7 @@ msgstr "var. exogena"
 
 #: evolucion/templates/editor/_stock-and-flow.html:214
 msgid "saf delay btn title"
-msgstr "retraso"
+msgstr "retardo"
 
 #: evolucion/templates/editor/_stock-and-flow.html:217
 msgid "saf multiplier btn title"

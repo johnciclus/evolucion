@@ -16,7 +16,7 @@ this.Prose = Class.extend({
     
     model = $('#xmldocument model:first');
     
-    prose = model.children('prose');
+    prose = model.children('prose:last');
     
     if($.isEmptyObject(prose[0])){
       prose = model.append($('<prose />')).find('prose'); 

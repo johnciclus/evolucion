@@ -1010,7 +1010,7 @@ this.EleBase = Unit.extend({
     }
     if(this.ctx.id == 'saf'){
       this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",elements));
-      console.log(this.ctx.rules.replace("/'%'",elements));
+      //console.log(this.ctx.rules.replace("/'%'",elements));
     }
   },
   addLeavingRels: function(rel){
@@ -1405,12 +1405,12 @@ this.Relation = Unit.extend({
                       y: pt.y + dy  - (this.fig.dy || 0)};
       
       if(restore){
-        console.log('\nRestore destination');
-        console.log(this.id);
-        console.log(this.from);
+        //console.log('\nRestore destination');
+        //console.log(this.id);
+        //console.log(this.from);
         
-        console.log('Relation Point ');
-        console.log(this.fig.pt_percent);
+        //console.log('Relation Point ');
+        //console.log(this.fig.pt_percent);
         
         pt = this.ctx.path.pointFromlength(this.from.fig.border, this.fig.pt_percent);
         
@@ -2392,17 +2392,18 @@ this.Editor = Class.extend({
     element.append($('<reference />').text(obj.ref.name));
     
     pos = obj.position();
-    position = element.append('<position />').children('position');
+    position = element.append('<position />').children('position:last');
+        
     position.append($('<x />').text(pos.x));
     position.append($('<y />').text(pos.y));
     
     leavingRelsQua = obj.leavingRelsQua;
     
     if(leavingRelsQua > 0){
-      relations = element.append('<relations />').children('relations');
+      relations = element.append('<relations />').children('relations:last');
       rels = obj.leavingRels;
       for(var rel in rels){
-        relation = relations.append('<to_relation />').children('to_relation');
+        relation = relations.append('<to_relation />').children('to_relation:last');
         relation.text(rels[rel].to.name);
       }
     }
@@ -2418,11 +2419,11 @@ this.Editor = Class.extend({
     element.append($('<dimension />').text(obj.dimension));
     
     pos = obj.position();
-    position = element.append('<position />').children('position');
+    position = element.append('<position />').children('position:last');
     position.append($('<x />').text(pos.x));
     position.append($('<y />').text(pos.y));
     
-    relations = element.append('<relations />').children('relations');
+    relations = element.append('<relations />').children('relations:last');
               
     enteringRelsQua = obj.enteringRelsQua;
     leavingRelsQua  = obj.leavingRelsQua;
@@ -2431,14 +2432,14 @@ this.Editor = Class.extend({
       if(enteringRelsQua > 0){
         rels = obj.enteringRels;
         for(var rel in rels){
-          relation = relations.append('<entering_relation />').children('entering_relation');
+          relation = relations.append('<entering_relation />').children('entering_relation:last');
           relation.text(rels[rel].from.name);
         }
       }
       if(leavingRelsQua > 0){
         rels = obj.leavingRels;
         for(var rel in rels){
-          relation = relations.append('<leaving_relation />').children('leaving_relation');
+          relation = relations.append('<leaving_relation />').children('leaving_relation:last');
           relation.text(rels[rel].to.name);
         }
       }
@@ -2452,17 +2453,17 @@ this.Editor = Class.extend({
     relation.append($('<description />').text(obj.description));
     
     var pos = obj.position();
-    position = relation.append('<position />').children('position');
-    op = position.append('<op />').children('op');
+    position = relation.append('<position />').children('position:last');
+    op = position.append('<op />').children('op:last');
     op.append($('<x />').text(pos[0].x));
     op.append($('<y />').text(pos[0].y));
-    opc = position.append('<opc />').children('opc');
+    opc = position.append('<opc />').children('opc:last');
     opc.append($('<x />').text(pos[1].x));
     opc.append($('<y />').text(pos[1].y));
-    dpc = position.append('<dpc />').children('dpc');
+    dpc = position.append('<dpc />').children('dpc:last');
     dpc.append($('<x />').text(pos[2].x));
     dpc.append($('<y />').text(pos[2].y));
-    dp = position.append('<dp />').children('dp');
+    dp = position.append('<dp />').children('dp:last');
     dp.append($('<x />').text(pos[3].x));
     dp.append($('<y />').text(pos[3].y));
     
@@ -2482,15 +2483,15 @@ this.Editor = Class.extend({
     sector.append($('<description />').text(obj.description));
     
     pos = obj.position();
-    position = sector.append('<position />').children('position');
+    position = sector.append('<position />').children('position:last');
     position.append($('<x />').text(pos.x));
     position.append($('<y />').text(pos.y));
     
     size = obj.size();
-    size_sector = sector.append('<size />').children('size');
-    width = size_sector.append('<width />').children('width');
+    size_sector = sector.append('<size />').children('size:last');
+    width = size_sector.append('<width />').children('width:last');
     width.text(size['width']);
-    height = size_sector.append('<height />').children('height');
+    height = size_sector.append('<height />').children('height:last');
     height.text(size['height']);
     return sector;
   }
@@ -2571,8 +2572,7 @@ this.Evolucion = Class.extend({
       if(evo.beh){
         evo.beh.saveAsDOM();
       }
-      
-      
+
       var root =  $('#xmldocument');
       var csrf =  $("#save_form > input[name='csrfmiddlewaretoken']");
       
@@ -2656,7 +2656,7 @@ this.Evolucion = Class.extend({
             message+
             //'<strong>Oh snap!</strong> <a href="#" class="alert-link">Change a few things up</a> and try submitting again.'+
           '</div>'
-        ).children(':last-child');
+        ).children(':last');
         message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
       }
     },
@@ -2669,7 +2669,7 @@ this.Evolucion = Class.extend({
              message+
             //'<strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it\'s not super important.'+
           '</div>'
-        ).children(':last-child');
+        ).children(':last');
         message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
       }          
     },        
@@ -2683,7 +2683,7 @@ this.Evolucion = Class.extend({
             message+
             //'<strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.'+
           '</div>'
-        ).children(':last-child');
+        ).children(':last');
         message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
       }
     },
@@ -2697,7 +2697,7 @@ this.Evolucion = Class.extend({
             //'<h4>Warning!</h4>'+
             //'<p>Best check yo self, you\'re not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna, <a href="#" class="alert-link">vel scelerisque nisl consectetur et</a>.</p>'+
           '</div>'
-        ).children(':last-child');
+        ).children(':last');
         message.slideDown(1000).delay(10000).slideUp(1000, function(){this.remove();});
       }
     }

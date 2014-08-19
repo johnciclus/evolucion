@@ -76,7 +76,7 @@ this.Equations = Class.extend({
     
     model = $('#xmldocument model:first');
     
-    equations = model.children('equations');
+    equations = model.children('equations:last');
     
     if($.isEmptyObject(equations[0])){
       equations = model.append($('<equations />')).find('equations');  
@@ -86,7 +86,7 @@ this.Equations = Class.extend({
     }
   
     if(equations){
-      codes = equations.append('<codes />').children('codes');
+      codes = equations.append('<codes />').children('codes:last');
       codes.append($('<mathematical />').text(equ.code['mathematical']));
       codes.append($('<javascript />').text(equ.code['javascript']));
     }

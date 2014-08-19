@@ -313,7 +313,7 @@ this.Behaviors = Class.extend({
     
     model = $('#xmldocument model:first');
     
-    behavior = model.children('behavior');
+    behavior = model.children('behavior:last');
     
     if($.isEmptyObject(behavior[0])){
       behavior = model.append($('<behavior />')).find('behavior');  

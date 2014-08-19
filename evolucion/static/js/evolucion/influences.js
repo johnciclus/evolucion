@@ -786,10 +786,10 @@ this.Influences = Editor.extend({
     
     model = $('#xmldocument model:first');
     
-    influences = model.children('influences');
+    influences = model.children('influences:last');
     
     if($.isEmptyObject(influences[0])){
-      influences = model.append($('<influences />')).children('influences'); 
+      influences = model.append($('<influences />')).children('influences:last'); 
     }
     else{
       influences.empty();
@@ -807,7 +807,7 @@ this.Influences = Editor.extend({
       };
       for(var el in elements){
         list = inf.list[el];
-        group = influences.append('<'+elements[el]+' />').children(elements[el]);
+        group = influences.append('<'+elements[el]+' />').children(elements[el]+':last');
         
         for(var i in list){
           
@@ -826,12 +826,12 @@ this.Influences = Editor.extend({
           
           pos = list[i].position();
 
-          position = element.append('<position />').children('position');
+          position = element.append('<position />').children('position:last');
           position.append($('<x />').text(pos.x));
           position.append($('<y />').text(pos.y));
           
           if(list[i].enteringRels || list[i].leavingRels){
-            relations = element.append('<relations />').children('relations');
+            relations = element.append('<relations />').children('relations:last');
             enteringRelsQua = list[i].enteringRelsQua;
             leavingRelsQua  = list[i].leavingRelsQua;
             
@@ -868,28 +868,28 @@ this.Influences = Editor.extend({
       }
       
       list = inf.list['clone'];
-      group = influences.append('<clones />').children('clones');
+      group = influences.append('<clones />').children('clones:last');
       for(var i in list){
         element = this.cloneAsDOM(list[i]);
         group.append(element);
       }
       
       list = inf.list['material'];
-      group = influences.append('<material_relations />').children('material_relations');
+      group = influences.append('<material_relations />').children('material_relations:last');
       for(var i in list){
         relation = this.relationInfAsDOM(list[i]);
         group.append(relation);
       }
       
       list = inf.list['information'];
-      group = influences.append('<information_relations />').children('information_relations');
+      group = influences.append('<information_relations />').children('information_relations:last');
       for(var i in list){
         relation = this.relationInfAsDOM(list[i]);
         group.append(relation);
       }
       
       list = inf.list['sectorinf'];
-      group = influences.append('<sectors />').children('sectors');
+      group = influences.append('<sectors />').children('sectors:last');
       for(var i in list){
         sectorinf = this.sectorAsDOM(list[i]);
         group.append(sectorinf);
@@ -905,7 +905,7 @@ this.Influences = Editor.extend({
       var name, title, description, units, position, pos, relations, from_relations, to_relations,  p, pc, size, from, to;
       
       
-      var influences  = model.children('influences');
+      var influences  = model.children('influences:last');
       
       var width = Number(influences.attr('width').replace('px',''));
       var height= Number(influences.attr('height').replace('px',''));
@@ -915,13 +915,13 @@ this.Influences = Editor.extend({
       var elements  = influences.find('elements>element');
       
       elements.each(function( idx, element ) {
-        name          = $(element).children('name').text();
-        title         = $(element).children('title').text();
-        description   = $(element).children('description').text();
-        units         = $(element).children('units').text();
+        name          = $(element).children('name:last').text();
+        title         = $(element).children('title:last').text();
+        description   = $(element).children('description:last').text();
+        units         = $(element).children('units:last').text();
         
-        position      = $(element).children('position');
-        relations     = $(element).children('relations');
+        position      = $(element).children('position:last');
+        relations     = $(element).children('relations:last');
         
         from_relations = [];
         to_relations   = [];
@@ -943,12 +943,12 @@ this.Influences = Editor.extend({
       var cycles  = influences.find('cycles>cycle');
       
       cycles.each(function( idx, cycle ) {
-        name          = $(cycle).children('name').text();
-        title         = $(cycle).children('title').text();
-        description   = $(cycle).children('description').text();
-        orientation   = $(cycle).children('orientation').text();
-        feedback      = $(cycle).children('feedback').text();
-        position      = $(cycle).children('position');
+        name          = $(cycle).children('name:last').text();
+        title         = $(cycle).children('title:last').text();
+        description   = $(cycle).children('description:last').text();
+        orientation   = $(cycle).children('orientation:last').text();
+        feedback      = $(cycle).children('feedback:last').text();
+        position      = $(cycle).children('position:last');
                         
         pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
         
@@ -959,11 +959,11 @@ this.Influences = Editor.extend({
       var clones  = influences.find('clones>clone');
       
       clones.each(function( idx, clone ) {
-        name          = $(clone).children('name').text();
-        reference     = $(clone).children('reference').text();
+        name          = $(clone).children('name:last').text();
+        reference     = $(clone).children('reference:last').text();
         
-        position      = $(clone).children('position');
-        relations     = $(clone).children('relations');
+        position      = $(clone).children('position:last');
+        relations     = $(clone).children('relations:last');
         
         from_relations = [];
         to_relations   = [];
@@ -989,13 +989,13 @@ this.Influences = Editor.extend({
       var material_relations  = influences.find('material_relations>relation');
       
       material_relations.each(function( idx, relation ) {
-        origin      = $(relation).children('origin').text();
-        destination = $(relation).children('destination').text();
-        description = $(relation).children('description').text();
-        delay     	= $(relation).children('delay').text();
-        influence  	= $(relation).children('influence').text();
+        origin      = $(relation).children('origin:last').text();
+        destination = $(relation).children('destination:last').text();
+        description = $(relation).children('description:last').text();
+        delay     	= $(relation).children('delay:last').text();
+        influence  	= $(relation).children('influence:last').text();
         
-        position    = $(relation).children('position');
+        position    = $(relation).children('position:last');
                 
         pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
                 {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
@@ -1015,13 +1015,13 @@ this.Influences = Editor.extend({
       var information_relations  = influences.find('information_relations>relation');
       
       information_relations.each(function( idx, relation ) {
-        origin      = $(relation).children('origin').text();
-        destination = $(relation).children('destination').text();
-        description = $(relation).children('description').text();
-        delay     	= $(relation).children('delay').text();
-        influence  	= $(relation).children('influence').text();
+        origin      = $(relation).children('origin:last').text();
+        destination = $(relation).children('destination:last').text();
+        description = $(relation).children('description:last').text();
+        delay     	= $(relation).children('delay:last').text();
+        influence  	= $(relation).children('influence:last').text();
                 
-        position      = $(relation).children('position');
+        position      = $(relation).children('position:last');
                 
         pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
                 {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
@@ -1041,12 +1041,12 @@ this.Influences = Editor.extend({
       var sectors  = influences.find('sectors>sectorinf');
       
       sectors.each(function( idx, sector ) {
-        name          = $(sector).children('name').text();
-        title         = $(sector).children('title').text();
-        description   = $(sector).children('description').text();
+        name          = $(sector).children('name:last').text();
+        title         = $(sector).children('title:last').text();
+        description   = $(sector).children('description:last').text();
         
-        position      = $(sector).children('position');
-        size          = $(sector).children('size');
+        position      = $(sector).children('position:last');
+        size          = $(sector).children('size:last');
                         
         pos = {'x':     Number($(position).children('x').text()), 'y':      Number($(position).children('y').text())};
         sis = {'width': Number($(size).children('width').text()), 'height': Number($(size).children('height').text())};

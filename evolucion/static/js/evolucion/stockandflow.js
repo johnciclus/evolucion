@@ -81,7 +81,7 @@ this.figures = $.extend(this.figures, {
       
       bb = fig[0].getBBox();
       op = {x: bb.x - 2, y: bb.y -1};
-      width = bb.width + 4;
+      width  = bb.width + 4;
       height = bb.height + 2;
       el_size = 30;
       
@@ -198,7 +198,6 @@ this.figures = $.extend(this.figures, {
       fig[8].attr({cursor: "move"});
       return fig;
     };
-    
     
     var fig = figures.saf_base(ctx, parent, figGenerator, p, title, figureStyle);
     
@@ -492,17 +491,23 @@ this.figures = $.extend(this.figures, {
     };
     fig.connOriginStock = function(stock){
       var el = fig.parent;
-      stock.addLeavingFlow(el);
-      el.originStock = stock;
-      fig[2][7].update(0, 0);
-      fig[2][5].hide();
+      if(el.originStock != stock){
+			console.log('diferent');
+			stock.addLeavingFlow(el);
+      		el.originStock = stock;
+      		fig[2][7].update(0, 0);
+      		fig[2][5].hide();	
+      }
     };
     fig.connDestinationStock = function(stock){
       var el = fig.parent;
-      stock.addEnteringFlow(el);
-      el.destinationStock = stock;
-      fig[2][8].update(0, 0);
-      fig[2][6].hide();
+      if(el.destinationStock != stock){
+		  console.log('diferent');	
+	      stock.addEnteringFlow(el);
+	      el.destinationStock = stock;
+	      fig[2][8].update(0, 0);
+	      fig[2][6].hide();
+      }
     };
     fig.disOriginStock = function(){
       var el = fig.parent;
@@ -925,7 +930,7 @@ this.Stock = Element.extend({
 });
 
 this.Flow = Element.extend({
-  init: function(ctx, pos, title, description, definition, units, dimension){
+  init: function(ctx, pos, controls_pos, title, description, definition, units, dimension){
     this._super(ctx);
     
     this.type = "flow";
@@ -943,11 +948,21 @@ this.Flow = Element.extend({
     this.list = this.ctx.list.flow;
     this.parser = PEG.buildParser(this.ctx.rules.replace("/'%'",""));
     
-    this.originStock = undefined;
+    this.originStock 	  = undefined;
     this.destinationStock = undefined;
     
     this.figGenerator = figures.flow;
     this.figure(pos);
+    
+    if(controls_pos){
+    	if(controls_pos.origin){
+    		this.addOriginControl(controls_pos.origin.name, controls_pos.origin.position);	
+	    }
+	    if(controls_pos.destination){
+	    	this.addDestinationControl(controls_pos.destination.name, controls_pos.destination.position);
+	    }	
+    }
+    
     this.integrateCtx();
     this.viewDetails();
   },
@@ -977,7 +992,7 @@ this.Flow = Element.extend({
     bb = fig[1].getBBox();
     rel_x= bb.x + bb.width/2;
     rel_y= bb.y + bb.height/2;
-        
+       
     control.update(dx - fig.dx, dy - fig.dy);
     fig.border = fig.getBorder();
     
@@ -1001,19 +1016,43 @@ this.Flow = Element.extend({
     fig.dy = dy;
   },
   moveOriginControl: function(dx, dy){
-    this.moveControl(this.fig[2][7], dx, dy);
+  	this.moveControl(this.fig[2][7], dx, dy);
   },
   moveDestinationControl: function(dx, dy){
     this.moveControl(this.fig[2][8], dx, dy);
   },
-  originStockPosition:  function(){
+  originPosition:  function(){
     var bb = this.fig[2][7].getBBox();
     return {'x': bb.x + bb.width/2, 'y': bb.y + bb.height/2};
   },
-  destinationStockPosition:  function(){
+  destinationPosition:  function(){
     var bb = this.fig[2][8].getBBox();
     return {'x': bb.x + bb.width/2, 'y': bb.y + bb.height/2};
   },
+  addOriginControl: function(stock_name, position){
+  	var pos = this.originPosition();
+  	
+  	this.start();
+  	this.moveOriginControl(position.x - pos.x, position.y - pos.y);
+  	this.end();
+  },  
+  addDestinationControl: function(stock_name, position){
+  	var pos = this.destinationPosition();
+  	
+  	if(stock_name){
+		var stock = this.ctx.objects.getByName(stock_name);
+  		var pt = this.ctx.path.nearestPoint(stock.fig.getBorder(), position);
+		
+		console.log("\position");
+  		console.log(position);
+  		console.log("pt");
+  		console.log(pt);  		
+  	}
+ 	
+  	this.start();
+  	this.moveDestinationControl(position.x - pos.x, position.y - pos.y);
+  	this.end();  	
+  }, 
   
   start: function(){
     var el;
@@ -1058,7 +1097,7 @@ this.Flow = Element.extend({
     pp = undefined;
   },
   end: function(){
-    var el;
+  	var el;
     if(this.name){
       el = this;
     }else if(this.parent){
@@ -1074,28 +1113,39 @@ this.Flow = Element.extend({
     bb = fig[1].getBBox();
     fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     
-    if(this == fig[2][7]){
-      bb = fig[2][7].getBBox();
-      pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-      stock = el.ctx.existeNivelPt(pt);
-      if(stock){
-        fig.connOriginStock(stock);
-      }
-      else{
-        fig.disOriginStock();
-      }
+    console.log("\n"+el.name);
+    
+    // checking origin connection
+    bb = fig[2][7].getBBox();
+    pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+    for(var i=-1; i<2; i++){
+    	for(var j=-1; j<2; j++){
+    		stock = el.ctx.existStockPt({x: (pt.x + i*3), y: (pt.y + j*3)});
+    		if(stock){ i=2; j=2; }
+    	}
     }
-    else if(this == fig[2][8]){
-      bb = fig[2][8].getBBox();
-      pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-      stock = el.ctx.existeNivelPt(pt);
-      if(stock){
-        fig.connDestinationStock(stock);
-      }
-      else{
-        fig.disDestinationStock();
-      }
+    if(stock){
+      fig.connOriginStock(stock);
     }
+    else{
+      fig.disOriginStock();
+    }
+    
+    // checking destination connection
+	bb = fig[2][8].getBBox();
+	pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
+	for(var i=-1; i<2; i++){
+    	for(var j=-1; j<2; j++){
+    		stock = el.ctx.existStockPt({x: (pt.x + i*3), y: (pt.y + j*3)});
+    		if(stock){ i=2; j=2; }
+    	}	
+    }	  
+	if(stock){
+	  fig.connDestinationStock(stock);
+	}
+	else{
+	  fig.disDestinationStock();
+	}
     
     for(var rel in el.enteringRels){
       el.enteringRels[rel].fig.dx = 0;
@@ -1352,7 +1402,7 @@ this.StockAndFlow = Editor.extend({
     this.sidebar  = '#stockandflow-sidebar';
     this.state    = 'cursor';
     
-    this.rules    = "start = bin bin = arg_one:spe sym:('+'/'-'/'*'/'/') arg_two:bin { return arg_one + sym + arg_two; } / one_arg:spe '\\\\cdot' ' '? two_arg:bin { return one_arg +'*'+ two_arg; } / one_arg:spe '^{' two_arg:bin '}' { return 'Math.pow('+one_arg +','+ two_arg+')'} / one_arg:spe '^' two_arg:bin { return 'Math.pow('+one_arg +','+ two_arg+')'; } / spe spe = '\\\\' arg:una { return arg; } / '\\\\frac{' one_arg:bin '}{' two_arg:bin '}' {return '(('+ one_arg +')/('+ two_arg +'))'; } / '\\\\sqrt[' one_arg:bin ']{' two_arg:bin '}' {return 'Math.pow(' + two_arg + ',1/' + one_arg + ')';} / var una = 'left|' arg:bin '\\\\right|' { return 'Math.abs('+arg+')'; } / 'left(' one_arg:bin '\\\\right)' { return '('+one_arg+')'; } / 'sqrt{' arg:bin '}' {return 'Math.sqrt('+arg+')'; } / fun:('sin'/'cos'/'tan') '\\\\left(' arg:bin '\\\\right)' { return 'Math.'+ fun + '('+arg+')'; } / 'csc' arg:bin { return '1/Math.sin('+arg+')'; } / 'sec' arg:bin { return '1/Math.cos('+arg+')'; } / 'cot' arg:bin { return '1/Math.tan('+arg+')'; } var = 't'/'it'/'ft'/'dt'/'%' / con con = '\\\\pi' {return 'Math.PI';} / 'e' {return 'Math.E';} / num num = arg:$([+-]?[0-9]*[.][0-9]+) { return arg; } / arg:$([+-]?[0-9]+) { return arg; }";
+    this.rules    = "start = bin bin = arg_one:spe sym:('+'/'-'/'*'/'/') arg_two:bin { return arg_one + sym + arg_two; } / one_arg:spe '\\\\cdot' ' '? two_arg:bin { return one_arg +'*'+ two_arg; } / one_arg:spe '^{' two_arg:bin '}' { return 'Math.pow('+one_arg +','+ two_arg+')'} / one_arg:spe '^' two_arg:bin { return 'Math.pow('+one_arg +','+ two_arg+')'; } / spe spe = '\\\\' arg:una { return arg; } / '\\\\frac{' one_arg:bin '}{' two_arg:bin '}' {return '(('+ one_arg +')/('+ two_arg +'))'; } / '\\\\sqrt[' one_arg:bin ']{' two_arg:bin '}' {return 'Math.pow(' + two_arg + ',1/' + one_arg + ')';} / 'RETARDO\\\\left(' one_arg:bin ',' two_arg:num ',' three_arg:num ',' four_arg:num '\\\\right)' { return 'RETARDO('+one_arg + ',' + two_arg + ',' + three_arg + ',' + four_arg + ')';} / 'INT\\\\left(' one_arg:bin '\\\\right)' { return 'INT('+one_arg +')';} / 'ROUND\\\\left(' one_arg:bin '\\\\right)' { return 'ROUND('+one_arg +')';} / var una = 'left|' arg:bin '\\\\right|' { return 'Math.abs('+arg+')'; } / 'left(' one_arg:bin '\\\\right)' { return '('+one_arg+')'; } / 'sqrt{' arg:bin '}' {return 'Math.sqrt('+arg+')'; } / fun:('sin'/'cos'/'tan') '\\\\left(' arg:bin '\\\\right)' { return 'Math.'+ fun + '('+arg+')'; } / 'csc' arg:bin { return '1/Math.sin('+arg+')'; } / 'sec' arg:bin { return '1/Math.cos('+arg+')'; } / 'cot' arg:bin { return '1/Math.tan('+arg+')'; } var = 't'/'it'/'ft'/'dt'/'%' / con con = '\\\\pi' {return 'Math.PI';} / 'e' {return 'Math.E';} / num num = arg:$([+-]?[0-9]*[.][0-9]+) { return arg; } / arg:$([+-]?[0-9]+) { return arg; }";
     
     this._super(this.initWorkArea());
     
@@ -1805,10 +1855,10 @@ this.StockAndFlow = Editor.extend({
     
     model = $('#xmldocument model:first');
     
-    stock_and_flow = model.children('stock_and_flow');
+    stock_and_flow = model.children('stock_and_flow:last');
     
     if($.isEmptyObject(stock_and_flow[0])){
-      stock_and_flow = model.append($('<stock_and_flow />')).children('stock_and_flow');  
+      stock_and_flow = model.append($('<stock_and_flow />')).children('stock_and_flow:last');  
     }
     else{
       stock_and_flow.empty();
@@ -1834,7 +1884,7 @@ this.StockAndFlow = Editor.extend({
       };
       for(var el in elements){
         list = saf.list[el];
-        group = stock_and_flow.append('<'+elements[el]+' />').children(elements[el]);
+        group = stock_and_flow.append('<'+elements[el]+' />').children(elements[el]+':last');
         
         for(var i in list){
           element = this.elementAsDOM(list[i]);
@@ -1844,59 +1894,62 @@ this.StockAndFlow = Editor.extend({
             enteringFlowQua = list[i].enteringFlowQua;
             leavingFlowQua = list[i].leavingFlowQua;
             
-            stock_flows = element.append('<stock_flows />').children('stock_flows');
+            stock_flows = element.append('<stock_flows />').children('stock_flows:last');
             if(enteringFlowQua > 0){
               fls = list[i].enteringFlow;
               for(var fl in fls){
-                flow = stock_flows.append('<enteringFlow />').children('enteringFlow');
+                flow = stock_flows.append('<enteringFlow />').children('enteringFlow:last');
                 flow.text(fls[fl].name);  
               }
             }
             if(leavingFlowQua > 0){
               fls = list[i].leavingFlow;
               for(var fl in fls){
-                flow = stock_flows.append('<leavingFlow />').children('leavingFlow');
+                flow = stock_flows.append('<leavingFlow />').children('leavingFlow:last');
                 flow.text(fls[fl].name);  
               }
             }
           }
           if(el == 'flow'){
-            if(list[i].originStock){
-              var pos = list[i].originStockPosition();
-              origin = element.append('<origin />').children('origin');
-              origin.append($('<name />').text(list[i].originStock.name)); 
-              position = origin.append('<position />').children('position');
-              position.append($('<x />').text(pos.x));
-              position.append($('<y />').text(pos.y));
+          	if(list[i].originStock){
+              origin.append($('<name />').text(list[i].originStock.name));
             }
-            if(list[i].destinationStock){
-              var pos = list[i].destinationStockPosition();
-              destination = element.append('<destination />').children('destination');
+          	
+          	var pos = list[i].originPosition();
+          	origin = element.append('<origin />').children('origin:last');
+          	position = origin.append('<position />').children('position:last');
+			position.append($('<x />').text(pos.x));
+			position.append($('<y />').text(pos.y));
+			
+            if(list[i].destinationStock){ 
               destination.append($('<name />').text(list[i].destinationStock.name));
-              position = destination.append('<position />').children('position');
-              position.append($('<x />').text(pos.x));
-              position.append($('<y />').text(pos.y));
             }
+            
+            var pos = list[i].destinationPosition();
+            destination = element.append('<destination />').children('destination:last');
+            position = destination.append('<position />').children('position:last');
+            position.append($('<x />').text(pos.x));
+            position.append($('<y />').text(pos.y));
           }
         }
       }
       
       list = saf.list['clone'];
-      group = stock_and_flow.append('<clones />').children('clones');
+      group = stock_and_flow.append('<clones />').children('clones:last');
       for(var i in list){
         element = this.cloneAsDOM(list[i]);
         group.append(element);
       }
       
       list = saf.list['relation'];
-      group = stock_and_flow.append('<relations />').children('relations');
+      group = stock_and_flow.append('<relations />').children('relations:last');
       for(var i in list){
         relation = this.relationAsDOM(list[i]);
         group.append(relation);
       }
       
       list = saf.list['sectorsaf'];
-      group = stock_and_flow.append('<sectors />').children('sectors');
+      group = stock_and_flow.append('<sectors />').children('sectors:last');
       for(var i in list){
         sectorsaf = this.sectorAsDOM(list[i]);
         group.append(sectorsaf);
@@ -1908,11 +1961,11 @@ this.StockAndFlow = Editor.extend({
     }
   },
   openAsDOM: function(model){
-    var stock_and_flow  = model.children('stock_and_flow');
+    var stock_and_flow  = model.children('stock_and_flow:last');
     
     var width = Number(stock_and_flow.attr('width').replace('px',''));
     var height= Number(stock_and_flow.attr('height').replace('px',''));
-    
+       
     var group, name, title, description, definition, 
         units, dimension, position, pos, relations, 
         enteringRels, leavingRels, el;
@@ -1935,15 +1988,17 @@ this.StockAndFlow = Editor.extend({
       group = stock_and_flow.find(values.group+'>'+values.el);
       
       group.each(function( idx, element ) {
-        name          = $(element).children('name').text();
-        title         = $(element).children('title').text();
-        description   = $(element).children('description').text();
-        definition    = $(element).children('definition').text();
-        units         = $(element).children('units').text();
-        dimension     = $(element).children('dimension').text();
+        name          = $(element).children('name:last').text();
+        title         = $(element).children('title:last').text();
+        description   = $(element).children('description:last').text();
+        definition    = $(element).children('definition:last').text();
+        units         = $(element).children('units:last').text();
+        dimension     = $(element).children('dimension:last').text();
         
-        position      = $(element).children('position');
-        relations     = $(element).children('relations');
+        position      = $(element).children('position:last');
+        relations     = $(element).children('relations:last');
+        
+        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
         
         enteringRels  = [];
         leavingRels   = [];
@@ -1956,9 +2011,24 @@ this.StockAndFlow = Editor.extend({
           leavingRels.push({'to': $(relation).text()});
         });
         
-        pos = {'x':  Number($(position).children('x').text()), 'y':  Number($(position).children('y').text())};
-        
-        el = new values.class(saf, pos, title, description, definition, units, dimension);
+        if(values.group == 'flows'){
+        	var origin 		= $(element).children('origin');
+        	var destination = $(element).children('destination');
+        	var origin_position  		= $(origin).children('position:last');
+        	var destination_position  	= $(destination).children('position:last');
+        	
+        	var controls_pos = {	'origin': 		{'name': 		$(origin).children('name').text(),
+        											 'position': 	{'x':  		Number($(origin_position).children('x').text()), 'y':  Number($(origin_position).children('y').text())}},
+        							'destination':  {'name': 		$(destination).children('name').text(),
+        											 'position': 	{'x':  Number($(destination_position).children('x').text()), 'y':  Number($(destination_position).children('y').text())}}
+        					   };
+        	
+        	el = new Flow(saf, pos, controls_pos, title, description, definition, units, dimension);
+        }
+        else{
+        	el = new values.class(saf, pos, title, description, definition, units, dimension);	
+        }
+                
         saf.list[values.el][el.id] = el;
       });
     });
@@ -1966,11 +2036,11 @@ this.StockAndFlow = Editor.extend({
     var clones  = stock_and_flow.find('clones>clone');
       
     clones.each(function( idx, clone ) {
-      name          = $(clone).children('name').text();
-      reference     = $(clone).children('reference').text();
+      name          = $(clone).children('name:last').text();
+      reference     = $(clone).children('reference:last').text();
       
-      position      = $(clone).children('position');
-      relations     = $(clone).children('relations');
+      position      = $(clone).children('position:last');
+      relations     = $(clone).children('relations:last');
       
       from_relations = [];
       to_relations   = [];
@@ -1996,11 +2066,11 @@ this.StockAndFlow = Editor.extend({
     var relations  = stock_and_flow.find('relations>relation');
       
     relations.each(function( idx, relation ) {
-      origin          = $(relation).children('origin').text();
-      destination     = $(relation).children('destination').text();
-      description     = $(relation).children('description').text();
+      origin          = $(relation).children('origin:last').text();
+      destination     = $(relation).children('destination:last').text();
+      description     = $(relation).children('description:last').text();
       
-      position      = $(relation).children('position');
+      position      = $(relation).children('position:last');
               
       pos = [ {'x': Number($(position).find('op>x').text()),  'y': Number($(position).find('op>y').text()) },
               {'x': Number($(position).find('opc>x').text()), 'y': Number($(position).find('opc>y').text()) },
@@ -2020,12 +2090,12 @@ this.StockAndFlow = Editor.extend({
     var sectors  = stock_and_flow.find('sectors>sectorsaf');
       
     sectors.each(function( idx, sector ) {
-      name          = $(sector).children('name').text();
-      title         = $(sector).children('title').text();
-      description   = $(sector).children('description').text();
+      name          = $(sector).children('name:last').text();
+      title         = $(sector).children('title:last').text();
+      description   = $(sector).children('description:last').text();
       
-      position      = $(sector).children('position');
-      size          = $(sector).children('size');
+      position      = $(sector).children('position:last');
+      size          = $(sector).children('size:last');
                       
       pos = {'x':     Number($(position).children('x').text()), 'y':      Number($(position).children('y').text())};
       sis = {'width': Number($(size).children('width').text()), 'height': Number($(size).children('height').text())};
@@ -2196,12 +2266,12 @@ this.StockAndFlow = Editor.extend({
     }
   },
   
-  existeNivelPt: function(pos){
-    var existe = false;
-    if(this.list.stock){  
+  existStockPt: function(pos){
+    var exist = false;
+    if(this.list.stock){ 
       for( var n in this.list.stock){
-        existe = Raphael.isPointInsidePath(this.list.stock[n].fig.border, pos.x, pos.y);     
-        if(existe){
+        exist = Raphael.isPointInsidePath(this.list.stock[n].fig.border, pos.x, pos.y);     
+        if(exist){
           return this.list.stock[n];
         }
       }
