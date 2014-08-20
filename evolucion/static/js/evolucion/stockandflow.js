@@ -492,7 +492,6 @@ this.figures = $.extend(this.figures, {
     fig.connOriginStock = function(stock){
       var el = fig.parent;
       if(el.originStock != stock){
-			console.log('diferent');
 			stock.addLeavingFlow(el);
       		el.originStock = stock;
       		fig[2][7].update(0, 0);
@@ -501,8 +500,7 @@ this.figures = $.extend(this.figures, {
     };
     fig.connDestinationStock = function(stock){
       var el = fig.parent;
-      if(el.destinationStock != stock){
-		  console.log('diferent');	
+      if(el.destinationStock != stock){	
 	      stock.addEnteringFlow(el);
 	      el.destinationStock = stock;
 	      fig[2][8].update(0, 0);
@@ -956,10 +954,10 @@ this.Flow = Element.extend({
     
     if(controls_pos){
     	if(controls_pos.origin){
-    		this.addOriginControl(controls_pos.origin.name, controls_pos.origin.position);	
+    		this.updateOriginControl(controls_pos.origin.position);	
 	    }
 	    if(controls_pos.destination){
-	    	this.addDestinationControl(controls_pos.destination.name, controls_pos.destination.position);
+	    	this.updateDestinationControl(controls_pos.destination.position);
 	    }	
     }
     
@@ -1029,30 +1027,30 @@ this.Flow = Element.extend({
     var bb = this.fig[2][8].getBBox();
     return {'x': bb.x + bb.width/2, 'y': bb.y + bb.height/2};
   },
-  addOriginControl: function(stock_name, position){
+  updateOriginControl: function(position){
   	var pos = this.originPosition();
   	
   	this.start();
   	this.moveOriginControl(position.x - pos.x, position.y - pos.y);
   	this.end();
   },  
-  addDestinationControl: function(stock_name, position){
+  updateDestinationControl: function(position){
   	var pos = this.destinationPosition();
-  	
-  	if(stock_name){
-		var stock = this.ctx.objects.getByName(stock_name);
-  		var pt = this.ctx.path.nearestPoint(stock.fig.getBorder(), position);
-		
-		console.log("\position");
-  		console.log(position);
-  		console.log("pt");
-  		console.log(pt);  		
-  	}
  	
   	this.start();
   	this.moveDestinationControl(position.x - pos.x, position.y - pos.y);
   	this.end();  	
-  }, 
+  },
+  deleteOriginStock: function(){
+  	if(this.originStock){
+		this.fig.disOriginStock();	
+  	}
+  },
+  deleteDestinationStock: function(){
+  	if(this.destinationStock){
+  		this.fig.disDestinationStock();	
+  	}
+  },
   
   start: function(){
     var el;
@@ -1112,16 +1110,15 @@ this.Flow = Element.extend({
     
     bb = fig[1].getBBox();
     fig.p  = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
-    
-    console.log("\n"+el.name);
-    
-    // checking origin connection
+        
     bb = fig[2][7].getBBox();
     pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
     for(var i=-1; i<2; i++){
     	for(var j=-1; j<2; j++){
-    		stock = el.ctx.existStockPt({x: (pt.x + i*3), y: (pt.y + j*3)});
-    		if(stock){ i=2; j=2; }
+    		if(i*j == 0){
+    			stock = el.ctx.existStockPt({x: (pt.x + i*3), y: (pt.y + j*3)});
+    			if(stock){ i=2; j=2; }	
+    		}
     	}
     }
     if(stock){
@@ -1131,13 +1128,14 @@ this.Flow = Element.extend({
       fig.disOriginStock();
     }
     
-    // checking destination connection
-	bb = fig[2][8].getBBox();
+    bb = fig[2][8].getBBox();
 	pt = {x: bb.x + bb.width/2, y: bb.y + bb.height/2};
 	for(var i=-1; i<2; i++){
     	for(var j=-1; j<2; j++){
-    		stock = el.ctx.existStockPt({x: (pt.x + i*3), y: (pt.y + j*3)});
-    		if(stock){ i=2; j=2; }
+    		if(i*j == 0){
+    			stock = el.ctx.existStockPt({x: (pt.x + i*3), y: (pt.y + j*3)});
+    			if(stock){ i=2; j=2; }
+    		}
     	}	
     }	  
 	if(stock){
@@ -1892,7 +1890,7 @@ this.StockAndFlow = Editor.extend({
                     
           if(el == 'stock'){
             enteringFlowQua = list[i].enteringFlowQua;
-            leavingFlowQua = list[i].leavingFlowQua;
+            leavingFlowQua  = list[i].leavingFlowQua;
             
             stock_flows = element.append('<stock_flows />').children('stock_flows:last');
             if(enteringFlowQua > 0){
@@ -1911,22 +1909,20 @@ this.StockAndFlow = Editor.extend({
             }
           }
           if(el == 'flow'){
+          	var pos  = list[i].originPosition();
+          	origin   = element.append('<origin />').children('origin:last');
           	if(list[i].originStock){
-              origin.append($('<name />').text(list[i].originStock.name));
-            }
-          	
-          	var pos = list[i].originPosition();
-          	origin = element.append('<origin />').children('origin:last');
+          	  origin.append($('<name />').text(list[i].originStock.name));
+            }         	
           	position = origin.append('<position />').children('position:last');
 			position.append($('<x />').text(pos.x));
 			position.append($('<y />').text(pos.y));
 			
+			var pos = list[i].destinationPosition();
+            destination = element.append('<destination />').children('destination:last');
             if(list[i].destinationStock){ 
               destination.append($('<name />').text(list[i].destinationStock.name));
-            }
-            
-            var pos = list[i].destinationPosition();
-            destination = element.append('<destination />').children('destination:last');
+            }            
             position = destination.append('<position />').children('position:last');
             position.append($('<x />').text(pos.x));
             position.append($('<y />').text(pos.y));

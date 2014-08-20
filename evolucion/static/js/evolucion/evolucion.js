@@ -1157,7 +1157,7 @@ this.EleBase = Unit.extend({
     
   },
   remove: function(){
-    var obj;
+  	var obj;
     if(this.name){
       obj = this;
     }else if(this.parent){
@@ -1193,6 +1193,37 @@ this.EleBase = Unit.extend({
       
       if(obj.ctx.id == "saf"){
       	beh.deleteControls(obj);
+      	if(obj.type == "stock"){
+      		var flow;
+      		for(var f in obj.enteringFlow){
+      			flow = obj.enteringFlow[f];
+      			
+      			if(flow){
+      				obj.deleteEnteringFlow(flow);
+      				flow.deleteDestinationStock();
+      			}
+      		}
+      		for(var f in obj.leavingFlow){
+      			flow = obj.leavingFlow[f];
+      			
+      			if(flow){
+      				obj.deleteLeavingFlow(flow);
+      				flow.deleteOriginStock();	
+      			}
+      		}
+      	}
+      	if(obj.type == "flow"){
+      		var stock = obj.originStock;
+      		if(stock){
+      			obj.deleteOriginStock();
+      			stock.deleteLeavingFlow(obj);
+      		}
+      		stock = obj.destinationStock;
+      		if(stock){
+      			obj.deleteDestinationStock();
+      			stock.deleteEnteringFlow(obj);
+      		}
+      	}
       }
       
       if(list[obj.id]){
@@ -1206,8 +1237,6 @@ this.EleBase = Unit.extend({
       obj.fig.remove();
       obj.fig = undefined;
       obj = undefined;
-      
-      
     }
   }
 });
@@ -1937,20 +1966,22 @@ this.Editor = Class.extend({
       if(el.definition){
         html +=
             "<div class='form-group definition-field'>"+
-              "<label for='"+el.id+"-math' class='control-label'>"+
+              "<label for='"+el.id+"-definition' class='control-label'>"+	//for='"+el.id+"-math'
                 "Definición"+
               "</label>"+
               "<div class='panel panel-default'>"+
                 "<div class='panel-heading math-style'>"+el.name+"(t) =</div>"+
-                "<div id='"+el.id+"-math-editor' class='panel-body'>"+
+              	"<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='500' cols='40' rows='5' placeholder='Definición'>"+
+                	el.definition+
+              	"</textarea>"+
+              	  
+                /*"<div id='"+el.id+"-math-editor' class='panel-body'>"+
                   "<span id='"+el.id+"-math' name='definition' class='mathquill-editable'>"+
                     el.definition+
                   "</span>"+
-                "</div>"+
+                "</div>"+*/
               "</div>"+
-              //"<textarea id='"+el.id+"-definition' name='definition' class='form-control' maxlength='200' cols='40' rows='5' placeholder='Definición'>"+
-              //  el.definition+
-              //"</textarea>"+
+              
             "</div>"+
             
             "<div class='form-group'>"+
@@ -2146,7 +2177,40 @@ this.Editor = Class.extend({
         });
       }
       if(el.definition){
-        var latexMath = $('#'+el.id+'-math');
+      	var equation = $('#'+el.id+'-definition');
+      	
+      	equation.focusout( function() {
+          var text = $(this).val();
+          console.log(text);
+          try{
+            el.parser.parse(text);
+            
+            var relation;
+            var valid = true;
+            
+            for(var rel in el.enteringRels){
+              relation = el.enteringRels[rel];
+              if(text.search(relation.from.name) == -1){
+                valid = false;
+              }
+            }
+            if(valid){
+              $('#'+el.id+'-definition').parent().removeClass('math-error');
+              el.changeDefinition(text);
+            }
+            else{
+              $('#'+el.id+'-definition').parent().addClass('math-error');  
+            }
+          }
+          catch(error){
+            $('#'+el.id+'-definition').parent().addClass('math-error');
+            console.log('error');
+            console.log(error);
+          }
+        });
+      	
+      	
+        /*var latexMath = $('#'+el.id+'-math');
         
         latexMath.mathquill('editable');
         
@@ -2165,7 +2229,7 @@ this.Editor = Class.extend({
                 valid = false;
               }
             }
-            if(valid){       
+            if(valid){      
               $('#'+el.id+'-math-editor').parent().removeClass('math-error');
               el.changeDefinition(latex);
             }
@@ -2178,16 +2242,17 @@ this.Editor = Class.extend({
             console.log('error');
             console.log(error);
           }
-        });
+        });*/
         
         $('#'+el.id+"-relations").dblclick(function(){
           var select = $(this).val();
           var related_el = el.ctx.objects.getById(select[0]);
           
-          var definition = latexMath.mathquill('latex');
+          equation.val(equation.val()+related_el.name);
           
-          latexMath.mathquill('latex', definition+related_el.name);
-          console.log(definition+related_el.name);
+          /*var definition = latexMath.mathquill('latex');
+          	latexMath.mathquill('latex', definition+related_el.name);
+          	console.log(definition+related_el.name);*/
         });
         
       }

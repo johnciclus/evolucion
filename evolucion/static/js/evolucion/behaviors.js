@@ -159,8 +159,7 @@ this.Behaviors = Class.extend({
     $(container).find('p').html(el.title);
   },
   deleteControls: function(el){
-  	console.log(el);
-    $('#'+el.id+'-item-sim').remove();
+  	$('#'+el.id+'-item-sim').remove();
   },
   graphRedraw: function(idx){
     var graph_name = this.graph_name;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-11 17:53-0300\n"
+"POT-Creation-Date: 2014-08-20 16:15-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: John Garavito Suárez <jfgaravito@simon.uis.edu.co\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -741,28 +741,28 @@ msgid "saf multiplier btn title"
 msgstr "multiplicador"
 
 #: evolucion/templates/editor/_stock-and-flow.html:220
-msgid "saf fis btn title"
-msgstr "fis"
-
-#: evolucion/templates/editor/_stock-and-flow.html:223
 msgid "saf previous btn title"
 msgstr "val. anterior"
 
-#: evolucion/templates/editor/_stock-and-flow.html:226
+#: evolucion/templates/editor/_stock-and-flow.html:223
 msgid "saf submodel btn title"
 msgstr "submodelo"
 
-#: evolucion/templates/editor/_stock-and-flow.html:229
+#: evolucion/templates/editor/_stock-and-flow.html:226
 msgid "saf clone btn title"
 msgstr "clon"
 
-#: evolucion/templates/editor/_stock-and-flow.html:232
+#: evolucion/templates/editor/_stock-and-flow.html:229
 msgid "saf relation btn title"
 msgstr "relación"
 
-#: evolucion/templates/editor/_stock-and-flow.html:235
+#: evolucion/templates/editor/_stock-and-flow.html:232
 msgid "saf sector btn title"
 msgstr "sector"
+
+#: evolucion/templates/editor/_stock-and-flow.html:235
+msgid "saf fis btn title"
+msgstr "fis"
 
 #: evolucion/templates/editor/base_editor.html:64
 msgid "browser incompatibility"
