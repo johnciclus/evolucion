@@ -790,7 +790,7 @@ var Dynamos = Class.extend({
 	
 	generateJS: function(evaluated){
 		this.setElements();
-    this.priority=this.setPriority();
+    	this.priority=this.setPriority();
 		
 		var element;
 		var code=
@@ -824,7 +824,7 @@ var Dynamos = Class.extend({
 			}*/
 			element = this.elements[this.priority[i]];
 			
-			if(	element.type=='parameter' || element.type=='stock' || element.type=='flow' || element.type=='auxiliary'){
+			if(element.type=='parameter' || element.type=='stock' || element.type=='flow' || element.type=='auxiliary'){
 				/*if(isStatic(elements[priority[i]])){
 					static_elements.push(elements[priority[i]].name);
 				}*/
@@ -841,6 +841,47 @@ var Dynamos = Class.extend({
 				else if(element.dimension > 1){
 					// Falta definir code para multiplicadores con dimensión mayor que uno.
 				}
+			}
+			else if(element.type=='delay'){
+				var parameters = element.definition.substring(8,element.definition.length-1).split(',');
+				var source     = parameters[0];
+				var time       = parameters[1];
+				var order      = parameters[2];
+				var initial    = parameters[3];
+				
+				code+=
+					'\n'+'var '+element.name+'_stock = [';
+				for(var j=0; j<(order-1); j++){
+					code+=
+					initial+',';
+				}
+				code+=
+					initial+']';
+								
+				code+=
+					'\nvar '+element.name+'_flow  = [';
+						
+				for(var j=0; j<(order-1); j++){
+					if(j==0){
+						code+=
+						'('+order+'/'+time+')'+'*('+source+'-'+element.name+'_stock['+j+']),';	
+					}
+					else{
+						code+=
+						'('+order+'/'+time+')'+'*('+element.name+'_stock['+(j-1)+']-'+element.name+'_stock['+(j)+']),';
+					}
+				}
+				if(order==1){
+					code+=
+					'('+order+'/'+time+')'+'*('+source+'-'+element.name+'_stock['+order-1+'])];';	
+				}
+				else{
+					code+=
+					'('+order+'/'+time+')'+'*('+element.name+'_stock['+(order-2)+']-'+element.name+'_stock['+(order-1)+'])];';
+				}
+				
+				code+=
+				'\nvar '+element.name+'='+element.name+'_stock['+(order-1)+'];';
 			}
 		}
 		
@@ -946,7 +987,30 @@ var Dynamos = Class.extend({
 					}
 				}
 			}
-		
+			else if(element.type=='delay'){
+				var parameters = element.definition.substring(8,element.definition.length-1).split(',');
+				var source     = parameters[0];
+				var time       = parameters[1];
+				var order      = parameters[2];
+				var initial    = parameters[3];
+								
+				for(var j=0; j<order; j++){
+					code+=
+					'\n\t'+element.name+'_stock['+j+'] = '+ element.name+'_stock['+j+']+'+element.name+'_flow['+j+']*dt;';
+					if(j==0){
+						code+=
+						'\n\t'+element.name+'_flow['+j+'] = '+ '('+order+'/'+time+')*('+source+'-'+element.name+'_stock['+j+']);';	
+					}
+					else{
+						code+=
+						'\n\t'+element.name+'_flow['+j+'] = '+ '('+order+'/'+time+')*('+element.name+'_stock['+(j-1)+']-'+element.name+'_stock['+j+']);';
+					}
+				}
+				code+=
+				'\n\t'+element.name+'='+element.name+'_stock['+(order-1)+'];';
+			}
+			
+			
 		}
 		code+=
 		'\n'+'}';
@@ -954,7 +1018,7 @@ var Dynamos = Class.extend({
 	},
 	generateMath: function(evaluated){
 		this.setElements();
-    this.priority=this.setPriority();
+    	this.priority=this.setPriority();
 		
 		var element, code='';
 		
@@ -1053,6 +1117,7 @@ var Dynamos = Class.extend({
 		var code, time, elseval;
 		
 		code = this.generateJS(elements);
+		console.log(code);
 		this.series = {};
 		elseval = {};
 		time;

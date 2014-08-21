@@ -10,7 +10,7 @@ require.config({
         wysiwyg:        'bootstrap/bootstrap-wysiwyg',
         raphael:        'raphael/raphael-min',
         morris:         'morris/morris.min',
-        mathquill:      'mathquill/mathquill',
+        															//mathquill:      'mathquill/mathquill',
         peg:            'peg/peg-0.8.0.min',
         
         evolucion:      'evolucion/evolucion',
@@ -46,9 +46,9 @@ require.config({
         morris:{
             deps:['jquery', 'raphael']
         },
-        mathquill:{
+        /*mathquill:{
             deps:['jquery']
-        },
+        },*/
         utils:{
             deps:['jquery', 'bootstrap']
         },
@@ -62,7 +62,7 @@ require.config({
             deps:['evolucion', 'raphael']
         },
         stockandflow: {
-            deps:['evolucion', 'raphael', 'mathquill', 'peg']
+            deps:['evolucion', 'raphael', 'peg']	//'mathquill', 
         },
         equations: {
             deps:['evolucion']

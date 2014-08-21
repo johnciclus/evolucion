@@ -41,9 +41,9 @@ this.Equations = Class.extend({
     this.adjust();
   },
   model: {
-    mathematical_model: function(elments){
+	mathematical_model: function(elements){
             
-      var code = evo.dyn.generateMath(elments);
+	  var code = evo.dyn.generateMath(elements);
       
       equ.code['mathematical'] = code;
       
@@ -55,9 +55,9 @@ this.Equations = Class.extend({
       
       window.prettyPrint && prettyPrint();
     },
-    javascript_model: function(elments){
+    javascript_model: function(elements){
             
-      var code = evo.dyn.generateJS(elments);
+      var code = evo.dyn.generateJS(elements);
       
       equ.code['javascript'] = code;
       
