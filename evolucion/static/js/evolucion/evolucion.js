@@ -894,6 +894,13 @@ this.utils = {
   isNumber: function(n){
     return !isNaN(parseFloat(n)) && isFinite(n);
   },
+  log10: function(val) {
+  	return Math.log(val) / Math.LN10;
+  },
+  precision: function(dt){
+  	dt
+  	return Math.abs(Math.floor(utils.log10(dt)),0);
+  },
   textToVar: function(text){
     return text
       .toLowerCase()

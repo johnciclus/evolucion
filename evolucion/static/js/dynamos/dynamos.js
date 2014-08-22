@@ -556,8 +556,11 @@ function RANDOM(min,max){
 function RETARDO(datos, t_ajuste, orden, v_ini){ //Pendiente
 	
 }
-function ROUND(x){
-	return utils.roundDec(x,0);
+function ROUND(x,d){
+	if(d==undefined){
+		d=0;
+	}
+	return utils.roundDec(x,d);
 }
 function SIGN(x){
 	return x/Math.abs(x);
@@ -842,6 +845,17 @@ var Dynamos = Class.extend({
 					// Falta definir code para multiplicadores con dimensión mayor que uno.
 				}
 			}
+			else if(element.type=='exogenous'){
+				if(element.dimension == 1){
+					code+=
+					'\n'+'var '+element.name+'_func='+this.arrayAdapt(element.parser.parse(element.definition))+';';
+					code+=
+					'\n'+'var '+element.name+'='+element.name+'_func(it);';
+				}
+				else if(element.dimension > 1){
+					// Falta definir code para multiplicadores con dimensión mayor que uno.
+				}
+			}
 			else if(element.type=='delay'){
 				var parameters = element.definition.substring(8,element.definition.length-1).split(',');
 				var source     = parameters[0];
@@ -895,8 +909,10 @@ var Dynamos = Class.extend({
 			'\n\t'+element.name+'_serie.push('+element.name+');';
 		}
 		
+		var precision = utils.precision(this.dt);
+		console.log(precision);
 		code+=
-		'\n\t'+'t_serie.push(t);'+
+		'\n\t'+'t_serie.push(ROUND(t,'+ precision +'));'+
 		'\n\t'+'t=t+dt;';
 		
 		for(var i in this.priority){
@@ -933,6 +949,15 @@ var Dynamos = Class.extend({
 				if(element.dimension == 1){
 					code+=
 					'\n\t'+element.name+'='+element.name+'_func('+element.enteringRels[0]+');';
+				}
+				else if(element.dimension > 1){
+					// Falta definir code para multiplicadores con dimensión mayor que uno.
+				}
+			}
+			else if(element.type=='exogenous'){
+				if(element.dimension == 1){
+					code+=
+					'\n\t'+element.name+'='+element.name+'_func(t);';
 				}
 				else if(element.dimension > 1){
 					// Falta definir code para multiplicadores con dimensión mayor que uno.
