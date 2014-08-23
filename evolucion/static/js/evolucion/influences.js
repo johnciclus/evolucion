@@ -268,8 +268,8 @@ this.ElementInf = Element.extend({
     this.title        = title || "Elemento "+idx;
     this.name         = utils.textToVar(this.title);
     
-    this.description  = description || " ";
-    this.units        = units || " ";
+    this.description  = description || "";
+    this.units        = units || "";
     this.list         = this.ctx.list.element;
     
     this.figGenerator = figures.element;
@@ -303,7 +303,7 @@ this.Cycle = Element.extend({
     this.title        = title || "Ciclo "+idx;
     this.name         = utils.textToVar(this.title);
     
-    this.description  = description || " ";
+    this.description  = description || "";
     this.orientation  = orientation || "right";
     this.feedback     = feedback    || "positive";
     this.list         = this.ctx.list.cycle;
@@ -354,7 +354,7 @@ this.MaterialRel = Relation.extend({
     this.title = this.ctx.relationTitle(from.title, to.title);       
     this.name = utils.textToVar(this.title);
     
-    this.description 	= description || " ";
+    this.description 	= description || "";
     this.delay 			= delay 		|| "not";
     this.influence 		= influence 	|| "none";
     
@@ -413,7 +413,7 @@ this.InformationRel = Relation.extend({
     this.title 			= this.ctx.relationTitle(from.title, to.title);
     this.name 			= utils.textToVar(this.title);
     
-    this.description 	= description 	|| " ";
+    this.description 	= description 	|| "";
     this.delay 			= delay 		|| "not";
     this.influence 		= influence 	|| "none";
     
@@ -471,7 +471,7 @@ this.SectorInf = SecBase.extend({
     this.id = this.type+'-'+idx;
     this.title = title || "Sector "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " ";
+    this.description = description || "";
     
     this.list = this.ctx.list[this.type];
     this.figure(p, size);
@@ -490,6 +490,12 @@ this.Influences = Editor.extend({
     this.language = '#language-inf';
     this.sidebar  = '#influences-sidebar';
     this.state    = 'cursor';
+    this.controls = {	'element': 		['description', 'units'], 
+    					'clone': 		[],
+    					'cycle': 		['description', 'orientation', 'feedback'],
+    					'material': 	['description', 'delay', 'influence'],
+    					'information': 	['description', 'delay', 'influence'],
+    					'sectorinf': 	['description']}
     
     this._super(this.initWorkArea());
     
@@ -1057,7 +1063,10 @@ this.Influences = Editor.extend({
   },
   
   objects: {
-	getByName: function(name){
+    hasAttribute: function(el_class, attribute_name){
+  		return (this.ctx.controls[el_class].indexOf(attribute_name) != -1);
+  	},
+    getByName: function(name){
       var elmts = this.ctx.elements;
       var list;
       for( var el in elmts ){
@@ -1069,8 +1078,21 @@ this.Influences = Editor.extend({
         }
       }
       return false;
+    },
+    getById: function(id){
+      var elmts = this.ctx.elements;
+      var list;
+      for( var el in elmts ){
+        list = this.ctx.list[elmts[el]];
+        for(var i in list){
+          if(list[i].id == id){
+            return list[i];  
+          }
+        }
+      }
+      return false;
     }
-  },
+  }, 
   panel: {
     getSize: function(){
       return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};

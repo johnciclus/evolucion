@@ -740,8 +740,8 @@ this.Parameter = Element.extend({
     this.id = "parameter-"+idx;
     this.title = title || "Parametro "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
         
@@ -767,8 +767,8 @@ this.Stock = Element.extend({
     this.id = "stock-"+idx;
     this.title = title || "Nivel "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -937,8 +937,8 @@ this.Flow = Element.extend({
     this.id = "flow-"+idx;
     this.title = title || "Flujo "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     this.selected = false;
@@ -1171,8 +1171,8 @@ this.Auxiliary = Element.extend({
     this.id = "auxiliary-"+idx;
     this.title = title || "Var. auxiliar "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1196,8 +1196,8 @@ this.Exogenous = Element.extend({
     this.id = "exogenous-"+idx;
     this.title = title || "Var. exogena "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1222,8 +1222,8 @@ this.Delay = Element.extend({
     this.id = "delay-"+idx;
     this.title = title || "Retardo "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1247,8 +1247,8 @@ this.Multiplier = Element.extend({
     this.id = "multiplier-"+idx;
     this.title = title || "Multiplicador "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1272,8 +1272,8 @@ this.Fis = Element.extend({
     this.id = "fis-"+idx;
     this.title = title || "FIS "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1297,8 +1297,8 @@ this.Previous = Element.extend({
     this.id = "previous-"+idx;
     this.title = title || "Val. Anterior "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1322,8 +1322,8 @@ this.Submodel = Element.extend({
     this.id = "submodel-"+idx;
     this.title = title || "Submodelo "+idx;
     this.name = utils.textToVar(this.title);
-    this.description = description || " "; 
-    this.definition =  definition || " ";
+    this.description = description || ""; 
+    this.definition =  definition || "";
     this.units = units || "Adimensional";
     this.dimension = dimension || 1;
     
@@ -1349,7 +1349,7 @@ this.RelationSaf = Relation.extend({
     
     this.title = this.ctx.relationTitle(from.title, to.title);
     this.name = utils.textToVar(this.title);
-    this.description = description || " ";
+    this.description = description || "";
     
     this.list = this.ctx.list.relation;
     this.from = from;
@@ -1399,8 +1399,21 @@ this.StockAndFlow = Editor.extend({
     this.language = '#language-saf';
     this.sidebar  = '#stockandflow-sidebar';
     this.state    = 'cursor';
+    this.controls = {	'parameter': 	['description', 'definition', 'dimension', 'units'], 
+    					'stock': 		['description', 'definition', 'dimension', 'units'], 
+    					'flow': 		['description', 'definition', 'dimension', 'units'], 
+                      	'auxiliary': 	['description', 'definition', 'dimension', 'units'], 
+                      	'exogenous': 	['description', 'definition', 'dimension', 'units'], 
+                      	'delay': 		['description', 'definition', 'dimension', 'units'],
+                      	'multiplier': 	['description', 'definition', 'dimension', 'units'], 
+                      	'fis': 			['description', 'definition', 'units'], 
+                      	'previous': 	['description', 'definition', 'dimension', 'units'],
+                      	'submodel': 	['description', 'definition', 'units'],
+                      	'clone': 		[],
+                      	'relation': 	['description'],
+                      	'sectorsaf': 	['description']}
     
-    this.rules    = "start = bin bin = one:spe sym:('+'/'-'/'*'/'/') two:bin { return one + sym + two; } / one:spe '^(' two:bin ')' { return 'Math.pow('+one +','+ two+')'} / spe spe = '|' arg:bin '|' { return 'Math.abs('+arg+')'; } / '(' one:bin ')' { return '('+one+')'; } / 'sqrt(' one:bin ')(' two:bin ')' {return 'Math.pow(' + two + ',1/' + one + ')';} / 'sqrt(' arg:bin ')' {return 'Math.sqrt('+arg+')'; } / 'frac(' one:bin ')(' two:bin ')' {return '(('+ one +')/('+ two +'))'; } / fun:('sin'/'cos'/'tan') '(' arg:bin ')' { return 'Math.'+ fun + '('+arg+')'; } / 'csc' arg:bin { return '1/Math.sin('+arg+')'; } / 'sec' arg:bin { return '1/Math.cos('+arg+')'; } / 'cot' arg:bin { return '1/Math.tan('+arg+')'; } / evo evo = 'INT(' one:bin ')' { return 'INT('+one +')';} / 'INTLINEAL(' ext:int ',' ini:num ',' dlt:num com:args { return 'INTLINEAL('+ ext + ',' + ini + ',' + dlt + com; } / 'INTPASO(' ext:int ',' ini:num ',' dlt:num com:args { return 'INTPASO('+ ext + ',' + ini + ',' + dlt + com; } / 'INTSPLINE(' ext:int ',' ini:num ',' dlt:num com:args { return 'INTSPLINE('+ ext + ',' + ini + ',' + dlt + com; } / 'RETARDO(' src:var ',' tmp:num ',' ord:int ',' ini:num ')' { return 'RETARDO('+src + ',' + tmp + ',' + ord + ',' + ini + ')';} / 'ROUND(' one:bin ')' { return 'ROUND('+one +')';} / var args = ',' one:num two:args { return ','+one+two} / ')' var = 't'/'it'/'ft'/'dt'/'%' / con con = 'pi' {return 'Math.PI';} / 'e' {return 'Math.E';} / num num = real / int real = arg:$([+-]?[0-9]*[.][0-9]+) { return arg; } int = arg:$([+-]?[0-9]+) { return arg; }";
+    this.rules    = "start = bin bin = one:spe sym:('+'/'-'/'*'/'/') two:bin { return one + sym + two; } / one:spe '^(' two:bin ')' { return 'Math.pow('+one +','+ two+')'} / spe spe = '|' arg:bin '|' { return 'Math.abs('+arg+')'; } / '(' one:bin ')' { return '('+one+')'; } / 'sqrt(' one:bin ')(' two:bin ')' {return 'Math.pow(' + two + ',1/' + one + ')';} / 'sqrt(' arg:bin ')' {return 'Math.sqrt('+arg+')'; } / 'frac(' one:bin ')(' two:bin ')' {return '(('+ one +')/('+ two +'))'; } / fun:('SIN'/'COS'/'TAN') '(' arg:bin ')' { return 'Math.'+ fun.toLowerCase() + '('+arg+')'; } / 'CSC' arg:bin { return '1/Math.sin('+arg+')'; } / 'SEC' arg:bin { return '1/Math.cos('+arg+')'; } / 'COT' arg:bin { return '1/Math.tan('+arg+')'; } / evo evo = 'INT(' one:bin ')' { return 'INT('+one +')';} / 'INTLINEAL(' ext:int ',' ini:num ',' dlt:num com:args { return 'INTLINEAL('+ ext + ',' + ini + ',' + dlt + com; } / 'INTPASO(' ext:int ',' ini:num ',' dlt:num com:args { return 'INTPASO('+ ext + ',' + ini + ',' + dlt + com; } / 'INTSPLINE(' ext:int ',' ini:num ',' dlt:num com:args { return 'INTSPLINE('+ ext + ',' + ini + ',' + dlt + com; } / 'RETARDO(' src:var ',' tmp:num ',' ord:int ',' ini:num ')' { return 'RETARDO('+src + ',' + tmp + ',' + ord + ',' + ini + ')';} / 'ROUND(' one:bin ')' { return 'ROUND('+one +')';} / var args = ',' one:num two:args { return ','+one+two} / ')' var = 't'/'it'/'ft'/'dt'/'%' / con con = 'pi' {return 'Math.PI';} / 'e' {return 'Math.E';} / num num = real / int real = arg:$([+-]?[0-9]*[.][0-9]+) { return arg; } int = arg:$([+-]?[0-9]+) { return arg; }";
     
     this._super(this.initWorkArea());
     
@@ -2101,8 +2114,11 @@ this.StockAndFlow = Editor.extend({
     });
 
   },
-  
+
   objects: {
+    hasAttribute: function(el_class, attribute_name){
+  		return (this.ctx.controls[el_class].indexOf(attribute_name) != -1);
+  	},
     getByName: function(name){
       var elmts = this.ctx.elements;
       var list;
@@ -2129,7 +2145,7 @@ this.StockAndFlow = Editor.extend({
       }
       return false;
     }
-  },
+  }, 
   panel: {
     getSize: function(){
       return {w: $(this.ctx.svgDiv).width(), h: $(this.ctx.svgDiv).height()};

@@ -832,14 +832,20 @@ var Dynamos = Class.extend({
 					static_elements.push(elements[priority[i]].name);
 				}*/
 				code+=
-				'\n'+'var '+element.name+'='+this.arrayAdapt(element.parser.parse(element.definition))+';';
+				'\n'+'var '+element.name+'=ROUND('+this.arrayAdapt(element.parser.parse(element.definition))+',5);';
 			}
 			else if(element.type=='multiplier'){
 				if(element.dimension == 1){
 					code+=
 					'\n'+'var '+element.name+'_func='+this.arrayAdapt(element.parser.parse(element.definition))+';';
 					code+=
-					'\n'+'var '+element.name+'='+element.name+'_func('+element.enteringRels[0]+');';
+					'\n'+'var '+element.name+'=ROUND('+element.name+'_func(';
+					for(var rel in element.enteringRels){
+						code+=
+						element.enteringRels[rel].from.name+',';
+					}
+					code = code.replace(/\,$/, "),5);");
+					
 				}
 				else if(element.dimension > 1){
 					// Falta definir code para multiplicadores con dimensión mayor que uno.
@@ -847,10 +853,16 @@ var Dynamos = Class.extend({
 			}
 			else if(element.type=='exogenous'){
 				if(element.dimension == 1){
-					code+=
-					'\n'+'var '+element.name+'_func='+this.arrayAdapt(element.parser.parse(element.definition))+';';
-					code+=
-					'\n'+'var '+element.name+'='+element.name+'_func(it);';
+					if(element.definition.search(/(INTLINEAL|INTPASO|INTSPLINE)/)!=-1){
+						code+=
+						'\n'+'var '+element.name+'_func='+element.parser.parse(element.definition)+';';
+						code+=
+						'\n'+'var '+element.name+'='+element.name+'_func(it);';	
+					}
+					else{
+						code+=
+						'\n'+'var '+element.name+'='+element.parser.parse(element.definition)+';';	
+					}
 				}
 				else if(element.dimension > 1){
 					// Falta definir code para multiplicadores con dimensión mayor que uno.
@@ -910,10 +922,9 @@ var Dynamos = Class.extend({
 		}
 		
 		var precision = utils.precision(this.dt);
-		console.log(precision);
 		code+=
-		'\n\t'+'t_serie.push(ROUND(t,'+ precision +'));'+
-		'\n\t'+'t=t+dt;';
+		'\n\t'+'t_serie.push(t);'+
+		'\n\t'+'t=ROUND(t+dt,'+ precision +');';
 		
 		for(var i in this.priority){
 			/*if($("#"+element.name+'_cb').is(':checked')){
@@ -934,7 +945,7 @@ var Dynamos = Class.extend({
 			if(element.type=='auxiliary' || element.type=='flow'){
 				if(element.dimension == 1){
 					code+=
-					'\n\t'+element.name+'='+this.arrayAdapt(element.parser.parse(element.definition))+';';
+					'\n\t'+element.name+'=ROUND('+this.arrayAdapt(element.parser.parse(element.definition))+',5);';
 				}
 				else if(element.dimension > 1){
 					var vector=this.arrayConvert(element.parser.parse(element.definition));
@@ -947,8 +958,14 @@ var Dynamos = Class.extend({
 			}
 			else if(element.type=='multiplier'){
 				if(element.dimension == 1){
+
 					code+=
-					'\n\t'+element.name+'='+element.name+'_func('+element.enteringRels[0]+');';
+					'\n\t'+element.name+'=ROUND('+element.name+'_func(';
+					for(var rel in element.enteringRels){
+						code+=
+						element.enteringRels[rel].from.name+',';
+					}
+					code = code.replace(/\,$/, "),5);");
 				}
 				else if(element.dimension > 1){
 					// Falta definir code para multiplicadores con dimensión mayor que uno.
@@ -956,8 +973,14 @@ var Dynamos = Class.extend({
 			}
 			else if(element.type=='exogenous'){
 				if(element.dimension == 1){
-					code+=
-					'\n\t'+element.name+'='+element.name+'_func(t);';
+					if(element.definition.search(/(INTLINEAL|INTPASO|INTSPLINE)/)!=-1){
+						code+=
+						'\n\t'+element.name+'='+element.name+'_func(t);';
+					}
+					else{
+						code+=
+						'\n\t'+element.name+'='+element.parser.parse(element.definition)+';';
+					}
 				}
 				else if(element.dimension > 1){
 					// Falta definir code para multiplicadores con dimensión mayor que uno.

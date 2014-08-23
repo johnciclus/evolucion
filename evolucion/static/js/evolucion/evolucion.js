@@ -927,7 +927,7 @@ this.Unit = Class.extend({
     this.name         = '';
     this.title        = ''; 
     this.type         = '';
-    this.description  = ' ';
+    this.description  = '';
     
     this.fig          = undefined;
     
@@ -985,7 +985,7 @@ this.EleBase = Unit.extend({
   init: function(ctx){
     this._super(ctx);
     
-    this.definition     = '';
+    this.definition     = "";
     
     this.connec           = {};       //Connections
     this.connec['oriAce'] = true;     // (true || false)      Origin accepts
@@ -1252,7 +1252,7 @@ this.Element = EleBase.extend({
   init: function(ctx){
     this._super(ctx);
     
-    this.dimension = undefined;
+    this.dimension = "";
     
     this.clonesList = {};
     this.clonesListQua = 0;
@@ -1944,6 +1944,7 @@ this.Editor = Class.extend({
     var nameItemsCont = '#'+el.type+'-items';
     
     if(nameItemsCont && el.id && el.title){
+      var objs = el.ctx.objects;
       var html =
         "<div id='"+el.id+"-item' class='panel panel-default'>"+
           "<div class='panel-heading'>"+
@@ -1959,7 +1960,7 @@ this.Editor = Class.extend({
                 "<p>Nombre: <b>"+el.name+"</b></p>"+
               "</div>";
       
-      if(el.description){
+      if(objs.hasAttribute(el.type, 'description')){
         html +=
             "<div class='form-group'>"+
               "<label for='"+el.id+"-description' class='control-label'>"+
@@ -1970,7 +1971,7 @@ this.Editor = Class.extend({
               "</textarea>"+
             "</div>";
       }
-      if(el.definition){
+      if(objs.hasAttribute(el.type, 'definition')){
         html +=
             "<div class='form-group definition-field'>"+
               "<label for='"+el.id+"-definition' class='control-label'>"+	//for='"+el.id+"-math'
@@ -1999,21 +2000,21 @@ this.Editor = Class.extend({
               "</select>"+
             "</div>";
       }
-      if(el.dimension){
+      if(objs.hasAttribute(el.type, 'dimension')){
         html += 
             "<div class='form-group'>"+
               "<label for='"+el.id+"-dimension' class='control-label'>Dimensión</label>"+
               "<input id='"+el.id+"-dimension' type='text' name='dimension' class='form-control' maxlength='200' placeholder='Dimensión' value='"+el.dimension+"'>"+
             "</div>";
       }
-      if(el.units){
+      if(objs.hasAttribute(el.type, 'units')){
         html += 
             "<div class='form-group'>"+
               "<label for='"+el.id+"-units' class='control-label'>Unidades</label>"+
               "<input id='"+el.id+"-units' type='text' name='units' class='form-control' maxlength='200' placeholder='Unidades' value='"+el.units+"'>"+
             "</div>";
       }
-      if(el.orientation){
+      if(objs.hasAttribute(el.type, 'orientation')){
         var left_checked  = '';
         var right_checked = '';
         
@@ -2041,7 +2042,7 @@ this.Editor = Class.extend({
               "</div>"+
             "</div>";
       }
-      if(el.feedback){
+      if(objs.hasAttribute(el.type, 'feedback')){
         var neg_checked  = '';
         var pos_checked  = '';
         
@@ -2069,7 +2070,7 @@ this.Editor = Class.extend({
               "</div>"+
             "</div>";
       }
-      if(el.delay){
+      if(objs.hasAttribute(el.type, 'delay')){
         var yes_checked  = '';
         var not_checked  = '';
         
@@ -2097,7 +2098,7 @@ this.Editor = Class.extend({
               "</div>"+
             "</div>";
       }
-      if(el.influence){
+      if(objs.hasAttribute(el.type, 'influence')){
         var pos_checked 	= '';
         var neg_checked 	= '';
         var none_checked  	= '';
@@ -2178,12 +2179,12 @@ this.Editor = Class.extend({
       
       $(nameItemsCont).append(html);
       
-      if(el.description){
+      if(objs.hasAttribute(el.type, 'description')){
         $('#'+el.id+'-description').change(function(){         
           el.changeDescription($(this).val());          
         });
       }
-      if(el.definition){
+      if(objs.hasAttribute(el.type, 'definition')){
       	var equation = $('#'+el.id+'-definition');
       	
       	equation.focusout( function() {
@@ -2195,12 +2196,15 @@ this.Editor = Class.extend({
             var relation;
             var valid = true;
             
-            for(var rel in el.enteringRels){
-              relation = el.enteringRels[rel];
-              if(text.search(relation.from.name) == -1){
-                valid = false;
-              }
+            if(el.type != 'multiplier'){
+            	for(var rel in el.enteringRels){
+              		relation = el.enteringRels[rel];
+              		if(text.search(relation.from.name) == -1){
+                		valid = false;
+              		}
+            	}	
             }
+            
             if(valid){
               $('#'+el.id+'-definition').parent().removeClass('math-error');
               el.changeDefinition(text);
@@ -2263,32 +2267,32 @@ this.Editor = Class.extend({
         });
         
       }
-      if(el.dimension){
+      if(objs.hasAttribute(el.type, 'dimension')){
         $('#'+el.id+'-dimension').change(function(){
           el.changeDimension($(this).val());
         });
       }
-      if(el.units){
+      if(objs.hasAttribute(el.type, 'units')){
         $('#'+el.id+'-units').change(function(){
           el.changeUnits($(this).val());
         });
       }
-      if(el.orientation){
+      if(objs.hasAttribute(el.type, 'orientation')){
         $("input:radio[name='"+el.id+"-orientation']").change(function(){
           el.changeOrientation($(this).val());
         });
       }
-      if(el.feedback){
+      if(objs.hasAttribute(el.type, 'feedback')){
         $("input:radio[name='"+el.id+"-feedback']").change(function(){
           el.changeFeedback($(this).val());
         });
       }
-	  if(el.delay){
+	  if(objs.hasAttribute(el.type, 'delay')){
         $("input:radio[name='"+el.id+"-delay']").change(function(){
           el.changeDelay($(this).val());
         });
       }
-      if(el.influence){
+      if(objs.hasAttribute(el.type, 'influence')){
         $("input:radio[name='"+el.id+"-influence']").change(function(){
           var id = this.name.substring(0, this.name.indexOf("-influence"));
           var influence = $(this).val();
