@@ -30,6 +30,38 @@ utils_gui.openProject = function () {
   window.open("/"+username+"/"+modelname+'/');
 };
 
+utils_gui.deleteProject = function(){
+  var id = this.id;
+  var idx = id.indexOf('-');
+  var lidx = id.indexOf('-delete');
+  var username = id.substring(0,idx);
+  var modelname = id.substring(idx+1,lidx);
+  
+  console.log(username);
+  console.log(modelname);
+  
+  var csrf =  $("#logout-form>input[name='csrfmiddlewaretoken']");
+  
+  $.ajax({
+    type: 'post',
+    url:  '/projects/delete/',
+    data: {
+      'csrfmiddlewaretoken':  csrf.val(),
+      'username':             username,
+      'modelname':			  modelname
+    },
+    success: function (data, textStatus, jqXHR) {
+    	console.log('ok');
+      //evo.messages.success(data);
+    },
+    error: function(data) {
+      //evo.messages.error(data);
+      //$(id_response).html("<p>Problemas de conexión, por favor refresque la página.</p>");
+    }
+  });  
+  
+}
+
 utils_gui.logout = function(){
  $('#logout-form').submit();
  return false; 

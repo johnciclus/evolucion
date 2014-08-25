@@ -64,6 +64,18 @@ class Create(generic.View):
         else:
             return redirect('/')
 
+class Delete(generic.View):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        requested_user = get_object_or_404(EvoUser, username = request.POST['username'])
+        project = Project.objects.get(name = request.POST['modelname'])
+        
+        project.delete()
+        
+        context = {}
+        
+        return render(request, 'projects/_confirmation.html', context)
+
 class Editor(generic.View):
     template_name = 'editor/index.html'
     

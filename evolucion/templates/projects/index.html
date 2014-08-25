@@ -99,7 +99,13 @@
             <div class="col-6 col-sm-6 col-lg-4">
               <div class="well">
                 <fieldset>
-                    <legend>{{ project.title|capfirst }}</legend>
+                    <legend>
+                    	{{ project.title|capfirst }}
+                    	
+                    	<button type="button" class="close" data-dismiss="modal">
+                    		<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    	</button>
+                    </legend>
                     <p>{{ project.description|capfirst }}</p>
                     
                     <div class="form-group">
@@ -107,7 +113,8 @@
                         <button id="{{ requested_user.username }}-{{ project.name }}" class="btn btn-primary btn-open">{% trans 'open project'|capfirst%}</button>
                         {% if user.id != requested_user.id %}
                         <button id="copy-{{ user.username }}-{{ project.name }}" class="btn btn-primary btn-copy">{% trans 'copy project'|capfirst%}</button>
-                        {% endif %} 
+                        {% endif %}
+                        <button id="{{ requested_user.username }}-{{ project.name }}-delete" class="btn btn-danger btn-delete" href="#"><i class="fa fa-trash-o"></i> {% trans 'delete project'|capfirst%}</button>
                       </div>
                     </div>
                   </fieldset>

@@ -6,5 +6,7 @@ require(['utils'], function() {
     
     $('.btn-open').on('click', utils_gui.openProject);
     
+    $('.btn-delete').on('click', utils_gui.deleteProject);
+    
     $('#logout').on('click', function(){ utils_gui.logout(); });
 });
