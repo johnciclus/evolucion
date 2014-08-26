@@ -1420,9 +1420,9 @@ this.StockAndFlow = Editor.extend({
     this.elements = [ 'parameter', 'stock', 'flow', 
                       'auxiliary', 'exogenous', 'delay',
                       'multiplier', 'fis', 'previous',
-                      'submodel'];
+                      'submodel', 'clone'];
     this.states   = this.elements.concat(
-                    ['clone', 'relation', 'sectorsaf']);
+                    ['relation', 'sectorsaf']);
     
     for(var i in this.states){
       this.list[this.states[i]] = {};
@@ -1800,27 +1800,30 @@ this.StockAndFlow = Editor.extend({
           var el = saf.pointer.existElement(pos);
           var relation = saf.tmp.relation;
           if(el){
-            pos     = saf.path.nearestPoint(el.fig.border, pos);
-            alpha = saf.path.angleFromPoint(el.fig.border, pos);
+            pos		= saf.path.nearestPoint(el.fig.border, pos);
+            alpha 	= saf.path.angleFromPoint(el.fig.border, pos);
             if(relation.state == 'initial' && el.connec['oriAce']){
               relation.from = el;
               relation.activateSecondControl(saf, pos, alpha);
             }
             else if(relation.state == 'extend' && el.connec['desAce']){
               var is_itself = false;
+              var is_clone = false;
               var origin_relation = false;
-              var destination_relation = false;
-              
-              var exist_origin_relation = false;
               var destination_relation = false;
                 
               if(relation.from.id == el.id){
                 is_itself = true;
               }
-              exist_origin_relation = el.existsOriginRel(relation.from.id);
+              if(relation.from.type == 'clone'){
+              	if(relation.from.ref.id == el.id){
+              		is_clone = true;	
+              	}
+              }
+              origin_relation = el.existsOriginRel(relation.from.id);
               destination_relation  = el.existsDestinationRel(relation.from.id);
               
-              if(!is_itself && !exist_origin_relation && !destination_relation){
+              if(!is_itself && !origin_relation && !destination_relation && !is_clone){
                 relation.p[3] = pos;
                 
                 var rel = new RelationSaf(saf, relation.p, relation.from, el);
