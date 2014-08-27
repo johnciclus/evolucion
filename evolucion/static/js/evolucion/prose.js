@@ -27,9 +27,12 @@ this.Prose = Class.extend({
 
     var title =       $(this.divArea+' #title');
     var description = $(this.divArea+' #prose-editor');
+    var keywords    = $(this.divArea+' #keywords');
     
     prose.append($('<title />').text(title.val()));
     prose.append($('<description />').text(description.cleanHtml()));
+    prose.append($('<keywords />').text(keywords.val()));
+    
   }
   
 });

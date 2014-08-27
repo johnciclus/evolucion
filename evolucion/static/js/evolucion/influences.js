@@ -721,12 +721,11 @@ this.Influences = Editor.extend({
               	}
               	var ref = relation.from.ref;
               	exist_relation = ref.existsOriginRel(el.id);
-              	console.log(exist_relation);
               }
               origin_relation = el.existsOriginRel(relation.from.id);
               destination_relation  = el.existsDestinationRel(relation.from.id);
                            
-              if(!is_itself && !origin_relation && !destination_relation && !is_clone){
+              if(!is_itself && !origin_relation && !destination_relation && !is_clone && !exist_relation){
                 relation.p[3] = p;
                                 
                 var material = new MaterialRel(inf, relation.p, relation.from, el);
@@ -765,11 +764,13 @@ this.Influences = Editor.extend({
               	if(relation.from.ref.id == el.id){
               		is_clone = true;	
               	}
+              	var ref = relation.from.ref;
+              	exist_relation = ref.existsOriginRel(el.id);
               }
               origin_relation = el.existsOriginRel(relation.from.id);
               destination_relation  = el.existsDestinationRel(relation.from.id);
               
-              if(!is_itself && !origin_relation && !destination_relation && !is_clone){
+              if(!is_itself && !origin_relation && !destination_relation && !is_clone && !exist_relation){
                 relation.p[3] = p;
                 
                 var information = new InformationRel(inf, relation.p, relation.from, el);

@@ -78,6 +78,16 @@
       
       <div id="prose-editor" class="prose-editor">{{ prose_form.description.value|default_if_none:'' }}</div>
     </div>
+    <div class="form-group">
+      <label for="{{ prose_form.keywords|id }}" class="control-label">{{ prose_form.keywords|verbosename }}</label>
+      <input  type=       "text" 
+              id=         "{{ prose_form.keywords|id }}" 
+              name=       "{{ prose_form.keywords|id }}" 
+              class=      "form-control" 
+              maxlength=  "{{ prose_form.keywords|maxlength }}" 
+              placeholder="{% trans 'prose keywords placeholder'|capfirst %}"
+              value=      "{{ prose_form.keywords.value|default_if_none:'' }}">
+    </div>
   </div>
   
   <div id="messages-pro" class="messages centered">

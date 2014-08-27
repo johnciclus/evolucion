@@ -36,8 +36,9 @@ class ProjectForm(ModelForm):
         fields = ('name', 'title', 'description', 'keywords', 'is_public', 'model', 'user')
 
 class Prose(models.Model):
-    title = models.CharField(_('prose title'), max_length=200)
+    title       = models.CharField(_('prose title'), max_length=200)
     description = models.TextField(_('prose description'), max_length=2000)
+    keywords    = models.CharField(_('prose keywords'), max_length=200)
     model       = models.TextField(_('model'), null=True, blank=True)
     created_at  = models.DateTimeField(_('created at'), default=timezone.now)
     updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
@@ -49,8 +50,8 @@ class Prose(models.Model):
 
 class ProseForm(ModelForm):
     class Meta:
-        model = Prose
-        fields = ('title', 'description', 'model', 'project')
+        model  = Prose
+        fields = ('title', 'description', 'keywords', 'model', 'project')
         
 class Influences(models.Model):
     model       = models.TextField(_('model'), null=True, blank=True)

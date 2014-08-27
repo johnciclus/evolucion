@@ -89,7 +89,7 @@ class Editor(generic.View):
             prose = None        
         
         if prose is None:
-            prose = Prose(title = project.title, description = project.description, project = project)
+            prose = Prose(title = project.title, description = project.description, keywords = '', project = project)
         
         prose_form = ProseForm(instance = prose, auto_id = True)
         
@@ -137,6 +137,7 @@ class Save(generic.View):
         prose, created      = Prose.objects.get_or_create(project = project)
         prose.title         = prose_xml.find('title').text
         prose.description   = prose_xml.find('description').text
+        prose.keywords      = prose_xml.find('keywords').text
         prose.model         = ET.tostring(prose_xml)
         
         try:

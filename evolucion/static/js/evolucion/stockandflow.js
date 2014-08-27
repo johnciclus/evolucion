@@ -1809,9 +1809,11 @@ this.StockAndFlow = Editor.extend({
             else if(relation.state == 'extend' && el.connec['desAce']){
               var is_itself = false;
               var is_clone = false;
+              var has_clone_relation = false; 		//
               var origin_relation = false;
               var destination_relation = false;
-                
+              var exist_relation = false;
+              
               if(relation.from.id == el.id){
                 is_itself = true;
               }
@@ -1819,11 +1821,13 @@ this.StockAndFlow = Editor.extend({
               	if(relation.from.ref.id == el.id){
               		is_clone = true;	
               	}
+              	var ref = relation.from.ref;
+              	exist_relation = ref.existsOriginRel(el.id);
               }
               origin_relation = el.existsOriginRel(relation.from.id);
               destination_relation  = el.existsDestinationRel(relation.from.id);
               
-              if(!is_itself && !origin_relation && !destination_relation && !is_clone){
+              if(!is_itself && !origin_relation && !destination_relation && !is_clone && !exist_relation){
                 relation.p[3] = pos;
                 
                 var rel = new RelationSaf(saf, relation.p, relation.from, el);
