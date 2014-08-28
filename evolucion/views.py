@@ -24,3 +24,11 @@ class Explore(generic.View):
         context['form']             = form
 
         return render(request, 'explore/index.html', context)
+    
+class Features(generic.View):
+    def get(self, request, *args, **kwargs):
+        form = UserForm(auto_id=True)
+               
+        context = {'user': request.user, 'form': form}
+
+        return render(request, 'features/index.html', context)

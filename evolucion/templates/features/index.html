@@ -1,0 +1,74 @@
+{% extends "home/base_home.html" %}
+
+{% load i18n %}
+
+{% block content %}
+       
+    <div class="container marketing">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje en prosa.</h2>
+          <p class="lead">El lenguaje en prosa permite describir el fenómeno de manera textual, en Evolución web se integra un editor de texto enriquecido que definir este lenguaje de la dinámica de sistemas.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/prose.png" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/influences.png" alt="Generic placeholder image">
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje de influencias.</h2>
+          <p class="lead">El lenguaje de influencia describe mediante elementos, ciclos y relaciones visuales, una visión general del fenómeno permitiendo identificar los ciclos de realimentación.</p>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje de flujo nivel.</h2>
+          <p class="lead">El lenguaje de flujo nivel permite modelar la estructura del fenómeno en estudio mediante un lenguaje visual que tiene asociado ecuaciones matemáticas, las cuales permiten la simulación del sistema.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/stockandflow.png" alt="Generic placeholder image">
+        </div>
+      </div>
+      
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/equations.png" alt="Generic placeholder image">
+        </div>
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje de Ecuaciones.</h2>
+          <p class="lead">El lenguaje de Ecuaciones representa la estructura del fenómeno mediante un conjunto de ecuaciones diferenciales que permiten simular el comportamento del sistema.</p>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Lenguaje de Comportamientos.</h2>
+          <p class="lead">El lenguaje de Comportamientos permite analizar visualmente el comportamiento del sistema con la finalidad de validar si simula aproximadamente el sistema.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" src="/static/images/behaviors.png" alt="Generic placeholder image">
+        </div>
+      </div>
+      
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+      
+      {% include 'home/_footer.html' %}
+      
+    </div><!-- /.container -->
+{% endblock %}

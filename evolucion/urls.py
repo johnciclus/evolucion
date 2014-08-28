@@ -11,6 +11,9 @@ urlpatterns = patterns('',
     
     # Explore page:
     url(r'^explore/', views.Explore.as_view(), name='home'),
+
+    # Features
+    url(r'^features/', views.Features.as_view(), name='features'),
                            
     # Include app Users:
     url(r'^user/', include('evolucion.users.urls', namespace='user')),
