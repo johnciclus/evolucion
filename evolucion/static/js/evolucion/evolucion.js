@@ -2633,8 +2633,11 @@ this.Evolucion = Class.extend({
       return false;      
     },
     save: function(){
+      var errors = [];
+      
       if(evo.pro){
-        evo.pro.saveAsDOM();
+        var pro_errors = evo.pro.saveAsDOM();
+        errors = errors.concat(pro_errors);
       }
       if(evo.inf){
         evo.inf.saveAsDOM();
@@ -2648,27 +2651,35 @@ this.Evolucion = Class.extend({
       if(evo.beh){
         evo.beh.saveAsDOM();
       }
-
-      var root =  $('#xmldocument');
-      var csrf =  $("#save_form > input[name='csrfmiddlewaretoken']");
-      
-      var frm  =  $('#save_form');
-      
-      $.ajax({
-        type: frm.attr('method'),
-        url: frm.attr('action'),
-        data: {
-          'csrfmiddlewaretoken':  csrf.val(),
-          'model':                root.html()
-        },
-        success: function (data, textStatus, jqXHR) {
-          evo.messages.success(data);
-        },
-        error: function(data) {
-          evo.messages.error(data);
-          //$(id_response).html("<p>Problemas de conexión, por favor refresque la página.</p>");
-        }
-      });            
+		
+	  if(errors.length == 0){
+	  	var root =  $('#xmldocument');
+	    var csrf =  $("#save_form > input[name='csrfmiddlewaretoken']");
+	      
+	    var frm  =  $('#save_form');
+	      
+	    $.ajax({
+	    	type: frm.attr('method'),
+	        url: frm.attr('action'),
+	        data: {
+	          'csrfmiddlewaretoken':  csrf.val(),
+	          'model':                root.html()
+	        },
+	        success: function (data, textStatus, jqXHR) {
+	          evo.messages.success(data);
+	        },
+	        error: function(data) {
+	          evo.messages.error(data);
+	          //$(id_response).html("<p>Problemas de conexión, por favor refresque la página.</p>");
+	        }
+		});	
+	  }
+	  else{
+	  	for(var i in errors){
+	  		evo.messages.error(errors[i]);
+	  	}
+	  }
+                  
     },
     simulate: function(){
       if(this.saf){
