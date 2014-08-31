@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', views.Index.as_view(), name='home'),
     
     # Explore page:
-    url(r'^explore/', views.Explore.as_view(), name='home'),
+    url(r'^explore/', views.Explore.as_view(), name='explore'),
 
     # Features
     url(r'^features/', views.Features.as_view(), name='features'),

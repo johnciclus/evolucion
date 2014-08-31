@@ -9,6 +9,9 @@ urlpatterns = patterns('',
         
     url(r'^save/$', views.Save.as_view(), name='save_project'),
     
-    # Project delete
+    # Fork
+    url(r'^fork/$', views.Fork.as_view(), name='fork_project'),
+    
+    # Delete
     url(r'^delete/$', views.Delete.as_view(), name='delete_project'),
 )

@@ -76,6 +76,36 @@ class Delete(generic.View):
         
         return render(request, 'projects/_confirmation.html', context)
 
+class Fork(generic.View):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        requested_user = get_object_or_404(EvoUser, username = request.POST['username'])
+        project = Project.objects.get(name = request.POST['modelname'])
+        
+        params = {}
+        
+        params['name']          = project.name
+        params['title']         = project.title
+        params['user']          = user
+        params['description']   = project.description
+        params['keywords']      = project.keywords
+        params['is_public']     = project.is_public
+        params['model']         = project.model
+        
+        form = ProjectForm(data = params, auto_id=True)
+        
+        context = {}
+        
+        if form.is_valid():
+            project = form.save() 
+            context['project'] = project
+            context['form_msg'] = _("the project was successfully registered")
+            return render(request, 'projects/_new_success.html', context)
+        else:
+            form_errors = form.errors
+            form_cleaned = form.cleaned_data
+            return render(request, 'projects/_new_errors.html', {'form_errors': form_errors}) 
+        
 class Editor(generic.View):
     template_name = 'editor/index.html'
     

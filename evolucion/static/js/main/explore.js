@@ -15,5 +15,7 @@ require(['utils'], function() {
     
     $('.btn-open').on('click', utils_gui.openProject);
     
+    $('.btn-fork').on('click', utils_gui.forkProject);
+    
     $('#logout').on('click', function(){ utils_gui.logout(); });
 });
