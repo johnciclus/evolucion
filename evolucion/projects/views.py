@@ -68,7 +68,7 @@ class Delete(generic.View):
     def post(self, request, *args, **kwargs):
         user = request.user
         requested_user = get_object_or_404(EvoUser, username = request.POST['username'])
-        project = Project.objects.get(name = request.POST['modelname'])
+        project = Project.objects.get(name = request.POST['modelname'], user = user)
         
         project.delete()
         
@@ -91,6 +91,7 @@ class Fork(generic.View):
         params['keywords']      = project.keywords
         params['is_public']     = project.is_public
         params['model']         = project.model
+        params['base_on']       = project.id
         
         form = ProjectForm(data = params, auto_id=True)
         

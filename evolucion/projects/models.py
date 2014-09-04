@@ -22,7 +22,7 @@ class Project(models.Model):
     updated_at  = models.DateTimeField(_('updated at'), default=timezone.now)
     
     user        = models.ForeignKey(EvoUser)
-    #base_on    = models.ForeignKey(Project)
+    base_on     = models.ForeignKey('self', null = True)
     
     class Meta:
         unique_together = ("user", "name")
@@ -33,7 +33,7 @@ class Project(models.Model):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ('name', 'title', 'description', 'keywords', 'is_public', 'model', 'user')
+        fields = ('name', 'title', 'description', 'keywords', 'is_public', 'model', 'user', 'base_on')
 
 class Prose(models.Model):
     title       = models.CharField(_('prose title'), max_length=200)
