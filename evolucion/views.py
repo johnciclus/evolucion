@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
 
-from evolucion.users.models import UserForm
-from evolucion.projects.models import Project
+from users.models import UserForm
+from projects.models import Project
 
 class Index(generic.View):
     def get(self, request, *args, **kwargs):
